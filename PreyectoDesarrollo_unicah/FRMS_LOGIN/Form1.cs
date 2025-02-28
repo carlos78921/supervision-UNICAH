@@ -38,7 +38,7 @@ namespace PreyectoDesarrollo_unicah
 
         private void txtusuario_Enter(object sender, EventArgs e)
         {
-            //se a�ade un tipo de marca de agua a los txtbox
+            //se añade un tipo de marca de agua a los txtbox
             if (txtusuario.Text == "Usuario:")
             {
                 txtusuario.Clear();
@@ -53,21 +53,21 @@ namespace PreyectoDesarrollo_unicah
             }
         }
 
-        private void txtcontrase�a_Enter(object sender, EventArgs e)
+        private void txtcontraseña_Enter(object sender, EventArgs e)
         {
-            if (txtcontrase�a.Text == "Contrase�a:")
+            if (txtcontraseña.Text == "Contraseña:")
             {
-                txtcontrase�a.Clear();
-                txtcontrase�a.UseSystemPasswordChar = true;
+                txtcontraseña.Clear();
+                txtcontraseña.UseSystemPasswordChar = true;
             }
         }
 
-        private void txtcontrase�a_Leave(object sender, EventArgs e)
+        private void txtcontraseña_Leave(object sender, EventArgs e)
         {
-            if (txtcontrase�a.Text == "")
+            if (txtcontraseña.Text == "")
             {
-                txtcontrase�a.Text = "Contrase�a:";
-                txtcontrase�a.UseSystemPasswordChar = false;
+                txtcontraseña.Text = "Contraseña:";
+                txtcontraseña.UseSystemPasswordChar = false;
             }
         }
 
@@ -79,28 +79,28 @@ namespace PreyectoDesarrollo_unicah
         private void button1_Click(object sender, EventArgs e)
         {
             string usuario = txtusuario.Text.Trim();
-            string contrase�a = txtcontrase�a.Text.Trim();
+            string contraseña = txtcontraseña.Text.Trim();
 
 
-            if (usuario == "Usuario:" || contrase�a == "Contrase�a:")
+            if (usuario == "Usuario:" || contraseña == "Contraseña:")
             {
                 MessageBox.Show("Por favor ingrese todos los datos", "advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Realizar la conexi�n y consulta
+            // Realizar la conexión y consulta
             try
             {
-                string cadenaConexion = "Data Source = DESKTOP-F4DAE1B\\SQLEXPRESS;Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
+                string cadenaConexion = "Data Source = Servidor del SQL (también en Conexión BD);Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
                 {
                     conexion.Open();
 
-                    string consulta = "SELECT rol FROM docentes WHERE usuario = @usuario AND contrase�a = @contrasena";
+                    string consulta = "SELECT rol FROM docentes WHERE usuario = @usuario AND contraseña = @contrasena";
                     using (SqlCommand cmd = new SqlCommand(consulta, conexion))
                     {
                         cmd.Parameters.AddWithValue("@usuario", usuario);
-                        cmd.Parameters.AddWithValue("@contrasena", contrase�a);
+                        cmd.Parameters.AddWithValue("@contrasena", contraseña);
 
                         object rol = cmd.ExecuteScalar(); // Obtiene el rol del usuario
 
@@ -108,7 +108,7 @@ namespace PreyectoDesarrollo_unicah
                         {
                             // Usuario encontrado, verifica el rol
                             string rolUsuario = rol.ToString();
-                            MessageBox.Show($"Bienvenido, {usuario}. Tu rol es: {rolUsuario}", "Inicio de Sesi�n", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"Bienvenido, {usuario}. Tu rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             if (rolUsuario == "supervisor")
                             {
@@ -138,8 +138,8 @@ namespace PreyectoDesarrollo_unicah
                         }
                         else
                         {
-                            // Usuario o contrase�a incorrectos
-                            MessageBox.Show("Usuario o contrase�a incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            // Usuario o contraseña incorrectos
+                            MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
