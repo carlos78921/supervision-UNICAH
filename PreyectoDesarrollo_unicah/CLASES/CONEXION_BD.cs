@@ -16,7 +16,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
     internal class CONEXION_BD
     {
-        string conexion = "DATA SOURCE= DESKTOP-F4DAE1B\\SQLEXPRESS; Initial Catalog=Supervision_Unicah; Integrated Security=True";
+        string conexion = "DATA SOURCE= Servidor del SQL; Initial Catalog=Supervision_Unicah; Integrated Security=True";
         public SqlConnection conectar = new SqlConnection();
 
 
