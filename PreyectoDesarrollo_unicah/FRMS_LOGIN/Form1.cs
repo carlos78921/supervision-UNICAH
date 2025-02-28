@@ -84,7 +84,7 @@ namespace PreyectoDesarrollo_unicah
             // Realizar la conexión y consulta
             try
             {
-                string cadenaConexion = "Data Source = DESKTOP-F4DAE1B\\SQLEXPRESS;Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
+                string cadenaConexion = "Data Source = Servidor del SQL (también en conexión BD);Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
                 {
                     conexion.Open();
