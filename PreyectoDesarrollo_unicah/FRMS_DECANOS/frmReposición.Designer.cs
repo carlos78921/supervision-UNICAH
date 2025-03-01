@@ -1,6 +1,6 @@
 namespace PreyectoDesarrollo_unicah
 {
-    partial class frmJustificación
+    partial class frmReposición
     {
         /// <summary>
         /// Required designer variable.
@@ -28,29 +28,25 @@ namespace PreyectoDesarrollo_unicah
         /// </summary>
         private void InitializeComponent()
         {
+            Button btnExcel;
             Button btnSalir;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             pictureBox3 = new PictureBox();
+            label2 = new Label();
+            nudReposicion = new NumericUpDown();
             dataGridView1 = new DataGridView();
             label1 = new Label();
+            btnExcel = new Button();
             btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudReposicion).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
-            // 
-            // btnSalir
-            // 
-            btnSalir.Location = new Point(662, 415);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(126, 29);
-            btnSalir.TabIndex = 14;
-            btnSalir.Text = "&REGRESAR";
-            btnSalir.UseVisualStyleBackColor = true;
             // 
             // pictureBox2
             // 
@@ -94,40 +90,81 @@ namespace PreyectoDesarrollo_unicah
             pictureBox3.TabIndex = 8;
             pictureBox3.TabStop = false;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(16, 125);
+            label2.Name = "label2";
+            label2.Size = new Size(101, 15);
+            label2.TabIndex = 23;
+            label2.Text = "Día de reposición:";
+            // 
+            // nudReposicion
+            // 
+            nudReposicion.Location = new Point(120, 123);
+            nudReposicion.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+            nudReposicion.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudReposicion.Name = "nudReposicion";
+            nudReposicion.Size = new Size(40, 23);
+            nudReposicion.TabIndex = 22;
+            nudReposicion.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // btnExcel
+            // 
+            btnExcel.Location = new Point(170, 121);
+            btnExcel.Name = "btnExcel";
+            btnExcel.Size = new Size(176, 23);
+            btnExcel.TabIndex = 21;
+            btnExcel.Text = "&AGREGAR DÍA DE REPOSICIÓN";
+            btnExcel.UseVisualStyleBackColor = true;
+            // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(678, 426);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(108, 29);
+            btnSalir.TabIndex = 20;
+            btnSalir.Text = "&CERRAR SESIÓN";
+            btnSalir.UseVisualStyleBackColor = true;
+            // 
             // dataGridView1
             // 
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(15, 128);
+            dataGridView1.Location = new Point(12, 152);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(774, 268);
-            dataGridView1.TabIndex = 13;
+            dataGridView1.TabIndex = 19;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(313, 101);
+            label1.Location = new Point(313, 96);
             label1.Name = "label1";
-            label1.Size = new Size(157, 15);
-            label1.TabIndex = 12;
-            label1.Text = "REPORTE DE JUSTIFICACIÓN";
+            label1.Size = new Size(142, 15);
+            label1.TabIndex = 18;
+            label1.Text = "REPORTE DE REPOSICIÓN";
             // 
-            // frmJustificación
+            // frmReposición
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(panel1);
+            ClientSize = new Size(795, 464);
+            Controls.Add(label2);
+            Controls.Add(nudReposicion);
+            Controls.Add(btnExcel);
             Controls.Add(btnSalir);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
+            Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "frmJustificación";
+            Name = "frmReposición";
             Text = "FrmReporte";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudReposicion).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -139,6 +176,8 @@ namespace PreyectoDesarrollo_unicah
         private PictureBox pictureBox1;
         private Panel panel1;
         private PictureBox pictureBox3;
+        private Label label2;
+        private NumericUpDown nudReposicion;
         private DataGridView dataGridView1;
         private Label label1;
     }

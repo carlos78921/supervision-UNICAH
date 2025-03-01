@@ -36,6 +36,11 @@
             pictureBox3 = new PictureBox();
             dataGridView1 = new DataGridView();
             label1 = new Label();
+            clmClase = new DataGridViewTextBoxColumn();
+            clmFecha = new DataGridViewTextBoxColumn();
+            clmSeccion = new DataGridViewTextBoxColumn();
+            clmDocente = new DataGridViewTextBoxColumn();
+            clmRepo = new DataGridViewTextBoxColumn();
             btnLogout = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -46,7 +51,7 @@
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(662, 402);
+            btnLogout.Location = new Point(546, 402);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(126, 23);
             btnLogout.TabIndex = 14;
@@ -56,7 +61,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(734, 0);
+            pictureBox2.Location = new Point(614, 3);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(29, 20);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -67,7 +72,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(769, 0);
+            pictureBox1.Location = new Point(649, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 20);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -93,7 +98,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(666, 53);
+            label4.Location = new Point(544, 63);
             label4.Name = "label4";
             label4.Size = new Size(132, 18);
             label4.TabIndex = 21;
@@ -112,11 +117,14 @@
             // 
             // dataGridView1
             // 
-            dataGridView1.AllowUserToOrderColumns = true;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(15, 128);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha, clmSeccion, clmDocente, clmRepo });
+            dataGridView1.Location = new Point(61, 128);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(774, 268);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.Size = new Size(611, 268);
             dataGridView1.TabIndex = 13;
             // 
             // label1
@@ -124,15 +132,47 @@
             label1.AutoSize = true;
             label1.Location = new Point(313, 101);
             label1.Name = "label1";
-            label1.Size = new Size(131, 15);
+            label1.Size = new Size(132, 15);
             label1.TabIndex = 12;
             label1.Text = "ASISTENCIA PERSONAL";
+            // 
+            // clmClase
+            // 
+            clmClase.HeaderText = "Asignatura";
+            clmClase.Name = "clmClase";
+            clmClase.ReadOnly = true;
+            // 
+            // clmFecha
+            // 
+            clmFecha.HeaderText = "Fecha de Ausencia";
+            clmFecha.Name = "clmFecha";
+            clmFecha.ReadOnly = true;
+            clmFecha.Width = 130;
+            // 
+            // clmSeccion
+            // 
+            clmSeccion.HeaderText = "Sección";
+            clmSeccion.Name = "clmSeccion";
+            clmSeccion.ReadOnly = true;
+            // 
+            // clmDocente
+            // 
+            clmDocente.HeaderText = "Docente";
+            clmDocente.Name = "clmDocente";
+            clmDocente.ReadOnly = true;
+            // 
+            // clmRepo
+            // 
+            clmRepo.HeaderText = "Fecha de Reposición";
+            clmRepo.Name = "clmRepo";
+            clmRepo.ReadOnly = true;
+            clmRepo.Width = 138;
             // 
             // FrmDocente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 435);
+            ClientSize = new Size(706, 435);
             Controls.Add(panel1);
             Controls.Add(btnLogout);
             Controls.Add(dataGridView1);
@@ -159,5 +199,10 @@
         private DataGridView dataGridView1;
         private Label label1;
         private Label label4;
+        private DataGridViewTextBoxColumn clmClase;
+        private DataGridViewTextBoxColumn clmFecha;
+        private DataGridViewTextBoxColumn clmSeccion;
+        private DataGridViewTextBoxColumn clmDocente;
+        private DataGridViewTextBoxColumn clmRepo;
     }
 }
