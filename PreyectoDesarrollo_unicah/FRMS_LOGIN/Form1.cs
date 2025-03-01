@@ -82,7 +82,7 @@ namespace PreyectoDesarrollo_unicah
             string contraseña = txtcontraseña.Text.Trim();
 
 
-            if (usuario == "Usuario:"  || contraseña == "Contraseña:")
+            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(contraseña))
             {
 
                 MessageBox.Show("Por favor ingrese todos los datos", "advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
