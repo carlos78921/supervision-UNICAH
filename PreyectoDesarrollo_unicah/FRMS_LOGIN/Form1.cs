@@ -37,7 +37,7 @@ namespace PreyectoDesarrollo_unicah
 
         private void txtusuario_Enter(object sender, EventArgs e)
         {
-            //se añade un tipo de marca de agua a los txtbox
+            //se aÃ±ade un tipo de marca de agua a los txtbox
             if (txtusuario.Text == "Usuario:")
             {
                 txtusuario.Text = "";                
@@ -52,21 +52,21 @@ namespace PreyectoDesarrollo_unicah
             }
         }
 
-        private void txtcontraseña_Enter(object sender, EventArgs e)
+        private void txtcontraseÃ±a_Enter(object sender, EventArgs e)
         {
-            if (txtcontraseña.Text == "Contraseña:")
+            if (txtcontraseÃ±a.Text == "ContraseÃ±a:")
             {
-                txtcontraseña.Text = "";                
-                txtcontraseña.UseSystemPasswordChar = true;
+                txtcontraseÃ±a.Text = "";                
+                txtcontraseÃ±a.UseSystemPasswordChar = true;
             }
         }
 
-        private void txtcontraseña_Leave(object sender, EventArgs e)
+        private void txtcontraseÃ±a_Leave(object sender, EventArgs e)
         {
-            if (txtcontraseña.Text == "")
+            if (txtcontraseÃ±a.Text == "")
             {
-                txtcontraseña.Text = "Contraseña:";
-                txtcontraseña.UseSystemPasswordChar = false;
+                txtcontraseÃ±a.Text = "ContraseÃ±a:";
+                txtcontraseÃ±a.UseSystemPasswordChar = false;
             }
         }
 
@@ -79,39 +79,39 @@ namespace PreyectoDesarrollo_unicah
         private void button1_Click(object sender, EventArgs e)
         {
             string usuario = txtusuario.Text.Trim();
-            string contraseña = txtcontraseña.Text.Trim();
+            string contraseÃ±a = txtcontraseÃ±a.Text.Trim();
 
-            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(contraseña) ||
-                usuario == "Usuario:" || contraseña == "Contraseña:") //Vacío con o sin un dato
+            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(contraseÃ±a) ||
+                usuario == "Usuario:" || contraseÃ±a == "ContraseÃ±a:") //VacÃ­o con o sin un dato
             {
                 MessageBox.Show("Por favor ingrese todos los datos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Realizar la conexión y consulta
+            // Realizar la conexiÃ³n y consulta
             try
             {
-                string cadenaConexion = "Server=DESKTOP-F4DAE1B\\SQLEXPRESS;Database=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
+                string cadenaConexion = "DATA SOURCE= Servidor del SQL; Initial Catalog=Supervision_Unicah; Integrated Security=True";
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
                 {
                     conexion.Open();
 
                     // Consulta para obtener el rol, nombre y apellido
-                    string consulta = "SELECT nombre_empleado, apellido_empleado, rol FROM Empleados WHERE usuario = @usuario AND contraseña = @contrasena";
+                    string consulta = "SELECT nombre_empleado, apellido_empleado, rol FROM Empleados WHERE usuario = @usuario AND contraseÃ±a = @contrasena";
                     using (SqlCommand cmd = new SqlCommand(consulta, conexion))
                     {
                         cmd.Parameters.AddWithValue("@usuario", usuario);
-                        cmd.Parameters.AddWithValue("@contrasena", contraseña);
+                        cmd.Parameters.AddWithValue("@contrasena", contraseÃ±a);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read()) // Si coincide usuario y contraseña, y hay datos del select
+                            if (reader.Read()) // Si coincide usuario y contraseÃ±a, y hay datos del select
                             {
                                 string nombre = reader["nombre_empleado"].ToString();
                                 string apellido = reader["apellido_empleado"].ToString();
                                 string rolUsuario = reader["rol"].ToString();
 
-                                MessageBox.Show($"Bienvenido, {nombre} {apellido}. Tu rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show($"Bienvenido, {nombre} {apellido}. Tu rol es: {rolUsuario}", "Inicio de SesiÃ³n", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 if (rolUsuario == "supervisor")
                                 {
@@ -123,7 +123,7 @@ namespace PreyectoDesarrollo_unicah
                                 else if (rolUsuario == "decano")
                                 {
                                     // Abrir las pantallas del decano
-                                    frmJustificación decano = new frmJustificación();
+                                    frmJustificaciÃ³n decano = new frmJustificaciÃ³n();
                                     decano.Show();
                                     this.Hide();
                                 }
@@ -141,8 +141,8 @@ namespace PreyectoDesarrollo_unicah
                             }
                             else
                             {
-                                // Usuario o contraseña incorrectos
-                                MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                // Usuario o contraseÃ±a incorrectos
+                                MessageBox.Show("Usuario o contraseÃ±a incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
