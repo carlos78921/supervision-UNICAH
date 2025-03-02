@@ -38,7 +38,7 @@ go
 create table Asistencia
 (
 	Cod_Asignatura varchar(6) foreign key references Clases (Cod_Asignatura),
-        codigo_docente varchar(4) foreign key references docentes(codigo_docente),
+        codigo_empleado varchar(4) foreign key references Empleados(codigo_empleado),
 	Fecha date,
 	Presente bit,
 	Observacion nvarchar(150), 
