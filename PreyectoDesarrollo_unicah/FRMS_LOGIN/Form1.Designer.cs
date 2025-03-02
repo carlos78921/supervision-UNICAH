@@ -67,7 +67,7 @@
             linkLabel1.Size = new Size(95, 15);
             linkLabel1.TabIndex = 2;
             linkLabel1.TabStop = true;
-            linkLabel1.Text = "Olvidé mis datos";
+            linkLabel1.Text = "&Olvidé mis datos";
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // button1
@@ -80,7 +80,7 @@
             button1.Name = "button1";
             button1.Size = new Size(408, 40);
             button1.TabIndex = 3;
-            button1.Text = "INGRESAR";
+            button1.Text = "&INGRESAR";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
