@@ -39,10 +39,5 @@ namespace PreyectoDesarrollo_unicah
         {
             this.WindowState = FormWindowState.Minimized;
         }
-
-        private void lblPersona_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
