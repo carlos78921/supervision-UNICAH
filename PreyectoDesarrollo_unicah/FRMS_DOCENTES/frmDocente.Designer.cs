@@ -60,7 +60,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(487, 292);
+            btnLogout.Location = new Point(248, 290);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(126, 23);
             btnLogout.TabIndex = 17;
@@ -71,7 +71,7 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(573, 0);
+            pictureBox2.Location = new Point(316, 3);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(29, 20);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -82,7 +82,7 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(608, 0);
+            pictureBox1.Location = new Point(351, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 20);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -99,7 +99,7 @@ namespace PreyectoDesarrollo_unicah
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(-4, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(809, 87);
+            panel1.Size = new Size(385, 87);
             panel1.TabIndex = 11;
             // 
             // lblPersona
@@ -107,7 +107,7 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.AutoSize = true;
             lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(505, 63);
+            lblPersona.Location = new Point(249, 63);
             lblPersona.Name = "lblPersona";
             lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 22;
@@ -131,7 +131,7 @@ namespace PreyectoDesarrollo_unicah
             dgvDoc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDoc.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmSeccion, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
             dgvDoc.Enabled = false;
-            dgvDoc.Location = new Point(149, 142);
+            dgvDoc.Location = new Point(15, 138);
             dgvDoc.Name = "dgvDoc";
             dgvDoc.ReadOnly = true;
             dgvDoc.Size = new Size(350, 144);
@@ -199,7 +199,7 @@ namespace PreyectoDesarrollo_unicah
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(264, 97);
+            label1.Location = new Point(127, 92);
             label1.Name = "label1";
             label1.Size = new Size(132, 15);
             label1.TabIndex = 15;
@@ -208,7 +208,7 @@ namespace PreyectoDesarrollo_unicah
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(342, 119);
+            label2.Location = new Point(205, 114);
             label2.Name = "label2";
             label2.Size = new Size(52, 15);
             label2.TabIndex = 18;
@@ -216,14 +216,14 @@ namespace PreyectoDesarrollo_unicah
             // 
             // nudWeeks
             // 
-            nudWeeks.Location = new Point(398, 114);
+            nudWeeks.Location = new Point(261, 109);
             nudWeeks.Name = "nudWeeks";
             nudWeeks.Size = new Size(49, 23);
             nudWeeks.TabIndex = 19;
             // 
             // nudMeses
             // 
-            nudMeses.Location = new Point(258, 115);
+            nudMeses.Location = new Point(121, 110);
             nudMeses.Name = "nudMeses";
             nudMeses.Size = new Size(49, 23);
             nudMeses.TabIndex = 21;
@@ -231,7 +231,7 @@ namespace PreyectoDesarrollo_unicah
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(202, 120);
+            label3.Location = new Point(65, 115);
             label3.Name = "label3";
             label3.Size = new Size(51, 15);
             label3.TabIndex = 20;
@@ -241,7 +241,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(634, 327);
+            ClientSize = new Size(380, 318);
             Controls.Add(nudMeses);
             Controls.Add(label3);
             Controls.Add(nudWeeks);
