@@ -35,7 +35,6 @@ namespace PreyectoDesarrollo_unicah
             label4 = new Label();
             pictureBox3 = new PictureBox();
             dgvDoc = new DataGridView();
-            label1 = new Label();
             clmClase = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
             clmSemana = new DataGridViewTextBoxColumn();
@@ -45,6 +44,7 @@ namespace PreyectoDesarrollo_unicah
             clmJueves = new DataGridViewCheckBoxColumn();
             clmViernes = new DataGridViewCheckBoxColumn();
             clmSabado = new DataGridViewCheckBoxColumn();
+            label1 = new Label();
             btnLogout = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -129,15 +129,6 @@ namespace PreyectoDesarrollo_unicah
             dgvDoc.Size = new Size(409, 268);
             dgvDoc.TabIndex = 16;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(264, 97);
-            label1.Name = "label1";
-            label1.Size = new Size(132, 15);
-            label1.TabIndex = 15;
-            label1.Text = "ASISTENCIA PERSONAL";
-            // 
             // clmClase
             // 
             clmClase.HeaderText = "Asignatura";
@@ -202,6 +193,15 @@ namespace PreyectoDesarrollo_unicah
             clmSabado.Resizable = DataGridViewTriState.True;
             clmSabado.SortMode = DataGridViewColumnSortMode.Automatic;
             clmSabado.Width = 20;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(264, 97);
+            label1.Name = "label1";
+            label1.Size = new Size(132, 15);
+            label1.TabIndex = 15;
+            label1.Text = "ASISTENCIA PERSONAL";
             // 
             // frmDocente
             // 
