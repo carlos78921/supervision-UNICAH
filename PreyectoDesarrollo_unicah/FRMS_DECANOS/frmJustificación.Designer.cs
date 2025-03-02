@@ -43,6 +43,8 @@ namespace PreyectoDesarrollo_unicah
             label1 = new Label();
             textBox1 = new TextBox();
             lblCaracteres = new Label();
+            clmClase = new DataGridViewTextBoxColumn();
+            clmFecha = new DataGridViewTextBoxColumn();
             btnAgregar = new Button();
             btnLogOut = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -163,6 +165,7 @@ namespace PreyectoDesarrollo_unicah
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha });
             dataGridView1.Location = new Point(12, 272);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -195,6 +198,18 @@ namespace PreyectoDesarrollo_unicah
             lblCaracteres.Size = new Size(112, 15);
             lblCaracteres.TabIndex = 38;
             lblCaracteres.Text = "Límite de caracteres";
+            // 
+            // clmClase
+            // 
+            clmClase.HeaderText = "Asignatura";
+            clmClase.Name = "clmClase";
+            clmClase.ReadOnly = true;
+            // 
+            // clmFecha
+            // 
+            clmFecha.HeaderText = "Fecha de Ausencia";
+            clmFecha.Name = "clmFecha";
+            clmFecha.ReadOnly = true;
             // 
             // frmJustificación
             // 
@@ -240,5 +255,7 @@ namespace PreyectoDesarrollo_unicah
         private Label label4;
         private TextBox textBox1;
         private Label lblCaracteres;
+        private DataGridViewTextBoxColumn clmClase;
+        private DataGridViewTextBoxColumn clmFecha;
     }
 }

@@ -33,6 +33,7 @@
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
+            label4 = new Label();
             pictureBox3 = new PictureBox();
             label1 = new Label();
             dgvDoc = new DataGridView();
@@ -45,7 +46,10 @@
             clmJueves = new DataGridViewCheckBoxColumn();
             clmViernes = new DataGridViewCheckBoxColumn();
             clmSabado = new DataGridViewCheckBoxColumn();
-            label4 = new Label();
+            nudMeses = new NumericUpDown();
+            label3 = new Label();
+            nudWeeks = new NumericUpDown();
+            label2 = new Label();
             btnSalir = new Button();
             btnExcel = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -53,6 +57,8 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvDoc).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudMeses).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudWeeks).BeginInit();
             SuspendLayout();
             // 
             // btnSalir
@@ -105,6 +111,17 @@
             panel1.Size = new Size(445, 87);
             panel1.TabIndex = 11;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(308, 63);
+            label4.Name = "label4";
+            label4.Size = new Size(132, 18);
+            label4.TabIndex = 23;
+            label4.Text = "Nombre_Persona";
+            // 
             // pictureBox3
             // 
             pictureBox3.BackgroundImageLayout = ImageLayout.None;
@@ -131,10 +148,10 @@
             dgvDoc.AllowUserToDeleteRows = false;
             dgvDoc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDoc.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmSeccion, clmSemana, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
-            dgvDoc.Location = new Point(16, 119);
+            dgvDoc.Location = new Point(16, 146);
             dgvDoc.Name = "dgvDoc";
             dgvDoc.ReadOnly = true;
-            dgvDoc.Size = new Size(409, 268);
+            dgvDoc.Size = new Size(409, 241);
             dgvDoc.TabIndex = 17;
             // 
             // clmClase
@@ -202,22 +219,47 @@
             clmSabado.SortMode = DataGridViewColumnSortMode.Automatic;
             clmSabado.Width = 20;
             // 
-            // label4
+            // nudMeses
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(308, 63);
-            label4.Name = "label4";
-            label4.Size = new Size(132, 18);
-            label4.TabIndex = 23;
-            label4.Text = "Nombre_Persona";
+            nudMeses.Location = new Point(147, 117);
+            nudMeses.Name = "nudMeses";
+            nudMeses.Size = new Size(49, 23);
+            nudMeses.TabIndex = 25;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(91, 122);
+            label3.Name = "label3";
+            label3.Size = new Size(51, 15);
+            label3.TabIndex = 24;
+            label3.Text = "Periodo:";
+            // 
+            // nudWeeks
+            // 
+            nudWeeks.Location = new Point(287, 116);
+            nudWeeks.Name = "nudWeeks";
+            nudWeeks.Size = new Size(49, 23);
+            nudWeeks.TabIndex = 23;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(231, 121);
+            label2.Name = "label2";
+            label2.Size = new Size(52, 15);
+            label2.TabIndex = 22;
+            label2.Text = "Semana:";
             // 
             // FrmReporte
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(440, 429);
+            Controls.Add(nudMeses);
+            Controls.Add(label3);
+            Controls.Add(nudWeeks);
+            Controls.Add(label2);
             Controls.Add(dgvDoc);
             Controls.Add(btnExcel);
             Controls.Add(panel1);
@@ -232,6 +274,8 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvDoc).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudMeses).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudWeeks).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -254,5 +298,9 @@
         private DataGridViewCheckBoxColumn clmViernes;
         private DataGridViewCheckBoxColumn clmSabado;
         private Label label4;
+        private NumericUpDown nudMeses;
+        private Label label3;
+        private NumericUpDown nudWeeks;
+        private Label label2;
     }
 }
