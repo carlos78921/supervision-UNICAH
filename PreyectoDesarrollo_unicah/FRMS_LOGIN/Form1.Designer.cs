@@ -37,7 +37,6 @@
             pictureBox1 = new PictureBox();
             txtcontraseña = new TextBox();
             pictureBox4 = new PictureBox();
-            button2 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -155,23 +154,12 @@
             pictureBox4.TabIndex = 6;
             pictureBox4.TabStop = false;
             // 
-            // button2
-            // 
-            button2.Location = new Point(686, 217);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 7;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(780, 330);
-            Controls.Add(button2);
+            ClientSize = new Size(780, 287);
             Controls.Add(pictureBox4);
             Controls.Add(txtcontraseña);
             Controls.Add(panel1);
@@ -204,6 +192,5 @@
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
         private PictureBox pictureBox4;
-        private Button button2;
     }
 }

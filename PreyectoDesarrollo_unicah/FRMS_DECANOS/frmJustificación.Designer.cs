@@ -44,6 +44,7 @@ namespace PreyectoDesarrollo_unicah
             label2 = new Label();
             dataGridView1 = new DataGridView();
             label1 = new Label();
+            label4 = new Label();
             btnExcel = new Button();
             btnAgregar = new Button();
             btnEnviar = new Button();
@@ -54,6 +55,42 @@ namespace PreyectoDesarrollo_unicah
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
+            // 
+            // btnExcel
+            // 
+            btnExcel.Location = new Point(264, 600);
+            btnExcel.Name = "btnExcel";
+            btnExcel.Size = new Size(126, 29);
+            btnExcel.TabIndex = 33;
+            btnExcel.Text = "&EXPORTAR A EXCEL";
+            btnExcel.UseVisualStyleBackColor = true;
+            // 
+            // btnAgregar
+            // 
+            btnAgregar.Location = new Point(396, 592);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new Size(126, 44);
+            btnAgregar.TabIndex = 29;
+            btnAgregar.Text = "&AGREGAR JUSTIFICACIÓN";
+            btnAgregar.UseVisualStyleBackColor = true;
+            // 
+            // btnEnviar
+            // 
+            btnEnviar.Location = new Point(528, 592);
+            btnEnviar.Name = "btnEnviar";
+            btnEnviar.Size = new Size(126, 44);
+            btnEnviar.TabIndex = 28;
+            btnEnviar.Text = "ENVIAR &JUSTIFICACIÓN";
+            btnEnviar.UseVisualStyleBackColor = true;
+            // 
+            // btnLogOut
+            // 
+            btnLogOut.Location = new Point(659, 602);
+            btnLogOut.Name = "btnLogOut";
+            btnLogOut.Size = new Size(126, 24);
+            btnLogOut.TabIndex = 27;
+            btnLogOut.Text = "&CERRAR SESIÓN";
+            btnLogOut.UseVisualStyleBackColor = true;
             // 
             // pictureBox2
             // 
@@ -78,6 +115,7 @@ namespace PreyectoDesarrollo_unicah
             // panel1
             // 
             panel1.BackColor = SystemColors.HotTrack;
+            panel1.Controls.Add(label4);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
@@ -122,15 +160,6 @@ namespace PreyectoDesarrollo_unicah
             label3.TabIndex = 34;
             label3.Text = "Edificio:";
             // 
-            // btnExcel
-            // 
-            btnExcel.Location = new Point(264, 600);
-            btnExcel.Name = "btnExcel";
-            btnExcel.Size = new Size(126, 29);
-            btnExcel.TabIndex = 33;
-            btnExcel.Text = "&EXPORTAR A EXCEL";
-            btnExcel.UseVisualStyleBackColor = true;
-            // 
             // cmbJustifica
             // 
             cmbJustifica.FormattingEnabled = true;
@@ -157,33 +186,6 @@ namespace PreyectoDesarrollo_unicah
             label2.TabIndex = 30;
             label2.Text = "Observación Específica:";
             // 
-            // btnAgregar
-            // 
-            btnAgregar.Location = new Point(396, 592);
-            btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(126, 44);
-            btnAgregar.TabIndex = 29;
-            btnAgregar.Text = "&AGREGAR JUSTIFICACIÓN";
-            btnAgregar.UseVisualStyleBackColor = true;
-            // 
-            // btnEnviar
-            // 
-            btnEnviar.Location = new Point(528, 592);
-            btnEnviar.Name = "btnEnviar";
-            btnEnviar.Size = new Size(126, 44);
-            btnEnviar.TabIndex = 28;
-            btnEnviar.Text = "ENVIAR &JUSTIFICACIÓN";
-            btnEnviar.UseVisualStyleBackColor = true;
-            // 
-            // btnLogOut
-            // 
-            btnLogOut.Location = new Point(659, 602);
-            btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(126, 24);
-            btnLogOut.TabIndex = 27;
-            btnLogOut.Text = "&CERRAR SESIÓN";
-            btnLogOut.UseVisualStyleBackColor = true;
-            // 
             // dataGridView1
             // 
             dataGridView1.AllowUserToAddRows = false;
@@ -204,7 +206,18 @@ namespace PreyectoDesarrollo_unicah
             label1.TabIndex = 25;
             label1.Text = "JUSTIFICACIÓN DE ASISTENCIA";
             // 
-            // frmReposicion
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(666, 66);
+            label4.Name = "label4";
+            label4.Size = new Size(132, 18);
+            label4.TabIndex = 37;
+            label4.Text = "Nombre_Persona";
+            // 
+            // frmJustificación
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -223,11 +236,12 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "frmReposicion";
+            Name = "frmJustificación";
             Text = "FrmReporte";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
@@ -248,5 +262,6 @@ namespace PreyectoDesarrollo_unicah
         private Label label2;
         private DataGridView dataGridView1;
         private Label label1;
+        private Label label4;
     }
 }

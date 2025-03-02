@@ -130,7 +130,7 @@ namespace PreyectoDesarrollo_unicah
                                 else if (rolUsuario == "docente")
                                 {
                                     // Abrir las pantallas del docente
-                                    FrmDocente docente = new FrmDocente();
+                                    frmDocente docente = new frmDocente();
                                     docente.Show();
                                     this.Hide();
                                 }

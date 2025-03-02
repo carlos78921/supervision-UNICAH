@@ -36,8 +36,14 @@ namespace PreyectoDesarrollo_unicah
             pictureBox3 = new PictureBox();
             label2 = new Label();
             nudReposicion = new NumericUpDown();
-            dataGridView1 = new DataGridView();
             label1 = new Label();
+            dataGridView1 = new DataGridView();
+            clmClase = new DataGridViewTextBoxColumn();
+            clmFecha = new DataGridViewTextBoxColumn();
+            clmSeccion = new DataGridViewTextBoxColumn();
+            clmDocente = new DataGridViewTextBoxColumn();
+            clmRepo = new DataGridViewTextBoxColumn();
+            label4 = new Label();
             btnExcel = new Button();
             btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -48,10 +54,28 @@ namespace PreyectoDesarrollo_unicah
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
+            // btnExcel
+            // 
+            btnExcel.Location = new Point(170, 121);
+            btnExcel.Name = "btnExcel";
+            btnExcel.Size = new Size(176, 23);
+            btnExcel.TabIndex = 21;
+            btnExcel.Text = "&AGREGAR DÍA DE REPOSICIÓN";
+            btnExcel.UseVisualStyleBackColor = true;
+            // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(518, 424);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(108, 29);
+            btnSalir.TabIndex = 20;
+            btnSalir.Text = "&CERRAR SESIÓN";
+            btnSalir.UseVisualStyleBackColor = true;
+            // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(734, 0);
+            pictureBox2.Location = new Point(575, 4);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(29, 20);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -61,7 +85,7 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(769, 0);
+            pictureBox1.Location = new Point(610, 4);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 20);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -71,6 +95,7 @@ namespace PreyectoDesarrollo_unicah
             // panel1
             // 
             panel1.BackColor = SystemColors.HotTrack;
+            panel1.Controls.Add(label4);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
@@ -109,52 +134,80 @@ namespace PreyectoDesarrollo_unicah
             nudReposicion.TabIndex = 22;
             nudReposicion.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
-            // btnExcel
-            // 
-            btnExcel.Location = new Point(170, 121);
-            btnExcel.Name = "btnExcel";
-            btnExcel.Size = new Size(176, 23);
-            btnExcel.TabIndex = 21;
-            btnExcel.Text = "&AGREGAR DÍA DE REPOSICIÓN";
-            btnExcel.UseVisualStyleBackColor = true;
-            // 
-            // btnSalir
-            // 
-            btnSalir.Location = new Point(678, 426);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(108, 29);
-            btnSalir.TabIndex = 20;
-            btnSalir.Text = "&CERRAR SESIÓN";
-            btnSalir.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.AllowUserToOrderColumns = true;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 152);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(774, 268);
-            dataGridView1.TabIndex = 19;
-            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(313, 96);
+            label1.Location = new Point(266, 97);
             label1.Name = "label1";
             label1.Size = new Size(142, 15);
             label1.TabIndex = 18;
             label1.Text = "REPORTE DE REPOSICIÓN";
             // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha, clmSeccion, clmDocente, clmRepo });
+            dataGridView1.Location = new Point(16, 150);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.Size = new Size(610, 268);
+            dataGridView1.TabIndex = 24;
+            // 
+            // clmClase
+            // 
+            clmClase.HeaderText = "Asignatura";
+            clmClase.Name = "clmClase";
+            clmClase.ReadOnly = true;
+            // 
+            // clmFecha
+            // 
+            clmFecha.HeaderText = "Fecha de Ausencia";
+            clmFecha.Name = "clmFecha";
+            clmFecha.ReadOnly = true;
+            clmFecha.Width = 130;
+            // 
+            // clmSeccion
+            // 
+            clmSeccion.HeaderText = "Sección";
+            clmSeccion.Name = "clmSeccion";
+            clmSeccion.ReadOnly = true;
+            // 
+            // clmDocente
+            // 
+            clmDocente.HeaderText = "Docente";
+            clmDocente.Name = "clmDocente";
+            clmDocente.ReadOnly = true;
+            // 
+            // clmRepo
+            // 
+            clmRepo.HeaderText = "Fecha de Reposición";
+            clmRepo.Name = "clmRepo";
+            clmRepo.ReadOnly = true;
+            clmRepo.Width = 138;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(507, 63);
+            label4.Name = "label4";
+            label4.Size = new Size(132, 18);
+            label4.TabIndex = 25;
+            label4.Text = "Nombre_Persona";
+            // 
             // frmReposición
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(795, 464);
+            ClientSize = new Size(636, 464);
+            Controls.Add(dataGridView1);
             Controls.Add(label2);
             Controls.Add(nudReposicion);
             Controls.Add(btnExcel);
             Controls.Add(btnSalir);
-            Controls.Add(dataGridView1);
             Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -163,6 +216,7 @@ namespace PreyectoDesarrollo_unicah
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudReposicion).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -178,7 +232,13 @@ namespace PreyectoDesarrollo_unicah
         private PictureBox pictureBox3;
         private Label label2;
         private NumericUpDown nudReposicion;
-        private DataGridView dataGridView1;
         private Label label1;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn clmClase;
+        private DataGridViewTextBoxColumn clmFecha;
+        private DataGridViewTextBoxColumn clmSeccion;
+        private DataGridViewTextBoxColumn clmDocente;
+        private DataGridViewTextBoxColumn clmRepo;
+        private Label label4;
     }
 }
