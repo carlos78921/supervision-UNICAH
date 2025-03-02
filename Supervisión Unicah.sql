@@ -6,13 +6,13 @@ go
 
 set nocount on
 
-CREATE TABLE docentes (
-    codigo_docente varchar (4) primary key,
-    nombre_docente VARCHAR(50) NOT NULL,
-    apellido_docente VARCHAR(50) NOT NULL,
+CREATE TABLE Empleados (
+    codigo_empleado varchar (4) primary key,
+    nombre_empleado VARCHAR(50) NOT NULL,
+    apellido_empleado VARCHAR(50) NOT NULL,
     rol VARCHAR(50) NOT NULL,
     usuario VARCHAR(50) UNIQUE NOT NULL,
-    contrase�a VARCHAR(255) NOT NULL
+    contraseña VARCHAR(255) NOT NULL
 )
 
 create table Facultad
@@ -31,14 +31,14 @@ create table Clases
 	Num_Aula int,
 	Seccion varchar (4),
 	Periodo int,
-	A�o date
+	Año date
 )
 go
 
 create table Asistencia
 (
 	Cod_Asignatura varchar(6) foreign key references Clases (Cod_Asignatura),
-    codigo_docente varchar(4) foreign key references docentes(codigo_docente),
+        codigo_docente varchar(4) foreign key references docentes(codigo_docente),
 	Fecha date,
 	Presente bit,
 	Observacion nvarchar(150), 
@@ -46,19 +46,22 @@ create table Asistencia
 )
 go
 
-INSERT INTO docentes VALUES 
-('0000', 'Juan', 'P�rez', 'supervisor', 'juan.perez', 'contrase�a123');
+INSERT INTO Empleados VALUES 
+('0000', 'Juan', 'Pérez', 'supervisor', 'juan.perez', 'contraseña123');
 
-INSERT INTO docentes values
-('0001', 'Mar�a', 'L�pez', 'decano', 'maria.lopez', 'contrase�a101');
+INSERT INTO Empleados values
+('0001', 'María', 'López', 'decano', 'maria.lopez', 'contraseña101');
 
-INSERT INTO docentes VALUES 
-('0002', 'Carlos', 'Ram�rez', 'docente', 'carlos.ramirez', 'contrase�a456');
+INSERT INTO Empleados VALUES 
+('0002', 'Carlos', 'Ramírez', 'docente', 'carlos.ramirez', 'contraseña456');
 
-INSERT INTO docentes VALUES
-('0003', 'Mar�a', 'L�pez', 'docente', 'maria.lopez1', 'contrase�a789');
+INSERT INTO Empleados VALUES
+('0003', 'María', 'López', 'docente', 'maria.lopez1', 'contraseña789');
 
-select * from docentes
+INSERT INTO Empleados VALUES
+('0004', 'Gonzalo', 'Ortiz', 'administrador', 'gonzo.ortiz', 'contraseña123');
+
+select * from Empleados
 
 /*-- Procedimientos Almacenados
 create PROCEDURE PA_Reponer_Deca
@@ -69,7 +72,7 @@ BEGIN
         Fecha [Fecha_Asistencia], 
         Seccion [Seccion_Asistencia], 
         Nombre_Empleado [Docente],
-        Fecha_Reposicion [Fecha_Reposici�n]
+        Fecha_Reposicion [Fecha_Reposición]
     FROM Asistencia A
     JOIN Clases C ON A.Cod_Asignatura = C.Cod_Asignatura
     JOIN Usuarios U ON C.Cod_Cargo = U.Cod_Cargo 
@@ -85,7 +88,7 @@ BEGIN
         Fecha [Fecha_Asistencia], 
         Seccion, 
         Nombre_Empleado [Docente],
-        Observacion_Especifica [Observaci�n_Justificada]
+        Observacion_Especifica [Observación_Justificada]
     FROM Asistencia A
     JOIN Clases C ON A.Cod_Asignatura = C.Cod_Asignatura 
     JOIN Usuarios U ON C.Cod_Cargo = U.Cod_Cargo 
@@ -96,7 +99,7 @@ GO
 create proc PA_Profe_Asiste -- Toma de Asistencia
 as 
 begin
-select Asignatura, Nombre_Empleado, Secci�n, Fecha, Presente [L], Presente [M], Presente [M], Presente [J], Presente [V], Presente [S]
+select Asignatura, Nombre_Empleado, Sección, Fecha, Presente [L], Presente [M], Presente [M], Presente [J], Presente [V], Presente [S]
 from Asistencia A
 join Clases C
 on A.Cod_Asignatura = C.Cod_Asignatura
