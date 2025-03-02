@@ -28,7 +28,17 @@ namespace PreyectoDesarrollo_unicah
         private void frmDocente_Load(object sender, EventArgs e)
         {
             ACCIONES_BD objPersona = new ACCIONES_BD();
-            lblPersona.Text = objPersona.nombre + objPersona.apellido; 
+            lblPersona.Text = objPersona.nombre + objPersona.apellido;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }
