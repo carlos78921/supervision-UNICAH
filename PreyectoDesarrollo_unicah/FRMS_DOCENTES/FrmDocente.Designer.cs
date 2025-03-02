@@ -107,6 +107,7 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 22;
             lblPersona.Text = "Nombre_Persona";
+            lblPersona.Click += lblPersona_Click;
             // 
             // pictureBox3
             // 

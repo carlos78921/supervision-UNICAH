@@ -13,7 +13,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
     class ACCIONES_BD
     {
         //Atributos
-        public string nombre, apellido;
+        public static string nombre, apellido;
 
         CONEXION_BD conexion = new CONEXION_BD();
         SqlDataAdapter ad;
