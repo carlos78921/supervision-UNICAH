@@ -28,26 +28,22 @@ namespace PreyectoDesarrollo_unicah
         /// </summary>
         private void InitializeComponent()
         {
-            Button btnExcel;
             Button btnAgregar;
-            Button btnEnviar;
             Button btnLogOut;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
+            label4 = new Label();
             pictureBox3 = new PictureBox();
             btnbuscar = new Button();
             textBox2 = new TextBox();
             label3 = new Label();
-            cmbJustifica = new ComboBox();
-            lblCaracteres = new Label();
             label2 = new Label();
             dataGridView1 = new DataGridView();
             label1 = new Label();
-            label4 = new Label();
-            btnExcel = new Button();
+            textBox1 = new TextBox();
+            lblCaracteres = new Label();
             btnAgregar = new Button();
-            btnEnviar = new Button();
             btnLogOut = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -56,32 +52,14 @@ namespace PreyectoDesarrollo_unicah
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
-            // btnExcel
-            // 
-            btnExcel.Location = new Point(264, 600);
-            btnExcel.Name = "btnExcel";
-            btnExcel.Size = new Size(126, 29);
-            btnExcel.TabIndex = 33;
-            btnExcel.Text = "&EXPORTAR A EXCEL";
-            btnExcel.UseVisualStyleBackColor = true;
-            // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(396, 592);
+            btnAgregar.Location = new Point(527, 592);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(126, 44);
             btnAgregar.TabIndex = 29;
             btnAgregar.Text = "&AGREGAR JUSTIFICACIÓN";
             btnAgregar.UseVisualStyleBackColor = true;
-            // 
-            // btnEnviar
-            // 
-            btnEnviar.Location = new Point(528, 592);
-            btnEnviar.Name = "btnEnviar";
-            btnEnviar.Size = new Size(126, 44);
-            btnEnviar.TabIndex = 28;
-            btnEnviar.Text = "ENVIAR &JUSTIFICACIÓN";
-            btnEnviar.UseVisualStyleBackColor = true;
             // 
             // btnLogOut
             // 
@@ -89,7 +67,7 @@ namespace PreyectoDesarrollo_unicah
             btnLogOut.Name = "btnLogOut";
             btnLogOut.Size = new Size(126, 24);
             btnLogOut.TabIndex = 27;
-            btnLogOut.Text = "&CERRAR SESIÓN";
+            btnLogOut.Text = "&Salir";
             btnLogOut.UseVisualStyleBackColor = true;
             // 
             // pictureBox2
@@ -124,6 +102,17 @@ namespace PreyectoDesarrollo_unicah
             panel1.Size = new Size(809, 87);
             panel1.TabIndex = 11;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(666, 66);
+            label4.Name = "label4";
+            label4.Size = new Size(132, 18);
+            label4.TabIndex = 37;
+            label4.Text = "Nombre_Persona";
+            // 
             // pictureBox3
             // 
             pictureBox3.BackgroundImageLayout = ImageLayout.None;
@@ -137,7 +126,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnbuscar
             // 
-            btnbuscar.Location = new Point(710, 117);
+            btnbuscar.Location = new Point(187, 119);
             btnbuscar.Name = "btnbuscar";
             btnbuscar.Size = new Size(75, 23);
             btnbuscar.TabIndex = 36;
@@ -146,7 +135,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(594, 117);
+            textBox2.Location = new Point(71, 119);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(100, 23);
             textBox2.TabIndex = 35;
@@ -154,33 +143,16 @@ namespace PreyectoDesarrollo_unicah
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(539, 120);
+            label3.Location = new Point(16, 122);
             label3.Name = "label3";
             label3.Size = new Size(49, 15);
             label3.TabIndex = 34;
             label3.Text = "Edificio:";
             // 
-            // cmbJustifica
-            // 
-            cmbJustifica.FormattingEnabled = true;
-            cmbJustifica.Location = new Point(149, 117);
-            cmbJustifica.Name = "cmbJustifica";
-            cmbJustifica.Size = new Size(178, 23);
-            cmbJustifica.TabIndex = 32;
-            // 
-            // lblCaracteres
-            // 
-            lblCaracteres.AutoSize = true;
-            lblCaracteres.Location = new Point(333, 120);
-            lblCaracteres.Name = "lblCaracteres";
-            lblCaracteres.Size = new Size(112, 15);
-            lblCaracteres.TabIndex = 31;
-            lblCaracteres.Text = "Límite de caracteres";
-            // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 120);
+            label2.Location = new Point(310, 123);
             label2.Name = "label2";
             label2.Size = new Size(131, 15);
             label2.TabIndex = 30;
@@ -191,10 +163,10 @@ namespace PreyectoDesarrollo_unicah
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 148);
+            dataGridView1.Location = new Point(12, 272);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(774, 428);
+            dataGridView1.Size = new Size(774, 304);
             dataGridView1.TabIndex = 26;
             // 
             // label1
@@ -206,31 +178,36 @@ namespace PreyectoDesarrollo_unicah
             label1.TabIndex = 25;
             label1.Text = "JUSTIFICACIÓN DE ASISTENCIA";
             // 
-            // label4
+            // textBox1
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(666, 66);
-            label4.Name = "label4";
-            label4.Size = new Size(132, 18);
-            label4.TabIndex = 37;
-            label4.Text = "Nombre_Persona";
+            textBox1.Location = new Point(447, 119);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(338, 147);
+            textBox1.TabIndex = 37;
+            // 
+            // lblCaracteres
+            // 
+            lblCaracteres.AutoSize = true;
+            lblCaracteres.BackColor = SystemColors.Window;
+            lblCaracteres.Location = new Point(451, 122);
+            lblCaracteres.Name = "lblCaracteres";
+            lblCaracteres.Size = new Size(112, 15);
+            lblCaracteres.TabIndex = 38;
+            lblCaracteres.Text = "Límite de caracteres";
             // 
             // frmJustificación
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(794, 642);
+            Controls.Add(lblCaracteres);
+            Controls.Add(textBox1);
             Controls.Add(btnbuscar);
             Controls.Add(textBox2);
             Controls.Add(label3);
-            Controls.Add(btnExcel);
-            Controls.Add(cmbJustifica);
-            Controls.Add(lblCaracteres);
             Controls.Add(label2);
             Controls.Add(btnAgregar);
-            Controls.Add(btnEnviar);
             Controls.Add(btnLogOut);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
@@ -257,11 +234,11 @@ namespace PreyectoDesarrollo_unicah
         private Button btnbuscar;
         private TextBox textBox2;
         private Label label3;
-        private ComboBox cmbJustifica;
-        private Label lblCaracteres;
         private Label label2;
         private DataGridView dataGridView1;
         private Label label1;
         private Label label4;
+        private TextBox textBox1;
+        private Label lblCaracteres;
     }
 }

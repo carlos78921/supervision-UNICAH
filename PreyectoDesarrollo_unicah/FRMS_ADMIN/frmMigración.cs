@@ -16,5 +16,12 @@ namespace PreyectoDesarrollo_unicah.FRMS_ADMIN
         {
             InitializeComponent();
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form1 Login = new Form1();
+            Login.Show();
+        }
     }
 }
