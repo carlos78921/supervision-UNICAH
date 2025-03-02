@@ -41,10 +41,13 @@ namespace PreyectoDesarrollo_unicah
             label2 = new Label();
             dataGridView1 = new DataGridView();
             label1 = new Label();
-            textBox1 = new TextBox();
+            txtJustifica = new TextBox();
             lblCaracteres = new Label();
             clmClase = new DataGridViewTextBoxColumn();
             clmFecha = new DataGridViewTextBoxColumn();
+            clmSeccion = new DataGridViewTextBoxColumn();
+            clmDoc = new DataGridViewTextBoxColumn();
+            clmJustifica = new DataGridViewTextBoxColumn();
             btnAgregar = new Button();
             btnLogOut = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -60,7 +63,7 @@ namespace PreyectoDesarrollo_unicah
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(126, 44);
             btnAgregar.TabIndex = 29;
-            btnAgregar.Text = "&AGREGAR JUSTIFICACIÓN";
+            btnAgregar.Text = "INSERT&AR JUSTIFICACIÓN";
             btnAgregar.UseVisualStyleBackColor = true;
             // 
             // btnLogOut
@@ -156,20 +159,20 @@ namespace PreyectoDesarrollo_unicah
             label2.AutoSize = true;
             label2.Location = new Point(310, 123);
             label2.Name = "label2";
-            label2.Size = new Size(131, 15);
+            label2.Size = new Size(123, 15);
             label2.TabIndex = 30;
-            label2.Text = "Observación Específica:";
+            label2.Text = "Justificación detallada";
             // 
             // dataGridView1
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha });
-            dataGridView1.Location = new Point(12, 272);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha, clmSeccion, clmDoc, clmJustifica });
+            dataGridView1.Location = new Point(13, 272);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(774, 304);
+            dataGridView1.Size = new Size(773, 304);
             dataGridView1.TabIndex = 26;
             // 
             // label1
@@ -181,13 +184,13 @@ namespace PreyectoDesarrollo_unicah
             label1.TabIndex = 25;
             label1.Text = "JUSTIFICACIÓN DE ASISTENCIA";
             // 
-            // textBox1
+            // txtJustifica
             // 
-            textBox1.Location = new Point(447, 119);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(338, 147);
-            textBox1.TabIndex = 37;
+            txtJustifica.Location = new Point(447, 119);
+            txtJustifica.Multiline = true;
+            txtJustifica.Name = "txtJustifica";
+            txtJustifica.Size = new Size(338, 147);
+            txtJustifica.TabIndex = 37;
             // 
             // lblCaracteres
             // 
@@ -210,6 +213,28 @@ namespace PreyectoDesarrollo_unicah
             clmFecha.HeaderText = "Fecha de Ausencia";
             clmFecha.Name = "clmFecha";
             clmFecha.ReadOnly = true;
+            clmFecha.Width = 80;
+            // 
+            // clmSeccion
+            // 
+            clmSeccion.HeaderText = "Sección";
+            clmSeccion.Name = "clmSeccion";
+            clmSeccion.ReadOnly = true;
+            clmSeccion.Width = 66;
+            // 
+            // clmDoc
+            // 
+            clmDoc.HeaderText = "Docente";
+            clmDoc.Name = "clmDoc";
+            clmDoc.ReadOnly = true;
+            clmDoc.Width = 120;
+            // 
+            // clmJustifica
+            // 
+            clmJustifica.HeaderText = "Justificación";
+            clmJustifica.Name = "clmJustifica";
+            clmJustifica.ReadOnly = true;
+            clmJustifica.Width = 364;
             // 
             // frmJustificación
             // 
@@ -217,7 +242,7 @@ namespace PreyectoDesarrollo_unicah
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(794, 642);
             Controls.Add(lblCaracteres);
-            Controls.Add(textBox1);
+            Controls.Add(txtJustifica);
             Controls.Add(btnbuscar);
             Controls.Add(textBox2);
             Controls.Add(label3);
@@ -253,9 +278,12 @@ namespace PreyectoDesarrollo_unicah
         private DataGridView dataGridView1;
         private Label label1;
         private Label label4;
-        private TextBox textBox1;
+        private TextBox txtJustifica;
         private Label lblCaracteres;
         private DataGridViewTextBoxColumn clmClase;
         private DataGridViewTextBoxColumn clmFecha;
+        private DataGridViewTextBoxColumn clmSeccion;
+        private DataGridViewTextBoxColumn clmDoc;
+        private DataGridViewTextBoxColumn clmJustifica;
     }
 }
