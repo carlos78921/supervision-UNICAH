@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,31 +10,18 @@ using System.Windows.Forms;
 
 namespace PreyectoDesarrollo_unicah
 {
-    public partial class FrmDocente : Form
+    public partial class frmDocente : Form
     {
-        public FrmDocente()
+        public frmDocente()
         {
             InitializeComponent();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void btnLogout_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void FrmDocente_Load(object sender, EventArgs e)
-        {
-
+            this.Close();
+            Form1 Login = new Form1();
+            Login.Show();
         }
     }
 }
