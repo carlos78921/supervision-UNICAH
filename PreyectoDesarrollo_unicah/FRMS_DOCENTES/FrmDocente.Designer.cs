@@ -32,7 +32,7 @@ namespace PreyectoDesarrollo_unicah
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
-            label4 = new Label();
+            lblPersona = new Label();
             pictureBox3 = new PictureBox();
             dgvDoc = new DataGridView();
             clmClase = new DataGridViewTextBoxColumn();
@@ -86,7 +86,7 @@ namespace PreyectoDesarrollo_unicah
             // panel1
             // 
             panel1.BackColor = SystemColors.HotTrack;
-            panel1.Controls.Add(label4);
+            panel1.Controls.Add(lblPersona);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
@@ -95,16 +95,16 @@ namespace PreyectoDesarrollo_unicah
             panel1.Size = new Size(809, 87);
             panel1.TabIndex = 11;
             // 
-            // label4
+            // lblPersona
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(505, 63);
-            label4.Name = "label4";
-            label4.Size = new Size(132, 18);
-            label4.TabIndex = 22;
-            label4.Text = "Nombre_Persona";
+            lblPersona.AutoSize = true;
+            lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPersona.ForeColor = Color.White;
+            lblPersona.Location = new Point(505, 63);
+            lblPersona.Name = "lblPersona";
+            lblPersona.Size = new Size(132, 18);
+            lblPersona.TabIndex = 22;
+            lblPersona.Text = "Nombre_Persona";
             // 
             // pictureBox3
             // 
@@ -215,6 +215,7 @@ namespace PreyectoDesarrollo_unicah
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmDocente";
             Text = "FrmReporte";
+            Load += frmDocente_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
@@ -233,7 +234,7 @@ namespace PreyectoDesarrollo_unicah
         private PictureBox pictureBox3;
         private DataGridView dgvDoc;
         private Label label1;
-        private Label label4;
+        private Label lblPersona;
         private DataGridViewTextBoxColumn clmClase;
         private DataGridViewTextBoxColumn clmSeccion;
         private DataGridViewTextBoxColumn clmSemana;

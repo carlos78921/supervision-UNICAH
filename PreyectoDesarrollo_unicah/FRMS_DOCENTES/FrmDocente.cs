@@ -1,3 +1,4 @@
+using PreyectoDesarrollo_unicah.CLASES;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,12 @@ namespace PreyectoDesarrollo_unicah
             this.Close();
             Form1 Login = new Form1();
             Login.Show();
+        }
+
+        private void frmDocente_Load(object sender, EventArgs e)
+        {
+            ACCIONES_BD objPersona = new ACCIONES_BD();
+            lblPersona.Text = objPersona.nombre + objPersona.apellido; 
         }
     }
 }
