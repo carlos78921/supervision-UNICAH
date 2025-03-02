@@ -35,27 +35,32 @@ namespace PreyectoDesarrollo_unicah
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
             dgvDoc = new DataGridView();
+            label1 = new Label();
             clmClase = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
-            clmSemana = new DataGridViewTextBoxColumn();
             clmLunes = new DataGridViewCheckBoxColumn();
             clmMartes = new DataGridViewCheckBoxColumn();
             clmMiercoles = new DataGridViewCheckBoxColumn();
             clmJueves = new DataGridViewCheckBoxColumn();
             clmViernes = new DataGridViewCheckBoxColumn();
             clmSabado = new DataGridViewCheckBoxColumn();
-            label1 = new Label();
+            label2 = new Label();
+            nudWeeks = new NumericUpDown();
+            nudMeses = new NumericUpDown();
+            label3 = new Label();
             btnLogout = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvDoc).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudWeeks).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudMeses).BeginInit();
             SuspendLayout();
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(497, 398);
+            btnLogout.Location = new Point(487, 292);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(126, 23);
             btnLogout.TabIndex = 17;
@@ -124,12 +129,22 @@ namespace PreyectoDesarrollo_unicah
             dgvDoc.AllowUserToAddRows = false;
             dgvDoc.AllowUserToDeleteRows = false;
             dgvDoc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDoc.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmSeccion, clmSemana, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
-            dgvDoc.Location = new Point(122, 124);
+            dgvDoc.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmSeccion, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
+            dgvDoc.Location = new Point(149, 142);
             dgvDoc.Name = "dgvDoc";
             dgvDoc.ReadOnly = true;
-            dgvDoc.Size = new Size(409, 268);
+            dgvDoc.Size = new Size(350, 144);
             dgvDoc.TabIndex = 16;
+            dgvDoc.CellContentClick += dgvDoc_CellContentClick;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(264, 97);
+            label1.Name = "label1";
+            label1.Size = new Size(132, 15);
+            label1.TabIndex = 15;
+            label1.Text = "ASISTENCIA PERSONAL";
             // 
             // clmClase
             // 
@@ -144,13 +159,6 @@ namespace PreyectoDesarrollo_unicah
             clmSeccion.Name = "clmSeccion";
             clmSeccion.ReadOnly = true;
             clmSeccion.Width = 58;
-            // 
-            // clmSemana
-            // 
-            clmSemana.HeaderText = "Semana";
-            clmSemana.Name = "clmSemana";
-            clmSemana.ReadOnly = true;
-            clmSemana.Width = 60;
             // 
             // clmLunes
             // 
@@ -196,20 +204,47 @@ namespace PreyectoDesarrollo_unicah
             clmSabado.SortMode = DataGridViewColumnSortMode.Automatic;
             clmSabado.Width = 20;
             // 
-            // label1
+            // label2
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(264, 97);
-            label1.Name = "label1";
-            label1.Size = new Size(132, 15);
-            label1.TabIndex = 15;
-            label1.Text = "ASISTENCIA PERSONAL";
+            label2.AutoSize = true;
+            label2.Location = new Point(342, 119);
+            label2.Name = "label2";
+            label2.Size = new Size(52, 15);
+            label2.TabIndex = 18;
+            label2.Text = "Semana:";
+            // 
+            // nudWeeks
+            // 
+            nudWeeks.Location = new Point(398, 114);
+            nudWeeks.Name = "nudWeeks";
+            nudWeeks.Size = new Size(49, 23);
+            nudWeeks.TabIndex = 19;
+            // 
+            // nudMeses
+            // 
+            nudMeses.Location = new Point(258, 115);
+            nudMeses.Name = "nudMeses";
+            nudMeses.Size = new Size(49, 23);
+            nudMeses.TabIndex = 21;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(202, 120);
+            label3.Name = "label3";
+            label3.Size = new Size(51, 15);
+            label3.TabIndex = 20;
+            label3.Text = "Periodo:";
             // 
             // frmDocente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(634, 427);
+            ClientSize = new Size(634, 327);
+            Controls.Add(nudMeses);
+            Controls.Add(label3);
+            Controls.Add(nudWeeks);
+            Controls.Add(label2);
             Controls.Add(btnLogout);
             Controls.Add(dgvDoc);
             Controls.Add(label1);
@@ -224,6 +259,8 @@ namespace PreyectoDesarrollo_unicah
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvDoc).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudWeeks).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudMeses).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -239,12 +276,15 @@ namespace PreyectoDesarrollo_unicah
         private Label lblPersona;
         private DataGridViewTextBoxColumn clmClase;
         private DataGridViewTextBoxColumn clmSeccion;
-        private DataGridViewTextBoxColumn clmSemana;
         private DataGridViewCheckBoxColumn clmLunes;
         private DataGridViewCheckBoxColumn clmMartes;
         private DataGridViewCheckBoxColumn clmMiercoles;
         private DataGridViewCheckBoxColumn clmJueves;
         private DataGridViewCheckBoxColumn clmViernes;
         private DataGridViewCheckBoxColumn clmSabado;
+        private Label label2;
+        private NumericUpDown nudWeeks;
+        private NumericUpDown nudMeses;
+        private Label label3;
     }
 }

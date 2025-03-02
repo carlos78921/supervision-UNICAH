@@ -26,8 +26,9 @@ namespace PreyectoDesarrollo_unicah
         }
 
         private void frmDocente_Load(object sender, EventArgs e)
-        {            
+        {
             lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
+           // ACCIONES_BD.cargar(dgvDoc,)
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -38,6 +39,11 @@ namespace PreyectoDesarrollo_unicah
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void dgvDoc_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
