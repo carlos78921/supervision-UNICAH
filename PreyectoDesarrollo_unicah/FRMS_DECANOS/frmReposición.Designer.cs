@@ -58,9 +58,9 @@ namespace PreyectoDesarrollo_unicah
             // 
             btnExcel.Location = new Point(170, 121);
             btnExcel.Name = "btnExcel";
-            btnExcel.Size = new Size(176, 23);
+            btnExcel.Size = new Size(67, 23);
             btnExcel.TabIndex = 21;
-            btnExcel.Text = "&AGREGAR DÍA DE REPOSICIÓN";
+            btnExcel.Text = "INSERT&AR";
             btnExcel.UseVisualStyleBackColor = true;
             // 
             // btnVoy
