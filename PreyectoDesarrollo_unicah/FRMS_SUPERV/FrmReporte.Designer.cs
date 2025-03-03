@@ -37,6 +37,15 @@
             pictureBox3 = new PictureBox();
             label1 = new Label();
             dgvDoc = new DataGridView();
+            clmDoc = new DataGridViewTextBoxColumn();
+            clmClase = new DataGridViewTextBoxColumn();
+            clmSeccion = new DataGridViewTextBoxColumn();
+            clmLunes = new DataGridViewCheckBoxColumn();
+            clmMartes = new DataGridViewCheckBoxColumn();
+            clmMiercoles = new DataGridViewCheckBoxColumn();
+            clmJueves = new DataGridViewCheckBoxColumn();
+            clmViernes = new DataGridViewCheckBoxColumn();
+            clmSabado = new DataGridViewCheckBoxColumn();
             nudMeses = new NumericUpDown();
             label3 = new Label();
             nudWeeks = new NumericUpDown();
@@ -48,15 +57,6 @@
             cmbAula = new ComboBox();
             cmbEdificio = new ComboBox();
             gbFiltro = new GroupBox();
-            clmDoc = new DataGridViewTextBoxColumn();
-            clmClase = new DataGridViewTextBoxColumn();
-            clmSeccion = new DataGridViewTextBoxColumn();
-            clmLunes = new DataGridViewCheckBoxColumn();
-            clmMartes = new DataGridViewCheckBoxColumn();
-            clmMiercoles = new DataGridViewCheckBoxColumn();
-            clmJueves = new DataGridViewCheckBoxColumn();
-            clmViernes = new DataGridViewCheckBoxColumn();
-            clmSabado = new DataGridViewCheckBoxColumn();
             label6 = new Label();
             textBox2 = new TextBox();
             label7 = new Label();
@@ -165,6 +165,70 @@
             dgvDoc.Size = new Size(449, 216);
             dgvDoc.TabIndex = 17;
             // 
+            // clmDoc
+            // 
+            clmDoc.HeaderText = "Docente";
+            clmDoc.Name = "clmDoc";
+            clmDoc.ReadOnly = true;
+            // 
+            // clmClase
+            // 
+            clmClase.HeaderText = "Asignatura";
+            clmClase.Name = "clmClase";
+            clmClase.ReadOnly = true;
+            clmClase.Width = 125;
+            // 
+            // clmSeccion
+            // 
+            clmSeccion.HeaderText = "Sección";
+            clmSeccion.Name = "clmSeccion";
+            clmSeccion.ReadOnly = true;
+            clmSeccion.Width = 58;
+            // 
+            // clmLunes
+            // 
+            clmLunes.HeaderText = "L";
+            clmLunes.Name = "clmLunes";
+            clmLunes.ReadOnly = true;
+            clmLunes.Width = 20;
+            // 
+            // clmMartes
+            // 
+            clmMartes.HeaderText = "M";
+            clmMartes.Name = "clmMartes";
+            clmMartes.ReadOnly = true;
+            clmMartes.Width = 22;
+            // 
+            // clmMiercoles
+            // 
+            clmMiercoles.HeaderText = "M";
+            clmMiercoles.Name = "clmMiercoles";
+            clmMiercoles.ReadOnly = true;
+            clmMiercoles.Width = 22;
+            // 
+            // clmJueves
+            // 
+            clmJueves.HeaderText = "J";
+            clmJueves.Name = "clmJueves";
+            clmJueves.ReadOnly = true;
+            clmJueves.Width = 20;
+            // 
+            // clmViernes
+            // 
+            clmViernes.HeaderText = "V";
+            clmViernes.Name = "clmViernes";
+            clmViernes.ReadOnly = true;
+            clmViernes.Width = 20;
+            // 
+            // clmSabado
+            // 
+            clmSabado.HeaderText = "S";
+            clmSabado.Name = "clmSabado";
+            clmSabado.ReadOnly = true;
+            clmSabado.Resizable = DataGridViewTriState.True;
+            clmSabado.SortMode = DataGridViewColumnSortMode.Automatic;
+            clmSabado.Width = 20;
+            // 
             // nudMeses
             // 
             nudMeses.Location = new Point(18, 192);
@@ -261,78 +325,14 @@
             gbFiltro.TabStop = false;
             gbFiltro.Text = "Filtros";
             // 
-            // clmDoc
-            // 
-            clmDoc.HeaderText = "Docente";
-            clmDoc.Name = "clmDoc";
-            clmDoc.ReadOnly = true;
-            // 
-            // clmClase
-            // 
-            clmClase.HeaderText = "Asignatura";
-            clmClase.Name = "clmClase";
-            clmClase.ReadOnly = true;
-            clmClase.Width = 125;
-            // 
-            // clmSeccion
-            // 
-            clmSeccion.HeaderText = "Sección";
-            clmSeccion.Name = "clmSeccion";
-            clmSeccion.ReadOnly = true;
-            clmSeccion.Width = 58;
-            // 
-            // clmLunes
-            // 
-            clmLunes.HeaderText = "L";
-            clmLunes.Name = "clmLunes";
-            clmLunes.ReadOnly = true;
-            clmLunes.Width = 20;
-            // 
-            // clmMartes
-            // 
-            clmMartes.HeaderText = "M";
-            clmMartes.Name = "clmMartes";
-            clmMartes.ReadOnly = true;
-            clmMartes.Width = 22;
-            // 
-            // clmMiercoles
-            // 
-            clmMiercoles.HeaderText = "M";
-            clmMiercoles.Name = "clmMiercoles";
-            clmMiercoles.ReadOnly = true;
-            clmMiercoles.Width = 22;
-            // 
-            // clmJueves
-            // 
-            clmJueves.HeaderText = "J";
-            clmJueves.Name = "clmJueves";
-            clmJueves.ReadOnly = true;
-            clmJueves.Width = 20;
-            // 
-            // clmViernes
-            // 
-            clmViernes.HeaderText = "V";
-            clmViernes.Name = "clmViernes";
-            clmViernes.ReadOnly = true;
-            clmViernes.Width = 20;
-            // 
-            // clmSabado
-            // 
-            clmSabado.HeaderText = "S";
-            clmSabado.Name = "clmSabado";
-            clmSabado.ReadOnly = true;
-            clmSabado.Resizable = DataGridViewTriState.True;
-            clmSabado.SortMode = DataGridViewColumnSortMode.Automatic;
-            clmSabado.Width = 20;
-            // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(17, 117);
+            label6.Location = new Point(12, 117);
             label6.Name = "label6";
-            label6.Size = new Size(109, 15);
+            label6.Size = new Size(120, 15);
             label6.TabIndex = 34;
-            label6.Text = "Nombre o apellido ";
+            label6.Text = "Nombre y/o apellido ";
             // 
             // textBox2
             // 
