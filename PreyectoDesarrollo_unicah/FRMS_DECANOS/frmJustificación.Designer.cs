@@ -29,10 +29,11 @@ namespace PreyectoDesarrollo_unicah
         private void InitializeComponent()
         {
             Button btnAgregar;
-            Button btnLogOut;
+            Button btnVoy;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
+            lblPersona = new Label();
             pictureBox3 = new PictureBox();
             btnbuscar = new Button();
             textBox2 = new TextBox();
@@ -48,7 +49,7 @@ namespace PreyectoDesarrollo_unicah
             txtJustifica = new TextBox();
             lblCaracteres = new Label();
             btnAgregar = new Button();
-            btnLogOut = new Button();
+            btnVoy = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -65,15 +66,15 @@ namespace PreyectoDesarrollo_unicah
             btnAgregar.Text = "INSERT&AR JUSTIFICACIÓN";
             btnAgregar.UseVisualStyleBackColor = true;
             // 
-            // btnLogOut
+            // btnVoy
             // 
-            btnLogOut.Location = new Point(659, 602);
-            btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(126, 24);
-            btnLogOut.TabIndex = 27;
-            btnLogOut.Text = "&Salir";
-            btnLogOut.UseVisualStyleBackColor = true;
-            btnLogOut.Click += btnLogOut_Click;
+            btnVoy.Location = new Point(659, 602);
+            btnVoy.Name = "btnVoy";
+            btnVoy.Size = new Size(126, 24);
+            btnVoy.TabIndex = 27;
+            btnVoy.Text = "&Regresar";
+            btnVoy.UseVisualStyleBackColor = true;
+            btnVoy.Click += btnVoy_Click;
             // 
             // pictureBox2
             // 
@@ -94,10 +95,12 @@ namespace PreyectoDesarrollo_unicah
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.HotTrack;
+            panel1.Controls.Add(lblPersona);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
@@ -105,6 +108,17 @@ namespace PreyectoDesarrollo_unicah
             panel1.Name = "panel1";
             panel1.Size = new Size(809, 87);
             panel1.TabIndex = 11;
+            // 
+            // lblPersona
+            // 
+            lblPersona.AutoSize = true;
+            lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPersona.ForeColor = Color.White;
+            lblPersona.Location = new Point(663, 63);
+            lblPersona.Name = "lblPersona";
+            lblPersona.Size = new Size(132, 18);
+            lblPersona.TabIndex = 10;
+            lblPersona.Text = "Nombre_Persona";
             // 
             // pictureBox3
             // 
@@ -236,7 +250,7 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(btnAgregar);
-            Controls.Add(btnLogOut);
+            Controls.Add(btnVoy);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
             Controls.Add(panel1);
@@ -247,6 +261,7 @@ namespace PreyectoDesarrollo_unicah
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
@@ -272,5 +287,6 @@ namespace PreyectoDesarrollo_unicah
         private DataGridViewTextBoxColumn clmSeccion;
         private DataGridViewTextBoxColumn clmDoc;
         private DataGridViewTextBoxColumn clmJustifica;
+        private Label lblPersona;
     }
 }

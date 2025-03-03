@@ -29,10 +29,11 @@ namespace PreyectoDesarrollo_unicah
         private void InitializeComponent()
         {
             Button btnExcel;
-            Button btnSalir;
+            Button btnVoy;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
+            lblPersona = new Label();
             pictureBox3 = new PictureBox();
             label2 = new Label();
             nudReposicion = new NumericUpDown();
@@ -44,7 +45,7 @@ namespace PreyectoDesarrollo_unicah
             clmDocente = new DataGridViewTextBoxColumn();
             clmRepo = new DataGridViewTextBoxColumn();
             btnExcel = new Button();
-            btnSalir = new Button();
+            btnVoy = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -62,15 +63,15 @@ namespace PreyectoDesarrollo_unicah
             btnExcel.Text = "&AGREGAR DÍA DE REPOSICIÓN";
             btnExcel.UseVisualStyleBackColor = true;
             // 
-            // btnSalir
+            // btnVoy
             // 
-            btnSalir.Location = new Point(524, 424);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(102, 29);
-            btnSalir.TabIndex = 20;
-            btnSalir.Text = "&SALIR";
-            btnSalir.UseVisualStyleBackColor = true;
-            btnSalir.Click += btnSalir_Click;
+            btnVoy.Location = new Point(524, 424);
+            btnVoy.Name = "btnVoy";
+            btnVoy.Size = new Size(102, 29);
+            btnVoy.TabIndex = 20;
+            btnVoy.Text = "&Regresar";
+            btnVoy.UseVisualStyleBackColor = true;
+            btnVoy.Click += btnVoy_Click;
             // 
             // pictureBox2
             // 
@@ -91,10 +92,12 @@ namespace PreyectoDesarrollo_unicah
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.HotTrack;
+            panel1.Controls.Add(lblPersona);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
@@ -102,6 +105,17 @@ namespace PreyectoDesarrollo_unicah
             panel1.Name = "panel1";
             panel1.Size = new Size(809, 87);
             panel1.TabIndex = 11;
+            // 
+            // lblPersona
+            // 
+            lblPersona.AutoSize = true;
+            lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPersona.ForeColor = Color.White;
+            lblPersona.Location = new Point(507, 63);
+            lblPersona.Name = "lblPersona";
+            lblPersona.Size = new Size(132, 18);
+            lblPersona.TabIndex = 25;
+            lblPersona.Text = "Nombre_Persona";
             // 
             // pictureBox3
             // 
@@ -195,7 +209,7 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(label2);
             Controls.Add(nudReposicion);
             Controls.Add(btnExcel);
-            Controls.Add(btnSalir);
+            Controls.Add(btnVoy);
             Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -205,6 +219,7 @@ namespace PreyectoDesarrollo_unicah
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudReposicion).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -227,5 +242,6 @@ namespace PreyectoDesarrollo_unicah
         private DataGridViewTextBoxColumn clmSeccion;
         private DataGridViewTextBoxColumn clmDocente;
         private DataGridViewTextBoxColumn clmRepo;
+        private Label lblPersona;
     }
 }

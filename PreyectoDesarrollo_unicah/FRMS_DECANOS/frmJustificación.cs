@@ -20,12 +20,22 @@ namespace PreyectoDesarrollo_unicah
 
         private void frmJustificación_Load(object sender, EventArgs e)
         {
+            lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
             // ACCIONES_BD.cargar(dgvDoc,)
         }
 
-        private void btnLogOut_Click(object sender, EventArgs e)
+        private void btnVoy_Click(object sender, EventArgs e)
         {
             this.Close();
+            frmDecano menu = new frmDecano();
+            menu.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            frmDecano menu = new frmDecano();
+            menu.Show();
         }
     }
 }
