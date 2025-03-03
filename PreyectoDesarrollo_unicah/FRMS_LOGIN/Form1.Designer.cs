@@ -53,7 +53,7 @@
             txtusuario.Location = new Point(168, 111);
             txtusuario.Name = "txtusuario";
             txtusuario.Size = new Size(408, 20);
-            txtusuario.TabIndex = 0;
+            txtusuario.TabIndex = 1;
             txtusuario.Text = "Usuario:";
             txtusuario.TextChanged += txtusuario_TextChanged;
             txtusuario.Enter += txtusuario_Enter;
@@ -65,7 +65,7 @@
             linkLabel1.Location = new Point(334, 260);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(95, 15);
-            linkLabel1.TabIndex = 2;
+            linkLabel1.TabIndex = 4;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "&Olvidé mis datos";
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
@@ -139,7 +139,7 @@
             txtcontraseña.Location = new Point(168, 154);
             txtcontraseña.Name = "txtcontraseña";
             txtcontraseña.Size = new Size(408, 20);
-            txtcontraseña.TabIndex = 5;
+            txtcontraseña.TabIndex = 2;
             txtcontraseña.Text = "Contraseña:";
             txtcontraseña.Enter += txtcontraseña_Enter;
             txtcontraseña.Leave += txtcontraseña_Leave;
