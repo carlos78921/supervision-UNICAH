@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,20 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PreyectoDesarrollo_unicah.FRMS_ADMIN
+namespace PreyectoDesarrollo_unicah
 {
-    public partial class frmMigraciÃ³n : Form
+    public partial class frmMigración : Form
     {
-        public frmMigraciÃ³n()
+        public frmMigración()
         {
             InitializeComponent();
-        }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Form1 Login = new Form1();
-            Login.Show();
         }
     }
 }
