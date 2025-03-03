@@ -128,6 +128,7 @@ namespace PreyectoDesarrollo_unicah
             panel1.Name = "panel1";
             panel1.Size = new Size(420, 81);
             panel1.TabIndex = 6;
+            panel1.MouseDown += panel1_MouseDown;
             // 
             // frmDecano
             // 
@@ -142,6 +143,7 @@ namespace PreyectoDesarrollo_unicah
             Name = "frmDecano";
             Text = "Frm_Admin";
             Load += Frm_Admin_Load;
+            MouseDown += frmDecano_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
