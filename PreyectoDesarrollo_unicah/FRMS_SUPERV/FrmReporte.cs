@@ -16,5 +16,12 @@ namespace PreyectoDesarrollo_unicah
         {
             InitializeComponent();
         }
+
+        private void FrmReporte_Load(object sender, EventArgs e)
+        {
+            cmbEdificio.Text = "Edificio:";
+            cmbAula.Text = "Aula:";
+            cmbHora.Text = "Sección:";
+        }
     }
 }

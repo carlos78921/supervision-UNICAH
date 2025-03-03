@@ -54,6 +54,9 @@
             textBox1 = new TextBox();
             btnBusca = new Button();
             cmbHora = new ComboBox();
+            cmbAula = new ComboBox();
+            cmbEdificio = new ComboBox();
+            gbFiltro = new GroupBox();
             btnSalir = new Button();
             btnExcel = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -63,11 +66,12 @@
             ((System.ComponentModel.ISupportInitialize)dgvDoc).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMeses).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudWeeks).BeginInit();
+            gbFiltro.SuspendLayout();
             SuspendLayout();
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(325, 431);
+            btnSalir.Location = new Point(325, 466);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(105, 29);
             btnSalir.TabIndex = 14;
@@ -76,7 +80,7 @@
             // 
             // btnExcel
             // 
-            btnExcel.Location = new Point(189, 431);
+            btnExcel.Location = new Point(189, 466);
             btnExcel.Name = "btnExcel";
             btnExcel.Size = new Size(126, 29);
             btnExcel.TabIndex = 15;
@@ -152,7 +156,7 @@
             dgvDoc.AllowUserToDeleteRows = false;
             dgvDoc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDoc.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmSeccion, clmSemana, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
-            dgvDoc.Location = new Point(19, 184);
+            dgvDoc.Location = new Point(19, 219);
             dgvDoc.Name = "dgvDoc";
             dgvDoc.ReadOnly = true;
             dgvDoc.Size = new Size(409, 241);
@@ -284,17 +288,47 @@
             // 
             cmbHora.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbHora.FormattingEnabled = true;
-            cmbHora.Location = new Point(148, 155);
+            cmbHora.Location = new Point(203, 22);
             cmbHora.Name = "cmbHora";
             cmbHora.Size = new Size(85, 23);
             cmbHora.TabIndex = 30;
+            // 
+            // cmbAula
+            // 
+            cmbAula.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbAula.FormattingEnabled = true;
+            cmbAula.Location = new Point(104, 22);
+            cmbAula.Name = "cmbAula";
+            cmbAula.Size = new Size(85, 23);
+            cmbAula.TabIndex = 31;
+            // 
+            // cmbEdificio
+            // 
+            cmbEdificio.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEdificio.FormattingEnabled = true;
+            cmbEdificio.Location = new Point(7, 22);
+            cmbEdificio.Name = "cmbEdificio";
+            cmbEdificio.Size = new Size(85, 23);
+            cmbEdificio.TabIndex = 32;
+            // 
+            // gbFiltro
+            // 
+            gbFiltro.Controls.Add(cmbEdificio);
+            gbFiltro.Controls.Add(cmbHora);
+            gbFiltro.Controls.Add(cmbAula);
+            gbFiltro.Location = new Point(134, 155);
+            gbFiltro.Name = "gbFiltro";
+            gbFiltro.Size = new Size(293, 55);
+            gbFiltro.TabIndex = 33;
+            gbFiltro.TabStop = false;
+            gbFiltro.Text = "Filtros";
             // 
             // FrmReporte
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(440, 472);
-            Controls.Add(cmbHora);
+            ClientSize = new Size(440, 502);
+            Controls.Add(gbFiltro);
             Controls.Add(btnBusca);
             Controls.Add(textBox1);
             Controls.Add(label5);
@@ -310,6 +344,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmReporte";
             Text = "FrmReporte";
+            Load += FrmReporte_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
@@ -318,6 +353,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvDoc).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMeses).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudWeeks).EndInit();
+            gbFiltro.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -349,5 +385,8 @@
         private Button btnBusca;
         private Label label6;
         private ComboBox cmbHora;
+        private ComboBox cmbAula;
+        private ComboBox cmbEdificio;
+        private GroupBox gbFiltro;
     }
 }
