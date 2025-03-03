@@ -19,9 +19,9 @@ namespace PreyectoDesarrollo_unicah
 
         private void FrmReporte_Load(object sender, EventArgs e)
         {
-            cmbEdificio.Text = "Edificio:";
-            cmbAula.Text = "Aula:";
-            cmbHora.Text = "Sección:";
+            cmbEdificio.SelectedIndex = 0;
+            cmbAula.SelectedIndex = 0;
+            cmbHora.SelectedIndex = 0;
         }
     }
 }

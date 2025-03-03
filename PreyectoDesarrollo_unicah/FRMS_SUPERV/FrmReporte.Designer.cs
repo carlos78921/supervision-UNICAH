@@ -78,7 +78,7 @@
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(105, 29);
             btnSalir.TabIndex = 14;
-            btnSalir.Text = "&REGRESAR";
+            btnSalir.Text = "&CERRAR SESIÓN";
             btnSalir.UseVisualStyleBackColor = true;
             // 
             // btnExcel
@@ -283,13 +283,14 @@
             btnBusca.Name = "btnBusca";
             btnBusca.Size = new Size(75, 23);
             btnBusca.TabIndex = 28;
-            btnBusca.Text = "Buscar";
+            btnBusca.Text = "&Buscar";
             btnBusca.UseVisualStyleBackColor = true;
             // 
             // cmbHora
             // 
             cmbHora.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbHora.FormattingEnabled = true;
+            cmbHora.Items.AddRange(new object[] { "Sección:" });
             cmbHora.Location = new Point(203, 22);
             cmbHora.Name = "cmbHora";
             cmbHora.Size = new Size(85, 23);
@@ -299,6 +300,7 @@
             // 
             cmbAula.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbAula.FormattingEnabled = true;
+            cmbAula.Items.AddRange(new object[] { "Aula:" });
             cmbAula.Location = new Point(104, 22);
             cmbAula.Name = "cmbAula";
             cmbAula.Size = new Size(85, 23);
@@ -308,6 +310,7 @@
             // 
             cmbEdificio.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdificio.FormattingEnabled = true;
+            cmbEdificio.Items.AddRange(new object[] { "Edificio:" });
             cmbEdificio.Location = new Point(7, 22);
             cmbEdificio.Name = "cmbEdificio";
             cmbEdificio.Size = new Size(85, 23);
