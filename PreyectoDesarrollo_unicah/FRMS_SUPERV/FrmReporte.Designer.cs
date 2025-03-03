@@ -51,14 +51,14 @@
             nudWeeks = new NumericUpDown();
             label2 = new Label();
             label5 = new Label();
-            textBox1 = new TextBox();
+            txtClase = new TextBox();
             btnBusca = new Button();
             cmbHora = new ComboBox();
             cmbAula = new ComboBox();
             cmbEdificio = new ComboBox();
             gbFiltro = new GroupBox();
             label6 = new Label();
-            textBox2 = new TextBox();
+            txtDoc = new TextBox();
             label7 = new Label();
             btnSalir = new Button();
             btnExcel = new Button();
@@ -270,12 +270,12 @@
             label5.TabIndex = 26;
             label5.Text = "Asignatura:";
             // 
-            // textBox1
+            // txtClase
             // 
-            textBox1.Location = new Point(226, 125);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(140, 23);
-            textBox1.TabIndex = 27;
+            txtClase.Location = new Point(226, 125);
+            txtClase.Name = "txtClase";
+            txtClase.Size = new Size(140, 23);
+            txtClase.TabIndex = 27;
             // 
             // btnBusca
             // 
@@ -337,12 +337,12 @@
             label6.TabIndex = 34;
             label6.Text = "Nombre y/o apellido ";
             // 
-            // textBox2
+            // txtDoc
             // 
-            textBox2.Location = new Point(12, 151);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(118, 23);
-            textBox2.TabIndex = 35;
+            txtDoc.Location = new Point(12, 151);
+            txtDoc.Name = "txtDoc";
+            txtDoc.Size = new Size(118, 23);
+            txtDoc.TabIndex = 35;
             // 
             // label7
             // 
@@ -359,11 +359,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(479, 484);
             Controls.Add(label7);
-            Controls.Add(textBox2);
+            Controls.Add(txtDoc);
             Controls.Add(label6);
             Controls.Add(gbFiltro);
             Controls.Add(btnBusca);
-            Controls.Add(textBox1);
+            Controls.Add(txtClase);
             Controls.Add(label5);
             Controls.Add(nudMeses);
             Controls.Add(label3);
@@ -405,7 +405,7 @@
         private NumericUpDown nudWeeks;
         private Label label2;
         private Label label5;
-        private TextBox textBox1;
+        private TextBox txtClase;
         private Button btnBusca;
         private Label label6;
         private ComboBox cmbHora;
@@ -421,7 +421,7 @@
         private DataGridViewCheckBoxColumn clmJueves;
         private DataGridViewCheckBoxColumn clmViernes;
         private DataGridViewCheckBoxColumn clmSabado;
-        private TextBox textBox2;
+        private TextBox txtDoc;
         private Label label7;
     }
 }
