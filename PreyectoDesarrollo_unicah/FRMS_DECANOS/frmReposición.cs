@@ -33,9 +33,8 @@ namespace PreyectoDesarrollo_unicah
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            this.Close();
-            frmDecano menu = new frmDecano();
-            menu.Show();
+            if (MessageBox.Show("Seguro que quieres salirte por completo", "Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                Application.Exit();
         }
     }
 }
