@@ -20,7 +20,6 @@ namespace PreyectoDesarrollo_unicah
 
         private void frmJustificación_Load(object sender, EventArgs e)
         {
-            lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
             // ACCIONES_BD.cargar(dgvDoc,)
         }
 
