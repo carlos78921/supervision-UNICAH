@@ -63,15 +63,6 @@ namespace PreyectoDesarrollo_unicah
             btnExcel.Text = "&AGREGAR DÍA DE REPOSICIÓN";
             btnExcel.UseVisualStyleBackColor = true;
             // 
-            // btnSalir
-            // 
-            btnSalir.Location = new Point(518, 424);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(108, 29);
-            btnSalir.TabIndex = 20;
-            btnSalir.Text = "&CERRAR SESIÓN";
-            btnSalir.UseVisualStyleBackColor = true;
-            // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
@@ -197,6 +188,16 @@ namespace PreyectoDesarrollo_unicah
             clmRepo.Name = "clmRepo";
             clmRepo.ReadOnly = true;
             clmRepo.Width = 138;
+            // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(524, 424);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(102, 29);
+            btnSalir.TabIndex = 20;
+            btnSalir.Text = "&SALIR";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
             // 
             // frmReposición
             // 

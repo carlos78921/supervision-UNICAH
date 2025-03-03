@@ -74,6 +74,7 @@ namespace PreyectoDesarrollo_unicah
             btnLogOut.TabIndex = 27;
             btnLogOut.Text = "&Salir";
             btnLogOut.UseVisualStyleBackColor = true;
+            btnLogOut.Click += btnLogOut_Click;
             // 
             // pictureBox2
             // 

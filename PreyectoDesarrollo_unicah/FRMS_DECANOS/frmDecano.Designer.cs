@@ -152,17 +152,14 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnReponer_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            frmReposición Repo = new frmReposición();
+            Repo.Show();
         }
 
         private void btnJustifica_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
-        }
-
-        private void btnReporte_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
+            frmJustificación Justo = new frmJustificación();
+            Justo.Show();
         }
 
 #endregion

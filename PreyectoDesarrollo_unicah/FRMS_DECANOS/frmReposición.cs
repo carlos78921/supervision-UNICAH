@@ -23,5 +23,10 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
             // ACCIONES_BD.cargar(dgvDoc,)
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
