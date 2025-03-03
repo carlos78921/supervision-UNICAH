@@ -16,12 +16,26 @@ namespace PreyectoDesarrollo_unicah
         {
             InitializeComponent();
         }
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
 
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+        
         private void FrmReporte_Load(object sender, EventArgs e)
         {
             cmbEdificio.SelectedIndex = 0;
             cmbAula.SelectedIndex = 0;
             cmbHora.SelectedIndex = 0;
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Close()
         }
     }
 }
