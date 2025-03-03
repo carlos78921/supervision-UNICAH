@@ -33,7 +33,6 @@ namespace PreyectoDesarrollo_unicah
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
-            lblPersona = new Label();
             pictureBox3 = new PictureBox();
             label2 = new Label();
             nudReposicion = new NumericUpDown();
@@ -63,6 +62,16 @@ namespace PreyectoDesarrollo_unicah
             btnExcel.Text = "&AGREGAR DÍA DE REPOSICIÓN";
             btnExcel.UseVisualStyleBackColor = true;
             // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(524, 424);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(102, 29);
+            btnSalir.TabIndex = 20;
+            btnSalir.Text = "&SALIR";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
@@ -86,7 +95,6 @@ namespace PreyectoDesarrollo_unicah
             // panel1
             // 
             panel1.BackColor = SystemColors.HotTrack;
-            panel1.Controls.Add(lblPersona);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
@@ -94,17 +102,6 @@ namespace PreyectoDesarrollo_unicah
             panel1.Name = "panel1";
             panel1.Size = new Size(809, 87);
             panel1.TabIndex = 11;
-            // 
-            // lblPersona
-            // 
-            lblPersona.AutoSize = true;
-            lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(507, 63);
-            lblPersona.Name = "lblPersona";
-            lblPersona.Size = new Size(132, 18);
-            lblPersona.TabIndex = 25;
-            lblPersona.Text = "Nombre_Persona";
             // 
             // pictureBox3
             // 
@@ -189,16 +186,6 @@ namespace PreyectoDesarrollo_unicah
             clmRepo.ReadOnly = true;
             clmRepo.Width = 138;
             // 
-            // btnSalir
-            // 
-            btnSalir.Location = new Point(524, 424);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(102, 29);
-            btnSalir.TabIndex = 20;
-            btnSalir.Text = "&SALIR";
-            btnSalir.UseVisualStyleBackColor = true;
-            btnSalir.Click += btnSalir_Click;
-            // 
             // frmReposición
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -218,7 +205,6 @@ namespace PreyectoDesarrollo_unicah
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudReposicion).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -241,6 +227,5 @@ namespace PreyectoDesarrollo_unicah
         private DataGridViewTextBoxColumn clmSeccion;
         private DataGridViewTextBoxColumn clmDocente;
         private DataGridViewTextBoxColumn clmRepo;
-        private Label lblPersona;
     }
 }

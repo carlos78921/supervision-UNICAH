@@ -33,7 +33,6 @@ namespace PreyectoDesarrollo_unicah
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
-            lblPersona = new Label();
             pictureBox3 = new PictureBox();
             btnbuscar = new Button();
             textBox2 = new TextBox();
@@ -99,7 +98,6 @@ namespace PreyectoDesarrollo_unicah
             // panel1
             // 
             panel1.BackColor = SystemColors.HotTrack;
-            panel1.Controls.Add(lblPersona);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
@@ -107,17 +105,6 @@ namespace PreyectoDesarrollo_unicah
             panel1.Name = "panel1";
             panel1.Size = new Size(809, 87);
             panel1.TabIndex = 11;
-            // 
-            // lblPersona
-            // 
-            lblPersona.AutoSize = true;
-            lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(666, 63);
-            lblPersona.Name = "lblPersona";
-            lblPersona.Size = new Size(132, 18);
-            lblPersona.TabIndex = 37;
-            lblPersona.Text = "Nombre_Persona";
             // 
             // pictureBox3
             // 
@@ -260,7 +247,6 @@ namespace PreyectoDesarrollo_unicah
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
@@ -279,7 +265,6 @@ namespace PreyectoDesarrollo_unicah
         private Label label2;
         private DataGridView dataGridView1;
         private Label label1;
-        private Label lblPersona;
         private TextBox txtJustifica;
         private Label lblCaracteres;
         private DataGridViewTextBoxColumn clmClase;
