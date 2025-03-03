@@ -152,12 +152,14 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnReponer_Click(object sender, EventArgs e)
         {
+            this.Close();
             frmReposición Repo = new frmReposición();
             Repo.Show();
         }
 
         private void btnJustifica_Click(object sender, EventArgs e)
         {
+            this.Close();
             frmJustificación Justo = new frmJustificación();
             Justo.Show();
         }
