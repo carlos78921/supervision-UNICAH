@@ -51,7 +51,7 @@ namespace PreyectoDesarrollo_unicah
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(126, 29);
             btnSalir.TabIndex = 14;
-            btnSalir.Text = "&REGRESAR";
+            btnSalir.Text = "&CERRAR SESIÓN";
             btnSalir.UseVisualStyleBackColor = true;
             // 
             // btnExcel
