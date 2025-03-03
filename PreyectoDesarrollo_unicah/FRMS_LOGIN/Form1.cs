@@ -13,11 +13,6 @@ namespace PreyectoDesarrollo_unicah
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
