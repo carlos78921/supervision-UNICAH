@@ -33,21 +33,21 @@ namespace PreyectoDesarrollo_unicah
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
-            label4 = new Label();
+            lblPersona = new Label();
             pictureBox3 = new PictureBox();
             btnbuscar = new Button();
             textBox2 = new TextBox();
             label3 = new Label();
             label2 = new Label();
             dataGridView1 = new DataGridView();
-            label1 = new Label();
-            txtJustifica = new TextBox();
-            lblCaracteres = new Label();
             clmClase = new DataGridViewTextBoxColumn();
             clmFecha = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
             clmDoc = new DataGridViewTextBoxColumn();
             clmJustifica = new DataGridViewTextBoxColumn();
+            label1 = new Label();
+            txtJustifica = new TextBox();
+            lblCaracteres = new Label();
             btnAgregar = new Button();
             btnLogOut = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -98,7 +98,7 @@ namespace PreyectoDesarrollo_unicah
             // panel1
             // 
             panel1.BackColor = SystemColors.HotTrack;
-            panel1.Controls.Add(label4);
+            panel1.Controls.Add(lblPersona);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
@@ -107,16 +107,16 @@ namespace PreyectoDesarrollo_unicah
             panel1.Size = new Size(809, 87);
             panel1.TabIndex = 11;
             // 
-            // label4
+            // lblPersona
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(666, 66);
-            label4.Name = "label4";
-            label4.Size = new Size(132, 18);
-            label4.TabIndex = 37;
-            label4.Text = "Nombre_Persona";
+            lblPersona.AutoSize = true;
+            lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPersona.ForeColor = Color.White;
+            lblPersona.Location = new Point(666, 63);
+            lblPersona.Name = "lblPersona";
+            lblPersona.Size = new Size(132, 18);
+            lblPersona.TabIndex = 37;
+            lblPersona.Text = "Nombre_Persona";
             // 
             // pictureBox3
             // 
@@ -175,33 +175,6 @@ namespace PreyectoDesarrollo_unicah
             dataGridView1.Size = new Size(773, 304);
             dataGridView1.TabIndex = 26;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(310, 93);
-            label1.Name = "label1";
-            label1.Size = new Size(173, 15);
-            label1.TabIndex = 25;
-            label1.Text = "JUSTIFICACIÓN DE ASISTENCIA";
-            // 
-            // txtJustifica
-            // 
-            txtJustifica.Location = new Point(447, 119);
-            txtJustifica.Multiline = true;
-            txtJustifica.Name = "txtJustifica";
-            txtJustifica.Size = new Size(338, 147);
-            txtJustifica.TabIndex = 37;
-            // 
-            // lblCaracteres
-            // 
-            lblCaracteres.AutoSize = true;
-            lblCaracteres.BackColor = SystemColors.Window;
-            lblCaracteres.Location = new Point(451, 122);
-            lblCaracteres.Name = "lblCaracteres";
-            lblCaracteres.Size = new Size(112, 15);
-            lblCaracteres.TabIndex = 38;
-            lblCaracteres.Text = "Límite de caracteres";
-            // 
             // clmClase
             // 
             clmClase.HeaderText = "Asignatura";
@@ -236,6 +209,33 @@ namespace PreyectoDesarrollo_unicah
             clmJustifica.ReadOnly = true;
             clmJustifica.Width = 364;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(310, 93);
+            label1.Name = "label1";
+            label1.Size = new Size(173, 15);
+            label1.TabIndex = 25;
+            label1.Text = "JUSTIFICACIÓN DE ASISTENCIA";
+            // 
+            // txtJustifica
+            // 
+            txtJustifica.Location = new Point(447, 119);
+            txtJustifica.Multiline = true;
+            txtJustifica.Name = "txtJustifica";
+            txtJustifica.Size = new Size(338, 147);
+            txtJustifica.TabIndex = 37;
+            // 
+            // lblCaracteres
+            // 
+            lblCaracteres.AutoSize = true;
+            lblCaracteres.BackColor = SystemColors.Window;
+            lblCaracteres.Location = new Point(451, 122);
+            lblCaracteres.Name = "lblCaracteres";
+            lblCaracteres.Size = new Size(112, 15);
+            lblCaracteres.TabIndex = 38;
+            lblCaracteres.Text = "Límite de caracteres";
+            // 
             // frmJustificación
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -255,6 +255,7 @@ namespace PreyectoDesarrollo_unicah
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmJustificación";
             Text = "FrmReporte";
+            Load += frmJustificación_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
@@ -277,7 +278,7 @@ namespace PreyectoDesarrollo_unicah
         private Label label2;
         private DataGridView dataGridView1;
         private Label label1;
-        private Label label4;
+        private Label lblPersona;
         private TextBox txtJustifica;
         private Label lblCaracteres;
         private DataGridViewTextBoxColumn clmClase;

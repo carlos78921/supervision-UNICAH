@@ -1,3 +1,4 @@
+using PreyectoDesarrollo_unicah.CLASES;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,12 @@ namespace PreyectoDesarrollo_unicah
         public frmReposición()
         {
             InitializeComponent();
+        }
+
+        private void frmReposición_Load(object sender, EventArgs e)
+        {
+            lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
+            // ACCIONES_BD.cargar(dgvDoc,)
         }
     }
 }

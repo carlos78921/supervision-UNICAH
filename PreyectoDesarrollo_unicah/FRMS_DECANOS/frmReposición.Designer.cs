@@ -33,6 +33,7 @@ namespace PreyectoDesarrollo_unicah
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
+            lblPersona = new Label();
             pictureBox3 = new PictureBox();
             label2 = new Label();
             nudReposicion = new NumericUpDown();
@@ -43,7 +44,6 @@ namespace PreyectoDesarrollo_unicah
             clmSeccion = new DataGridViewTextBoxColumn();
             clmDocente = new DataGridViewTextBoxColumn();
             clmRepo = new DataGridViewTextBoxColumn();
-            label4 = new Label();
             btnExcel = new Button();
             btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -95,7 +95,7 @@ namespace PreyectoDesarrollo_unicah
             // panel1
             // 
             panel1.BackColor = SystemColors.HotTrack;
-            panel1.Controls.Add(label4);
+            panel1.Controls.Add(lblPersona);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
@@ -103,6 +103,17 @@ namespace PreyectoDesarrollo_unicah
             panel1.Name = "panel1";
             panel1.Size = new Size(809, 87);
             panel1.TabIndex = 11;
+            // 
+            // lblPersona
+            // 
+            lblPersona.AutoSize = true;
+            lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPersona.ForeColor = Color.White;
+            lblPersona.Location = new Point(507, 63);
+            lblPersona.Name = "lblPersona";
+            lblPersona.Size = new Size(132, 18);
+            lblPersona.TabIndex = 25;
+            lblPersona.Text = "Nombre_Persona";
             // 
             // pictureBox3
             // 
@@ -187,17 +198,6 @@ namespace PreyectoDesarrollo_unicah
             clmRepo.ReadOnly = true;
             clmRepo.Width = 138;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(507, 63);
-            label4.Name = "label4";
-            label4.Size = new Size(132, 18);
-            label4.TabIndex = 25;
-            label4.Text = "Nombre_Persona";
-            // 
             // frmReposición
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -213,6 +213,7 @@ namespace PreyectoDesarrollo_unicah
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmReposición";
             Text = "FrmReporte";
+            Load += frmReposición_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
@@ -239,6 +240,6 @@ namespace PreyectoDesarrollo_unicah
         private DataGridViewTextBoxColumn clmSeccion;
         private DataGridViewTextBoxColumn clmDocente;
         private DataGridViewTextBoxColumn clmRepo;
-        private Label label4;
+        private Label lblPersona;
     }
 }

@@ -35,7 +35,7 @@ namespace PreyectoDesarrollo_unicah
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
-            label1 = new Label();
+            lblPersona = new Label();
             panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -106,21 +106,21 @@ namespace PreyectoDesarrollo_unicah
             pictureBox3.TabIndex = 8;
             pictureBox3.TabStop = false;
             // 
-            // label1
+            // lblPersona
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(278, 56);
-            label1.Name = "label1";
-            label1.Size = new Size(132, 18);
-            label1.TabIndex = 9;
-            label1.Text = "Nombre_Persona";
+            lblPersona.AutoSize = true;
+            lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPersona.ForeColor = Color.White;
+            lblPersona.Location = new Point(278, 56);
+            lblPersona.Name = "lblPersona";
+            lblPersona.Size = new Size(132, 18);
+            lblPersona.TabIndex = 9;
+            lblPersona.Text = "Nombre_Persona";
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.HotTrack;
-            panel1.Controls.Add(label1);
+            panel1.Controls.Add(lblPersona);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
@@ -172,7 +172,7 @@ namespace PreyectoDesarrollo_unicah
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
-        private Label label1;
+        private Label lblPersona;
         private Panel panel1;
     }
 }
