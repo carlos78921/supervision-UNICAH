@@ -50,6 +50,10 @@
             label3 = new Label();
             nudWeeks = new NumericUpDown();
             label2 = new Label();
+            label5 = new Label();
+            textBox1 = new TextBox();
+            btnBusca = new Button();
+            cmbHora = new ComboBox();
             btnSalir = new Button();
             btnExcel = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -63,16 +67,16 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(307, 393);
+            btnSalir.Location = new Point(325, 431);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(126, 29);
+            btnSalir.Size = new Size(105, 29);
             btnSalir.TabIndex = 14;
             btnSalir.Text = "&REGRESAR";
             btnSalir.UseVisualStyleBackColor = true;
             // 
             // btnExcel
             // 
-            btnExcel.Location = new Point(175, 393);
+            btnExcel.Location = new Point(189, 431);
             btnExcel.Name = "btnExcel";
             btnExcel.Size = new Size(126, 29);
             btnExcel.TabIndex = 15;
@@ -148,7 +152,7 @@
             dgvDoc.AllowUserToDeleteRows = false;
             dgvDoc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDoc.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmSeccion, clmSemana, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
-            dgvDoc.Location = new Point(16, 146);
+            dgvDoc.Location = new Point(19, 184);
             dgvDoc.Name = "dgvDoc";
             dgvDoc.ReadOnly = true;
             dgvDoc.Size = new Size(409, 241);
@@ -221,7 +225,7 @@
             // 
             // nudMeses
             // 
-            nudMeses.Location = new Point(147, 117);
+            nudMeses.Location = new Point(81, 155);
             nudMeses.Name = "nudMeses";
             nudMeses.Size = new Size(49, 23);
             nudMeses.TabIndex = 25;
@@ -229,7 +233,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(91, 122);
+            label3.Location = new Point(25, 160);
             label3.Name = "label3";
             label3.Size = new Size(51, 15);
             label3.TabIndex = 24;
@@ -237,7 +241,7 @@
             // 
             // nudWeeks
             // 
-            nudWeeks.Location = new Point(287, 116);
+            nudWeeks.Location = new Point(81, 126);
             nudWeeks.Name = "nudWeeks";
             nudWeeks.Size = new Size(49, 23);
             nudWeeks.TabIndex = 23;
@@ -245,17 +249,55 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(231, 121);
+            label2.Location = new Point(25, 131);
             label2.Name = "label2";
             label2.Size = new Size(52, 15);
             label2.TabIndex = 22;
             label2.Text = "Semana:";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(136, 128);
+            label5.Name = "label5";
+            label5.Size = new Size(67, 15);
+            label5.TabIndex = 26;
+            label5.Text = "Asignatura:";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(209, 125);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(140, 23);
+            textBox1.TabIndex = 27;
+            // 
+            // btnBusca
+            // 
+            btnBusca.Location = new Point(361, 126);
+            btnBusca.Name = "btnBusca";
+            btnBusca.Size = new Size(75, 23);
+            btnBusca.TabIndex = 28;
+            btnBusca.Text = "Buscar";
+            btnBusca.UseVisualStyleBackColor = true;
+            // 
+            // cmbHora
+            // 
+            cmbHora.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbHora.FormattingEnabled = true;
+            cmbHora.Location = new Point(148, 155);
+            cmbHora.Name = "cmbHora";
+            cmbHora.Size = new Size(85, 23);
+            cmbHora.TabIndex = 30;
+            // 
             // FrmReporte
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(440, 429);
+            ClientSize = new Size(440, 472);
+            Controls.Add(cmbHora);
+            Controls.Add(btnBusca);
+            Controls.Add(textBox1);
+            Controls.Add(label5);
             Controls.Add(nudMeses);
             Controls.Add(label3);
             Controls.Add(nudWeeks);
@@ -302,5 +344,10 @@
         private Label label3;
         private NumericUpDown nudWeeks;
         private Label label2;
+        private Label label5;
+        private TextBox textBox1;
+        private Button btnBusca;
+        private Label label6;
+        private ComboBox cmbHora;
     }
 }

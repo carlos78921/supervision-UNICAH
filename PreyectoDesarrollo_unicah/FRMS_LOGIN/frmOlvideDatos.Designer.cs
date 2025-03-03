@@ -38,6 +38,7 @@
             txtCodigo = new TextBox();
             label2 = new Label();
             label3 = new Label();
+            button1 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -91,11 +92,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(307, 94);
+            label1.Location = new Point(335, 94);
             label1.Name = "label1";
-            label1.Size = new Size(159, 15);
+            label1.Size = new Size(87, 15);
             label1.TabIndex = 6;
-            label1.Text = "Ingrese su correo electronico";
+            label1.Text = "Ingrese su dato";
             // 
             // txtusuario
             // 
@@ -111,11 +112,11 @@
             btnRestablecer.FlatAppearance.BorderColor = SystemColors.HotTrack;
             btnRestablecer.FlatStyle = FlatStyle.Flat;
             btnRestablecer.ForeColor = Color.Black;
-            btnRestablecer.Location = new Point(298, 244);
+            btnRestablecer.Location = new Point(195, 239);
             btnRestablecer.Name = "btnRestablecer";
             btnRestablecer.Size = new Size(186, 40);
             btnRestablecer.TabIndex = 8;
-            btnRestablecer.Text = "&RESTABLECER CUENTA";
+            btnRestablecer.Text = "&GENERAR CÓDIGO";
             btnRestablecer.UseVisualStyleBackColor = false;
             // 
             // txtCodigo
@@ -147,11 +148,25 @@
             label3.Text = "Un código ha sido enviado a su correo";
             label3.Visible = false;
             // 
+            // button1
+            // 
+            button1.BackColor = Color.White;
+            button1.FlatAppearance.BorderColor = SystemColors.HotTrack;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = Color.Black;
+            button1.Location = new Point(407, 239);
+            button1.Name = "button1";
+            button1.Size = new Size(186, 40);
+            button1.TabIndex = 12;
+            button1.Text = "&RESTABLECER CUENTA";
+            button1.UseVisualStyleBackColor = false;
+            // 
             // frmOlvideDatos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(764, 291);
+            Controls.Add(button1);
             Controls.Add(label3);
             Controls.Add(txtCodigo);
             Controls.Add(label2);
@@ -184,5 +199,6 @@
         private TextBox txtCodigo;
         private Label label2;
         private Label label3;
+        private Button button1;
     }
 }
