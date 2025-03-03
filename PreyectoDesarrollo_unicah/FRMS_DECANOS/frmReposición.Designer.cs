@@ -28,7 +28,7 @@ namespace PreyectoDesarrollo_unicah
         /// </summary>
         private void InitializeComponent()
         {
-            Button btnExcel;
+            Button btnDay;
             Button btnVoy;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
@@ -44,7 +44,7 @@ namespace PreyectoDesarrollo_unicah
             clmSeccion = new DataGridViewTextBoxColumn();
             clmDocente = new DataGridViewTextBoxColumn();
             clmRepo = new DataGridViewTextBoxColumn();
-            btnExcel = new Button();
+            btnDay = new Button();
             btnVoy = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -54,14 +54,14 @@ namespace PreyectoDesarrollo_unicah
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
-            // btnExcel
+            // btnDay
             // 
-            btnExcel.Location = new Point(170, 121);
-            btnExcel.Name = "btnExcel";
-            btnExcel.Size = new Size(67, 23);
-            btnExcel.TabIndex = 21;
-            btnExcel.Text = "INSERT&AR";
-            btnExcel.UseVisualStyleBackColor = true;
+            btnDay.Location = new Point(170, 121);
+            btnDay.Name = "btnDay";
+            btnDay.Size = new Size(67, 23);
+            btnDay.TabIndex = 21;
+            btnDay.Text = "INSERT&AR";
+            btnDay.UseVisualStyleBackColor = true;
             // 
             // btnVoy
             // 
@@ -209,7 +209,7 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(dataGridView1);
             Controls.Add(label2);
             Controls.Add(nudReposicion);
-            Controls.Add(btnExcel);
+            Controls.Add(btnDay);
             Controls.Add(btnVoy);
             Controls.Add(label1);
             Controls.Add(panel1);
