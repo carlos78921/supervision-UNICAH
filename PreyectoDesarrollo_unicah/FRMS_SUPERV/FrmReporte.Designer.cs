@@ -37,15 +37,6 @@
             pictureBox3 = new PictureBox();
             label1 = new Label();
             dgvDoc = new DataGridView();
-            clmClase = new DataGridViewTextBoxColumn();
-            clmSeccion = new DataGridViewTextBoxColumn();
-            clmSemana = new DataGridViewTextBoxColumn();
-            clmLunes = new DataGridViewCheckBoxColumn();
-            clmMartes = new DataGridViewCheckBoxColumn();
-            clmMiercoles = new DataGridViewCheckBoxColumn();
-            clmJueves = new DataGridViewCheckBoxColumn();
-            clmViernes = new DataGridViewCheckBoxColumn();
-            clmSabado = new DataGridViewCheckBoxColumn();
             nudMeses = new NumericUpDown();
             label3 = new Label();
             nudWeeks = new NumericUpDown();
@@ -57,6 +48,18 @@
             cmbAula = new ComboBox();
             cmbEdificio = new ComboBox();
             gbFiltro = new GroupBox();
+            clmDoc = new DataGridViewTextBoxColumn();
+            clmClase = new DataGridViewTextBoxColumn();
+            clmSeccion = new DataGridViewTextBoxColumn();
+            clmLunes = new DataGridViewCheckBoxColumn();
+            clmMartes = new DataGridViewCheckBoxColumn();
+            clmMiercoles = new DataGridViewCheckBoxColumn();
+            clmJueves = new DataGridViewCheckBoxColumn();
+            clmViernes = new DataGridViewCheckBoxColumn();
+            clmSabado = new DataGridViewCheckBoxColumn();
+            label6 = new Label();
+            textBox2 = new TextBox();
+            label7 = new Label();
             btnSalir = new Button();
             btnExcel = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -71,7 +74,7 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(325, 466);
+            btnSalir.Location = new Point(359, 447);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(105, 29);
             btnSalir.TabIndex = 14;
@@ -80,7 +83,7 @@
             // 
             // btnExcel
             // 
-            btnExcel.Location = new Point(189, 466);
+            btnExcel.Location = new Point(223, 447);
             btnExcel.Name = "btnExcel";
             btnExcel.Size = new Size(126, 29);
             btnExcel.TabIndex = 15;
@@ -90,7 +93,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(376, 3);
+            pictureBox2.Location = new Point(418, 2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(29, 21);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -100,7 +103,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(411, 3);
+            pictureBox1.Location = new Point(453, 2);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 21);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -116,7 +119,7 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(-4, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(445, 87);
+            panel1.Size = new Size(498, 87);
             panel1.TabIndex = 11;
             // 
             // label4
@@ -124,7 +127,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(308, 63);
+            label4.Location = new Point(350, 63);
             label4.Name = "label4";
             label4.Size = new Size(132, 18);
             label4.TabIndex = 23;
@@ -144,7 +147,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(148, 96);
+            label1.Location = new Point(178, 97);
             label1.Name = "label1";
             label1.Size = new Size(139, 15);
             label1.TabIndex = 12;
@@ -155,12 +158,114 @@
             dgvDoc.AllowUserToAddRows = false;
             dgvDoc.AllowUserToDeleteRows = false;
             dgvDoc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDoc.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmSeccion, clmSemana, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
-            dgvDoc.Location = new Point(19, 219);
+            dgvDoc.Columns.AddRange(new DataGridViewColumn[] { clmDoc, clmClase, clmSeccion, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
+            dgvDoc.Location = new Point(15, 222);
             dgvDoc.Name = "dgvDoc";
             dgvDoc.ReadOnly = true;
-            dgvDoc.Size = new Size(409, 241);
+            dgvDoc.Size = new Size(449, 216);
             dgvDoc.TabIndex = 17;
+            // 
+            // nudMeses
+            // 
+            nudMeses.Location = new Point(18, 192);
+            nudMeses.Name = "nudMeses";
+            nudMeses.Size = new Size(49, 23);
+            nudMeses.TabIndex = 25;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(16, 175);
+            label3.Name = "label3";
+            label3.Size = new Size(51, 15);
+            label3.TabIndex = 24;
+            label3.Text = "Periodo:";
+            // 
+            // nudWeeks
+            // 
+            nudWeeks.Location = new Point(84, 193);
+            nudWeeks.Name = "nudWeeks";
+            nudWeeks.Size = new Size(49, 23);
+            nudWeeks.TabIndex = 23;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(84, 176);
+            label2.Name = "label2";
+            label2.Size = new Size(52, 15);
+            label2.TabIndex = 22;
+            label2.Text = "Semana:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(153, 128);
+            label5.Name = "label5";
+            label5.Size = new Size(67, 15);
+            label5.TabIndex = 26;
+            label5.Text = "Asignatura:";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(226, 125);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(140, 23);
+            textBox1.TabIndex = 27;
+            // 
+            // btnBusca
+            // 
+            btnBusca.Location = new Point(378, 126);
+            btnBusca.Name = "btnBusca";
+            btnBusca.Size = new Size(75, 23);
+            btnBusca.TabIndex = 28;
+            btnBusca.Text = "Buscar";
+            btnBusca.UseVisualStyleBackColor = true;
+            // 
+            // cmbHora
+            // 
+            cmbHora.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbHora.FormattingEnabled = true;
+            cmbHora.Location = new Point(203, 22);
+            cmbHora.Name = "cmbHora";
+            cmbHora.Size = new Size(85, 23);
+            cmbHora.TabIndex = 30;
+            // 
+            // cmbAula
+            // 
+            cmbAula.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbAula.FormattingEnabled = true;
+            cmbAula.Location = new Point(104, 22);
+            cmbAula.Name = "cmbAula";
+            cmbAula.Size = new Size(85, 23);
+            cmbAula.TabIndex = 31;
+            // 
+            // cmbEdificio
+            // 
+            cmbEdificio.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEdificio.FormattingEnabled = true;
+            cmbEdificio.Location = new Point(7, 22);
+            cmbEdificio.Name = "cmbEdificio";
+            cmbEdificio.Size = new Size(85, 23);
+            cmbEdificio.TabIndex = 32;
+            // 
+            // gbFiltro
+            // 
+            gbFiltro.Controls.Add(cmbEdificio);
+            gbFiltro.Controls.Add(cmbHora);
+            gbFiltro.Controls.Add(cmbAula);
+            gbFiltro.Location = new Point(151, 155);
+            gbFiltro.Name = "gbFiltro";
+            gbFiltro.Size = new Size(293, 55);
+            gbFiltro.TabIndex = 33;
+            gbFiltro.TabStop = false;
+            gbFiltro.Text = "Filtros";
+            // 
+            // clmDoc
+            // 
+            clmDoc.HeaderText = "Docente";
+            clmDoc.Name = "clmDoc";
+            clmDoc.ReadOnly = true;
             // 
             // clmClase
             // 
@@ -175,13 +280,6 @@
             clmSeccion.Name = "clmSeccion";
             clmSeccion.ReadOnly = true;
             clmSeccion.Width = 58;
-            // 
-            // clmSemana
-            // 
-            clmSemana.HeaderText = "Semana";
-            clmSemana.Name = "clmSemana";
-            clmSemana.ReadOnly = true;
-            clmSemana.Width = 60;
             // 
             // clmLunes
             // 
@@ -227,107 +325,39 @@
             clmSabado.SortMode = DataGridViewColumnSortMode.Automatic;
             clmSabado.Width = 20;
             // 
-            // nudMeses
+            // label6
             // 
-            nudMeses.Location = new Point(81, 155);
-            nudMeses.Name = "nudMeses";
-            nudMeses.Size = new Size(49, 23);
-            nudMeses.TabIndex = 25;
+            label6.AutoSize = true;
+            label6.Location = new Point(17, 117);
+            label6.Name = "label6";
+            label6.Size = new Size(109, 15);
+            label6.TabIndex = 34;
+            label6.Text = "Nombre o apellido ";
             // 
-            // label3
+            // textBox2
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(25, 160);
-            label3.Name = "label3";
-            label3.Size = new Size(51, 15);
-            label3.TabIndex = 24;
-            label3.Text = "Periodo:";
+            textBox2.Location = new Point(12, 151);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(118, 23);
+            textBox2.TabIndex = 35;
             // 
-            // nudWeeks
+            // label7
             // 
-            nudWeeks.Location = new Point(81, 126);
-            nudWeeks.Name = "nudWeeks";
-            nudWeeks.Size = new Size(49, 23);
-            nudWeeks.TabIndex = 23;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(25, 131);
-            label2.Name = "label2";
-            label2.Size = new Size(52, 15);
-            label2.TabIndex = 22;
-            label2.Text = "Semana:";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(136, 128);
-            label5.Name = "label5";
-            label5.Size = new Size(67, 15);
-            label5.TabIndex = 26;
-            label5.Text = "Asignatura:";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(209, 125);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(140, 23);
-            textBox1.TabIndex = 27;
-            // 
-            // btnBusca
-            // 
-            btnBusca.Location = new Point(361, 126);
-            btnBusca.Name = "btnBusca";
-            btnBusca.Size = new Size(75, 23);
-            btnBusca.TabIndex = 28;
-            btnBusca.Text = "Buscar";
-            btnBusca.UseVisualStyleBackColor = true;
-            // 
-            // cmbHora
-            // 
-            cmbHora.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbHora.FormattingEnabled = true;
-            cmbHora.Location = new Point(203, 22);
-            cmbHora.Name = "cmbHora";
-            cmbHora.Size = new Size(85, 23);
-            cmbHora.TabIndex = 30;
-            // 
-            // cmbAula
-            // 
-            cmbAula.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbAula.FormattingEnabled = true;
-            cmbAula.Location = new Point(104, 22);
-            cmbAula.Name = "cmbAula";
-            cmbAula.Size = new Size(85, 23);
-            cmbAula.TabIndex = 31;
-            // 
-            // cmbEdificio
-            // 
-            cmbEdificio.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbEdificio.FormattingEnabled = true;
-            cmbEdificio.Location = new Point(7, 22);
-            cmbEdificio.Name = "cmbEdificio";
-            cmbEdificio.Size = new Size(85, 23);
-            cmbEdificio.TabIndex = 32;
-            // 
-            // gbFiltro
-            // 
-            gbFiltro.Controls.Add(cmbEdificio);
-            gbFiltro.Controls.Add(cmbHora);
-            gbFiltro.Controls.Add(cmbAula);
-            gbFiltro.Location = new Point(134, 155);
-            gbFiltro.Name = "gbFiltro";
-            gbFiltro.Size = new Size(293, 55);
-            gbFiltro.TabIndex = 33;
-            gbFiltro.TabStop = false;
-            gbFiltro.Text = "Filtros";
+            label7.AutoSize = true;
+            label7.Location = new Point(34, 133);
+            label7.Name = "label7";
+            label7.Size = new Size(72, 15);
+            label7.TabIndex = 36;
+            label7.Text = "del docente:";
             // 
             // FrmReporte
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(440, 502);
+            ClientSize = new Size(479, 484);
+            Controls.Add(label7);
+            Controls.Add(textBox2);
+            Controls.Add(label6);
             Controls.Add(gbFiltro);
             Controls.Add(btnBusca);
             Controls.Add(textBox1);
@@ -366,15 +396,6 @@
         private PictureBox pictureBox3;
         private Label label1;
         private DataGridView dgvDoc;
-        private DataGridViewTextBoxColumn clmClase;
-        private DataGridViewTextBoxColumn clmSeccion;
-        private DataGridViewTextBoxColumn clmSemana;
-        private DataGridViewCheckBoxColumn clmLunes;
-        private DataGridViewCheckBoxColumn clmMartes;
-        private DataGridViewCheckBoxColumn clmMiercoles;
-        private DataGridViewCheckBoxColumn clmJueves;
-        private DataGridViewCheckBoxColumn clmViernes;
-        private DataGridViewCheckBoxColumn clmSabado;
         private Label label4;
         private NumericUpDown nudMeses;
         private Label label3;
@@ -388,5 +409,16 @@
         private ComboBox cmbAula;
         private ComboBox cmbEdificio;
         private GroupBox gbFiltro;
+        private DataGridViewTextBoxColumn clmDoc;
+        private DataGridViewTextBoxColumn clmClase;
+        private DataGridViewTextBoxColumn clmSeccion;
+        private DataGridViewCheckBoxColumn clmLunes;
+        private DataGridViewCheckBoxColumn clmMartes;
+        private DataGridViewCheckBoxColumn clmMiercoles;
+        private DataGridViewCheckBoxColumn clmJueves;
+        private DataGridViewCheckBoxColumn clmViernes;
+        private DataGridViewCheckBoxColumn clmSabado;
+        private TextBox textBox2;
+        private Label label7;
     }
 }
