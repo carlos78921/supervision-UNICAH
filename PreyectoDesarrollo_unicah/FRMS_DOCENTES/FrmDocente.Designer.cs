@@ -101,6 +101,7 @@ namespace PreyectoDesarrollo_unicah
             panel1.Name = "panel1";
             panel1.Size = new Size(385, 87);
             panel1.TabIndex = 11;
+            panel1.MouseDown += panel1_MouseDown;
             // 
             // lblPersona
             // 
@@ -254,6 +255,7 @@ namespace PreyectoDesarrollo_unicah
             Name = "frmDocente";
             Text = "FrmReporte";
             Load += frmDocente_Load;
+            MouseDown += frmDocente_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
