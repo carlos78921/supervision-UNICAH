@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             Button btnSalir;
-            Button btnExcel;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
@@ -61,7 +60,6 @@
             txtDoc = new TextBox();
             label7 = new Label();
             btnSalir = new Button();
-            btnExcel = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -80,15 +78,6 @@
             btnSalir.TabIndex = 14;
             btnSalir.Text = "&CERRAR SESIÓN";
             btnSalir.UseVisualStyleBackColor = true;
-            // 
-            // btnExcel
-            // 
-            btnExcel.Location = new Point(223, 447);
-            btnExcel.Name = "btnExcel";
-            btnExcel.Size = new Size(126, 29);
-            btnExcel.TabIndex = 15;
-            btnExcel.Text = "&EXPORTAR A EXCEL";
-            btnExcel.UseVisualStyleBackColor = true;
             // 
             // pictureBox2
             // 
@@ -370,7 +359,6 @@
             Controls.Add(nudWeeks);
             Controls.Add(label2);
             Controls.Add(dgvDoc);
-            Controls.Add(btnExcel);
             Controls.Add(panel1);
             Controls.Add(btnSalir);
             Controls.Add(label1);
