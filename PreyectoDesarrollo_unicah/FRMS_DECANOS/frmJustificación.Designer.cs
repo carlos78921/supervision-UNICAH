@@ -30,14 +30,12 @@ namespace PreyectoDesarrollo_unicah
         {
             Button btnAgregar;
             Button btnVoy;
+            Button btnBusco;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
-            btnbuscar = new Button();
-            textBox2 = new TextBox();
-            label3 = new Label();
             label2 = new Label();
             dataGridView1 = new DataGridView();
             clmClase = new DataGridViewTextBoxColumn();
@@ -48,8 +46,13 @@ namespace PreyectoDesarrollo_unicah
             label1 = new Label();
             txtJustifica = new TextBox();
             lblCaracteres = new Label();
+            label3 = new Label();
+            cmbEdificio = new ComboBox();
+            txtBusco = new TextBox();
+            label4 = new Label();
             btnAgregar = new Button();
             btnVoy = new Button();
+            btnBusco = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -131,31 +134,6 @@ namespace PreyectoDesarrollo_unicah
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 8;
             pictureBox3.TabStop = false;
-            // 
-            // btnbuscar
-            // 
-            btnbuscar.Location = new Point(187, 119);
-            btnbuscar.Name = "btnbuscar";
-            btnbuscar.Size = new Size(75, 23);
-            btnbuscar.TabIndex = 36;
-            btnbuscar.Text = "Buscar";
-            btnbuscar.UseVisualStyleBackColor = true;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(71, 119);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 35;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(16, 122);
-            label3.Name = "label3";
-            label3.Size = new Size(49, 15);
-            label3.TabIndex = 34;
-            label3.Text = "Edificio:";
             // 
             // label2
             // 
@@ -239,16 +217,62 @@ namespace PreyectoDesarrollo_unicah
             lblCaracteres.TabIndex = 38;
             lblCaracteres.Text = "Límite de caracteres";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(13, 182);
+            label3.Name = "label3";
+            label3.Size = new Size(40, 15);
+            label3.TabIndex = 42;
+            label3.Text = "Filtrar:";
+            // 
+            // cmbEdificio
+            // 
+            cmbEdificio.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEdificio.FormattingEnabled = true;
+            cmbEdificio.Items.AddRange(new object[] { "Edificio:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M" });
+            cmbEdificio.Location = new Point(59, 175);
+            cmbEdificio.Name = "cmbEdificio";
+            cmbEdificio.Size = new Size(78, 23);
+            cmbEdificio.TabIndex = 41;
+            // 
+            // txtBusco
+            // 
+            txtBusco.Location = new Point(14, 146);
+            txtBusco.Name = "txtBusco";
+            txtBusco.Size = new Size(190, 23);
+            txtBusco.TabIndex = 40;
+            // 
+            // btnBusco
+            // 
+            btnBusco.Location = new Point(210, 146);
+            btnBusco.Name = "btnBusco";
+            btnBusco.Size = new Size(67, 23);
+            btnBusco.TabIndex = 39;
+            btnBusco.Text = "&Buscar";
+            btnBusco.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(14, 126);
+            label4.Name = "label4";
+            label4.Size = new Size(54, 15);
+            label4.TabIndex = 43;
+            label4.Text = "Docente:";
+            // 
             // frmJustificación
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(794, 642);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(cmbEdificio);
+            Controls.Add(txtBusco);
+            Controls.Add(btnBusco);
             Controls.Add(lblCaracteres);
             Controls.Add(txtJustifica);
-            Controls.Add(btnbuscar);
-            Controls.Add(textBox2);
-            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(btnAgregar);
             Controls.Add(btnVoy);
@@ -276,9 +300,6 @@ namespace PreyectoDesarrollo_unicah
         private PictureBox pictureBox1;
         private Panel panel1;
         private PictureBox pictureBox3;
-        private Button btnbuscar;
-        private TextBox textBox2;
-        private Label label3;
         private Label label2;
         private DataGridView dataGridView1;
         private Label label1;
@@ -290,5 +311,9 @@ namespace PreyectoDesarrollo_unicah
         private DataGridViewTextBoxColumn clmDoc;
         private DataGridViewTextBoxColumn clmJustifica;
         private Label lblPersona;
+        private Label label3;
+        private ComboBox cmbEdificio;
+        private TextBox txtBusco;
+        private Label label4;
     }
 }

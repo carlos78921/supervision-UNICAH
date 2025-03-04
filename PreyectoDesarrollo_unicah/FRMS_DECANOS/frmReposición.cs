@@ -28,6 +28,7 @@ namespace PreyectoDesarrollo_unicah
         private void frmReposición_Load(object sender, EventArgs e)
         {
             lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
+            cmbEdificio.SelectedIndex = 0;
             // ACCIONES_BD.cargar(dgvDoc,)
         }
 

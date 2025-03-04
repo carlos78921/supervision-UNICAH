@@ -30,6 +30,7 @@ namespace PreyectoDesarrollo_unicah
         {
             Button btnDay;
             Button btnVoy;
+            Button btnBusco;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
@@ -44,8 +45,12 @@ namespace PreyectoDesarrollo_unicah
             clmSeccion = new DataGridViewTextBoxColumn();
             clmDocente = new DataGridViewTextBoxColumn();
             clmRepo = new DataGridViewTextBoxColumn();
+            txtBusco = new TextBox();
+            cmbEdificio = new ComboBox();
+            label3 = new Label();
             btnDay = new Button();
             btnVoy = new Button();
+            btnBusco = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -72,6 +77,15 @@ namespace PreyectoDesarrollo_unicah
             btnVoy.Text = "&Regresar";
             btnVoy.UseVisualStyleBackColor = true;
             btnVoy.Click += btnVoy_Click;
+            // 
+            // btnBusco
+            // 
+            btnBusco.Location = new Point(411, 121);
+            btnBusco.Name = "btnBusco";
+            btnBusco.Size = new Size(67, 23);
+            btnBusco.TabIndex = 25;
+            btnBusco.Text = "&Buscar";
+            btnBusco.UseVisualStyleBackColor = true;
             // 
             // pictureBox2
             // 
@@ -201,11 +215,41 @@ namespace PreyectoDesarrollo_unicah
             clmRepo.ReadOnly = true;
             clmRepo.Width = 138;
             // 
+            // txtBusco
+            // 
+            txtBusco.Location = new Point(273, 122);
+            txtBusco.Name = "txtBusco";
+            txtBusco.Size = new Size(132, 23);
+            txtBusco.TabIndex = 26;
+            // 
+            // cmbEdificio
+            // 
+            cmbEdificio.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEdificio.FormattingEnabled = true;
+            cmbEdificio.Items.AddRange(new object[] { "Edificio:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M" });
+            cmbEdificio.Location = new Point(546, 121);
+            cmbEdificio.Name = "cmbEdificio";
+            cmbEdificio.Size = new Size(78, 23);
+            cmbEdificio.TabIndex = 27;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(500, 125);
+            label3.Name = "label3";
+            label3.Size = new Size(40, 15);
+            label3.TabIndex = 28;
+            label3.Text = "Filtrar:";
+            // 
             // frmReposición
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(636, 464);
+            Controls.Add(label3);
+            Controls.Add(cmbEdificio);
+            Controls.Add(txtBusco);
+            Controls.Add(btnBusco);
             Controls.Add(dataGridView1);
             Controls.Add(label2);
             Controls.Add(nudReposicion);
@@ -245,5 +289,8 @@ namespace PreyectoDesarrollo_unicah
         private DataGridViewTextBoxColumn clmDocente;
         private DataGridViewTextBoxColumn clmRepo;
         private Label lblPersona;
+        private TextBox txtBusco;
+        private ComboBox cmbEdificio;
+        private Label label3;
     }
 }
