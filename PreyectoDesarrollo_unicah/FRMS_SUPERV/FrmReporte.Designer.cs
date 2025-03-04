@@ -59,6 +59,7 @@
             label6 = new Label();
             txtDoc = new TextBox();
             label7 = new Label();
+            btnLogout = new Button();
             btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -70,15 +71,12 @@
             gbFiltro.SuspendLayout();
             SuspendLayout();
             // 
-            // btnLogout
+            // btnSalir
             // 
-            btnLogout.Location = new Point(359, 447);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(105, 29);
-            btnLogout.TabIndex = 14;
-            btnLogout.Text = "&CERRAR SESIÓN";
-            btnLogout.UseVisualStyleBackColor = true;
-            btnLogout.Click += btnLogout_Click;
+            btnSalir.Location = new Point(0, 0);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(75, 23);
+            btnSalir.TabIndex = 37;
             // 
             // pictureBox2
             // 
@@ -345,11 +343,21 @@
             label7.TabIndex = 36;
             label7.Text = "del docente:";
             // 
+            // btnLogout
+            // 
+            btnLogout.Location = new Point(378, 446);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(86, 23);
+            btnLogout.TabIndex = 38;
+            btnLogout.Text = "&Cerrar Sesión";
+            btnLogout.UseVisualStyleBackColor = true;
+            // 
             // FrmReporte
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(479, 484);
+            ClientSize = new Size(479, 475);
+            Controls.Add(btnLogout);
             Controls.Add(label7);
             Controls.Add(txtDoc);
             Controls.Add(label6);
@@ -414,5 +422,6 @@
         private DataGridViewCheckBoxColumn clmSabado;
         private TextBox txtDoc;
         private Label label7;
+        private Button btnLogout;
     }
 }
