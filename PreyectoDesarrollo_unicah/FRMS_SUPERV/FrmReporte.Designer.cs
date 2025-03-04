@@ -58,6 +58,7 @@
             txtDoc = new TextBox();
             label7 = new Label();
             btnLogout = new Button();
+            btnYa = new Button();
             btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -219,6 +220,7 @@
             // nudWeeks
             // 
             nudWeeks.Location = new Point(101, 189);
+            nudWeeks.Maximum = new decimal(new int[] { 5, 0, 0, 0 });
             nudWeeks.Name = "nudWeeks";
             nudWeeks.Size = new Size(49, 23);
             nudWeeks.TabIndex = 23;
@@ -250,7 +252,7 @@
             // 
             // btnBusca
             // 
-            btnBusca.Location = new Point(431, 130);
+            btnBusca.Location = new Point(431, 127);
             btnBusca.Name = "btnBusca";
             btnBusca.Size = new Size(75, 23);
             btnBusca.TabIndex = 28;
@@ -330,15 +332,25 @@
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(86, 23);
             btnLogout.TabIndex = 38;
-            btnLogout.Text = "&Cerrar Sesión";
+            btnLogout.Text = "Cerrar &Sesión";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
+            // 
+            // btnYa
+            // 
+            btnYa.Location = new Point(277, 444);
+            btnYa.Name = "btnYa";
+            btnYa.Size = new Size(128, 23);
+            btnYa.TabIndex = 39;
+            btnYa.Text = "&Confirmar Asistencia";
+            btnYa.UseVisualStyleBackColor = true;
             // 
             // FrmReporte
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(512, 475);
+            Controls.Add(btnYa);
             Controls.Add(btnLogout);
             Controls.Add(label7);
             Controls.Add(txtDoc);
@@ -400,5 +412,6 @@
         private DataGridViewCheckBoxColumn clmJueves;
         private DataGridViewCheckBoxColumn clmViernes;
         private DataGridViewCheckBoxColumn clmSabado;
+        private Button btnYa;
     }
 }
