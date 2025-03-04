@@ -25,7 +25,7 @@ namespace PreyectoDesarrollo_unicah
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        
+
         private void FrmReporte_Load(object sender, EventArgs e)
         {
             cmbEdificio.SelectedIndex = 0;
@@ -36,6 +36,9 @@ namespace PreyectoDesarrollo_unicah
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
+            Form1 Login = new Form1();
+            Login.Show();
         }
+
     }
 }

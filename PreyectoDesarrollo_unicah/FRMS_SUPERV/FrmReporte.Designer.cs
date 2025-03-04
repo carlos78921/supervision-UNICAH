@@ -351,6 +351,7 @@
             btnLogout.TabIndex = 38;
             btnLogout.Text = "&Cerrar Sesión";
             btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // FrmReporte
             // 
