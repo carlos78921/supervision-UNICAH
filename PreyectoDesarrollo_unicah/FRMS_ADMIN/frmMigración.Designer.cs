@@ -28,35 +28,47 @@ namespace PreyectoDesarrollo_unicah
         /// </summary>
         private void InitializeComponent()
         {
-            Button btnSalir;
+            Button btnLogout;
             Button btnExcel;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             pictureBox3 = new PictureBox();
-            dataGridView1 = new DataGridView();
+            dgvAdmin = new DataGridView();
             label1 = new Label();
-            btnSalir = new Button();
+            lblPersona = new Label();
+            clmAsignaturaFacu = new DataGridViewTextBoxColumn();
+            clmCurso = new DataGridViewTextBoxColumn();
+            clmSeccion = new DataGridViewTextBoxColumn();
+            clmAulaFull = new DataGridViewTextBoxColumn();
+            clmEmpleado = new DataGridViewTextBoxColumn();
+            clmLunes = new DataGridViewCheckBoxColumn();
+            clmMartes = new DataGridViewCheckBoxColumn();
+            clmMiercoles = new DataGridViewCheckBoxColumn();
+            clmJueves = new DataGridViewCheckBoxColumn();
+            clmViernes = new DataGridViewCheckBoxColumn();
+            clmSabado = new DataGridViewCheckBoxColumn();
+            btnLogout = new Button();
             btnExcel = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvAdmin).BeginInit();
             SuspendLayout();
             // 
-            // btnSalir
+            // btnLogout
             // 
-            btnSalir.Location = new Point(662, 406);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(126, 29);
-            btnSalir.TabIndex = 14;
-            btnSalir.Text = "&CERRAR SESIÓN";
-            btnSalir.UseVisualStyleBackColor = true;
+            btnLogout.Location = new Point(605, 413);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(126, 29);
+            btnLogout.TabIndex = 14;
+            btnLogout.Text = "&CERRAR SESIÓN";
+            btnLogout.UseVisualStyleBackColor = true;
             // 
             // btnExcel
             // 
-            btnExcel.Location = new Point(548, 400);
+            btnExcel.Location = new Point(491, 407);
             btnExcel.Name = "btnExcel";
             btnExcel.Size = new Size(108, 42);
             btnExcel.TabIndex = 15;
@@ -66,7 +78,7 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(734, 0);
+            pictureBox2.Location = new Point(678, 1);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(29, 20);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -76,7 +88,7 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(769, 0);
+            pictureBox1.Location = new Point(713, 1);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 20);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -86,12 +98,13 @@ namespace PreyectoDesarrollo_unicah
             // panel1
             // 
             panel1.BackColor = SystemColors.HotTrack;
+            panel1.Controls.Add(lblPersona);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(-4, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(809, 87);
+            panel1.Size = new Size(743, 87);
             panel1.TabIndex = 11;
             // 
             // pictureBox3
@@ -105,14 +118,17 @@ namespace PreyectoDesarrollo_unicah
             pictureBox3.TabIndex = 8;
             pictureBox3.TabStop = false;
             // 
-            // dataGridView1
+            // dgvAdmin
             // 
-            dataGridView1.AllowUserToOrderColumns = true;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(14, 119);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(774, 268);
-            dataGridView1.TabIndex = 13;
+            dgvAdmin.AllowUserToAddRows = false;
+            dgvAdmin.AllowUserToDeleteRows = false;
+            dgvAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvAdmin.Columns.AddRange(new DataGridViewColumn[] { clmAsignaturaFacu, clmCurso, clmSeccion, clmAulaFull, clmEmpleado, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
+            dgvAdmin.Location = new Point(12, 124);
+            dgvAdmin.Name = "dgvAdmin";
+            dgvAdmin.ReadOnly = true;
+            dgvAdmin.Size = new Size(714, 268);
+            dgvAdmin.TabIndex = 13;
             // 
             // label1
             // 
@@ -123,15 +139,102 @@ namespace PreyectoDesarrollo_unicah
             label1.TabIndex = 12;
             label1.Text = "MIGRACIÓN DE DATOS";
             // 
+            // lblPersona
+            // 
+            lblPersona.AutoSize = true;
+            lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPersona.ForeColor = Color.White;
+            lblPersona.Location = new Point(609, 64);
+            lblPersona.Name = "lblPersona";
+            lblPersona.Size = new Size(132, 18);
+            lblPersona.TabIndex = 16;
+            lblPersona.Text = "Nombre_Persona";
+            // 
+            // clmAsignaturaFacu
+            // 
+            clmAsignaturaFacu.HeaderText = "Referencia";
+            clmAsignaturaFacu.Name = "clmAsignaturaFacu";
+            clmAsignaturaFacu.ReadOnly = true;
+            clmAsignaturaFacu.Width = 115;
+            // 
+            // clmCurso
+            // 
+            clmCurso.HeaderText = "Curso";
+            clmCurso.Name = "clmCurso";
+            clmCurso.ReadOnly = true;
+            clmCurso.Width = 150;
+            // 
+            // clmSeccion
+            // 
+            clmSeccion.HeaderText = "Sección";
+            clmSeccion.Name = "clmSeccion";
+            clmSeccion.ReadOnly = true;
+            clmSeccion.Width = 58;
+            // 
+            // clmAulaFull
+            // 
+            clmAulaFull.HeaderText = "Aula";
+            clmAulaFull.Name = "clmAulaFull";
+            clmAulaFull.ReadOnly = true;
+            // 
+            // clmEmpleado
+            // 
+            clmEmpleado.HeaderText = "Empleado";
+            clmEmpleado.Name = "clmEmpleado";
+            clmEmpleado.ReadOnly = true;
+            clmEmpleado.Width = 125;
+            // 
+            // clmLunes
+            // 
+            clmLunes.HeaderText = "L";
+            clmLunes.Name = "clmLunes";
+            clmLunes.ReadOnly = true;
+            clmLunes.Width = 20;
+            // 
+            // clmMartes
+            // 
+            clmMartes.HeaderText = "M";
+            clmMartes.Name = "clmMartes";
+            clmMartes.ReadOnly = true;
+            clmMartes.Width = 22;
+            // 
+            // clmMiercoles
+            // 
+            clmMiercoles.HeaderText = "M";
+            clmMiercoles.Name = "clmMiercoles";
+            clmMiercoles.ReadOnly = true;
+            clmMiercoles.Width = 22;
+            // 
+            // clmJueves
+            // 
+            clmJueves.HeaderText = "J";
+            clmJueves.Name = "clmJueves";
+            clmJueves.ReadOnly = true;
+            clmJueves.Width = 20;
+            // 
+            // clmViernes
+            // 
+            clmViernes.HeaderText = "V";
+            clmViernes.Name = "clmViernes";
+            clmViernes.ReadOnly = true;
+            clmViernes.Width = 20;
+            // 
+            // clmSabado
+            // 
+            clmSabado.HeaderText = "S";
+            clmSabado.Name = "clmSabado";
+            clmSabado.ReadOnly = true;
+            clmSabado.Width = 20;
+            // 
             // frmMigración
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 454);
+            ClientSize = new Size(739, 454);
             Controls.Add(btnExcel);
             Controls.Add(panel1);
-            Controls.Add(btnSalir);
-            Controls.Add(dataGridView1);
+            Controls.Add(btnLogout);
+            Controls.Add(dgvAdmin);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmMigración";
@@ -139,8 +242,9 @@ namespace PreyectoDesarrollo_unicah
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvAdmin).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -151,7 +255,19 @@ namespace PreyectoDesarrollo_unicah
         private PictureBox pictureBox1;
         private Panel panel1;
         private PictureBox pictureBox3;
-        private DataGridView dataGridView1;
+        private DataGridView dgvAdmin;
         private Label label1;
+        private Label lblPersona;
+        private DataGridViewTextBoxColumn clmAsignaturaFacu;
+        private DataGridViewTextBoxColumn clmCurso;
+        private DataGridViewTextBoxColumn clmSeccion;
+        private DataGridViewTextBoxColumn clmAulaFull;
+        private DataGridViewTextBoxColumn clmEmpleado;
+        private DataGridViewCheckBoxColumn clmLunes;
+        private DataGridViewCheckBoxColumn clmMartes;
+        private DataGridViewCheckBoxColumn clmMiercoles;
+        private DataGridViewCheckBoxColumn clmJueves;
+        private DataGridViewCheckBoxColumn clmViernes;
+        private DataGridViewCheckBoxColumn clmSabado;
     }
 }
