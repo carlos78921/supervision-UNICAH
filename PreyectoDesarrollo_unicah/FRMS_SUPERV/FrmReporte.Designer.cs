@@ -70,14 +70,15 @@
             gbFiltro.SuspendLayout();
             SuspendLayout();
             // 
-            // btnSalir
+            // btnLogout
             // 
-            btnSalir.Location = new Point(359, 447);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(105, 29);
-            btnSalir.TabIndex = 14;
-            btnSalir.Text = "&CERRAR SESIÓN";
-            btnSalir.UseVisualStyleBackColor = true;
+            btnLogout.Location = new Point(359, 447);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(105, 29);
+            btnLogout.TabIndex = 14;
+            btnLogout.Text = "&CERRAR SESIÓN";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // pictureBox2
             // 
@@ -88,6 +89,7 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // pictureBox1
             // 
@@ -98,6 +100,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // panel1
             // 
