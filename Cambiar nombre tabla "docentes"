@@ -1,5 +1,0 @@
-set nocount on
-exec sp_rename 'docentes' 'Empleados'
-exec sp_rename 'Empleados.codigo_docente', 'codigo_empleado', 'column'
-exec sp_rename 'Empleados.nombre_docente,' 'nombre_empleado', 'column'
-exec sp_rename 'Empleados.apellido_docente,' 'apellido_empleado', 'column'
