@@ -37,7 +37,7 @@ namespace PreyectoDesarrollo_unicah
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
             label2 = new Label();
-            dataGridView1 = new DataGridView();
+            dgvJustificacion = new DataGridView();
             clmClase = new DataGridViewTextBoxColumn();
             clmFecha = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
@@ -58,7 +58,7 @@ namespace PreyectoDesarrollo_unicah
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvJustificacion).BeginInit();
             SuspendLayout();
             // 
             // btnAgregar
@@ -154,17 +154,17 @@ namespace PreyectoDesarrollo_unicah
             label2.TabIndex = 30;
             label2.Text = "Justificación detallada";
             // 
-            // dataGridView1
+            // dgvJustificacion
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha, clmSeccion, clmDoc, clmJustifica });
-            dataGridView1.Location = new Point(13, 272);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(773, 304);
-            dataGridView1.TabIndex = 26;
+            dgvJustificacion.AllowUserToAddRows = false;
+            dgvJustificacion.AllowUserToDeleteRows = false;
+            dgvJustificacion.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvJustificacion.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha, clmSeccion, clmDoc, clmJustifica });
+            dgvJustificacion.Location = new Point(13, 272);
+            dgvJustificacion.Name = "dgvJustificacion";
+            dgvJustificacion.ReadOnly = true;
+            dgvJustificacion.Size = new Size(773, 304);
+            dgvJustificacion.TabIndex = 26;
             // 
             // clmClase
             // 
@@ -205,7 +205,7 @@ namespace PreyectoDesarrollo_unicah
             label1.AutoSize = true;
             label1.Location = new Point(310, 93);
             label1.Name = "label1";
-            label1.Size = new Size(173, 15);
+            label1.Size = new Size(171, 15);
             label1.TabIndex = 25;
             label1.Text = "JUSTIFICACIÓN DE ASISTENCIA";
             // 
@@ -288,7 +288,7 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(label2);
             Controls.Add(btnAgregar);
             Controls.Add(btnVoy);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvJustificacion);
             Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -301,7 +301,7 @@ namespace PreyectoDesarrollo_unicah
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvJustificacion).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -313,7 +313,7 @@ namespace PreyectoDesarrollo_unicah
         private Panel panel1;
         private PictureBox pictureBox3;
         private Label label2;
-        private DataGridView dataGridView1;
+        private DataGridView dgvJustificacion;
         private Label label1;
         private TextBox txtJustifica;
         private Label lblCaracteres;
