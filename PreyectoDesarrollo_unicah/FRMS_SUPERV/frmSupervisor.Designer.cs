@@ -60,7 +60,7 @@
             label7 = new Label();
             btnLogout = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
-            label3 = new Label();
+            lblFecha = new Label();
             btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -338,21 +338,21 @@
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 
-            // label3
+            // lblFecha
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(453, 97);
-            label3.Name = "label3";
-            label3.Size = new Size(41, 15);
-            label3.TabIndex = 40;
-            label3.Text = "Fecha ";
+            lblFecha.AutoSize = true;
+            lblFecha.Location = new Point(453, 97);
+            lblFecha.Name = "lblFecha";
+            lblFecha.Size = new Size(41, 15);
+            lblFecha.TabIndex = 40;
+            lblFecha.Text = "Fecha ";
             // 
             // frmSupervisor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(512, 475);
-            Controls.Add(label3);
+            Controls.Add(lblFecha);
             Controls.Add(btnLogout);
             Controls.Add(label7);
             Controls.Add(txtDoc);
@@ -415,6 +415,6 @@
         private DataGridViewCheckBoxColumn clmViernes;
         private DataGridViewCheckBoxColumn clmSabado;
         private System.Windows.Forms.Timer timer1;
-        private Label label3;
+        private Label lblFecha;
     }
 }
