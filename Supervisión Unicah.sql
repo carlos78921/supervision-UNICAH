@@ -45,8 +45,6 @@ create table Asistencia
 	Fecha_Reposicion date
 )
 go
-	
-select * from Empleados
 
 -- Procedimientos Almacenados
 create PROCEDURE PA_Login
