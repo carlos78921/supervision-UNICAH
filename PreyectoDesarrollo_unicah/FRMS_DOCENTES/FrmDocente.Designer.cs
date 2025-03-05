@@ -46,8 +46,8 @@ namespace PreyectoDesarrollo_unicah
             label1 = new Label();
             label2 = new Label();
             nudWeeks = new NumericUpDown();
-            nudMeses = new NumericUpDown();
-            label3 = new Label();
+            lblDoc = new Label();
+            lblMeses = new Label();
             btnLogout = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -55,7 +55,6 @@ namespace PreyectoDesarrollo_unicah
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvDoc).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudWeeks).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudMeses).BeginInit();
             SuspendLayout();
             // 
             // btnLogout
@@ -209,7 +208,7 @@ namespace PreyectoDesarrollo_unicah
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(205, 114);
+            label2.Location = new Point(130, 115);
             label2.Name = "label2";
             label2.Size = new Size(52, 15);
             label2.TabIndex = 18;
@@ -217,34 +216,38 @@ namespace PreyectoDesarrollo_unicah
             // 
             // nudWeeks
             // 
-            nudWeeks.Location = new Point(261, 109);
+            nudWeeks.Location = new Point(186, 110);
             nudWeeks.Name = "nudWeeks";
             nudWeeks.Size = new Size(49, 23);
             nudWeeks.TabIndex = 19;
             // 
-            // nudMeses
+            // lblDoc
             // 
-            nudMeses.Location = new Point(121, 110);
-            nudMeses.Name = "nudMeses";
-            nudMeses.Size = new Size(49, 23);
-            nudMeses.TabIndex = 21;
+            lblDoc.AutoSize = true;
+            lblDoc.Location = new Point(12, 294);
+            lblDoc.Name = "lblDoc";
+            lblDoc.Size = new Size(51, 15);
+            lblDoc.TabIndex = 20;
+            lblDoc.Text = "Docente";
+            lblDoc.Visible = false;
             // 
-            // label3
+            // lblMeses
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(65, 115);
-            label3.Name = "label3";
-            label3.Size = new Size(51, 15);
-            label3.TabIndex = 20;
-            label3.Text = "Periodo:";
+            lblMeses.AutoSize = true;
+            lblMeses.Location = new Point(323, 92);
+            lblMeses.Name = "lblMeses";
+            lblMeses.Size = new Size(48, 15);
+            lblMeses.TabIndex = 21;
+            lblMeses.Text = "Periodo";
+            lblMeses.Visible = false;
             // 
             // frmDocente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(380, 318);
-            Controls.Add(nudMeses);
-            Controls.Add(label3);
+            Controls.Add(lblMeses);
+            Controls.Add(lblDoc);
             Controls.Add(nudWeeks);
             Controls.Add(label2);
             Controls.Add(btnLogout);
@@ -263,7 +266,6 @@ namespace PreyectoDesarrollo_unicah
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvDoc).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudWeeks).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudMeses).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -287,7 +289,7 @@ namespace PreyectoDesarrollo_unicah
         private DataGridViewCheckBoxColumn clmSabado;
         private Label label2;
         private NumericUpDown nudWeeks;
-        private NumericUpDown nudMeses;
-        private Label label3;
+        private Label lblDoc;
+        private Label lblMeses;
     }
 }

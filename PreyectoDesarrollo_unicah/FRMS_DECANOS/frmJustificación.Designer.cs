@@ -50,6 +50,7 @@ namespace PreyectoDesarrollo_unicah
             cmbEdificio = new ComboBox();
             txtBusco = new TextBox();
             label4 = new Label();
+            lblMeses = new Label();
             btnAgregar = new Button();
             btnVoy = new Button();
             btnBusco = new Button();
@@ -78,6 +79,15 @@ namespace PreyectoDesarrollo_unicah
             btnVoy.Text = "&Regresar";
             btnVoy.UseVisualStyleBackColor = true;
             btnVoy.Click += btnVoy_Click;
+            // 
+            // btnBusco
+            // 
+            btnBusco.Location = new Point(210, 146);
+            btnBusco.Name = "btnBusco";
+            btnBusco.Size = new Size(67, 23);
+            btnBusco.TabIndex = 39;
+            btnBusco.Text = "&Buscar";
+            btnBusco.UseVisualStyleBackColor = true;
             // 
             // pictureBox2
             // 
@@ -243,15 +253,6 @@ namespace PreyectoDesarrollo_unicah
             txtBusco.Size = new Size(190, 23);
             txtBusco.TabIndex = 40;
             // 
-            // btnBusco
-            // 
-            btnBusco.Location = new Point(210, 146);
-            btnBusco.Name = "btnBusco";
-            btnBusco.Size = new Size(67, 23);
-            btnBusco.TabIndex = 39;
-            btnBusco.Text = "&Buscar";
-            btnBusco.UseVisualStyleBackColor = true;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -261,11 +262,22 @@ namespace PreyectoDesarrollo_unicah
             label4.TabIndex = 43;
             label4.Text = "Docente:";
             // 
+            // lblMeses
+            // 
+            lblMeses.AutoSize = true;
+            lblMeses.Location = new Point(738, 93);
+            lblMeses.Name = "lblMeses";
+            lblMeses.Size = new Size(48, 15);
+            lblMeses.TabIndex = 44;
+            lblMeses.Text = "Periodo";
+            lblMeses.Visible = false;
+            // 
             // frmJustificación
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(794, 642);
+            Controls.Add(lblMeses);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(cmbEdificio);
@@ -315,5 +327,6 @@ namespace PreyectoDesarrollo_unicah
         private ComboBox cmbEdificio;
         private TextBox txtBusco;
         private Label label4;
+        private Label lblMeses;
     }
 }

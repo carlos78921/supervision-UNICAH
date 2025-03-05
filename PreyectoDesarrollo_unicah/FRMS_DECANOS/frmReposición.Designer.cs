@@ -48,6 +48,7 @@ namespace PreyectoDesarrollo_unicah
             txtBusco = new TextBox();
             cmbEdificio = new ComboBox();
             label3 = new Label();
+            lblMeses = new Label();
             btnDay = new Button();
             btnVoy = new Button();
             btnBusco = new Button();
@@ -241,11 +242,22 @@ namespace PreyectoDesarrollo_unicah
             label3.TabIndex = 28;
             label3.Text = "Filtrar:";
             // 
+            // lblMeses
+            // 
+            lblMeses.AutoSize = true;
+            lblMeses.Location = new Point(578, 97);
+            lblMeses.Name = "lblMeses";
+            lblMeses.Size = new Size(48, 15);
+            lblMeses.TabIndex = 29;
+            lblMeses.Text = "Periodo";
+            lblMeses.Visible = false;
+            // 
             // frmReposición
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(636, 464);
+            Controls.Add(lblMeses);
             Controls.Add(label3);
             Controls.Add(cmbEdificio);
             Controls.Add(txtBusco);
@@ -292,5 +304,6 @@ namespace PreyectoDesarrollo_unicah
         private TextBox txtBusco;
         private ComboBox cmbEdificio;
         private Label label3;
+        private Label lblMeses;
     }
 }

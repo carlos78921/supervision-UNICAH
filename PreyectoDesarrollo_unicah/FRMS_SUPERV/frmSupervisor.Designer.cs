@@ -61,6 +61,7 @@
             btnLogout = new Button();
             tmrFecha = new System.Windows.Forms.Timer(components);
             lblFecha = new Label();
+            lblMeses = new Label();
             btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -337,7 +338,7 @@
             // 
             // tmrFecha
             // 
-            tmrFecha.Tick += this.tmrFecha_Tick;
+            tmrFecha.Tick += tmrFecha_Tick;
             // 
             // lblFecha
             // 
@@ -348,11 +349,22 @@
             lblFecha.TabIndex = 40;
             lblFecha.Text = "Fecha ";
             // 
+            // lblMeses
+            // 
+            lblMeses.AutoSize = true;
+            lblMeses.Location = new Point(0, 92);
+            lblMeses.Name = "lblMeses";
+            lblMeses.Size = new Size(48, 15);
+            lblMeses.TabIndex = 41;
+            lblMeses.Text = "Periodo";
+            lblMeses.Visible = false;
+            // 
             // frmSupervisor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(512, 475);
+            Controls.Add(lblMeses);
             Controls.Add(lblFecha);
             Controls.Add(btnLogout);
             Controls.Add(label7);
@@ -417,5 +429,6 @@
         private DataGridViewCheckBoxColumn clmSabado;
         private System.Windows.Forms.Timer tmrFecha;
         private Label lblFecha;
+        private Label lblMeses;
     }
 }
