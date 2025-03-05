@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             Button btnSalir;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
@@ -58,6 +59,7 @@
             txtDoc = new TextBox();
             label7 = new Label();
             btnLogout = new Button();
+            timer1 = new System.Windows.Forms.Timer(components);
             label3 = new Label();
             btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -345,7 +347,7 @@
             label3.TabIndex = 40;
             label3.Text = "Fecha ";
             // 
-            // FrmReporte
+            // frmSupervisor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -366,7 +368,7 @@
             Controls.Add(btnSalir);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "FrmReporte";
+            Name = "frmSupervisor";
             Text = "FrmReporte";
             Load += FrmReporte_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -412,6 +414,7 @@
         private DataGridViewCheckBoxColumn clmJueves;
         private DataGridViewCheckBoxColumn clmViernes;
         private DataGridViewCheckBoxColumn clmSabado;
+        private System.Windows.Forms.Timer timer1;
         private Label label3;
     }
 }
