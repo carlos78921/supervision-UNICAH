@@ -221,7 +221,7 @@
             // 
             // nudWeeks
             // 
-            nudWeeks.Location = new Point(101, 189);
+            nudWeeks.Location = new Point(101, 185);
             nudWeeks.Maximum = new decimal(new int[] { 5, 0, 0, 0 });
             nudWeeks.Name = "nudWeeks";
             nudWeeks.Size = new Size(49, 23);
@@ -230,7 +230,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(43, 193);
+            label2.Location = new Point(43, 189);
             label2.Name = "label2";
             label2.Size = new Size(52, 15);
             label2.TabIndex = 22;
@@ -263,7 +263,6 @@
             // 
             // cmbHora
             // 
-            cmbHora.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbHora.FormattingEnabled = true;
             cmbHora.Items.AddRange(new object[] { "Sección:" });
             cmbHora.Location = new Point(232, 22);
@@ -273,7 +272,6 @@
             // 
             // cmbAula
             // 
-            cmbAula.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbAula.FormattingEnabled = true;
             cmbAula.Items.AddRange(new object[] { "Aula:" });
             cmbAula.Location = new Point(130, 22);
@@ -283,7 +281,6 @@
             // 
             // cmbEdificio
             // 
-            cmbEdificio.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdificio.FormattingEnabled = true;
             cmbEdificio.Items.AddRange(new object[] { "Edificio:" });
             cmbEdificio.Location = new Point(27, 22);
