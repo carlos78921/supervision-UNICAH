@@ -40,5 +40,9 @@ namespace PreyectoDesarrollo_unicah
             Login.Show();
         }
 
+        private void tmrFecha_Tick(object sender, EventArgs e)
+        {
+            lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+        }
     }
 }

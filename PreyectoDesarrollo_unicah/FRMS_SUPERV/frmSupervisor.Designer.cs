@@ -59,7 +59,7 @@
             txtDoc = new TextBox();
             label7 = new Label();
             btnLogout = new Button();
-            timer1 = new System.Windows.Forms.Timer(components);
+            tmrFecha = new System.Windows.Forms.Timer(components);
             lblFecha = new Label();
             btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -335,6 +335,10 @@
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 
+            // tmrFecha
+            // 
+            tmrFecha.Tick += this.tmrFecha_Tick;
+            // 
             // lblFecha
             // 
             lblFecha.AutoSize = true;
@@ -411,7 +415,7 @@
         private DataGridViewCheckBoxColumn clmJueves;
         private DataGridViewCheckBoxColumn clmViernes;
         private DataGridViewCheckBoxColumn clmSabado;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer tmrFecha;
         private Label lblFecha;
     }
 }
