@@ -61,10 +61,13 @@ BEGIN
 END
 GO
 
-create proc PA_Asistencia -- Toma de Asistencia, afectado en supervisor y docente
+create proc PA_Formato_Asistencia
 as 
 begin
-	select Asignatura, nombre_empleado, Seccion, Presente [L], Presente [M], Presente [M], Presente [J], Presente [V], Presente [S]
+	select (Cod_Facultad + ' ' + A.Cod_Asignatura) [Referencia], 
+	Asignatura [Curso], 
+	Seccion, (Edificio + ' - ' + Num_Aula) [Aula], 
+	Presente [L], Presente [M], Presente [M], Presente [J], Presente [V], Presente [S]
 	from Asistencia A
 	join Clases C
 	on A.Cod_Asignatura = C.Cod_Asignatura
@@ -72,36 +75,60 @@ begin
 	on A.codigo_empleado = E.codigo_empleado
 end
 
-/*create PROCEDURE PA_Reponer_Deca
-AS
-BEGIN
-    SELECT 
-        Asignatura, 
-        Fecha [Fecha_Asistencia], 
-        Seccion [Seccion_Asistencia], 
-        Nombre_Empleado [Docente],
-        Fecha_Reposicion [Fecha_Reposición]
-    FROM Asistencia A
-    JOIN Clases C ON A.Cod_Asignatura = C.Cod_Asignatura
-    JOIN Usuarios U ON C.Cod_Cargo = U.Cod_Cargo 
-    WHERE Fecha_Reposicion IS NOT NULL
-END
-GO
+create proc PA_Asistencia_Superv -- Toma de Asistencia para supervisor
+as 
+begin
+	select Asignatura, 
+	(nombre_empleado + ' ' + apellido_empleado) [Docente], 
+	Seccion, 
+	Presente [L], Presente [M], Presente [M], Presente [J], Presente [V], Presente [S]
+	from Asistencia A
+	join Clases C
+	on A.Cod_Asignatura = C.Cod_Asignatura
+	join Empleados E
+	on A.codigo_empleado = E.codigo_empleado
+end
+go
 
-CREATE PROCEDURE PA_Justificado_Deca
+create proc PA_Asistencia_Doc -- Toma de Asistencia para docente
+as 
+begin
+	select Asignatura, Seccion, Presente [L], Presente [M], Presente [M], Presente [J], Presente [V], Presente [S]
+	from Asistencia A
+	join Clases C
+	on A.Cod_Asignatura = C.Cod_Asignatura
+	join Empleados E
+	on A.codigo_empleado = E.codigo_empleado
+end
+go
+
+CREATE PROCEDURE PA_Justificaciones
 AS
 BEGIN
     SELECT 
         Asignatura, 
-        Fecha [Fecha_Asistencia], 
+        Fecha [Fecha de Ausencia], 
         Seccion, 
-        Nombre_Empleado [Docente],
-        Observacion_Especifica [Observación_Justificada]
+        (nombre_empleado + ' ' + apellido_empleado) [Docente],
+        Justificacion
     FROM Asistencia A
     JOIN Clases C ON A.Cod_Asignatura = C.Cod_Asignatura 
-    JOIN Usuarios U ON C.Cod_Cargo = U.Cod_Cargo 
-    WHERE A.Observacion_Especifica IS NOT NULL
+    JOIN Empleados E ON A.codigo_empleado = E.codigo_empleado
+    WHERE A.Justificacion IS NOT NULL
 END
 GO
-*/
 
+create PROCEDURE PA_Reponer_Deca
+AS
+BEGIN
+    SELECT 
+        Asignatura, 
+        Fecha [Fecha de Ausencia], 
+        Seccion, 
+        (nombre_empleado + ' ' + apellido_empleado) [Docente],
+        Fecha_Reposicion [Fecha de Reposición]
+    FROM Asistencia A
+    JOIN Clases C ON A.Cod_Asignatura = C.Cod_Asignatura 
+    JOIN Empleados E ON A.codigo_empleado = E.codigo_empleado
+    WHERE Fecha_Reposicion IS NOT NULL
+END
