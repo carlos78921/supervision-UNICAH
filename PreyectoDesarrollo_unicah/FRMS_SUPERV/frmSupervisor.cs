@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PreyectoDesarrollo_unicah
 {
-    public partial class FrmReporte : Form
+    public partial class frmSupervisor : Form
     {
-        public FrmReporte()
+        public frmSupervisor()
         {
             InitializeComponent();
         }

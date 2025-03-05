@@ -120,7 +120,7 @@ namespace PreyectoDesarrollo_unicah
                                 else if (rolUsuario == "supervisor")
                                 {
                                     // Abrir las pantallas del supervisor
-                                    FrmReporte supervisor = new FrmReporte();
+                                    frmSupervisor supervisor = new frmSupervisor();
                                     supervisor.Show();
                                     this.Hide();
                                 }

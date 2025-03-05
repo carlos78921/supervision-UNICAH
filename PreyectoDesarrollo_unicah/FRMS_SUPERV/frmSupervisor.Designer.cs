@@ -1,6 +1,6 @@
 ﻿namespace PreyectoDesarrollo_unicah
 {
-    partial class FrmReporte
+    partial class frmSupervisor
     {
         /// <summary>
         /// Required designer variable.
