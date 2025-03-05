@@ -59,7 +59,8 @@ BEGIN
 END
 GO
 
-create proc PA_Formato_Asistencia
+create proc PA_Formato_Asistencia -- Para el Admin
+with encryption
 as 
 begin
 	select (Cod_Facultad + ' ' + A.Cod_Asignatura) [Referencia], 
@@ -74,6 +75,7 @@ begin
 end
 
 create proc PA_Asistencia_Superv -- Toma de Asistencia para supervisor
+with encryption
 as 
 begin
 	select Asignatura, 
@@ -89,6 +91,7 @@ end
 go
 
 create proc PA_Asistencia_Doc -- Toma de Asistencia para docente
+with encryption
 as 
 begin
 	select Asignatura, Seccion, Presente [L], Presente [M], Presente [M], Presente [J], Presente [V], Presente [S]
@@ -101,6 +104,7 @@ end
 go
 
 CREATE PROCEDURE PA_Justificaciones
+with encryption
 AS
 BEGIN
     SELECT 
@@ -117,6 +121,7 @@ END
 GO
 
 create PROCEDURE PA_Reponer_Deca
+with encryption
 AS
 BEGIN
     SELECT 
