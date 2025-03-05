@@ -58,7 +58,6 @@
             txtDoc = new TextBox();
             label7 = new Label();
             btnLogout = new Button();
-            btnYa = new Button();
             label3 = new Label();
             btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -337,15 +336,6 @@
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 
-            // btnYa
-            // 
-            btnYa.Location = new Point(277, 444);
-            btnYa.Name = "btnYa";
-            btnYa.Size = new Size(128, 23);
-            btnYa.TabIndex = 39;
-            btnYa.Text = "dcs";
-            btnYa.UseVisualStyleBackColor = true;
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -361,7 +351,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(512, 475);
             Controls.Add(label3);
-            Controls.Add(btnYa);
             Controls.Add(btnLogout);
             Controls.Add(label7);
             Controls.Add(txtDoc);
@@ -423,7 +412,6 @@
         private DataGridViewCheckBoxColumn clmJueves;
         private DataGridViewCheckBoxColumn clmViernes;
         private DataGridViewCheckBoxColumn clmSabado;
-        private Button btnYa;
         private Label label3;
     }
 }
