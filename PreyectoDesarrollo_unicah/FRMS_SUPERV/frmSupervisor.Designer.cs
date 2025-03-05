@@ -254,11 +254,11 @@
             // 
             // btnBusca
             // 
-            btnBusca.Location = new Point(431, 127);
+            btnBusca.Location = new Point(431, 115);
             btnBusca.Name = "btnBusca";
-            btnBusca.Size = new Size(75, 23);
+            btnBusca.Size = new Size(75, 39);
             btnBusca.TabIndex = 28;
-            btnBusca.Text = "&Buscar";
+            btnBusca.Text = "&Buscar Asignatura";
             btnBusca.UseVisualStyleBackColor = true;
             // 
             // cmbHora
@@ -341,7 +341,7 @@
             // lblFecha
             // 
             lblFecha.AutoSize = true;
-            lblFecha.Location = new Point(453, 97);
+            lblFecha.Location = new Point(461, 92);
             lblFecha.Name = "lblFecha";
             lblFecha.Size = new Size(41, 15);
             lblFecha.TabIndex = 40;
