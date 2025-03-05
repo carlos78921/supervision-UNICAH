@@ -45,26 +45,34 @@ create table Asistencia
 	Fecha_Reposicion date
 )
 go
-
-INSERT INTO Empleados VALUES 
-('0000', 'Juan', 'Pérez', 'supervisor', 'juan.perez', 'contraseña123');
-
-INSERT INTO Empleados values
-('0001', 'María', 'López', 'decano', 'maria.lopez', 'contraseña101');
-
-INSERT INTO Empleados VALUES 
-('0002', 'Carlos', 'Ramírez', 'docente', 'carlos.ramirez', 'contraseña456');
-
-INSERT INTO Empleados VALUES
-('0003', 'María', 'López', 'docente', 'maria.lopez1', 'contraseña789');
-
-INSERT INTO Empleados VALUES
-('0004', 'Gonzalo', 'Ortiz', 'administrador', 'gonzo.ortiz', 'contraseña123');
-
+	
 select * from Empleados
 
-/*-- Procedimientos Almacenados
-create PROCEDURE PA_Reponer_Deca
+-- Procedimientos Almacenados
+create PROCEDURE PA_Login
+@usuario VARCHAR(50),
+@contrasena VARCHAR(255)
+with encryption
+AS
+BEGIN
+	SELECT nombre_empleado, apellido_empleado, rol 
+	FROM Empleados 
+	WHERE usuario = @usuario AND contraseña = @contrasena	
+END
+GO
+
+create proc PA_Asistencia -- Toma de Asistencia, afectado en supervisor y docente
+as 
+begin
+	select Asignatura, nombre_empleado, Seccion, Presente [L], Presente [M], Presente [M], Presente [J], Presente [V], Presente [S]
+	from Asistencia A
+	join Clases C
+	on A.Cod_Asignatura = C.Cod_Asignatura
+	join Empleados E
+	on A.codigo_empleado = E.codigo_empleado
+end
+
+/*create PROCEDURE PA_Reponer_Deca
 AS
 BEGIN
     SELECT 
@@ -95,16 +103,5 @@ BEGIN
     WHERE A.Observacion_Especifica IS NOT NULL
 END
 GO
-
-create proc PA_Profe_Asiste -- Toma de Asistencia
-as 
-begin
-select Asignatura, Nombre_Empleado, Sección, Fecha, Presente [L], Presente [M], Presente [M], Presente [J], Presente [V], Presente [S]
-from Asistencia A
-join Clases C
-on A.Cod_Asignatura = C.Cod_Asignatura
-join Usuarios U
-on C.Cod_Cargo = U.Cod_Cargo
-end
 */
 
