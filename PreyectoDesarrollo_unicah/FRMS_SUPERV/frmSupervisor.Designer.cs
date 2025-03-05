@@ -140,7 +140,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(209, 99);
             label1.Name = "label1";
-            label1.Size = new Size(139, 15);
+            label1.Size = new Size(137, 15);
             label1.TabIndex = 12;
             label1.Text = "REPORTE DE ASISTENCIA";
             // 
@@ -384,6 +384,7 @@
             Name = "frmSupervisor";
             Text = "FrmReporte";
             Load += FrmReporte_Load;
+            MouseDown += frmSupervisor_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
