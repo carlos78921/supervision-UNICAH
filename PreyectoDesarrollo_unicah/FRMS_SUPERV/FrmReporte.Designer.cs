@@ -59,6 +59,7 @@
             label7 = new Label();
             btnLogout = new Button();
             btnYa = new Button();
+            label3 = new Label();
             btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -342,14 +343,24 @@
             btnYa.Name = "btnYa";
             btnYa.Size = new Size(128, 23);
             btnYa.TabIndex = 39;
-            btnYa.Text = "&Confirmar Asistencia";
+            btnYa.Text = "dcs";
             btnYa.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(453, 97);
+            label3.Name = "label3";
+            label3.Size = new Size(41, 15);
+            label3.TabIndex = 40;
+            label3.Text = "Fecha ";
             // 
             // FrmReporte
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(512, 475);
+            Controls.Add(label3);
             Controls.Add(btnYa);
             Controls.Add(btnLogout);
             Controls.Add(label7);
@@ -413,5 +424,6 @@
         private DataGridViewCheckBoxColumn clmViernes;
         private DataGridViewCheckBoxColumn clmSabado;
         private Button btnYa;
+        private Label label3;
     }
 }
