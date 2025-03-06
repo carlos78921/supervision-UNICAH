@@ -36,7 +36,11 @@ namespace PreyectoDesarrollo_unicah
         private void frmDocente_Load(object sender, EventArgs e)
         {
             lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
-            // ACCIONES_BD.cargar(dgvDoc,)
+            Autoge
+            ACCIONES_BD.tabla_docente
+                (
+                dgvDoc, "Clase1", "0701", false, false, false, false, false, false
+                );
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

@@ -33,7 +33,6 @@ namespace PreyectoDesarrollo_unicah
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             lblPersona = new Label();
-            pictureBox3 = new PictureBox();
             dgvDoc = new DataGridView();
             clmClase = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
@@ -48,13 +47,14 @@ namespace PreyectoDesarrollo_unicah
             nudWeeks = new NumericUpDown();
             lblDoc = new Label();
             lblMeses = new Label();
+            pictureBox3 = new PictureBox();
             btnLogout = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvDoc).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudWeeks).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // btnLogout
@@ -112,17 +112,6 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 22;
             lblPersona.Text = "Nombre_Persona";
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.BackgroundImageLayout = ImageLayout.None;
-            pictureBox3.Image = Properties.Resources.CircularFondoAzul;
-            pictureBox3.Location = new Point(-25, 0);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(143, 81);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 8;
-            pictureBox3.TabStop = false;
             // 
             // dgvDoc
             // 
@@ -241,6 +230,17 @@ namespace PreyectoDesarrollo_unicah
             lblMeses.Text = "Periodo";
             lblMeses.Visible = false;
             // 
+            // pictureBox3
+            // 
+            pictureBox3.BackgroundImageLayout = ImageLayout.None;
+            pictureBox3.Image = Properties.Resources.CircularFondoAzul;
+            pictureBox3.Location = new Point(-25, 0);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(143, 81);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 8;
+            pictureBox3.TabStop = false;
+            // 
             // frmDocente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -263,9 +263,9 @@ namespace PreyectoDesarrollo_unicah
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvDoc).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudWeeks).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -275,7 +275,6 @@ namespace PreyectoDesarrollo_unicah
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private Panel panel1;
-        private PictureBox pictureBox3;
         private DataGridView dgvDoc;
         private Label label1;
         private Label lblPersona;
@@ -291,5 +290,6 @@ namespace PreyectoDesarrollo_unicah
         private NumericUpDown nudWeeks;
         private Label lblDoc;
         private Label lblMeses;
+        private PictureBox pictureBox3;
     }
 }
