@@ -344,7 +344,7 @@
             // lblFecha
             // 
             lblFecha.AutoSize = true;
-            lblFecha.Location = new Point(456, 92);
+            lblFecha.Location = new Point(444, 92);
             lblFecha.Name = "lblFecha";
             lblFecha.Size = new Size(41, 15);
             lblFecha.TabIndex = 40;
