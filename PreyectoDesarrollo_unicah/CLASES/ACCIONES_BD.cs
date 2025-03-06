@@ -25,38 +25,41 @@ namespace PreyectoDesarrollo_unicah.CLASES
             apellido = "";
         }
 
-        public static void tabla_docente(DataGridView dgv, string clase, string seccion,
+        public void tabla_docente(DataGridView dgv, string clase, string seccion,
             bool lunes, bool martes, bool miercoles, bool jueves, bool viernes, bool sabado)
         {
             try
             {
-                using (SqlConnection con = new SqlConnection("DATA SOURCE = Servidor del SQL; Initial Catalog=Supervision_Unicah; Integrated Security=True"))
+                using (SqlCommand cmd = new SqlCommand("PA_Asistencia_Doc", conexion.conectar))
+                //Comando recibido de conexión en referencia del atributo para conexión 
                 {
-                    using (SqlCommand cmd = new SqlCommand("PA_Asistencia_Doc", con))
-                    //Comando recibido de conexión en referencia del atributo para conexión 
+                    cmd.CommandType = CommandType.StoredProcedure; //Tipo de comando: SP
+                    cmd.Parameters.AddWithValue("@Clase", clase); //Agrega valor de campos
+                    cmd.Parameters.AddWithValue("@Seccion", seccion);
+                    cmd.Parameters.AddWithValue("@L", lunes);
+                    cmd.Parameters.AddWithValue("@M", martes);
+                    cmd.Parameters.AddWithValue("@X", miercoles);
+                    cmd.Parameters.AddWithValue("@J", jueves);
+                    cmd.Parameters.AddWithValue("@V", viernes);
+                    cmd.Parameters.AddWithValue("@S", sabado);
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable(); //dt es del data table... como consulta
+                    da.Fill(dt); // Llena la tabla con los datos del SP "AddWithValue"
+                    foreach (DataColumn col in dt.Columns)
                     {
-                        cmd.CommandType = CommandType.StoredProcedure; //Tipo de comando: SP
-                        cmd.Parameters.AddWithValue("@Clase", clase); //Agrega valor de campos
-                        cmd.Parameters.AddWithValue("@Seccion", seccion);
-                        cmd.Parameters.AddWithValue("@L", lunes);
-                        cmd.Parameters.AddWithValue("@M", martes);
-                        cmd.Parameters.AddWithValue("@X", miercoles);
-                        cmd.Parameters.AddWithValue("@J", jueves);
-                        cmd.Parameters.AddWithValue("@V", viernes);
-                        cmd.Parameters.AddWithValue("@S", sabado);
-
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable(); //dt es del data table... como consulta
-                        da.Fill(dt); // Llena la tabla con los datos del SP "AddWithValue"
-
-                        if (dt.Rows.Count > 0)
-                        {
-                            dgv.DataSource = dt; // Asigna los datos al DataGridView
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se encontraron registros.");
-                        }
+                        MessageBox.Show("Columna en DataTable: " + col.ColumnName);
+                    }
+                    if (dt.Rows.Count > 0)
+                    {
+                        MessageBox.Show("Datos obtenidos: " + dt.Rows[0][0].ToString() + " - " + dt.Rows[0][1].ToString());
+                        dgv.Columns.Clear();
+                        dgv.DataSource = dt; // Asigna los datos al DataGridView
+                        dgv.Refresh(); //Forzar la actualización de la UI
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontraron registros.");
                     }
                 }
             }
