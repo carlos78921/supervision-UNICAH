@@ -34,14 +34,14 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 //Comando recibido de conexión en referencia del atributo para conexión 
                 {
                     cmd.CommandType = CommandType.StoredProcedure; //Tipo de comando: SP
-                    cmd.Parameters.AddWithValue("@Clase", clase); //Agrega valor de campos
-                    cmd.Parameters.AddWithValue("@Seccion", seccion);
-                    cmd.Parameters.AddWithValue("@L", lunes);
-                    cmd.Parameters.AddWithValue("@M", martes);
-                    cmd.Parameters.AddWithValue("@X", miercoles);
-                    cmd.Parameters.AddWithValue("@J", jueves);
-                    cmd.Parameters.AddWithValue("@V", viernes);
-                    cmd.Parameters.AddWithValue("@S", sabado);
+                    cmd.Parameters.AddWithValue("Asignatura", clase); //Agrega valor de campos
+                    cmd.Parameters.AddWithValue("Seccion", seccion);
+                    cmd.Parameters.AddWithValue("Lunes", lunes);
+                    cmd.Parameters.AddWithValue("Martes", martes);
+                    cmd.Parameters.AddWithValue("Miercoles", miercoles);
+                    cmd.Parameters.AddWithValue("Jueves", jueves);
+                    cmd.Parameters.AddWithValue("Viernes", viernes);
+                    cmd.Parameters.AddWithValue("Sabado", sabado);
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable(); //dt es del data table... como consulta
@@ -53,7 +53,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     if (dt.Rows.Count > 0)
                     {
                         MessageBox.Show("Datos obtenidos: " + dt.Rows[0][0].ToString() + " - " + dt.Rows[0][1].ToString());
-                        dgv.Columns.Clear();
                         dgv.DataSource = dt; // Asigna los datos al DataGridView
                         dgv.Refresh(); //Forzar la actualización de la UI
                         dgv.Columns[0].Width = 125;
