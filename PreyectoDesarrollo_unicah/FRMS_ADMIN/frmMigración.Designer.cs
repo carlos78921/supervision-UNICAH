@@ -33,10 +33,9 @@ namespace PreyectoDesarrollo_unicah
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
+            lblPersona = new Label();
             pictureBox3 = new PictureBox();
             dgvAdmin = new DataGridView();
-            label1 = new Label();
-            lblPersona = new Label();
             clmAsignaturaFacu = new DataGridViewTextBoxColumn();
             clmCurso = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
@@ -48,6 +47,9 @@ namespace PreyectoDesarrollo_unicah
             clmJueves = new DataGridViewCheckBoxColumn();
             clmViernes = new DataGridViewCheckBoxColumn();
             clmSabado = new DataGridViewCheckBoxColumn();
+            label1 = new Label();
+            lblPeriodo = new Label();
+            lblWeek = new Label();
             btnLogout = new Button();
             btnExcel = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -107,6 +109,17 @@ namespace PreyectoDesarrollo_unicah
             panel1.Size = new Size(743, 87);
             panel1.TabIndex = 11;
             // 
+            // lblPersona
+            // 
+            lblPersona.AutoSize = true;
+            lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPersona.ForeColor = Color.White;
+            lblPersona.Location = new Point(609, 64);
+            lblPersona.Name = "lblPersona";
+            lblPersona.Size = new Size(132, 18);
+            lblPersona.TabIndex = 16;
+            lblPersona.Text = "Nombre_Persona";
+            // 
             // pictureBox3
             // 
             pictureBox3.BackgroundImageLayout = ImageLayout.None;
@@ -129,26 +142,6 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.ReadOnly = true;
             dgvAdmin.Size = new Size(714, 268);
             dgvAdmin.TabIndex = 13;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(313, 101);
-            label1.Name = "label1";
-            label1.Size = new Size(129, 15);
-            label1.TabIndex = 12;
-            label1.Text = "MIGRACIÓN DE DATOS";
-            // 
-            // lblPersona
-            // 
-            lblPersona.AutoSize = true;
-            lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(609, 64);
-            lblPersona.Name = "lblPersona";
-            lblPersona.Size = new Size(132, 18);
-            lblPersona.TabIndex = 16;
-            lblPersona.Text = "Nombre_Persona";
             // 
             // clmAsignaturaFacu
             // 
@@ -226,11 +219,40 @@ namespace PreyectoDesarrollo_unicah
             clmSabado.ReadOnly = true;
             clmSabado.Width = 20;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(313, 101);
+            label1.Name = "label1";
+            label1.Size = new Size(129, 15);
+            label1.TabIndex = 12;
+            label1.Text = "MIGRACIÓN DE DATOS";
+            // 
+            // lblPeriodo
+            // 
+            lblPeriodo.AutoSize = true;
+            lblPeriodo.Location = new Point(30, 413);
+            lblPeriodo.Name = "lblPeriodo";
+            lblPeriodo.Size = new Size(48, 15);
+            lblPeriodo.TabIndex = 16;
+            lblPeriodo.Text = "Periodo";
+            // 
+            // lblWeek
+            // 
+            lblWeek.AutoSize = true;
+            lblWeek.Location = new Point(97, 413);
+            lblWeek.Name = "lblWeek";
+            lblWeek.Size = new Size(49, 15);
+            lblWeek.TabIndex = 17;
+            lblWeek.Text = "Semana";
+            // 
             // frmMigración
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(739, 454);
+            Controls.Add(lblWeek);
+            Controls.Add(lblPeriodo);
             Controls.Add(btnExcel);
             Controls.Add(panel1);
             Controls.Add(btnLogout);
@@ -269,5 +291,7 @@ namespace PreyectoDesarrollo_unicah
         private DataGridViewCheckBoxColumn clmJueves;
         private DataGridViewCheckBoxColumn clmViernes;
         private DataGridViewCheckBoxColumn clmSabado;
+        private Label lblPeriodo;
+        private Label lblWeek;
     }
 }
