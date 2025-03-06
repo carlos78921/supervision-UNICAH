@@ -212,7 +212,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // clmMiercoles
             // 
-            clmMiercoles.HeaderText = "M";
+            clmMiercoles.HeaderText = "X";
             clmMiercoles.Name = "clmMiercoles";
             clmMiercoles.ReadOnly = true;
             clmMiercoles.Width = 22;

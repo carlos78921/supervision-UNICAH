@@ -56,6 +56,14 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         dgv.Columns.Clear();
                         dgv.DataSource = dt; // Asigna los datos al DataGridView
                         dgv.Refresh(); //Forzar la actualización de la UI
+                        dgv.Columns[0].Width = 125;
+                        dgv.Columns[1].Width = 58;
+                        dgv.Columns[2].Width = 20; //Ajustar ancho de columnas en "dgv nuevo"
+                        dgv.Columns[3].Width = 22;
+                        dgv.Columns[4].Width = 22;
+                        dgv.Columns[5].Width = 20;
+                        dgv.Columns[6].Width = 20;
+                        dgv.Columns[7].Width = 20;
                     }
                     else
                     {
