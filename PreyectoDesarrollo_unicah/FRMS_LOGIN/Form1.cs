@@ -156,14 +156,14 @@ namespace PreyectoDesarrollo_unicah
         {
             //este es para poder mover el form
             ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
+            SendMessage(this.Handle, 0x112, 0xf012, 0); //El evento en memoria se mantiene
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             //este es para poder mover el form
             ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
+            SendMessage(this.Handle, 0x112, 0xf012, 0); //El evento en memoria se mantiene
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
