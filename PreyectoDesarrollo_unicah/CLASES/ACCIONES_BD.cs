@@ -15,7 +15,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
         //Atributos
         public static string nombre, apellido;
 
-        CONEXION_BD conexion = new CONEXION_BD();
+        public CONEXION_BD conexion = new CONEXION_BD();
         SqlDataAdapter ad;
         DataTable dt;
 
@@ -23,6 +23,47 @@ namespace PreyectoDesarrollo_unicah.CLASES
         {
             nombre = "";
             apellido = "";
+        }
+
+        public static void tabla_docente(DataGridView dgv, string clase, string seccion,
+            bool lunes, bool martes, bool miercoles, bool jueves, bool viernes, bool sabado)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection("DATA SOURCE = Servidor del SQL; Initial Catalog=Supervision_Unicah; Integrated Security=True"))
+                {
+                    using (SqlCommand cmd = new SqlCommand("PA_Asistencia_Doc", con))
+                    //Comando recibido de conexión en referencia del atributo para conexión 
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure; //Tipo de comando: SP
+                        cmd.Parameters.AddWithValue("@Clase", clase); //Agrega valor de campos
+                        cmd.Parameters.AddWithValue("@Seccion", seccion);
+                        cmd.Parameters.AddWithValue("@L", lunes);
+                        cmd.Parameters.AddWithValue("@M", martes);
+                        cmd.Parameters.AddWithValue("@X", miercoles);
+                        cmd.Parameters.AddWithValue("@J", jueves);
+                        cmd.Parameters.AddWithValue("@V", viernes);
+                        cmd.Parameters.AddWithValue("@S", sabado);
+
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable(); //dt es del data table... como consulta
+                        da.Fill(dt); // Llena la tabla con los datos del SP "AddWithValue"
+
+                        if (dt.Rows.Count > 0)
+                        {
+                            dgv.DataSource = dt; // Asigna los datos al DataGridView
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontraron registros.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) //Requiere un recurso de validación para error
+            {
+                MessageBox.Show("Error de conexión: " + ex.Message);
+            }
         }
 
         public void cargar(DataGridView dgv, string nombreTabla)

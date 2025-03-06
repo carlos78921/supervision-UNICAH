@@ -81,7 +81,7 @@ namespace PreyectoDesarrollo_unicah
             // Realizar la conexión y consulta
             try
             {
-                string cadenaConexion = "DATA SOURCE= Servidor del SQL (también en CONEXION_BD); Initial Catalog=Supervision_Unicah; Integrated Security=True";
+                string cadenaConexion = "DATA SOURCE= Servidor del SQL (también en las clases); Initial Catalog=Supervision_Unicah; Integrated Security=True";
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
                 {
                     conexion.Open();
@@ -102,7 +102,7 @@ namespace PreyectoDesarrollo_unicah
                                 string rolUsuario = reader["rol"].ToString();
                                 ACCIONES_BD.nombre = nombre;
                                 ACCIONES_BD.apellido = apellido;
-                                MessageBox.Show($"Bienvenido, {nombre} {apellido}. Tu rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show($"Bienvenido, {nombre} {apellido}. Su rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 if (rolUsuario == "administrador")
                                 {
