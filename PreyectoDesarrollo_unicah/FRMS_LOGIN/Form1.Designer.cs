@@ -55,7 +55,6 @@
             txtusuario.Size = new Size(408, 20);
             txtusuario.TabIndex = 1;
             txtusuario.Text = "Usuario:";
-            txtusuario.TextChanged += txtusuario_TextChanged;
             txtusuario.Enter += txtusuario_Enter;
             txtusuario.Leave += txtusuario_Leave;
             // 
@@ -94,7 +93,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(801, 81);
             panel1.TabIndex = 4;
-            panel1.Paint += panel1_Paint;
             panel1.MouseDown += panel1_MouseDown;
             // 
             // pictureBox3

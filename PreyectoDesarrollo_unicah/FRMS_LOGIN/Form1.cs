@@ -1,6 +1,6 @@
 using PreyectoDesarrollo_unicah.CLASES;
 using System.Data.SqlClient;
-using System.Runtime.InteropServices;
+using System.Runtime.InteropServices; //Relacionado con Dll (Librería)
 
 
 namespace PreyectoDesarrollo_unicah
@@ -36,7 +36,7 @@ namespace PreyectoDesarrollo_unicah
             //se añade un tipo de marca de agua a los txtbox
             if (txtusuario.Text == "Usuario:")
             {
-                txtusuario.Text = "";                
+                txtusuario.Text = "";
             }
         }
 
@@ -44,7 +44,7 @@ namespace PreyectoDesarrollo_unicah
         {
             if (txtusuario.Text == "")
             {
-                txtusuario.Text = "Usuario:";                
+                txtusuario.Text = "Usuario:";
             }
         }
 
@@ -52,7 +52,7 @@ namespace PreyectoDesarrollo_unicah
         {
             if (txtcontraseña.Text == "Contraseña:")
             {
-                txtcontraseña.Text = "";                
+                txtcontraseña.Text = "";
                 txtcontraseña.UseSystemPasswordChar = true;
             }
         }
@@ -64,12 +64,6 @@ namespace PreyectoDesarrollo_unicah
                 txtcontraseña.Text = "Contraseña:";
                 txtcontraseña.UseSystemPasswordChar = false;
             }
-        }
-
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -87,7 +81,7 @@ namespace PreyectoDesarrollo_unicah
             // Realizar la conexión y consulta
             try
             {
-                string cadenaConexion = "DATA SOURCE= Servidor del SQL (También en CONEXIÓN_BD); Initial Catalog=Supervision_Unicah; Integrated Security=True";
+                string cadenaConexion = "DATA SOURCE= Servidor del SQL (también en CONEXION_BD); Initial Catalog=Supervision_Unicah; Integrated Security=True";
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
                 {
                     conexion.Open();
@@ -115,7 +109,7 @@ namespace PreyectoDesarrollo_unicah
                                     // Abrir la pantalla del administrador
                                     frmMigración admin = new frmMigración();
                                     admin.Show();
-                                    this.Hide();                                    
+                                    this.Hide();
                                 }
                                 else if (rolUsuario == "supervisor")
                                 {
@@ -137,7 +131,7 @@ namespace PreyectoDesarrollo_unicah
                                     frmDocente docente = new frmDocente();
                                     docente.Show();
                                     this.Hide();
-                                }                               
+                                }
                                 else
                                 {
                                     MessageBox.Show("Rol no reconocido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -156,11 +150,6 @@ namespace PreyectoDesarrollo_unicah
             {
                 MessageBox.Show("Error al conectar con la base de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void txtusuario_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
