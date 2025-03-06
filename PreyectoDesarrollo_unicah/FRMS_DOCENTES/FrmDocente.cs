@@ -17,6 +17,7 @@ namespace PreyectoDesarrollo_unicah
         public frmDocente()
         {
             InitializeComponent();
+            dgvDoc.AutoGenerateColumns = true;
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -33,11 +34,11 @@ namespace PreyectoDesarrollo_unicah
             Login.Show();
         }
 
-        private void frmDocente_Load(object sender, EventArgs e)
+        private void frmDocente_Load(object sender, EventArgs e) //Método del formulario
         {
             lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
-            dgvDoc.AutoGenerateColumns = true;
-            ACCIONES_BD.tabla_docente
+            ACCIONES_BD objDoc = new ACCIONES_BD();
+            objDoc.tabla_docente
                 (
                 dgvDoc, "Clase1", "0701", false, false, false, false, false, false
                 );
