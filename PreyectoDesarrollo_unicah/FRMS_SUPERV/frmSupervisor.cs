@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PreyectoDesarrollo_unicah.CLASES;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,10 +23,18 @@ namespace PreyectoDesarrollo_unicah
         private const int WM_NCLBUTTONDOWN = 0xA1;
         private const int HTCAPTION = 0x2;
 
+        private void CargarNombreUsuario()
+        {
+            ACCIONES_BD accionesBD = new ACCIONES_BD();
+            string nombreCompleto = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}".Trim();
+            this.Text = string.IsNullOrEmpty(nombreCompleto) ? "Supervisor" : $"Supervisor - {nombreCompleto}";
+        }
+
         public frmSupervisor()
         {
             InitializeComponent();
             this.MouseDown += frmSupervisor_MouseDown;
+            CargarNombreUsuario();
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
