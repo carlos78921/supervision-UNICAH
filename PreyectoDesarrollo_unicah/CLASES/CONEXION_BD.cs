@@ -25,9 +25,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
         {
             conectar.ConnectionString = conexion;
         }
-
-        
-
+       
         public void abrir() //aqui se habre la conexion de la BDD
         {
 

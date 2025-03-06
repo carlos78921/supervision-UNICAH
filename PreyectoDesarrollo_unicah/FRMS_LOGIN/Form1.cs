@@ -81,7 +81,7 @@ namespace PreyectoDesarrollo_unicah
             // Realizar la conexión y consulta
             try
             {
-                string cadenaConexion = "DATA SOURCE= Servidor del SQL (también en las clases); Initial Catalog=Supervision_Unicah; Integrated Security=True";
+                string cadenaConexion = "DATA SOURCE= Servidor del SQL (También en CONEXION_BD); Initial Catalog=Supervision_Unicah; Integrated Security=True";
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
                 {
                     conexion.Open();
