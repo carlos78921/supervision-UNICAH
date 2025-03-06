@@ -14,7 +14,7 @@ namespace PreyectoDesarrollo_unicah
     public partial class frmSupervisor : Form
     {
         [DllImport("user32.dll")]
-        private static extern bool ReleaseCapture();
+        private static extern bool ReleaseCapture(); //Externo por la importación realizada en comando
 
         [DllImport("user32.dll")]
         private static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
@@ -56,12 +56,12 @@ namespace PreyectoDesarrollo_unicah
             lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
-        private void frmSupervisor_MouseDown(object sender, MouseEventArgs e)
+        private void frmSupervisor_MouseDown(object sender, MouseEventArgs e) //Evento del ratón "e"
         {
             if (e.Button == MouseButtons.Left)
             {
                 ReleaseCapture();
-                SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+                SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0); //El evento en memoria se mantiene
             }
         }
     }

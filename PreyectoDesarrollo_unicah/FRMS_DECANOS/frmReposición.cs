@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
+using System.Runtime.InteropServices; //Relacionado con Dll (Librería)
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -49,14 +49,14 @@ namespace PreyectoDesarrollo_unicah
         {
             //este es para poder mover el form
             ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
+            SendMessage(this.Handle, 0x112, 0xf012, 0);  //El evento en memoria se mantiene
         }
 
         private void frmReposición_MouseDown(object sender, MouseEventArgs e)
         {
             //este es para poder mover el form
             ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
+            SendMessage(this.Handle, 0x112, 0xf012, 0);  //El evento en memoria se mantiene
         }
     }
 }
