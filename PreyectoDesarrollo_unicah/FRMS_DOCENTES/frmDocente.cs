@@ -36,7 +36,7 @@ namespace PreyectoDesarrollo_unicah
         private void frmDocente_Load(object sender, EventArgs e)
         {
             lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
-            Autoge
+            dgvDoc.AutoGenerateColumns = true;
             ACCIONES_BD.tabla_docente
                 (
                 dgvDoc, "Clase1", "0701", false, false, false, false, false, false
