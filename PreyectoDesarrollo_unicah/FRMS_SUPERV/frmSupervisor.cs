@@ -25,6 +25,7 @@ namespace PreyectoDesarrollo_unicah
         public frmSupervisor()
         {
             InitializeComponent();
+            this.MouseDown += frmSupervisor_MouseDown;
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
