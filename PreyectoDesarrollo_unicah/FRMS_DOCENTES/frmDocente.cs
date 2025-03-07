@@ -14,6 +14,7 @@ namespace PreyectoDesarrollo_unicah
 {
     public partial class frmDocente : Form
     {
+        private static string docente;
         public frmDocente()
         {
             InitializeComponent();
@@ -36,12 +37,9 @@ namespace PreyectoDesarrollo_unicah
 
         private void frmDocente_Load(object sender, EventArgs e) //Método del formulario
         {
+            int fila = dgvDoc.Rows.Count;
             lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
-            ACCIONES_BD objDoc = new ACCIONES_BD();
-            objDoc.tabla_docente
-                (
-                dgvDoc, "Clase1", "0701", false, false, false, false, false, false
-                );
+            ACCIONES_BD objDoc = new ACCIONES_BD(docente);            
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
