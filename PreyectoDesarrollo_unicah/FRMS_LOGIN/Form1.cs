@@ -82,22 +82,22 @@ namespace PreyectoDesarrollo_unicah
             // Realizar la conexión y consulta
             try
             {
-                string cadenaConexion = "DATA SOURCE= Servidor del SQL (También en CONEXION_BD); Initial Catalog=Supervision_Unicah; Integrated Security=True";
+                // Consulta para obtener el rol, nombre y apellido
+                string cadenaConexion = "Data Source=Servidor del SQL (También en CONEXION_BD);Initial Catalog=Proyecto_Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
                 {
                     conexion.Open();
 
-                    // Consulta para obtener el rol, nombre y apellido
-                    string consulta = "SELECT nombre_empleado, apellido_empleado, rol FROM Empleados WHERE usuario = @usuario AND contraseña = @contrasena";
-                    using (SqlCommand cmd = new SqlCommand(consulta, conexion))
+                    using (SqlCommand cmd = new SqlCommand("PA_Login", conexion))
                     {
+                        cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@usuario", usuario);
                         cmd.Parameters.AddWithValue("@contrasena", contraseña);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
-                        {                            
-                                if (reader.Read()) // Si coincide usuario y contraseña, y hay datos del select
-                                {
+                        {
+                            if (reader.Read()) // Verifica si hay datos
+                            {
                                 string nombre = reader["nombre_empleado"].ToString();
                                 string apellido = reader["apellido_empleado"].ToString();
                                 string rolUsuario = reader["rol"].ToString();
@@ -109,7 +109,7 @@ namespace PreyectoDesarrollo_unicah
                                 }
                                 ACCIONES_BD.nombre = nombre;
                                 ACCIONES_BD.apellido = apellido;
- 
+
                                 MessageBox.Show($"Bienvenido, {nombre} {apellido}. Su rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 if (rolUsuario == "administrador")
