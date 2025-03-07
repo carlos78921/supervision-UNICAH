@@ -1,5 +1,7 @@
 using PreyectoDesarrollo_unicah.CLASES;
+using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Runtime.InteropServices; //Relacionado con Dll (Librería)
 
 
@@ -10,7 +12,6 @@ namespace PreyectoDesarrollo_unicah
         public Form1()
         {
             InitializeComponent();
-
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -94,14 +95,21 @@ namespace PreyectoDesarrollo_unicah
                         cmd.Parameters.AddWithValue("@contrasena", contraseña);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read()) // Si coincide usuario y contraseña, y hay datos del select
-                            {
+                        {                            
+                                if (reader.Read()) // Si coincide usuario y contraseña, y hay datos del select
+                                {
                                 string nombre = reader["nombre_empleado"].ToString();
                                 string apellido = reader["apellido_empleado"].ToString();
                                 string rolUsuario = reader["rol"].ToString();
+                                using (SqlCommand spcmd = new SqlCommand("PA_Asistencia_Doc", conexion))
+                                {
+                                    spcmd.CommandType = CommandType.StoredProcedure;
+                                    string cod_doc = reader["codigo_empleado"].ToString();
+                                    ACCIONES_BD profe = new ACCIONES_BD(cod_doc);
+                                }
                                 ACCIONES_BD.nombre = nombre;
                                 ACCIONES_BD.apellido = apellido;
+ 
                                 MessageBox.Show($"Bienvenido, {nombre} {apellido}. Su rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 if (rolUsuario == "administrador")
@@ -128,8 +136,8 @@ namespace PreyectoDesarrollo_unicah
                                 else if (rolUsuario == "docente")
                                 {
                                     // Abrir las pantallas del docente
-                                    frmDocente docente = new frmDocente();
-                                    docente.Show();
+                                    frmDocente doc = new frmDocente();
+                                    doc.Show();
                                     this.Hide();
                                 }
                                 else

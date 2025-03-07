@@ -14,6 +14,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
     {
         //Atributos
         public static string nombre, apellido;
+        private string docente;
 
         public CONEXION_BD conexion = new CONEXION_BD();
         SqlDataAdapter ad;
@@ -25,54 +26,53 @@ namespace PreyectoDesarrollo_unicah.CLASES
             apellido = "";
         }
 
-        public void tabla_docente(DataGridView dgv, string clase, string seccion,
-            bool lunes, bool martes, bool miercoles, bool jueves, bool viernes, bool sabado)
+        public ACCIONES_BD(string codigo) //Constructor parametrizado
         {
+            docente = codigo;
+        }
+
+        public DataTable codigo_doc()
+        {
+            DataTable dt = new DataTable();
             try
             {
-                using (SqlCommand cmd = new SqlCommand("PA_Asistencia_Doc", conexion.conectar))
-                //Comando recibido de conexión en referencia del atributo para conexión 
+                using (SqlConnection con = conexion.conectar)
                 {
-                    cmd.CommandType = CommandType.StoredProcedure; //Tipo de comando: SP
-                    cmd.Parameters.AddWithValue("Asignatura", clase); //Agrega valor de campos
-                    cmd.Parameters.AddWithValue("Seccion", seccion);
-                    cmd.Parameters.AddWithValue("Lunes", lunes);
-                    cmd.Parameters.AddWithValue("Martes", martes);
-                    cmd.Parameters.AddWithValue("Miercoles", miercoles);
-                    cmd.Parameters.AddWithValue("Jueves", jueves);
-                    cmd.Parameters.AddWithValue("Viernes", viernes);
-                    cmd.Parameters.AddWithValue("Sabado", sabado);
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable(); //dt es del data table... como consulta
-                    da.Fill(dt); // Llena la tabla con los datos del SP "AddWithValue"
-                    foreach (DataColumn col in dt.Columns)
+                    using (SqlCommand cmd = new SqlCommand("PA_Asistencia_Doc", con))
                     {
-                        MessageBox.Show("Columna en DataTable: " + col.ColumnName);
-                    }
-                    if (dt.Rows.Count > 0)
-                    {
-                        MessageBox.Show("Datos obtenidos: " + dt.Rows[0][0].ToString() + " - " + dt.Rows[0][1].ToString());
-                        dgv.DataSource = dt; // Asigna los datos al DataGridView
-                        dgv.Refresh(); //Forzar la actualización de la UI
-                        dgv.Columns[0].Width = 125;
-                        dgv.Columns[1].Width = 58;
-                        dgv.Columns[2].Width = 20; //Ajustar ancho de columnas en "dgv nuevo"
-                        dgv.Columns[3].Width = 22;
-                        dgv.Columns[4].Width = 22;
-                        dgv.Columns[5].Width = 20;
-                        dgv.Columns[6].Width = 20;
-                        dgv.Columns[7].Width = 20;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontraron registros.");
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        // Se asigna el parámetro con el código del docente.
+                        cmd.Parameters.AddWithValue("@cod_docente", docente);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
                     }
                 }
             }
-            catch (Exception ex) //Requiere un recurso de validación para error
+            catch (Exception ex)
             {
-                MessageBox.Show("Error de conexión: " + ex.Message);
+                MessageBox.Show("Error al obtener datos: " + ex.Message);
+            }
+            return dt;
+        }
+        public void tabla_docente(DataGridView dgv)
+        {
+            DataTable dt = codigo_doc();
+            if (dt.Rows.Count > 0)
+            {
+                dgv.DataSource = dt; // Asigna los datos al DataGridView
+                dgv.Refresh(); //Forzar la actualización de la UI
+                dgv.Columns[0].Width = 125;
+                dgv.Columns[1].Width = 58;
+                dgv.Columns[2].Width = 20; //Ajustar ancho de columnas en "dgv nuevo"
+                dgv.Columns[3].Width = 22;
+                dgv.Columns[4].Width = 22;
+                dgv.Columns[5].Width = 20;
+                dgv.Columns[6].Width = 20;
+                dgv.Columns[7].Width = 20;
+            }
+            else
+            {
+                MessageBox.Show("No se encontraron registros.");
             }
         }
 
