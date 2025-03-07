@@ -7,20 +7,15 @@ go
 set nocount on
 
 CREATE TABLE Empleados (
-    codigo_empleado varchar (4) primary key,
     nombre_empleado VARCHAR(50) NOT NULL,
     apellido_empleado VARCHAR(50) NOT NULL,
     rol VARCHAR(50) NOT NULL,
-    usuario VARCHAR(50) UNIQUE NOT NULL,
-    contrase�a VARCHAR(255) NOT NULL
+    codigo_empleado VARCHAR(18) primary key NOT NULL,
+    contraseña VARCHAR(255) NOT NULL
 )
 
-insert Empleados values ('0000', 'El', 'Admin', 'administrador', '0000', 'admin1')
-insert Empleados values ('0001', 'Se�or', 'Dago', 'supervisor', '0001', 'super1')
-insert Empleados values ('0002', 'Jocelynn', 'Andrade', 'decano', '0002', 'deca1')
-insert Empleados values ('0003', 'Aracely', 'Rodr�guez', 'docente','0003', 'doc1')
-insert Empleados values ('0004', 'Jocelynn', 'Andrade', 'decano', '0004', 'deca1')
-
+//Si no tienen sus inserts, háganse uno
+	
 create table Facultad
 (
 	Cod_Facultad varchar (6) primary key,
@@ -28,28 +23,42 @@ create table Facultad
 )
 go
 
+//Si no tienen sus inserts, háganse uno
+	
 create table Clases 
 (
 	Cod_Asignatura varchar(6) primary key,
 	Cod_Facultad varchar (6) foreign key references Facultad (Cod_Facultad),
-	Asignatura varchar(55),
-	Edificio char,
-	Num_Aula int,
-	Seccion varchar (4),
+	Asignatura varchar(55)
 )
 go
+
+//Si no tienen sus inserts, háganse uno
+
+create table Sitio
+(
+	ID_Sitio int identity primary key,
+   	Edificio char,
+	Num_Aula int,
+	Seccion varchar (4)    
+)
+
+//Si no tienen sus inserts, háganse uno
 
 create table Asistencia
 (
 	ID_Asistencia int identity primary key,
 	Cod_Asignatura varchar(6) foreign key references Clases (Cod_Asignatura),
-    codigo_empleado varchar(4) foreign key references Empleados(codigo_empleado),
+	ID_Sitio int foreign key references Sitio (ID_Sitio),
+        codigo_empleado varchar(4) foreign key references Empleados(codigo_empleado),
 	Fecha date,
 	Observacion nvarchar(150), 
 	Fecha_Reposicion date
 )
 go
 
+//Si no tienen sus inserts, háganse uno
+	
 create table Toma_Asistencia
 (
 	ID_Asistencia int foreign key references Asistencia(ID_Asistencia),
@@ -61,6 +70,8 @@ create table Toma_Asistencia
 	Sabado bit
 )
 
+//Si no tienen sus inserts, háganse uno
+	
 -- Procedimientos Almacenados
 create PROCEDURE PA_Login
 @usuario VARCHAR(50),
@@ -70,7 +81,7 @@ AS
 BEGIN
 	SELECT nombre_empleado, apellido_empleado, rol 
 	FROM Empleados 
-	WHERE usuario = @usuario AND contrase�a = @contrasena	
+	WHERE usuario = @usuario AND contraseña = @contrasena	
 END
 GO
 
@@ -163,7 +174,7 @@ BEGIN
         Fecha [Fecha de Ausencia], 
         Seccion, 
         (nombre_empleado + ' ' + apellido_empleado) [Docente],
-        Fecha_Reposicion [Fecha de Reposici�n]
+        Fecha_Reposicion [Fecha de Reposición]
     FROM Asistencia A
     JOIN Clases C ON A.Cod_Asignatura = C.Cod_Asignatura 
     JOIN Empleados E ON A.codigo_empleado = E.codigo_empleado
