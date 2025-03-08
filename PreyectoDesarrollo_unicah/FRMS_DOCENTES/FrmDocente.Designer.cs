@@ -43,6 +43,11 @@ namespace PreyectoDesarrollo_unicah
             clmJueves = new DataGridViewCheckBoxColumn();
             clmViernes = new DataGridViewCheckBoxColumn();
             clmSabado = new DataGridViewCheckBoxColumn();
+            label1 = new Label();
+            label2 = new Label();
+            nudWeeks = new NumericUpDown();
+            lblDoc = new Label();
+            lblMeses = new Label();
             btnLogout = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -132,51 +137,6 @@ namespace PreyectoDesarrollo_unicah
             dgvDoc.TabIndex = 16;
             dgvDoc.CellContentClick += dgvDoc_CellContentClick;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(127, 92);
-            label1.Name = "label1";
-            label1.Size = new Size(132, 15);
-            label1.TabIndex = 15;
-            label1.Text = "ASISTENCIA PERSONAL";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(130, 115);
-            label2.Name = "label2";
-            label2.Size = new Size(52, 15);
-            label2.TabIndex = 18;
-            label2.Text = "Semana:";
-            // 
-            // nudWeeks
-            // 
-            nudWeeks.Location = new Point(186, 110);
-            nudWeeks.Name = "nudWeeks";
-            nudWeeks.Size = new Size(49, 23);
-            nudWeeks.TabIndex = 19;
-            // 
-            // lblDoc
-            // 
-            lblDoc.AutoSize = true;
-            lblDoc.Location = new Point(12, 294);
-            lblDoc.Name = "lblDoc";
-            lblDoc.Size = new Size(51, 15);
-            lblDoc.TabIndex = 20;
-            lblDoc.Text = "Docente";
-            lblDoc.Visible = false;
-            // 
-            // lblMeses
-            // 
-            lblMeses.AutoSize = true;
-            lblMeses.Location = new Point(323, 92);
-            lblMeses.Name = "lblMeses";
-            lblMeses.Size = new Size(48, 15);
-            lblMeses.TabIndex = 21;
-            lblMeses.Text = "Periodo";
-            lblMeses.Visible = false;
-            // 
             // clmClase
             // 
             clmClase.HeaderText = "Asignatura";
@@ -235,6 +195,51 @@ namespace PreyectoDesarrollo_unicah
             clmSabado.SortMode = DataGridViewColumnSortMode.Automatic;
             clmSabado.Width = 20;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(127, 92);
+            label1.Name = "label1";
+            label1.Size = new Size(132, 15);
+            label1.TabIndex = 15;
+            label1.Text = "ASISTENCIA PERSONAL";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(130, 115);
+            label2.Name = "label2";
+            label2.Size = new Size(52, 15);
+            label2.TabIndex = 18;
+            label2.Text = "Semana:";
+            // 
+            // nudWeeks
+            // 
+            nudWeeks.Location = new Point(186, 110);
+            nudWeeks.Name = "nudWeeks";
+            nudWeeks.Size = new Size(49, 23);
+            nudWeeks.TabIndex = 19;
+            // 
+            // lblDoc
+            // 
+            lblDoc.AutoSize = true;
+            lblDoc.Location = new Point(12, 294);
+            lblDoc.Name = "lblDoc";
+            lblDoc.Size = new Size(51, 15);
+            lblDoc.TabIndex = 20;
+            lblDoc.Text = "Docente";
+            lblDoc.Visible = false;
+            // 
+            // lblMeses
+            // 
+            lblMeses.AutoSize = true;
+            lblMeses.Location = new Point(323, 92);
+            lblMeses.Name = "lblMeses";
+            lblMeses.Size = new Size(48, 15);
+            lblMeses.TabIndex = 21;
+            lblMeses.Text = "Periodo";
+            lblMeses.Visible = false;
+            // 
             // frmDocente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -250,7 +255,7 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmDocente";
-            Text = "FrmReporte";
+            Text = "z";
             Load += frmDocente_Load;
             MouseDown += frmDocente_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
