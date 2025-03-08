@@ -9,6 +9,7 @@ namespace PreyectoDesarrollo_unicah
 {
     public partial class Form1 : Form
     {
+        private static string docente;
         public Form1()
         {
             InitializeComponent();
@@ -79,7 +80,7 @@ namespace PreyectoDesarrollo_unicah
                 return;
             }
 
-            // Realizar la conexión y consulta
+            // Realizar la conexión y  //Del botón iniciar sesión 
             try
             {
                 // Consulta para obtener el rol, nombre y apellido
@@ -101,8 +102,10 @@ namespace PreyectoDesarrollo_unicah
                                 string nombre = reader["nombre_empleado"].ToString();
                                 string apellido = reader["apellido_empleado"].ToString();
                                 string rolUsuario = reader["rol"].ToString();
+                                string codigoDocente = usuario.ToString();
                                 ACCIONES_BD.nombre = nombre;
                                 ACCIONES_BD.apellido = apellido;
+                                ACCIONES_BD.docente = codigoDocente;
 
                                 MessageBox.Show($"Bienvenido, {nombre} {apellido}. Su rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
