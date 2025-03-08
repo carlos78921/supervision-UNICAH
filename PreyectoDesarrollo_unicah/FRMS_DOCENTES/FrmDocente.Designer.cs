@@ -35,11 +35,6 @@ namespace PreyectoDesarrollo_unicah
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
             dgvDoc = new DataGridView();
-            label1 = new Label();
-            label2 = new Label();
-            nudWeeks = new NumericUpDown();
-            lblDoc = new Label();
-            lblMeses = new Label();
             clmClase = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
             clmLunes = new DataGridViewCheckBoxColumn();
