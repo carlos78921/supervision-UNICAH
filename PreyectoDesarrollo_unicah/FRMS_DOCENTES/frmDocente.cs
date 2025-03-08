@@ -44,7 +44,9 @@ namespace PreyectoDesarrollo_unicah
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
+            Form1 Login = new Form1();
+            Login.Show();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
