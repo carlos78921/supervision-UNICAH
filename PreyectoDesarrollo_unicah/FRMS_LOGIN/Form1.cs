@@ -83,7 +83,7 @@ namespace PreyectoDesarrollo_unicah
             try
             {
                 // Consulta para obtener el rol, nombre y apellido
-                string cadenaConexion = "Data Source=Servidor del SQL (También en CONEXION_BD);Initial Catalog=Proyecto_Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
+                string cadenaConexion = "Data Source= Servidor del SQL (También en Conexión_BD);Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
                 {
                     conexion.Open();
@@ -101,12 +101,6 @@ namespace PreyectoDesarrollo_unicah
                                 string nombre = reader["nombre_empleado"].ToString();
                                 string apellido = reader["apellido_empleado"].ToString();
                                 string rolUsuario = reader["rol"].ToString();
-                                using (SqlCommand spcmd = new SqlCommand("PA_Asistencia_Doc", conexion))
-                                {
-                                    spcmd.CommandType = CommandType.StoredProcedure;
-                                    string cod_doc = reader["codigo_empleado"].ToString();
-                                    ACCIONES_BD profe = new ACCIONES_BD(cod_doc);
-                                }
                                 ACCIONES_BD.nombre = nombre;
                                 ACCIONES_BD.apellido = apellido;
 
@@ -178,6 +172,12 @@ namespace PreyectoDesarrollo_unicah
         {
             contra.ShowDialog();
             this.Dispose(false);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            frmDocente doc = new frmDocente();
+            doc.Show();
         }
     }
 }
