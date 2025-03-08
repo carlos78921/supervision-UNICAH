@@ -14,7 +14,7 @@ CREATE TABLE Empleados (
     contraseña VARCHAR(255) NOT NULL
 )
 
-//Si no tienen sus inserts, háganse uno
+--Si no tienen sus inserts, háganse uno
 	
 create table Facultad
 (
@@ -23,7 +23,7 @@ create table Facultad
 )
 go
 
-//Si no tienen sus inserts, háganse uno
+--Si no tienen sus inserts, háganse uno
 	
 create table Clases 
 (
@@ -33,7 +33,7 @@ create table Clases
 )
 go
 
-//Si no tienen sus inserts, háganse uno
+--Si no tienen sus inserts, háganse uno
 
 create table Sitio
 (
@@ -43,7 +43,7 @@ create table Sitio
 	Seccion varchar (4)    
 )
 
-//Si no tienen sus inserts, háganse uno
+--Si no tienen sus inserts, háganse uno
 
 create table Asistencia
 (
@@ -57,7 +57,7 @@ create table Asistencia
 )
 go
 
-//Si no tienen sus inserts, háganse uno
+--Si no tienen sus inserts, háganse uno
 	
 create table Toma_Asistencia
 (
@@ -70,7 +70,7 @@ create table Toma_Asistencia
 	Sabado bit
 )
 
-//Si no tienen sus inserts, háganse uno
+--Si no tienen sus inserts, háganse uno
 	
 -- Procedimientos Almacenados
 create PROCEDURE PA_Login
@@ -86,6 +86,7 @@ END
 GO
 
 create proc PA_Formato_Asistencia -- Para el Admin
+-- Declarar variables ___ para usarlas en el...
 with encryption
 as 
 begin
@@ -104,6 +105,7 @@ end
 go
 
 create proc PA_Asistencia_Superv -- Toma de Asistencia para supervisor
+-- Declarar variables ___ para usarlas en el...
 with encryption
 as 
 begin
@@ -114,6 +116,8 @@ begin
 	from Asistencia A
 	join Clases C
 	on A.Cod_Asignatura = C.Cod_Asignatura
+	join Sitio S
+	on A.ID_Sitio = S.ID_Sitio
 	join Empleados E
 	on A.codigo_empleado = E.codigo_empleado
 	join Toma_Asistencia TA
