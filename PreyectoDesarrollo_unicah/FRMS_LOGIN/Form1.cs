@@ -83,7 +83,7 @@ namespace PreyectoDesarrollo_unicah
             try
             {
                 // Consulta para obtener el rol, nombre y apellido
-                string cadenaConexion = "Data Source= Servidor del SQL (También en Conexión_BD);Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
+                string cadenaConexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.Machine);
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
                 {
                     conexion.Open();
@@ -172,12 +172,6 @@ namespace PreyectoDesarrollo_unicah
         {
             contra.ShowDialog();
             this.Dispose(false);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            frmDocente doc = new frmDocente();
-            doc.Show();
         }
     }
 }
