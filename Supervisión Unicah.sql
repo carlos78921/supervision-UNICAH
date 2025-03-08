@@ -97,6 +97,8 @@ begin
 	from Asistencia A
 	join Clases C
 	on A.Cod_Asignatura = C.Cod_Asignatura
+	join Sitio S
+	on A.ID_Sitio = S.ID_Sitio
 	join Empleados E
 	on A.codigo_empleado = E.codigo_empleado
 	join Toma_Asistencia TA
