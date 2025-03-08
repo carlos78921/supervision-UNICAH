@@ -36,10 +36,12 @@
             pictureBox1 = new PictureBox();
             txtcontraseña = new TextBox();
             pictureBox4 = new PictureBox();
+            pictureBox3 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // txtusuario
@@ -84,6 +86,7 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.HotTrack;
+            panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(0, 0);
@@ -138,6 +141,17 @@
             pictureBox4.TabIndex = 6;
             pictureBox4.TabStop = false;
             // 
+            // pictureBox3
+            // 
+            pictureBox3.BackgroundImageLayout = ImageLayout.None;
+            pictureBox3.Image = Properties.Resources.CircularFondoAzul;
+            pictureBox3.Location = new Point(-22, -3);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(143, 81);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 9;
+            pictureBox3.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -159,6 +173,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -173,5 +188,6 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox4;
+        private PictureBox pictureBox3;
     }
 }
