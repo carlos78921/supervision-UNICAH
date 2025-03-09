@@ -27,6 +27,7 @@ namespace PreyectoDesarrollo_unicah
         {
             ACCIONES_BD accionesBD = new ACCIONES_BD();
             string nombreCompleto = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}".Trim();
+            lblPersona.Text = string.IsNullOrEmpty(nombreCompleto) ? "Nombre no disponible" : nombreCompleto;
             this.Text = string.IsNullOrEmpty(nombreCompleto) ? "Supervisor" : $"Supervisor - {nombreCompleto}";
         }
 
@@ -51,6 +52,7 @@ namespace PreyectoDesarrollo_unicah
             cmbEdificio.SelectedIndex = 0;
             cmbAula.SelectedIndex = 0;
             cmbHora.SelectedIndex = 0;
+
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -71,6 +73,20 @@ namespace PreyectoDesarrollo_unicah
             {
                 ReleaseCapture();
                 SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0); //El evento en memoria se mantiene
+            }
+        }
+
+        private int ObtenerIndiceColumna(string dia)
+        {
+            switch (dia)
+            {
+                case "Lunes": return 0;
+                case "Martes": return 1;
+                case "Miércoles": return 2;
+                case "Jueves": return 3;
+                case "Viernes": return 4;
+                case "Sábado": return 5;
+                default: return -1;
             }
         }
     }

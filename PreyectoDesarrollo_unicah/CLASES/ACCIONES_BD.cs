@@ -77,7 +77,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public void tabla_docente(DataGridView dgv)
         {
-            DataTable dt = codigo_doc(); // Se llena el DataTable
+            DataTable dt = codigo_doc(); // Se llena los valores del PA según el código en DataTable
 
             // Depuración: Mostrar columnas y filas del DataTable
             /*foreach (DataColumn col in dt.Columns)
@@ -124,6 +124,11 @@ namespace PreyectoDesarrollo_unicah.CLASES
             {
                 MessageBox.Show("No se encontraron registros.");
             }
+        }
+
+        public void tabla_justo(DataGridView dgv)
+        {
+
         }
 
         public void cargar(DataGridView dgv, string nombreTabla)
