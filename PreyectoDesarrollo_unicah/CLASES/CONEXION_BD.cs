@@ -16,7 +16,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
     internal class CONEXION_BD
     {
-        string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.Machine); public SqlConnection conectar = new SqlConnection();
+        string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User); 
+        public SqlConnection conectar = new SqlConnection();
 
 
         public CONEXION_BD()
@@ -24,7 +25,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             conectar.ConnectionString = conexion;
         }
        
-        public void abrir() //aqui se habre la conexion de la BDD
+        public void abrir() //aqui se abre la conexion de la BDD
         {
 
             try

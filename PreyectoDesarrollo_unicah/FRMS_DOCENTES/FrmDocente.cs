@@ -45,9 +45,9 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
             ACCIONES_BD objDoc = new ACCIONES_BD(doc);
             dgvDoc.AutoGenerateColumns = true;
-            MessageBox.Show($"Código del docente: {ACCIONES_BD.docente}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show($"Código del docente: {ACCIONES_BD.docente}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
             objDoc.tabla_docente(dgvDoc);
-            MessageBox.Show($"Columnas en dgvDoc: {dgvDoc.Columns.Count}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show($"Columnas en dgvDoc: {dgvDoc.Columns.Count}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

@@ -44,24 +44,25 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     using (SqlCommand cmd = new SqlCommand("PA_Asistencia_Doc", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        if (string.IsNullOrEmpty(docente))
+                        /*if (string.IsNullOrEmpty(docente)) //No se lee el código del docente  
                         {
                             MessageBox.Show("Error: No se ha asignado un código de docente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return dt; //Concluye con mensaje de error
-                        }
+                        }*/
+
                         // Se asigna el parámetro con el código del docente.
                         cmd.Parameters.AddWithValue("@cod_docente", docente);
 
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
                         da.Fill(dt);
 
-                        foreach (DataRow row in dt.Rows)
+                        /*foreach (DataRow row in dt.Rows)
                         {
                             foreach (DataColumn col in dt.Columns)
                             {
                                 MessageBox.Show($"Columna: {col.ColumnName}, Valor: {row[col]}");
                             }
-                        }
+                        */
                     }
                 }
             }
@@ -69,36 +70,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
             {
                 MessageBox.Show("Error al obtener datos: " + ex.Message);
             }
-            //Mostrar cantidad de filas según el PA
-            MessageBox.Show($"Filas obtenidas: {dt.Rows.Count}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            /*Mostrar cantidad de filas según el PA
+              MessageBox.Show($"Filas obtenidas: {dt.Rows.Count}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
             return dt;
-        }
-
-        public void LlenarDataGridViewConDatosDePrueba(DataGridView dgv)
-        {
-            // Crear un DataTable y definir las columnas
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Asignatura", typeof(string));
-            dt.Columns.Add("Sección", typeof(string));
-            dt.Columns.Add("L", typeof(bool));
-            dt.Columns.Add("M", typeof(bool));
-            dt.Columns.Add("X", typeof(bool));
-            dt.Columns.Add("J", typeof(bool));
-            dt.Columns.Add("V", typeof(bool));
-            dt.Columns.Add("S", typeof(bool));
-
-            // Agregar filas de datos de prueba
-            dt.Rows.Add("Gato", 1001, true, true, true, true, true, true);
-            dt.Rows.Add("Dato2", 1002,true, false, true, false, true, false);
-
-            // Asignar el DataTable al DataGridView
-            dgv.DataSource = dt;
-
-            // Refrescar el DataGridView
-            dgv.Refresh();
-
-            // Mostrar un mensaje de éxito
-            MessageBox.Show("Datos de prueba asignados correctamente al DataGridView.");
         }
 
         public void tabla_docente(DataGridView dgv)
@@ -106,7 +80,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             DataTable dt = codigo_doc(); // Se llena el DataTable
 
             // Depuración: Mostrar columnas y filas del DataTable
-            foreach (DataColumn col in dt.Columns)
+            /*foreach (DataColumn col in dt.Columns)
             {
                 MessageBox.Show($"Columna encontrada: {col.ColumnName}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -115,11 +89,12 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 MessageBox.Show($"Fila: {row["Asignatura"]}, {row["Sección"]}, " +
                     $"{row["L"]}, {row["M"]}, {row["X"]}, " +
                     $"{row["J"]}, {row["V"]}, {row["S"]}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            }*/
 
             if (dt.Rows.Count > 0)
             {
-                // Limpia las columnas actuales para evitar duplicados o columnas mal mapeadas
+                /* Limpia las columnas actuales para evitar duplicados o columnas mal detectadas
+                por más de una fila*/
                 dgv.Columns.Clear();
 
                 // Usa BindingSource para enlazar los datos
@@ -131,7 +106,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.AutoGenerateColumns = true;
                 dgv.Refresh(); // Forzar actualización de la UI
 
-                // Ajustar anchos si lo deseas (ahora deberían haber 8 columnas)
+                /* Ajustar anchos de columnas por dgv "nueva" (ahora deberían de haber 8 columnas
+                detectadas en valores)*/
                 if (dgv.Columns.Count >= 8)
                 {
                     dgv.Columns[0].Width = 125;
