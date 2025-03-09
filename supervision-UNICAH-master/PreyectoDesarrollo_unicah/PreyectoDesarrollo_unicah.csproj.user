@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="FRMS_ADMIN\frmMigración.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_DECANOS\frmDecano.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_DECANOS\frmJustificación.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_DECANOS\frmReposición.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_DOCENTES\FrmDocente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_LOGIN\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_LOGIN\frmOlvideDatos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_LOGIN\frmRestablecerCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_SUPERV\FrmReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_SUPERV\frmSupervisor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
