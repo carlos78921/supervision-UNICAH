@@ -80,7 +80,7 @@ namespace PreyectoDesarrollo_unicah
                 return;
             }
 
-            // Realizar la conexión y  //Del botón iniciar sesión 
+            // Realizar la conexión y  
             try
             {
                 // Consulta para obtener el rol, nombre y apellido
@@ -97,7 +97,7 @@ namespace PreyectoDesarrollo_unicah
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read()) // Verifica si hay datos
+                            if (reader.Read()) // Verifica si hay usuario y contraseña para leer otros datos
                             {
                                 string nombre = reader["nombre_empleado"].ToString();
                                 string apellido = reader["apellido_empleado"].ToString();

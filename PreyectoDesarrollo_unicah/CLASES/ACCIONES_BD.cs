@@ -17,8 +17,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
         public static string docente;
 
         public CONEXION_BD conexion = new CONEXION_BD();
-        SqlDataAdapter ad;
-        DataTable dt;
 
         //Constructor
         public ACCIONES_BD()
@@ -105,8 +103,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public void tabla_docente(DataGridView dgv)
         {
-            DataTable dt = codigo_doc();
+            DataTable dt = codigo_doc(); // Se llena el DataTable
 
+            // Depuración: Mostrar columnas y filas del DataTable
             foreach (DataColumn col in dt.Columns)
             {
                 MessageBox.Show($"Columna encontrada: {col.ColumnName}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -114,31 +113,36 @@ namespace PreyectoDesarrollo_unicah.CLASES
             foreach (DataRow row in dt.Rows)
             {
                 MessageBox.Show($"Fila: {row["Asignatura"]}, {row["Sección"]}, " +
-                $"{row["L"]}, {row["M"]}, {row["X"]}, " +
-                $"{row["J"]}, {row["V"]}, {row["S"]}");
+                    $"{row["L"]}, {row["M"]}, {row["X"]}, " +
+                    $"{row["J"]}, {row["V"]}, {row["S"]}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
             if (dt.Rows.Count > 0)
             {
-                /*Binding source: una forma efectiva de actualizar dgv para un form
-                BindingSource bs = new BindingSource(); 
-                bs.DataSource = dt; // Enlaza el DataTable al BindingSource
-                dgv.DataSource = null; //Libera cualquier dato previo (vacío) en el DataGridView
-                dgv.DataSource = bs; // Enlaza el BindingSource al DataGridView
-                bs.ResetBindings(false); // Actualiza la vista del dgv si hay cambios en los datos*/
+                // Limpia las columnas actuales para evitar duplicados o columnas mal mapeadas
+                dgv.Columns.Clear();
 
-                dgv.DataSource = dt;
+                // Usa BindingSource para enlazar los datos
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dt;
+                dgv.DataSource = bs;
+                bs.ResetBindings(false);
+
                 dgv.AutoGenerateColumns = true;
-                dgv.Refresh(); //Forzar la actualización de la UI
+                dgv.Refresh(); // Forzar actualización de la UI
 
-                //Ajustar ancho de columnas en "dgv nuevo"
-                dgv.Columns[0].Width = 125;
-                dgv.Columns[1].Width = 58;
-                dgv.Columns[2].Width = 20;
-                dgv.Columns[3].Width = 22;
-                dgv.Columns[4].Width = 22;
-                dgv.Columns[5].Width = 20;
-                dgv.Columns[6].Width = 20;
-                dgv.Columns[7].Width = 20;
+                // Ajustar anchos si lo deseas (ahora deberían haber 8 columnas)
+                if (dgv.Columns.Count >= 8)
+                {
+                    dgv.Columns[0].Width = 125;
+                    dgv.Columns[1].Width = 58;
+                    dgv.Columns[2].Width = 20;
+                    dgv.Columns[3].Width = 22;
+                    dgv.Columns[4].Width = 22;
+                    dgv.Columns[5].Width = 20;
+                    dgv.Columns[6].Width = 20;
+                    dgv.Columns[7].Width = 20;
+                }
             }
             else
             {
