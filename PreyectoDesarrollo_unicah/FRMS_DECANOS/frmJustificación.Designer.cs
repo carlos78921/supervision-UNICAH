@@ -35,7 +35,6 @@ namespace PreyectoDesarrollo_unicah
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             lblPersona = new Label();
-            pictureBox3 = new PictureBox();
             label2 = new Label();
             dgvJustificacion = new DataGridView();
             clmClase = new DataGridViewTextBoxColumn();
@@ -51,14 +50,15 @@ namespace PreyectoDesarrollo_unicah
             txtBusco = new TextBox();
             label4 = new Label();
             lblMeses = new Label();
+            pictureBox3 = new PictureBox();
             btnAgregar = new Button();
             btnVoy = new Button();
             btnBusco = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvJustificacion).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // btnAgregar
@@ -134,17 +134,6 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.TabIndex = 10;
             lblPersona.Text = "Nombre_Persona";
             // 
-            // pictureBox3
-            // 
-            pictureBox3.BackgroundImageLayout = ImageLayout.None;
-            pictureBox3.Image = Properties.Resources.CircularFondoAzul;
-            pictureBox3.Location = new Point(-25, 0);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(143, 81);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 8;
-            pictureBox3.TabStop = false;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -205,7 +194,7 @@ namespace PreyectoDesarrollo_unicah
             label1.AutoSize = true;
             label1.Location = new Point(310, 93);
             label1.Name = "label1";
-            label1.Size = new Size(171, 15);
+            label1.Size = new Size(173, 15);
             label1.TabIndex = 25;
             label1.Text = "JUSTIFICACIÓN DE ASISTENCIA";
             // 
@@ -272,6 +261,17 @@ namespace PreyectoDesarrollo_unicah
             lblMeses.Text = "Periodo";
             lblMeses.Visible = false;
             // 
+            // pictureBox3
+            // 
+            pictureBox3.BackgroundImageLayout = ImageLayout.None;
+            pictureBox3.Image = Properties.Resources.CircularFondoAzul;
+            pictureBox3.Location = new Point(-25, 0);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(143, 81);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 8;
+            pictureBox3.TabStop = false;
+            // 
             // frmJustificación
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -300,8 +300,8 @@ namespace PreyectoDesarrollo_unicah
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvJustificacion).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -311,7 +311,6 @@ namespace PreyectoDesarrollo_unicah
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private Panel panel1;
-        private PictureBox pictureBox3;
         private Label label2;
         private DataGridView dgvJustificacion;
         private Label label1;
@@ -328,5 +327,6 @@ namespace PreyectoDesarrollo_unicah
         private TextBox txtBusco;
         private Label label4;
         private Label lblMeses;
+        private PictureBox pictureBox3;
     }
 }
