@@ -14,7 +14,6 @@ namespace PreyectoDesarrollo_unicah
 {
     public partial class frmDocente : Form
     {
-        public static string doc;
         public frmDocente()
         {
             InitializeComponent();
@@ -37,11 +36,11 @@ namespace PreyectoDesarrollo_unicah
 
         private void frmDocente_Load(object sender, EventArgs e) 
         {
-            doc = ACCIONES_BD.docente;
+            string doc = ACCIONES_BD.docente;
             if (string.IsNullOrEmpty(doc))
             {
                 MessageBox.Show("Error: Código del docente no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // Hasta aquí concluye si pasa
+                return; // Hasta aquí concluye si sucede
             }
             lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
             ACCIONES_BD objDoc = new ACCIONES_BD(doc);
