@@ -29,7 +29,7 @@ namespace PreyectoDesarrollo_unicah
         {
             lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
             cmbEdificio.SelectedIndex = 0;
-            // ACCIONES_BD.cargar(dgvDoc,)
+            //ACCIONES_BD.cargar(dgvDoc);
         }
 
         private void btnVoy_Click(object sender, EventArgs e)
