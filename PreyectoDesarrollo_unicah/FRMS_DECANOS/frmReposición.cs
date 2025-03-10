@@ -59,5 +59,10 @@ namespace PreyectoDesarrollo_unicah
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);  //El evento en memoria se mantiene
         }
+
+        private void lblPersona_Click(object sender, EventArgs e)
+        {
+            lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
+        }
     }
 }
