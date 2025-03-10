@@ -227,7 +227,6 @@
             nudWeeks.Name = "nudWeeks";
             nudWeeks.Size = new Size(49, 23);
             nudWeeks.TabIndex = 23;
-            nudWeeks.ValueChanged += nudWeeks_ValueChanged;
             // 
             // label2
             // 
