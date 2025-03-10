@@ -57,7 +57,6 @@
             gbFiltro = new GroupBox();
             label6 = new Label();
             txtDoc = new TextBox();
-            label7 = new Label();
             btnLogout = new Button();
             tmrFecha = new System.Windows.Forms.Timer(components);
             lblFecha = new Label();
@@ -306,9 +305,9 @@
             label6.AutoSize = true;
             label6.Location = new Point(43, 119);
             label6.Name = "label6";
-            label6.Size = new Size(120, 15);
+            label6.Size = new Size(120, 30);
             label6.TabIndex = 34;
-            label6.Text = "Nombre y/o apellido ";
+            label6.Text = "Nombre y/o apellido \r\n         del docente";
             // 
             // txtDoc
             // 
@@ -316,15 +315,6 @@
             txtDoc.Name = "txtDoc";
             txtDoc.Size = new Size(118, 23);
             txtDoc.TabIndex = 35;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(65, 135);
-            label7.Name = "label7";
-            label7.Size = new Size(72, 15);
-            label7.TabIndex = 36;
-            label7.Text = "del docente:";
             // 
             // btnLogout
             // 
@@ -368,7 +358,6 @@
             Controls.Add(lblMeses);
             Controls.Add(lblFecha);
             Controls.Add(btnLogout);
-            Controls.Add(label7);
             Controls.Add(txtDoc);
             Controls.Add(label6);
             Controls.Add(gbFiltro);
@@ -418,7 +407,6 @@
         private ComboBox cmbEdificio;
         private GroupBox gbFiltro;
         private TextBox txtDoc;
-        private Label label7;
         private Button btnLogout;
         private System.Windows.Forms.Timer tmrFecha;
         private Label lblFecha;
