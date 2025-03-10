@@ -53,10 +53,10 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         // Se asigna el parámetro con el código del docente.
                         cmd.Parameters.AddWithValue("@cod_docente", docente);
 
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        da.Fill(dt);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd); //Adaptador de comando por conexión
+                        da.Fill(dt); //Llenar los datos del PA
 
-                        /*foreach (DataRow row in dt.Rows)
+                        /*foreach (DataRow row in dt.Rows) //Depuración: Mostrar columnas y valores en la fila
                         {
                             foreach (DataColumn col in dt.Columns)
                             {
@@ -79,22 +79,16 @@ namespace PreyectoDesarrollo_unicah.CLASES
         {
             DataTable dt = codigo_doc(); // Se llena los valores del PA según el código en DataTable
 
-            // Depuración: Mostrar columnas y filas del DataTable
-            /*foreach (DataColumn col in dt.Columns)
+            /* Depuración: Mostrar columnas leídas del dgv 
+            foreach (DataColumn col in dt.Columns)
             {
                 MessageBox.Show($"Columna encontrada: {col.ColumnName}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            foreach (DataRow row in dt.Rows)
-            {
-                MessageBox.Show($"Fila: {row["Asignatura"]}, {row["Sección"]}, " +
-                    $"{row["L"]}, {row["M"]}, {row["X"]}, " +
-                    $"{row["J"]}, {row["V"]}, {row["S"]}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }*/
-
+            
             if (dt.Rows.Count > 0)
             {
-                /* Limpia las columnas actuales para evitar duplicados o columnas mal detectadas
-                por más de una fila*/
+                /* Limpia las columnas actuales para evitar duplicados posiblemente por el PA
+                o columnas mal detectadas                 por más de una fila*/
                 dgv.Columns.Clear();
 
                 // Usa BindingSource para enlazar los datos
