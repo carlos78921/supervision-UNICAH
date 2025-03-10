@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace PreyectoDesarrollo_unicah
 {
-    public partial class frmSupervisor : Form
+    public partial class frmReporte : Form
     {
         [DllImport("user32.dll")]
         private static extern bool ReleaseCapture(); //Externo por la importación realizada en comando
@@ -31,7 +31,7 @@ namespace PreyectoDesarrollo_unicah
             this.Text = string.IsNullOrEmpty(nombreCompleto) ? "Supervisor" : $"Supervisor - {nombreCompleto}";
         }
 
-        public frmSupervisor()
+        public frmReporte()
         {
             InitializeComponent();
             this.MouseDown += frmSupervisor_MouseDown;
