@@ -61,20 +61,18 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(691, 551);
-            btnLogout.Margin = new Padding(3, 4, 3, 4);
+            btnLogout.Location = new Point(605, 413);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(144, 39);
+            btnLogout.Size = new Size(126, 29);
             btnLogout.TabIndex = 14;
             btnLogout.Text = "&CERRAR SESIÓN";
             btnLogout.UseVisualStyleBackColor = true;
             // 
             // btnExcel
             // 
-            btnExcel.Location = new Point(561, 543);
-            btnExcel.Margin = new Padding(3, 4, 3, 4);
+            btnExcel.Location = new Point(491, 407);
             btnExcel.Name = "btnExcel";
-            btnExcel.Size = new Size(123, 56);
+            btnExcel.Size = new Size(108, 42);
             btnExcel.TabIndex = 15;
             btnExcel.Text = "&EXPORTAR A EXCEL";
             btnExcel.UseVisualStyleBackColor = true;
@@ -82,10 +80,9 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(775, 1);
-            pictureBox2.Margin = new Padding(3, 4, 3, 4);
+            pictureBox2.Location = new Point(678, 1);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(33, 27);
+            pictureBox2.Size = new Size(29, 20);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
@@ -93,10 +90,9 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(815, 1);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Location = new Point(713, 1);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(33, 27);
+            pictureBox1.Size = new Size(29, 20);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
@@ -108,10 +104,9 @@ namespace PreyectoDesarrollo_unicah
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
-            panel1.Location = new Point(-5, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Location = new Point(-4, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(849, 116);
+            panel1.Size = new Size(743, 87);
             panel1.TabIndex = 11;
             // 
             // lblPersona
@@ -119,21 +114,19 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.AutoSize = true;
             lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(696, 85);
+            lblPersona.Location = new Point(609, 64);
             lblPersona.Name = "lblPersona";
-            lblPersona.Size = new Size(163, 23);
+            lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 16;
             lblPersona.Text = "Nombre_Persona";
-            lblPersona.Click += lblPersona_Click;
             // 
             // pictureBox3
             // 
             pictureBox3.BackgroundImageLayout = ImageLayout.None;
             pictureBox3.Image = Properties.Resources.CircularFondoAzul;
-            pictureBox3.Location = new Point(-29, 0);
-            pictureBox3.Margin = new Padding(3, 4, 3, 4);
+            pictureBox3.Location = new Point(-25, 0);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(163, 108);
+            pictureBox3.Size = new Size(143, 81);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 8;
             pictureBox3.TabStop = false;
@@ -144,18 +137,15 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.AllowUserToDeleteRows = false;
             dgvAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAdmin.Columns.AddRange(new DataGridViewColumn[] { clmAsignaturaFacu, clmCurso, clmSeccion, clmAulaFull, clmEmpleado, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
-            dgvAdmin.Location = new Point(14, 165);
-            dgvAdmin.Margin = new Padding(3, 4, 3, 4);
+            dgvAdmin.Location = new Point(12, 124);
             dgvAdmin.Name = "dgvAdmin";
             dgvAdmin.ReadOnly = true;
-            dgvAdmin.RowHeadersWidth = 51;
-            dgvAdmin.Size = new Size(816, 357);
+            dgvAdmin.Size = new Size(714, 268);
             dgvAdmin.TabIndex = 13;
             // 
             // clmAsignaturaFacu
             // 
             clmAsignaturaFacu.HeaderText = "Referencia";
-            clmAsignaturaFacu.MinimumWidth = 6;
             clmAsignaturaFacu.Name = "clmAsignaturaFacu";
             clmAsignaturaFacu.ReadOnly = true;
             clmAsignaturaFacu.Width = 115;
@@ -163,7 +153,6 @@ namespace PreyectoDesarrollo_unicah
             // clmCurso
             // 
             clmCurso.HeaderText = "Curso";
-            clmCurso.MinimumWidth = 6;
             clmCurso.Name = "clmCurso";
             clmCurso.ReadOnly = true;
             clmCurso.Width = 150;
@@ -171,7 +160,6 @@ namespace PreyectoDesarrollo_unicah
             // clmSeccion
             // 
             clmSeccion.HeaderText = "Sección";
-            clmSeccion.MinimumWidth = 6;
             clmSeccion.Name = "clmSeccion";
             clmSeccion.ReadOnly = true;
             clmSeccion.Width = 58;
@@ -179,15 +167,12 @@ namespace PreyectoDesarrollo_unicah
             // clmAulaFull
             // 
             clmAulaFull.HeaderText = "Aula";
-            clmAulaFull.MinimumWidth = 6;
             clmAulaFull.Name = "clmAulaFull";
             clmAulaFull.ReadOnly = true;
-            clmAulaFull.Width = 125;
             // 
             // clmEmpleado
             // 
             clmEmpleado.HeaderText = "Empleado";
-            clmEmpleado.MinimumWidth = 6;
             clmEmpleado.Name = "clmEmpleado";
             clmEmpleado.ReadOnly = true;
             clmEmpleado.Width = 125;
@@ -195,7 +180,6 @@ namespace PreyectoDesarrollo_unicah
             // clmLunes
             // 
             clmLunes.HeaderText = "L";
-            clmLunes.MinimumWidth = 6;
             clmLunes.Name = "clmLunes";
             clmLunes.ReadOnly = true;
             clmLunes.Width = 20;
@@ -203,7 +187,6 @@ namespace PreyectoDesarrollo_unicah
             // clmMartes
             // 
             clmMartes.HeaderText = "M";
-            clmMartes.MinimumWidth = 6;
             clmMartes.Name = "clmMartes";
             clmMartes.ReadOnly = true;
             clmMartes.Width = 22;
@@ -211,7 +194,6 @@ namespace PreyectoDesarrollo_unicah
             // clmMiercoles
             // 
             clmMiercoles.HeaderText = "M";
-            clmMiercoles.MinimumWidth = 6;
             clmMiercoles.Name = "clmMiercoles";
             clmMiercoles.ReadOnly = true;
             clmMiercoles.Width = 22;
@@ -219,7 +201,6 @@ namespace PreyectoDesarrollo_unicah
             // clmJueves
             // 
             clmJueves.HeaderText = "J";
-            clmJueves.MinimumWidth = 6;
             clmJueves.Name = "clmJueves";
             clmJueves.ReadOnly = true;
             clmJueves.Width = 20;
@@ -227,7 +208,6 @@ namespace PreyectoDesarrollo_unicah
             // clmViernes
             // 
             clmViernes.HeaderText = "V";
-            clmViernes.MinimumWidth = 6;
             clmViernes.Name = "clmViernes";
             clmViernes.ReadOnly = true;
             clmViernes.Width = 20;
@@ -235,7 +215,6 @@ namespace PreyectoDesarrollo_unicah
             // clmSabado
             // 
             clmSabado.HeaderText = "S";
-            clmSabado.MinimumWidth = 6;
             clmSabado.Name = "clmSabado";
             clmSabado.ReadOnly = true;
             clmSabado.Width = 20;
@@ -243,35 +222,35 @@ namespace PreyectoDesarrollo_unicah
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(358, 135);
+            label1.Location = new Point(313, 101);
             label1.Name = "label1";
-            label1.Size = new Size(163, 20);
+            label1.Size = new Size(129, 15);
             label1.TabIndex = 12;
             label1.Text = "MIGRACIÓN DE DATOS";
             // 
             // lblPeriodo
             // 
             lblPeriodo.AutoSize = true;
-            lblPeriodo.Location = new Point(34, 551);
+            lblPeriodo.Location = new Point(30, 413);
             lblPeriodo.Name = "lblPeriodo";
-            lblPeriodo.Size = new Size(60, 20);
+            lblPeriodo.Size = new Size(48, 15);
             lblPeriodo.TabIndex = 16;
             lblPeriodo.Text = "Periodo";
             // 
             // lblWeek
             // 
             lblWeek.AutoSize = true;
-            lblWeek.Location = new Point(111, 551);
+            lblWeek.Location = new Point(97, 413);
             lblWeek.Name = "lblWeek";
-            lblWeek.Size = new Size(62, 20);
+            lblWeek.Size = new Size(49, 15);
             lblWeek.TabIndex = 17;
             lblWeek.Text = "Semana";
             // 
             // frmMigración
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(845, 605);
+            ClientSize = new Size(739, 454);
             Controls.Add(lblWeek);
             Controls.Add(lblPeriodo);
             Controls.Add(btnExcel);
@@ -280,7 +259,6 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(dgvAdmin);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmMigración";
             Text = "FrmReporte";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

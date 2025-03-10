@@ -1,4 +1,3 @@
-using PreyectoDesarrollo_unicah.CLASES;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,11 +15,6 @@ namespace PreyectoDesarrollo_unicah
         public frmMigración()
         {
             InitializeComponent();
-        }
-
-        private void lblPersona_Click(object sender, EventArgs e)
-        {
-            lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
         }
     }
 }
