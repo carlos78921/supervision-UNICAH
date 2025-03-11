@@ -255,7 +255,6 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmDocente";
-            Text = "z";
             Load += frmDocente_Load;
             MouseDown += frmDocente_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
