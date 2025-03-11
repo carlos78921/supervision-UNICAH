@@ -37,9 +37,18 @@ namespace PreyectoDesarrollo_unicah
 
         private void frmDocente_Load(object sender, EventArgs e) //Método del formulario
         {
-            int fila = dgvDoc.Rows.Count;
+            string doc = ACCIONES_BD.docente;
+            if (string.IsNullOrEmpty(doc))
+            {
+                MessageBox.Show("Error: Código del docente no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Hasta aquí concluye si sucede
+            }
             lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
-            ACCIONES_BD objDoc = new ACCIONES_BD(docente);
+            ACCIONES_BD objDoc = new ACCIONES_BD(doc);
+            dgvDoc.AutoGenerateColumns = true;
+            //MessageBox.Show($"Código del docente: {ACCIONES_BD.docente}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            objDoc.tabla_docente(dgvDoc);
+            //MessageBox.Show($"Columnas en dgvDoc: {dgvDoc.Columns.Count}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
