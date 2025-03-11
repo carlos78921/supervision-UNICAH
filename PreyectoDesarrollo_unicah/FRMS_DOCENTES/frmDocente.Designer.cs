@@ -135,7 +135,6 @@ namespace PreyectoDesarrollo_unicah
             dgvDoc.ReadOnly = true;
             dgvDoc.Size = new Size(350, 144);
             dgvDoc.TabIndex = 16;
-            dgvDoc.CellContentClick += dgvDoc_CellContentClick;
             // 
             // clmClase
             // 

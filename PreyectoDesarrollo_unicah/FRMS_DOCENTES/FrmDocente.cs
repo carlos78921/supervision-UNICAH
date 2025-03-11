@@ -60,11 +60,6 @@ namespace PreyectoDesarrollo_unicah
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void dgvDoc_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void frmDocente_MouseDown(object sender, MouseEventArgs e)
         {
             //este es para poder mover el form
