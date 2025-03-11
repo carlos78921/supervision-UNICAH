@@ -1,3 +1,4 @@
+using PreyectoDesarrollo_unicah.CLASES;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,30 @@ namespace PreyectoDesarrollo_unicah
         public frmMigración()
         {
             InitializeComponent();
+        }
+
+        private void frmMigración_Load(object sender, EventArgs e)
+        {
+            lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form1 Login = new Form1();
+            Login.Show();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form1 Login = new Form1();
+            Login.Show();
         }
     }
 }
