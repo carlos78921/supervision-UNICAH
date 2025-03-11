@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -53,8 +54,20 @@ namespace PreyectoDesarrollo_unicah
             cmbAula.SelectedIndex = 0;
             cmbHora.SelectedIndex = 0;
 
-        }
+            string pa = "PA_Asistencia_Superv";
+            string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
+            using (SqlConnection conn = new SqlConnection(conexion))
+            {
+                SqlCommand cmd = new SqlCommand(pa, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dgvAsiste.DataSource = dt;
+            }
+        }
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();

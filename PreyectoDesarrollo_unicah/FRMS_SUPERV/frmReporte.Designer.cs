@@ -36,7 +36,7 @@
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
             label1 = new Label();
-            dgvSuper = new DataGridView();
+            dgvAsiste = new DataGridView();
             clmDoc = new DataGridViewTextBoxColumn();
             clmClase = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
@@ -66,7 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvSuper).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvAsiste).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudWeeks).BeginInit();
             gbFiltro.SuspendLayout();
             SuspendLayout();
@@ -143,17 +143,17 @@
             label1.TabIndex = 12;
             label1.Text = "REPORTE DE ASISTENCIA";
             // 
-            // dgvSuper
+            // dgvAsiste
             // 
-            dgvSuper.AllowUserToAddRows = false;
-            dgvSuper.AllowUserToDeleteRows = false;
-            dgvSuper.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSuper.Columns.AddRange(new DataGridViewColumn[] { clmDoc, clmClase, clmSeccion, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
-            dgvSuper.Location = new Point(20, 222);
-            dgvSuper.Name = "dgvSuper";
-            dgvSuper.ReadOnly = true;
-            dgvSuper.Size = new Size(474, 216);
-            dgvSuper.TabIndex = 17;
+            dgvAsiste.AllowUserToAddRows = false;
+            dgvAsiste.AllowUserToDeleteRows = false;
+            dgvAsiste.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvAsiste.Columns.AddRange(new DataGridViewColumn[] { clmDoc, clmClase, clmSeccion, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
+            dgvAsiste.Location = new Point(20, 222);
+            dgvAsiste.Name = "dgvAsiste";
+            dgvAsiste.ReadOnly = true;
+            dgvAsiste.Size = new Size(474, 216);
+            dgvAsiste.TabIndex = 17;
             // 
             // clmDoc
             // 
@@ -350,7 +350,7 @@
             lblMeses.Text = "Periodo";
             lblMeses.Visible = false;
             // 
-            // frmSupervisor
+            // frmReporte
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -366,12 +366,12 @@
             Controls.Add(label5);
             Controls.Add(nudWeeks);
             Controls.Add(label2);
-            Controls.Add(dgvSuper);
+            Controls.Add(dgvAsiste);
             Controls.Add(panel1);
             Controls.Add(btnSalir);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "frmSupervisor";
+            Name = "frmReporte";
             Text = "FrmReporte";
             Load += FrmReporte_Load;
             MouseDown += frmSupervisor_MouseDown;
@@ -380,7 +380,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvSuper).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvAsiste).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudWeeks).EndInit();
             gbFiltro.ResumeLayout(false);
             ResumeLayout(false);
@@ -394,7 +394,7 @@
         private Panel panel1;
         private PictureBox pictureBox3;
         private Label label1;
-        private DataGridView dgvSuper;
+        private DataGridView dgvAsiste;
         private Label lblPersona;
         private NumericUpDown nudWeeks;
         private Label label2;

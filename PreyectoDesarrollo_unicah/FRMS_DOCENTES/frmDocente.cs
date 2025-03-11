@@ -62,7 +62,24 @@ namespace PreyectoDesarrollo_unicah
 
         private void dgvDoc_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                string dia = dgvAsiste.Columns[e.ColumnIndex].Name; // Día modificado
+                bool asistencia = Convert.ToBoolean(dgvAsiste.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+                string asignatura = dgvAsiste.Rows[e.RowIndex].Cells["Asignatura"].Value.ToString();
+                string docente = dgvAsiste.Rows[e.RowIndex].Cells["Docente"].Value.ToString();
+                string seccion = dgvAsiste.Rows[e.RowIndex].Cells["Seccion"].Value.ToString();
+                DateTime fechaActual = DateTime.Today;
 
+                if (asistencia)
+                {
+                    MarcarAsistencia(asignatura, docente, seccion, dia, fechaActual); //En ACCIONES_BD
+                }
+                else
+                {
+                    RegistrarFalta(asignatura, docente, seccion, dia, fechaActual); //En ACCIONES_BD
+                }
+            }
         }
 
         private void frmDocente_MouseDown(object sender, MouseEventArgs e)
