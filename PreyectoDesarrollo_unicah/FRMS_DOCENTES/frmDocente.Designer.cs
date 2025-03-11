@@ -59,10 +59,9 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(283, 387);
-            btnLogout.Margin = new Padding(3, 4, 3, 4);
+            btnLogout.Location = new Point(248, 290);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(144, 31);
+            btnLogout.Size = new Size(126, 23);
             btnLogout.TabIndex = 17;
             btnLogout.Text = "&CERRAR SESIÓN";
             btnLogout.UseVisualStyleBackColor = true;
@@ -71,10 +70,9 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(361, 4);
-            pictureBox2.Margin = new Padding(3, 4, 3, 4);
+            pictureBox2.Location = new Point(327, 1);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(33, 27);
+            pictureBox2.Size = new Size(29, 20);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
@@ -83,10 +81,9 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(401, 4);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Location = new Point(362, 1);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(33, 27);
+            pictureBox1.Size = new Size(29, 20);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
@@ -99,10 +96,9 @@ namespace PreyectoDesarrollo_unicah
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
-            panel1.Location = new Point(-5, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Location = new Point(-4, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(440, 116);
+            panel1.Size = new Size(394, 87);
             panel1.TabIndex = 11;
             panel1.MouseDown += panel1_MouseDown;
             // 
@@ -111,9 +107,9 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.AutoSize = true;
             lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(285, 84);
+            lblPersona.Location = new Point(260, 61);
             lblPersona.Name = "lblPersona";
-            lblPersona.Size = new Size(163, 23);
+            lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 22;
             lblPersona.Text = "Nombre_Persona";
             lblPersona.Click += lblPersona_Click;
@@ -122,10 +118,9 @@ namespace PreyectoDesarrollo_unicah
             // 
             pictureBox3.BackgroundImageLayout = ImageLayout.None;
             pictureBox3.Image = Properties.Resources.CircularFondoAzul;
-            pictureBox3.Location = new Point(-29, 0);
-            pictureBox3.Margin = new Padding(3, 4, 3, 4);
+            pictureBox3.Location = new Point(-25, 0);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(163, 108);
+            pictureBox3.Size = new Size(143, 81);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 8;
             pictureBox3.TabStop = false;
@@ -136,12 +131,11 @@ namespace PreyectoDesarrollo_unicah
             dgvDoc.AllowUserToDeleteRows = false;
             dgvDoc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDoc.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmSeccion, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
-            dgvDoc.Location = new Point(17, 184);
-            dgvDoc.Margin = new Padding(3, 4, 3, 4);
+            dgvDoc.Location = new Point(14, 139);
             dgvDoc.Name = "dgvDoc";
             dgvDoc.ReadOnly = true;
             dgvDoc.RowHeadersWidth = 51;
-            dgvDoc.Size = new Size(400, 192);
+            dgvDoc.Size = new Size(359, 144);
             dgvDoc.TabIndex = 16;
             dgvDoc.CellContentClick += dgvDoc_CellContentClick;
             // 
@@ -214,35 +208,34 @@ namespace PreyectoDesarrollo_unicah
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(145, 123);
+            label1.Location = new Point(127, 92);
             label1.Name = "label1";
-            label1.Size = new Size(165, 20);
+            label1.Size = new Size(132, 15);
             label1.TabIndex = 15;
             label1.Text = "ASISTENCIA PERSONAL";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(149, 153);
+            label2.Location = new Point(130, 115);
             label2.Name = "label2";
-            label2.Size = new Size(65, 20);
+            label2.Size = new Size(52, 15);
             label2.TabIndex = 18;
             label2.Text = "Semana:";
             // 
             // nudWeeks
             // 
-            nudWeeks.Location = new Point(213, 147);
-            nudWeeks.Margin = new Padding(3, 4, 3, 4);
+            nudWeeks.Location = new Point(186, 110);
             nudWeeks.Name = "nudWeeks";
-            nudWeeks.Size = new Size(56, 27);
+            nudWeeks.Size = new Size(49, 23);
             nudWeeks.TabIndex = 19;
             // 
             // lblDoc
             // 
             lblDoc.AutoSize = true;
-            lblDoc.Location = new Point(14, 392);
+            lblDoc.Location = new Point(12, 294);
             lblDoc.Name = "lblDoc";
-            lblDoc.Size = new Size(65, 20);
+            lblDoc.Size = new Size(51, 15);
             lblDoc.TabIndex = 20;
             lblDoc.Text = "Docente";
             lblDoc.Visible = false;
@@ -250,18 +243,18 @@ namespace PreyectoDesarrollo_unicah
             // lblMeses
             // 
             lblMeses.AutoSize = true;
-            lblMeses.Location = new Point(369, 123);
+            lblMeses.Location = new Point(339, 92);
             lblMeses.Name = "lblMeses";
-            lblMeses.Size = new Size(60, 20);
+            lblMeses.Size = new Size(48, 15);
             lblMeses.TabIndex = 21;
             lblMeses.Text = "Periodo";
             lblMeses.Visible = false;
             // 
             // frmDocente
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(434, 424);
+            ClientSize = new Size(385, 318);
             Controls.Add(lblMeses);
             Controls.Add(lblDoc);
             Controls.Add(nudWeeks);
@@ -271,7 +264,6 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmDocente";
             Text = "FrmReporte";
             Load += frmDocente_Load;
