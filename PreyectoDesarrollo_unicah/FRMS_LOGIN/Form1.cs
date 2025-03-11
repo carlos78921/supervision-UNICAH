@@ -83,7 +83,7 @@ namespace PreyectoDesarrollo_unicah
             try
             {
                 // Consulta para obtener el rol, nombre y apellido
-                string cadenaConexion = "Data Source= Servidor del SQL (También en Conexión_BD);Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
+                string cadenaConexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
                 {
                     conexion.Open();
