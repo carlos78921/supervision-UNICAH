@@ -1,8 +1,10 @@
 ﻿using PreyectoDesarrollo_unicah.CLASES;
+using PreyectoDesarrollo_unicah.FRMS_SUPERV;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -12,7 +14,7 @@ using System.Windows.Forms;
 
 namespace PreyectoDesarrollo_unicah
 {
-    public partial class frmSupervisor : Form
+    public partial class frmReporte : Form
     {
         [DllImport("user32.dll")]
         private static extern bool ReleaseCapture(); //Externo por la importación realizada en comando
@@ -23,18 +25,11 @@ namespace PreyectoDesarrollo_unicah
         private const int WM_NCLBUTTONDOWN = 0xA1;
         private const int HTCAPTION = 0x2;
 
-        private void CargarNombreUsuario()
-        {
-            ACCIONES_BD accionesBD = new ACCIONES_BD();
-            string nombreCompleto = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}".Trim();
-            this.Text = string.IsNullOrEmpty(nombreCompleto) ? "Supervisor" : $"Supervisor - {nombreCompleto}";
-        }
-
-        public frmSupervisor()
+        public frmReporte()
         {
             InitializeComponent();
             this.MouseDown += frmSupervisor_MouseDown;
-            CargarNombreUsuario();
+
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -48,16 +43,21 @@ namespace PreyectoDesarrollo_unicah
 
         private void FrmReporte_Load(object sender, EventArgs e)
         {
+            lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
             cmbEdificio.SelectedIndex = 0;
             cmbAula.SelectedIndex = 0;
             cmbHora.SelectedIndex = 0;
+            ACCIONES_BD.tablaSupervisor(dgvAsiste);
+            dgvAsiste.Columns[0].ReadOnly = true;
+            dgvAsiste.Columns[1].ReadOnly = true;
+            dgvAsiste.Columns[2].ReadOnly = true;
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
-            Form1 Login = new Form1();
-            Login.Show();
+            frmSupervisor Menu = new frmSupervisor();
+            Menu.Show();
         }
 
         private void tmrFecha_Tick(object sender, EventArgs e)
@@ -74,59 +74,38 @@ namespace PreyectoDesarrollo_unicah
             }
         }
 
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-
-        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-
-        private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
-
-        private void btnReporte_Click(object sender, EventArgs e)
+        private void dgvAsiste_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //El "e" proviene de celdas afectadas como los checkbox
         {
-            this.Close();
-            frmReporte reporte = new frmReporte();
-            reporte.Show();
-        }
+            //Clic solo en columnas con checkbox, los de textbox como docentes, entre otros, no se afectan
+            if (!(dgvAsiste.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn))
+                return;
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                if (dgvAsiste.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+                {
+                    // Finaliza la edición para que el cambio se registre inmediatamente
+                    dgvAsiste.EndEdit();
 
-        private void btnOrden_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            frmOrden orden = new frmOrden();
-            orden.Show();
-        }
+                    string dia = dgvAsiste.Columns[e.ColumnIndex].Name; // Día modificado
 
-        private void btnLogOut_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Form1 Login = new Form1();
-            Login.Show();
-        }
+                    string Docente = dgvAsiste.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    string Asignatura = dgvAsiste.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    string Sitio = dgvAsiste.Rows[e.RowIndex].Cells[2].Value.ToString();
 
-        private void frmSupervisor_Load(object sender, EventArgs e)
-        {
-            lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
-        }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
+                    // Aquí puedes llamar a la función que maneja el cambio (por ejemplo, llamar a PA_Marcar_Asistencia o PA_Registrar_Falta)
+                    bool asistencia = Convert.ToBoolean(dgvAsiste.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Form1 Login = new Form1();
-            Login.Show();
-
+                    if (asistencia)
+                        ACCIONES_BD.presenteSup(Docente, Asignatura, Sitio, dia);
+                    else
+                        ACCIONES_BD.RegistrarFalta(Docente, Asignatura, Sitio, dia);
+                }
+            }
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
-        }
-
-        private void frmSupervisor_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
