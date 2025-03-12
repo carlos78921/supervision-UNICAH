@@ -59,8 +59,8 @@
             txtDoc = new TextBox();
             btnLogout = new Button();
             tmrFecha = new System.Windows.Forms.Timer(components);
-            lblFecha = new Label();
             lblMeses = new Label();
+            lblFecha = new Label();
             btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -332,15 +332,6 @@
             tmrFecha.Enabled = true;
             tmrFecha.Tick += tmrFecha_Tick;
             // 
-            // lblFecha
-            // 
-            lblFecha.AutoSize = true;
-            lblFecha.Location = new Point(444, 92);
-            lblFecha.Name = "lblFecha";
-            lblFecha.Size = new Size(41, 15);
-            lblFecha.TabIndex = 40;
-            lblFecha.Text = "Fecha ";
-            // 
             // lblMeses
             // 
             lblMeses.AutoSize = true;
@@ -350,6 +341,15 @@
             lblMeses.TabIndex = 41;
             lblMeses.Text = "Periodo";
             lblMeses.Visible = false;
+            // 
+            // lblFecha
+            // 
+            lblFecha.AutoSize = true;
+            lblFecha.Location = new Point(444, 92);
+            lblFecha.Name = "lblFecha";
+            lblFecha.Size = new Size(41, 15);
+            lblFecha.TabIndex = 40;
+            lblFecha.Text = "Fecha ";
             // 
             // frmReporte
             // 
@@ -410,7 +410,6 @@
         private TextBox txtDoc;
         private Button btnLogout;
         private System.Windows.Forms.Timer tmrFecha;
-        private Label lblFecha;
         private Label lblMeses;
         private DataGridViewTextBoxColumn clmDoc;
         private DataGridViewTextBoxColumn clmClase;
@@ -421,5 +420,6 @@
         private DataGridViewCheckBoxColumn clmJueves;
         private DataGridViewCheckBoxColumn clmViernes;
         private DataGridViewCheckBoxColumn clmSabado;
+        private Label lblFecha;
     }
 }

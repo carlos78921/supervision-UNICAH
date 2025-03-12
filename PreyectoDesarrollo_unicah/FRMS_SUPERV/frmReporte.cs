@@ -53,21 +53,9 @@ namespace PreyectoDesarrollo_unicah
             cmbEdificio.SelectedIndex = 0;
             cmbAula.SelectedIndex = 0;
             cmbHora.SelectedIndex = 0;
-
-            string pa = "PA_Asistencia_Superv";
-            string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
-            using (SqlConnection conn = new SqlConnection(conexion))
-            {
-                SqlCommand cmd = new SqlCommand(pa, conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                dgvAsiste.DataSource = dt;
-            }
+            ACCIONES_BD.tablaSupervisor(dgvAsiste);
         }
+
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -89,36 +77,22 @@ namespace PreyectoDesarrollo_unicah
             }
         }
 
-        private int ObtenerIndiceColumna(string dia)
-        {
-            switch (dia)
-            {
-                case "Lunes": return 0;
-                case "Martes": return 1;
-                case "Miércoles": return 2;
-                case "Jueves": return 3;
-                case "Viernes": return 4;
-                case "Sábado": return 5;
-                default: return -1;
-            }
-        }
-
-        private void dgvAsiste_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvAsiste_CellContentClick(object sender, DataGridViewCellEventArgs e) 
+        //El "e" proviene de celdas afectadas como los checkbox
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 string dia = dgvAsiste.Columns[e.ColumnIndex].Name; // Día modificado
                 bool asistencia = Convert.ToBoolean(dgvAsiste.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
 
-                string codAsignatura = dgvAsiste.Rows[e.RowIndex].Cells["Cod_Asignatura"].Value.ToString();
-                int idSitio = Convert.ToInt32(dgvAsiste.Rows[e.RowIndex].Cells["ID_Sitio"].Value);
-                string codEmpleado = dgvAsiste.Rows[e.RowIndex].Cells["Codigo_Empleado"].Value.ToString();
-                DateTime fechaActual = DateTime.Today;
+                string codAsignatura = dgvAsiste.Rows[e.RowIndex].Cells[0].Value.ToString();
+                string codEmpleado = dgvAsiste.Rows[e.RowIndex].Cells[1].Value.ToString();
+                string idSitio = dgvAsiste.Rows[e.RowIndex].Cells[2].Value.ToString();
 
                 if (asistencia)
-                    ACCIONES_BD.presenteSup(codAsignatura, idSitio, codEmpleado, fechaActual, dia);
+                    ACCIONES_BD.presenteSup(codAsignatura, idSitio, codEmpleado, dia);
                 else
-                    ACCIONES_BD.RegistrarFalta(codAsignatura, idSitio, codEmpleado, fechaActual, dia);
+                    ACCIONES_BD.RegistrarFalta(codAsignatura, idSitio, codEmpleado, dia);
             }
         }
     }

@@ -84,7 +84,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             {
                 MessageBox.Show($"Columna encontrada: {col.ColumnName}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }*/
-            
+
             if (dt.Rows.Count > 0)
             {
                 /* Limpia las columnas actuales para evitar duplicados posiblemente por el PA
@@ -100,19 +100,14 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.AutoGenerateColumns = true;
                 dgv.Refresh(); // Forzar actualización de la UI
 
-                /* Ajustar anchos de columnas por dgv "nueva" (ahora deberían de haber 8 columnas
-                detectadas en valores)*/
-                if (dgv.Columns.Count >= 8)
-                {
-                    dgv.Columns[0].Width = 125;
-                    dgv.Columns[1].Width = 58;
-                    dgv.Columns[2].Width = 20;
-                    dgv.Columns[3].Width = 22;
-                    dgv.Columns[4].Width = 22;
-                    dgv.Columns[5].Width = 20;
-                    dgv.Columns[6].Width = 20;
-                    dgv.Columns[7].Width = 20;
-                }
+                dgv.Columns[0].Width = 125;
+                dgv.Columns[1].Width = 58;
+                dgv.Columns[2].Width = 20;
+                dgv.Columns[3].Width = 22;
+                dgv.Columns[4].Width = 22;
+                dgv.Columns[5].Width = 20;
+                dgv.Columns[6].Width = 20;
+                dgv.Columns[7].Width = 20;
             }
             else
             {
@@ -120,7 +115,52 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static void presenteSup(string codAsignatura, int idSitio, string codEmpleado, DateTime fecha, string dia)
+        public static DataTable tablaSupervisor(DataGridView dgv)
+        {
+            string pa = "PA_Asistencia_Superv";
+            string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
+
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(conexion))
+                {
+                    SqlCommand cmd = new SqlCommand(pa, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener datos: " + ex.Message);
+            }
+            if (dt.Rows.Count > 0)
+            {
+                dgv.Columns.Clear();
+
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dt;
+                dgv.DataSource = bs;
+                bs.ResetBindings(false);
+                dgv.AutoGenerateColumns = true;
+                dgv.Refresh(); // Forzar actualización de la UI
+
+                dgv.Columns[0].Width = 100;
+                dgv.Columns[1].Width = 150;
+                dgv.Columns[2].Width = 58;
+                dgv.Columns[3].Width = 20;
+                dgv.Columns[4].Width = 22;
+                dgv.Columns[5].Width = 22;
+                dgv.Columns[6].Width = 20;
+                dgv.Columns[7].Width = 20;
+                dgv.Columns[8].Width = 20;
+            }
+            return dt;
+        }
+
+        public static void presenteSup(string codAsignatura, string idSitio, string codEmpleado, string dia)
         {
             try
             {
@@ -135,7 +175,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         cmd.Parameters.AddWithValue("@Cod_Asignatura", codAsignatura);
                         cmd.Parameters.AddWithValue("@ID_Sitio", idSitio);
                         cmd.Parameters.AddWithValue("@Codigo_Empleado", codEmpleado);
-                        cmd.Parameters.AddWithValue("@Fecha", fecha);
+                        cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
                         cmd.Parameters.AddWithValue("@Dia", dia);
                         cmd.ExecuteNonQuery();
                     }
@@ -147,7 +187,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static void RegistrarFalta(string codAsignatura, int idSitio, string codEmpleado, DateTime fecha, string dia)
+        public static void RegistrarFalta(string codAsignatura, string idSitio, string codEmpleado, string dia)
         {
             try
             {
@@ -161,7 +201,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.Parameters.AddWithValue("@Cod_Asignatura", codAsignatura);
                     cmd.Parameters.AddWithValue("@ID_Sitio", idSitio);
                     cmd.Parameters.AddWithValue("@Codigo_Empleado", codEmpleado);
-                    cmd.Parameters.AddWithValue("@Fecha", fecha);
+                    cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
                     cmd.Parameters.AddWithValue("@Dia", dia);
 
                     cmd.ExecuteNonQuery();
