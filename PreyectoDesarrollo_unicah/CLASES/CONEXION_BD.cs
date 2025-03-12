@@ -16,8 +16,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
     internal class CONEXION_BD
     {
-
-        string conexion = "DATA SOURCE = Servidor del SQL; Initial Catalog=Supervision_Unicah; Integrated Security=True";
+        string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
         public SqlConnection conectar = new SqlConnection();
 
 

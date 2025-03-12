@@ -74,6 +74,7 @@ namespace PreyectoDesarrollo_unicah
             }
         }
 
+<<<<<<< HEAD
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
@@ -131,5 +132,11 @@ namespace PreyectoDesarrollo_unicah
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
+=======
+        private void lblPersona_Click(object sender, EventArgs e)
+        {
+            lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
+        }
+>>>>>>> 2ef61400c506789df19a139b0eb97ecd68bdb72b
     }
 }

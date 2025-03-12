@@ -33,10 +33,19 @@
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
-            label4 = new Label();
+            lblPersona = new Label();
             pictureBox3 = new PictureBox();
             label1 = new Label();
             dgvDoc = new DataGridView();
+            clmDoc = new DataGridViewTextBoxColumn();
+            clmClase = new DataGridViewTextBoxColumn();
+            clmSeccion = new DataGridViewTextBoxColumn();
+            clmLunes = new DataGridViewCheckBoxColumn();
+            clmMartes = new DataGridViewCheckBoxColumn();
+            clmMiercoles = new DataGridViewCheckBoxColumn();
+            clmJueves = new DataGridViewCheckBoxColumn();
+            clmViernes = new DataGridViewCheckBoxColumn();
+            clmSabado = new DataGridViewCheckBoxColumn();
             nudWeeks = new NumericUpDown();
             label2 = new Label();
             label5 = new Label();
@@ -53,15 +62,6 @@
             tmrFecha = new System.Windows.Forms.Timer(components);
             lblFecha = new Label();
             lblMeses = new Label();
-            clmDoc = new DataGridViewTextBoxColumn();
-            clmClase = new DataGridViewTextBoxColumn();
-            clmSeccion = new DataGridViewTextBoxColumn();
-            clmLunes = new DataGridViewCheckBoxColumn();
-            clmMartes = new DataGridViewCheckBoxColumn();
-            clmMiercoles = new DataGridViewCheckBoxColumn();
-            clmJueves = new DataGridViewCheckBoxColumn();
-            clmViernes = new DataGridViewCheckBoxColumn();
-            clmSabado = new DataGridViewCheckBoxColumn();
             btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -93,7 +93,7 @@
             // 
 <<<<<<< Updated upstream
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(450, 2);
+            pictureBox2.Location = new Point(480, 0);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(29, 21);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -114,7 +114,7 @@
             // 
 <<<<<<< Updated upstream
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(485, 2);
+            pictureBox1.Location = new Point(515, 0);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 21);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -134,14 +134,18 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.HotTrack;
-            panel1.Controls.Add(label4);
+            panel1.Controls.Add(lblPersona);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(-4, 0);
             panel1.Name = "panel1";
+<<<<<<< HEAD
 <<<<<<< Updated upstream
             panel1.Size = new Size(517, 87);
+=======
+            panel1.Size = new Size(547, 87);
+>>>>>>> 2ef61400c506789df19a139b0eb97ecd68bdb72b
             panel1.TabIndex = 11;
 =======
             panel1.Size = new Size(420, 82);
@@ -149,16 +153,17 @@
             panel1.MouseDown += panel1_MouseDown;
 >>>>>>> Stashed changes
             // 
-            // label4
+            // lblPersona
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(382, 63);
-            label4.Name = "label4";
-            label4.Size = new Size(132, 18);
-            label4.TabIndex = 23;
-            label4.Text = "Nombre_Persona";
+            lblPersona.AutoSize = true;
+            lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPersona.ForeColor = Color.White;
+            lblPersona.Location = new Point(412, 61);
+            lblPersona.Name = "lblPersona";
+            lblPersona.Size = new Size(132, 18);
+            lblPersona.TabIndex = 23;
+            lblPersona.Text = "Nombre_Persona";
+            lblPersona.Click += lblPersona_Click;
             // 
             // pictureBox3
             // 
@@ -175,7 +180,7 @@
             // 
 <<<<<<< Updated upstream
             label1.AutoSize = true;
-            label1.Location = new Point(209, 99);
+            label1.Location = new Point(223, 99);
             label1.Name = "label1";
             label1.Size = new Size(139, 15);
             label1.TabIndex = 12;
@@ -201,12 +206,87 @@
             dgvDoc.Location = new Point(20, 222);
             dgvDoc.Name = "dgvDoc";
             dgvDoc.ReadOnly = true;
-            dgvDoc.Size = new Size(474, 216);
+            dgvDoc.RowHeadersWidth = 51;
+            dgvDoc.Size = new Size(510, 216);
             dgvDoc.TabIndex = 17;
+            // 
+            // clmDoc
+            // 
+            clmDoc.HeaderText = "Docente";
+            clmDoc.MinimumWidth = 6;
+            clmDoc.Name = "clmDoc";
+            clmDoc.ReadOnly = true;
+            clmDoc.Width = 125;
+            // 
+            // clmClase
+            // 
+            clmClase.HeaderText = "Asignatura";
+            clmClase.MinimumWidth = 6;
+            clmClase.Name = "clmClase";
+            clmClase.ReadOnly = true;
+            clmClase.Width = 150;
+            // 
+            // clmSeccion
+            // 
+            clmSeccion.HeaderText = "Sección";
+            clmSeccion.MinimumWidth = 6;
+            clmSeccion.Name = "clmSeccion";
+            clmSeccion.ReadOnly = true;
+            clmSeccion.Width = 58;
+            // 
+            // clmLunes
+            // 
+            clmLunes.HeaderText = "L";
+            clmLunes.MinimumWidth = 6;
+            clmLunes.Name = "clmLunes";
+            clmLunes.ReadOnly = true;
+            clmLunes.Width = 20;
+            // 
+            // clmMartes
+            // 
+            clmMartes.HeaderText = "M";
+            clmMartes.MinimumWidth = 6;
+            clmMartes.Name = "clmMartes";
+            clmMartes.ReadOnly = true;
+            clmMartes.Width = 22;
+            // 
+            // clmMiercoles
+            // 
+            clmMiercoles.HeaderText = "X";
+            clmMiercoles.MinimumWidth = 6;
+            clmMiercoles.Name = "clmMiercoles";
+            clmMiercoles.ReadOnly = true;
+            clmMiercoles.Width = 22;
+            // 
+            // clmJueves
+            // 
+            clmJueves.HeaderText = "J";
+            clmJueves.MinimumWidth = 6;
+            clmJueves.Name = "clmJueves";
+            clmJueves.ReadOnly = true;
+            clmJueves.Width = 20;
+            // 
+            // clmViernes
+            // 
+            clmViernes.HeaderText = "V";
+            clmViernes.MinimumWidth = 6;
+            clmViernes.Name = "clmViernes";
+            clmViernes.ReadOnly = true;
+            clmViernes.Width = 20;
+            // 
+            // clmSabado
+            // 
+            clmSabado.HeaderText = "S";
+            clmSabado.MinimumWidth = 6;
+            clmSabado.Name = "clmSabado";
+            clmSabado.ReadOnly = true;
+            clmSabado.Resizable = DataGridViewTriState.True;
+            clmSabado.SortMode = DataGridViewColumnSortMode.Automatic;
+            clmSabado.Width = 20;
             // 
             // nudWeeks
             // 
-            nudWeeks.Location = new Point(101, 185);
+            nudWeeks.Location = new Point(115, 185);
             nudWeeks.Maximum = new decimal(new int[] { 5, 0, 0, 0 });
             nudWeeks.Name = "nudWeeks";
             nudWeeks.Size = new Size(49, 23);
@@ -215,7 +295,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(43, 189);
+            label2.Location = new Point(57, 189);
             label2.Name = "label2";
             label2.Size = new Size(52, 15);
             label2.TabIndex = 22;
@@ -224,7 +304,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(184, 130);
+            label5.Location = new Point(198, 130);
             label5.Name = "label5";
             label5.Size = new Size(67, 15);
             label5.TabIndex = 26;
@@ -232,14 +312,14 @@
             // 
             // txtClase
             // 
-            txtClase.Location = new Point(257, 127);
+            txtClase.Location = new Point(271, 127);
             txtClase.Name = "txtClase";
             txtClase.Size = new Size(168, 23);
             txtClase.TabIndex = 27;
             // 
             // btnBusca
             // 
-            btnBusca.Location = new Point(431, 115);
+            btnBusca.Location = new Point(445, 115);
             btnBusca.Name = "btnBusca";
             btnBusca.Size = new Size(75, 39);
             btnBusca.TabIndex = 28;
@@ -278,7 +358,7 @@
             gbFiltro.Controls.Add(cmbEdificio);
             gbFiltro.Controls.Add(cmbHora);
             gbFiltro.Controls.Add(cmbAula);
-            gbFiltro.Location = new Point(182, 157);
+            gbFiltro.Location = new Point(196, 157);
             gbFiltro.Name = "gbFiltro";
             gbFiltro.Size = new Size(324, 55);
             gbFiltro.TabIndex = 33;
@@ -288,7 +368,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(43, 119);
+            label6.Location = new Point(57, 119);
             label6.Name = "label6";
             label6.Size = new Size(120, 15);
             label6.TabIndex = 34;
@@ -296,7 +376,7 @@
             // 
             // txtDoc
             // 
-            txtDoc.Location = new Point(43, 153);
+            txtDoc.Location = new Point(57, 153);
             txtDoc.Name = "txtDoc";
             txtDoc.Size = new Size(118, 23);
             txtDoc.TabIndex = 35;
@@ -304,7 +384,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(65, 135);
+            label7.Location = new Point(79, 135);
             label7.Name = "label7";
             label7.Size = new Size(72, 15);
             label7.TabIndex = 36;
@@ -312,7 +392,7 @@
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(414, 444);
+            btnLogout.Location = new Point(444, 444);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(86, 23);
             btnLogout.TabIndex = 38;
@@ -328,7 +408,7 @@
             // lblFecha
             // 
             lblFecha.AutoSize = true;
-            lblFecha.Location = new Point(444, 92);
+            lblFecha.Location = new Point(458, 92);
             lblFecha.Name = "lblFecha";
             lblFecha.Size = new Size(41, 15);
             lblFecha.TabIndex = 40;
@@ -337,13 +417,14 @@
             // lblMeses
             // 
             lblMeses.AutoSize = true;
-            lblMeses.Location = new Point(6, 92);
+            lblMeses.Location = new Point(20, 92);
             lblMeses.Name = "lblMeses";
             lblMeses.Size = new Size(48, 15);
             lblMeses.TabIndex = 41;
             lblMeses.Text = "Periodo";
             lblMeses.Visible = false;
             // 
+<<<<<<< HEAD
             // clmDoc
             // 
             clmDoc.HeaderText = "Docente";
@@ -418,11 +499,13 @@
             pictureBox1.Click += pictureBox1_Click;
 >>>>>>> Stashed changes
             // 
+=======
+>>>>>>> 2ef61400c506789df19a139b0eb97ecd68bdb72b
             // frmSupervisor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(512, 475);
+            ClientSize = new Size(542, 475);
             Controls.Add(lblMeses);
             Controls.Add(lblFecha);
             Controls.Add(btnLogout);
@@ -470,7 +553,7 @@
         private PictureBox pictureBox3;
         private Label label1;
         private DataGridView dgvDoc;
-        private Label label4;
+        private Label lblPersona;
         private NumericUpDown nudWeeks;
         private Label label2;
         private Label label5;
