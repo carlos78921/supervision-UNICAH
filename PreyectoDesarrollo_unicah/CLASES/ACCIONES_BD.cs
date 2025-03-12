@@ -160,7 +160,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return dt;
         }
 
-        public static void presenteSup(string codAsignatura, string idSitio, string codEmpleado, string dia)
+        public static void presenteSup(string docente, string asignatura, string seccion, string dia)
         {
             try
             {
@@ -168,13 +168,13 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 using (SqlConnection conn = new SqlConnection(conexion))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("PA_MarcarAsistencia", conn))
+                    using (SqlCommand cmd = new SqlCommand("PA_Marcar_Asistencia", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@Cod_Asignatura", codAsignatura);
-                        cmd.Parameters.AddWithValue("@ID_Sitio", idSitio);
-                        cmd.Parameters.AddWithValue("@Codigo_Empleado", codEmpleado);
+                        cmd.Parameters.AddWithValue("@Asignatura", asignatura);
+                        cmd.Parameters.AddWithValue("@Docente", docente);
+                        cmd.Parameters.AddWithValue("@Seccion", seccion);
                         cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
                         cmd.Parameters.AddWithValue("@Dia", dia);
                         cmd.ExecuteNonQuery();
@@ -187,7 +187,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static void RegistrarFalta(string codAsignatura, string idSitio, string codEmpleado, string dia)
+        public static void RegistrarFalta(string docente, string asignatura, string seccion, string dia)
         {
             try
             {
@@ -198,9 +198,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     SqlCommand cmd = new SqlCommand("PA_Registrar_Falta", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@Cod_Asignatura", codAsignatura);
-                    cmd.Parameters.AddWithValue("@ID_Sitio", idSitio);
-                    cmd.Parameters.AddWithValue("@Codigo_Empleado", codEmpleado);
+                    cmd.Parameters.AddWithValue("@Asignatura", asignatura);
+                    cmd.Parameters.AddWithValue("@Docente", docente);
+                    cmd.Parameters.AddWithValue("@Seccion", seccion);
                     cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
                     cmd.Parameters.AddWithValue("@Dia", dia);
 

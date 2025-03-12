@@ -151,7 +151,6 @@
             dgvAsiste.Columns.AddRange(new DataGridViewColumn[] { clmDoc, clmClase, clmSeccion, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
             dgvAsiste.Location = new Point(20, 222);
             dgvAsiste.Name = "dgvAsiste";
-            dgvAsiste.ReadOnly = true;
             dgvAsiste.Size = new Size(474, 216);
             dgvAsiste.TabIndex = 17;
             dgvAsiste.CellContentClick += dgvAsiste_CellContentClick;
@@ -160,62 +159,53 @@
             // 
             clmDoc.HeaderText = "Docente";
             clmDoc.Name = "clmDoc";
-            clmDoc.ReadOnly = true;
             // 
             // clmClase
             // 
             clmClase.HeaderText = "Asignatura";
             clmClase.Name = "clmClase";
-            clmClase.ReadOnly = true;
             clmClase.Width = 150;
             // 
             // clmSeccion
             // 
             clmSeccion.HeaderText = "Sección";
             clmSeccion.Name = "clmSeccion";
-            clmSeccion.ReadOnly = true;
             clmSeccion.Width = 58;
             // 
             // clmLunes
             // 
             clmLunes.HeaderText = "L";
             clmLunes.Name = "clmLunes";
-            clmLunes.ReadOnly = true;
             clmLunes.Width = 20;
             // 
             // clmMartes
             // 
             clmMartes.HeaderText = "M";
             clmMartes.Name = "clmMartes";
-            clmMartes.ReadOnly = true;
             clmMartes.Width = 22;
             // 
             // clmMiercoles
             // 
             clmMiercoles.HeaderText = "X";
             clmMiercoles.Name = "clmMiercoles";
-            clmMiercoles.ReadOnly = true;
             clmMiercoles.Width = 22;
             // 
             // clmJueves
             // 
             clmJueves.HeaderText = "J";
             clmJueves.Name = "clmJueves";
-            clmJueves.ReadOnly = true;
             clmJueves.Width = 20;
             // 
             // clmViernes
             // 
             clmViernes.HeaderText = "V";
             clmViernes.Name = "clmViernes";
-            clmViernes.ReadOnly = true;
             clmViernes.Width = 20;
             // 
             // clmSabado
             // 
             clmSabado.HeaderText = "S";
             clmSabado.Name = "clmSabado";
-            clmSabado.ReadOnly = true;
             clmSabado.Resizable = DataGridViewTriState.True;
             clmSabado.SortMode = DataGridViewColumnSortMode.Automatic;
             clmSabado.Width = 20;

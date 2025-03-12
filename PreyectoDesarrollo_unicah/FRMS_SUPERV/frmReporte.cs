@@ -54,6 +54,9 @@ namespace PreyectoDesarrollo_unicah
             cmbAula.SelectedIndex = 0;
             cmbHora.SelectedIndex = 0;
             ACCIONES_BD.tablaSupervisor(dgvAsiste);
+            dgvAsiste.Columns[0].ReadOnly = true;
+            dgvAsiste.Columns[1].ReadOnly = true;
+            dgvAsiste.Columns[2].ReadOnly = true;
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -80,19 +83,31 @@ namespace PreyectoDesarrollo_unicah
         private void dgvAsiste_CellContentClick(object sender, DataGridViewCellEventArgs e) 
         //El "e" proviene de celdas afectadas como los checkbox
         {
+            //Clic solo en columnas con checkbox, los de textbox como docentes, entre otros, no se afectan
+            if (!(dgvAsiste.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)) 
+                return;
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                string dia = dgvAsiste.Columns[e.ColumnIndex].Name; // Día modificado
-                bool asistencia = Convert.ToBoolean(dgvAsiste.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+                if (dgvAsiste.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+                {
+                    // Finaliza la edición para que el cambio se registre inmediatamente
+                    dgvAsiste.EndEdit();
 
-                string codAsignatura = dgvAsiste.Rows[e.RowIndex].Cells[0].Value.ToString();
-                string codEmpleado = dgvAsiste.Rows[e.RowIndex].Cells[1].Value.ToString();
-                string idSitio = dgvAsiste.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    string dia = dgvAsiste.Columns[e.ColumnIndex].Name; // Día modificado
 
-                if (asistencia)
-                    ACCIONES_BD.presenteSup(codAsignatura, idSitio, codEmpleado, dia);
-                else
-                    ACCIONES_BD.RegistrarFalta(codAsignatura, idSitio, codEmpleado, dia);
+                    string Docente = dgvAsiste.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    string Asignatura = dgvAsiste.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    string Sitio = dgvAsiste.Rows[e.RowIndex].Cells[2].Value.ToString();
+
+
+                    // Aquí puedes llamar a la función que maneja el cambio (por ejemplo, llamar a PA_Marcar_Asistencia o PA_Registrar_Falta)
+                    bool asistencia = Convert.ToBoolean(dgvAsiste.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+
+                    if (asistencia)
+                        ACCIONES_BD.presenteSup(Docente, Asignatura, Sitio, dia);
+                    else
+                        ACCIONES_BD.RegistrarFalta(Docente, Asignatura, Sitio, dia);
+                }
             }
         }
     }
