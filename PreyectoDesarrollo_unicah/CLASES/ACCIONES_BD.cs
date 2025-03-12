@@ -74,35 +74,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
               MessageBox.Show($"Filas obtenidas: {dt.Rows.Count}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
             return dt;
         }
-        public void tabla_supervisor(DataGridView dgv)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SqlConnection con = conexion.conectar)
-                {
-                    con.Open();
-                    using (SqlCommand cmd = new SqlCommand("PA_Asistencia_Superv", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        da.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al obtener datos: " + ex.Message);
-            }
-            if (dt.Rows.Count > 0)
-            {
-                dgv.DataSource = dt;
-            }
-            else
-            {
-                MessageBox.Show("No se encontraron registros.");
-            }
-        }
 
         public void tabla_docente(DataGridView dgv)
         {
@@ -149,40 +120,56 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public void presenteSup(string asignatura, string docente, string seccion, string dia, DateTime fecha)
+        public static void presenteSup(string codAsignatura, int idSitio, string codEmpleado, DateTime fecha, string dia)
         {
-            string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
-            using (SqlConnection conn = new SqlConnection(conexion))
+            try
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("PA_MarcarAsistencia", conn))
+                string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
+                using (SqlConnection conn = new SqlConnection(conexion))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@asignatura", asignatura);
-                    cmd.Parameters.AddWithValue("@docente", docente);
-                    cmd.Parameters.AddWithValue("@seccion", seccion);
-                    cmd.Parameters.AddWithValue("@dia", dia);
-                    cmd.Parameters.AddWithValue("@fecha", fecha);
-                    cmd.ExecuteNonQuery();
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("PA_MarcarAsistencia", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@Cod_Asignatura", codAsignatura);
+                        cmd.Parameters.AddWithValue("@ID_Sitio", idSitio);
+                        cmd.Parameters.AddWithValue("@Codigo_Empleado", codEmpleado);
+                        cmd.Parameters.AddWithValue("@Fecha", fecha);
+                        cmd.Parameters.AddWithValue("@Dia", dia);
+                        cmd.ExecuteNonQuery();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al marcar asistencia: " + ex.Message);
             }
         }
 
-        private void RegistrarFalta(string codAsignatura, int idSitio, string codEmpleado, DateTime fecha, string dia)
+        public static void RegistrarFalta(string codAsignatura, int idSitio, string codEmpleado, DateTime fecha, string dia)
         {
-            using (SqlConnection conn = new SqlConnection("tu_conexion"))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("PA_Registrar_Falta", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
+                using (SqlConnection conn = new SqlConnection(conexion))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("PA_Registrar_Falta", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@Cod_Asignatura", codAsignatura);
-                cmd.Parameters.AddWithValue("@ID_Sitio", idSitio);
-                cmd.Parameters.AddWithValue("@Codigo_Empleado", codEmpleado);
-                cmd.Parameters.AddWithValue("@Fecha", fecha);
-                cmd.Parameters.AddWithValue("@Dia", dia);
+                    cmd.Parameters.AddWithValue("@Cod_Asignatura", codAsignatura);
+                    cmd.Parameters.AddWithValue("@ID_Sitio", idSitio);
+                    cmd.Parameters.AddWithValue("@Codigo_Empleado", codEmpleado);
+                    cmd.Parameters.AddWithValue("@Fecha", fecha);
+                    cmd.Parameters.AddWithValue("@Dia", dia);
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al registrar falta: " + ex.Message);
             }
         }
 

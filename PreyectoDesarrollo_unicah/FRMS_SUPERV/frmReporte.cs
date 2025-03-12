@@ -102,5 +102,24 @@ namespace PreyectoDesarrollo_unicah
                 default: return -1;
             }
         }
+
+        private void dgvAsiste_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                string dia = dgvAsiste.Columns[e.ColumnIndex].Name; // Día modificado
+                bool asistencia = Convert.ToBoolean(dgvAsiste.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+
+                string codAsignatura = dgvAsiste.Rows[e.RowIndex].Cells["Cod_Asignatura"].Value.ToString();
+                int idSitio = Convert.ToInt32(dgvAsiste.Rows[e.RowIndex].Cells["ID_Sitio"].Value);
+                string codEmpleado = dgvAsiste.Rows[e.RowIndex].Cells["Codigo_Empleado"].Value.ToString();
+                DateTime fechaActual = DateTime.Today;
+
+                if (asistencia)
+                    ACCIONES_BD.presenteSup(codAsignatura, idSitio, codEmpleado, fechaActual, dia);
+                else
+                    ACCIONES_BD.RegistrarFalta(codAsignatura, idSitio, codEmpleado, fechaActual, dia);
+            }
+        }
     }
 }
