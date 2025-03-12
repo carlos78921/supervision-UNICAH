@@ -16,19 +16,10 @@ CREATE TABLE Empleados (
 
 --Si no tienen sus inserts, háganse uno
 	
-create table Facultad
-(
-	Cod_Facultad varchar (6) primary key,
-	Facultad varchar (40)
-)
-go
-
---Si no tienen sus inserts, háganse uno
-	
 create table Clases 
 (
 	Cod_Asignatura varchar(6) primary key,
-	Cod_Facultad varchar (6) foreign key references Facultad (Cod_Facultad),
+	Cod_Facultad varchar (6), 
 	Asignatura varchar(55)
 )
 go
@@ -61,7 +52,8 @@ go
 	
 create table Toma_Asistencia
 (
-	ID_Asistencia int foreign key references Asistencia(ID_Asistencia),
+	ID_Asistencia int unique not null,
+	foreign key (ID_Asistencia) references Asistencia(ID_Asistencia),
 	Lunes bit,
 	Martes bit, 
 	Miercoles bit, 
