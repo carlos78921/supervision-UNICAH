@@ -84,66 +84,68 @@ namespace PreyectoDesarrollo_unicah
             try
             {
                 // Consulta para obtener el rol, nombre y apellido
-                string cadenaConexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
+                string cadenaConexion = "Data Source= Servidor de SQL (También en las clases);Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
                 {
-                    conexion.Open();
-
-                    using (SqlCommand cmd = new SqlCommand("PA_Login", conexion))
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@usuario", usuario);
-                        cmd.Parameters.AddWithValue("@contrasena", contraseña);
+                        conexion.Open();
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        using (SqlCommand cmd = new SqlCommand("PA_Login", conexion))
                         {
-                            if (reader.Read()) // Verifica si hay datos
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@usuario", usuario);
+                            cmd.Parameters.AddWithValue("@contrasena", contraseña);
+
+                            using (SqlDataReader reader = cmd.ExecuteReader())
                             {
-                                string nombre = reader["nombre_empleado"].ToString();
-                                string apellido = reader["apellido_empleado"].ToString();
-                                string rolUsuario = reader["rol"].ToString();
-                                ACCIONES_BD.nombre = nombre;
-                                ACCIONES_BD.apellido = apellido;
+                                if (reader.Read()) // Verifica si hay datos
+                                {
+                                    string nombre = reader["nombre_empleado"].ToString();
+                                    string apellido = reader["apellido_empleado"].ToString();
+                                    string rolUsuario = reader["rol"].ToString();
+                                    ACCIONES_BD.nombre = nombre;
+                                    ACCIONES_BD.apellido = apellido;
 
-                                MessageBox.Show($"Bienvenido, {nombre} {apellido}. Su rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MessageBox.Show($"Bienvenido, {nombre} {apellido}. Su rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                if (rolUsuario == "administrador")
-                                {
-                                    // Abrir la pantalla del administrador
-                                    frmMigración admin = new frmMigración();
-                                    admin.Show();
-                                    this.Hide();
-                                }
-                                else if (rolUsuario == "supervisor")
-                                {
-                                    // Abrir las pantallas del supervisor
-                                    frmSupervisor supervisor = new frmSupervisor();
-                                    supervisor.Show();
-                                    this.Hide();
-                                }
-                                else if (rolUsuario == "decano")
-                                {
-                                    // Abrir las pantallas del decano
-                                    frmDecano decano = new frmDecano();
-                                    decano.Show();
-                                    this.Hide();
-                                }
-                                else if (rolUsuario == "docente")
-                                {
-                                    // Abrir las pantallas del docente
-                                    frmDocente doc = new frmDocente();
-                                    doc.Show();
-                                    this.Hide();
+                                    if (rolUsuario == "administrador")
+                                    {
+                                        // Abrir la pantalla del administrador
+                                        frmMigración admin = new frmMigración();
+                                        admin.Show();
+                                        this.Hide();
+                                    }
+                                    else if (rolUsuario == "supervisor")
+                                    {
+                                        // Abrir las pantallas del supervisor
+                                        frmSupervisor supervisor = new frmSupervisor();
+                                        supervisor.Show();
+                                        this.Hide();
+                                    }
+                                    else if (rolUsuario == "decano")
+                                    {
+                                        // Abrir las pantallas del decano
+                                        frmDecano decano = new frmDecano();
+                                        decano.Show();
+                                        this.Hide();
+                                    }
+                                    else if (rolUsuario == "docente")
+                                    {
+                                        // Abrir las pantallas del docente
+                                        frmDocente doc = new frmDocente();
+                                        doc.Show();
+                                        this.Hide();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Rol no reconocido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Rol no reconocido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    // Usuario o contraseña incorrectos
+                                    MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
-                            }
-                            else
-                            {
-                                // Usuario o contraseña incorrectos
-                                MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
