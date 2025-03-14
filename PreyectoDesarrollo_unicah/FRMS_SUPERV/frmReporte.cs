@@ -29,8 +29,8 @@ namespace PreyectoDesarrollo_unicah
         {
             InitializeComponent();
             this.MouseDown += frmSupervisor_MouseDown;
-
         }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -41,23 +41,62 @@ namespace PreyectoDesarrollo_unicah
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void FrmReporte_Load(object sender, EventArgs e)
+        //Procesos en carga del formulario
+        private void AsistenciaxDia()
         {
-            lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
+            string[] dias = { "L", "M", "X", "J", "V", "S" };
+            /*Arreglo requerido para detectar cantidad de índices medidos con Length
+            y poder ocultar según día*/
+            for (int i = 0; i < dias.Length; i++)
+            {
+                if (dgvAsiste.Columns.Contains(dias[i]))
+                //Primero es el arreglo que se detecta del índice i
+                {
+                    dgvAsiste.Columns[dias[i]].Visible = false; //Aquí detecta de la columna
+                }
+            }
+            //Detección de día automática por número del 0 al 6 (6 o -1 por domingo)
+            DayOfWeek hoy = DateTime.Today.DayOfWeek;
+            int indiceDia = -1; // Índice correspondiente al día en el array 
+            switch (hoy)
+            {
+                case DayOfWeek.Monday: indiceDia = 0; break;
+                case DayOfWeek.Tuesday: indiceDia = 1; break;
+                case DayOfWeek.Wednesday: indiceDia = 2; break;
+                case DayOfWeek.Thursday: indiceDia = 3; break;
+                case DayOfWeek.Friday: indiceDia = 4; break;
+                case DayOfWeek.Saturday: indiceDia = 5; break;
+                case DayOfWeek.Sunday: indiceDia = -1; break; // En domingo oculta todas las columnas 
+            }
+
+            if (indiceDia != -1 && dgvAsiste.Columns.Contains(dias[indiceDia]))
+            {
+                dgvAsiste.Columns[dias[indiceDia]].Visible = true;
+            }
+        }
+
+        private void FiltroInicial()
+        {
             cmbEdificio.SelectedIndex = 0;
             cmbAula.SelectedIndex = 0;
             cmbHora.SelectedIndex = 0;
+        }
+
+        private void FrmReporte_Load(object sender, EventArgs e)
+        {
+            lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
+            //Ajustes del formulario
+            FiltroInicial();
+            AsistenciaxDia();
+            //Ajustes del bdd
             ACCIONES_BD.tablaSupervisor(dgvAsiste);
-            dgvAsiste.Columns[0].ReadOnly = true;
-            dgvAsiste.Columns[1].ReadOnly = true;
-            dgvAsiste.Columns[2].ReadOnly = true;
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
-            frmSupervisor Menu = new frmSupervisor();
-            Menu.Show();
+            Form1 Login = new Form1();
+            Login.Show();
         }
 
         private void tmrFecha_Tick(object sender, EventArgs e)
@@ -103,12 +142,6 @@ namespace PreyectoDesarrollo_unicah
                         ACCIONES_BD.RegistrarFalta(Docente, Asignatura, Sitio, dia);
                 }
             }
-        }
-
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }
