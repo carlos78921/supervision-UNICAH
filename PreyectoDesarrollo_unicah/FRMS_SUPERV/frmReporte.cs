@@ -88,6 +88,7 @@ namespace PreyectoDesarrollo_unicah
             //Ajustes del formulario
             FiltroInicial();
             AsistenciaxDia();
+
             //Ajustes del bdd
             ACCIONES_BD.tablaSupervisor(dgvAsiste);
         }
