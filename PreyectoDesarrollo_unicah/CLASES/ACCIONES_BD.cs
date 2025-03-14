@@ -17,18 +17,20 @@ namespace PreyectoDesarrollo_unicah.CLASES
         public static string docente;
 
         public CONEXION_BD conexion = new CONEXION_BD();
-        SqlDataAdapter ad;
-        DataTable dt;
 
+        //Constructor
         public ACCIONES_BD()
         {
             nombre = "";
             apellido = "";
         }
 
-        public ACCIONES_BD(string codigo) //Constructor parametrizado
+        public ACCIONES_BD(string codigo) //Constructor parametrizado del docente
         {
-            docente = codigo;
+            if (!string.IsNullOrEmpty(codigo)) //Validación requerida de codigo transferido
+            {
+                docente = codigo;
+            }
         }
 
         public DataTable codigo_doc()
@@ -98,25 +100,119 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.AutoGenerateColumns = true;
                 dgv.Refresh(); // Forzar actualización de la UI
 
-                /* Ajustar anchos de columnas por dgv "nueva" (ahora deberían de haber 8 columnas
-                detectadas en valores)*/
-                if (dgv.Columns.Count >= 8)
-                {
-                    dgv.Columns[0].Width = 125;
-                    dgv.Columns[1].Width = 58;
-                    dgv.Columns[2].Width = 20;
-                    dgv.Columns[3].Width = 22;
-                    dgv.Columns[4].Width = 22;
-                    dgv.Columns[5].Width = 20;
-                    dgv.Columns[6].Width = 20;
-                    dgv.Columns[7].Width = 20;
-                }
+                dgv.Columns[0].Width = 125;
+                dgv.Columns[1].Width = 58;
+                dgv.Columns[2].Width = 20;
+                dgv.Columns[3].Width = 22;
+                dgv.Columns[4].Width = 22;
+                dgv.Columns[5].Width = 20;
+                dgv.Columns[6].Width = 20;
+                dgv.Columns[7].Width = 20;
             }
             else
             {
                 MessageBox.Show("No se encontraron registros.");
             }
         }
+
+        public static DataTable tablaSupervisor(DataGridView dgv)
+        {
+            string pa = "PA_Asistencia_Superv";
+            string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
+
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(conexion))
+                {
+                    SqlCommand cmd = new SqlCommand(pa, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener datos: " + ex.Message);
+            }
+            if (dt.Rows.Count > 0)
+            {
+                dgv.Columns.Clear();
+
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dt;
+                dgv.DataSource = bs;
+                bs.ResetBindings(false);
+                dgv.AutoGenerateColumns = true;
+                dgv.Refresh(); // Forzar actualización de la UI
+
+                dgv.Columns[0].Width = 100;
+                dgv.Columns[1].Width = 150;
+                dgv.Columns[2].Width = 58;
+                dgv.Columns[3].Width = 20;
+                dgv.Columns[4].Width = 22;
+                dgv.Columns[5].Width = 22;
+                dgv.Columns[6].Width = 20;
+                dgv.Columns[7].Width = 20;
+                dgv.Columns[8].Width = 20;
+            }
+            return dt;
+        }
+
+        public static void presenteSup(string docente, string asignatura, string seccion, string dia)
+        {
+            try
+            {
+                string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
+                using (SqlConnection conn = new SqlConnection(conexion))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("PA_Marcar_Asistencia", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@Asignatura", asignatura);
+                        cmd.Parameters.AddWithValue("@Docente", docente);
+                        cmd.Parameters.AddWithValue("@Seccion", seccion);
+                        cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
+                        cmd.Parameters.AddWithValue("@Dia", dia);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al marcar asistencia: " + ex.Message);
+            }
+        }
+
+        public static void RegistrarFalta(string docente, string asignatura, string seccion, string dia)
+        {
+            try
+            {
+                string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
+                using (SqlConnection conn = new SqlConnection(conexion))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("PA_Registrar_Falta", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@Asignatura", asignatura);
+                    cmd.Parameters.AddWithValue("@Docente", docente);
+                    cmd.Parameters.AddWithValue("@Seccion", seccion);
+                    cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
+                    cmd.Parameters.AddWithValue("@Dia", dia);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al registrar falta: " + ex.Message);
+            }
+        }
+
 
         public void cargar(DataGridView dgv, string nombreTabla)
         {
