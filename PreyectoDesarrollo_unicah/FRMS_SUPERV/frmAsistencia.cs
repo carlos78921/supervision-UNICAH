@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace PreyectoDesarrollo_unicah
 {
-    public partial class frmReporte : Form
+    public partial class frmAsistencia : Form
     {
         [DllImport("user32.dll")]
         private static extern bool ReleaseCapture(); //Externo por la importación realizada en comando
@@ -25,7 +25,7 @@ namespace PreyectoDesarrollo_unicah
         private const int WM_NCLBUTTONDOWN = 0xA1;
         private const int HTCAPTION = 0x2;
 
-        public frmReporte()
+        public frmAsistencia()
         {
             InitializeComponent();
             this.MouseDown += frmSupervisor_MouseDown;
