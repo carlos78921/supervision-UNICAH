@@ -37,6 +37,17 @@
             pictureBox3 = new PictureBox();
             label1 = new Label();
             dgvAsiste = new DataGridView();
+            clmDoc = new DataGridViewTextBoxColumn();
+            clmClase = new DataGridViewTextBoxColumn();
+            clmSeccion = new DataGridViewTextBoxColumn();
+            clmAula = new DataGridViewTextBoxColumn();
+            clmEdificio = new DataGridViewTextBoxColumn();
+            clmLunes = new DataGridViewCheckBoxColumn();
+            clmMartes = new DataGridViewCheckBoxColumn();
+            clmMiercoles = new DataGridViewCheckBoxColumn();
+            clmJueves = new DataGridViewCheckBoxColumn();
+            clmViernes = new DataGridViewCheckBoxColumn();
+            clmSabado = new DataGridViewCheckBoxColumn();
             nudWeeks = new NumericUpDown();
             label2 = new Label();
             label5 = new Label();
@@ -51,17 +62,6 @@
             btnLogout = new Button();
             tmrFecha = new System.Windows.Forms.Timer(components);
             lblMeses = new Label();
-            clmDoc = new DataGridViewTextBoxColumn();
-            clmClase = new DataGridViewTextBoxColumn();
-            clmSeccion = new DataGridViewTextBoxColumn();
-            clmAula = new DataGridViewTextBoxColumn();
-            clmEdificio = new DataGridViewTextBoxColumn();
-            clmLunes = new DataGridViewCheckBoxColumn();
-            clmMartes = new DataGridViewCheckBoxColumn();
-            clmMiercoles = new DataGridViewCheckBoxColumn();
-            clmJueves = new DataGridViewCheckBoxColumn();
-            clmViernes = new DataGridViewCheckBoxColumn();
-            clmSabado = new DataGridViewCheckBoxColumn();
             btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -82,7 +82,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(531, 2);
+            pictureBox2.Location = new Point(449, 2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(29, 21);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -93,7 +93,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(566, 2);
+            pictureBox1.Location = new Point(484, 2);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 21);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -110,7 +110,7 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(-4, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(596, 87);
+            panel1.Size = new Size(525, 87);
             panel1.TabIndex = 11;
             // 
             // lblPersona
@@ -118,7 +118,7 @@
             lblPersona.AutoSize = true;
             lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(463, 63);
+            lblPersona.Location = new Point(381, 63);
             lblPersona.Name = "lblPersona";
             lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 23;
@@ -138,7 +138,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(239, 97);
+            label1.Location = new Point(211, 97);
             label1.Name = "label1";
             label1.Size = new Size(139, 15);
             label1.TabIndex = 12;
@@ -150,132 +150,11 @@
             dgvAsiste.AllowUserToDeleteRows = false;
             dgvAsiste.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAsiste.Columns.AddRange(new DataGridViewColumn[] { clmDoc, clmClase, clmSeccion, clmAula, clmEdificio, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
-            dgvAsiste.Location = new Point(8, 222);
+            dgvAsiste.Location = new Point(21, 222);
             dgvAsiste.Name = "dgvAsiste";
-            dgvAsiste.Size = new Size(573, 216);
+            dgvAsiste.Size = new Size(471, 216);
             dgvAsiste.TabIndex = 17;
             dgvAsiste.CellContentClick += dgvAsiste_CellContentClick;
-            // 
-            // nudWeeks
-            // 
-            nudWeeks.Location = new Point(131, 183);
-            nudWeeks.Maximum = new decimal(new int[] { 5, 0, 0, 0 });
-            nudWeeks.Name = "nudWeeks";
-            nudWeeks.Size = new Size(49, 23);
-            nudWeeks.TabIndex = 23;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(73, 187);
-            label2.Name = "label2";
-            label2.Size = new Size(52, 15);
-            label2.TabIndex = 22;
-            label2.Text = "Semana:";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(214, 128);
-            label5.Name = "label5";
-            label5.Size = new Size(67, 15);
-            label5.TabIndex = 26;
-            label5.Text = "Asignatura:";
-            // 
-            // txtClase
-            // 
-            txtClase.Location = new Point(287, 125);
-            txtClase.Name = "txtClase";
-            txtClase.Size = new Size(168, 23);
-            txtClase.TabIndex = 27;
-            // 
-            // btnBusca
-            // 
-            btnBusca.Location = new Point(461, 113);
-            btnBusca.Name = "btnBusca";
-            btnBusca.Size = new Size(75, 39);
-            btnBusca.TabIndex = 28;
-            btnBusca.Text = "&Buscar Asignatura";
-            btnBusca.UseVisualStyleBackColor = true;
-            // 
-            // cmbHora
-            // 
-            cmbHora.FormattingEnabled = true;
-            cmbHora.Items.AddRange(new object[] { "Sección:" });
-            cmbHora.Location = new Point(232, 22);
-            cmbHora.Name = "cmbHora";
-            cmbHora.Size = new Size(85, 23);
-            cmbHora.TabIndex = 30;
-            // 
-            // cmbAula
-            // 
-            cmbAula.FormattingEnabled = true;
-            cmbAula.Items.AddRange(new object[] { "Aula:" });
-            cmbAula.Location = new Point(130, 22);
-            cmbAula.Name = "cmbAula";
-            cmbAula.Size = new Size(85, 23);
-            cmbAula.TabIndex = 31;
-            // 
-            // cmbEdificio
-            // 
-            cmbEdificio.FormattingEnabled = true;
-            cmbEdificio.Items.AddRange(new object[] { "Edificio:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M" });
-            cmbEdificio.Location = new Point(27, 22);
-            cmbEdificio.Name = "cmbEdificio";
-            cmbEdificio.Size = new Size(85, 23);
-            cmbEdificio.TabIndex = 32;
-            // 
-            // gbFiltro
-            // 
-            gbFiltro.Controls.Add(cmbEdificio);
-            gbFiltro.Controls.Add(cmbHora);
-            gbFiltro.Controls.Add(cmbAula);
-            gbFiltro.Location = new Point(212, 155);
-            gbFiltro.Name = "gbFiltro";
-            gbFiltro.Size = new Size(324, 55);
-            gbFiltro.TabIndex = 33;
-            gbFiltro.TabStop = false;
-            gbFiltro.Text = "Filtros";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(73, 117);
-            label6.Name = "label6";
-            label6.Size = new Size(120, 30);
-            label6.TabIndex = 34;
-            label6.Text = "Nombre y/o apellido \r\n         del docente";
-            // 
-            // txtDoc
-            // 
-            txtDoc.Location = new Point(73, 151);
-            txtDoc.Name = "txtDoc";
-            txtDoc.Size = new Size(118, 23);
-            txtDoc.TabIndex = 35;
-            // 
-            // btnLogout
-            // 
-            btnLogout.Location = new Point(414, 444);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(86, 23);
-            btnLogout.TabIndex = 38;
-            btnLogout.Text = "Cerrar &Sesión";
-            btnLogout.UseVisualStyleBackColor = true;
-            btnLogout.Click += btnLogout_Click;
-            // 
-            // tmrFecha
-            // 
-            tmrFecha.Enabled = true;
-            // 
-            // lblMeses
-            // 
-            lblMeses.AutoSize = true;
-            lblMeses.Location = new Point(36, 90);
-            lblMeses.Name = "lblMeses";
-            lblMeses.Size = new Size(48, 15);
-            lblMeses.TabIndex = 41;
-            lblMeses.Text = "Periodo";
-            lblMeses.Visible = false;
             // 
             // clmDoc
             // 
@@ -346,11 +225,134 @@
             clmSabado.SortMode = DataGridViewColumnSortMode.Automatic;
             clmSabado.Width = 20;
             // 
+            // nudWeeks
+            // 
+            nudWeeks.Location = new Point(86, 183);
+            nudWeeks.Maximum = new decimal(new int[] { 5, 0, 0, 0 });
+            nudWeeks.Name = "nudWeeks";
+            nudWeeks.Size = new Size(49, 23);
+            nudWeeks.TabIndex = 23;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(28, 187);
+            label2.Name = "label2";
+            label2.Size = new Size(52, 15);
+            label2.TabIndex = 22;
+            label2.Text = "Semana:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(169, 128);
+            label5.Name = "label5";
+            label5.Size = new Size(67, 15);
+            label5.TabIndex = 26;
+            label5.Text = "Asignatura:";
+            // 
+            // txtClase
+            // 
+            txtClase.Location = new Point(242, 125);
+            txtClase.Name = "txtClase";
+            txtClase.Size = new Size(168, 23);
+            txtClase.TabIndex = 27;
+            txtClase.KeyUp += txtClase_KeyUp;
+            // 
+            // btnBusca
+            // 
+            btnBusca.Location = new Point(416, 113);
+            btnBusca.Name = "btnBusca";
+            btnBusca.Size = new Size(75, 39);
+            btnBusca.TabIndex = 28;
+            btnBusca.Text = "&Buscar Asignatura";
+            btnBusca.UseVisualStyleBackColor = true;
+            // 
+            // cmbHora
+            // 
+            cmbHora.FormattingEnabled = true;
+            cmbHora.Items.AddRange(new object[] { "Sección:" });
+            cmbHora.Location = new Point(232, 22);
+            cmbHora.Name = "cmbHora";
+            cmbHora.Size = new Size(85, 23);
+            cmbHora.TabIndex = 30;
+            // 
+            // cmbAula
+            // 
+            cmbAula.FormattingEnabled = true;
+            cmbAula.Items.AddRange(new object[] { "Aula:" });
+            cmbAula.Location = new Point(130, 22);
+            cmbAula.Name = "cmbAula";
+            cmbAula.Size = new Size(85, 23);
+            cmbAula.TabIndex = 31;
+            // 
+            // cmbEdificio
+            // 
+            cmbEdificio.FormattingEnabled = true;
+            cmbEdificio.Items.AddRange(new object[] { "Edificio:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M" });
+            cmbEdificio.Location = new Point(27, 22);
+            cmbEdificio.Name = "cmbEdificio";
+            cmbEdificio.Size = new Size(85, 23);
+            cmbEdificio.TabIndex = 32;
+            // 
+            // gbFiltro
+            // 
+            gbFiltro.Controls.Add(cmbEdificio);
+            gbFiltro.Controls.Add(cmbHora);
+            gbFiltro.Controls.Add(cmbAula);
+            gbFiltro.Location = new Point(167, 155);
+            gbFiltro.Name = "gbFiltro";
+            gbFiltro.Size = new Size(324, 55);
+            gbFiltro.TabIndex = 33;
+            gbFiltro.TabStop = false;
+            gbFiltro.Text = "Filtros";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(28, 117);
+            label6.Name = "label6";
+            label6.Size = new Size(120, 30);
+            label6.TabIndex = 34;
+            label6.Text = "Nombre y/o apellido \r\n         del docente";
+            // 
+            // txtDoc
+            // 
+            txtDoc.Location = new Point(28, 151);
+            txtDoc.Name = "txtDoc";
+            txtDoc.Size = new Size(118, 23);
+            txtDoc.TabIndex = 35;
+            txtDoc.KeyUp += txtDoc_KeyUp;
+            // 
+            // btnLogout
+            // 
+            btnLogout.Location = new Point(423, 444);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(86, 23);
+            btnLogout.TabIndex = 38;
+            btnLogout.Text = "Cerrar &Sesión";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
+            // 
+            // tmrFecha
+            // 
+            tmrFecha.Enabled = true;
+            // 
+            // lblMeses
+            // 
+            lblMeses.AutoSize = true;
+            lblMeses.Location = new Point(8, 90);
+            lblMeses.Name = "lblMeses";
+            lblMeses.Size = new Size(48, 15);
+            lblMeses.TabIndex = 41;
+            lblMeses.Text = "Periodo";
+            lblMeses.Visible = false;
+            // 
             // frmAsistencia
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(591, 475);
+            ClientSize = new Size(513, 475);
             Controls.Add(lblMeses);
             Controls.Add(btnLogout);
             Controls.Add(txtDoc);

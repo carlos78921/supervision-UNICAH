@@ -83,7 +83,7 @@ namespace PreyectoDesarrollo_unicah
             try
             {
                 // Consulta para obtener el rol, nombre y apellido
-                string cadenaConexion = "Data Source= DESKTOP-F4DAE1B\\SQLEXPRESS;Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
+                string cadenaConexion = "Data Source= Servidor del SQL (también en las clases);Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
                 {
                     conexion.Open();

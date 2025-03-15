@@ -29,6 +29,14 @@ namespace PreyectoDesarrollo_unicah
             InitializeComponent();
             this.MouseDown += frmSupervisor_MouseDown;
         }
+        private BindingSource bs = new BindingSource(); //Para búsqueda
+
+        private void Busqueda()
+        {
+            DataTable dt = ACCIONES_BD.tablaSupervisor(dgvAsiste);
+            bs.DataSource = dt;
+            dgvAsiste.DataSource = bs;
+        }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -38,40 +46,6 @@ namespace PreyectoDesarrollo_unicah
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }
- 
-        //Procesos en carga del formulario
-        private void AsistenciaxDia()
-        {
-            string[] dias = { "L", "M", "X", "J", "V", "S" };
-            /*Arreglo requerido para detectar cantidad de índices medidos con Length
-            y poder ocultar según día*/
-            for (int i = 0; i < dias.Length; i++)
-            {
-                if (dgvAsiste.Columns.Contains(dias[i]))
-                //Primero es el arreglo que se detecta del índice i
-                {
-                    dgvAsiste.Columns[dias[i]].Visible = false; //Aquí detecta de la columna
-                }
-            }
-            //Detección de día automática por número del 0 al 6 (6 o -1 por domingo)
-            DayOfWeek hoy = DateTime.Today.DayOfWeek;
-            int indiceDia = -1; // Índice correspondiente al día en el array 
-            switch (hoy)
-            {
-                case DayOfWeek.Monday: indiceDia = 0; break;
-                case DayOfWeek.Tuesday: indiceDia = 1; break;
-                case DayOfWeek.Wednesday: indiceDia = 2; break;
-                case DayOfWeek.Thursday: indiceDia = 3; break;
-                case DayOfWeek.Friday: indiceDia = 4; break;
-                case DayOfWeek.Saturday: indiceDia = 5; break;
-                case DayOfWeek.Sunday: indiceDia = -1; break; // En domingo oculta todas las columnas 
-            }
-
-            if (indiceDia != -1 && dgvAsiste.Columns.Contains(dias[indiceDia]))
-            {
-                dgvAsiste.Columns[dias[indiceDia]].Visible = true;
-            }
         }
 
         private void FiltroInicial()
@@ -86,7 +60,6 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
             //Ajustes del formulario
             FiltroInicial();
-            AsistenciaxDia();
 
             //Ajustes del bdd
             ACCIONES_BD.tablaSupervisor(dgvAsiste);
@@ -108,11 +81,11 @@ namespace PreyectoDesarrollo_unicah
             }
         }
 
-        private void dgvAsiste_CellContentClick(object sender, DataGridViewCellEventArgs e) 
+        private void dgvAsiste_CellContentClick(object sender, DataGridViewCellEventArgs e)
         //El "e" proviene de celdas afectadas como los checkbox
         {
             //Clic solo en columnas con checkbox, los de textbox como docentes, entre otros, no se afectan
-            if (!(dgvAsiste.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)) 
+            if (!(dgvAsiste.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn))
                 return;
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
@@ -137,6 +110,38 @@ namespace PreyectoDesarrollo_unicah
                     else
                         ACCIONES_BD.RegistrarFalta(Docente, Asignatura, Seccion, Aula, Edificio, dia);
                 }
+            }
+        }
+
+        private void txtDoc_KeyUp(object sender, KeyEventArgs e)
+        {
+            Busqueda();
+            string filtro = txtDoc.Text.Trim();
+            // Evitar errores con comillas simples
+            if (string.IsNullOrEmpty(filtro))
+            {
+                // Si el campo está vacío, aparecen todas la filas
+                bs.RemoveFilter();
+            }
+            else
+            {
+                bs.Filter = string.Format("Docente LIKE '%{0}%'", filtro);
+            }
+        }
+
+        private void txtClase_KeyUp(object sender, KeyEventArgs e)
+        {
+            Busqueda();
+            string filtro = txtDoc.Text.Trim();
+            // Evitar errores con comillas simples
+            if (string.IsNullOrEmpty(filtro))
+            {
+                // Si el campo está vacío, aparecen todas la filas
+                bs.RemoveFilter();
+            }
+            else
+            {
+                bs.Filter = string.Format("Asignatura LIKE '%{0}%'", filtro);
             }
         }
     }

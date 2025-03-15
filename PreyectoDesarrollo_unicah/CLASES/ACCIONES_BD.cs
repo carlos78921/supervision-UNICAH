@@ -118,7 +118,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
         public static DataTable tablaSupervisor(DataGridView dgv)
         {
             string pa = "PA_Asistencia_Superv";
-            string conexion = "Data Source = DESKTOP-F4DAE1B\\SQLEXPRESS;Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
+            string conexion = "Data Source = Servidor del SQL;Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
 
 
             DataTable dt = new DataTable();
@@ -160,7 +160,40 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.Columns[9].Width = 20;
                 dgv.Columns[10].Width = 20;
             }
+            DiasSemana(dgv); //Para la funcionalidad de un registro por día
             return dt;
+        }
+
+        public static void DiasSemana(DataGridView dgvSuperv)
+        {
+            string[] dias = { "L", "M", "X", "J", "V", "S" };
+            /*Arreglo requerido para detectar cantidad de índices medidos con Length
+            y poder ocultar según día*/
+            for (int i = 0; i < dias.Length; i++)
+            {
+                if (dgvSuperv.Columns.Contains(dias[i]))
+                //Primero es el arreglo que se detecta del índice i
+                {
+                    dgvSuperv.Columns[dias[i]].Visible = false; //Aquí detecta de la columna
+                }
+            }
+            //Detección de día automática por número del 0 al 6 (6 o -1 por domingo)
+            DayOfWeek hoy = DateTime.Today.DayOfWeek;
+            int indiceDia = -1; // Índice correspondiente al día en el array 
+            switch (hoy)
+            {
+                case DayOfWeek.Monday: indiceDia = 0; break;
+                case DayOfWeek.Tuesday: indiceDia = 1; break;
+                case DayOfWeek.Wednesday: indiceDia = 2; break;
+                case DayOfWeek.Thursday: indiceDia = 3; break;
+                case DayOfWeek.Friday: indiceDia = 4; break;
+                case DayOfWeek.Saturday: indiceDia = 5; break;
+                case DayOfWeek.Sunday: indiceDia = -1; break; // En domingo oculta todas las columnas 
+            }
+            if (indiceDia != -1 && dgvSuperv.Columns.Contains(dias[indiceDia]))
+            {
+                dgvSuperv.Columns[dias[indiceDia]].Visible = true;
+            }
         }
 
         public static void presenteSup(string docente, string asignatura, string seccion, string aula, string edificio, string dia)
@@ -217,7 +250,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 MessageBox.Show("Error al registrar falta: " + ex.Message);
             }
         }
-
 
         public void cargar(DataGridView dgv, string nombreTabla)
         {
