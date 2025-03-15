@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnOrden = new Button();
             btnReporte = new Button();
+            btnAsiste = new Button();
             btnLogOut = new Button();
             panel1 = new Panel();
             lblPersona = new Label();
@@ -42,23 +42,25 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // btnOrden
-            // 
-            btnOrden.Location = new Point(146, 90);
-            btnOrden.Name = "btnOrden";
-            btnOrden.Size = new Size(123, 65);
-            btnOrden.TabIndex = 14;
-            btnOrden.Text = "&ORDEN DE ASISTENCIA";
-            btnOrden.UseVisualStyleBackColor = true;
-            // 
             // btnReporte
             // 
-            btnReporte.Location = new Point(11, 90);
+            btnReporte.Location = new Point(146, 90);
             btnReporte.Name = "btnReporte";
             btnReporte.Size = new Size(123, 65);
-            btnReporte.TabIndex = 13;
-            btnReporte.Text = "&REPORTE";
+            btnReporte.TabIndex = 14;
+            btnReporte.Text = "&REPORTES";
             btnReporte.UseVisualStyleBackColor = true;
+            btnReporte.Click += btnReporte_Click;
+            // 
+            // btnAsiste
+            // 
+            btnAsiste.Location = new Point(11, 90);
+            btnAsiste.Name = "btnAsiste";
+            btnAsiste.Size = new Size(123, 65);
+            btnAsiste.TabIndex = 13;
+            btnAsiste.Text = "&TOMA DE ASISTENCIA";
+            btnAsiste.UseVisualStyleBackColor = true;
+            btnAsiste.Click += btnAsiste_Click;
             // 
             // btnLogOut
             // 
@@ -68,6 +70,7 @@
             btnLogOut.TabIndex = 12;
             btnLogOut.Text = "&CERRAR SESIÓN";
             btnLogOut.UseVisualStyleBackColor = true;
+            btnLogOut.Click += btnLogout_Click;
             // 
             // panel1
             // 
@@ -80,6 +83,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(420, 82);
             panel1.TabIndex = 15;
+            panel1.MouseDown += panel1_MouseDown;
             // 
             // lblPersona
             // 
@@ -112,6 +116,7 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // pictureBox1
             // 
@@ -122,6 +127,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // frmSupervisor
             // 
@@ -129,8 +135,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(414, 166);
             Controls.Add(panel1);
-            Controls.Add(btnOrden);
             Controls.Add(btnReporte);
+            Controls.Add(btnAsiste);
             Controls.Add(btnLogOut);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmSupervisor";
@@ -141,12 +147,33 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            Load += frmSupervisor_Load;
+        }
+
+        private void PictureBox1_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void PictureBox2_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BtnLogOut_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BtnAsiste_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
 
-        private Button btnOrden;
         private Button btnReporte;
+        private Button btnAsiste;
         private Button btnLogOut;
         private Panel panel1;
         private Label lblPersona;

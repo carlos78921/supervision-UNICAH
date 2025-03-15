@@ -118,7 +118,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
         public static DataTable tablaSupervisor(DataGridView dgv)
         {
             string pa = "PA_Asistencia_Superv";
-            string conexion = "Data Source=  Supervisor del SQL;Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
+            string conexion = "Data Source = DESKTOP-F4DAE1B\\SQLEXPRESS;Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
 
 
             DataTable dt = new DataTable();
@@ -151,21 +151,23 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.Columns[0].Width = 100;
                 dgv.Columns[1].Width = 150;
                 dgv.Columns[2].Width = 58;
-                dgv.Columns[3].Width = 20;
-                dgv.Columns[4].Width = 22;
-                dgv.Columns[5].Width = 22;
-                dgv.Columns[6].Width = 20;
-                dgv.Columns[7].Width = 20;
+                dgv.Columns[3].Width = 125;
+                dgv.Columns[4].Visible = false;
+                dgv.Columns[5].Width = 20;
+                dgv.Columns[6].Width = 22;
+                dgv.Columns[7].Width = 22;
                 dgv.Columns[8].Width = 20;
+                dgv.Columns[9].Width = 20;
+                dgv.Columns[10].Width = 20;
             }
             return dt;
         }
 
-        public static void presenteSup(string docente, string asignatura, string seccion, string dia)
+        public static void presenteSup(string docente, string asignatura, string seccion, string aula, string edificio, string dia)
         {
             try
             {
-                string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
+                string conexion = "Data Source = DESKTOP-F4DAE1B\\SQLEXPRESS;Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
                 using (SqlConnection conn = new SqlConnection(conexion))
                 {
                     conn.Open();
@@ -176,7 +178,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         cmd.Parameters.AddWithValue("@Asignatura", asignatura);
                         cmd.Parameters.AddWithValue("@Docente", docente);
                         cmd.Parameters.AddWithValue("@Seccion", seccion);
-                        cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
+                        cmd.Parameters.AddWithValue("@Aula", aula);
+                        cmd.Parameters.AddWithValue("@Edificio", edificio);
                         cmd.Parameters.AddWithValue("@Dia", dia);
                         cmd.ExecuteNonQuery();
                     }
@@ -188,11 +191,11 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static void RegistrarFalta(string docente, string asignatura, string seccion, string dia)
+        public static void RegistrarFalta(string docente, string asignatura, string seccion, string aula, string edificio, string dia)
         {
             try
             {
-                string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
+                string conexion = "Data Source = DESKTOP-F4DAE1B\\SQLEXPRESS;Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
                 using (SqlConnection conn = new SqlConnection(conexion))
                 {
                     conn.Open();
@@ -202,7 +205,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.Parameters.AddWithValue("@Asignatura", asignatura);
                     cmd.Parameters.AddWithValue("@Docente", docente);
                     cmd.Parameters.AddWithValue("@Seccion", seccion);
-                    cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
+                    cmd.Parameters.AddWithValue("@Aula", aula);
+                    cmd.Parameters.AddWithValue("@Edificio", edificio);
                     cmd.Parameters.AddWithValue("@Dia", dia);
 
                     cmd.ExecuteNonQuery();

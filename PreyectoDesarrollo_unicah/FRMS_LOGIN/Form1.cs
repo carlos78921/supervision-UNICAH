@@ -80,11 +80,10 @@ namespace PreyectoDesarrollo_unicah
                 return;
             }
 
-            // Realizar la conexión y  
             try
             {
                 // Consulta para obtener el rol, nombre y apellido
-                string cadenaConexion = "Data Source= Supervisor del SQL (También en las clases);Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
+                string cadenaConexion = "Data Source= DESKTOP-F4DAE1B\\SQLEXPRESS;Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
                 {
                     conexion.Open();
@@ -119,7 +118,7 @@ namespace PreyectoDesarrollo_unicah
                                 else if (rolUsuario == "supervisor")
                                 {
                                     // Abrir las pantallas del supervisor
-                                    frmReporte supervisor = new frmReporte();
+                                    frmAsistencia supervisor = new frmAsistencia();
                                     supervisor.Show();
                                     this.Hide();
                                 }
