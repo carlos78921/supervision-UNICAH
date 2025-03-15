@@ -31,7 +31,7 @@ create table Sitio
 	ID_Sitio int identity primary key,
    	Edificio char,
 	Num_Aula int,
-	Seccion varchar (4)    
+	Seccion varchar (5)    
 )
 
 --Si no tienen sus inserts, háganse uno
