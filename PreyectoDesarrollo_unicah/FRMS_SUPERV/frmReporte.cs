@@ -99,11 +99,6 @@ namespace PreyectoDesarrollo_unicah
             Login.Show();
         }
 
-        private void tmrFecha_Tick(object sender, EventArgs e)
-        {
-            lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
-        }
-
         private void frmSupervisor_MouseDown(object sender, MouseEventArgs e) //Evento del ratón "e"
         {
             if (e.Button == MouseButtons.Left)
