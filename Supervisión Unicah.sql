@@ -94,14 +94,15 @@ create table Toma_Asistencia
 	
 -- Procedimientos Almacenados
 create PROCEDURE PA_Login
-@usuario VARCHAR(50),
-@contrasena VARCHAR(255)
+@usuario VARCHAR(4)
+--@contrasena VARCHAR(255)
 with encryption
 AS
 BEGIN
-	SELECT nombre_empleado, apellido_empleado, rol 
-	FROM Empleados 
-	WHERE usuario = @usuario AND contraseña = @contrasena	
+	SELECT nombre1, apellido1, rol 
+	FROM Empleados E	
+	join Nombres_Completos NC on E.ID_Empleado = NC.ID_Empleado 
+	WHERE codigo_empleado = @usuario --AND contraseña = @contrasena
 END
 GO
 
