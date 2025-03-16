@@ -74,78 +74,77 @@ namespace PreyectoDesarrollo_unicah
             string contraseña = txtcontraseña.Text.Trim();
 
             if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(contraseña) ||
-                usuario == "Usuario:" || contraseña == "Contraseña:") //Vacío con o sin un dato
+                usuario == "Usuario:" /*|| contraseña == "Contraseña:"*/) //Vacío con o sin un dato
             {
                 MessageBox.Show("Por favor ingrese todos los datos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Realizar la conexión y consulta
             try
             {
                 // Consulta para obtener el rol, nombre y apellido
-                string cadenaConexion = "Data Source= Servidor de SQL (También en las clases);Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
+                string cadenaConexion = "Data Source= Servidor del SQL (también en las clases);Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
                 {
+                    conexion.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("PA_Login", conexion))
                     {
-                        conexion.Open();
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@usuario", usuario);
+                        //                        cmd.Parameters.AddWithValue("@contrasena", contraseña);
 
-                        using (SqlCommand cmd = new SqlCommand("PA_Login", conexion))
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@usuario", usuario);
-                            cmd.Parameters.AddWithValue("@contrasena", contraseña);
-
-                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            if (reader.Read()) // Verifica si hay usuario y contraseña para leer otros datos
                             {
-                                if (reader.Read()) // Verifica si hay datos
+                                string nombre = reader["nombre1"].ToString();
+                                string apellido = reader["apellido1"].ToString();
+                                string rolUsuario = reader["rol"].ToString();
+                                string codigoDocente = usuario.ToString();
+                                ACCIONES_BD.nombre = nombre;
+                                ACCIONES_BD.apellido = apellido;
+                                ACCIONES_BD.docente = codigoDocente;
+
+                                MessageBox.Show($"Bienvenido, {nombre} {apellido}. Su rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                if (rolUsuario == "administrador")
                                 {
-                                    string nombre = reader["nombre_empleado"].ToString();
-                                    string apellido = reader["apellido_empleado"].ToString();
-                                    string rolUsuario = reader["rol"].ToString();
-                                    ACCIONES_BD.nombre = nombre;
-                                    ACCIONES_BD.apellido = apellido;
-
-                                    MessageBox.Show($"Bienvenido, {nombre} {apellido}. Su rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                    if (rolUsuario == "administrador")
-                                    {
-                                        // Abrir la pantalla del administrador
-                                        frmMigración admin = new frmMigración();
-                                        admin.Show();
-                                        this.Hide();
-                                    }
-                                    else if (rolUsuario == "supervisor")
-                                    {
-                                        // Abrir las pantallas del supervisor
-                                        frmSupervisor supervisor = new frmSupervisor();
-                                        supervisor.Show();
-                                        this.Hide();
-                                    }
-                                    else if (rolUsuario == "decano")
-                                    {
-                                        // Abrir las pantallas del decano
-                                        frmDecano decano = new frmDecano();
-                                        decano.Show();
-                                        this.Hide();
-                                    }
-                                    else if (rolUsuario == "docente")
-                                    {
-                                        // Abrir las pantallas del docente
-                                        frmDocente doc = new frmDocente();
-                                        doc.Show();
-                                        this.Hide();
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Rol no reconocido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    }
+                                    // Abrir la pantalla del administrador
+                                    frmMigración admin = new frmMigración();
+                                    admin.Show();
+                                    this.Hide();
+                                }
+                                else if (rolUsuario == "supervisor")
+                                {
+                                    // Abrir las pantallas del supervisor
+                                    frmSupervisor supervisor = new frmSupervisor();
+                                    supervisor.Show();
+                                    this.Hide();
+                                }
+                                else if (rolUsuario == "decano")
+                                {
+                                    // Abrir las pantallas del decano
+                                    frmDecano decano = new frmDecano();
+                                    decano.Show();
+                                    this.Hide();
+                                }
+                                else if (rolUsuario == "docente")
+                                {
+                                    // Abrir las pantallas del docente
+                                    frmDocente doc = new frmDocente();
+                                    doc.Show();
+                                    this.Hide();
                                 }
                                 else
                                 {
-                                    // Usuario o contraseña incorrectos
-                                    MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("Rol no reconocido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
+                            }
+                            else
+                            {
+                                // Usuario o contraseña incorrectos
+                                MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
