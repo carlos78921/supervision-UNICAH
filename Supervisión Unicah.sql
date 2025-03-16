@@ -6,16 +6,52 @@ go
 
 set nocount on
 
-CREATE TABLE Empleados (
-    nombre_empleado VARCHAR(50) NOT NULL,
-    apellido_empleado VARCHAR(50) NOT NULL,
-    rol VARCHAR(50) NOT NULL,
-    codigo_empleado VARCHAR(18) primary key NOT NULL,
-    contraseña VARCHAR(255) NOT NULL
+create table Nombres_Completos (
+	ID_Empleado int identity primary key,
+	Nombre1 varchar(9),
+	Nombre2 varchar(11),
+	Apellido1 varchar(13),
+	Apellido2 varchar(11)
 )
+--Recuerden que son cuatro actores
+go
 
---Si no tienen sus inserts, háganse uno
-	
+CREATE TABLE Empleados (
+    ID_Empleado int foreign key references Nombres_Completos(ID_Empleado),
+    rol VARCHAR(50) NOT NULL,
+    codigo_empleado VARCHAR(4) unique NOT NULL,
+    contraseña VARCHAR(255)
+)
+go
+
+UPDATE T
+SET T.ID_Empleado = NC.ID_Empleado
+FROM Tabla1$ T
+JOIN Nombres_Completos NC
+  ON UPPER(LTRIM(RTRIM(T.Nombre1))) = UPPER(LTRIM(RTRIM(nc.Nombre1)))
+  AND UPPER(LTRIM(RTRIM(T.Nombre2))) = UPPER(LTRIM(RTRIM(nc.Nombre2)))
+  AND UPPER(LTRIM(RTRIM(Nombre3))) = UPPER(LTRIM(RTRIM(Apellido1)))
+  and (
+          (Nombre4 is null and Apellido2 is null)
+          or UPPER(LTRIM(RTRIM(Nombre4))) = UPPER(LTRIM(RTRIM(Apellido2)))
+	  )
+
+INSERT INTO Empleados (ID_Empleado, rol, codigo_empleado)
+SELECT 
+    T.ID_Empleado,                           
+    'docente' AS rol,                  
+    T.Cod_Empleado                         
+FROM Tabla1$ T
+JOIN Nombres_Completos nc
+    ON UPPER(LTRIM(RTRIM(T.Nombre1))) = UPPER(LTRIM(RTRIM(nc.Nombre1)))
+   AND UPPER(LTRIM(RTRIM(T.Nombre2))) = UPPER(LTRIM(RTRIM(nc.Nombre2)))
+   AND UPPER(LTRIM(RTRIM(Nombre3))) = UPPER(LTRIM(RTRIM(Apellido1)))
+   AND (
+         (Nombre4 IS NULL AND Apellido2 IS NULL)  -- Ambos nulos se consideran iguales
+         OR UPPER(LTRIM(RTRIM(Nombre4))) = UPPER(LTRIM(RTRIM(Apellido2)))
+       )
+group by T.ID_Empleado, T.Cod_Empleado
+
 create table Clases 
 (
 	Cod_Asignatura varchar(6) primary key,
@@ -23,9 +59,7 @@ create table Clases
 	Asignatura varchar(55)
 )
 go
-
---Si no tienen sus inserts, háganse uno
-
+	
 create table Sitio
 (
 	ID_Sitio int identity primary key,
@@ -33,8 +67,6 @@ create table Sitio
 	Num_Aula int,
 	Seccion varchar (5)    
 )
-
---Si no tienen sus inserts, háganse uno
 
 create table Asistencia
 (
@@ -47,8 +79,6 @@ create table Asistencia
 	Fecha_Reposicion date
 )
 go
-
---Si no tienen sus inserts, háganse uno
 	
 create table Toma_Asistencia
 (
@@ -61,8 +91,6 @@ create table Toma_Asistencia
 	Viernes bit,
 	Sabado bit
 )
-
---Si no tienen sus inserts, háganse uno
 	
 -- Procedimientos Almacenados
 create PROCEDURE PA_Login
