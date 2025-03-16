@@ -29,8 +29,6 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
             InitializeComponent();
             this.MouseDown += frmSupervisor_MouseDown;
         }
-
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -50,10 +48,6 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
                 ReleaseCapture();
                 SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0); //El evento en memoria se mantiene
             }
-        }
-
-        private void btnReporte_Click(object sender, EventArgs e)
-        {
         }
 
         private void btnMarca_Click(object sender, EventArgs e)
