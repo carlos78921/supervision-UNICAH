@@ -28,69 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Button btnSalir;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
-            label1 = new Label();
-            dgvDoc = new DataGridView();
-            clmDoc = new DataGridViewTextBoxColumn();
-            clmClase = new DataGridViewTextBoxColumn();
-            clmSeccion = new DataGridViewTextBoxColumn();
-            clmLunes = new DataGridViewCheckBoxColumn();
-            clmMartes = new DataGridViewCheckBoxColumn();
-            clmMiercoles = new DataGridViewCheckBoxColumn();
-            clmJueves = new DataGridViewCheckBoxColumn();
-            clmViernes = new DataGridViewCheckBoxColumn();
-            clmSabado = new DataGridViewCheckBoxColumn();
-            nudWeeks = new NumericUpDown();
-            label2 = new Label();
-            label5 = new Label();
-            txtClase = new TextBox();
-            btnBusca = new Button();
-            cmbHora = new ComboBox();
-            cmbAula = new ComboBox();
-            cmbEdificio = new ComboBox();
-            gbFiltro = new GroupBox();
-            label6 = new Label();
-            txtDoc = new TextBox();
-            label7 = new Label();
-            btnLogout = new Button();
-            tmrFecha = new System.Windows.Forms.Timer(components);
-            lblFecha = new Label();
-            lblMeses = new Label();
-            btnSalir = new Button();
+            btnLogOut = new Button();
+            btnMarca = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvDoc).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudWeeks).BeginInit();
-            gbFiltro.SuspendLayout();
             SuspendLayout();
             // 
-            // btnOrden
+            // btnMarca
             // 
-<<<<<<< Updated upstream
-            btnSalir.Location = new Point(0, 0);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(75, 23);
-            btnSalir.TabIndex = 37;
-=======
-            btnOrden.Location = new Point(146, 90);
-            btnOrden.Name = "btnOrden";
-            btnOrden.Size = new Size(123, 65);
-            btnOrden.TabIndex = 14;
-            btnOrden.Text = "&ORDEN DE ASISTENCIA";
-            btnOrden.UseVisualStyleBackColor = true;
-            btnOrden.Click += btnOrden_Click;
->>>>>>> Stashed changes
+            btnMarca.Location = new Point(146, 90);
+            btnMarca.Name = "btnMarca";
+            btnMarca.Size = new Size(123, 65);
+            btnMarca.TabIndex = 14;
+            btnMarca.Text = "&TOMA DE ASISTENCIA";
+            btnMarca.UseVisualStyleBackColor = true;
+            btnMarca.Click += btnMarca_Click;
             // 
-            // btnAsisto
-            // 
-<<<<<<< Updated upstream
+            // pictureBox2
+            //
             pictureBox2.Image = Properties.Resources.minimizar_signo;
             pictureBox2.Location = new Point(480, 0);
             pictureBox2.Name = "pictureBox2";
@@ -99,7 +61,9 @@
             pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
             pictureBox2.Click += pictureBox2_Click;
-=======
+            // 
+            // btnReporte
+            // 
             btnReporte.Location = new Point(11, 90);
             btnReporte.Name = "btnReporte";
             btnReporte.Size = new Size(123, 65);
@@ -107,11 +71,9 @@
             btnReporte.Text = "&REPORTE";
             btnReporte.UseVisualStyleBackColor = true;
             btnReporte.Click += btnReporte_Click;
->>>>>>> Stashed changes
             // 
-            // btnLogOut
-            // 
-<<<<<<< Updated upstream
+            // pictureBox1
+            //
             pictureBox1.Image = Properties.Resources.CERRAR;
             pictureBox1.Location = new Point(515, 0);
             pictureBox1.Name = "pictureBox1";
@@ -120,7 +82,9 @@
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
-=======
+            // 
+            // btnLogOut
+            // 
             btnLogOut.Location = new Point(281, 90);
             btnLogOut.Name = "btnLogOut";
             btnLogOut.Size = new Size(123, 65);
@@ -128,7 +92,6 @@
             btnLogOut.Text = "&CERRAR SESIÓN";
             btnLogOut.UseVisualStyleBackColor = true;
             btnLogOut.Click += btnLogOut_Click;
->>>>>>> Stashed changes
             // 
             // panel1
             // 
@@ -139,14 +102,9 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(-1, -1);
             panel1.Name = "panel1";
-<<<<<<< HEAD
-<<<<<<< Updated upstream
             panel1.Size = new Size(517, 87);
-=======
             panel1.Size = new Size(547, 87);
->>>>>>> 2ef61400c506789df19a139b0eb97ecd68bdb72b
             panel1.TabIndex = 11;
-=======
             panel1.Size = new Size(420, 82);
             panel1.TabIndex = 15;
             panel1.MouseDown += panel1_MouseDown;
@@ -162,382 +120,23 @@
             lblPersona.TabIndex = 9;
             lblPersona.Text = "Nombre_Persona";
             // 
-            // pictureBox3
-            // 
-            pictureBox3.BackgroundImageLayout = ImageLayout.None;
-            pictureBox3.Image = Properties.Resources.CircularFondoAzul;
-            pictureBox3.Location = new Point(-21, 0);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(143, 81);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 8;
-            pictureBox3.TabStop = false;
-            // 
-            // label1
-            // 
-<<<<<<< Updated upstream
-            label1.AutoSize = true;
-            label1.Location = new Point(223, 99);
-            label1.Name = "label1";
-            label1.Size = new Size(139, 15);
-            label1.TabIndex = 12;
-            label1.Text = "REPORTE DE ASISTENCIA";
-=======
-            pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(346, 3);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(29, 20);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 7;
-            pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
->>>>>>> Stashed changes
-            // 
-            // dgvDoc
-            // 
-<<<<<<< Updated upstream
-            dgvDoc.AllowUserToAddRows = false;
-            dgvDoc.AllowUserToDeleteRows = false;
-            dgvDoc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDoc.Columns.AddRange(new DataGridViewColumn[] { clmDoc, clmClase, clmSeccion, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
-            dgvDoc.Location = new Point(20, 222);
-            dgvDoc.Name = "dgvDoc";
-            dgvDoc.ReadOnly = true;
-            dgvDoc.RowHeadersWidth = 51;
-            dgvDoc.Size = new Size(510, 216);
-            dgvDoc.TabIndex = 17;
-            // 
-            // clmDoc
-            // 
-            clmDoc.HeaderText = "Docente";
-            clmDoc.MinimumWidth = 6;
-            clmDoc.Name = "clmDoc";
-            clmDoc.ReadOnly = true;
-            clmDoc.Width = 125;
-            // 
-            // clmClase
-            // 
-            clmClase.HeaderText = "Asignatura";
-            clmClase.MinimumWidth = 6;
-            clmClase.Name = "clmClase";
-            clmClase.ReadOnly = true;
-            clmClase.Width = 150;
-            // 
-            // clmSeccion
-            // 
-            clmSeccion.HeaderText = "Sección";
-            clmSeccion.MinimumWidth = 6;
-            clmSeccion.Name = "clmSeccion";
-            clmSeccion.ReadOnly = true;
-            clmSeccion.Width = 58;
-            // 
-            // clmLunes
-            // 
-            clmLunes.HeaderText = "L";
-            clmLunes.MinimumWidth = 6;
-            clmLunes.Name = "clmLunes";
-            clmLunes.ReadOnly = true;
-            clmLunes.Width = 20;
-            // 
-            // clmMartes
-            // 
-            clmMartes.HeaderText = "M";
-            clmMartes.MinimumWidth = 6;
-            clmMartes.Name = "clmMartes";
-            clmMartes.ReadOnly = true;
-            clmMartes.Width = 22;
-            // 
-            // clmMiercoles
-            // 
-            clmMiercoles.HeaderText = "X";
-            clmMiercoles.MinimumWidth = 6;
-            clmMiercoles.Name = "clmMiercoles";
-            clmMiercoles.ReadOnly = true;
-            clmMiercoles.Width = 22;
-            // 
-            // clmJueves
-            // 
-            clmJueves.HeaderText = "J";
-            clmJueves.MinimumWidth = 6;
-            clmJueves.Name = "clmJueves";
-            clmJueves.ReadOnly = true;
-            clmJueves.Width = 20;
-            // 
-            // clmViernes
-            // 
-            clmViernes.HeaderText = "V";
-            clmViernes.MinimumWidth = 6;
-            clmViernes.Name = "clmViernes";
-            clmViernes.ReadOnly = true;
-            clmViernes.Width = 20;
-            // 
-            // clmSabado
-            // 
-            clmSabado.HeaderText = "S";
-            clmSabado.MinimumWidth = 6;
-            clmSabado.Name = "clmSabado";
-            clmSabado.ReadOnly = true;
-            clmSabado.Resizable = DataGridViewTriState.True;
-            clmSabado.SortMode = DataGridViewColumnSortMode.Automatic;
-            clmSabado.Width = 20;
-            // 
-            // nudWeeks
-            // 
-            nudWeeks.Location = new Point(115, 185);
-            nudWeeks.Maximum = new decimal(new int[] { 5, 0, 0, 0 });
-            nudWeeks.Name = "nudWeeks";
-            nudWeeks.Size = new Size(49, 23);
-            nudWeeks.TabIndex = 23;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(57, 189);
-            label2.Name = "label2";
-            label2.Size = new Size(52, 15);
-            label2.TabIndex = 22;
-            label2.Text = "Semana:";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(198, 130);
-            label5.Name = "label5";
-            label5.Size = new Size(67, 15);
-            label5.TabIndex = 26;
-            label5.Text = "Asignatura:";
-            // 
-            // txtClase
-            // 
-            txtClase.Location = new Point(271, 127);
-            txtClase.Name = "txtClase";
-            txtClase.Size = new Size(168, 23);
-            txtClase.TabIndex = 27;
-            // 
-            // btnBusca
-            // 
-            btnBusca.Location = new Point(445, 115);
-            btnBusca.Name = "btnBusca";
-            btnBusca.Size = new Size(75, 39);
-            btnBusca.TabIndex = 28;
-            btnBusca.Text = "&Buscar Asignatura";
-            btnBusca.UseVisualStyleBackColor = true;
-            // 
-            // cmbHora
-            // 
-            cmbHora.FormattingEnabled = true;
-            cmbHora.Items.AddRange(new object[] { "Sección:" });
-            cmbHora.Location = new Point(232, 22);
-            cmbHora.Name = "cmbHora";
-            cmbHora.Size = new Size(85, 23);
-            cmbHora.TabIndex = 30;
-            // 
-            // cmbAula
-            // 
-            cmbAula.FormattingEnabled = true;
-            cmbAula.Items.AddRange(new object[] { "Aula:" });
-            cmbAula.Location = new Point(130, 22);
-            cmbAula.Name = "cmbAula";
-            cmbAula.Size = new Size(85, 23);
-            cmbAula.TabIndex = 31;
-            // 
-            // cmbEdificio
-            // 
-            cmbEdificio.FormattingEnabled = true;
-            cmbEdificio.Items.AddRange(new object[] { "Edificio:" });
-            cmbEdificio.Location = new Point(27, 22);
-            cmbEdificio.Name = "cmbEdificio";
-            cmbEdificio.Size = new Size(85, 23);
-            cmbEdificio.TabIndex = 32;
-            // 
-            // gbFiltro
-            // 
-            gbFiltro.Controls.Add(cmbEdificio);
-            gbFiltro.Controls.Add(cmbHora);
-            gbFiltro.Controls.Add(cmbAula);
-            gbFiltro.Location = new Point(196, 157);
-            gbFiltro.Name = "gbFiltro";
-            gbFiltro.Size = new Size(324, 55);
-            gbFiltro.TabIndex = 33;
-            gbFiltro.TabStop = false;
-            gbFiltro.Text = "Filtros";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(57, 119);
-            label6.Name = "label6";
-            label6.Size = new Size(120, 15);
-            label6.TabIndex = 34;
-            label6.Text = "Nombre y/o apellido ";
-            // 
-            // txtDoc
-            // 
-            txtDoc.Location = new Point(57, 153);
-            txtDoc.Name = "txtDoc";
-            txtDoc.Size = new Size(118, 23);
-            txtDoc.TabIndex = 35;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(79, 135);
-            label7.Name = "label7";
-            label7.Size = new Size(72, 15);
-            label7.TabIndex = 36;
-            label7.Text = "del docente:";
-            // 
-            // btnLogout
-            // 
-            btnLogout.Location = new Point(444, 444);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(86, 23);
-            btnLogout.TabIndex = 38;
-            btnLogout.Text = "Cerrar &Sesión";
-            btnLogout.UseVisualStyleBackColor = true;
-            btnLogout.Click += btnLogout_Click;
-            // 
-            // tmrFecha
-            // 
-            tmrFecha.Enabled = true;
-            tmrFecha.Tick += tmrFecha_Tick;
-            // 
-            // lblFecha
-            // 
-            lblFecha.AutoSize = true;
-            lblFecha.Location = new Point(458, 92);
-            lblFecha.Name = "lblFecha";
-            lblFecha.Size = new Size(41, 15);
-            lblFecha.TabIndex = 40;
-            lblFecha.Text = "Fecha ";
-            // 
-            // lblMeses
-            // 
-            lblMeses.AutoSize = true;
-            lblMeses.Location = new Point(20, 92);
-            lblMeses.Name = "lblMeses";
-            lblMeses.Size = new Size(48, 15);
-            lblMeses.TabIndex = 41;
-            lblMeses.Text = "Periodo";
-            lblMeses.Visible = false;
-            // 
-<<<<<<< HEAD
-            // clmDoc
-            // 
-            clmDoc.HeaderText = "Docente";
-            clmDoc.Name = "clmDoc";
-            clmDoc.ReadOnly = true;
-            // 
-            // clmClase
-            // 
-            clmClase.HeaderText = "Asignatura";
-            clmClase.Name = "clmClase";
-            clmClase.ReadOnly = true;
-            clmClase.Width = 150;
-            // 
-            // clmSeccion
-            // 
-            clmSeccion.HeaderText = "Sección";
-            clmSeccion.Name = "clmSeccion";
-            clmSeccion.ReadOnly = true;
-            clmSeccion.Width = 58;
-            // 
-            // clmLunes
-            // 
-            clmLunes.HeaderText = "L";
-            clmLunes.Name = "clmLunes";
-            clmLunes.ReadOnly = true;
-            clmLunes.Width = 20;
-            // 
-            // clmMartes
-            // 
-            clmMartes.HeaderText = "M";
-            clmMartes.Name = "clmMartes";
-            clmMartes.ReadOnly = true;
-            clmMartes.Width = 22;
-            // 
-            // clmMiercoles
-            // 
-            clmMiercoles.HeaderText = "X";
-            clmMiercoles.Name = "clmMiercoles";
-            clmMiercoles.ReadOnly = true;
-            clmMiercoles.Width = 22;
-            // 
-            // clmJueves
-            // 
-            clmJueves.HeaderText = "J";
-            clmJueves.Name = "clmJueves";
-            clmJueves.ReadOnly = true;
-            clmJueves.Width = 20;
-            // 
-            // clmViernes
-            // 
-            clmViernes.HeaderText = "V";
-            clmViernes.Name = "clmViernes";
-            clmViernes.ReadOnly = true;
-            clmViernes.Width = 20;
-            // 
-            // clmSabado
-            // 
-            clmSabado.HeaderText = "S";
-            clmSabado.Name = "clmSabado";
-            clmSabado.ReadOnly = true;
-            clmSabado.Resizable = DataGridViewTriState.True;
-            clmSabado.SortMode = DataGridViewColumnSortMode.Automatic;
-            clmSabado.Width = 20;
-=======
-            pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(381, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(29, 20);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 6;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
->>>>>>> Stashed changes
-            // 
-=======
->>>>>>> 2ef61400c506789df19a139b0eb97ecd68bdb72b
             // frmSupervisor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(542, 475);
-            Controls.Add(lblMeses);
-            Controls.Add(lblFecha);
-            Controls.Add(btnLogout);
-            Controls.Add(label7);
-            Controls.Add(txtDoc);
-            Controls.Add(label6);
-            Controls.Add(gbFiltro);
-            Controls.Add(btnBusca);
-            Controls.Add(txtClase);
-            Controls.Add(label5);
-            Controls.Add(nudWeeks);
-            Controls.Add(label2);
-            Controls.Add(dgvDoc);
             Controls.Add(panel1);
-            Controls.Add(btnSalir);
-            Controls.Add(label1);
+            Controls.Add(btnLogOut);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmSupervisor";
-<<<<<<< Updated upstream
-            Text = "FrmReporte";
-            Load += FrmReporte_Load;
-            MouseDown += frmSupervisor_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-=======
             Text = "frmSupervisor";
             Load += frmSupervisor_Load;
             MouseDown += frmSupervisor_MouseDown;
->>>>>>> Stashed changes
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvDoc).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudWeeks).EndInit();
-            gbFiltro.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -545,42 +144,13 @@
         #endregion
 
         private Button btnOrden;
-        private Button btnAsisto;
+        private Button btnMarca;
+        private Button btnReporte;
         private Button btnLogOut;
         private Panel panel1;
         private Label lblPersona;
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
-        private Panel panel1;
-        private PictureBox pictureBox3;
-        private Label label1;
-        private DataGridView dgvDoc;
-        private Label lblPersona;
-        private NumericUpDown nudWeeks;
-        private Label label2;
-        private Label label5;
-        private TextBox txtClase;
-        private Button btnBusca;
-        private Label label6;
-        private ComboBox cmbHora;
-        private ComboBox cmbAula;
-        private ComboBox cmbEdificio;
-        private GroupBox gbFiltro;
-        private TextBox txtDoc;
-        private Label label7;
-        private Button btnLogout;
-        private System.Windows.Forms.Timer tmrFecha;
-        private Label lblFecha;
-        private Label lblMeses;
-        private DataGridViewTextBoxColumn clmDoc;
-        private DataGridViewTextBoxColumn clmClase;
-        private DataGridViewTextBoxColumn clmSeccion;
-        private DataGridViewCheckBoxColumn clmLunes;
-        private DataGridViewCheckBoxColumn clmMartes;
-        private DataGridViewCheckBoxColumn clmMiercoles;
-        private DataGridViewCheckBoxColumn clmJueves;
-        private DataGridViewCheckBoxColumn clmViernes;
-        private DataGridViewCheckBoxColumn clmSabado;
     }
 }
