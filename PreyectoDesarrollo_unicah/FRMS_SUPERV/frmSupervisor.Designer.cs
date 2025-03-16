@@ -33,7 +33,6 @@
             panel1 = new Panel();
             lblPersona = new Label();
             btnLogOut = new Button();
-            btnMarca = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -94,21 +93,11 @@
             btnLogOut.UseVisualStyleBackColor = true;
             btnLogOut.Click += btnLogOut_Click;
             // 
-            // btnMarca
-            // 
-            btnMarca.Location = new Point(146, 90);
-            btnMarca.Name = "btnMarca";
-            btnMarca.Size = new Size(123, 65);
-            btnMarca.TabIndex = 14;
-            btnMarca.Text = "&TOMA DE ASISTENCIA";
-            btnMarca.UseVisualStyleBackColor = true;
-            btnMarca.Click += btnMarca_Click;
-            // 
             // frmSupervisor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(414, 170);
+            ClientSize = new Size(414, 167);
             Controls.Add(panel1);
             Controls.Add(btnLogOut);
             FormBorderStyle = FormBorderStyle.None;
@@ -125,9 +114,6 @@
 
         #endregion
 
-        private Button btnOrden;
-        private Button btnMarca;
-        private Button btnReporte;
         private Button btnLogOut;
         private Panel panel1;
         private Label lblPersona;

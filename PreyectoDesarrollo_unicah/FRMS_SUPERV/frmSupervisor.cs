@@ -58,9 +58,9 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
 
         private void btnMarca_Click(object sender, EventArgs e)
         {
-            this.Close();
+            /*this.Close();
             frmAsistencia asisto = new frmAsistencia();
-            asisto.Show();
+            asisto.Show();*/
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
