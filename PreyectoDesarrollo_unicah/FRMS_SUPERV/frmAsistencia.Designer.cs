@@ -1,5 +1,4 @@
-﻿namespace PreyectoDesarrollo_unicah
-{
+﻿{
     partial class frmAsistencia
     {
         /// <summary>
@@ -28,6 +27,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<<< HEAD:PreyectoDesarrollo_unicah/FRMS_SUPERV/frmReporte.Designer.cs
+========
             components = new System.ComponentModel.Container();
             Button btnSalir;
             pictureBox2 = new PictureBox();
@@ -36,7 +37,26 @@
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
             label1 = new Label();
+>>>>>>>> ffbd61bc94a6a9cfdac2d780ea9944dd11a8dcfe:PreyectoDesarrollo_unicah/FRMS_SUPERV/frmAsistencia.Designer.cs
             dgvAsiste = new DataGridView();
+            clmDoc = new DataGridViewTextBoxColumn();
+            clmClase = new DataGridViewTextBoxColumn();
+            clmSeccion = new DataGridViewTextBoxColumn();
+            clmLunes = new DataGridViewCheckBoxColumn();
+            clmMartes = new DataGridViewCheckBoxColumn();
+            clmMiercoles = new DataGridViewCheckBoxColumn();
+            clmJueves = new DataGridViewCheckBoxColumn();
+            clmViernes = new DataGridViewCheckBoxColumn();
+            clmSabado = new DataGridViewCheckBoxColumn();
+<<<<<<<< HEAD:PreyectoDesarrollo_unicah/FRMS_SUPERV/frmReporte.Designer.cs
+            panel1 = new Panel();
+            lblPersona = new Label();
+            pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            pictureBox1 = new PictureBox();
+            btnLogout = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvAsiste).BeginInit();
+========
             nudWeeks = new NumericUpDown();
             label2 = new Label();
             label5 = new Label();
@@ -64,13 +84,13 @@
             btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+>>>>>>>> ffbd61bc94a6a9cfdac2d780ea9944dd11a8dcfe:PreyectoDesarrollo_unicah/FRMS_SUPERV/frmAsistencia.Designer.cs
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvAsiste).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudWeeks).BeginInit();
-            gbFiltro.SuspendLayout();
             SuspendLayout();
             // 
+<<<<<<<< HEAD:PreyectoDesarrollo_unicah/FRMS_SUPERV/frmReporte.Designer.cs
+========
             // btnSalir
             // 
             btnSalir.Location = new Point(0, 0);
@@ -139,21 +159,204 @@
             label1.AutoSize = true;
             label1.Location = new Point(209, 99);
             label1.Name = "label1";
-            label1.Size = new Size(139, 15);
             label1.TabIndex = 12;
-            label1.Text = "REPORTE DE ASISTENCIA";
             // 
+>>>>>>>> ffbd61bc94a6a9cfdac2d780ea9944dd11a8dcfe:PreyectoDesarrollo_unicah/FRMS_SUPERV/frmAsistencia.Designer.cs
             // dgvAsiste
             // 
             dgvAsiste.AllowUserToAddRows = false;
             dgvAsiste.AllowUserToDeleteRows = false;
             dgvAsiste.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAsiste.Columns.AddRange(new DataGridViewColumn[] { clmDoc, clmClase, clmSeccion, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
-            dgvAsiste.Location = new Point(20, 222);
             dgvAsiste.Name = "dgvAsiste";
             dgvAsiste.Size = new Size(474, 216);
+<<<<<<<< HEAD:PreyectoDesarrollo_unicah/FRMS_SUPERV/frmReporte.Designer.cs
+            dgvAsiste.TabIndex = 40;
+            // 
+            // clmDoc
+            // 
+            clmDoc.HeaderText = "Docente";
+            clmDoc.Name = "clmDoc";
+            // 
+            // clmClase
+            // 
+            clmClase.HeaderText = "Asignatura";
+            clmClase.Name = "clmClase";
+            clmClase.Width = 150;
+            // 
+            // clmSeccion
+            // 
+            clmSeccion.HeaderText = "Sección";
+            clmSeccion.Name = "clmSeccion";
+            clmSeccion.Width = 58;
+            // 
+            // clmLunes
+            // 
+            clmLunes.HeaderText = "L";
+            clmLunes.Name = "clmLunes";
+            clmLunes.Width = 20;
+            // 
+            // clmMartes
+            // 
+            clmMartes.HeaderText = "M";
+            clmMartes.Name = "clmMartes";
+            clmMartes.Width = 22;
+            // 
+            // clmMiercoles
+            // 
+            clmMiercoles.HeaderText = "X";
+            clmMiercoles.Name = "clmMiercoles";
+            clmMiercoles.Width = 22;
+            // 
+            // clmJueves
+            // 
+            clmJueves.HeaderText = "J";
+            clmJueves.Name = "clmJueves";
+            clmJueves.Width = 20;
+            // 
+            // clmViernes
+            // 
+            clmViernes.HeaderText = "V";
+            clmViernes.Name = "clmViernes";
+            clmViernes.Width = 20;
+            // 
+            // clmSabado
+            // 
+            clmSabado.HeaderText = "S";
+            clmSabado.Name = "clmSabado";
+            clmSabado.Resizable = DataGridViewTriState.True;
+            clmSabado.SortMode = DataGridViewColumnSortMode.Automatic;
+            clmSabado.Width = 20;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.HotTrack;
+            panel1.Controls.Add(lblPersona);
+            panel1.Controls.Add(pictureBox3);
+            panel1.Controls.Add(pictureBox2);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Location = new Point(1, -2);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(517, 87);
+            panel1.TabIndex = 39;
+            panel1.MouseDown += panel1_MouseDown;
+            // 
+            // lblPersona
+            // 
+            lblPersona.AutoSize = true;
+            lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPersona.ForeColor = Color.White;
+            lblPersona.Location = new Point(382, 63);
+            lblPersona.Name = "lblPersona";
+            lblPersona.Size = new Size(132, 18);
+            lblPersona.TabIndex = 23;
+            lblPersona.Text = "Nombre_Persona";
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackgroundImageLayout = ImageLayout.None;
+            pictureBox3.Image = Properties.Resources.CircularFondoAzul;
+            pictureBox3.Location = new Point(-25, 0);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(143, 81);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 8;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.minimizar_signo;
+            pictureBox2.Location = new Point(450, 2);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(29, 21);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 7;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.CERRAR;
+            pictureBox1.Location = new Point(485, 2);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(29, 21);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
+            // btnLogout
+            // 
+            btnLogout.Location = new Point(419, 369);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(86, 23);
+            btnLogout.TabIndex = 41;
+            btnLogout.Text = "Cerrar &Sesión";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
+            // 
+            // frmOrden
+========
             dgvAsiste.TabIndex = 17;
             dgvAsiste.CellContentClick += dgvAsiste_CellContentClick;
+            // 
+            // clmDoc
+            // 
+            clmDoc.HeaderText = "Docente";
+            clmDoc.Name = "clmDoc";
+            clmDoc.ReadOnly = true;
+            // 
+            // clmClase
+            // 
+            clmClase.HeaderText = "Asignatura";
+            clmClase.Name = "clmClase";
+            clmClase.ReadOnly = true;
+            clmClase.Width = 150;
+            // 
+            // clmSeccion
+            // 
+            clmSeccion.HeaderText = "Sección";
+            clmSeccion.Name = "clmSeccion";
+            clmSeccion.ReadOnly = true;
+            clmSeccion.Width = 58;
+            // 
+            // clmLunes
+            // 
+            clmLunes.HeaderText = "L";
+            clmLunes.Name = "clmLunes";
+            clmLunes.Width = 20;
+            // 
+            // clmMartes
+            // 
+            clmMartes.HeaderText = "M";
+            clmMartes.Name = "clmMartes";
+            clmMartes.Width = 22;
+            // 
+            // clmMiercoles
+            // 
+            clmMiercoles.HeaderText = "X";
+            clmMiercoles.Name = "clmMiercoles";
+            clmMiercoles.Width = 22;
+            // 
+            // clmJueves
+            // 
+            clmJueves.HeaderText = "J";
+            clmJueves.Name = "clmJueves";
+            clmJueves.Width = 20;
+            // 
+            // clmViernes
+            // 
+            clmViernes.HeaderText = "V";
+            clmViernes.Name = "clmViernes";
+            clmViernes.Width = 20;
+            // 
+            // clmSabado
+            // 
+            clmSabado.HeaderText = "S";
+            clmSabado.Name = "clmSabado";
+            clmSabado.Resizable = DataGridViewTriState.True;
+            clmSabado.SortMode = DataGridViewColumnSortMode.Automatic;
+            clmSabado.Width = 20;
             // 
             // nudWeeks
             // 
@@ -345,38 +548,16 @@
             clmSabado.Width = 20;
             // 
             // frmReporte
+>>>>>>>> ffbd61bc94a6a9cfdac2d780ea9944dd11a8dcfe:PreyectoDesarrollo_unicah/FRMS_SUPERV/frmAsistencia.Designer.cs
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(512, 475);
-            Controls.Add(lblMeses);
-            Controls.Add(lblFecha);
-            Controls.Add(btnLogout);
-            Controls.Add(txtDoc);
-            Controls.Add(label6);
-            Controls.Add(gbFiltro);
-            Controls.Add(btnBusca);
-            Controls.Add(txtClase);
-            Controls.Add(label5);
-            Controls.Add(nudWeeks);
-            Controls.Add(label2);
             Controls.Add(dgvAsiste);
             Controls.Add(panel1);
-            Controls.Add(btnSalir);
-            Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "frmReporte";
-            Text = "FrmReporte";
-            Load += FrmReporte_Load;
-            MouseDown += frmSupervisor_MouseDown;
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvAsiste).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudWeeks).EndInit();
-            gbFiltro.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -414,5 +595,15 @@
         private DataGridViewCheckBoxColumn clmJueves;
         private DataGridViewCheckBoxColumn clmViernes;
         private DataGridViewCheckBoxColumn clmSabado;
+<<<<<<<< HEAD:PreyectoDesarrollo_unicah/FRMS_SUPERV/frmReporte.Designer.cs
+        private Panel panel1;
+        private Label lblPersona;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox1;
+        private Button btnLogout;
+========
+        private Button btnSalir;
+>>>>>>>> ffbd61bc94a6a9cfdac2d780ea9944dd11a8dcfe:PreyectoDesarrollo_unicah/FRMS_SUPERV/frmAsistencia.Designer.cs
     }
 }
