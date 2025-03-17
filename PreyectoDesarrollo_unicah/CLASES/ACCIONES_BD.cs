@@ -118,7 +118,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
         public static DataTable tablaSupervisor(DataGridView dgv)
         {
             string pa = "PA_Asistencia_Superv";
-            string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
+            string conexion = "Data Source= Servidor del SQL (también en las clases);Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
 
             DataTable dt = new DataTable();
             try
