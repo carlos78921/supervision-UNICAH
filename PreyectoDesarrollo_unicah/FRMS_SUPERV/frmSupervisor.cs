@@ -1,5 +1,4 @@
 ﻿using PreyectoDesarrollo_unicah.CLASES;
-using PreyectoDesarrollo_unicah.FRMS_SUPERV;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +28,8 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
             InitializeComponent();
             this.MouseDown += frmSupervisor_MouseDown;
         }
+
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -39,6 +40,13 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form1 Login = new Form1();
+            Login.Show();
         }
 
         private void frmSupervisor_MouseDown(object sender, MouseEventArgs e) //Evento del ratón "e"
@@ -52,16 +60,13 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
 
         private void btnMarca_Click(object sender, EventArgs e)
         {
-            /*this.Close();
+            this.Close();
             frmAsistencia asisto = new frmAsistencia();
-            asisto.Show();*/
+            asisto.Show();
         }
 
-        private void btnLogOut_Click(object sender, EventArgs e)
+        private void btnReporte_Click(object sender, EventArgs e)
         {
-            this.Close();
-            Form1 Login = new Form1();
-            Login.Show();
         }
 
         private void frmSupervisor_Load(object sender, EventArgs e)
@@ -74,6 +79,5 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-
     }
 }
