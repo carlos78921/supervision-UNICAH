@@ -24,6 +24,9 @@ CREATE TABLE Empleados (
 )
 go
 
+alter table tabla1$
+add ID_Empleado int foreign key references Nombres_Completos (ID_Empleado)
+	
 UPDATE T
 SET T.ID_Empleado = NC.ID_Empleado
 FROM Tabla1$ T
