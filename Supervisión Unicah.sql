@@ -178,6 +178,36 @@ end
 go
 exec PA_Asistencia_Doc 'Clase1', '0701', 0, 0, 0, 0, 0, 0	
 
+	--Datos a DGVADMIN
+create procedure PA_Admin
+with encryption 
+as
+begin
+	select
+	(C.Cod_Facultad + ' ' + A.Cod_Asignatura) AS Referencia, 
+        C.Asignatura AS Curso, 
+        S.Seccion, 
+        (S.Edificio + ' - ' + CAST(S.Num_Aula AS VARCHAR)) AS Aula, 
+        TA.Lunes AS L, 
+        TA.Martes AS M, 
+        TA.Miercoles AS M, 
+        TA.Jueves AS J, 
+        TA.Viernes AS V, 
+        TA.Sabado AS S
+	from 
+	Asistencia A
+    INNER JOIN 
+        Clases C ON A.Cod_Asignatura = C.Cod_Asignatura
+    INNER JOIN 
+        Sitio S ON A.ID_Sitio = S.ID_Sitio
+    INNER JOIN 
+        Empleados E ON A.codigo_empleado = E.codigo_empleado
+    INNER JOIN 
+        Toma_Asistencia TA ON A.ID_Asistencia = TA.ID_Asistencia;
+END
+GO
+
+	
 CREATE PROCEDURE PA_Justificaciones
 with encryption
 AS
