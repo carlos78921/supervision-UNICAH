@@ -35,7 +35,6 @@
             txtContraseña = new TextBox();
             btnContra = new Button();
             txtUsuario = new TextBox();
-            txtConfirm = new TextBox();
             btnSale = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -98,6 +97,8 @@
             txtContraseña.Size = new Size(408, 20);
             txtContraseña.TabIndex = 9;
             txtContraseña.Text = "Contraseña nueva:";
+            txtContraseña.Enter += txtContraseña_Enter;
+            txtContraseña.Leave += txtContraseña_Leave;
             // 
             // btnContra
             // 
@@ -105,12 +106,13 @@
             btnContra.FlatAppearance.BorderColor = SystemColors.HotTrack;
             btnContra.FlatStyle = FlatStyle.Flat;
             btnContra.ForeColor = Color.Black;
-            btnContra.Location = new Point(179, 239);
+            btnContra.Location = new Point(179, 182);
             btnContra.Name = "btnContra";
             btnContra.Size = new Size(408, 40);
             btnContra.TabIndex = 8;
             btnContra.Text = "&REGISTRAR CONTRASEÑA";
             btnContra.UseVisualStyleBackColor = false;
+            btnContra.Click += btnContra_Click;
             // 
             // txtUsuario
             // 
@@ -123,18 +125,8 @@
             txtUsuario.Size = new Size(408, 20);
             txtUsuario.TabIndex = 6;
             txtUsuario.Text = "Usuario:";
-            // 
-            // txtConfirm
-            // 
-            txtConfirm.BackColor = Color.White;
-            txtConfirm.BorderStyle = BorderStyle.None;
-            txtConfirm.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtConfirm.ForeColor = Color.Black;
-            txtConfirm.Location = new Point(179, 193);
-            txtConfirm.Name = "txtConfirm";
-            txtConfirm.Size = new Size(408, 20);
-            txtConfirm.TabIndex = 10;
-            txtConfirm.Text = "Confirmar contraseña:";
+            txtUsuario.Enter += txtUsuario_Enter;
+            txtUsuario.Leave += txtUsuario_Leave;
             // 
             // btnSale
             // 
@@ -148,15 +140,14 @@
             btnSale.TabIndex = 11;
             btnSale.Text = "&SALIR";
             btnSale.UseVisualStyleBackColor = false;
-            btnSale.Click += this.btnSale_Click;
+            btnSale.Click += btnSale_Click;
             // 
             // frmContraseña
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(764, 291);
+            ClientSize = new Size(764, 236);
             Controls.Add(btnSale);
-            Controls.Add(txtConfirm);
             Controls.Add(txtContraseña);
             Controls.Add(btnContra);
             Controls.Add(txtUsuario);
@@ -183,7 +174,6 @@
         private TextBox txtContraseña;
         private Button btnContra;
         private TextBox txtUsuario;
-        private TextBox txtConfirm;
         private Button btnSale;
     }
 }

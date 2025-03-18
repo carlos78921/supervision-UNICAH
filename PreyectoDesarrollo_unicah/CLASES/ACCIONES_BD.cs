@@ -217,7 +217,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         cmd.Parameters.AddWithValue("@Seccion", seccion);
                         cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
                         cmd.Parameters.AddWithValue("@Dia", dia);
-                        cmd.ExecuteNonQuery();
+                        //cmd.ExecuteNonQuery(); //Para no detectar una fila, sino más entre todas las filas
                     }
                 }
             }
@@ -243,7 +243,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
                     cmd.Parameters.AddWithValue("@Dia", dia);
 
-                    cmd.ExecuteNonQuery();
+                    //cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)

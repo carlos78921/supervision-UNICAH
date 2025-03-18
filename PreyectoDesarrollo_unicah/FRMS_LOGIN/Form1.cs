@@ -34,7 +34,6 @@ namespace PreyectoDesarrollo_unicah
 
         private void txtusuario_Enter(object sender, EventArgs e)
         {
-            //se añade un tipo de marca de agua a los txtbox
             if (txtusuario.Text == "Usuario:")
             {
                 txtusuario.Text = "";
@@ -81,7 +80,6 @@ namespace PreyectoDesarrollo_unicah
 
             try
             {
-                // Consulta para obtener el rol, nombre y apellido
                 using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
                 {
                     conexion.Open();
@@ -90,8 +88,9 @@ namespace PreyectoDesarrollo_unicah
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@usuario", usuario);
-                        //                        cmd.Parameters.AddWithValue("@contrasena", contraseña);
+                        //cmd.Parameters.AddWithValue("@contrasena", contraseña);
 
+                        // Consulta para obtener el rol, nombre y apellido
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read()) // Verifica si hay usuario y contraseña para leer otros datos
@@ -104,7 +103,7 @@ namespace PreyectoDesarrollo_unicah
                                 ACCIONES_BD.apellido = apellido;
                                 ACCIONES_BD.docente = codigoDocente;
 
-                                MessageBox.Show($"Bienvenido, {nombre} {apellido}. Su rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show($"Bienvenido(a), {nombre} {apellido}. Su rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 if (rolUsuario == "administrador")
                                 {
