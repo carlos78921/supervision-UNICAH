@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PreyectoDesarrollo_unicah
 {
-    public partial class frmOlvideDatos : Form
+    public partial class frmContraseña : Form
     {
-        public frmOlvideDatos()
+        public frmContraseña()
         {
             InitializeComponent();
         }

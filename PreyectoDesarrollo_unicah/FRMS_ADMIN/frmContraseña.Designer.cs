@@ -1,6 +1,6 @@
 ﻿namespace PreyectoDesarrollo_unicah
 {
-    partial class frmRestablecerCuenta
+    partial class frmContraseña
     {
         /// <summary>
         /// Required designer variable.
@@ -121,7 +121,7 @@
             txtusuario.Name = "txtusuario";
             txtusuario.Size = new Size(408, 20);
             txtusuario.TabIndex = 6;
-            txtusuario.Text = "Usuario nuevo:";
+            txtusuario.Text = "Usuario:";
             // 
             // textBox1
             // 
