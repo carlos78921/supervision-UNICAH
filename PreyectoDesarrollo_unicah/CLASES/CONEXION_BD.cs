@@ -16,19 +16,16 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
     internal class CONEXION_BD
     {
-        string conexion = "Data Source= Servidor de SQL (También en las clases);Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
-         public SqlConnection conectar = new SqlConnection();
+        public static string conexion = "Data Source= Servidor del SQL;Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
+        public static SqlConnection conectar = new SqlConnection(conexion);
 
-
-        public CONEXION_BD()
+        public CONEXION_BD() 
         {
-            conectar.ConnectionString = conexion;
         }
-       
+
         public void abrir() //aqui se habre la conexion de la BDD
         {
-
-            try
+/*            try
             {
                 if (conectar.State == ConnectionState.Closed)
                 {
@@ -38,14 +35,13 @@ namespace PreyectoDesarrollo_unicah.CLASES
             catch (Exception ex)
             {
                 MessageBox.Show($"ERROR AL ABRIR LA CONEXIÓN: {ex.Message}", "ERROR");  //captura los errores y los envia en un messagebox
-            }
-
+            }*/
         }
 
 
         public void cerrar()    //aqui se cierra la conexion de la BDD
         {
-            try {
+/*            try {
 
                 if (conectar.State == ConnectionState.Open)
                 {
@@ -56,8 +52,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             {
 
                 MessageBox.Show($"ERROR AL CERRAR LA CONEXIÓN: {ex.Message}", "ERROR"); //captura los errores y los envia en un messagebox
-            }
-
+            }*/
         }
     }
 }
