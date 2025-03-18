@@ -1,4 +1,5 @@
 using PreyectoDesarrollo_unicah.CLASES;
+using PreyectoDesarrollo_unicah.FRMS_ADMIN;
 using PreyectoDesarrollo_unicah.FRMS_SUPERV;
 using System.Data;
 using System.Data.SqlClient;

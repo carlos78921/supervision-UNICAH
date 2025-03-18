@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             pictureBox3 = new PictureBox();
-            btnReponer = new Button();
-            btnJustifica = new Button();
+            btnAsigna = new Button();
+            btnMigra = new Button();
             btnLogOut = new Button();
             lblPersona = new Label();
             panel1 = new Panel();
@@ -53,23 +53,25 @@
             pictureBox3.TabIndex = 8;
             pictureBox3.TabStop = false;
             // 
-            // btnReponer
+            // btnAsigna
             // 
-            btnReponer.Location = new Point(148, 87);
-            btnReponer.Name = "btnReponer";
-            btnReponer.Size = new Size(123, 65);
-            btnReponer.TabIndex = 15;
-            btnReponer.Text = "&ASIGNAR CONTRASEÑA";
-            btnReponer.UseVisualStyleBackColor = true;
+            btnAsigna.Location = new Point(148, 87);
+            btnAsigna.Name = "btnAsigna";
+            btnAsigna.Size = new Size(123, 65);
+            btnAsigna.TabIndex = 15;
+            btnAsigna.Text = "&ASIGNAR CONTRASEÑA";
+            btnAsigna.UseVisualStyleBackColor = true;
+            btnAsigna.Click += btnAsigna_Click;
             // 
-            // btnJustifica
+            // btnMigra
             // 
-            btnJustifica.Location = new Point(13, 87);
-            btnJustifica.Name = "btnJustifica";
-            btnJustifica.Size = new Size(123, 65);
-            btnJustifica.TabIndex = 14;
-            btnJustifica.Text = "&MIGRAR DATOS";
-            btnJustifica.UseVisualStyleBackColor = true;
+            btnMigra.Location = new Point(13, 87);
+            btnMigra.Name = "btnMigra";
+            btnMigra.Size = new Size(123, 65);
+            btnMigra.TabIndex = 14;
+            btnMigra.Text = "&MIGRAR DATOS";
+            btnMigra.UseVisualStyleBackColor = true;
+            btnMigra.Click += btnMigra_Click;
             // 
             // btnLogOut
             // 
@@ -103,6 +105,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(420, 81);
             panel1.TabIndex = 12;
+            panel1.MouseDown += panel1_MouseDown;
             // 
             // pictureBox2
             // 
@@ -131,14 +134,15 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(420, 162);
-            Controls.Add(btnReponer);
-            Controls.Add(btnJustifica);
+            Controls.Add(btnAsigna);
+            Controls.Add(btnMigra);
             Controls.Add(btnLogOut);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmAdmin";
             Text = "frmAdmin";
             Load += frmAdmin_Load;
+            MouseDown += frmAdmin_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -150,8 +154,8 @@
         #endregion
 
         private PictureBox pictureBox3;
-        private Button btnReponer;
-        private Button btnJustifica;
+        private Button btnAsigna;
+        private Button btnMigra;
         private Button btnLogOut;
         private Label lblPersona;
         private Panel panel1;

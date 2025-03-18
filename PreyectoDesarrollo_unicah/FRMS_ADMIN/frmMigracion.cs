@@ -1,4 +1,5 @@
 using PreyectoDesarrollo_unicah.CLASES;
+using PreyectoDesarrollo_unicah.FRMS_ADMIN;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,8 +29,8 @@ namespace PreyectoDesarrollo_unicah
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             this.Close();
-            Form1 Login = new Form1();
-            Login.Show();
+            frmAdmin Admin = new frmAdmin();
+            Admin.Show();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -40,8 +41,8 @@ namespace PreyectoDesarrollo_unicah
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
-            Form1 Login = new Form1();
-            Login.Show();
+            frmAdmin Admin = new frmAdmin();
+            Admin.Show();
         }
     }
 }

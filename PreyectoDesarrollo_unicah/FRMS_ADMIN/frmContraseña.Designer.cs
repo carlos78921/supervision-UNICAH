@@ -33,9 +33,10 @@
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             txtContraseña = new TextBox();
-            button1 = new Button();
+            btnContra = new Button();
             txtUsuario = new TextBox();
             txtConfirm = new TextBox();
+            btnSale = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -98,18 +99,18 @@
             txtContraseña.TabIndex = 9;
             txtContraseña.Text = "Contraseña nueva:";
             // 
-            // button1
+            // btnContra
             // 
-            button1.BackColor = Color.White;
-            button1.FlatAppearance.BorderColor = SystemColors.HotTrack;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.Black;
-            button1.Location = new Point(179, 239);
-            button1.Name = "button1";
-            button1.Size = new Size(408, 40);
-            button1.TabIndex = 8;
-            button1.Text = "&REGISTRAR CONTRASEÑA";
-            button1.UseVisualStyleBackColor = false;
+            btnContra.BackColor = Color.White;
+            btnContra.FlatAppearance.BorderColor = SystemColors.HotTrack;
+            btnContra.FlatStyle = FlatStyle.Flat;
+            btnContra.ForeColor = Color.Black;
+            btnContra.Location = new Point(179, 239);
+            btnContra.Name = "btnContra";
+            btnContra.Size = new Size(408, 40);
+            btnContra.TabIndex = 8;
+            btnContra.Text = "&REGISTRAR CONTRASEÑA";
+            btnContra.UseVisualStyleBackColor = false;
             // 
             // txtUsuario
             // 
@@ -135,14 +136,29 @@
             txtConfirm.TabIndex = 10;
             txtConfirm.Text = "Confirmar contraseña:";
             // 
+            // btnSale
+            // 
+            btnSale.BackColor = Color.White;
+            btnSale.FlatAppearance.BorderColor = SystemColors.HotTrack;
+            btnSale.FlatStyle = FlatStyle.Flat;
+            btnSale.ForeColor = Color.Black;
+            btnSale.Location = new Point(690, 87);
+            btnSale.Name = "btnSale";
+            btnSale.Size = new Size(62, 40);
+            btnSale.TabIndex = 11;
+            btnSale.Text = "&SALIR";
+            btnSale.UseVisualStyleBackColor = false;
+            btnSale.Click += this.btnSale_Click;
+            // 
             // frmContraseña
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(764, 291);
+            Controls.Add(btnSale);
             Controls.Add(txtConfirm);
             Controls.Add(txtContraseña);
-            Controls.Add(button1);
+            Controls.Add(btnContra);
             Controls.Add(txtUsuario);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -165,8 +181,9 @@
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private TextBox txtContraseña;
-        private Button button1;
+        private Button btnContra;
         private TextBox txtUsuario;
         private TextBox txtConfirm;
+        private Button btnSale;
     }
 }

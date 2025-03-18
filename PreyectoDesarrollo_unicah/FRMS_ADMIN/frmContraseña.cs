@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PreyectoDesarrollo_unicah.FRMS_ADMIN;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,13 @@ namespace PreyectoDesarrollo_unicah
             InitializeComponent();
         }
 
+        private void btnSale_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            frmAdmin Admin = new frmAdmin();
+            Admin.Show();
+        }
+
         private void Frmolvidecontra_Load(object sender, EventArgs e)
         {
 
@@ -29,7 +37,9 @@ namespace PreyectoDesarrollo_unicah
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
+            frmAdmin Admin = new frmAdmin();
+            Admin.Show();
         }
     }
 }
