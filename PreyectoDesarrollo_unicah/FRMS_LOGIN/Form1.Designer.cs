@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             txtusuario = new TextBox();
-            linkLabel1 = new LinkLabel();
             button1 = new Button();
             panel1 = new Panel();
             pictureBox3 = new PictureBox();
@@ -57,17 +56,6 @@
             txtusuario.Text = "Usuario:";
             txtusuario.Enter += txtusuario_Enter;
             txtusuario.Leave += txtusuario_Leave;
-            // 
-            // linkLabel1
-            // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(334, 260);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(95, 15);
-            linkLabel1.TabIndex = 4;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "&Olvidé mis datos";
-            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // button1
             // 
@@ -162,7 +150,6 @@
             Controls.Add(txtcontraseña);
             Controls.Add(panel1);
             Controls.Add(button1);
-            Controls.Add(linkLabel1);
             Controls.Add(txtusuario);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Form1";
@@ -181,7 +168,6 @@
         #endregion
 
         private TextBox txtusuario;
-        private LinkLabel linkLabel1;
         private Button button1;
         private Panel panel1;
         private TextBox txtcontraseña;

@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace PreyectoDesarrollo_unicah
 {
-    public partial class frmMigración : Form
+    public partial class frmMigracion : Form
     {
-        public frmMigración()
+        public frmMigracion()
         {
             InitializeComponent();
         }

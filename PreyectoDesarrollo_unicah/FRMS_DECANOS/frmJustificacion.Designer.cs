@@ -1,6 +1,6 @@
 namespace PreyectoDesarrollo_unicah
 {
-    partial class frmReposición
+    partial class frmJustificacion
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@ namespace PreyectoDesarrollo_unicah
         /// </summary>
         private void InitializeComponent()
         {
-            Button btnDay;
+            Button btnAgregar;
             Button btnVoy;
             Button btnBusco;
             pictureBox2 = new PictureBox();
@@ -37,64 +37,65 @@ namespace PreyectoDesarrollo_unicah
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
             label2 = new Label();
-            nudReposicion = new NumericUpDown();
-            label1 = new Label();
-            dataGridView1 = new DataGridView();
+            dgvJustificacion = new DataGridView();
             clmClase = new DataGridViewTextBoxColumn();
             clmFecha = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
-            clmDocente = new DataGridViewTextBoxColumn();
-            clmRepo = new DataGridViewTextBoxColumn();
-            txtBusco = new TextBox();
-            cmbEdificio = new ComboBox();
+            clmDoc = new DataGridViewTextBoxColumn();
+            clmJustifica = new DataGridViewTextBoxColumn();
+            label1 = new Label();
+            txtJustifica = new TextBox();
+            lblCaracteres = new Label();
             label3 = new Label();
+            cmbEdificio = new ComboBox();
+            txtBusco = new TextBox();
+            label4 = new Label();
             lblMeses = new Label();
-            btnDay = new Button();
+            btnAgregar = new Button();
             btnVoy = new Button();
             btnBusco = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudReposicion).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvJustificacion).BeginInit();
             SuspendLayout();
             // 
-            // btnDay
+            // btnAgregar
             // 
-            btnDay.Location = new Point(194, 161);
-            btnDay.Margin = new Padding(3, 4, 3, 4);
-            btnDay.Name = "btnDay";
-            btnDay.Size = new Size(77, 31);
-            btnDay.TabIndex = 21;
-            btnDay.Text = "INSERT&AR";
-            btnDay.UseVisualStyleBackColor = true;
+            btnAgregar.Location = new Point(602, 789);
+            btnAgregar.Margin = new Padding(3, 4, 3, 4);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new Size(144, 59);
+            btnAgregar.TabIndex = 29;
+            btnAgregar.Text = "INSERT&AR JUSTIFICACIÓN";
+            btnAgregar.UseVisualStyleBackColor = true;
             // 
             // btnVoy
             // 
-            btnVoy.Location = new Point(599, 565);
+            btnVoy.Location = new Point(753, 803);
             btnVoy.Margin = new Padding(3, 4, 3, 4);
             btnVoy.Name = "btnVoy";
-            btnVoy.Size = new Size(117, 39);
-            btnVoy.TabIndex = 20;
+            btnVoy.Size = new Size(144, 32);
+            btnVoy.TabIndex = 27;
             btnVoy.Text = "&Regresar";
             btnVoy.UseVisualStyleBackColor = true;
             btnVoy.Click += btnVoy_Click;
             // 
             // btnBusco
             // 
-            btnBusco.Location = new Point(470, 161);
+            btnBusco.Location = new Point(240, 195);
             btnBusco.Margin = new Padding(3, 4, 3, 4);
             btnBusco.Name = "btnBusco";
             btnBusco.Size = new Size(77, 31);
-            btnBusco.TabIndex = 25;
+            btnBusco.TabIndex = 39;
             btnBusco.Text = "&Buscar";
             btnBusco.UseVisualStyleBackColor = true;
             // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(657, 5);
+            pictureBox2.Location = new Point(839, 0);
             pictureBox2.Margin = new Padding(3, 4, 3, 4);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(33, 27);
@@ -105,7 +106,7 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(697, 5);
+            pictureBox1.Location = new Point(879, 0);
             pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(33, 27);
@@ -133,10 +134,10 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.AutoSize = true;
             lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(579, 84);
+            lblPersona.Location = new Point(758, 84);
             lblPersona.Name = "lblPersona";
             lblPersona.Size = new Size(163, 23);
-            lblPersona.TabIndex = 25;
+            lblPersona.TabIndex = 10;
             lblPersona.Text = "Nombre_Persona";
             lblPersona.Click += lblPersona_Click;
             // 
@@ -155,45 +156,25 @@ namespace PreyectoDesarrollo_unicah
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(18, 167);
+            label2.Location = new Point(354, 164);
             label2.Name = "label2";
-            label2.Size = new Size(129, 20);
-            label2.TabIndex = 23;
-            label2.Text = "Día de reposición:";
+            label2.Size = new Size(156, 20);
+            label2.TabIndex = 30;
+            label2.Text = "Justificación detallada";
             // 
-            // nudReposicion
+            // dgvJustificacion
             // 
-            nudReposicion.Location = new Point(137, 164);
-            nudReposicion.Margin = new Padding(3, 4, 3, 4);
-            nudReposicion.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
-            nudReposicion.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            nudReposicion.Name = "nudReposicion";
-            nudReposicion.Size = new Size(46, 27);
-            nudReposicion.TabIndex = 22;
-            nudReposicion.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(304, 129);
-            label1.Name = "label1";
-            label1.Size = new Size(179, 20);
-            label1.TabIndex = 18;
-            label1.Text = "REPORTE DE REPOSICIÓN";
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha, clmSeccion, clmDocente, clmRepo });
-            dataGridView1.Location = new Point(18, 200);
-            dataGridView1.Margin = new Padding(3, 4, 3, 4);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(697, 357);
-            dataGridView1.TabIndex = 24;
+            dgvJustificacion.AllowUserToAddRows = false;
+            dgvJustificacion.AllowUserToDeleteRows = false;
+            dgvJustificacion.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvJustificacion.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha, clmSeccion, clmDoc, clmJustifica });
+            dgvJustificacion.Location = new Point(15, 363);
+            dgvJustificacion.Margin = new Padding(3, 4, 3, 4);
+            dgvJustificacion.Name = "dgvJustificacion";
+            dgvJustificacion.ReadOnly = true;
+            dgvJustificacion.RowHeadersWidth = 51;
+            dgvJustificacion.Size = new Size(883, 405);
+            dgvJustificacion.TabIndex = 26;
             // 
             // clmClase
             // 
@@ -209,7 +190,7 @@ namespace PreyectoDesarrollo_unicah
             clmFecha.MinimumWidth = 6;
             clmFecha.Name = "clmFecha";
             clmFecha.ReadOnly = true;
-            clmFecha.Width = 130;
+            clmFecha.Width = 80;
             // 
             // clmSeccion
             // 
@@ -217,92 +198,130 @@ namespace PreyectoDesarrollo_unicah
             clmSeccion.MinimumWidth = 6;
             clmSeccion.Name = "clmSeccion";
             clmSeccion.ReadOnly = true;
-            clmSeccion.Width = 125;
+            clmSeccion.Width = 66;
             // 
-            // clmDocente
+            // clmDoc
             // 
-            clmDocente.HeaderText = "Docente";
-            clmDocente.MinimumWidth = 6;
-            clmDocente.Name = "clmDocente";
-            clmDocente.ReadOnly = true;
-            clmDocente.Width = 125;
+            clmDoc.HeaderText = "Docente";
+            clmDoc.MinimumWidth = 6;
+            clmDoc.Name = "clmDoc";
+            clmDoc.ReadOnly = true;
+            clmDoc.Width = 120;
             // 
-            // clmRepo
+            // clmJustifica
             // 
-            clmRepo.HeaderText = "Fecha de Reposición";
-            clmRepo.MinimumWidth = 6;
-            clmRepo.Name = "clmRepo";
-            clmRepo.ReadOnly = true;
-            clmRepo.Width = 138;
+            clmJustifica.HeaderText = "Justificación";
+            clmJustifica.MinimumWidth = 6;
+            clmJustifica.Name = "clmJustifica";
+            clmJustifica.ReadOnly = true;
+            clmJustifica.Width = 364;
             // 
-            // txtBusco
+            // label1
             // 
-            txtBusco.Location = new Point(312, 163);
-            txtBusco.Margin = new Padding(3, 4, 3, 4);
-            txtBusco.Name = "txtBusco";
-            txtBusco.Size = new Size(150, 27);
-            txtBusco.TabIndex = 26;
+            label1.AutoSize = true;
+            label1.Location = new Point(354, 124);
+            label1.Name = "label1";
+            label1.Size = new Size(216, 20);
+            label1.TabIndex = 25;
+            label1.Text = "JUSTIFICACIÓN DE ASISTENCIA";
+            // 
+            // txtJustifica
+            // 
+            txtJustifica.Location = new Point(511, 159);
+            txtJustifica.Margin = new Padding(3, 4, 3, 4);
+            txtJustifica.Multiline = true;
+            txtJustifica.Name = "txtJustifica";
+            txtJustifica.Size = new Size(386, 195);
+            txtJustifica.TabIndex = 37;
+            // 
+            // lblCaracteres
+            // 
+            lblCaracteres.AutoSize = true;
+            lblCaracteres.BackColor = SystemColors.Window;
+            lblCaracteres.Location = new Point(515, 163);
+            lblCaracteres.Name = "lblCaracteres";
+            lblCaracteres.Size = new Size(142, 20);
+            lblCaracteres.TabIndex = 38;
+            lblCaracteres.Text = "Límite de caracteres";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(15, 243);
+            label3.Name = "label3";
+            label3.Size = new Size(50, 20);
+            label3.TabIndex = 42;
+            label3.Text = "Filtrar:";
             // 
             // cmbEdificio
             // 
             cmbEdificio.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdificio.FormattingEnabled = true;
             cmbEdificio.Items.AddRange(new object[] { "Edificio:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M" });
-            cmbEdificio.Location = new Point(624, 161);
+            cmbEdificio.Location = new Point(67, 233);
             cmbEdificio.Margin = new Padding(3, 4, 3, 4);
             cmbEdificio.Name = "cmbEdificio";
             cmbEdificio.Size = new Size(89, 28);
-            cmbEdificio.TabIndex = 27;
+            cmbEdificio.TabIndex = 41;
             // 
-            // label3
+            // txtBusco
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(571, 167);
-            label3.Name = "label3";
-            label3.Size = new Size(50, 20);
-            label3.TabIndex = 28;
-            label3.Text = "Filtrar:";
+            txtBusco.Location = new Point(16, 195);
+            txtBusco.Margin = new Padding(3, 4, 3, 4);
+            txtBusco.Name = "txtBusco";
+            txtBusco.Size = new Size(217, 27);
+            txtBusco.TabIndex = 40;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(16, 168);
+            label4.Name = "label4";
+            label4.Size = new Size(68, 20);
+            label4.TabIndex = 43;
+            label4.Text = "Docente:";
             // 
             // lblMeses
             // 
             lblMeses.AutoSize = true;
-            lblMeses.Location = new Point(661, 129);
+            lblMeses.Location = new Point(843, 124);
             lblMeses.Name = "lblMeses";
             lblMeses.Size = new Size(60, 20);
-            lblMeses.TabIndex = 29;
+            lblMeses.TabIndex = 44;
             lblMeses.Text = "Periodo";
             lblMeses.Visible = false;
             // 
-            // frmReposición
+            // frmJustificación
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(727, 619);
+            ClientSize = new Size(907, 856);
             Controls.Add(lblMeses);
+            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(cmbEdificio);
             Controls.Add(txtBusco);
             Controls.Add(btnBusco);
-            Controls.Add(dataGridView1);
+            Controls.Add(lblCaracteres);
+            Controls.Add(txtJustifica);
             Controls.Add(label2);
-            Controls.Add(nudReposicion);
-            Controls.Add(btnDay);
+            Controls.Add(btnAgregar);
             Controls.Add(btnVoy);
+            Controls.Add(dgvJustificacion);
             Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
-            Name = "frmReposición";
+            Name = "frmJustificación";
             Text = "FrmReporte";
-            Load += frmReposición_Load;
-            MouseDown += frmReposición_MouseDown;
+            Load += frmJustificación_Load;
+            MouseDown += frmJustificación_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudReposicion).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvJustificacion).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -314,18 +333,20 @@ namespace PreyectoDesarrollo_unicah
         private Panel panel1;
         private PictureBox pictureBox3;
         private Label label2;
-        private NumericUpDown nudReposicion;
+        private DataGridView dgvJustificacion;
         private Label label1;
-        private DataGridView dataGridView1;
+        private TextBox txtJustifica;
+        private Label lblCaracteres;
         private DataGridViewTextBoxColumn clmClase;
         private DataGridViewTextBoxColumn clmFecha;
         private DataGridViewTextBoxColumn clmSeccion;
-        private DataGridViewTextBoxColumn clmDocente;
-        private DataGridViewTextBoxColumn clmRepo;
+        private DataGridViewTextBoxColumn clmDoc;
+        private DataGridViewTextBoxColumn clmJustifica;
         private Label lblPersona;
-        private TextBox txtBusco;
-        private ComboBox cmbEdificio;
         private Label label3;
+        private ComboBox cmbEdificio;
+        private TextBox txtBusco;
+        private Label label4;
         private Label lblMeses;
     }
 }

@@ -45,7 +45,7 @@ namespace PreyectoDesarrollo_unicah
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
+        private void btnLogOut_Click(object sender, EventArgs e)
         {
             this.Close();
             Form1 Login = new Form1();

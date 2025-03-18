@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace PreyectoDesarrollo_unicah
 {
-    public partial class frmJustificación : Form
+    public partial class frmReposicion : Form
     {
-        public frmJustificación()
+        public frmReposicion()
         {
             InitializeComponent();
         }
@@ -25,9 +25,10 @@ namespace PreyectoDesarrollo_unicah
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
-        private void frmJustificación_Load(object sender, EventArgs e)
+        private void frmReposición_Load(object sender, EventArgs e)
         {
             lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
+            cmbEdificio.SelectedIndex = 0;
             // ACCIONES_BD.cargar(dgvDoc,)
         }
 
@@ -45,14 +46,14 @@ namespace PreyectoDesarrollo_unicah
             menu.Show();
         }
 
-        private void frmJustificación_MouseDown(object sender, MouseEventArgs e)
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
             //este es para poder mover el form
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);  //El evento en memoria se mantiene
         }
 
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        private void frmReposición_MouseDown(object sender, MouseEventArgs e)
         {
             //este es para poder mover el form
             ReleaseCapture();

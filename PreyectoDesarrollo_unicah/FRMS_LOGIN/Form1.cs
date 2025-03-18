@@ -21,8 +21,6 @@ namespace PreyectoDesarrollo_unicah
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
-        frmOlvideDatos contra = new frmOlvideDatos();
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -110,7 +108,7 @@ namespace PreyectoDesarrollo_unicah
                                 if (rolUsuario == "administrador")
                                 {
                                     // Abrir la pantalla del administrador
-                                    frmMigración admin = new frmMigración();
+                                    frmAdmin admin = new frmAdmin();
                                     admin.Show();
                                     this.Hide();
                                 }
@@ -169,11 +167,6 @@ namespace PreyectoDesarrollo_unicah
             SendMessage(this.Handle, 0x112, 0xf012, 0); //El evento en memoria se mantiene
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            contra.ShowDialog();
-            this.Dispose(false);
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {

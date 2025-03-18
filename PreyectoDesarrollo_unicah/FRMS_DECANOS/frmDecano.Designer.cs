@@ -52,7 +52,7 @@ namespace PreyectoDesarrollo_unicah
             btnLogOut.TabIndex = 9;
             btnLogOut.Text = "&CERRAR SESIÓN";
             btnLogOut.UseVisualStyleBackColor = true;
-            btnLogOut.Click += btnSalir_Click;
+            btnLogOut.Click += btnLogOut_Click;
             // 
             // btnJustifica
             // 
@@ -164,14 +164,14 @@ namespace PreyectoDesarrollo_unicah
         private void btnReponer_Click(object sender, EventArgs e)
         {
             this.Close();
-            frmReposición Repo = new frmReposición();
+            frmReposicion Repo = new frmReposicion();
             Repo.Show();
         }
 
         private void btnJustifica_Click(object sender, EventArgs e)
         {
             this.Close();
-            frmJustificación Justo = new frmJustificación();
+            frmJustificacion Justo = new frmJustificacion();
             Justo.Show();
         }
 

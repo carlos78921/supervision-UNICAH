@@ -1,6 +1,6 @@
 namespace PreyectoDesarrollo_unicah
 {
-    partial class frmMigración
+    partial class frmMigracion
     {
         /// <summary>
         /// Required designer variable.
