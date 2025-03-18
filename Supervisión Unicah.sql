@@ -137,6 +137,23 @@ end
 exec PA_Admin
 go
 
+create proc PA_Contra
+@Usuario varchar(4),
+@Contraseña varchar (255)
+with encryption
+as 
+begin
+	update Empleados
+	set Contraseña = @Contraseña
+	where codigo_empleado = @Usuario
+
+    IF @@ROWCOUNT = 0 --Hace conteo de filas detectada de la acción dml
+        RETURN 0;  -- Usuario no encontrado
+    ELSE 
+        RETURN 1;  -- Actualización exitosa
+end
+go
+
 /*
 create proc PA_Asistencia_Superv -- Toma de Asistencia para supervisor
 -- Declarar variables ___ para usarlas en el...
