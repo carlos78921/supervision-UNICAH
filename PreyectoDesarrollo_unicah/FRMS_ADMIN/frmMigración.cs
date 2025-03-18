@@ -21,6 +21,8 @@ namespace PreyectoDesarrollo_unicah
         private void frmMigración_Load(object sender, EventArgs e)
         {
             lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
+            //Ajustes del bdd
+            ACCIONES_BD.tablaAdmin(dgvAdmin);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

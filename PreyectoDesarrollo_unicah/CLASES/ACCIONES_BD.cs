@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Security.Policy;
+using System.Drawing.Text;
 
 namespace PreyectoDesarrollo_unicah.CLASES
 {
@@ -15,7 +16,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
         //Atributos
         public static string nombre, apellido;
         public static string docente;
-
         public CONEXION_BD conexion = new CONEXION_BD();
 
         //Constructor
@@ -33,12 +33,56 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
+        public static DataTable tablaAdmin (DataGridView dgv)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("PA_Admin", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener datos: " + ex.Message);
+            }
+            if (dt.Rows.Count > 0)
+            {
+                dgv.Columns.Clear();
+
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dt;
+                dgv.DataSource = bs;
+                bs.ResetBindings(false);
+                dgv.AutoGenerateColumns = true;
+                dgv.Refresh(); // Forzar actualización de la UI
+
+                dgv.Columns[0].Width = 115;
+                dgv.Columns[1].Width = 170;
+                dgv.Columns[2].Width = 58;
+                dgv.Columns[3].Width = 183;
+                dgv.Columns[4].Width = 325;
+                dgv.Columns[5].Width = 20;
+                dgv.Columns[6].Width = 22;
+                dgv.Columns[7].Width = 22;
+                dgv.Columns[8].Width = 20;
+                dgv.Columns[9].Width = 20;
+                dgv.Columns[10].Width = 20;
+            }
+            return dt;
+        }
+ 
         public DataTable codigo_doc()
         {
             DataTable dt = new DataTable();
             try
             {
-                using (SqlConnection con = conexion.conectar)
+                using (SqlConnection con = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
                 {
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand("PA_Asistencia_Doc", con))
@@ -117,15 +161,12 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public static DataTable tablaSupervisor(DataGridView dgv)
         {
-            string pa = "PA_Asistencia_Superv";
-            string conexion = "Data Source= Servidor del SQL (también en las clases);Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
-
             DataTable dt = new DataTable();
             try
             {
-                using (SqlConnection conn = new SqlConnection(conexion))
+                using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
                 {
-                    SqlCommand cmd = new SqlCommand(pa, conn);
+                    SqlCommand cmd = new SqlCommand("PA_Asistencia_Superv", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -164,8 +205,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
         {
             try
             {
-                string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
-                using (SqlConnection conn = new SqlConnection(conexion))
+                using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand("PA_Marcar_Asistencia", conn))
@@ -191,8 +231,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
         {
             try
             {
-                string conexion = Environment.GetEnvironmentVariable("CONN_STRING_SQL", EnvironmentVariableTarget.User);
-                using (SqlConnection conn = new SqlConnection(conexion))
+                using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("PA_Registrar_Falta", conn);
@@ -213,8 +252,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-
-        public void cargar(DataGridView dgv, string nombreTabla)
+        /*public void cargar(DataGridView dgv, string nombreTabla)
         {
             try
             {
@@ -233,9 +271,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 {
                     MessageBox.Show("No se encontraron datos en la tabla.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);   //captura los errores y los envia en un messagebox
                 }
-
             }
             catch { }
         }
+        */
     }
 }

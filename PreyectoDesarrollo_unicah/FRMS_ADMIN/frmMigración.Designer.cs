@@ -61,7 +61,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(605, 413);
+            btnLogout.Location = new Point(904, 413);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(126, 29);
             btnLogout.TabIndex = 14;
@@ -71,7 +71,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnExcel
             // 
-            btnExcel.Location = new Point(491, 407);
+            btnExcel.Location = new Point(790, 407);
             btnExcel.Name = "btnExcel";
             btnExcel.Size = new Size(108, 42);
             btnExcel.TabIndex = 15;
@@ -81,7 +81,7 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(678, 1);
+            pictureBox2.Location = new Point(980, 0);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(29, 20);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -92,7 +92,7 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(713, 1);
+            pictureBox1.Location = new Point(1015, 0);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 20);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -109,7 +109,7 @@ namespace PreyectoDesarrollo_unicah
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(-4, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(743, 87);
+            panel1.Size = new Size(1047, 87);
             panel1.TabIndex = 11;
             // 
             // lblPersona
@@ -117,7 +117,7 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.AutoSize = true;
             lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(609, 64);
+            lblPersona.Location = new Point(912, 63);
             lblPersona.Name = "lblPersona";
             lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 16;
@@ -140,10 +140,10 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.AllowUserToDeleteRows = false;
             dgvAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAdmin.Columns.AddRange(new DataGridViewColumn[] { clmAsignaturaFacu, clmCurso, clmSeccion, clmAulaFull, clmEmpleado, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
-            dgvAdmin.Location = new Point(12, 124);
+            dgvAdmin.Location = new Point(13, 124);
             dgvAdmin.Name = "dgvAdmin";
             dgvAdmin.ReadOnly = true;
-            dgvAdmin.Size = new Size(714, 268);
+            dgvAdmin.Size = new Size(1017, 268);
             dgvAdmin.TabIndex = 13;
             // 
             // clmAsignaturaFacu
@@ -158,7 +158,7 @@ namespace PreyectoDesarrollo_unicah
             clmCurso.HeaderText = "Curso";
             clmCurso.Name = "clmCurso";
             clmCurso.ReadOnly = true;
-            clmCurso.Width = 150;
+            clmCurso.Width = 170;
             // 
             // clmSeccion
             // 
@@ -172,13 +172,14 @@ namespace PreyectoDesarrollo_unicah
             clmAulaFull.HeaderText = "Aula";
             clmAulaFull.Name = "clmAulaFull";
             clmAulaFull.ReadOnly = true;
+            clmAulaFull.Width = 183;
             // 
             // clmEmpleado
             // 
             clmEmpleado.HeaderText = "Empleado";
             clmEmpleado.Name = "clmEmpleado";
             clmEmpleado.ReadOnly = true;
-            clmEmpleado.Width = 125;
+            clmEmpleado.Width = 325;
             // 
             // clmLunes
             // 
@@ -196,7 +197,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // clmMiercoles
             // 
-            clmMiercoles.HeaderText = "M";
+            clmMiercoles.HeaderText = "X";
             clmMiercoles.Name = "clmMiercoles";
             clmMiercoles.ReadOnly = true;
             clmMiercoles.Width = 22;
@@ -225,7 +226,7 @@ namespace PreyectoDesarrollo_unicah
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(313, 101);
+            label1.Location = new Point(453, 99);
             label1.Name = "label1";
             label1.Size = new Size(129, 15);
             label1.TabIndex = 12;
@@ -253,7 +254,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(739, 454);
+            ClientSize = new Size(1042, 454);
             Controls.Add(lblWeek);
             Controls.Add(lblPeriodo);
             Controls.Add(btnExcel);
@@ -284,6 +285,8 @@ namespace PreyectoDesarrollo_unicah
         private DataGridView dgvAdmin;
         private Label label1;
         private Label lblPersona;
+        private Label lblPeriodo;
+        private Label lblWeek;
         private DataGridViewTextBoxColumn clmAsignaturaFacu;
         private DataGridViewTextBoxColumn clmCurso;
         private DataGridViewTextBoxColumn clmSeccion;
@@ -295,7 +298,5 @@ namespace PreyectoDesarrollo_unicah
         private DataGridViewCheckBoxColumn clmJueves;
         private DataGridViewCheckBoxColumn clmViernes;
         private DataGridViewCheckBoxColumn clmSabado;
-        private Label lblPeriodo;
-        private Label lblWeek;
     }
 }
