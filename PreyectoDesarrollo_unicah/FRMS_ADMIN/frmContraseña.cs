@@ -49,6 +49,8 @@ namespace PreyectoDesarrollo_unicah
         {
             string usuario = txtUsuario.Text.Trim();
             string contraseña = txtContraseña.Text.Trim();
+            if (contraseña == "Contraseña nueva:")
+                contraseña = "";
 
             if (string.IsNullOrEmpty(usuario) || usuario == "Usuario:" ) //Vacío con o sin un dato
             {
