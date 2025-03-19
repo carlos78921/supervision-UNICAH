@@ -88,7 +88,7 @@ namespace PreyectoDesarrollo_unicah
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@usuario", usuario);
-                        //cmd.Parameters.AddWithValue("@contrasena", contraseña);
+                        cmd.Parameters.AddWithValue("@contrasena", contraseña);
 
                         // Consulta para obtener el rol, nombre y apellido
                         using (SqlDataReader reader = cmd.ExecuteReader())

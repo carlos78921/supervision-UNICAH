@@ -16,7 +16,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
     internal class CONEXION_BD
     {
-        public static string conexion = "Data Source= Servidor del SQL;Initial Catalog=Supervision_Unicah;Integrated Security=True;TrustServerCertificate=True;";
+        public static string conexion = "Server=tcp:mssql-193001-0.cloudclusters.net,10058;Initial Catalog=Supervision_Unicah;User ID=BD;Password=Changeme00!+;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;";
         public static SqlConnection conectar = new SqlConnection(conexion);
 
         public CONEXION_BD() 

@@ -36,20 +36,14 @@ namespace PreyectoDesarrollo_unicah
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
             dgvAdmin = new DataGridView();
+            label1 = new Label();
+            lblPeriodo = new Label();
+            lblWeek = new Label();
             clmAsignaturaFacu = new DataGridViewTextBoxColumn();
             clmCurso = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
             clmAulaFull = new DataGridViewTextBoxColumn();
             clmEmpleado = new DataGridViewTextBoxColumn();
-            clmLunes = new DataGridViewCheckBoxColumn();
-            clmMartes = new DataGridViewCheckBoxColumn();
-            clmMiercoles = new DataGridViewCheckBoxColumn();
-            clmJueves = new DataGridViewCheckBoxColumn();
-            clmViernes = new DataGridViewCheckBoxColumn();
-            clmSabado = new DataGridViewCheckBoxColumn();
-            label1 = new Label();
-            lblPeriodo = new Label();
-            lblWeek = new Label();
             btnLogout = new Button();
             btnExcel = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -139,12 +133,39 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.AllowUserToAddRows = false;
             dgvAdmin.AllowUserToDeleteRows = false;
             dgvAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAdmin.Columns.AddRange(new DataGridViewColumn[] { clmAsignaturaFacu, clmCurso, clmSeccion, clmAulaFull, clmEmpleado, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
+            dgvAdmin.Columns.AddRange(new DataGridViewColumn[] { clmAsignaturaFacu, clmCurso, clmSeccion, clmAulaFull, clmEmpleado });
             dgvAdmin.Location = new Point(13, 124);
             dgvAdmin.Name = "dgvAdmin";
             dgvAdmin.ReadOnly = true;
-            dgvAdmin.Size = new Size(1017, 268);
+            dgvAdmin.Size = new Size(894, 268);
             dgvAdmin.TabIndex = 13;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(453, 99);
+            label1.Name = "label1";
+            label1.Size = new Size(129, 15);
+            label1.TabIndex = 12;
+            label1.Text = "MIGRACIÓN DE DATOS";
+            // 
+            // lblPeriodo
+            // 
+            lblPeriodo.AutoSize = true;
+            lblPeriodo.Location = new Point(30, 413);
+            lblPeriodo.Name = "lblPeriodo";
+            lblPeriodo.Size = new Size(48, 15);
+            lblPeriodo.TabIndex = 16;
+            lblPeriodo.Text = "Periodo";
+            // 
+            // lblWeek
+            // 
+            lblWeek.AutoSize = true;
+            lblWeek.Location = new Point(97, 413);
+            lblWeek.Name = "lblWeek";
+            lblWeek.Size = new Size(49, 15);
+            lblWeek.TabIndex = 17;
+            lblWeek.Text = "Semana";
             // 
             // clmAsignaturaFacu
             // 
@@ -181,80 +202,11 @@ namespace PreyectoDesarrollo_unicah
             clmEmpleado.ReadOnly = true;
             clmEmpleado.Width = 325;
             // 
-            // clmLunes
-            // 
-            clmLunes.HeaderText = "L";
-            clmLunes.Name = "clmLunes";
-            clmLunes.ReadOnly = true;
-            clmLunes.Width = 20;
-            // 
-            // clmMartes
-            // 
-            clmMartes.HeaderText = "M";
-            clmMartes.Name = "clmMartes";
-            clmMartes.ReadOnly = true;
-            clmMartes.Width = 22;
-            // 
-            // clmMiercoles
-            // 
-            clmMiercoles.HeaderText = "X";
-            clmMiercoles.Name = "clmMiercoles";
-            clmMiercoles.ReadOnly = true;
-            clmMiercoles.Width = 22;
-            // 
-            // clmJueves
-            // 
-            clmJueves.HeaderText = "J";
-            clmJueves.Name = "clmJueves";
-            clmJueves.ReadOnly = true;
-            clmJueves.Width = 20;
-            // 
-            // clmViernes
-            // 
-            clmViernes.HeaderText = "V";
-            clmViernes.Name = "clmViernes";
-            clmViernes.ReadOnly = true;
-            clmViernes.Width = 20;
-            // 
-            // clmSabado
-            // 
-            clmSabado.HeaderText = "S";
-            clmSabado.Name = "clmSabado";
-            clmSabado.ReadOnly = true;
-            clmSabado.Width = 20;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(453, 99);
-            label1.Name = "label1";
-            label1.Size = new Size(129, 15);
-            label1.TabIndex = 12;
-            label1.Text = "MIGRACIÓN DE DATOS";
-            // 
-            // lblPeriodo
-            // 
-            lblPeriodo.AutoSize = true;
-            lblPeriodo.Location = new Point(30, 413);
-            lblPeriodo.Name = "lblPeriodo";
-            lblPeriodo.Size = new Size(48, 15);
-            lblPeriodo.TabIndex = 16;
-            lblPeriodo.Text = "Periodo";
-            // 
-            // lblWeek
-            // 
-            lblWeek.AutoSize = true;
-            lblWeek.Location = new Point(97, 413);
-            lblWeek.Name = "lblWeek";
-            lblWeek.Size = new Size(49, 15);
-            lblWeek.TabIndex = 17;
-            lblWeek.Text = "Semana";
-            // 
-            // frmMigración
+            // frmMigracion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1042, 454);
+            ClientSize = new Size(1094, 454);
             Controls.Add(lblWeek);
             Controls.Add(lblPeriodo);
             Controls.Add(btnExcel);
@@ -263,7 +215,7 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(dgvAdmin);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "frmMigración";
+            Name = "frmMigracion";
             Text = "FrmReporte";
             Load += frmMigración_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -292,11 +244,5 @@ namespace PreyectoDesarrollo_unicah
         private DataGridViewTextBoxColumn clmSeccion;
         private DataGridViewTextBoxColumn clmAulaFull;
         private DataGridViewTextBoxColumn clmEmpleado;
-        private DataGridViewCheckBoxColumn clmLunes;
-        private DataGridViewCheckBoxColumn clmMartes;
-        private DataGridViewCheckBoxColumn clmMiercoles;
-        private DataGridViewCheckBoxColumn clmJueves;
-        private DataGridViewCheckBoxColumn clmViernes;
-        private DataGridViewCheckBoxColumn clmSabado;
     }
 }
