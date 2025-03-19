@@ -17,6 +17,11 @@ create table Nombres_Completos (
 --Recuerden que son cuatro actores
 go
 
+insert into Nombres_Completos
+select Nombre1, Nombre2, Nombre3, Nombre4
+from Empleo$
+go
+
 CREATE TABLE Empleados (
     ID_Empleado int foreign key references Nombres_Completos(ID_Empleado),
     rol VARCHAR(50) NOT NULL,
@@ -25,78 +30,121 @@ CREATE TABLE Empleados (
 )
 go
 
-alter table tabla1$
-add ID_Empleado int foreign key references Nombres_Completos (ID_Empleado)
+alter table Migración$DatosExternos_3
+add ID_Empleado int foreign key references Nombres_Completos(ID_Empleado)
+go
 
 -- ¿Qué es esto?
-UPDATE T
-SET T.ID_Empleado = NC.ID_Empleado
-FROM Tabla1$ T
+UPDATE M
+SET M.ID_Empleado = NC.ID_Empleado
+FROM Migración$DatosExternos_3 M
 JOIN Nombres_Completos NC
-  ON UPPER(LTRIM(RTRIM(T.Nombre1))) = UPPER(LTRIM(RTRIM(nc.Nombre1)))
-  AND UPPER(LTRIM(RTRIM(T.Nombre2))) = UPPER(LTRIM(RTRIM(nc.Nombre2)))
+  ON UPPER(LTRIM(RTRIM(M.Nombre1))) = UPPER(LTRIM(RTRIM(nc.Nombre1)))
+  AND UPPER(LTRIM(RTRIM(M.Nombre2))) = UPPER(LTRIM(RTRIM(nc.Nombre2)))
   AND UPPER(LTRIM(RTRIM(Nombre3))) = UPPER(LTRIM(RTRIM(Apellido1)))
   and (
           (Nombre4 is null and Apellido2 is null)
           or UPPER(LTRIM(RTRIM(Nombre4))) = UPPER(LTRIM(RTRIM(Apellido2)))
 	  )
+go
 
 -- ¿Qué es esto?
 INSERT INTO Empleados (ID_Empleado, rol, codigo_empleado)
 SELECT 
-    T.ID_Empleado,                           
-    'docente' AS rol,                  
-    T.Cod_Empleado                         
-FROM Tabla1$ T
+    M.ID_Empleado,                           
+    'docente' AS rol,                   
+    M.Cod_Empleado                         
+FROM Migración$DatosExternos_3 M
 JOIN Nombres_Completos nc
-    ON UPPER(LTRIM(RTRIM(T.Nombre1))) = UPPER(LTRIM(RTRIM(nc.Nombre1)))
-   AND UPPER(LTRIM(RTRIM(T.Nombre2))) = UPPER(LTRIM(RTRIM(nc.Nombre2)))
+    ON UPPER(LTRIM(RTRIM(M.Nombre1))) = UPPER(LTRIM(RTRIM(nc.Nombre1)))
+   AND UPPER(LTRIM(RTRIM(M.Nombre2))) = UPPER(LTRIM(RTRIM(nc.Nombre2)))
    AND UPPER(LTRIM(RTRIM(Nombre3))) = UPPER(LTRIM(RTRIM(Apellido1)))
    AND (
          (Nombre4 IS NULL AND Apellido2 IS NULL)  -- Ambos nulos se consideran iguales
          OR UPPER(LTRIM(RTRIM(Nombre4))) = UPPER(LTRIM(RTRIM(Apellido2)))
        )
-group by T.ID_Empleado, T.Cod_Empleado
+group by M.ID_Empleado, M.Cod_Empleado
 
 create table Clases 
 (
-	Cod_Asignatura varchar(6) primary key,
+	ID_Clase int identity primary key,
+	Cod_Asignatura varchar(7),
 	Cod_Facultad varchar (6), 
-	Asignatura varchar(55)
+	Asignatura varchar(70)
 )
 go
-	
+
+insert into Clases 
+select Codigo_Asignatura, Codigo_Facultad, Curso
+from Clase$
+go
+
+alter table Migración$DatosExternos_3
+add ID_Clase int foreign key references Clases (ID_Clase)
+go
+
+UPDATE M
+SET M.ID_Clase = C.ID_Clase
+FROM Migración$DatosExternos_3 M
+JOIN Clases C
+  ON Codigo_Asignatura = Cod_Asignatura and
+     Codigo_Facultad = Cod_Facultad and
+	 Curso = Asignatura
+go
+
 create table Sitio
 (
 	ID_Sitio int identity primary key,
-   	Edificio char,
-	Num_Aula int,
-	Seccion varchar (5)    
-)
-
-create table Asistencia
-(
-	ID_Asistencia int identity primary key,
-	Cod_Asignatura varchar(6) foreign key references Clases (Cod_Asignatura),
-	ID_Sitio int foreign key references Sitio (ID_Sitio),
-        codigo_empleado varchar(4) foreign key references Empleados(codigo_empleado),
-	Fecha date,
-	Observacion nvarchar(150), 
-	Fecha_Reposicion date
+        Edificio char,
+	Aula varchar(25),
+	Seccion varchar (6)    
 )
 go
-	
-create table Toma_Asistencia
-(
-	ID_Asistencia int unique not null,
-	foreign key (ID_Asistencia) references Asistencia(ID_Asistencia),
-	Lunes bit,
-	Martes bit, 
-	Miercoles bit, 
-	jueves bit, 
-	Viernes bit,
-	Sabado bit
-)
+
+insert into Sitio
+select *
+from Lugares$
+go
+
+alter table Migración$DatosExternos_3
+add ID_Sitio int foreign key references Sitio(ID_Sitio)
+go
+
+UPDATE M
+SET M.ID_Sitio = S.ID_Sitio
+FROM Migración$DatosExternos_3 M
+JOIN Sitio S
+  ON M.Aula = S.Aula and
+     M.Edificio = S.Edificio and
+	 M.Seccion = S.Seccion
+go 
+
+drop table Clase$
+drop table Lugares$
+drop table Empleo$
+alter table Migración$DatosExternos_3
+drop column Curso
+alter table Migración$DatosExternos_3
+drop column Seccion
+alter table Migración$DatosExternos_3
+drop column Aula
+alter table Migración$DatosExternos_3
+drop column Cod_Empleado
+alter table Migración$DatosExternos_3
+drop column Edificio
+alter table Migración$DatosExternos_3
+drop column Codigo_Facultad
+alter table Migración$DatosExternos_3
+drop column Codigo_Asignatura
+alter table Migración$DatosExternos_3
+drop column Nombre1
+alter table Migración$DatosExternos_3
+drop column Nombre2
+alter table Migración$DatosExternos_3
+drop column Nombre3
+alter table Migración$DatosExternos_3
+drop column Nombre4
+go
 	
 -- Procedimientos Almacenados
 create PROCEDURE PA_Login
