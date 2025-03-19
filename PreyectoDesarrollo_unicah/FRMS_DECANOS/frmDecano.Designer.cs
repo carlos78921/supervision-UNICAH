@@ -45,10 +45,9 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnLogOut
             // 
-            btnLogOut.Location = new Point(319, 116);
-            btnLogOut.Margin = new Padding(3, 4, 3, 4);
+            btnLogOut.Location = new Point(279, 87);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(141, 87);
+            btnLogOut.Size = new Size(123, 65);
             btnLogOut.TabIndex = 9;
             btnLogOut.Text = "&CERRAR SESIÓN";
             btnLogOut.UseVisualStyleBackColor = true;
@@ -56,10 +55,9 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnJustifica
             // 
-            btnJustifica.Location = new Point(10, 116);
-            btnJustifica.Margin = new Padding(3, 4, 3, 4);
+            btnJustifica.Location = new Point(9, 87);
             btnJustifica.Name = "btnJustifica";
-            btnJustifica.Size = new Size(141, 87);
+            btnJustifica.Size = new Size(123, 65);
             btnJustifica.TabIndex = 10;
             btnJustifica.Text = "&JUSTIFICACIONES";
             btnJustifica.UseVisualStyleBackColor = true;
@@ -67,10 +65,9 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnReponer
             // 
-            btnReponer.Location = new Point(165, 116);
-            btnReponer.Margin = new Padding(3, 4, 3, 4);
+            btnReponer.Location = new Point(144, 87);
             btnReponer.Name = "btnReponer";
-            btnReponer.Size = new Size(141, 87);
+            btnReponer.Size = new Size(123, 65);
             btnReponer.TabIndex = 11;
             btnReponer.Text = "&REPOSICIÓN DE CLASES";
             btnReponer.UseVisualStyleBackColor = true;
@@ -79,10 +76,9 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(435, 4);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Location = new Point(381, 3);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(33, 27);
+            pictureBox1.Size = new Size(29, 20);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
@@ -91,10 +87,9 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(395, 4);
-            pictureBox2.Margin = new Padding(3, 4, 3, 4);
+            pictureBox2.Location = new Point(346, 3);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(33, 27);
+            pictureBox2.Size = new Size(29, 20);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
@@ -104,10 +99,9 @@ namespace PreyectoDesarrollo_unicah
             // 
             pictureBox3.BackgroundImageLayout = ImageLayout.None;
             pictureBox3.Image = Properties.Resources.CircularFondoAzul;
-            pictureBox3.Location = new Point(-24, 0);
-            pictureBox3.Margin = new Padding(3, 4, 3, 4);
+            pictureBox3.Location = new Point(-21, 0);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(163, 108);
+            pictureBox3.Size = new Size(143, 81);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 8;
             pictureBox3.TabStop = false;
@@ -117,9 +111,9 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.AutoSize = true;
             lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(318, 75);
+            lblPersona.Location = new Point(231, 56);
             lblPersona.Name = "lblPersona";
-            lblPersona.Size = new Size(163, 23);
+            lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 9;
             lblPersona.Text = "Nombre_Persona";
             lblPersona.Click += lblPersona_Click;
@@ -132,23 +126,21 @@ namespace PreyectoDesarrollo_unicah
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(480, 108);
+            panel1.Size = new Size(420, 81);
             panel1.TabIndex = 6;
             panel1.MouseDown += panel1_MouseDown;
             // 
             // frmDecano
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(473, 221);
+            ClientSize = new Size(414, 166);
             Controls.Add(btnReponer);
             Controls.Add(btnJustifica);
             Controls.Add(btnLogOut);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmDecano";
             Text = "Frm_Admin";
             Load += Frm_Admin_Load;

@@ -63,20 +63,18 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(602, 789);
-            btnAgregar.Margin = new Padding(3, 4, 3, 4);
+            btnAgregar.Location = new Point(527, 592);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(144, 59);
+            btnAgregar.Size = new Size(126, 44);
             btnAgregar.TabIndex = 29;
             btnAgregar.Text = "INSERT&AR JUSTIFICACIÓN";
             btnAgregar.UseVisualStyleBackColor = true;
             // 
             // btnVoy
             // 
-            btnVoy.Location = new Point(753, 803);
-            btnVoy.Margin = new Padding(3, 4, 3, 4);
+            btnVoy.Location = new Point(659, 602);
             btnVoy.Name = "btnVoy";
-            btnVoy.Size = new Size(144, 32);
+            btnVoy.Size = new Size(126, 24);
             btnVoy.TabIndex = 27;
             btnVoy.Text = "&Regresar";
             btnVoy.UseVisualStyleBackColor = true;
@@ -84,10 +82,9 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnBusco
             // 
-            btnBusco.Location = new Point(240, 195);
-            btnBusco.Margin = new Padding(3, 4, 3, 4);
+            btnBusco.Location = new Point(210, 146);
             btnBusco.Name = "btnBusco";
-            btnBusco.Size = new Size(77, 31);
+            btnBusco.Size = new Size(67, 23);
             btnBusco.TabIndex = 39;
             btnBusco.Text = "&Buscar";
             btnBusco.UseVisualStyleBackColor = true;
@@ -95,10 +92,9 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(839, 0);
-            pictureBox2.Margin = new Padding(3, 4, 3, 4);
+            pictureBox2.Location = new Point(734, 0);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(33, 27);
+            pictureBox2.Size = new Size(29, 20);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
@@ -106,10 +102,9 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(879, 0);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Location = new Point(769, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(33, 27);
+            pictureBox1.Size = new Size(29, 20);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
@@ -122,10 +117,9 @@ namespace PreyectoDesarrollo_unicah
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
-            panel1.Location = new Point(-5, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Location = new Point(-4, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(925, 116);
+            panel1.Size = new Size(809, 87);
             panel1.TabIndex = 11;
             panel1.MouseDown += panel1_MouseDown;
             // 
@@ -134,9 +128,9 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.AutoSize = true;
             lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(758, 84);
+            lblPersona.Location = new Point(592, 65);
             lblPersona.Name = "lblPersona";
-            lblPersona.Size = new Size(163, 23);
+            lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 10;
             lblPersona.Text = "Nombre_Persona";
             lblPersona.Click += lblPersona_Click;
@@ -145,10 +139,9 @@ namespace PreyectoDesarrollo_unicah
             // 
             pictureBox3.BackgroundImageLayout = ImageLayout.None;
             pictureBox3.Image = Properties.Resources.CircularFondoAzul;
-            pictureBox3.Location = new Point(-29, 0);
-            pictureBox3.Margin = new Padding(3, 4, 3, 4);
+            pictureBox3.Location = new Point(-25, 0);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(163, 108);
+            pictureBox3.Size = new Size(143, 81);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 8;
             pictureBox3.TabStop = false;
@@ -156,9 +149,9 @@ namespace PreyectoDesarrollo_unicah
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(354, 164);
+            label2.Location = new Point(310, 123);
             label2.Name = "label2";
-            label2.Size = new Size(156, 20);
+            label2.Size = new Size(123, 15);
             label2.TabIndex = 30;
             label2.Text = "Justificación detallada";
             // 
@@ -168,12 +161,11 @@ namespace PreyectoDesarrollo_unicah
             dgvJustificacion.AllowUserToDeleteRows = false;
             dgvJustificacion.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvJustificacion.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha, clmSeccion, clmDoc, clmJustifica });
-            dgvJustificacion.Location = new Point(15, 363);
-            dgvJustificacion.Margin = new Padding(3, 4, 3, 4);
+            dgvJustificacion.Location = new Point(13, 272);
             dgvJustificacion.Name = "dgvJustificacion";
             dgvJustificacion.ReadOnly = true;
             dgvJustificacion.RowHeadersWidth = 51;
-            dgvJustificacion.Size = new Size(883, 405);
+            dgvJustificacion.Size = new Size(773, 304);
             dgvJustificacion.TabIndex = 26;
             // 
             // clmClase
@@ -219,37 +211,36 @@ namespace PreyectoDesarrollo_unicah
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(354, 124);
+            label1.Location = new Point(310, 93);
             label1.Name = "label1";
-            label1.Size = new Size(216, 20);
+            label1.Size = new Size(173, 15);
             label1.TabIndex = 25;
             label1.Text = "JUSTIFICACIÓN DE ASISTENCIA";
             // 
             // txtJustifica
             // 
-            txtJustifica.Location = new Point(511, 159);
-            txtJustifica.Margin = new Padding(3, 4, 3, 4);
+            txtJustifica.Location = new Point(447, 119);
             txtJustifica.Multiline = true;
             txtJustifica.Name = "txtJustifica";
-            txtJustifica.Size = new Size(386, 195);
+            txtJustifica.Size = new Size(338, 147);
             txtJustifica.TabIndex = 37;
             // 
             // lblCaracteres
             // 
             lblCaracteres.AutoSize = true;
             lblCaracteres.BackColor = SystemColors.Window;
-            lblCaracteres.Location = new Point(515, 163);
+            lblCaracteres.Location = new Point(451, 122);
             lblCaracteres.Name = "lblCaracteres";
-            lblCaracteres.Size = new Size(142, 20);
+            lblCaracteres.Size = new Size(112, 15);
             lblCaracteres.TabIndex = 38;
             lblCaracteres.Text = "Límite de caracteres";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(15, 243);
+            label3.Location = new Point(13, 182);
             label3.Name = "label3";
-            label3.Size = new Size(50, 20);
+            label3.Size = new Size(40, 15);
             label3.TabIndex = 42;
             label3.Text = "Filtrar:";
             // 
@@ -258,44 +249,42 @@ namespace PreyectoDesarrollo_unicah
             cmbEdificio.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdificio.FormattingEnabled = true;
             cmbEdificio.Items.AddRange(new object[] { "Edificio:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M" });
-            cmbEdificio.Location = new Point(67, 233);
-            cmbEdificio.Margin = new Padding(3, 4, 3, 4);
+            cmbEdificio.Location = new Point(59, 175);
             cmbEdificio.Name = "cmbEdificio";
-            cmbEdificio.Size = new Size(89, 28);
+            cmbEdificio.Size = new Size(78, 23);
             cmbEdificio.TabIndex = 41;
             // 
             // txtBusco
             // 
-            txtBusco.Location = new Point(16, 195);
-            txtBusco.Margin = new Padding(3, 4, 3, 4);
+            txtBusco.Location = new Point(14, 146);
             txtBusco.Name = "txtBusco";
-            txtBusco.Size = new Size(217, 27);
+            txtBusco.Size = new Size(190, 23);
             txtBusco.TabIndex = 40;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(16, 168);
+            label4.Location = new Point(14, 126);
             label4.Name = "label4";
-            label4.Size = new Size(68, 20);
+            label4.Size = new Size(54, 15);
             label4.TabIndex = 43;
             label4.Text = "Docente:";
             // 
             // lblMeses
             // 
             lblMeses.AutoSize = true;
-            lblMeses.Location = new Point(843, 124);
+            lblMeses.Location = new Point(738, 93);
             lblMeses.Name = "lblMeses";
-            lblMeses.Size = new Size(60, 20);
+            lblMeses.Size = new Size(48, 15);
             lblMeses.TabIndex = 44;
             lblMeses.Text = "Periodo";
             lblMeses.Visible = false;
             // 
-            // frmJustificación
+            // frmJustificacion
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(907, 856);
+            ClientSize = new Size(794, 591);
             Controls.Add(lblMeses);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -311,8 +300,7 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
-            Name = "frmJustificación";
+            Name = "frmJustificacion";
             Text = "FrmReporte";
             Load += frmJustificación_Load;
             MouseDown += frmJustificación_MouseDown;
