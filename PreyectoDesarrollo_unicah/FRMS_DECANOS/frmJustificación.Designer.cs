@@ -69,6 +69,7 @@ namespace PreyectoDesarrollo_unicah
             btnAgregar.TabIndex = 29;
             btnAgregar.Text = "INSERT&AR JUSTIFICACIÓN";
             btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // btnVoy
             // 
@@ -88,6 +89,7 @@ namespace PreyectoDesarrollo_unicah
             btnBusco.TabIndex = 39;
             btnBusco.Text = "&Buscar";
             btnBusco.UseVisualStyleBackColor = true;
+            btnBusco.Click += btnBusco_Click;
             // 
             // pictureBox2
             // 
@@ -165,6 +167,7 @@ namespace PreyectoDesarrollo_unicah
             dgvJustificacion.ReadOnly = true;
             dgvJustificacion.Size = new Size(773, 304);
             dgvJustificacion.TabIndex = 26;
+            dgvJustificacion.CellContentClick += dgvJustificacion_CellContentClick;
             // 
             // clmClase
             // 
@@ -205,7 +208,7 @@ namespace PreyectoDesarrollo_unicah
             label1.AutoSize = true;
             label1.Location = new Point(310, 93);
             label1.Name = "label1";
-            label1.Size = new Size(171, 15);
+            label1.Size = new Size(173, 15);
             label1.TabIndex = 25;
             label1.Text = "JUSTIFICACIÓN DE ASISTENCIA";
             // 
@@ -216,6 +219,7 @@ namespace PreyectoDesarrollo_unicah
             txtJustifica.Name = "txtJustifica";
             txtJustifica.Size = new Size(338, 147);
             txtJustifica.TabIndex = 37;
+            txtJustifica.TextChanged += txtJustifica_TextChanged;
             // 
             // lblCaracteres
             // 

@@ -58,5 +58,30 @@ namespace PreyectoDesarrollo_unicah
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);  //El evento en memoria se mantiene
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Verifica que no se haya hecho clic en el encabezado de la columna
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            // Verifica si la columna es un CheckBox (para la reposición)
+            if (!(dataGridView1.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn))
+                return;
+
+            // Finaliza la edición para registrar los cambios
+            dataGridView1.EndEdit();
+
+            // Obtener valores de la fila seleccionada
+            string asignatura = dataGridView1.Rows[e.RowIndex].Cells["Asignatura"].Value.ToString();
+            string fechaAusencia = dataGridView1.Rows[e.RowIndex].Cells["Fecha de Ausencia"].Value.ToString();
+            string seccion = dataGridView1.Rows[e.RowIndex].Cells["Sección"].Value.ToString();
+            string docente = dataGridView1.Rows[e.RowIndex].Cells["Docente"].Value.ToString();
+            string fechaReposicion = dataGridView1.Rows[e.RowIndex].Cells["Fecha de Reposición"].Value.ToString();
+
+            // Obtener el estado del CheckBox (si se confirma la reposición)
+            bool reposicionConfirmada = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+
+        }
     }
 }

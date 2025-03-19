@@ -183,6 +183,7 @@ namespace PreyectoDesarrollo_unicah
             dataGridView1.ReadOnly = true;
             dataGridView1.Size = new Size(610, 268);
             dataGridView1.TabIndex = 24;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // clmClase
             // 
