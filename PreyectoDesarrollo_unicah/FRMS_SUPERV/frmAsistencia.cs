@@ -44,37 +44,8 @@ namespace PreyectoDesarrollo_unicah
         //Procesos en carga del formulario
         private void AsistenciaxDia()
         {
-            string[] dias = { "L", "M", "X", "J", "V", "S" };
-            /*Arreglo requerido para detectar cantidad de índices medidos con Length
-            y poder ocultar según día*/
-            for (int i = 0; i < dias.Length; i++)
-            {
-                if (dgvAsiste.Columns.Contains(dias[i]))
-                //Primero es el arreglo que se detecta del índice i
-                {
-                    dgvAsiste.Columns[dias[i]].Visible = false; //Aquí detecta de la columna
-                }
-            }
-            //Detección de día automática por número del 0 al 6 (6 o -1 por domingo)
-            DayOfWeek hoy = DateTime.Today.DayOfWeek;
-            int indiceDia = -1; // Índice correspondiente al día en el array 
-            switch (hoy)
-            {
-                case DayOfWeek.Monday: indiceDia = 0; break;
-                case DayOfWeek.Tuesday: indiceDia = 1; break;
-                case DayOfWeek.Wednesday: indiceDia = 2; break;
-                case DayOfWeek.Thursday: indiceDia = 3; break;
-                case DayOfWeek.Friday: indiceDia = 4; break;
-                case DayOfWeek.Saturday: indiceDia = 5; break;
-                case DayOfWeek.Sunday: indiceDia = -1; break; // En domingo oculta todas las columnas 
-            }
 
-            if (indiceDia != -1 && dgvAsiste.Columns.Contains(dias[indiceDia]))
-            {
-                dgvAsiste.Columns[dias[indiceDia]].Visible = true;
-            }
         }
-
         private void FiltroInicial()
         {
             cmbEdificio.SelectedIndex = 0;
@@ -98,11 +69,6 @@ namespace PreyectoDesarrollo_unicah
             this.Close();
             Form1 Login = new Form1();
             Login.Show();
-        }
-
-        private void tmrFecha_Tick(object sender, EventArgs e)
-        {
-            lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
         private void frmSupervisor_MouseDown(object sender, MouseEventArgs e) //Evento del ratón "e"

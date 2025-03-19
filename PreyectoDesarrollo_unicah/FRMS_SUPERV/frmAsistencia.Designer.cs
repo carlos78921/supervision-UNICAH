@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             btnSalir = new Button();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
@@ -37,15 +36,6 @@
             pictureBox3 = new PictureBox();
             label1 = new Label();
             dgvAsiste = new DataGridView();
-            clmDoc = new DataGridViewTextBoxColumn();
-            clmClase = new DataGridViewTextBoxColumn();
-            clmSeccion = new DataGridViewTextBoxColumn();
-            clmLunes = new DataGridViewCheckBoxColumn();
-            clmMartes = new DataGridViewCheckBoxColumn();
-            clmMiercoles = new DataGridViewCheckBoxColumn();
-            clmJueves = new DataGridViewCheckBoxColumn();
-            clmViernes = new DataGridViewCheckBoxColumn();
-            clmSabado = new DataGridViewCheckBoxColumn();
             nudWeeks = new NumericUpDown();
             label2 = new Label();
             label5 = new Label();
@@ -58,9 +48,12 @@
             label6 = new Label();
             txtDoc = new TextBox();
             btnLogout = new Button();
-            tmrFecha = new System.Windows.Forms.Timer(components);
             lblMeses = new Label();
-            lblFecha = new Label();
+            monthCalendar1 = new MonthCalendar();
+            clmDoc = new DataGridViewTextBoxColumn();
+            clmClase = new DataGridViewTextBoxColumn();
+            clmSeccion = new DataGridViewTextBoxColumn();
+            clmAula = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -80,7 +73,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(450, 2);
+            pictureBox2.Location = new Point(585, 3);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(29, 21);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -91,7 +84,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(485, 2);
+            pictureBox1.Location = new Point(620, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 21);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -108,7 +101,7 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(-4, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(517, 87);
+            panel1.Size = new Size(649, 87);
             panel1.TabIndex = 11;
             // 
             // lblPersona
@@ -116,7 +109,7 @@
             lblPersona.AutoSize = true;
             lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(382, 63);
+            lblPersona.Location = new Point(517, 64);
             lblPersona.Name = "lblPersona";
             lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 23;
@@ -136,7 +129,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(209, 99);
+            label1.Location = new Point(265, 99);
             label1.Name = "label1";
             label1.Size = new Size(125, 15);
             label1.TabIndex = 12;
@@ -147,74 +140,16 @@
             dgvAsiste.AllowUserToAddRows = false;
             dgvAsiste.AllowUserToDeleteRows = false;
             dgvAsiste.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAsiste.Columns.AddRange(new DataGridViewColumn[] { clmDoc, clmClase, clmSeccion, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
-            dgvAsiste.Location = new Point(20, 222);
+            dgvAsiste.Columns.AddRange(new DataGridViewColumn[] { clmDoc, clmClase, clmSeccion, clmAula });
+            dgvAsiste.Location = new Point(20, 224);
             dgvAsiste.Name = "dgvAsiste";
-            dgvAsiste.Size = new Size(474, 216);
+            dgvAsiste.Size = new Size(351, 216);
             dgvAsiste.TabIndex = 17;
             dgvAsiste.CellContentClick += dgvAsiste_CellContentClick;
             // 
-            // clmDoc
-            // 
-            clmDoc.HeaderText = "Docente";
-            clmDoc.Name = "clmDoc";
-            clmDoc.ReadOnly = true;
-            // 
-            // clmClase
-            // 
-            clmClase.HeaderText = "Asignatura";
-            clmClase.Name = "clmClase";
-            clmClase.ReadOnly = true;
-            clmClase.Width = 150;
-            // 
-            // clmSeccion
-            // 
-            clmSeccion.HeaderText = "Sección";
-            clmSeccion.Name = "clmSeccion";
-            clmSeccion.ReadOnly = true;
-            clmSeccion.Width = 58;
-            // 
-            // clmLunes
-            // 
-            clmLunes.HeaderText = "L";
-            clmLunes.Name = "clmLunes";
-            clmLunes.Width = 20;
-            // 
-            // clmMartes
-            // 
-            clmMartes.HeaderText = "M";
-            clmMartes.Name = "clmMartes";
-            clmMartes.Width = 22;
-            // 
-            // clmMiercoles
-            // 
-            clmMiercoles.HeaderText = "X";
-            clmMiercoles.Name = "clmMiercoles";
-            clmMiercoles.Width = 22;
-            // 
-            // clmJueves
-            // 
-            clmJueves.HeaderText = "J";
-            clmJueves.Name = "clmJueves";
-            clmJueves.Width = 20;
-            // 
-            // clmViernes
-            // 
-            clmViernes.HeaderText = "V";
-            clmViernes.Name = "clmViernes";
-            clmViernes.Width = 20;
-            // 
-            // clmSabado
-            // 
-            clmSabado.HeaderText = "S";
-            clmSabado.Name = "clmSabado";
-            clmSabado.Resizable = DataGridViewTriState.True;
-            clmSabado.SortMode = DataGridViewColumnSortMode.Automatic;
-            clmSabado.Width = 20;
-            // 
             // nudWeeks
             // 
-            nudWeeks.Location = new Point(101, 185);
+            nudWeeks.Location = new Point(513, 398);
             nudWeeks.Maximum = new decimal(new int[] { 5, 0, 0, 0 });
             nudWeeks.Name = "nudWeeks";
             nudWeeks.Size = new Size(49, 23);
@@ -223,7 +158,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(43, 189);
+            label2.Location = new Point(455, 402);
             label2.Name = "label2";
             label2.Size = new Size(52, 15);
             label2.TabIndex = 22;
@@ -232,7 +167,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(184, 130);
+            label5.Location = new Point(240, 130);
             label5.Name = "label5";
             label5.Size = new Size(67, 15);
             label5.TabIndex = 26;
@@ -240,14 +175,14 @@
             // 
             // txtClase
             // 
-            txtClase.Location = new Point(257, 127);
+            txtClase.Location = new Point(313, 127);
             txtClase.Name = "txtClase";
             txtClase.Size = new Size(168, 23);
             txtClase.TabIndex = 27;
             // 
             // btnBusca
             // 
-            btnBusca.Location = new Point(431, 115);
+            btnBusca.Location = new Point(487, 115);
             btnBusca.Name = "btnBusca";
             btnBusca.Size = new Size(75, 39);
             btnBusca.TabIndex = 28;
@@ -286,7 +221,7 @@
             gbFiltro.Controls.Add(cmbEdificio);
             gbFiltro.Controls.Add(cmbHora);
             gbFiltro.Controls.Add(cmbAula);
-            gbFiltro.Location = new Point(182, 157);
+            gbFiltro.Location = new Point(238, 157);
             gbFiltro.Name = "gbFiltro";
             gbFiltro.Size = new Size(324, 55);
             gbFiltro.TabIndex = 33;
@@ -296,7 +231,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(43, 119);
+            label6.Location = new Point(99, 119);
             label6.Name = "label6";
             label6.Size = new Size(120, 30);
             label6.TabIndex = 34;
@@ -304,25 +239,20 @@
             // 
             // txtDoc
             // 
-            txtDoc.Location = new Point(43, 153);
+            txtDoc.Location = new Point(99, 153);
             txtDoc.Name = "txtDoc";
             txtDoc.Size = new Size(118, 23);
             txtDoc.TabIndex = 35;
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(414, 444);
+            btnLogout.Location = new Point(551, 446);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(86, 23);
             btnLogout.TabIndex = 38;
             btnLogout.Text = "Cerrar &Sesión";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
-            // 
-            // tmrFecha
-            // 
-            tmrFecha.Enabled = true;
-            tmrFecha.Tick += tmrFecha_Tick;
             // 
             // lblMeses
             // 
@@ -334,22 +264,45 @@
             lblMeses.Text = "Periodo";
             lblMeses.Visible = false;
             // 
-            // lblFecha
+            // monthCalendar1
             // 
-            lblFecha.AutoSize = true;
-            lblFecha.Location = new Point(444, 92);
-            lblFecha.Name = "lblFecha";
-            lblFecha.Size = new Size(41, 15);
-            lblFecha.TabIndex = 40;
-            lblFecha.Text = "Fecha ";
+            monthCalendar1.Location = new Point(383, 224);
+            monthCalendar1.Name = "monthCalendar1";
+            monthCalendar1.TabIndex = 42;
             // 
-            // frmReporte
+            // clmDoc
+            // 
+            clmDoc.HeaderText = "Docente";
+            clmDoc.Name = "clmDoc";
+            clmDoc.ReadOnly = true;
+            // 
+            // clmClase
+            // 
+            clmClase.HeaderText = "Asignatura";
+            clmClase.Name = "clmClase";
+            clmClase.ReadOnly = true;
+            clmClase.Width = 150;
+            // 
+            // clmSeccion
+            // 
+            clmSeccion.HeaderText = "Sección";
+            clmSeccion.Name = "clmSeccion";
+            clmSeccion.ReadOnly = true;
+            clmSeccion.Width = 58;
+            // 
+            // clmAula
+            // 
+            clmAula.HeaderText = "Aula";
+            clmAula.Name = "clmAula";
+            clmAula.Width = 150;
+            // 
+            // frmAsistencia
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(512, 475);
+            ClientSize = new Size(645, 475);
+            Controls.Add(monthCalendar1);
             Controls.Add(lblMeses);
-            Controls.Add(lblFecha);
             Controls.Add(btnLogout);
             Controls.Add(txtDoc);
             Controls.Add(label6);
@@ -364,7 +317,7 @@
             Controls.Add(btnSalir);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "frmReporte";
+            Name = "frmAsistencia";
             Text = "FrmReporte";
             Load += FrmReporte_Load;
             MouseDown += frmSupervisor_MouseDown;
@@ -401,18 +354,12 @@
         private GroupBox gbFiltro;
         private TextBox txtDoc;
         private Button btnLogout;
-        private System.Windows.Forms.Timer tmrFecha;
         private Label lblMeses;
-        private Label lblFecha;
+        private Button btnSalir;
+        private MonthCalendar monthCalendar1;
         private DataGridViewTextBoxColumn clmDoc;
         private DataGridViewTextBoxColumn clmClase;
         private DataGridViewTextBoxColumn clmSeccion;
-        private DataGridViewCheckBoxColumn clmLunes;
-        private DataGridViewCheckBoxColumn clmMartes;
-        private DataGridViewCheckBoxColumn clmMiercoles;
-        private DataGridViewCheckBoxColumn clmJueves;
-        private DataGridViewCheckBoxColumn clmViernes;
-        private DataGridViewCheckBoxColumn clmSabado;
-        private Button btnSalir;
+        private DataGridViewTextBoxColumn clmAula;
     }
 }
