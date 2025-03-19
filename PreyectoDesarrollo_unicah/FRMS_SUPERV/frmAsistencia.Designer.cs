@@ -295,6 +295,7 @@
             mesSupervisor.Location = new Point(383, 224);
             mesSupervisor.Name = "mesSupervisor";
             mesSupervisor.TabIndex = 42;
+            mesSupervisor.DateSelected += mesSupervisor_DateSelected;
             // 
             // frmAsistencia
             // 

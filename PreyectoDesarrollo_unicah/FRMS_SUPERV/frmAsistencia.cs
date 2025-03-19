@@ -106,5 +106,20 @@ namespace PreyectoDesarrollo_unicah
                 }
             }
         }
+
+        private void mesSupervisor_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            DateTime fechaSeleccionada = e.Start;
+
+            DialogResult resultado = MessageBox.Show(
+                "¿Marcar asistencia para esta fecha?",
+                "Confirmar",
+                MessageBoxButtons.YesNo);
+
+            if (resultado == DialogResult.Yes)
+            {
+                RegistrarAsistencia(fechaSeleccionada);
+            }
+        }
     }
 }
