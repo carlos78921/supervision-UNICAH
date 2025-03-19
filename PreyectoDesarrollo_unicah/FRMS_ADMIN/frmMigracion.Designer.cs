@@ -36,14 +36,14 @@ namespace PreyectoDesarrollo_unicah
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
             dgvAdmin = new DataGridView();
-            label1 = new Label();
-            lblPeriodo = new Label();
-            lblWeek = new Label();
             clmAsignaturaFacu = new DataGridViewTextBoxColumn();
             clmCurso = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
             clmAulaFull = new DataGridViewTextBoxColumn();
             clmEmpleado = new DataGridViewTextBoxColumn();
+            label1 = new Label();
+            lblPeriodo = new Label();
+            lblWeek = new Label();
             btnLogout = new Button();
             btnExcel = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -111,7 +111,7 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.AutoSize = true;
             lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(912, 63);
+            lblPersona.Location = new Point(902, 63);
             lblPersona.Name = "lblPersona";
             lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 16;
@@ -139,33 +139,6 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.ReadOnly = true;
             dgvAdmin.Size = new Size(894, 268);
             dgvAdmin.TabIndex = 13;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(453, 99);
-            label1.Name = "label1";
-            label1.Size = new Size(129, 15);
-            label1.TabIndex = 12;
-            label1.Text = "MIGRACIÓN DE DATOS";
-            // 
-            // lblPeriodo
-            // 
-            lblPeriodo.AutoSize = true;
-            lblPeriodo.Location = new Point(30, 413);
-            lblPeriodo.Name = "lblPeriodo";
-            lblPeriodo.Size = new Size(48, 15);
-            lblPeriodo.TabIndex = 16;
-            lblPeriodo.Text = "Periodo";
-            // 
-            // lblWeek
-            // 
-            lblWeek.AutoSize = true;
-            lblWeek.Location = new Point(97, 413);
-            lblWeek.Name = "lblWeek";
-            lblWeek.Size = new Size(49, 15);
-            lblWeek.TabIndex = 17;
-            lblWeek.Text = "Semana";
             // 
             // clmAsignaturaFacu
             // 
@@ -201,6 +174,33 @@ namespace PreyectoDesarrollo_unicah
             clmEmpleado.Name = "clmEmpleado";
             clmEmpleado.ReadOnly = true;
             clmEmpleado.Width = 325;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(453, 99);
+            label1.Name = "label1";
+            label1.Size = new Size(129, 15);
+            label1.TabIndex = 12;
+            label1.Text = "MIGRACIÓN DE DATOS";
+            // 
+            // lblPeriodo
+            // 
+            lblPeriodo.AutoSize = true;
+            lblPeriodo.Location = new Point(30, 413);
+            lblPeriodo.Name = "lblPeriodo";
+            lblPeriodo.Size = new Size(48, 15);
+            lblPeriodo.TabIndex = 16;
+            lblPeriodo.Text = "Periodo";
+            // 
+            // lblWeek
+            // 
+            lblWeek.AutoSize = true;
+            lblWeek.Location = new Point(97, 413);
+            lblWeek.Name = "lblWeek";
+            lblWeek.Size = new Size(49, 15);
+            lblWeek.TabIndex = 17;
+            lblWeek.Text = "Semana";
             // 
             // frmMigracion
             // 
