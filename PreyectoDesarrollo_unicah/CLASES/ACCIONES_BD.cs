@@ -159,6 +159,45 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
+        public static void RegistrarAsistencia(DateTime fechaMarca)
+        {
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("PA_Asistencia", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+            }
+        }
+
+        public static void CargarAsistencia(MonthCalendar supervisor, int idEmpleado)
+        {
+            // Limpiar resaltado previo
+            supervisor.RemoveAllBoldedDates();
+            /*try, se comenta por ser una validación para no decepcionar en la presentación de migración de 
+            { datos*/
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("PA_Asistencia", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@idEmpleado", idEmpleado);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        DateTime fecha = reader.GetDateTime(0); //Obtiene fecha inicial
+                        supervisor.AddBoldedDate(fecha);  // Resalta la fecha en el calendario
+                    }
+                }
+            /*}
+            catch
+            {
+                MessageBox.Show("No se logró procesar el PA, mensaje: ", "PA sin éxito");
+            }*/
+            supervisor.UpdateBoldedDates();  // Aplicar cambios
+        }
         public static DataTable tablaSupervisor(DataGridView dgv)
         {
             DataTable dt = new DataTable();
@@ -166,7 +205,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             {
                 using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("PA_Asistencia_Superv", conn);
+                    SqlCommand cmd = new SqlCommand("PA_Supervisor", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -191,12 +230,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.Columns[0].Width = 100;
                 dgv.Columns[1].Width = 150;
                 dgv.Columns[2].Width = 58;
-                dgv.Columns[3].Width = 20;
-                dgv.Columns[4].Width = 22;
-                dgv.Columns[5].Width = 22;
-                dgv.Columns[6].Width = 20;
-                dgv.Columns[7].Width = 20;
-                dgv.Columns[8].Width = 20;
+                dgv.Columns[1].Width = 150;
             }
             return dt;
         }

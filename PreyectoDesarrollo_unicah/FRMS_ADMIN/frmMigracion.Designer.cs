@@ -56,7 +56,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(904, 413);
+            btnLogout.Location = new Point(893, 357);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(126, 29);
             btnLogout.TabIndex = 14;
@@ -66,7 +66,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnExcel
             // 
-            btnExcel.Location = new Point(790, 407);
+            btnExcel.Location = new Point(771, 350);
             btnExcel.Name = "btnExcel";
             btnExcel.Size = new Size(108, 42);
             btnExcel.TabIndex = 15;
@@ -112,7 +112,7 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.AutoSize = true;
             lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(902, 63);
+            lblPersona.Location = new Point(891, 63);
             lblPersona.Name = "lblPersona";
             lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 16;
@@ -138,7 +138,7 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.Location = new Point(13, 124);
             dgvAdmin.Name = "dgvAdmin";
             dgvAdmin.ReadOnly = true;
-            dgvAdmin.Size = new Size(894, 268);
+            dgvAdmin.Size = new Size(746, 268);
             dgvAdmin.TabIndex = 13;
             // 
             // clmAsignaturaFacu
@@ -188,7 +188,7 @@ namespace PreyectoDesarrollo_unicah
             // lblPeriodo
             // 
             lblPeriodo.AutoSize = true;
-            lblPeriodo.Location = new Point(30, 413);
+            lblPeriodo.Location = new Point(791, 142);
             lblPeriodo.Name = "lblPeriodo";
             lblPeriodo.Size = new Size(48, 15);
             lblPeriodo.TabIndex = 16;
@@ -197,7 +197,7 @@ namespace PreyectoDesarrollo_unicah
             // lblWeek
             // 
             lblWeek.AutoSize = true;
-            lblWeek.Location = new Point(97, 413);
+            lblWeek.Location = new Point(956, 142);
             lblWeek.Name = "lblWeek";
             lblWeek.Size = new Size(49, 15);
             lblWeek.TabIndex = 17;
@@ -205,7 +205,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // monthCalendar1
             // 
-            monthCalendar1.Location = new Point(762, 178);
+            monthCalendar1.Location = new Point(771, 166);
             monthCalendar1.Name = "monthCalendar1";
             monthCalendar1.TabIndex = 19;
             // 
@@ -213,7 +213,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1094, 454);
+            ClientSize = new Size(1044, 405);
             Controls.Add(monthCalendar1);
             Controls.Add(lblWeek);
             Controls.Add(lblPeriodo);

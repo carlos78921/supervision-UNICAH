@@ -42,10 +42,6 @@ namespace PreyectoDesarrollo_unicah
         }
 
         //Procesos en carga del formulario
-        private void AsistenciaxDia()
-        {
-
-        }
         private void FiltroInicial()
         {
             cmbEdificio.SelectedIndex = 0;
@@ -56,9 +52,9 @@ namespace PreyectoDesarrollo_unicah
         private void FrmReporte_Load(object sender, EventArgs e)
         {
             lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
+
             //Ajustes del formulario
             FiltroInicial();
-            AsistenciaxDia();
 
             //Ajustes del bdd
             ACCIONES_BD.tablaSupervisor(dgvAsiste);

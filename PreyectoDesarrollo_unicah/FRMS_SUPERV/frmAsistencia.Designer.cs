@@ -36,6 +36,10 @@
             pictureBox3 = new PictureBox();
             label1 = new Label();
             dgvAsiste = new DataGridView();
+            clmDoc = new DataGridViewTextBoxColumn();
+            clmClase = new DataGridViewTextBoxColumn();
+            clmSeccion = new DataGridViewTextBoxColumn();
+            clmAula = new DataGridViewTextBoxColumn();
             nudWeeks = new NumericUpDown();
             label2 = new Label();
             label5 = new Label();
@@ -49,11 +53,7 @@
             txtDoc = new TextBox();
             btnLogout = new Button();
             lblMeses = new Label();
-            monthCalendar1 = new MonthCalendar();
-            clmDoc = new DataGridViewTextBoxColumn();
-            clmClase = new DataGridViewTextBoxColumn();
-            clmSeccion = new DataGridViewTextBoxColumn();
-            clmAula = new DataGridViewTextBoxColumn();
+            mesSupervisor = new MonthCalendar();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -146,6 +146,32 @@
             dgvAsiste.Size = new Size(351, 216);
             dgvAsiste.TabIndex = 17;
             dgvAsiste.CellContentClick += dgvAsiste_CellContentClick;
+            // 
+            // clmDoc
+            // 
+            clmDoc.HeaderText = "Docente";
+            clmDoc.Name = "clmDoc";
+            clmDoc.ReadOnly = true;
+            // 
+            // clmClase
+            // 
+            clmClase.HeaderText = "Asignatura";
+            clmClase.Name = "clmClase";
+            clmClase.ReadOnly = true;
+            clmClase.Width = 150;
+            // 
+            // clmSeccion
+            // 
+            clmSeccion.HeaderText = "Sección";
+            clmSeccion.Name = "clmSeccion";
+            clmSeccion.ReadOnly = true;
+            clmSeccion.Width = 58;
+            // 
+            // clmAula
+            // 
+            clmAula.HeaderText = "Aula";
+            clmAula.Name = "clmAula";
+            clmAula.Width = 150;
             // 
             // nudWeeks
             // 
@@ -264,44 +290,18 @@
             lblMeses.Text = "Periodo";
             lblMeses.Visible = false;
             // 
-            // monthCalendar1
+            // mesSupervisor
             // 
-            monthCalendar1.Location = new Point(383, 224);
-            monthCalendar1.Name = "monthCalendar1";
-            monthCalendar1.TabIndex = 42;
-            // 
-            // clmDoc
-            // 
-            clmDoc.HeaderText = "Docente";
-            clmDoc.Name = "clmDoc";
-            clmDoc.ReadOnly = true;
-            // 
-            // clmClase
-            // 
-            clmClase.HeaderText = "Asignatura";
-            clmClase.Name = "clmClase";
-            clmClase.ReadOnly = true;
-            clmClase.Width = 150;
-            // 
-            // clmSeccion
-            // 
-            clmSeccion.HeaderText = "Sección";
-            clmSeccion.Name = "clmSeccion";
-            clmSeccion.ReadOnly = true;
-            clmSeccion.Width = 58;
-            // 
-            // clmAula
-            // 
-            clmAula.HeaderText = "Aula";
-            clmAula.Name = "clmAula";
-            clmAula.Width = 150;
+            mesSupervisor.Location = new Point(383, 224);
+            mesSupervisor.Name = "mesSupervisor";
+            mesSupervisor.TabIndex = 42;
             // 
             // frmAsistencia
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(645, 475);
-            Controls.Add(monthCalendar1);
+            Controls.Add(mesSupervisor);
             Controls.Add(lblMeses);
             Controls.Add(btnLogout);
             Controls.Add(txtDoc);
@@ -356,7 +356,7 @@
         private Button btnLogout;
         private Label lblMeses;
         private Button btnSalir;
-        private MonthCalendar monthCalendar1;
+        private MonthCalendar mesSupervisor;
         private DataGridViewTextBoxColumn clmDoc;
         private DataGridViewTextBoxColumn clmClase;
         private DataGridViewTextBoxColumn clmSeccion;

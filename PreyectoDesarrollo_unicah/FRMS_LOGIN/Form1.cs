@@ -78,8 +78,8 @@ namespace PreyectoDesarrollo_unicah
                 return;
             }
 
-            try
-            {
+            /*try
+            {*/
                 using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
                 {
                     conexion.Open();
@@ -147,10 +147,10 @@ namespace PreyectoDesarrollo_unicah
                     }
                 }
             }
-            catch (Exception ex)
+/*            catch (Exception ex)
             {
                 MessageBox.Show("Error al conectar con la base de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }*/
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
