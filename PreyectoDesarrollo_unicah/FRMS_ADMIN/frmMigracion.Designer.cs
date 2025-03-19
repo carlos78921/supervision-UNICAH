@@ -44,6 +44,7 @@ namespace PreyectoDesarrollo_unicah
             label1 = new Label();
             lblPeriodo = new Label();
             lblWeek = new Label();
+            monthCalendar1 = new MonthCalendar();
             btnLogout = new Button();
             btnExcel = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -202,11 +203,18 @@ namespace PreyectoDesarrollo_unicah
             lblWeek.TabIndex = 17;
             lblWeek.Text = "Semana";
             // 
+            // monthCalendar1
+            // 
+            monthCalendar1.Location = new Point(762, 178);
+            monthCalendar1.Name = "monthCalendar1";
+            monthCalendar1.TabIndex = 19;
+            // 
             // frmMigracion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1094, 454);
+            Controls.Add(monthCalendar1);
             Controls.Add(lblWeek);
             Controls.Add(lblPeriodo);
             Controls.Add(btnExcel);
@@ -244,5 +252,6 @@ namespace PreyectoDesarrollo_unicah
         private DataGridViewTextBoxColumn clmSeccion;
         private DataGridViewTextBoxColumn clmAulaFull;
         private DataGridViewTextBoxColumn clmEmpleado;
+        private MonthCalendar monthCalendar1;
     }
 }
