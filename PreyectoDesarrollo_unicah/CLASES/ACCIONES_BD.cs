@@ -164,7 +164,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("PA_Asistencia", conn);
+                SqlCommand cmd = new SqlCommand("PA_Marcar_Asistencia", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
             }
         }
@@ -173,9 +173,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
         {
             // Limpiar resaltado previo
             supervisor.RemoveAllBoldedDates();
-            /*try, se comenta por ser una validación para no decepcionar en la presentación de migración de 
-            { datos*/
-            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("PA_Asistencia", conn);
@@ -191,13 +191,14 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         supervisor.AddBoldedDate(fecha);  // Resalta la fecha en el calendario
                     }
                 }
-            /*}
+            }
             catch
             {
                 MessageBox.Show("No se logró procesar el PA, mensaje: ", "PA sin éxito");
-            }*/
+            }
             supervisor.UpdateBoldedDates();  // Aplicar cambios
         }
+
         public static DataTable tablaSupervisor(DataGridView dgv)
         {
             DataTable dt = new DataTable();
