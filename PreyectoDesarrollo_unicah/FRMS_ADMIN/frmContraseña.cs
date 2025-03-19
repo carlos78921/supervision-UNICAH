@@ -52,7 +52,7 @@ namespace PreyectoDesarrollo_unicah
 
             if (string.IsNullOrEmpty(usuario) || usuario == "Usuario:" ) //Vacío con o sin un dato
             {
-                MessageBox.Show("Por favor ingrese todos los datos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor ingrese el usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
