@@ -225,14 +225,93 @@ end
 go
 
 create proc PA_Asistencia
-@idEmpleado int
+@idEmpleado int,
+@idClase int,
+@idSitio int
 with encryption
 as 
 begin
-	SELECT Fecha FROM Asistencia WHERE ID_Empleado = @idEmpleado 
+	    Obtener ID del empleado*/
+	declare @idEmpleado INT
+	select @idEmpleado = ID_Empleado
+	from Nombres_Completos
+	where (Nombre1 + ' ' + Nombre2 + ' ' + Apellido1 + ' ' + Apellido2) = @Docente
+
+	declare @ID_Clase INT
+ -- Obtener ID de la clase
+	select @ID_Clase = ID_Clase
+	from Clases
+	where Asignatura = @Asigno
+
+	declare @ID_Sitio INT
+ -- Obtener ID del sitio
+	select @ID_Sitio = ID_Sitio
+	from Sitio
+	where Seccion = @Seccion and Aula = @Aula and Edificio = @Edificio
+
+	SELECT Fecha FROM Asistencia 
+	WHERE ID_Empleado = @idEmpleado and 
+	IDclase = @IDclase and 
+	IDsitio = @IDsitio
 end
 go
 
+	create proc PA_Marcar_Asistencia 
+	@Asigno varchar(70),
+	@Docente varchar(100),
+	@Seccion varchar(7),
+	@Aula varchar(25),
+	@Edificio char,
+	@Fecha date,
+    @Marca BIT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+	/*Para ID de asistencia:
+    Obtener ID del empleado*/
+	declare @ID_Empleado INT
+	select @ID_Empleado = ID_Empleado
+	from Nombres_Completos
+	where (Nombre1 + ' ' + Nombre2 + ' ' + Apellido1 + ' ' + Apellido2) = @Docente
+
+	declare @ID_Clase INT
+ -- Obtener ID de la clase
+	select @ID_Clase = ID_Clase
+	from Clases
+	where Asignatura = @Asigno
+
+	declare @ID_Sitio INT
+ -- Obtener ID del sitio
+	select @ID_Sitio = ID_Sitio
+	from Sitio
+	where Seccion = @Seccion and Aula = @Aula and Edificio = @Edificio
+
+    DECLARE @ID_Asistencia INT
+     -- Verificar si ya existe un de asistencia por los ID y la fecha
+    SELECT @ID_Asistencia = ID_Asistencia
+    FROM Asistencia
+    WHERE ID_Empleado = @ID_Empleado and ID_Sitio = @ID_Sitio and ID_Clase = @ID_Clase AND Fecha = @Fecha;
+
+	if (@ID_Empleado is null or @ID_Sitio is null or @ID_Clase is null)
+		print('Problemas con el desarrollo del sistema')
+    IF (@ID_Asistencia IS NULL) --si pusiera un "not exists para ahorrar código, el igual da error de sintaxis
+    BEGIN
+        -- No existe, se inserta un nuevo registro
+        INSERT INTO Asistencia (ID_Clase, ID_Sitio, ID_Empleado, Fecha, Presente)
+        VALUES (@ID_Clase, @ID_Sitio, @ID_Empleado, @Fecha, @Marca);
+		set @ID_Asistencia = scope_identity()
+	end
+    ELSE
+    BEGIN
+        -- Ya existe: se puede actualizar, por ejemplo
+        UPDATE Asistencia
+        SET Presente = @Marca
+        WHERE ID_Asistencia = @ID_Asistencia;
+    END
+END
+go
+	    
 --En asistencia insertan y luego actualizan
 create proc PA_Admin -- Para el Admin
 with encryption
