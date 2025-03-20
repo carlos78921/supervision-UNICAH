@@ -39,7 +39,7 @@ namespace PreyectoDesarrollo_unicah
             label2 = new Label();
             nudReposicion = new NumericUpDown();
             label1 = new Label();
-            dataGridView1 = new DataGridView();
+            dgvReposicion = new DataGridView();
             clmClase = new DataGridViewTextBoxColumn();
             clmFecha = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
@@ -49,6 +49,7 @@ namespace PreyectoDesarrollo_unicah
             cmbEdificio = new ComboBox();
             label3 = new Label();
             lblMeses = new Label();
+            dtpFecha = new DateTimePicker();
             btnDay = new Button();
             btnVoy = new Button();
             btnBusco = new Button();
@@ -57,7 +58,7 @@ namespace PreyectoDesarrollo_unicah
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudReposicion).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvReposicion).BeginInit();
             SuspendLayout();
             // 
             // btnDay
@@ -172,18 +173,18 @@ namespace PreyectoDesarrollo_unicah
             label1.TabIndex = 18;
             label1.Text = "REPORTE DE REPOSICIÓN";
             // 
-            // dataGridView1
+            // dgvReposicion
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha, clmSeccion, clmDocente, clmRepo });
-            dataGridView1.Location = new Point(16, 150);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(610, 268);
-            dataGridView1.TabIndex = 24;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dgvReposicion.AllowUserToAddRows = false;
+            dgvReposicion.AllowUserToDeleteRows = false;
+            dgvReposicion.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvReposicion.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha, clmSeccion, clmDocente, clmRepo });
+            dgvReposicion.Location = new Point(16, 150);
+            dgvReposicion.Name = "dgvReposicion";
+            dgvReposicion.ReadOnly = true;
+            dgvReposicion.Size = new Size(610, 268);
+            dgvReposicion.TabIndex = 24;
+            dgvReposicion.CellContentClick += dataGridView1_CellContentClick;
             // 
             // clmClase
             // 
@@ -253,17 +254,26 @@ namespace PreyectoDesarrollo_unicah
             lblMeses.Text = "Periodo";
             lblMeses.Visible = false;
             // 
+            // dtpFecha
+            // 
+            dtpFecha.Location = new Point(37, 425);
+            dtpFecha.Name = "dtpFecha";
+            dtpFecha.Size = new Size(200, 23);
+            dtpFecha.TabIndex = 30;
+            dtpFecha.ValueChanged += dtpFecha_ValueChanged;
+            // 
             // frmReposición
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(636, 464);
+            Controls.Add(dtpFecha);
             Controls.Add(lblMeses);
             Controls.Add(label3);
             Controls.Add(cmbEdificio);
             Controls.Add(txtBusco);
             Controls.Add(btnBusco);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvReposicion);
             Controls.Add(label2);
             Controls.Add(nudReposicion);
             Controls.Add(btnDay);
@@ -281,7 +291,7 @@ namespace PreyectoDesarrollo_unicah
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudReposicion).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvReposicion).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -295,7 +305,7 @@ namespace PreyectoDesarrollo_unicah
         private Label label2;
         private NumericUpDown nudReposicion;
         private Label label1;
-        private DataGridView dataGridView1;
+        private DataGridView dgvReposicion;
         private DataGridViewTextBoxColumn clmClase;
         private DataGridViewTextBoxColumn clmFecha;
         private DataGridViewTextBoxColumn clmSeccion;
@@ -306,5 +316,6 @@ namespace PreyectoDesarrollo_unicah
         private ComboBox cmbEdificio;
         private Label label3;
         private Label lblMeses;
+        private DateTimePicker dtpFecha;
     }
 }

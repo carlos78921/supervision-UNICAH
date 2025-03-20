@@ -59,29 +59,60 @@ namespace PreyectoDesarrollo_unicah
             SendMessage(this.Handle, 0x112, 0xf012, 0);  //El evento en memoria se mantiene
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvReposicion_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+            if (dgvReposicion.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+            {
+                bool justificado = Convert.ToBoolean(dgvReposicion.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+                dgvReposicion.Rows[e.RowIndex].DefaultCellStyle.BackColor = justificado ? Color.LightGreen : Color.White;
+            }
             // Verifica que no se haya hecho clic en el encabezado de la columna
             if (e.RowIndex < 0 || e.ColumnIndex < 0)
                 return;
 
             // Verifica si la columna es un CheckBox (para la reposición)
-            if (!(dataGridView1.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn))
+            if (!(dgvReposicion.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn))
                 return;
 
             // Finaliza la edición para registrar los cambios
-            dataGridView1.EndEdit();
+            dgvReposicion.EndEdit();
 
             // Obtener valores de la fila seleccionada
-            string asignatura = dataGridView1.Rows[e.RowIndex].Cells["Asignatura"].Value.ToString();
-            string fechaAusencia = dataGridView1.Rows[e.RowIndex].Cells["Fecha de Ausencia"].Value.ToString();
-            string seccion = dataGridView1.Rows[e.RowIndex].Cells["Sección"].Value.ToString();
-            string docente = dataGridView1.Rows[e.RowIndex].Cells["Docente"].Value.ToString();
-            string fechaReposicion = dataGridView1.Rows[e.RowIndex].Cells["Fecha de Reposición"].Value.ToString();
+            string asignatura = dgvReposicion.Rows[e.RowIndex].Cells["Asignatura"].Value.ToString();
+            string fechaAusencia = dgvReposicion.Rows[e.RowIndex].Cells["Fecha de Ausencia"].Value.ToString();
+            string seccion = dgvReposicion.Rows[e.RowIndex].Cells["Sección"].Value.ToString();
+            string docente = dgvReposicion.Rows[e.RowIndex].Cells["Docente"].Value.ToString();
+            string fechaReposicion = dgvReposicion.Rows[e.RowIndex].Cells["Fecha de Reposición"].Value.ToString();
 
             // Obtener el estado del CheckBox (si se confirma la reposición)
-            bool reposicionConfirmada = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+            bool reposicionConfirmada = Convert.ToBoolean(dgvReposicion.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
 
         }
+
+        private void dtpFecha_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime fechaSeleccionada = dtpFecha.Value;
+            CargarReposicion(fechaSeleccionada);
+            OcultarColumnas(); // Oculta las columnas innecesarias
+        }
+
+        private void CargarReposicion(DateTime fecha)
+        {
+            string consulta = $"SELECT * FROM Justificaciones WHERE Fecha = '{fecha:yyyy-MM-dd}'";
+            DataTable dtJustificaciones = ObtenerDatosDesdeBD(consulta);
+            dgvReposicion.DataSource = dtJustificaciones;
+        }
+
+        private void OcultarColumnas()
+        {
+            if (dgvReposicion.Columns.Contains("Fecha"))
+                dgvReposicion.Columns["Fecha"].Visible = false;
+
+            if (dgvReposicion.Columns.Contains("Día de semana"))
+                dgvReposicion.Columns["Día de semana"].Visible = false;
+        }
+
+
     }
 }

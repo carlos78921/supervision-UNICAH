@@ -93,6 +93,13 @@ namespace PreyectoDesarrollo_unicah
 
         private void dgvJustificacion_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+            if (dgvJustificacion.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+            {
+                bool justificado = Convert.ToBoolean(dgvJustificacion.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+                dgvJustificacion.Rows[e.RowIndex].DefaultCellStyle.BackColor = justificado ? Color.LightGreen : Color.White;
+            }
+
             // Verifica que no se haya hecho clic en el encabezado de la columna
             if (e.RowIndex < 0 || e.ColumnIndex < 0)
                 return;
@@ -144,5 +151,29 @@ namespace PreyectoDesarrollo_unicah
                 MessageBox.Show("Por favor, seleccione una fila en la tabla para insertar la justificación.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void dtpFecha_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime fechaSeleccionada = dtpFecha.Value;
+            CargarJustificaciones(fechaSeleccionada);
+            OcultarColumnas(); // Oculta las columnas innecesarias
+        }
+
+        private void CargarJustificaciones(DateTime fecha)
+        {
+            string consulta = $"SELECT * FROM Justificaciones WHERE Fecha = '{fecha:yyyy-MM-dd}'";
+            DataTable dtJustificaciones = ObtenerDatosDesdeBD(consulta);
+            dgvJustificacion.DataSource = dtJustificaciones;
+        }
+
+        private void OcultarColumnas()
+        {
+            if (dgvJustificacion.Columns.Contains("Fecha"))
+                dgvJustificacion.Columns["Fecha"].Visible = false;
+
+            if (dgvJustificacion.Columns.Contains("Día de semana"))
+                dgvJustificacion.Columns["Día de semana"].Visible = false;
+        }
+
     }
 }
