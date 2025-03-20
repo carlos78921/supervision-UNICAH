@@ -79,9 +79,6 @@ namespace PreyectoDesarrollo_unicah
         private void dgvAsiste_CellContentClick(object sender, DataGridViewCellEventArgs e)
         //El "e" proviene de celdas afectadas como los checkbox
         {
-            //Clic solo en columnas con checkbox, los de textbox como docentes, entre otros, no se afectan
-            if (!(dgvAsiste.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn))
-                return;
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 if (dgvAsiste.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
@@ -120,6 +117,11 @@ namespace PreyectoDesarrollo_unicah
             {
                 RegistrarAsistencia(fechaSeleccionada);
             }
+        }
+
+        private void dgvAsiste_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

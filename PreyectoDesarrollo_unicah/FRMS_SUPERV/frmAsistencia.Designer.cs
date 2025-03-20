@@ -145,6 +145,7 @@
             dgvAsiste.Name = "dgvAsiste";
             dgvAsiste.Size = new Size(351, 216);
             dgvAsiste.TabIndex = 17;
+            dgvAsiste.CellClick += dgvAsiste_CellClick;
             dgvAsiste.CellContentClick += dgvAsiste_CellContentClick;
             // 
             // clmDoc
