@@ -108,15 +108,10 @@ namespace PreyectoDesarrollo_unicah
         {
             DateTime fechaSeleccionada = e.Start;
 
-            DialogResult resultado = MessageBox.Show(
-                "¿Marcar asistencia para esta fecha?",
-                "Confirmar",
-                MessageBoxButtons.YesNo);
+           if (MessageBox.Show("¿Marcar asistencia para esta fecha?","Confirmar",
+               MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+                    ACCIONES_BD.RegistrarAsistencia(dgvAsiste, filaEmpleado, filaClase, filaSitio, , fechaSeleccionada, fechaMarco);
 
-            if (resultado == DialogResult.Yes)
-            {
-                RegistrarAsistencia(fechaSeleccionada);
-            }
         }
 
         private void dgvAsiste_CellClick(object sender, DataGridViewCellEventArgs e)
