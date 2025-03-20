@@ -51,6 +51,7 @@ namespace PreyectoDesarrollo_unicah
             txtBusco = new TextBox();
             label4 = new Label();
             lblMeses = new Label();
+            dateTimePicker1 = new DateTimePicker();
             btnAgregar = new Button();
             btnVoy = new Button();
             btnBusco = new Button();
@@ -276,11 +277,19 @@ namespace PreyectoDesarrollo_unicah
             lblMeses.Text = "Periodo";
             lblMeses.Visible = false;
             // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(31, 213);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(229, 23);
+            dateTimePicker1.TabIndex = 45;
+            // 
             // frmJustificación
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(794, 642);
+            Controls.Add(dateTimePicker1);
             Controls.Add(lblMeses);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -332,5 +341,6 @@ namespace PreyectoDesarrollo_unicah
         private TextBox txtBusco;
         private Label label4;
         private Label lblMeses;
+        private DateTimePicker dateTimePicker1;
     }
 }
