@@ -99,9 +99,9 @@ namespace PreyectoDesarrollo_unicah
 
         private void CargarReposicion(DateTime fecha)
         {
-            string consulta = $"SELECT * FROM Justificaciones WHERE Fecha = '{fecha:yyyy-MM-dd}'";
-            DataTable dtJustificaciones = ObtenerDatosDesdeBD(consulta);
-            dgvReposicion.DataSource = dtJustificaciones;
+            string consulta = $"SELECT * FROM Reposicion WHERE Fecha = '{fecha:yyyy-MM-dd}'";
+            DataTable dtReposicion = ObtenerDatosDesdeBD(consulta);
+            dgvReposicion.DataSource = dtReposicion;
         }
 
         private void OcultarColumnas()
