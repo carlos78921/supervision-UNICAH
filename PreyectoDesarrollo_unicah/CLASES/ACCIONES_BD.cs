@@ -34,6 +34,100 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
+        public static void RegistrarAsistencia(DataGridView dgv, string Docente, string clase, string seccion, string aula, string edificio, DateTime fechaMarca, bool Marco)
+        {
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("PA_Marcar_Asistencia", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Docente", Docente);
+                cmd.Parameters.AddWithValue("@Asigno", clase);
+                cmd.Parameters.AddWithValue("@Seccion", seccion);
+                cmd.Parameters.AddWithValue("@Aula", aula);
+                cmd.Parameters.AddWithValue("@Edificio", edificio);
+                cmd.Parameters.AddWithValue("@Fecha", fechaMarca);
+                cmd.Parameters.AddWithValue("@Marca", Marco);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static DataTable CargarAsistencia(MonthCalendar supervisorFechas, string Docente, string clase, string seccion, string aula, string edificio)
+        {
+            DataTable dtFechas = new DataTable();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("PA_Asistencia", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@Docente", Docente);
+                    cmd.Parameters.AddWithValue("@Asigno", clase);
+                    cmd.Parameters.AddWithValue("@Seccion", seccion);
+                    cmd.Parameters.AddWithValue("@Aula", aula);
+                    cmd.Parameters.AddWithValue("@Edificio", edificio);
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dtFechas);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener las fechas de asistencia: " + ex.Message);
+            }
+
+            foreach (DataRow row in dtFechas.Rows) //De la tabla del SQL para obtener campo fecha
+            {
+                supervisorFechas.AddBoldedDate(Convert.ToDateTime(row["Fecha"]));
+            }
+
+            supervisorFechas.UpdateBoldedDates();
+
+            return dtFechas;
+        }
+
+        public static DataTable tablaSupervisor(DataGridView dgv)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("PA_Supervisor", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener datos: " + ex.Message);
+            }
+            if (dt.Rows.Count > 0)
+            {
+                dgv.Columns.Clear();
+
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dt;
+                dgv.DataSource = bs;
+                bs.ResetBindings(false);
+                dgv.AutoGenerateColumns = true;
+                dgv.Refresh(); // Forzar actualización de la UI
+
+                dgv.Columns[0].Width = 300;
+                dgv.Columns[1].Width = 250;
+                dgv.Columns[2].Width = 60;
+                dgv.Columns[3].Width = 150;
+                dgv.Columns[4].Visible = false;
+            }
+            return dt;
+        }
+
         public static DataTable tablaAdmin (DataGridView dgv)
         {
             DataTable dt = new DataTable();
@@ -160,144 +254,58 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static void RegistrarAsistencia(DataGridView dgv, string Docente, string clase, string seccion, string aula, string edificio, DateTime fechaMarca, bool Marco)
-        {
-            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("PA_Marcar_Asistencia", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@Docente", Docente);
-                cmd.Parameters.AddWithValue("@Asigno", clase);
-                cmd.Parameters.AddWithValue("@Seccion", seccion);
-                cmd.Parameters.AddWithValue("@Aula", aula);
-                cmd.Parameters.AddWithValue("@Edificio", edificio);
-                cmd.Parameters.AddWithValue("@Fecha", fechaMarca);
-                cmd.Parameters.AddWithValue("@Marca", Marco);
-
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-        public static DataTable CargarAsistencia(MonthCalendar supervisorFechas)
-        {
-            DataTable dtFechas = new DataTable();
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+        /*        public static void presenteSup(string docente, string asignatura, string seccion, string dia)
                 {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("PA_Asistencia", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dtFechas);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al obtener las fechas de asistencia: " + ex.Message);
-            }
-
-            foreach (DataRow row in dtFechas.Rows)
-            {
-                supervisorFechas.AddBoldedDate(Convert.ToDateTime(row["Fecha"]));
-            }
-
-            supervisorFechas.UpdateBoldedDates();
-
-            return dtFechas;
-        }
-
-        public static DataTable tablaSupervisor(DataGridView dgv)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-                {
-                    SqlCommand cmd = new SqlCommand("PA_Supervisor", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al obtener datos: " + ex.Message);
-            }
-            if (dt.Rows.Count > 0)
-            {
-                dgv.Columns.Clear();
-
-                BindingSource bs = new BindingSource();
-                bs.DataSource = dt;
-                dgv.DataSource = bs;
-                bs.ResetBindings(false);
-                dgv.AutoGenerateColumns = true;
-                dgv.Refresh(); // Forzar actualización de la UI
-
-                dgv.Columns[0].Width = 300;
-                dgv.Columns[1].Width = 250;
-                dgv.Columns[2].Width = 60;
-                dgv.Columns[3].Width = 150;
-                dgv.Columns[4].Visible = false;
-            }
-            return dt;
-        }
-
-        public static void presenteSup(string docente, string asignatura, string seccion, string dia)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("PA_Marcar_Asistencia", conn))
+                    try
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
+                        using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+                        {
+                            conn.Open();
+                            using (SqlCommand cmd = new SqlCommand("PA_Marcar_Asistencia", conn))
+                            {
+                                cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@Asignatura", asignatura);
-                        cmd.Parameters.AddWithValue("@Docente", docente);
-                        cmd.Parameters.AddWithValue("@Seccion", seccion);
-                        cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
-                        cmd.Parameters.AddWithValue("@Dia", dia);
-                        cmd.ExecuteNonQuery(); 
+                                cmd.Parameters.AddWithValue("@Asignatura", asignatura);
+                                cmd.Parameters.AddWithValue("@Docente", docente);
+                                cmd.Parameters.AddWithValue("@Seccion", seccion);
+                                cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
+                                cmd.Parameters.AddWithValue("@Dia", dia);
+                                cmd.ExecuteNonQuery(); 
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al marcar asistencia: " + ex.Message);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al marcar asistencia: " + ex.Message);
-            }
-        }
 
-        public static void RegistrarFalta(string docente, string asignatura, string seccion, string dia)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+                public static void RegistrarFalta(string docente, string asignatura, string seccion, string dia)
                 {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("PA_Registrar_Falta", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    try
+                    {
+                        using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+                        {
+                            conn.Open();
+                            SqlCommand cmd = new SqlCommand("PA_Registrar_Falta", conn);
+                            cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@Asignatura", asignatura);
-                    cmd.Parameters.AddWithValue("@Docente", docente);
-                    cmd.Parameters.AddWithValue("@Seccion", seccion);
-                    cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
-                    cmd.Parameters.AddWithValue("@Dia", dia);
+                            cmd.Parameters.AddWithValue("@Asignatura", asignatura);
+                            cmd.Parameters.AddWithValue("@Docente", docente);
+                            cmd.Parameters.AddWithValue("@Seccion", seccion);
+                            cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
+                            cmd.Parameters.AddWithValue("@Dia", dia);
 
-                    //cmd.ExecuteNonQuery();
+                            //cmd.ExecuteNonQuery();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al registrar falta: " + ex.Message);
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al registrar falta: " + ex.Message);
-            }
-        }
+        */
 
         /*public void cargar(DataGridView dgv, string nombreTabla)
         {

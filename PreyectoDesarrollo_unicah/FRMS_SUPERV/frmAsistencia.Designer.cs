@@ -36,6 +36,11 @@
             pictureBox3 = new PictureBox();
             label1 = new Label();
             dgvAsiste = new DataGridView();
+            clmDoc = new DataGridViewTextBoxColumn();
+            clmClase = new DataGridViewTextBoxColumn();
+            clmSeccion = new DataGridViewTextBoxColumn();
+            clmAula = new DataGridViewTextBoxColumn();
+            clmEdificio = new DataGridViewTextBoxColumn();
             nudWeeks = new NumericUpDown();
             label2 = new Label();
             label5 = new Label();
@@ -50,11 +55,6 @@
             btnLogout = new Button();
             lblMeses = new Label();
             mesSupervisor = new MonthCalendar();
-            clmDoc = new DataGridViewTextBoxColumn();
-            clmClase = new DataGridViewTextBoxColumn();
-            clmSeccion = new DataGridViewTextBoxColumn();
-            clmAula = new DataGridViewTextBoxColumn();
-            clmEdificio = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -146,8 +146,39 @@
             dgvAsiste.Name = "dgvAsiste";
             dgvAsiste.Size = new Size(725, 216);
             dgvAsiste.TabIndex = 17;
-            dgvAsiste.CellClick += dgvAsiste_CellClick;
-            dgvAsiste.CellContentClick += dgvAsiste_CellContentClick;
+            dgvAsiste.SelectionChanged += dgvAsiste_SelectionChanged;
+            // 
+            // clmDoc
+            // 
+            clmDoc.HeaderText = "Docente";
+            clmDoc.Name = "clmDoc";
+            clmDoc.ReadOnly = true;
+            clmDoc.Width = 300;
+            // 
+            // clmClase
+            // 
+            clmClase.HeaderText = "Asignatura";
+            clmClase.Name = "clmClase";
+            clmClase.ReadOnly = true;
+            clmClase.Width = 250;
+            // 
+            // clmSeccion
+            // 
+            clmSeccion.HeaderText = "Sección";
+            clmSeccion.Name = "clmSeccion";
+            clmSeccion.ReadOnly = true;
+            clmSeccion.Width = 60;
+            // 
+            // clmAula
+            // 
+            clmAula.HeaderText = "Aula";
+            clmAula.Name = "clmAula";
+            clmAula.Width = 150;
+            // 
+            // clmEdificio
+            // 
+            clmEdificio.HeaderText = "Edificio";
+            clmEdificio.Name = "clmEdificio";
             // 
             // nudWeeks
             // 
@@ -273,38 +304,6 @@
             mesSupervisor.TabIndex = 42;
             mesSupervisor.DateSelected += mesSupervisor_DateSelected;
             // 
-            // clmDoc
-            // 
-            clmDoc.HeaderText = "Docente";
-            clmDoc.Name = "clmDoc";
-            clmDoc.ReadOnly = true;
-            clmDoc.Width = 300;
-            // 
-            // clmClase
-            // 
-            clmClase.HeaderText = "Asignatura";
-            clmClase.Name = "clmClase";
-            clmClase.ReadOnly = true;
-            clmClase.Width = 250;
-            // 
-            // clmSeccion
-            // 
-            clmSeccion.HeaderText = "Sección";
-            clmSeccion.Name = "clmSeccion";
-            clmSeccion.ReadOnly = true;
-            clmSeccion.Width = 60;
-            // 
-            // clmAula
-            // 
-            clmAula.HeaderText = "Aula";
-            clmAula.Name = "clmAula";
-            clmAula.Width = 150;
-            // 
-            // clmEdificio
-            // 
-            clmEdificio.HeaderText = "Edificio";
-            clmEdificio.Name = "clmEdificio";
-            // 
             // frmAsistencia
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -328,7 +327,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmAsistencia";
             Text = "FrmReporte";
-            Load += FrmReporte_Load;
+            Load += FrmAsiste_Load;
             MouseDown += frmSupervisor_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

@@ -49,7 +49,7 @@ namespace PreyectoDesarrollo_unicah
             cmbHora.SelectedIndex = 0;
         }
 
-        private void FrmReporte_Load(object sender, EventArgs e)
+        private void FrmAsiste_Load(object sender, EventArgs e)
         {
             lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
 
@@ -58,7 +58,7 @@ namespace PreyectoDesarrollo_unicah
 
             //Ajustes del bdd
             ACCIONES_BD.tablaSupervisor(dgvAsiste);
-            ACCIONES_BD.CargarAsistencia(mesSupervisor);
+            ACCIONES_BD.CargarAsistencia(mesSupervisor, (string)dgvAsiste.CurrentRow.Cells[0].Value, (string)dgvAsiste.CurrentRow.Cells[1].Value, (string)dgvAsiste.CurrentRow.Cells[2].Value, (string)dgvAsiste.CurrentRow.Cells[3].Value, (string)dgvAsiste.CurrentRow.Cells[4].Value);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -77,58 +77,43 @@ namespace PreyectoDesarrollo_unicah
             }
         }
 
-        //ME FALTA AJUSTAR ÉSTE
-        private void dgvAsiste_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        //El "e" proviene de celdas afectadas como los checkbox
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                if (dgvAsiste.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
-                {
-                    // Finaliza la edición para que el cambio se registre inmediatamente
-                    dgvAsiste.EndEdit();
-
-                    string dia = dgvAsiste.Columns[e.ColumnIndex].Name; // Día modificado
-
-                    string Docente = dgvAsiste.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    string Asignatura = dgvAsiste.Rows[e.RowIndex].Cells[1].Value.ToString();
-                    string Sitio = dgvAsiste.Rows[e.RowIndex].Cells[2].Value.ToString();
-
-
-                    // Aquí puedes llamar a la función que maneja el cambio (por ejemplo, llamar a PA_Marcar_Asistencia o PA_Registrar_Falta)
-                    bool asistencia = Convert.ToBoolean(dgvAsiste.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
-
-                    if (asistencia)
-                        ACCIONES_BD.presenteSup(Docente, Asignatura, Sitio, dia);
-                    else
-                        ACCIONES_BD.RegistrarFalta(Docente, Asignatura, Sitio, dia);
-                }
-            }
-        }
-
         private void mesSupervisor_DateSelected(object sender, DateRangeEventArgs e)
         {
             DateTime fechaSeleccionada = e.Start.Date;
 
-        
+
             if (MessageBox.Show("¿Marcar asistencia para esta fecha?", "Confirmar",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            { 
+            {
                 ACCIONES_BD.RegistrarAsistencia(dgvAsiste, (string)dgvAsiste.CurrentRow.Cells[0].Value, (string)dgvAsiste.CurrentRow.Cells[1].Value, (string)dgvAsiste.CurrentRow.Cells[2].Value, (string)dgvAsiste.CurrentRow.Cells[3].Value, (string)dgvAsiste.CurrentRow.Cells[4].Value, fechaSeleccionada.Date, true);
                 mesSupervisor.AddBoldedDate(fechaSeleccionada);
                 mesSupervisor.UpdateBoldedDates();
             }
             else
             {
-                ACCIONES_BD.RegistrarAsistencia(dgvAsiste, (string)dgvAsiste.CurrentRow.Cells[0].Value, (string)dgvAsiste.CurrentRow.Cells[1].Value, (string)dgvAsiste.CurrentRow.Cells[2].Value, (string)dgvAsiste.CurrentRow.Cells[3].Value, (string)dgvAsiste.CurrentRow.Cells[4].Value, fechaSeleccionada.Date,false);
+                ACCIONES_BD.RegistrarAsistencia(dgvAsiste, (string)dgvAsiste.CurrentRow.Cells[0].Value, (string)dgvAsiste.CurrentRow.Cells[1].Value, (string)dgvAsiste.CurrentRow.Cells[2].Value, (string)dgvAsiste.CurrentRow.Cells[3].Value, (string)dgvAsiste.CurrentRow.Cells[4].Value, fechaSeleccionada.Date, false);
                 mesSupervisor.RemoveBoldedDate(fechaSeleccionada);
                 mesSupervisor.UpdateBoldedDates();
-            }  
+            }
         }
 
-        private void dgvAsiste_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvAsiste_SelectionChanged(object sender, EventArgs e) //Método seguro para almacenar asistencias
         {
+            if (dgvAsiste.CurrentRow != null)
+            {
+                // Extraer los valores de la fila seleccionada.
+                string Docente = dgvAsiste.CurrentRow.Cells[0].Value.ToString();
+                string clase = dgvAsiste.CurrentRow.Cells[1].Value.ToString();
+                string seccion = dgvAsiste.CurrentRow.Cells[2].Value.ToString();
+                string aula = dgvAsiste.CurrentRow.Cells[3].Value.ToString();
+                string edificio = dgvAsiste.CurrentRow.Cells[4].Value.ToString();
 
+                // Limpiar las fechas resaltadas previas en el MonthCalendar.
+                mesSupervisor.RemoveAllBoldedDates();
+
+                // Llama al método para cargar las fechas marcadas para ese registro.
+                ACCIONES_BD.CargarAsistencia(mesSupervisor, Docente, clase, seccion, aula, edificio);
+            }
         }
     }
 }
