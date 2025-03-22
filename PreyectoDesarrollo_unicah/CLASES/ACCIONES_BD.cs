@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Security.Policy;
 using System.Drawing.Text;
+using System.Text.RegularExpressions;
 
 namespace PreyectoDesarrollo_unicah.CLASES
 {
@@ -179,10 +180,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static void CargarAsistencia(MonthCalendar supervisor, int idEmpleado)
+        public static DataTable CargarAsistencia(MonthCalendar supervisorFechas)
         {
-            // Limpiar resaltado previo
-            supervisor.RemoveAllBoldedDates();
+            DataTable dtFechas = new DataTable();
             try
             {
                 using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
@@ -191,22 +191,23 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     SqlCommand cmd = new SqlCommand("PA_Asistencia", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        DateTime fecha = reader.GetDateTime(0); //Obtiene fecha inicial
-                        supervisor.AddBoldedDate(fecha);  // Resalta la fecha en el calendario
-                    }
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dtFechas);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("No se logró procesar el PA, mensaje: ", "PA sin éxito");
+                MessageBox.Show("Error al obtener las fechas de asistencia: " + ex.Message);
             }
-            supervisor.UpdateBoldedDates();  // Aplicar cambios
+
+            foreach (DataRow row in dtFechas.Rows)
+            {
+                supervisorFechas.AddBoldedDate(Convert.ToDateTime(row["Fecha"]));
+            }
+
+            supervisorFechas.UpdateBoldedDates();
+
+            return dtFechas;
         }
 
         public static DataTable tablaSupervisor(DataGridView dgv)
@@ -263,7 +264,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         cmd.Parameters.AddWithValue("@Seccion", seccion);
                         cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
                         cmd.Parameters.AddWithValue("@Dia", dia);
-                        //cmd.ExecuteNonQuery(); //Para no detectar una fila, sino más entre todas las filas
+                        cmd.ExecuteNonQuery(); 
                     }
                 }
             }

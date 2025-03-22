@@ -58,6 +58,7 @@ namespace PreyectoDesarrollo_unicah
 
             //Ajustes del bdd
             ACCIONES_BD.tablaSupervisor(dgvAsiste);
+            ACCIONES_BD.CargarAsistencia(mesSupervisor);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -107,19 +108,19 @@ namespace PreyectoDesarrollo_unicah
 
         private void mesSupervisor_DateSelected(object sender, DateRangeEventArgs e)
         {
-            DateTime fechaSeleccionada = e.Start;
+            DateTime fechaSeleccionada = e.Start.Date;
 
         
             if (MessageBox.Show("¿Marcar asistencia para esta fecha?", "Confirmar",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             { 
-                ACCIONES_BD.RegistrarAsistencia(dgvAsiste, (string)dgvAsiste.CurrentRow.Cells[0].Value, (string)dgvAsiste.CurrentRow.Cells[1].Value, (string)dgvAsiste.CurrentRow.Cells[2].Value, (string)dgvAsiste.CurrentRow.Cells[3].Value, (string)dgvAsiste.CurrentRow.Cells[4].Value, fechaSeleccionada, Convert.ToBoolean(DialogResult.Yes));
+                ACCIONES_BD.RegistrarAsistencia(dgvAsiste, (string)dgvAsiste.CurrentRow.Cells[0].Value, (string)dgvAsiste.CurrentRow.Cells[1].Value, (string)dgvAsiste.CurrentRow.Cells[2].Value, (string)dgvAsiste.CurrentRow.Cells[3].Value, (string)dgvAsiste.CurrentRow.Cells[4].Value, fechaSeleccionada.Date, true);
                 mesSupervisor.AddBoldedDate(fechaSeleccionada);
                 mesSupervisor.UpdateBoldedDates();
             }
             else
             {
-                ACCIONES_BD.RegistrarAsistencia(dgvAsiste, (string)dgvAsiste.CurrentRow.Cells[0].Value, (string)dgvAsiste.CurrentRow.Cells[1].Value, (string)dgvAsiste.CurrentRow.Cells[2].Value, (string)dgvAsiste.CurrentRow.Cells[3].Value, (string)dgvAsiste.CurrentRow.Cells[4].Value, fechaSeleccionada, Convert.ToBoolean(DialogResult.No));
+                ACCIONES_BD.RegistrarAsistencia(dgvAsiste, (string)dgvAsiste.CurrentRow.Cells[0].Value, (string)dgvAsiste.CurrentRow.Cells[1].Value, (string)dgvAsiste.CurrentRow.Cells[2].Value, (string)dgvAsiste.CurrentRow.Cells[3].Value, (string)dgvAsiste.CurrentRow.Cells[4].Value, fechaSeleccionada.Date,false);
                 mesSupervisor.RemoveBoldedDate(fechaSeleccionada);
                 mesSupervisor.UpdateBoldedDates();
             }  
