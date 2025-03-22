@@ -64,8 +64,8 @@ namespace PreyectoDesarrollo_unicah
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
-            Form1 Login = new Form1();
-            Login.Show();
+            frmSupervisor Menu = new frmSupervisor();
+            Menu.Show();
         }
 
         private void frmSupervisor_MouseDown(object sender, MouseEventArgs e) //Evento del ratón "e"
