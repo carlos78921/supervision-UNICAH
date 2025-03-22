@@ -161,29 +161,21 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public static void RegistrarAsistencia(DataGridView dgv, string Docente, string clase, string seccion, string aula, string edificio, DateTime fechaMarca, bool Marco)
         {
-            try
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
-                using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("PA_Marcar_Asistencia", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("PA_Marcar_Asistencia", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@ID_Empleado", IDempleado);
-                    cmd.Parameters.AddWithValue("@ID_Clase", IDclase);
-                    cmd.Parameters.AddWithValue("@ID_Sitio", IDsitio);
-                    cmd.Parameters.AddWithValue("@ID_Sitio", IDsitio);
-                    cmd.Parameters.AddWithValue("@ID_Sitio", IDsitio);
-                    cmd.Parameters.AddWithValue("@Fecha", fechaMarca);
-                    cmd.Parameters.AddWithValue("@Marca", Marco);
+                cmd.Parameters.AddWithValue("@Docente", Docente);
+                cmd.Parameters.AddWithValue("@Asigno", clase);
+                cmd.Parameters.AddWithValue("@Seccion", seccion);
+                cmd.Parameters.AddWithValue("@Aula", aula);
+                cmd.Parameters.AddWithValue("@Edificio", edificio);
+                cmd.Parameters.AddWithValue("@Fecha", fechaMarca);
+                cmd.Parameters.AddWithValue("@Marca", Marco);
 
-                    cmd.ExecuteNonQuery();
-                }
-                MessageBox.Show("Asistencia registrada para " + fechaMarca.ToString("dd/MM/yyyy"));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al registrar asistencia: " + ex.Message);
+                cmd.ExecuteNonQuery();
             }
         }
 
@@ -246,10 +238,11 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.AutoGenerateColumns = true;
                 dgv.Refresh(); // Forzar actualización de la UI
 
-                dgv.Columns[0].Width = 100;
-                dgv.Columns[1].Width = 150;
-                dgv.Columns[2].Width = 58;
-                dgv.Columns[1].Width = 150;
+                dgv.Columns[0].Width = 300;
+                dgv.Columns[1].Width = 250;
+                dgv.Columns[2].Width = 60;
+                dgv.Columns[3].Width = 150;
+                dgv.Columns[4].Visible = false;
             }
             return dt;
         }

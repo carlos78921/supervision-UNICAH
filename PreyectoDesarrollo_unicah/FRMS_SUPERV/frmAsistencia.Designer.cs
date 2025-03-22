@@ -36,10 +36,6 @@
             pictureBox3 = new PictureBox();
             label1 = new Label();
             dgvAsiste = new DataGridView();
-            clmDoc = new DataGridViewTextBoxColumn();
-            clmClase = new DataGridViewTextBoxColumn();
-            clmSeccion = new DataGridViewTextBoxColumn();
-            clmAula = new DataGridViewTextBoxColumn();
             nudWeeks = new NumericUpDown();
             label2 = new Label();
             label5 = new Label();
@@ -54,6 +50,11 @@
             btnLogout = new Button();
             lblMeses = new Label();
             mesSupervisor = new MonthCalendar();
+            clmDoc = new DataGridViewTextBoxColumn();
+            clmClase = new DataGridViewTextBoxColumn();
+            clmSeccion = new DataGridViewTextBoxColumn();
+            clmAula = new DataGridViewTextBoxColumn();
+            clmEdificio = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -73,7 +74,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(585, 3);
+            pictureBox2.Location = new Point(958, 3);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(29, 21);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -84,7 +85,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(620, 3);
+            pictureBox1.Location = new Point(993, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 21);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -101,7 +102,7 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(-4, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(649, 87);
+            panel1.Size = new Size(1022, 87);
             panel1.TabIndex = 11;
             // 
             // lblPersona
@@ -109,7 +110,7 @@
             lblPersona.AutoSize = true;
             lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(517, 64);
+            lblPersona.Location = new Point(890, 64);
             lblPersona.Name = "lblPersona";
             lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 23;
@@ -129,7 +130,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(265, 99);
+            label1.Location = new Point(487, 97);
             label1.Name = "label1";
             label1.Size = new Size(125, 15);
             label1.TabIndex = 12;
@@ -140,43 +141,17 @@
             dgvAsiste.AllowUserToAddRows = false;
             dgvAsiste.AllowUserToDeleteRows = false;
             dgvAsiste.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAsiste.Columns.AddRange(new DataGridViewColumn[] { clmDoc, clmClase, clmSeccion, clmAula });
+            dgvAsiste.Columns.AddRange(new DataGridViewColumn[] { clmDoc, clmClase, clmSeccion, clmAula, clmEdificio });
             dgvAsiste.Location = new Point(20, 224);
             dgvAsiste.Name = "dgvAsiste";
-            dgvAsiste.Size = new Size(351, 216);
+            dgvAsiste.Size = new Size(725, 216);
             dgvAsiste.TabIndex = 17;
             dgvAsiste.CellClick += dgvAsiste_CellClick;
             dgvAsiste.CellContentClick += dgvAsiste_CellContentClick;
             // 
-            // clmDoc
-            // 
-            clmDoc.HeaderText = "Docente";
-            clmDoc.Name = "clmDoc";
-            clmDoc.ReadOnly = true;
-            // 
-            // clmClase
-            // 
-            clmClase.HeaderText = "Asignatura";
-            clmClase.Name = "clmClase";
-            clmClase.ReadOnly = true;
-            clmClase.Width = 150;
-            // 
-            // clmSeccion
-            // 
-            clmSeccion.HeaderText = "Sección";
-            clmSeccion.Name = "clmSeccion";
-            clmSeccion.ReadOnly = true;
-            clmSeccion.Width = 58;
-            // 
-            // clmAula
-            // 
-            clmAula.HeaderText = "Aula";
-            clmAula.Name = "clmAula";
-            clmAula.Width = 150;
-            // 
             // nudWeeks
             // 
-            nudWeeks.Location = new Point(513, 398);
+            nudWeeks.Location = new Point(887, 398);
             nudWeeks.Maximum = new decimal(new int[] { 5, 0, 0, 0 });
             nudWeeks.Name = "nudWeeks";
             nudWeeks.Size = new Size(49, 23);
@@ -185,7 +160,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(455, 402);
+            label2.Location = new Point(829, 402);
             label2.Name = "label2";
             label2.Size = new Size(52, 15);
             label2.TabIndex = 22;
@@ -194,7 +169,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(240, 130);
+            label5.Location = new Point(446, 134);
             label5.Name = "label5";
             label5.Size = new Size(67, 15);
             label5.TabIndex = 26;
@@ -202,14 +177,14 @@
             // 
             // txtClase
             // 
-            txtClase.Location = new Point(313, 127);
+            txtClase.Location = new Point(519, 131);
             txtClase.Name = "txtClase";
             txtClase.Size = new Size(168, 23);
             txtClase.TabIndex = 27;
             // 
             // btnBusca
             // 
-            btnBusca.Location = new Point(487, 115);
+            btnBusca.Location = new Point(693, 119);
             btnBusca.Name = "btnBusca";
             btnBusca.Size = new Size(75, 39);
             btnBusca.TabIndex = 28;
@@ -248,7 +223,7 @@
             gbFiltro.Controls.Add(cmbEdificio);
             gbFiltro.Controls.Add(cmbHora);
             gbFiltro.Controls.Add(cmbAula);
-            gbFiltro.Location = new Point(238, 157);
+            gbFiltro.Location = new Point(444, 161);
             gbFiltro.Name = "gbFiltro";
             gbFiltro.Size = new Size(324, 55);
             gbFiltro.TabIndex = 33;
@@ -258,7 +233,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(99, 119);
+            label6.Location = new Point(303, 139);
             label6.Name = "label6";
             label6.Size = new Size(120, 30);
             label6.TabIndex = 34;
@@ -266,14 +241,14 @@
             // 
             // txtDoc
             // 
-            txtDoc.Location = new Point(99, 153);
+            txtDoc.Location = new Point(303, 173);
             txtDoc.Name = "txtDoc";
             txtDoc.Size = new Size(118, 23);
             txtDoc.TabIndex = 35;
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(551, 446);
+            btnLogout.Location = new Point(925, 446);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(86, 23);
             btnLogout.TabIndex = 38;
@@ -293,16 +268,48 @@
             // 
             // mesSupervisor
             // 
-            mesSupervisor.Location = new Point(383, 224);
+            mesSupervisor.Location = new Point(757, 224);
             mesSupervisor.Name = "mesSupervisor";
             mesSupervisor.TabIndex = 42;
             mesSupervisor.DateSelected += mesSupervisor_DateSelected;
+            // 
+            // clmDoc
+            // 
+            clmDoc.HeaderText = "Docente";
+            clmDoc.Name = "clmDoc";
+            clmDoc.ReadOnly = true;
+            clmDoc.Width = 300;
+            // 
+            // clmClase
+            // 
+            clmClase.HeaderText = "Asignatura";
+            clmClase.Name = "clmClase";
+            clmClase.ReadOnly = true;
+            clmClase.Width = 250;
+            // 
+            // clmSeccion
+            // 
+            clmSeccion.HeaderText = "Sección";
+            clmSeccion.Name = "clmSeccion";
+            clmSeccion.ReadOnly = true;
+            clmSeccion.Width = 60;
+            // 
+            // clmAula
+            // 
+            clmAula.HeaderText = "Aula";
+            clmAula.Name = "clmAula";
+            clmAula.Width = 150;
+            // 
+            // clmEdificio
+            // 
+            clmEdificio.HeaderText = "Edificio";
+            clmEdificio.Name = "clmEdificio";
             // 
             // frmAsistencia
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(645, 475);
+            ClientSize = new Size(1018, 475);
             Controls.Add(mesSupervisor);
             Controls.Add(lblMeses);
             Controls.Add(btnLogout);
@@ -363,5 +370,6 @@
         private DataGridViewTextBoxColumn clmClase;
         private DataGridViewTextBoxColumn clmSeccion;
         private DataGridViewTextBoxColumn clmAula;
+        private DataGridViewTextBoxColumn clmEdificio;
     }
 }

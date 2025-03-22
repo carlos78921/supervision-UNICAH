@@ -76,6 +76,7 @@ namespace PreyectoDesarrollo_unicah
             }
         }
 
+        //ME FALTA AJUSTAR ÉSTE
         private void dgvAsiste_CellContentClick(object sender, DataGridViewCellEventArgs e)
         //El "e" proviene de celdas afectadas como los checkbox
         {
@@ -108,10 +109,20 @@ namespace PreyectoDesarrollo_unicah
         {
             DateTime fechaSeleccionada = e.Start;
 
-           if (MessageBox.Show("¿Marcar asistencia para esta fecha?","Confirmar",
-               MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
-                    ACCIONES_BD.RegistrarAsistencia(dgvAsiste, filaEmpleado, filaClase, filaSitio, , fechaSeleccionada, fechaMarco);
-
+        
+            if (MessageBox.Show("¿Marcar asistencia para esta fecha?", "Confirmar",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            { 
+                ACCIONES_BD.RegistrarAsistencia(dgvAsiste, (string)dgvAsiste.CurrentRow.Cells[0].Value, (string)dgvAsiste.CurrentRow.Cells[1].Value, (string)dgvAsiste.CurrentRow.Cells[2].Value, (string)dgvAsiste.CurrentRow.Cells[3].Value, (string)dgvAsiste.CurrentRow.Cells[4].Value, fechaSeleccionada, Convert.ToBoolean(DialogResult.Yes));
+                mesSupervisor.AddBoldedDate(fechaSeleccionada);
+                mesSupervisor.UpdateBoldedDates();
+            }
+            else
+            {
+                ACCIONES_BD.RegistrarAsistencia(dgvAsiste, (string)dgvAsiste.CurrentRow.Cells[0].Value, (string)dgvAsiste.CurrentRow.Cells[1].Value, (string)dgvAsiste.CurrentRow.Cells[2].Value, (string)dgvAsiste.CurrentRow.Cells[3].Value, (string)dgvAsiste.CurrentRow.Cells[4].Value, fechaSeleccionada, Convert.ToBoolean(DialogResult.No));
+                mesSupervisor.RemoveBoldedDate(fechaSeleccionada);
+                mesSupervisor.UpdateBoldedDates();
+            }  
         }
 
         private void dgvAsiste_CellClick(object sender, DataGridViewCellEventArgs e)
