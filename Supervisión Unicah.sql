@@ -225,12 +225,23 @@ end
 go
 
 create proc PA_Asistencia
-@idEmpleado int,
-@idClase int,
-@idSitio int
 with encryption
 as 
 begin
+    SELECT Fecha FROM Asistencia WHERE Presente = 1;
+end
+go
+
+create proc PA_Asistencia
+@Docente varchar (100),
+@Asigno varchar (70),
+@Seccion varchar(7),
+@Aula varchar(25),
+@Edificio char
+with encryption
+as 
+begin
+	/*Para ID de Asistencia:
 	    Obtener ID del empleado*/
 	declare @idEmpleado INT
 	select @idEmpleado = ID_Empleado
@@ -249,14 +260,14 @@ begin
 	from Sitio
 	where Seccion = @Seccion and Aula = @Aula and Edificio = @Edificio
 
-	SELECT Fecha FROM Asistencia 
+	SELECT Fecha, Marca FROM Asistencia 
 	WHERE ID_Empleado = @idEmpleado and 
-	IDclase = @IDclase and 
-	IDsitio = @IDsitio
+	ID_Clase = @ID_Clase and 
+	ID_Sitio = @ID_Sitio
 end
 go
 
-	create proc PA_Marcar_Asistencia 
+create proc PA_Marcar_Asistencia 
 	@Asigno varchar(70),
 	@Docente varchar(100),
 	@Seccion varchar(7),
@@ -267,6 +278,7 @@ go
 AS
 BEGIN
     SET NOCOUNT ON;
+
 
 	/*Para ID de asistencia:
     Obtener ID del empleado*/
@@ -282,7 +294,7 @@ BEGIN
 	where Asignatura = @Asigno
 
 	declare @ID_Sitio INT
- -- Obtener ID del sitio
+ -- Obtener ID de la clase
 	select @ID_Sitio = ID_Sitio
 	from Sitio
 	where Seccion = @Seccion and Aula = @Aula and Edificio = @Edificio
@@ -295,7 +307,7 @@ BEGIN
 
 	if (@ID_Empleado is null or @ID_Sitio is null or @ID_Clase is null)
 		print('Problemas con el desarrollo del sistema')
-    IF (@ID_Asistencia IS NULL) --si pusiera un "not exists para ahorrar código, el igual da error de sintaxis
+    IF (@ID_Asistencia IS NULL) --si pusiera un "not exists para ahorrar código, igual da error de sintaxis
     BEGIN
         -- No existe, se inserta un nuevo registro
         INSERT INTO Asistencia (ID_Clase, ID_Sitio, ID_Empleado, Fecha, Presente)
@@ -309,7 +321,7 @@ BEGIN
         SET Presente = @Marca
         WHERE ID_Asistencia = @ID_Asistencia;
     END
-END
+END;
 go
 	    
 --En asistencia insertan y luego actualizan
