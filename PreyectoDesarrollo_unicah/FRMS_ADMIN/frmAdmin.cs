@@ -18,6 +18,7 @@ namespace PreyectoDesarrollo_unicah.FRMS_ADMIN
         {
             InitializeComponent();
         }
+
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
