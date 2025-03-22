@@ -52,6 +52,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(765, 81);
             panel1.TabIndex = 5;
+            panel1.MouseDown += panel1_MouseDown;
             // 
             // pictureBox3
             // 
@@ -157,6 +158,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Frmolvidecontra";
             Load += Frmolvidecontra_Load;
+            MouseDown += frmContraseña_MouseDown;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
