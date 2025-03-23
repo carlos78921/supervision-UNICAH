@@ -63,5 +63,19 @@ namespace PreyectoDesarrollo_unicah
         {
             lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
         }
+
+        private void txtBusco_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones validar = new Validaciones();
+
+            validar.ValidarEntrada(e, txtBusco);
+        }
+
+        private void txtJustifica_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones validar = new Validaciones();
+
+            validar.ValidarEntrada(e, txtJustifica);
+        }
     }
 }

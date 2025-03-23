@@ -169,7 +169,7 @@ namespace PreyectoDesarrollo_unicah
             label1.AutoSize = true;
             label1.Location = new Point(266, 97);
             label1.Name = "label1";
-            label1.Size = new Size(142, 15);
+            label1.Size = new Size(141, 15);
             label1.TabIndex = 18;
             label1.Text = "REPORTE DE REPOSICIÓN";
             // 
@@ -232,6 +232,7 @@ namespace PreyectoDesarrollo_unicah
             txtBusco.Name = "txtBusco";
             txtBusco.Size = new Size(132, 23);
             txtBusco.TabIndex = 26;
+            txtBusco.KeyPress += txtBusco_KeyPress;
             // 
             // cmbEdificio
             // 
@@ -242,6 +243,7 @@ namespace PreyectoDesarrollo_unicah
             cmbEdificio.Name = "cmbEdificio";
             cmbEdificio.Size = new Size(78, 23);
             cmbEdificio.TabIndex = 27;
+            cmbEdificio.KeyPress += cmbEdificio_KeyPress;
             // 
             // label3
             // 

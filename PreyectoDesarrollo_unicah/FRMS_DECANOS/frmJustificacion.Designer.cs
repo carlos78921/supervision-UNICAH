@@ -213,7 +213,7 @@ namespace PreyectoDesarrollo_unicah
             label1.AutoSize = true;
             label1.Location = new Point(310, 93);
             label1.Name = "label1";
-            label1.Size = new Size(173, 15);
+            label1.Size = new Size(171, 15);
             label1.TabIndex = 25;
             label1.Text = "JUSTIFICACIÓN DE ASISTENCIA";
             // 
@@ -224,6 +224,7 @@ namespace PreyectoDesarrollo_unicah
             txtJustifica.Name = "txtJustifica";
             txtJustifica.Size = new Size(338, 147);
             txtJustifica.TabIndex = 37;
+            txtJustifica.KeyPress += txtJustifica_KeyPress;
             // 
             // lblCaracteres
             // 
@@ -260,6 +261,7 @@ namespace PreyectoDesarrollo_unicah
             txtBusco.Name = "txtBusco";
             txtBusco.Size = new Size(190, 23);
             txtBusco.TabIndex = 40;
+            txtBusco.KeyPress += txtBusco_KeyPress;
             // 
             // label4
             // 

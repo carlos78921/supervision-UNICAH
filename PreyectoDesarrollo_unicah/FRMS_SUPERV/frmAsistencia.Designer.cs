@@ -132,7 +132,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(487, 97);
             label1.Name = "label1";
-            label1.Size = new Size(125, 15);
+            label1.Size = new Size(123, 15);
             label1.TabIndex = 12;
             label1.Text = "TOMA DE ASISTENCIA";
             // 
@@ -212,6 +212,7 @@
             txtClase.Name = "txtClase";
             txtClase.Size = new Size(168, 23);
             txtClase.TabIndex = 27;
+            txtClase.KeyPress += txtClase_KeyPress;
             // 
             // btnBusca
             // 
@@ -276,6 +277,7 @@
             txtDoc.Name = "txtDoc";
             txtDoc.Size = new Size(118, 23);
             txtDoc.TabIndex = 35;
+            txtDoc.KeyPress += txtDoc_KeyPress;
             // 
             // btnLogout
             // 
