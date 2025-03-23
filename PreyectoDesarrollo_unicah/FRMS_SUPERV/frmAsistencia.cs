@@ -114,5 +114,19 @@ namespace PreyectoDesarrollo_unicah
                 ACCIONES_BD.CargarAsistenciaSuperv(mesSupervisor, Docente, clase, seccion, aula, edificio);
             }
         }
+
+        private void txtClase_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones validar = new Validaciones();
+
+            validar.ValidarEntrada(e, txtClase);
+        }
+
+        private void txtDoc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones validar = new Validaciones();
+
+            validar.ValidarEntrada(e, txtDoc);
+        }
     }
 }

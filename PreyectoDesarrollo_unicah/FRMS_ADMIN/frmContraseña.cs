@@ -139,5 +139,19 @@ namespace PreyectoDesarrollo_unicah
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
+
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones validar = new Validaciones();
+
+            validar.ValidarEntrada(e, txtUsuario);
+        }
+
+        private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones validar = new Validaciones();
+
+            validar.ValidarContraseña(e, txtContraseña);
+        }
     }
 }
