@@ -35,12 +35,10 @@
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             txtcontraseña = new TextBox();
-            pictureBox4 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // txtusuario
@@ -130,23 +128,12 @@
             txtcontraseña.Enter += txtcontraseña_Enter;
             txtcontraseña.Leave += txtcontraseña_Leave;
             // 
-            // pictureBox4
-            // 
-            pictureBox4.Image = Properties.Resources.menu;
-            pictureBox4.Location = new Point(733, 87);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(35, 36);
-            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox4.TabIndex = 6;
-            pictureBox4.TabStop = false;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(780, 287);
-            Controls.Add(pictureBox4);
             Controls.Add(txtcontraseña);
             Controls.Add(panel1);
             Controls.Add(button1);
@@ -160,7 +147,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -174,6 +160,5 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
-        private PictureBox pictureBox4;
     }
 }
