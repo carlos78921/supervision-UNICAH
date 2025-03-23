@@ -54,8 +54,8 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnContra_Click(object sender, EventArgs e)
         {
-            string usuario = txtUsuario.Text.Trim();
-            string contraseña = txtContraseña.Text.Trim();
+            string usuario = txtUsuario.Text;
+            string contraseña = txtContraseña.Text;
             if (contraseña == "Contraseña nueva:")
                 contraseña = "Contraseña:";
 
