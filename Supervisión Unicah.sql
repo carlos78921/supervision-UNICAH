@@ -173,17 +173,17 @@ go
 	
 -- Procedimientos Almacenados
 create PROCEDURE PA_Login
-@usuario VARCHAR(4)
---@contrasena VARCHAR(255)
+@usuario VARCHAR(4),
+@contrasena varchar(255)
 with encryption
 AS
 BEGIN
 	SELECT nombre1, apellido1, rol 
 	FROM Empleados E	
 	join Nombres_Completos NC on E.ID_Empleado = NC.ID_Empleado 
-	WHERE codigo_empleado = @usuario --AND contraseña = @contrasena
+	WHERE codigo_empleado = @usuario AND isnull(contraseña,'Contraseña:') = @contrasena
 END
-GO
+GO 
 
 create proc PA_Contra
 @Usuario varchar(4),
@@ -206,7 +206,7 @@ create proc PA_Supervisor -- Toma de Asistencia para supervisor
 with encryption
 as                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 begin  
-	select (Nombre1 + ' ' + Nombre2 + ' ' + Apellido1 + ' ' + isnull(Apellido2,'')) [Docente], 
+	select distinct (Nombre1 + ' ' + Nombre2 + ' ' + Apellido1 + ' ' + isnull(Apellido2,'')) [Docente], 
 	Asignatura,
 	Seccion, 
 	Aula,
@@ -224,15 +224,7 @@ begin
 end
 go
 
-create proc PA_Asistencia
-with encryption
-as 
-begin
-    SELECT Fecha FROM Asistencia WHERE Presente = 1;
-end
-go
-
-create proc PA_Asistencia
+create proc PA_Asistencia_Superv
 @Docente varchar (100),
 @Asigno varchar (70),
 @Seccion varchar(7),
@@ -241,13 +233,12 @@ create proc PA_Asistencia
 with encryption
 as 
 begin
-	/*Para ID de Asistencia:
-	    Obtener ID del empleado*/
-	declare @idEmpleado INT
-	select @idEmpleado = ID_Empleado
+	/*Para fila específica:
+    Obtener ID del empleado*/
+	declare @ID_Empleado INT
+	select @ID_Empleado = ID_Empleado
 	from Nombres_Completos
 	where (Nombre1 + ' ' + Nombre2 + ' ' + Apellido1 + ' ' + Apellido2) = @Docente
-
 	declare @ID_Clase INT
  -- Obtener ID de la clase
 	select @ID_Clase = ID_Clase
@@ -255,21 +246,18 @@ begin
 	where Asignatura = @Asigno
 
 	declare @ID_Sitio INT
- -- Obtener ID del sitio
+ -- Obtener ID de la clase
 	select @ID_Sitio = ID_Sitio
 	from Sitio
 	where Seccion = @Seccion and Aula = @Aula and Edificio = @Edificio
 
-	SELECT Fecha, Marca FROM Asistencia 
-	WHERE ID_Empleado = @idEmpleado and 
-	ID_Clase = @ID_Clase and 
-	ID_Sitio = @ID_Sitio
+    SELECT Fecha FROM Asistencia WHERE Presente = 1 and ID_Clase = @ID_Clase and ID_Sitio = @ID_Sitio and ID_Empleado = @ID_Empleado;
 end
 go
 
 create proc PA_Marcar_Asistencia 
 	@Asigno varchar(70),
-	@Docente varchar(100),
+	@Docente varchar(31),
 	@Seccion varchar(7),
 	@Aula varchar(25),
 	@Edificio char,
@@ -278,7 +266,6 @@ create proc PA_Marcar_Asistencia
 AS
 BEGIN
     SET NOCOUNT ON;
-
 
 	/*Para ID de asistencia:
     Obtener ID del empleado*/
@@ -322,17 +309,16 @@ BEGIN
         WHERE ID_Asistencia = @ID_Asistencia;
     END
 END;
-go
-	    
+
 --En asistencia insertan y luego actualizan
 create proc PA_Admin -- Para el Admin
 with encryption
 as 
 begin
-	select (Cod_Facultad + ' - ' + Cod_Asignatura) [Referencia], 
+	select distinct (Cod_Facultad + ' - ' + Cod_Asignatura) [Referencia], 
 	Asignatura [Curso], 
 	Seccion, (Edificio + ' - ' + Aula) [Aula], 
-	(codigo_empleado + ' - ' + Nombre1 + ' ' + Nombre2 + ' ' + Apellido1 + ' ' + isnull(Apellido2,'')) [Empleado]
+	(codigo_empleado + ' - ' + Nombre1 + ' ' + isnull(Nombre2,'') + ' ' + Apellido1 + ' ' + isnull(Apellido2,'')) [Empleado]
 	--isnull: comando de condición para insertar valor nulo como vacío o '' (este solo es de un valor y su reemplazo)
 	from Asistencia A
 	join Clases C
@@ -346,7 +332,39 @@ begin
 	where codigo_empleado != '037'
 end
 go
-exec PA_Admin  
+
+create proc PA_Asistencia_Admin
+@Referencia varchar(16),
+@Curso varchar (70),
+@Seccion varchar(7),
+@Aula varchar(29),
+@Empleado varchar (38)
+with encryption
+as 
+begin
+	/*Para fila específica:
+    Obtener ID del empleado*/
+	declare @ID_Empleado INT
+	select @ID_Empleado = NC.ID_Empleado
+	from Nombres_Completos NC
+	join Empleados E on NC.ID_Empleado = E.ID_Empleado
+	where (codigo_empleado + ' - ' + Nombre1 + ' ' + isnull(Nombre2,'') + ' ' + Apellido1 + ' ' + isnull(Apellido2,'')) = @Empleado
+	
+	-- Obtener ID de la clase
+	declare @ID_Clase INT
+ 	select @ID_Clase = ID_Clase
+	from Clases
+	where (Cod_Facultad + ' - ' + Cod_Asignatura) = @Referencia and Asignatura = @Curso
+
+	declare @ID_Sitio INT
+ -- Obtener ID de la clase
+	select @ID_Sitio = ID_Sitio
+	from Sitio
+	where Seccion = @Seccion and (Edificio + ' - ' + Aula) = @Aula 
+
+    SELECT Fecha FROM Asistencia WHERE Presente = 1 and ID_Clase = @ID_Clase and ID_Sitio = @ID_Sitio and ID_Empleado = @ID_Empleado;
+end
+go
 
 /*create proc PA_Asistencia_Doc -- Toma de Asistencia para docente
 @Clase varchar(55),
