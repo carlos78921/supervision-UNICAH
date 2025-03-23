@@ -88,6 +88,7 @@ namespace PreyectoDesarrollo_unicah
             btnBusco.TabIndex = 39;
             btnBusco.Text = "&Buscar";
             btnBusco.UseVisualStyleBackColor = true;
+            btnBusco.Click += btnBusco_Click;
             // 
             // pictureBox2
             // 
@@ -213,7 +214,7 @@ namespace PreyectoDesarrollo_unicah
             label1.AutoSize = true;
             label1.Location = new Point(310, 93);
             label1.Name = "label1";
-            label1.Size = new Size(171, 15);
+            label1.Size = new Size(173, 15);
             label1.TabIndex = 25;
             label1.Text = "JUSTIFICACIÓN DE ASISTENCIA";
             // 

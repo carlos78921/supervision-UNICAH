@@ -77,5 +77,38 @@ namespace PreyectoDesarrollo_unicah
 
             validar.ValidarFiltro(e, txtJustifica);
         }
+
+        private void btnBusco_Click(object sender, EventArgs e)
+        {
+            string docenteBuscado = txtBusco.Text.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(docenteBuscado))
+            {
+                MessageBox.Show("Por favor, ingrese el nombre del docente a buscar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            bool encontrado = false;
+
+            foreach (DataGridViewRow row in dgvJustificacion.Rows)
+            {
+                if (row.Cells["Docente"].Value != null)
+                {
+                    string docente = row.Cells["Docente"].Value.ToString().ToLower();
+                    if (docente.Contains(docenteBuscado))
+                    {
+                        row.Selected = true; // Selecciona la fila encontrada
+                        dgvJustificacion.FirstDisplayedScrollingRowIndex = row.Index; // Desplaza la vista hasta la fila encontrada
+                        encontrado = true;
+                        break; // Termina la búsqueda en la primera coincidencia
+                    }
+                }
+            }
+
+            if (!encontrado)
+            {
+                MessageBox.Show("Docente no encontrado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }
