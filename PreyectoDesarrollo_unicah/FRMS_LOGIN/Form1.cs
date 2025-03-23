@@ -79,7 +79,15 @@ namespace PreyectoDesarrollo_unicah
                 return;
             }
 
-            if (contraseña == "Contraseña:")
+            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conexion.Open();
+                using (SqlCommand cmd = new SqlCommand("PA_Login", conexion))
+                {
+
+                }
+            }
+                if (contraseña == "Contraseña:")
             {
                 txtcontraseña.Clear();
                 MessageBox.Show("Contraseña no puede quedar vacía, en caso de no obtener, consultar al administrador.", "Error Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error);
