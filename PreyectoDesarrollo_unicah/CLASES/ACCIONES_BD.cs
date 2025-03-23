@@ -57,27 +57,20 @@ namespace PreyectoDesarrollo_unicah.CLASES
         public static DataTable CargarAsistencia(MonthCalendar supervisorFechas, string Docente, string clase, string seccion, string aula, string edificio)
         {
             DataTable dtFechas = new DataTable();
-            try
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
-                using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("PA_Asistencia", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("PA_Asistencia", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@Docente", Docente);
-                    cmd.Parameters.AddWithValue("@Asigno", clase);
-                    cmd.Parameters.AddWithValue("@Seccion", seccion);
-                    cmd.Parameters.AddWithValue("@Aula", aula);
-                    cmd.Parameters.AddWithValue("@Edificio", edificio);
+                cmd.Parameters.AddWithValue("@Docente", Docente);
+                cmd.Parameters.AddWithValue("@Asigno", clase);
+                cmd.Parameters.AddWithValue("@Seccion", seccion);
+                cmd.Parameters.AddWithValue("@Aula", aula);
+                cmd.Parameters.AddWithValue("@Edificio", edificio);
 
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dtFechas);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al obtener las fechas de asistencia: " + ex.Message);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dtFechas);
             }
 
             foreach (DataRow row in dtFechas.Rows) //De la tabla del SQL para obtener campo fecha
@@ -93,20 +86,13 @@ namespace PreyectoDesarrollo_unicah.CLASES
         public static DataTable tablaSupervisor(DataGridView dgv)
         {
             DataTable dt = new DataTable();
-            try
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
-                using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-                {
-                    SqlCommand cmd = new SqlCommand("PA_Supervisor", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                SqlCommand cmd = new SqlCommand("PA_Supervisor", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al obtener datos: " + ex.Message);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
             }
             if (dt.Rows.Count > 0)
             {
