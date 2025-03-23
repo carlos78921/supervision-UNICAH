@@ -152,7 +152,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return dt;
         }
 
-        public static DataTable CargarAsistenciaAdmin(MonthCalendar adminFechas, string refiero, string curso, string seccion, string empleo, string aula)
+        public static DataTable CargarAsistenciaAdmin(MonthCalendar adminFechas, string refiero, string curso, string seccion, string aula, string empleo)
         {
             DataTable dtFechas = new DataTable();
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
@@ -162,14 +162,15 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@Referencia", refiero);
-                cmd.Parameters.AddWithValue("@Empleado", empleo);
                 cmd.Parameters.AddWithValue("@Curso", curso);
                 cmd.Parameters.AddWithValue("@Seccion", seccion);
                 cmd.Parameters.AddWithValue("@Aula", aula);
+                cmd.Parameters.AddWithValue("@Empleado", empleo);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dtFechas);
             }
+
 
             foreach (DataRow row in dtFechas.Rows) //De la tabla del SQL para obtener campo fecha
             {

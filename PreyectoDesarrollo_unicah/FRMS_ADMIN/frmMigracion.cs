@@ -55,15 +55,14 @@ namespace PreyectoDesarrollo_unicah
                 string refiero = dgvAdmin.CurrentRow.Cells[0].Value.ToString();
                 string curso = dgvAdmin.CurrentRow.Cells[1].Value.ToString();
                 string seccion = dgvAdmin.CurrentRow.Cells[2].Value.ToString();
-                string empleo = dgvAdmin.CurrentRow.Cells[3].Value.ToString();
-                string aula = dgvAdmin.CurrentRow.Cells[4].Value.ToString();
+                string aula = dgvAdmin.CurrentRow.Cells[3].Value.ToString();
+                string empleo = dgvAdmin.CurrentRow.Cells[4].Value.ToString();
 
                 // Limpiar las fechas resaltadas previas en el MonthCalendar.
                 mesAdmin.RemoveAllBoldedDates();
 
                 // Llama al método para cargar las fechas marcadas para ese registro.
-                ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, refiero, curso, seccion, empleo, aula);
-
+                ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, refiero, curso, seccion, aula, empleo);
             }
         }
     }

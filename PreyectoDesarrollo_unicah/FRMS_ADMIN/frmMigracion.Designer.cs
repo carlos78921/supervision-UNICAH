@@ -36,15 +36,15 @@ namespace PreyectoDesarrollo_unicah
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
             dgvAdmin = new DataGridView();
-            clmAsignaturaFacu = new DataGridViewTextBoxColumn();
-            clmCurso = new DataGridViewTextBoxColumn();
-            clmSeccion = new DataGridViewTextBoxColumn();
-            clmAulaFull = new DataGridViewTextBoxColumn();
-            clmEmpleado = new DataGridViewTextBoxColumn();
             label1 = new Label();
             lblPeriodo = new Label();
             lblWeek = new Label();
             mesAdmin = new MonthCalendar();
+            clmAsignaturaFacu = new DataGridViewTextBoxColumn();
+            clmCurso = new DataGridViewTextBoxColumn();
+            clmSeccion = new DataGridViewTextBoxColumn();
+            clmEmpleado = new DataGridViewTextBoxColumn();
+            clmAulaFull = new DataGridViewTextBoxColumn();
             btnLogout = new Button();
             btnExcel = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -134,48 +134,13 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.AllowUserToAddRows = false;
             dgvAdmin.AllowUserToDeleteRows = false;
             dgvAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAdmin.Columns.AddRange(new DataGridViewColumn[] { clmAsignaturaFacu, clmCurso, clmSeccion, clmAulaFull, clmEmpleado });
+            dgvAdmin.Columns.AddRange(new DataGridViewColumn[] { clmAsignaturaFacu, clmCurso, clmSeccion, clmEmpleado, clmAulaFull });
             dgvAdmin.Location = new Point(13, 124);
             dgvAdmin.Name = "dgvAdmin";
             dgvAdmin.ReadOnly = true;
             dgvAdmin.Size = new Size(746, 268);
             dgvAdmin.TabIndex = 13;
             dgvAdmin.SelectionChanged += dgvAdmin_SelectionChanged;
-            // 
-            // clmAsignaturaFacu
-            // 
-            clmAsignaturaFacu.HeaderText = "Referencia";
-            clmAsignaturaFacu.Name = "clmAsignaturaFacu";
-            clmAsignaturaFacu.ReadOnly = true;
-            clmAsignaturaFacu.Width = 115;
-            // 
-            // clmCurso
-            // 
-            clmCurso.HeaderText = "Curso";
-            clmCurso.Name = "clmCurso";
-            clmCurso.ReadOnly = true;
-            clmCurso.Width = 170;
-            // 
-            // clmSeccion
-            // 
-            clmSeccion.HeaderText = "Sección";
-            clmSeccion.Name = "clmSeccion";
-            clmSeccion.ReadOnly = true;
-            clmSeccion.Width = 58;
-            // 
-            // clmAulaFull
-            // 
-            clmAulaFull.HeaderText = "Aula";
-            clmAulaFull.Name = "clmAulaFull";
-            clmAulaFull.ReadOnly = true;
-            clmAulaFull.Width = 183;
-            // 
-            // clmEmpleado
-            // 
-            clmEmpleado.HeaderText = "Empleado";
-            clmEmpleado.Name = "clmEmpleado";
-            clmEmpleado.ReadOnly = true;
-            clmEmpleado.Width = 325;
             // 
             // label1
             // 
@@ -209,6 +174,41 @@ namespace PreyectoDesarrollo_unicah
             mesAdmin.Location = new Point(771, 166);
             mesAdmin.Name = "mesAdmin";
             mesAdmin.TabIndex = 19;
+            // 
+            // clmAsignaturaFacu
+            // 
+            clmAsignaturaFacu.HeaderText = "Referencia";
+            clmAsignaturaFacu.Name = "clmAsignaturaFacu";
+            clmAsignaturaFacu.ReadOnly = true;
+            clmAsignaturaFacu.Width = 115;
+            // 
+            // clmCurso
+            // 
+            clmCurso.HeaderText = "Curso";
+            clmCurso.Name = "clmCurso";
+            clmCurso.ReadOnly = true;
+            clmCurso.Width = 170;
+            // 
+            // clmSeccion
+            // 
+            clmSeccion.HeaderText = "Sección";
+            clmSeccion.Name = "clmSeccion";
+            clmSeccion.ReadOnly = true;
+            clmSeccion.Width = 58;
+            // 
+            // clmEmpleado
+            // 
+            clmEmpleado.HeaderText = "Empleado";
+            clmEmpleado.Name = "clmEmpleado";
+            clmEmpleado.ReadOnly = true;
+            clmEmpleado.Width = 325;
+            // 
+            // clmAulaFull
+            // 
+            clmAulaFull.HeaderText = "Aula";
+            clmAulaFull.Name = "clmAulaFull";
+            clmAulaFull.ReadOnly = true;
+            clmAulaFull.Width = 183;
             // 
             // frmMigracion
             // 
@@ -248,11 +248,11 @@ namespace PreyectoDesarrollo_unicah
         private Label lblPersona;
         private Label lblPeriodo;
         private Label lblWeek;
+        private MonthCalendar mesAdmin;
         private DataGridViewTextBoxColumn clmAsignaturaFacu;
         private DataGridViewTextBoxColumn clmCurso;
         private DataGridViewTextBoxColumn clmSeccion;
-        private DataGridViewTextBoxColumn clmAulaFull;
         private DataGridViewTextBoxColumn clmEmpleado;
-        private MonthCalendar mesAdmin;
+        private DataGridViewTextBoxColumn clmAulaFull;
     }
 }

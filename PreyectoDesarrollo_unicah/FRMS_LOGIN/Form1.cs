@@ -68,16 +68,24 @@ namespace PreyectoDesarrollo_unicah
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string usuario = txtusuario.Text.Trim();
-            string contraseña = txtcontraseña.Text.Trim();
+            string usuario = txtusuario.Text;
+            string contraseña = txtcontraseña.Text;
 
-            if (string.IsNullOrEmpty(usuario) ||/* string.IsNullOrEmpty(contraseña) ||*/
-                usuario == "Usuario:" /*|| contraseña == "Contraseña:"*/) //Vacío con o sin un dato
+            if (usuario == "Usuario:")
             {
-                MessageBox.Show("Por favor ingrese todos los datos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtusuario.Clear();
+                MessageBox.Show("Usuario no puede quedar vacío.", "Error Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtusuario.Text = usuario;
                 return;
             }
 
+            /*if (contraseña == "Contraseña:")
+            {
+                txtcontraseña.Clear();
+                MessageBox.Show("Ingrese una contraseña.", "Error Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtcontraseña.Text = contraseña;
+                return;
+            }*/
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conexion.Open();
@@ -171,7 +179,7 @@ namespace PreyectoDesarrollo_unicah
         {
             Validaciones validar = new Validaciones();
 
-            validar.ValidarEntrada(e, txtusuario);
+            validar.ValidarUsuario(e, txtusuario);
         }
 
         private void txtcontraseña_KeyPress(object sender, KeyPressEventArgs e)
