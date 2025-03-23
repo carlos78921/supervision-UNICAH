@@ -137,11 +137,11 @@
             btnSale.FlatAppearance.BorderColor = SystemColors.HotTrack;
             btnSale.FlatStyle = FlatStyle.Flat;
             btnSale.ForeColor = Color.Black;
-            btnSale.Location = new Point(690, 87);
+            btnSale.Location = new Point(671, 87);
             btnSale.Name = "btnSale";
-            btnSale.Size = new Size(62, 40);
+            btnSale.Size = new Size(81, 40);
             btnSale.TabIndex = 11;
-            btnSale.Text = "&SALIR";
+            btnSale.Text = "&REGRESAR";
             btnSale.UseVisualStyleBackColor = false;
             btnSale.Click += btnSale_Click;
             // 

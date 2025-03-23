@@ -75,7 +75,7 @@ namespace PreyectoDesarrollo_unicah
             btnVoy.Name = "btnVoy";
             btnVoy.Size = new Size(102, 29);
             btnVoy.TabIndex = 20;
-            btnVoy.Text = "&Regresar";
+            btnVoy.Text = "&REGRESAR";
             btnVoy.UseVisualStyleBackColor = true;
             btnVoy.Click += btnVoy_Click;
             // 
