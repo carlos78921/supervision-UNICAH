@@ -58,7 +58,7 @@ namespace PreyectoDesarrollo_unicah
 
             //Ajustes del bdd
             ACCIONES_BD.tablaSupervisor(dgvAsiste);
-            ACCIONES_BD.CargarAsistencia(mesSupervisor, (string)dgvAsiste.CurrentRow.Cells[0].Value, (string)dgvAsiste.CurrentRow.Cells[1].Value, (string)dgvAsiste.CurrentRow.Cells[2].Value, (string)dgvAsiste.CurrentRow.Cells[3].Value, (string)dgvAsiste.CurrentRow.Cells[4].Value);
+            ACCIONES_BD.CargarAsistenciaSuperv(mesSupervisor, (string)dgvAsiste.CurrentRow.Cells[0].Value, (string)dgvAsiste.CurrentRow.Cells[1].Value, (string)dgvAsiste.CurrentRow.Cells[2].Value, (string)dgvAsiste.CurrentRow.Cells[3].Value, (string)dgvAsiste.CurrentRow.Cells[4].Value);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -80,7 +80,6 @@ namespace PreyectoDesarrollo_unicah
         private void mesSupervisor_DateSelected(object sender, DateRangeEventArgs e)
         {
             DateTime fechaSeleccionada = e.Start.Date;
-
 
             if (MessageBox.Show("¿Marcar asistencia para esta fecha?", "Confirmar",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -112,7 +111,7 @@ namespace PreyectoDesarrollo_unicah
                 mesSupervisor.RemoveAllBoldedDates();
 
                 // Llama al método para cargar las fechas marcadas para ese registro.
-                ACCIONES_BD.CargarAsistencia(mesSupervisor, Docente, clase, seccion, aula, edificio);
+                ACCIONES_BD.CargarAsistenciaSuperv(mesSupervisor, Docente, clase, seccion, aula, edificio);
             }
         }
     }

@@ -44,7 +44,7 @@ namespace PreyectoDesarrollo_unicah
             label1 = new Label();
             lblPeriodo = new Label();
             lblWeek = new Label();
-            monthCalendar1 = new MonthCalendar();
+            mesAdmin = new MonthCalendar();
             btnLogout = new Button();
             btnExcel = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -140,6 +140,7 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.ReadOnly = true;
             dgvAdmin.Size = new Size(746, 268);
             dgvAdmin.TabIndex = 13;
+            dgvAdmin.SelectionChanged += dgvAdmin_SelectionChanged;
             // 
             // clmAsignaturaFacu
             // 
@@ -203,18 +204,18 @@ namespace PreyectoDesarrollo_unicah
             lblWeek.TabIndex = 17;
             lblWeek.Text = "Semana";
             // 
-            // monthCalendar1
+            // mesAdmin
             // 
-            monthCalendar1.Location = new Point(771, 166);
-            monthCalendar1.Name = "monthCalendar1";
-            monthCalendar1.TabIndex = 19;
+            mesAdmin.Location = new Point(771, 166);
+            mesAdmin.Name = "mesAdmin";
+            mesAdmin.TabIndex = 19;
             // 
             // frmMigracion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1044, 405);
-            Controls.Add(monthCalendar1);
+            Controls.Add(mesAdmin);
             Controls.Add(lblWeek);
             Controls.Add(lblPeriodo);
             Controls.Add(btnExcel);
@@ -252,6 +253,6 @@ namespace PreyectoDesarrollo_unicah
         private DataGridViewTextBoxColumn clmSeccion;
         private DataGridViewTextBoxColumn clmAulaFull;
         private DataGridViewTextBoxColumn clmEmpleado;
-        private MonthCalendar monthCalendar1;
+        private MonthCalendar mesAdmin;
     }
 }

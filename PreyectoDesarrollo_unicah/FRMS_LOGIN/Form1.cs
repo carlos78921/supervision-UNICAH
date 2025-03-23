@@ -166,5 +166,18 @@ namespace PreyectoDesarrollo_unicah
             frmDocente doc = new frmDocente();
             doc.Show();
         }
+
+        private void txtusuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones validar = new Validaciones();
+
+            validar.ValidarEntrada(e, txtusuario);
+        }
+
+        private void txtcontraseña_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones validar = new Validaciones();
+            validar.ValidarContraseña(e, txtcontraseña);
+        }
     }
 }

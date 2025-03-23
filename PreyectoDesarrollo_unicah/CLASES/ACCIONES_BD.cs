@@ -54,7 +54,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static DataTable CargarAsistencia(MonthCalendar supervisorFechas, string Docente, string clase, string seccion, string aula, string edificio)
+        public static DataTable CargarAsistenciaSuperv(MonthCalendar supervisorFechas, string Docente, string clase, string seccion, string aula, string edificio)
         {
             DataTable dtFechas = new DataTable();
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
@@ -151,7 +151,37 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
             return dt;
         }
- 
+
+        public static DataTable CargarAsistenciaAdmin(MonthCalendar adminFechas, string refiero, string curso, string seccion, string empleo, string aula)
+        {
+            DataTable dtFechas = new DataTable();
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("PA_Asistencia_Admin", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Referencia", refiero);
+                cmd.Parameters.AddWithValue("@Empleado", empleo);
+                cmd.Parameters.AddWithValue("@Curso", curso);
+                cmd.Parameters.AddWithValue("@Seccion", seccion);
+                cmd.Parameters.AddWithValue("@Aula", aula);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dtFechas);
+            }
+
+            foreach (DataRow row in dtFechas.Rows) //De la tabla del SQL para obtener campo fecha
+            {
+                adminFechas.AddBoldedDate(Convert.ToDateTime(row["Fecha"]));
+            }
+
+            adminFechas.UpdateBoldedDates();
+
+            return dtFechas;
+        }
+
+
         public DataTable codigo_doc()
         {
             DataTable dt = new DataTable();
