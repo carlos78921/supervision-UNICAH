@@ -72,6 +72,7 @@ namespace PreyectoDesarrollo_unicah
             btnExcel.TabIndex = 15;
             btnExcel.Text = "&EXPORTAR A EXCEL";
             btnExcel.UseVisualStyleBackColor = true;
+            btnExcel.Click += btnExcel_Click;
             // 
             // pictureBox2
             // 
@@ -182,7 +183,7 @@ namespace PreyectoDesarrollo_unicah
             label1.AutoSize = true;
             label1.Location = new Point(453, 99);
             label1.Name = "label1";
-            label1.Size = new Size(128, 15);
+            label1.Size = new Size(129, 15);
             label1.TabIndex = 12;
             label1.Text = "MIGRACIÓN DE DATOS";
             // 

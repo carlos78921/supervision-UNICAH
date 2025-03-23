@@ -1,3 +1,4 @@
+using ClosedXML.Excel;
 using PreyectoDesarrollo_unicah.CLASES;
 using PreyectoDesarrollo_unicah.FRMS_ADMIN;
 using System;
@@ -22,7 +23,7 @@ namespace PreyectoDesarrollo_unicah
         private void frmMigración_Load(object sender, EventArgs e)
         {
             lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
-            
+
             //Ajustes del bdd
             ACCIONES_BD.tablaAdmin(dgvAdmin);
             ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, (string)dgvAdmin.CurrentRow.Cells[0].Value, (string)dgvAdmin.CurrentRow.Cells[1].Value, (string)dgvAdmin.CurrentRow.Cells[2].Value, (string)dgvAdmin.CurrentRow.Cells[3].Value, (string)dgvAdmin.CurrentRow.Cells[4].Value);
@@ -63,6 +64,52 @@ namespace PreyectoDesarrollo_unicah
 
                 // Llama al método para cargar las fechas marcadas para ese registro.
                 ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, refiero, curso, seccion, aula, empleo);
+            }
+        }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            // Crear un DataTable para almacenar los datos del DataGridView
+            DataTable dt = new DataTable();
+
+            // Agregar las columnas al DataTable
+            foreach (DataGridViewColumn columna in dgvAdmin.Columns)
+            {
+                dt.Columns.Add(columna.HeaderText);
+            }
+
+            // Agregar las filas al DataTable
+            foreach (DataGridViewRow fila in dgvAdmin.Rows)
+            {
+                DataRow dr = dt.NewRow();
+                foreach (DataGridViewCell celda in fila.Cells)
+                {
+                    dr[celda.ColumnIndex] = celda.Value?.ToString(); // Convertir el valor a cadena (manejando valores nulos)
+                }
+                dt.Rows.Add(dr);
+            }
+
+            // Crear un archivo Excel con ClosedXML
+            using (var workbook = new XLWorkbook())
+            {
+                // Agregar una hoja al libro de Excel
+                var hoja = workbook.Worksheets.Add("Datos");
+
+                // Insertar los datos del DataTable en la hoja de Excel
+                hoja.Cell(1, 1).InsertTable(dt);
+
+                // Mostrar el diálogo para guardar el archivo
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Archivo Excel (.xlsx)|.xlsx"; // Filtro para mostrar solo archivos Excel
+                saveFileDialog.Title = "Guardar archivo Excel"; // Título del cuadro de diálogo
+                saveFileDialog.FileName = "DatosAsistencia.xlsx"; // Nombre predeterminado del archivo
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Guardar el archivo Excel en la ruta seleccionada por el usuario
+                    workbook.SaveAs(saveFileDialog.FileName);
+                    MessageBox.Show("Datos exportados correctamente a Excel.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
     }
