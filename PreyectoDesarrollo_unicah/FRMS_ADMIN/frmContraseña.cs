@@ -144,7 +144,7 @@ namespace PreyectoDesarrollo_unicah
         {
             Validaciones validar = new Validaciones();
 
-            validar.ValidarEntrada(e, txtUsuario);
+            validar.ValidarUsuario(e, txtUsuario);
         }
 
         private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)

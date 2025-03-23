@@ -68,14 +68,14 @@ namespace PreyectoDesarrollo_unicah
         {
             Validaciones validar = new Validaciones();
 
-            validar.ValidarEntrada(e, txtBusco);
+            validar.ValidarFiltro(e, txtBusco);
         }
 
         private void txtJustifica_KeyPress(object sender, KeyPressEventArgs e)
         {
             Validaciones validar = new Validaciones();
 
-            validar.ValidarEntrada(e, txtJustifica);
+            validar.ValidarFiltro(e, txtJustifica);
         }
     }
 }

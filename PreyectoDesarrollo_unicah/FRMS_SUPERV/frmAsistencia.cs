@@ -119,14 +119,14 @@ namespace PreyectoDesarrollo_unicah
         {
             Validaciones validar = new Validaciones();
 
-            validar.ValidarEntrada(e, txtClase);
+            validar.ValidarFiltro(e, txtClase);
         }
 
         private void txtDoc_KeyPress(object sender, KeyPressEventArgs e)
         {
             Validaciones validar = new Validaciones();
 
-            validar.ValidarEntrada(e, txtDoc);
+            validar.ValidarFiltro(e, txtDoc);
         }
     }
 }

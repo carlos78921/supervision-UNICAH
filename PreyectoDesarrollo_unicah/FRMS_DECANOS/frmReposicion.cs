@@ -69,7 +69,7 @@ namespace PreyectoDesarrollo_unicah
         {
             Validaciones validar = new Validaciones();
 
-            validar.ValidarEntrada(e, txtBusco);
+            validar.ValidarFiltro(e, txtBusco);
         }
 
         private void cmbEdificio_KeyPress(object sender, KeyPressEventArgs e)
