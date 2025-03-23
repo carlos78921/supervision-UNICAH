@@ -36,15 +36,15 @@ namespace PreyectoDesarrollo_unicah
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
             dgvAdmin = new DataGridView();
-            label1 = new Label();
-            lblPeriodo = new Label();
-            lblWeek = new Label();
-            mesAdmin = new MonthCalendar();
             clmAsignaturaFacu = new DataGridViewTextBoxColumn();
             clmCurso = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
             clmEmpleado = new DataGridViewTextBoxColumn();
             clmAulaFull = new DataGridViewTextBoxColumn();
+            label1 = new Label();
+            lblPeriodo = new Label();
+            lblWeek = new Label();
+            mesAdmin = new MonthCalendar();
             btnLogout = new Button();
             btnExcel = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -60,7 +60,7 @@ namespace PreyectoDesarrollo_unicah
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(126, 29);
             btnLogout.TabIndex = 14;
-            btnLogout.Text = "&CERRAR SESIÓN";
+            btnLogout.Text = "&REGRESAR";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 
@@ -142,39 +142,6 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.TabIndex = 13;
             dgvAdmin.SelectionChanged += dgvAdmin_SelectionChanged;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(453, 99);
-            label1.Name = "label1";
-            label1.Size = new Size(129, 15);
-            label1.TabIndex = 12;
-            label1.Text = "MIGRACIÓN DE DATOS";
-            // 
-            // lblPeriodo
-            // 
-            lblPeriodo.AutoSize = true;
-            lblPeriodo.Location = new Point(791, 142);
-            lblPeriodo.Name = "lblPeriodo";
-            lblPeriodo.Size = new Size(48, 15);
-            lblPeriodo.TabIndex = 16;
-            lblPeriodo.Text = "Periodo";
-            // 
-            // lblWeek
-            // 
-            lblWeek.AutoSize = true;
-            lblWeek.Location = new Point(956, 142);
-            lblWeek.Name = "lblWeek";
-            lblWeek.Size = new Size(49, 15);
-            lblWeek.TabIndex = 17;
-            lblWeek.Text = "Semana";
-            // 
-            // mesAdmin
-            // 
-            mesAdmin.Location = new Point(771, 166);
-            mesAdmin.Name = "mesAdmin";
-            mesAdmin.TabIndex = 19;
-            // 
             // clmAsignaturaFacu
             // 
             clmAsignaturaFacu.HeaderText = "Referencia";
@@ -209,6 +176,39 @@ namespace PreyectoDesarrollo_unicah
             clmAulaFull.Name = "clmAulaFull";
             clmAulaFull.ReadOnly = true;
             clmAulaFull.Width = 183;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(453, 99);
+            label1.Name = "label1";
+            label1.Size = new Size(128, 15);
+            label1.TabIndex = 12;
+            label1.Text = "MIGRACIÓN DE DATOS";
+            // 
+            // lblPeriodo
+            // 
+            lblPeriodo.AutoSize = true;
+            lblPeriodo.Location = new Point(791, 142);
+            lblPeriodo.Name = "lblPeriodo";
+            lblPeriodo.Size = new Size(48, 15);
+            lblPeriodo.TabIndex = 16;
+            lblPeriodo.Text = "Periodo";
+            // 
+            // lblWeek
+            // 
+            lblWeek.AutoSize = true;
+            lblWeek.Location = new Point(956, 142);
+            lblWeek.Name = "lblWeek";
+            lblWeek.Size = new Size(49, 15);
+            lblWeek.TabIndex = 17;
+            lblWeek.Text = "Semana";
+            // 
+            // mesAdmin
+            // 
+            mesAdmin.Location = new Point(771, 166);
+            mesAdmin.Name = "mesAdmin";
+            mesAdmin.TabIndex = 19;
             // 
             // frmMigracion
             // 
