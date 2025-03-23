@@ -79,13 +79,14 @@ namespace PreyectoDesarrollo_unicah
                 return;
             }
 
-            /*if (contraseña == "Contraseña:")
+            if (contraseña == "Contraseña:")
             {
                 txtcontraseña.Clear();
-                MessageBox.Show("Ingrese una contraseña.", "Error Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Contraseña no puede quedar vacía, en caso de no obtener, consultar al administrador.", "Error Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtcontraseña.Text = contraseña;
                 return;
-            }*/
+            }
+
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conexion.Open();

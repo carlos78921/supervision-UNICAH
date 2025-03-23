@@ -16,7 +16,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 if (string.Equals(textBox, "Usuario:"))
                     MessageBox.Show("Usuario no puede quedar vacío.", "Error Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (string.Equals(textBox, "Contraseña:"))
-                    MessageBox.Show("Contraseña no puede quedar vacía, en caso de no obtener, consultar al administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Contraseña no puede quedar vacía, en caso de no obtener, consultar al administrador.", "Error Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
