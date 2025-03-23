@@ -60,7 +60,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("PA_Asistencia", conn);
+                SqlCommand cmd = new SqlCommand("PA_Asistencia_Superv", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@Docente", Docente);
@@ -148,12 +148,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.Columns[2].Width = 58;
                 dgv.Columns[3].Width = 183;
                 dgv.Columns[4].Width = 325;
-                dgv.Columns[5].Width = 20;
-                dgv.Columns[6].Width = 22;
-                dgv.Columns[7].Width = 22;
-                dgv.Columns[8].Width = 20;
-                dgv.Columns[9].Width = 20;
-                dgv.Columns[10].Width = 20;
             }
             return dt;
         }
