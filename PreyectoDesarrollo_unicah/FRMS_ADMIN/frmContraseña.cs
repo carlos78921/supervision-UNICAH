@@ -64,40 +64,32 @@ namespace PreyectoDesarrollo_unicah
                 MessageBox.Show("Por favor ingrese el usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            try
+            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
-                using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+                conexion.Open();
+
+                using (SqlCommand cmd = new SqlCommand("PA_Contra", conexion))
                 {
-                    conexion.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@usuario", usuario);
+                    cmd.Parameters.AddWithValue("@contraseña", contraseña);
 
-                    using (SqlCommand cmd = new SqlCommand("PA_Contra", conexion))
+                    //"@" = Parámetro, "RetVal" = ReturnValue, SqlDbType.Int = Tipo de dato del retorno
+                    SqlParameter @retorno = cmd.Parameters.Add("RetVal", SqlDbType.Int);
+                    @retorno.Direction = ParameterDirection.ReturnValue; //Obtener el parámetro de retorno
+
+                    cmd.ExecuteNonQuery();
+
+                    int resultado = (int)@retorno.Value;
+                    if (resultado == 0)
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@usuario", usuario);
-                        cmd.Parameters.AddWithValue("@contraseña", contraseña);
-
-                        //"@" = Parámetro, "RetVal" = ReturnValue, SqlDbType.Int = Tipo de dato del retorno
-                        SqlParameter @retorno = cmd.Parameters.Add("RetVal", SqlDbType.Int);
-                        @retorno.Direction = ParameterDirection.ReturnValue; //Obtener el parámetro de retorno
-
-                        cmd.ExecuteNonQuery();
-
-                        int resultado = (int)@retorno.Value;
-                        if (resultado == 0)
-                        {
-                            MessageBox.Show("Usuario no encontrado");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Contraseña cambiada con éxito");
-                        }
+                        MessageBox.Show("Usuario no encontrado");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Contraseña cambiada con éxito");
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al conectar con la base de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
