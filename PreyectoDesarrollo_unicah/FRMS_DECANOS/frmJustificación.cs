@@ -94,33 +94,6 @@ namespace PreyectoDesarrollo_unicah
         private void dgvJustificacion_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (dgvJustificacion.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
-            {
-                bool justificado = Convert.ToBoolean(dgvJustificacion.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
-                dgvJustificacion.Rows[e.RowIndex].DefaultCellStyle.BackColor = justificado ? Color.LightGreen : Color.White;
-            }
-
-            // Verifica que no se haya hecho clic en el encabezado de la columna
-            if (e.RowIndex < 0 || e.ColumnIndex < 0)
-                return;
-
-            // Verifica si la columna es un CheckBox (para la reposición)
-            if (!(dgvJustificacion.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn))
-                return;
-
-            // Finaliza la edición para registrar los cambios
-            dgvJustificacion.EndEdit();
-
-            // Obtener valores de la fila seleccionada
-            string asignatura = dgvJustificacion.Rows[e.RowIndex].Cells["Asignatura"].Value.ToString();
-            string fechaAusencia = dgvJustificacion.Rows[e.RowIndex].Cells["Fecha de Ausencia"].Value.ToString();
-            string seccion = dgvJustificacion.Rows[e.RowIndex].Cells["Sección"].Value.ToString();
-            string docente = dgvJustificacion.Rows[e.RowIndex].Cells["Docente"].Value.ToString();
-            string fechaReposicion = dgvJustificacion.Rows[e.RowIndex].Cells["Justificación"].Value.ToString();
-
-            // Obtener el estado del CheckBox (si se confirma la reposición)
-            bool reposicionConfirmada = Convert.ToBoolean(dgvJustificacion.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
-
         }
 
         private void txtJustifica_TextChanged(object sender, EventArgs e)

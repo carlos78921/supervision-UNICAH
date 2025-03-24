@@ -62,32 +62,6 @@ namespace PreyectoDesarrollo_unicah
         private void dgvReposicion_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (dgvReposicion.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
-            {
-                bool justificado = Convert.ToBoolean(dgvReposicion.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
-                dgvReposicion.Rows[e.RowIndex].DefaultCellStyle.BackColor = justificado ? Color.LightGreen : Color.White;
-            }
-            // Verifica que no se haya hecho clic en el encabezado de la columna
-            if (e.RowIndex < 0 || e.ColumnIndex < 0)
-                return;
-
-            // Verifica si la columna es un CheckBox (para la reposición)
-            if (!(dgvReposicion.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn))
-                return;
-
-            // Finaliza la edición para registrar los cambios
-            dgvReposicion.EndEdit();
-
-            // Obtener valores de la fila seleccionada
-            string asignatura = dgvReposicion.Rows[e.RowIndex].Cells["Asignatura"].Value.ToString();
-            string fechaAusencia = dgvReposicion.Rows[e.RowIndex].Cells["Fecha de Ausencia"].Value.ToString();
-            string seccion = dgvReposicion.Rows[e.RowIndex].Cells["Sección"].Value.ToString();
-            string docente = dgvReposicion.Rows[e.RowIndex].Cells["Docente"].Value.ToString();
-            string fechaReposicion = dgvReposicion.Rows[e.RowIndex].Cells["Fecha de Reposición"].Value.ToString();
-
-            // Obtener el estado del CheckBox (si se confirma la reposición)
-            bool reposicionConfirmada = Convert.ToBoolean(dgvReposicion.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
-
         }
 
         private void dtpFecha_ValueChanged(object sender, EventArgs e)
