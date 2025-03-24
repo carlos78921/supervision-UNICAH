@@ -71,7 +71,14 @@ namespace PreyectoDesarrollo_unicah
             string usuario = txtusuario.Text;
             string contraseña = txtcontraseña.Text;
 
-            if (usuario == "Usuario:")
+            if ((usuario == "Usuario:" || string.IsNullOrWhiteSpace(usuario)) &&
+                (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña)))
+            {
+                MessageBox.Show("Datos no escritos, ingrese sus datos", "Error Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+                if (usuario == "Usuario:")
             {
                 txtusuario.Clear();
                 MessageBox.Show("Usuario no puede quedar vacío.", "Error Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -162,10 +169,6 @@ namespace PreyectoDesarrollo_unicah
                                 frmDocente doc = new frmDocente();
                                 doc.Show();
                                 this.Hide();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Rol no reconocido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
