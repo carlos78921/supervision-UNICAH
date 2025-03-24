@@ -34,7 +34,7 @@
             pictureBox1 = new PictureBox();
             label1 = new Label();
             btnEnviar = new Button();
-            txtCodigo = new TextBox();
+            txtCode = new TextBox();
             label2 = new Label();
             label3 = new Label();
             txtUser = new TextBox();
@@ -111,13 +111,13 @@
             btnEnviar.Text = "&ENVIAR CÓDIGO";
             btnEnviar.UseVisualStyleBackColor = false;
             // 
-            // txtCodigo
+            // txtCode
             // 
-            txtCodigo.Location = new Point(233, 183);
-            txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new Size(307, 23);
-            txtCodigo.TabIndex = 10;
-            txtCodigo.Text = "Código:";
+            txtCode.Location = new Point(233, 183);
+            txtCode.Name = "txtCode";
+            txtCode.Size = new Size(307, 23);
+            txtCode.TabIndex = 10;
+            txtCode.Text = "Código:";
             // 
             // label2
             // 
@@ -168,7 +168,7 @@
             Controls.Add(btnRecibir);
             Controls.Add(txtUser);
             Controls.Add(label3);
-            Controls.Add(txtCodigo);
+            Controls.Add(txtCode);
             Controls.Add(label2);
             Controls.Add(btnEnviar);
             Controls.Add(label1);
@@ -194,7 +194,7 @@
         private PictureBox pictureBox1;
         private Label label1;
         private Button btnEnviar;
-        private TextBox txtCodigo;
+        private TextBox txtCode;
         private Label label2;
         private Label label3;
         private TextBox txtUser;

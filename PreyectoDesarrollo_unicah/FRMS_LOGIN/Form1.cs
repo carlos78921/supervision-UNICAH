@@ -170,7 +170,29 @@ namespace PreyectoDesarrollo_unicah
                         }
                         else
                         {
-                            // Usuario o contraseña incorrectos
+                            /*Cambio variables porque por ejemplo en cmd al colocarlo, "else" que es un proceso
+                            del using no permite repetir la misma variable, se hace ambiguo*/
+                            using (SqlCommand CMD = new SqlCommand("PA_Admin_Save", conexion)) 
+                            {
+                                CMD.CommandType = CommandType.StoredProcedure;
+                                CMD.Parameters.AddWithValue("@Usuario", usuario);
+
+                                reader.Close();
+                                using (SqlDataReader reading = CMD.ExecuteReader())
+                                {
+                                    if (reading.Read())
+                                    {
+                                        // Usuario o contraseña incorrectos
+                                        if (MessageBox.Show("Saludos Administrador, su contraseña es incorrecta, ¿olvidó su contraseña?", "Contraseña incorrecta", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                                        {
+                                            frmPierdoContraseña Lost = new frmPierdoContraseña();
+                                            this.Hide();
+                                            Lost.Show();
+                                        }
+                                        return;
+                                    }
+                                }
+                            }
                             MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
