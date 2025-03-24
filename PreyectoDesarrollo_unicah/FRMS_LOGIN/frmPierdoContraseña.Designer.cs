@@ -32,12 +32,10 @@
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
-            label1 = new Label();
             btnEnviar = new Button();
             txtCode = new TextBox();
             label2 = new Label();
             label3 = new Label();
-            txtUser = new TextBox();
             btnRecibir = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -89,22 +87,13 @@
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(335, 94);
-            label1.Name = "label1";
-            label1.Size = new Size(103, 15);
-            label1.TabIndex = 6;
-            label1.Text = "Ingrese su Usuario";
-            // 
             // btnEnviar
             // 
             btnEnviar.BackColor = Color.White;
             btnEnviar.FlatAppearance.BorderColor = SystemColors.HotTrack;
             btnEnviar.FlatStyle = FlatStyle.Flat;
             btnEnviar.ForeColor = Color.Black;
-            btnEnviar.Location = new Point(419, 239);
+            btnEnviar.Location = new Point(420, 171);
             btnEnviar.Name = "btnEnviar";
             btnEnviar.Size = new Size(139, 40);
             btnEnviar.TabIndex = 8;
@@ -113,7 +102,7 @@
             // 
             // txtCode
             // 
-            txtCode.Location = new Point(233, 183);
+            txtCode.Location = new Point(234, 115);
             txtCode.Name = "txtCode";
             txtCode.Size = new Size(307, 23);
             txtCode.TabIndex = 10;
@@ -122,7 +111,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(335, 159);
+            label2.Location = new Point(336, 91);
             label2.Name = "label2";
             label2.Size = new Size(100, 15);
             label2.TabIndex = 9;
@@ -132,20 +121,12 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(283, 215);
+            label3.Location = new Point(284, 147);
             label3.Name = "label3";
             label3.Size = new Size(209, 15);
             label3.TabIndex = 11;
             label3.Text = "Un código ha sido enviado a su correo";
             label3.Visible = false;
-            // 
-            // txtUser
-            // 
-            txtUser.Location = new Point(233, 122);
-            txtUser.Name = "txtUser";
-            txtUser.Size = new Size(307, 23);
-            txtUser.TabIndex = 12;
-            txtUser.Text = "Usuario:";
             // 
             // btnRecibir
             // 
@@ -153,25 +134,23 @@
             btnRecibir.FlatAppearance.BorderColor = SystemColors.HotTrack;
             btnRecibir.FlatStyle = FlatStyle.Flat;
             btnRecibir.ForeColor = Color.Black;
-            btnRecibir.Location = new Point(219, 239);
+            btnRecibir.Location = new Point(220, 171);
             btnRecibir.Name = "btnRecibir";
             btnRecibir.Size = new Size(139, 40);
             btnRecibir.TabIndex = 13;
-            btnRecibir.Text = "&ENVIAR CÓDIGO";
+            btnRecibir.Text = "&GENERAR CÓDIGO";
             btnRecibir.UseVisualStyleBackColor = false;
             // 
             // frmPierdoContraseña
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(764, 291);
+            ClientSize = new Size(764, 222);
             Controls.Add(btnRecibir);
-            Controls.Add(txtUser);
             Controls.Add(label3);
             Controls.Add(txtCode);
             Controls.Add(label2);
             Controls.Add(btnEnviar);
-            Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmPierdoContraseña";
@@ -192,12 +171,10 @@
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
-        private Label label1;
         private Button btnEnviar;
         private TextBox txtCode;
         private Label label2;
         private Label label3;
-        private TextBox txtUser;
         private Button btnRecibir;
     }
 }
