@@ -91,13 +91,17 @@ namespace PreyectoDesarrollo_unicah
                         {
                             if (MessageBox.Show("Saludos Administrador, no podemos otorgar el acceso con su contraseña vacía, ¿olvidó su contraseña?", "Contraseña vacía", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                             {
-                                frmOlvideContraseña Lost = new frmOlvideContraseña();
+                                frmPierdoContraseña Lost = new frmPierdoContraseña();
                                 this.Close();
-                                Lost.Open();
+                                Lost.Show();
                             }
+                            return;
                         }
+                    }
+                }
             }
-                if (contraseña == "Contraseña:")
+
+            if (contraseña == "Contraseña:")
             {
                 txtcontraseña.Clear();
                 MessageBox.Show("Contraseña no puede quedar vacía, en caso de no obtener, consultar al administrador.", "Error Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error);

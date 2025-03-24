@@ -1,6 +1,6 @@
 ﻿namespace PreyectoDesarrollo_unicah
 {
-    partial class frmOlvideDatos
+    partial class frmPierdoContraseña
     {
         /// <summary>
         /// Required designer variable.
