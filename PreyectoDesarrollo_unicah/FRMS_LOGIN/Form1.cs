@@ -84,6 +84,7 @@ namespace PreyectoDesarrollo_unicah
                 conexion.Open();
                 using (SqlCommand cmd = new SqlCommand("PA_Admin_Save", conexion))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Usuario", usuario);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -92,7 +93,7 @@ namespace PreyectoDesarrollo_unicah
                             if (MessageBox.Show("Saludos Administrador, no podemos otorgar el acceso con su contraseña vacía, ¿olvidó su contraseña?", "Contraseña vacía", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                             {
                                 frmPierdoContraseña Lost = new frmPierdoContraseña();
-                                this.Close();
+                                this.Hide();
                                 Lost.Show();
                             }
                             return;

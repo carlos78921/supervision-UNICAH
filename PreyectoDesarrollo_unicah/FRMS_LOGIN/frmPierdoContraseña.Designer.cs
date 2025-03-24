@@ -33,11 +33,12 @@
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             label1 = new Label();
-            btnRestablecer = new Button();
+            btnEnviar = new Button();
             txtCodigo = new TextBox();
             label2 = new Label();
             label3 = new Label();
             txtUser = new TextBox();
+            btnRecibir = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -97,18 +98,18 @@
             label1.TabIndex = 6;
             label1.Text = "Ingrese su Usuario";
             // 
-            // btnRestablecer
+            // btnEnviar
             // 
-            btnRestablecer.BackColor = Color.White;
-            btnRestablecer.FlatAppearance.BorderColor = SystemColors.HotTrack;
-            btnRestablecer.FlatStyle = FlatStyle.Flat;
-            btnRestablecer.ForeColor = Color.Black;
-            btnRestablecer.Location = new Point(298, 244);
-            btnRestablecer.Name = "btnRestablecer";
-            btnRestablecer.Size = new Size(186, 40);
-            btnRestablecer.TabIndex = 8;
-            btnRestablecer.Text = "&RESTABLECER CUENTA";
-            btnRestablecer.UseVisualStyleBackColor = false;
+            btnEnviar.BackColor = Color.White;
+            btnEnviar.FlatAppearance.BorderColor = SystemColors.HotTrack;
+            btnEnviar.FlatStyle = FlatStyle.Flat;
+            btnEnviar.ForeColor = Color.Black;
+            btnEnviar.Location = new Point(419, 239);
+            btnEnviar.Name = "btnEnviar";
+            btnEnviar.Size = new Size(139, 40);
+            btnEnviar.TabIndex = 8;
+            btnEnviar.Text = "&ENVIAR CÓDIGO";
+            btnEnviar.UseVisualStyleBackColor = false;
             // 
             // txtCodigo
             // 
@@ -117,7 +118,6 @@
             txtCodigo.Size = new Size(307, 23);
             txtCodigo.TabIndex = 10;
             txtCodigo.Text = "Código:";
-            txtCodigo.Visible = false;
             // 
             // label2
             // 
@@ -146,22 +146,35 @@
             txtUser.Size = new Size(307, 23);
             txtUser.TabIndex = 12;
             txtUser.Text = "Usuario:";
-            txtUser.Visible = false;
             // 
-            // frmOlvideDatos
+            // btnRecibir
+            // 
+            btnRecibir.BackColor = Color.White;
+            btnRecibir.FlatAppearance.BorderColor = SystemColors.HotTrack;
+            btnRecibir.FlatStyle = FlatStyle.Flat;
+            btnRecibir.ForeColor = Color.Black;
+            btnRecibir.Location = new Point(219, 239);
+            btnRecibir.Name = "btnRecibir";
+            btnRecibir.Size = new Size(139, 40);
+            btnRecibir.TabIndex = 13;
+            btnRecibir.Text = "&ENVIAR CÓDIGO";
+            btnRecibir.UseVisualStyleBackColor = false;
+            // 
+            // frmPierdoContraseña
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(764, 291);
+            Controls.Add(btnRecibir);
             Controls.Add(txtUser);
             Controls.Add(label3);
             Controls.Add(txtCodigo);
             Controls.Add(label2);
-            Controls.Add(btnRestablecer);
+            Controls.Add(btnEnviar);
             Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "frmOlvideDatos";
+            Name = "frmPierdoContraseña";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Frmolvidecontra";
             Load += Frmolvidecontra_Load;
@@ -180,10 +193,11 @@
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private Label label1;
-        private Button btnRestablecer;
+        private Button btnEnviar;
         private TextBox txtCodigo;
         private Label label2;
         private Label label3;
         private TextBox txtUser;
+        private Button btnRecibir;
     }
 }
