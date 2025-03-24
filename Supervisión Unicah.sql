@@ -206,10 +206,17 @@ create proc PA_Admin_Save
 @Usuario varchar(4)
 with encryption 
 as
-select codigo_empleado = 1
-from Empleados
-where codigo_empleado = @Usuario
-go
+begin
+	if (@Usuario =1) 
+	begin
+		select codigo_empleado 
+		from Empleados
+		where codigo_empleado = @Usuario
+	end
+	else	
+	     return
+end
+
 	
 create proc PA_Supervisor -- Toma de Asistencia para supervisor
 with encryption
