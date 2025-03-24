@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices; //Relacionado con Dll (Librería)
@@ -73,9 +74,29 @@ namespace PreyectoDesarrollo_unicah
 
         private void CargarReposicion(DateTime fecha)
         {
-            string consulta = $"SELECT * FROM Reposicion WHERE Fecha = '{fecha:yyyy-MM-dd}'";
-            DataTable dtReposicion = ObtenerDatosDesdeBD(consulta);
-            dgvReposicion.DataSource = dtReposicion;
+            string connectionString = "TU_CADENA_DE_CONEXIÓN_AQUÍ"; // Asegúrate de usar la conexión correcta
+            string consulta = $"SELECT * FROM Justificaciones WHERE Fecha = '{fecha:yyyy-MM-dd}'";
+
+            DataTable dtReposicion = new DataTable();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(consulta, con))
+                    {
+                        con.Open();
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dtReposicion);
+                    }
+                }
+
+                dgvReposicion.DataSource = dtReposicion;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void OcultarColumnas()

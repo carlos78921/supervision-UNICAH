@@ -184,7 +184,6 @@ namespace PreyectoDesarrollo_unicah
             dgvReposicion.ReadOnly = true;
             dgvReposicion.Size = new Size(610, 268);
             dgvReposicion.TabIndex = 24;
-            dgvReposicion.CellContentClick += dataGridView1_CellContentClick;
             // 
             // clmClase
             // 
