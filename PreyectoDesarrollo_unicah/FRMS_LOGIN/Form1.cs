@@ -84,7 +84,7 @@ namespace PreyectoDesarrollo_unicah
                 conexion.Open();
                 using (SqlCommand cmd = new SqlCommand("PA_Admin_Save", conexion))
                 {
-                    cmd.Parameters.AddWithValue("@usuario", usuario);
+                    cmd.Parameters.AddWithValue("@Usuario", usuario);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read() && contraseña == "Contraseña:") // Verifica si hay usuario y contraseña para leer otros datos
