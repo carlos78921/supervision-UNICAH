@@ -82,10 +82,20 @@ namespace PreyectoDesarrollo_unicah
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conexion.Open();
-                using (SqlCommand cmd = new SqlCommand("PA_Login", conexion))
+                using (SqlCommand cmd = new SqlCommand("PA_Admin_Save", conexion))
                 {
-
-                }
+                    cmd.Parameters.AddWithValue("@usuario", usuario);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read() && contraseña == "Contraseña:") // Verifica si hay usuario y contraseña para leer otros datos
+                        {
+                            if (MessageBox.Show("Saludos Administrador, no podemos otorgar el acceso con su contraseña vacía, ¿olvidó su contraseña?", "Contraseña vacía", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                            {
+                                frmOlvideContraseña Lost = new frmOlvideContraseña();
+                                this.Close();
+                                Lost.Open();
+                            }
+                        }
             }
                 if (contraseña == "Contraseña:")
             {
