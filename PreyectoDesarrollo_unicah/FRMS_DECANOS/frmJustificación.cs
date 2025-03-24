@@ -147,8 +147,8 @@ namespace PreyectoDesarrollo_unicah
                     using (SqlCommand cmd = new SqlCommand(consulta, con))
                     {
                         con.Open();
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        da.Fill(dtJustificaciones);
+                        SqlDataAdapter ad = new SqlDataAdapter(cmd);
+                        ad.Fill(dtJustificaciones);
                     }
                 }
 

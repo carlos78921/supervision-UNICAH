@@ -86,8 +86,8 @@ namespace PreyectoDesarrollo_unicah
                     using (SqlCommand cmd = new SqlCommand(consulta, con))
                     {
                         con.Open();
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        da.Fill(dtReposicion);
+                        SqlDataAdapter ad = new SqlDataAdapter(cmd);
+                        ad.Fill(dtReposicion);
                     }
                 }
 
