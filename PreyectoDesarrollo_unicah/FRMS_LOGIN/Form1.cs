@@ -176,8 +176,10 @@ namespace PreyectoDesarrollo_unicah
                             {
                                 CMD.CommandType = CommandType.StoredProcedure;
                                 CMD.Parameters.AddWithValue("@Usuario", usuario);
-
-                                reader.Close();
+                                
+                                /*Debe cerrar un reader para poder abrir otro, aunque el primer reader esté
+                                cerrado, al usar de nuevo el control se abre*/
+                                reader.Close(); 
                                 using (SqlDataReader reading = CMD.ExecuteReader())
                                 {
                                     if (reading.Read())
