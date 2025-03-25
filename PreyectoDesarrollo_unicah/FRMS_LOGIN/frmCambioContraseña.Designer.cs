@@ -1,6 +1,6 @@
 ﻿namespace PreyectoDesarrollo_unicah
 {
-    partial class frmRestablecerCuenta
+    partial class frmCambioContraseña
     {
         /// <summary>
         /// Required designer variable.
@@ -33,9 +33,7 @@
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             txtcontraseña = new TextBox();
-            button1 = new Button();
-            txtusuario = new TextBox();
-            textBox1 = new TextBox();
+            btnContraseña = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -50,7 +48,7 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(765, 81);
+            panel1.Size = new Size(440, 81);
             panel1.TabIndex = 5;
             // 
             // pictureBox3
@@ -67,7 +65,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(698, 0);
+            pictureBox2.Location = new Point(356, 3);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(29, 20);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -78,7 +76,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(733, 0);
+            pictureBox1.Location = new Point(391, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 20);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -92,61 +90,36 @@
             txtcontraseña.BorderStyle = BorderStyle.None;
             txtcontraseña.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtcontraseña.ForeColor = Color.Black;
-            txtcontraseña.Location = new Point(179, 144);
+            txtcontraseña.Location = new Point(12, 95);
             txtcontraseña.Name = "txtcontraseña";
             txtcontraseña.Size = new Size(408, 20);
             txtcontraseña.TabIndex = 9;
             txtcontraseña.Text = "Contraseña nueva:";
             // 
-            // button1
+            // btnContraseña
             // 
-            button1.BackColor = Color.White;
-            button1.FlatAppearance.BorderColor = SystemColors.HotTrack;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.Black;
-            button1.Location = new Point(179, 239);
-            button1.Name = "button1";
-            button1.Size = new Size(408, 40);
-            button1.TabIndex = 8;
-            button1.Text = "&REGISTRAR DATOS";
-            button1.UseVisualStyleBackColor = false;
+            btnContraseña.BackColor = Color.White;
+            btnContraseña.FlatAppearance.BorderColor = SystemColors.HotTrack;
+            btnContraseña.FlatStyle = FlatStyle.Flat;
+            btnContraseña.ForeColor = Color.Black;
+            btnContraseña.Location = new Point(12, 130);
+            btnContraseña.Name = "btnContraseña";
+            btnContraseña.Size = new Size(408, 40);
+            btnContraseña.TabIndex = 8;
+            btnContraseña.Text = "&REGISTRAR DATOS";
+            btnContraseña.UseVisualStyleBackColor = false;
+            btnContraseña.Click += btnContraseña_Click;
             // 
-            // txtusuario
-            // 
-            txtusuario.BackColor = Color.White;
-            txtusuario.BorderStyle = BorderStyle.None;
-            txtusuario.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtusuario.ForeColor = Color.Black;
-            txtusuario.Location = new Point(179, 101);
-            txtusuario.Name = "txtusuario";
-            txtusuario.Size = new Size(408, 20);
-            txtusuario.TabIndex = 6;
-            txtusuario.Text = "Usuario nuevo:";
-            // 
-            // textBox1
-            // 
-            textBox1.BackColor = Color.White;
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.ForeColor = Color.Black;
-            textBox1.Location = new Point(179, 193);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(408, 20);
-            textBox1.TabIndex = 10;
-            textBox1.Text = "Confirmar contraseña:";
-            // 
-            // frmRestablecerCuenta
+            // frmCambioContraseña
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(764, 291);
-            Controls.Add(textBox1);
+            ClientSize = new Size(439, 188);
             Controls.Add(txtcontraseña);
-            Controls.Add(button1);
-            Controls.Add(txtusuario);
+            Controls.Add(btnContraseña);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "frmRestablecerCuenta";
+            Name = "frmCambioContraseña";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Frmolvidecontra";
             Load += Frmolvidecontra_Load;
@@ -165,8 +138,6 @@
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private TextBox txtcontraseña;
-        private Button button1;
-        private TextBox txtusuario;
-        private TextBox textBox1;
+        private Button btnContraseña;
     }
 }

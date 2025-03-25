@@ -35,7 +35,7 @@
             btnEnviar = new Button();
             txtCode = new TextBox();
             label2 = new Label();
-            label3 = new Label();
+            lblCode = new Label();
             btnRecibir = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -99,6 +99,7 @@
             btnEnviar.TabIndex = 8;
             btnEnviar.Text = "&ENVIAR CÓDIGO";
             btnEnviar.UseVisualStyleBackColor = false;
+            btnEnviar.Click += btnEnviar_Click;
             // 
             // txtCode
             // 
@@ -118,15 +119,14 @@
             label2.Text = "Ingrese su código";
             label2.Visible = false;
             // 
-            // label3
+            // lblCode
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(284, 147);
-            label3.Name = "label3";
-            label3.Size = new Size(209, 15);
-            label3.TabIndex = 11;
-            label3.Text = "Un código ha sido enviado a su correo";
-            label3.Visible = false;
+            lblCode.AutoSize = true;
+            lblCode.Location = new Point(284, 147);
+            lblCode.Name = "lblCode";
+            lblCode.Size = new Size(209, 15);
+            lblCode.TabIndex = 11;
+            lblCode.Text = "Un código ha sido enviado a su correo";
             // 
             // btnRecibir
             // 
@@ -140,6 +140,7 @@
             btnRecibir.TabIndex = 13;
             btnRecibir.Text = "&GENERAR CÓDIGO";
             btnRecibir.UseVisualStyleBackColor = false;
+            btnRecibir.Click += btnRecibir_Click;
             // 
             // frmPierdoContraseña
             // 
@@ -147,7 +148,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(764, 222);
             Controls.Add(btnRecibir);
-            Controls.Add(label3);
+            Controls.Add(lblCode);
             Controls.Add(txtCode);
             Controls.Add(label2);
             Controls.Add(btnEnviar);
@@ -156,7 +157,6 @@
             Name = "frmPierdoContraseña";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Frmolvidecontra";
-            Load += Frmolvidecontra_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -174,7 +174,7 @@
         private Button btnEnviar;
         private TextBox txtCode;
         private Label label2;
-        private Label label3;
+        private Label lblCode;
         private Button btnRecibir;
     }
 }
