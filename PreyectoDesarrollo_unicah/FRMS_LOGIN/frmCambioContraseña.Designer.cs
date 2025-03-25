@@ -1,6 +1,6 @@
 ﻿namespace PreyectoDesarrollo_unicah
 {
-    partial class frmRestablecerCuenta
+    partial class frmCambioContraseña
     {
         /// <summary>
         /// Required designer variable.

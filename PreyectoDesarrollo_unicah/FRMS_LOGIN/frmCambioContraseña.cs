@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PreyectoDesarrollo_unicah
 {
-    public partial class frmRestablecerCuenta : Form
+    public partial class frmCambioContraseña : Form
     {
-        public frmRestablecerCuenta()
+        public frmCambioContraseña()
         {
             InitializeComponent();
         }
