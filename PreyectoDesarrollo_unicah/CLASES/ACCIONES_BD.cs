@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Security.Policy;
 using System.Drawing.Text;
 using System.Text.RegularExpressions;
+using System.Drawing;
 
 namespace PreyectoDesarrollo_unicah.CLASES
 {
@@ -34,6 +35,20 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
+        public static void AdminContra(string contraseña)
+        {
+            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conexion.Open();
+                string query = "UPDATE Empleados SET Contraseña = @Contraseña WHERE Rol = 'Administrador'";
+                using (SqlCommand cmd = new SqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@Contraseña", contraseña);
+                    cmd.ExecuteNonQuery(); //Esto permite la ejecución de insert o update
+                }
+            }
+        }
+
         public static void RegistrarAsistencia(DataGridView dgv, string Docente, string clase, string seccion, string aula, string edificio, DateTime fechaMarca, bool Marco)
         {
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
@@ -49,8 +64,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 cmd.Parameters.AddWithValue("@Edificio", edificio);
                 cmd.Parameters.AddWithValue("@Fecha", fechaMarca);
                 cmd.Parameters.AddWithValue("@Marca", Marco);
-
-                cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery(); //Esto permite la ejecución de insert o update 
             }
         }
 
@@ -282,7 +296,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                                 cmd.Parameters.AddWithValue("@Seccion", seccion);
                                 cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
                                 cmd.Parameters.AddWithValue("@Dia", dia);
-                                cmd.ExecuteNonQuery(); 
+                                                cmd.ExecuteNonQuery(); //Esto permite la ejecución de insert o update 
                             }
                         }
                     }
@@ -308,7 +322,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                             cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
                             cmd.Parameters.AddWithValue("@Dia", dia);
 
-                            //cmd.ExecuteNonQuery();
+                            //                cmd.ExecuteNonQuery(); //Esto permite la ejecución de insert o update
                         }
                     }
                     catch (Exception ex)
