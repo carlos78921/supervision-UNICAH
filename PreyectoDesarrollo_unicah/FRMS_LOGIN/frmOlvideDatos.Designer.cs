@@ -32,8 +32,6 @@
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
-            label1 = new Label();
-            txtusuario = new TextBox();
             btnRestablecer = new Button();
             txtCodigo = new TextBox();
             label2 = new Label();
@@ -89,39 +87,23 @@
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(335, 94);
-            label1.Name = "label1";
-            label1.Size = new Size(87, 15);
-            label1.TabIndex = 6;
-            label1.Text = "Ingrese su dato";
-            // 
-            // txtusuario
-            // 
-            txtusuario.Location = new Point(233, 123);
-            txtusuario.Name = "txtusuario";
-            txtusuario.Size = new Size(307, 23);
-            txtusuario.TabIndex = 7;
-            txtusuario.Text = "Correo:";
-            // 
             // btnRestablecer
             // 
             btnRestablecer.BackColor = Color.White;
             btnRestablecer.FlatAppearance.BorderColor = SystemColors.HotTrack;
             btnRestablecer.FlatStyle = FlatStyle.Flat;
             btnRestablecer.ForeColor = Color.Black;
-            btnRestablecer.Location = new Point(195, 239);
+            btnRestablecer.Location = new Point(187, 164);
             btnRestablecer.Name = "btnRestablecer";
             btnRestablecer.Size = new Size(186, 40);
             btnRestablecer.TabIndex = 8;
             btnRestablecer.Text = "&GENERAR CÓDIGO";
             btnRestablecer.UseVisualStyleBackColor = false;
+            btnRestablecer.Click += btnRestablecer_Click;
             // 
             // txtCodigo
             // 
-            txtCodigo.Location = new Point(233, 183);
+            txtCodigo.Location = new Point(225, 108);
             txtCodigo.Name = "txtCodigo";
             txtCodigo.Size = new Size(307, 23);
             txtCodigo.TabIndex = 10;
@@ -131,7 +113,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(335, 159);
+            label2.Location = new Point(327, 84);
             label2.Name = "label2";
             label2.Size = new Size(100, 15);
             label2.TabIndex = 9;
@@ -141,7 +123,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(283, 215);
+            label3.Location = new Point(275, 140);
             label3.Name = "label3";
             label3.Size = new Size(209, 15);
             label3.TabIndex = 11;
@@ -154,7 +136,7 @@
             button1.FlatAppearance.BorderColor = SystemColors.HotTrack;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = Color.Black;
-            button1.Location = new Point(407, 239);
+            button1.Location = new Point(399, 164);
             button1.Name = "button1";
             button1.Size = new Size(186, 40);
             button1.TabIndex = 12;
@@ -165,14 +147,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(764, 291);
+            ClientSize = new Size(764, 224);
             Controls.Add(button1);
             Controls.Add(label3);
             Controls.Add(txtCodigo);
             Controls.Add(label2);
             Controls.Add(btnRestablecer);
-            Controls.Add(txtusuario);
-            Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmOlvideDatos";
@@ -193,8 +173,6 @@
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
-        private Label label1;
-        private TextBox txtusuario;
         private Button btnRestablecer;
         private TextBox txtCodigo;
         private Label label2;
