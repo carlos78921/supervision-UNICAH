@@ -32,6 +32,11 @@ namespace PreyectoDesarrollo_unicah
             this.Dispose();
         }
 
+        private void btnGeneral_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnRestablecer_Click(object sender, EventArgs e)
         {
 

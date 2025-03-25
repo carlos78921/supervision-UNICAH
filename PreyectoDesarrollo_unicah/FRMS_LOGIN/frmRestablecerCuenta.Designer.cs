@@ -33,7 +33,7 @@
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             txtcontraseña = new TextBox();
-            button1 = new Button();
+            btnRegistrar = new Button();
             txtusuario = new TextBox();
             textBox1 = new TextBox();
             panel1.SuspendLayout();
@@ -98,18 +98,19 @@
             txtcontraseña.TabIndex = 9;
             txtcontraseña.Text = "Contraseña nueva:";
             // 
-            // button1
+            // btnRegistrar
             // 
-            button1.BackColor = Color.White;
-            button1.FlatAppearance.BorderColor = SystemColors.HotTrack;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.Black;
-            button1.Location = new Point(179, 239);
-            button1.Name = "button1";
-            button1.Size = new Size(408, 40);
-            button1.TabIndex = 8;
-            button1.Text = "&REGISTRAR DATOS";
-            button1.UseVisualStyleBackColor = false;
+            btnRegistrar.BackColor = Color.White;
+            btnRegistrar.FlatAppearance.BorderColor = SystemColors.HotTrack;
+            btnRegistrar.FlatStyle = FlatStyle.Flat;
+            btnRegistrar.ForeColor = Color.Black;
+            btnRegistrar.Location = new Point(179, 239);
+            btnRegistrar.Name = "btnRegistrar";
+            btnRegistrar.Size = new Size(408, 40);
+            btnRegistrar.TabIndex = 8;
+            btnRegistrar.Text = "&REGISTRAR DATOS";
+            btnRegistrar.UseVisualStyleBackColor = false;
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // txtusuario
             // 
@@ -142,7 +143,7 @@
             ClientSize = new Size(764, 291);
             Controls.Add(textBox1);
             Controls.Add(txtcontraseña);
-            Controls.Add(button1);
+            Controls.Add(btnRegistrar);
             Controls.Add(txtusuario);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -165,7 +166,7 @@
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private TextBox txtcontraseña;
-        private Button button1;
+        private Button btnRegistrar;
         private TextBox txtusuario;
         private TextBox textBox1;
     }

@@ -31,5 +31,10 @@ namespace PreyectoDesarrollo_unicah
         {
             this.Dispose();
         }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

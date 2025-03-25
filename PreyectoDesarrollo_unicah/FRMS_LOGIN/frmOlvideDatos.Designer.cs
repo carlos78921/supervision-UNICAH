@@ -32,11 +32,11 @@
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
-            btnRestablecer = new Button();
+            btnGeneral = new Button();
             txtCodigo = new TextBox();
             label2 = new Label();
             label3 = new Label();
-            button1 = new Button();
+            btnRestablecer = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -87,19 +87,19 @@
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
-            // btnRestablecer
+            // btnGeneral
             // 
-            btnRestablecer.BackColor = Color.White;
-            btnRestablecer.FlatAppearance.BorderColor = SystemColors.HotTrack;
-            btnRestablecer.FlatStyle = FlatStyle.Flat;
-            btnRestablecer.ForeColor = Color.Black;
-            btnRestablecer.Location = new Point(187, 164);
-            btnRestablecer.Name = "btnRestablecer";
-            btnRestablecer.Size = new Size(186, 40);
-            btnRestablecer.TabIndex = 8;
-            btnRestablecer.Text = "&GENERAR CÓDIGO";
-            btnRestablecer.UseVisualStyleBackColor = false;
-            btnRestablecer.Click += btnRestablecer_Click;
+            btnGeneral.BackColor = Color.White;
+            btnGeneral.FlatAppearance.BorderColor = SystemColors.HotTrack;
+            btnGeneral.FlatStyle = FlatStyle.Flat;
+            btnGeneral.ForeColor = Color.Black;
+            btnGeneral.Location = new Point(187, 164);
+            btnGeneral.Name = "btnGeneral";
+            btnGeneral.Size = new Size(186, 40);
+            btnGeneral.TabIndex = 8;
+            btnGeneral.Text = "&GENERAR CÓDIGO";
+            btnGeneral.UseVisualStyleBackColor = false;
+            btnGeneral.Click += btnGeneral_Click_1;
             // 
             // txtCodigo
             // 
@@ -130,29 +130,30 @@
             label3.Text = "Un código ha sido enviado a su correo";
             label3.Visible = false;
             // 
-            // button1
+            // btnRestablecer
             // 
-            button1.BackColor = Color.White;
-            button1.FlatAppearance.BorderColor = SystemColors.HotTrack;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.Black;
-            button1.Location = new Point(399, 164);
-            button1.Name = "button1";
-            button1.Size = new Size(186, 40);
-            button1.TabIndex = 12;
-            button1.Text = "&RESTABLECER CUENTA";
-            button1.UseVisualStyleBackColor = false;
+            btnRestablecer.BackColor = Color.White;
+            btnRestablecer.FlatAppearance.BorderColor = SystemColors.HotTrack;
+            btnRestablecer.FlatStyle = FlatStyle.Flat;
+            btnRestablecer.ForeColor = Color.Black;
+            btnRestablecer.Location = new Point(399, 164);
+            btnRestablecer.Name = "btnRestablecer";
+            btnRestablecer.Size = new Size(186, 40);
+            btnRestablecer.TabIndex = 12;
+            btnRestablecer.Text = "&RESTABLECER CUENTA";
+            btnRestablecer.UseVisualStyleBackColor = false;
+            btnRestablecer.Click += btnRestablecer_Click;
             // 
             // frmOlvideDatos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(764, 224);
-            Controls.Add(button1);
+            Controls.Add(btnRestablecer);
             Controls.Add(label3);
             Controls.Add(txtCodigo);
             Controls.Add(label2);
-            Controls.Add(btnRestablecer);
+            Controls.Add(btnGeneral);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmOlvideDatos";
@@ -173,10 +174,10 @@
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
-        private Button btnRestablecer;
+        private Button btnGeneral;
         private TextBox txtCodigo;
         private Label label2;
         private Label label3;
-        private Button button1;
+        private Button btnRestablecer;
     }
 }
