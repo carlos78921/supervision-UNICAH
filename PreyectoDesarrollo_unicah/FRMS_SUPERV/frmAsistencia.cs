@@ -25,6 +25,7 @@ namespace PreyectoDesarrollo_unicah
         private const int WM_NCLBUTTONDOWN = 0xA1;
         private const int HTCAPTION = 0x2;
 
+        DataGridView Asistes;
         public frmAsistencia()
         {
             InitializeComponent();
@@ -52,6 +53,8 @@ namespace PreyectoDesarrollo_unicah
         private void FrmAsiste_Load(object sender, EventArgs e)
         {
             lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
+
+            dgvAsiste = (dgvAsiste as DataGridView);
 
             //Ajustes del formulario
             FiltroInicial();

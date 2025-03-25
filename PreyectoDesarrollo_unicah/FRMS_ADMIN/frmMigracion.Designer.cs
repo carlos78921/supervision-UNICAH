@@ -199,7 +199,7 @@ namespace PreyectoDesarrollo_unicah
             // lblWeek
             // 
             lblWeek.AutoSize = true;
-            lblWeek.Location = new Point(956, 142);
+            lblWeek.Location = new Point(935, 142);
             lblWeek.Name = "lblWeek";
             lblWeek.Size = new Size(49, 15);
             lblWeek.TabIndex = 17;
