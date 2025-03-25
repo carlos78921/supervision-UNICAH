@@ -20,6 +20,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Supervision_Unicah.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Supervision_Unicah.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="Supervision_UnicahDataSet.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Supervision_UnicahDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="Supervision_UnicahDataSet1.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Supervision_UnicahDataSet1.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +42,21 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Supervision_Unicah.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Supervision_Unicah.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="Supervision_UnicahDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Supervision_UnicahDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="Supervision_UnicahDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Supervision_UnicahDataSet1.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>
