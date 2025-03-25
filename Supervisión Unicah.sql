@@ -444,3 +444,41 @@ BEGIN
     WHERE Fecha_Reposicion IS NOT NULL
 END
 */
+
+CREATE TRIGGER TGR_AdminContra
+ON Empleados
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+	select * from Empleados
+	--Busca al único administrador por su rol
+    IF EXISTS (SELECT 1 FROM inserted WHERE rol = 'administrador')
+    BEGIN
+        -- Actualiza la contraseña con un valor predeterminado (por seguridad)
+		UPDATE Empleados
+		--Subconsulta para efecto de inserted en @contraseña, pues @contraseña se usa en visual, no en trigger
+        SET contraseña = (SELECT Contraseña FROM inserted WHERE Rol = 'Administrador') 
+        WHERE rol = 'Administrador';
+    END
+END;
+
+CREATE TABLE Asistencia_Backup (
+    BackupID INT IDENTITY(1,1) PRIMARY KEY,
+    IDEmpleado INT,
+    Fecha DATETIME,
+    Presente BIT,
+    BackupFecha DATETIME DEFAULT GETDATE()
+)
+
+
+CREATE TRIGGER TGR_BackupAsistencia
+ON Asistencia
+AFTER INSERT
+AS
+BEGIN
+    -- Verifica que las columnas existen en la tabla Asistencia
+    INSERT INTO Asistencia_Backup (IDEmpleado, Fecha, Presente, BackupFecha)
+    SELECT i.ID_Empleado, i.Fecha, i.Presente, GETDATE()
+    FROM inserted i;
+END;
