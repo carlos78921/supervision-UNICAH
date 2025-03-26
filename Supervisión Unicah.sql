@@ -409,6 +409,49 @@ end
 exec PA_Asistencia_Doc 'Clase1', '0701', 0, 0, 0, 0, 0, 0	
 */
 
+ALTER PROCEDURE PA_Asistencia_Doc
+    @CodigoDocente VARCHAR(10)
+WITH ENCRYPTION
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT DISTINCT 
+        (Cod_Facultad + ' - ' + Cod_Asignatura) AS [Referencia], 
+        Asignatura AS [Curso], 
+        Seccion, 
+        (Edificio + ' - ' + Aula) AS [Aula]
+    FROM Asistencia A
+    JOIN Clases C ON A.ID_Clase = C.ID_Clase
+    JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
+    JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
+    WHERE E.Codigo_Empleado = @CodigoDocente;
+END;
+
+CREATE PROCEDURE PA_Asistencia_Fecha
+    @CodigoDocente VARCHAR(10),
+    @Fecha DATE
+WITH ENCRYPTION
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        a.CodigoAsistencia,
+        e.Codigo_Empleado AS CodigoDocente,
+        (e.Nombre1 + ' ' + ISNULL(e.Nombre2, '') + ' ' + e.Apellido1 + ' ' + ISNULL(e.Apellido2, '')) AS NombreDocente,
+        a.Fecha,
+        CASE 
+            WHEN a.Presente = 1 THEN '<b>' + FORMAT(a.Fecha, 'dd/MM/yyyy') + '</b>'
+            ELSE FORMAT(a.Fecha, 'dd/MM/yyyy')
+        END AS FechaResaltada
+    FROM Asistencias a
+    JOIN Empleados e ON a.ID_Empleado = e.ID_Empleado
+    JOIN Clases c ON a.ID_Clase = c.ID_Clase
+    WHERE e.Codigo_Empleado = @CodigoDocente
+      AND a.Fecha = @Fecha;
+END;
+
 CREATE PROCEDURE PA_Insertar_Justificacion
     @ID_Asistencia INT,
     @Justificacion NVARCHAR(200)
@@ -420,6 +463,7 @@ BEGIN
     SET Observacion = @Justificacion
     WHERE ID_Asistencia = @ID_Asistencia;
 END
+
 
 CREATE PROCEDURE PA_Justifica --Decano
 AS
