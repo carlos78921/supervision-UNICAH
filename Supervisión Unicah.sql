@@ -440,22 +440,35 @@ BEGIN
 END
 
 
-/*create PROCEDURE PA_Reponer_Deca
-with encryption
+CREATE PROCEDURE PA_Repone --Decano
 AS
 BEGIN
-    SELECT 
-        Asignatura, 
-        Fecha [Fecha de Ausencia], 
-        Seccion, 
-        (nombre_empleado + ' ' + apellido_empleado) [Docente],
-        Fecha_Reposicion [Fecha de Reposición]
+    SET NOCOUNT ON;
+    SELECT distinct A.ID_Asistencia,
+           C.Asignatura,
+           A.Fecha AS [FechaAusencia],
+           (Nombre1 + ' ' + isnull(Nombre2,'') + ' ' + Apellido1 + ' ' + isnull(Apellido2,'')) AS [Docente],
+           S.Seccion,
+           A.Fecha_Reposicion
     FROM Asistencia A
-    JOIN Clases C ON A.Cod_Asignatura = C.Cod_Asignatura 
-    JOIN Empleados E ON A.codigo_empleado = E.codigo_empleado
-    WHERE Fecha_Reposicion IS NOT NULL
+    JOIN Clases C ON A.ID_Clase = C.ID_Clase
+    JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
+    JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
+    JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
+    WHERE A.Presente = 0
 END
-*/
+
+CREATE PROCEDURE PA_Insertar_Reposicion --Decano
+    @ID_Asistencia INT,
+    @Fecha_Reposicion date
+AS
+BEGIN
+    SET NOCOUNT ON;
+ 
+    UPDATE Asistencia
+    SET Fecha_Reposicion = @Fecha_Reposicion
+    WHERE ID_Asistencia = @ID_Asistencia
+END
 
 CREATE TRIGGER TGR_AdminContra
 ON Empleados
