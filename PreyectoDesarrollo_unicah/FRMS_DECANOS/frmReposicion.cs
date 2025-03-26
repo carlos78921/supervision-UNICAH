@@ -76,8 +76,9 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnDay_Click(object sender, EventArgs e) //SOLO ME FALTA INSERTAR FECHA DE REPOSICIÓN
         {
-            ACCIONES_BD.tablaJustifica(dgvJustificacion);
             //Ajustes en la BDD
+            ACCIONES_BD.Repongo(dgvRepone, (int)dgvRepone.CurrentRow.Cells[0].Value, dtpReposicion);
+            ACCIONES_BD.tablaRepone(dgvRepone);
         }
     }
 }

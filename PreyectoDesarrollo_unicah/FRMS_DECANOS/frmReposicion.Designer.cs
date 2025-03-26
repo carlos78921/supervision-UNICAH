@@ -30,14 +30,11 @@ namespace PreyectoDesarrollo_unicah
         {
             Button btnDay;
             Button btnVoy;
-            Button btnBusco;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
-            label2 = new Label();
-            nudReposicion = new NumericUpDown();
             label1 = new Label();
             dgvRepone = new DataGridView();
             clmClase = new DataGridViewTextBoxColumn();
@@ -49,24 +46,24 @@ namespace PreyectoDesarrollo_unicah
             cmbEdificio = new ComboBox();
             label3 = new Label();
             lblMeses = new Label();
+            dtpReposicion = new DateTimePicker();
+            label2 = new Label();
             btnDay = new Button();
             btnVoy = new Button();
-            btnBusco = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudReposicion).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvRepone).BeginInit();
             SuspendLayout();
             // 
             // btnDay
             // 
-            btnDay.Location = new Point(170, 121);
+            btnDay.Location = new Point(16, 154);
             btnDay.Name = "btnDay";
-            btnDay.Size = new Size(67, 23);
+            btnDay.Size = new Size(211, 23);
             btnDay.TabIndex = 21;
-            btnDay.Text = "INSERT&AR";
+            btnDay.Text = "INSERT&AR DÍA DE REPOSICIÓN";
             btnDay.UseVisualStyleBackColor = true;
             btnDay.Click += btnDay_Click;
             // 
@@ -79,15 +76,6 @@ namespace PreyectoDesarrollo_unicah
             btnVoy.Text = "&REGRESAR";
             btnVoy.UseVisualStyleBackColor = true;
             btnVoy.Click += btnVoy_Click;
-            // 
-            // btnBusco
-            // 
-            btnBusco.Location = new Point(411, 121);
-            btnBusco.Name = "btnBusco";
-            btnBusco.Size = new Size(67, 23);
-            btnBusco.TabIndex = 25;
-            btnBusco.Text = "&Buscar";
-            btnBusco.UseVisualStyleBackColor = true;
             // 
             // pictureBox2
             // 
@@ -128,7 +116,7 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.AutoSize = true;
             lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(437, 65);
+            lblPersona.Location = new Point(507, 63);
             lblPersona.Name = "lblPersona";
             lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 25;
@@ -145,31 +133,12 @@ namespace PreyectoDesarrollo_unicah
             pictureBox3.TabIndex = 8;
             pictureBox3.TabStop = false;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(16, 125);
-            label2.Name = "label2";
-            label2.Size = new Size(101, 15);
-            label2.TabIndex = 23;
-            label2.Text = "Día de reposición:";
-            // 
-            // nudReposicion
-            // 
-            nudReposicion.Location = new Point(123, 121);
-            nudReposicion.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
-            nudReposicion.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            nudReposicion.Name = "nudReposicion";
-            nudReposicion.Size = new Size(40, 23);
-            nudReposicion.TabIndex = 22;
-            nudReposicion.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Location = new Point(266, 97);
             label1.Name = "label1";
-            label1.Size = new Size(142, 15);
+            label1.Size = new Size(141, 15);
             label1.TabIndex = 18;
             label1.Text = "REPORTE DE REPOSICIÓN";
             // 
@@ -179,11 +148,11 @@ namespace PreyectoDesarrollo_unicah
             dgvRepone.AllowUserToDeleteRows = false;
             dgvRepone.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvRepone.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha, clmSeccion, clmDocente, clmRepo });
-            dgvRepone.Location = new Point(16, 150);
+            dgvRepone.Location = new Point(16, 183);
             dgvRepone.Name = "dgvRepone";
             dgvRepone.ReadOnly = true;
             dgvRepone.RowHeadersWidth = 51;
-            dgvRepone.Size = new Size(610, 268);
+            dgvRepone.Size = new Size(610, 235);
             dgvRepone.TabIndex = 24;
             // 
             // clmClase
@@ -228,9 +197,9 @@ namespace PreyectoDesarrollo_unicah
             // 
             // txtBusco
             // 
-            txtBusco.Location = new Point(273, 122);
+            txtBusco.Location = new Point(266, 145);
             txtBusco.Name = "txtBusco";
-            txtBusco.Size = new Size(132, 23);
+            txtBusco.Size = new Size(223, 23);
             txtBusco.TabIndex = 26;
             txtBusco.KeyPress += txtBusco_KeyPress;
             // 
@@ -239,7 +208,7 @@ namespace PreyectoDesarrollo_unicah
             cmbEdificio.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdificio.FormattingEnabled = true;
             cmbEdificio.Items.AddRange(new object[] { "Edificio:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M" });
-            cmbEdificio.Location = new Point(546, 121);
+            cmbEdificio.Location = new Point(533, 145);
             cmbEdificio.Name = "cmbEdificio";
             cmbEdificio.Size = new Size(78, 23);
             cmbEdificio.TabIndex = 27;
@@ -248,7 +217,7 @@ namespace PreyectoDesarrollo_unicah
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(500, 125);
+            label3.Location = new Point(550, 122);
             label3.Name = "label3";
             label3.Size = new Size(40, 15);
             label3.TabIndex = 28;
@@ -257,26 +226,41 @@ namespace PreyectoDesarrollo_unicah
             // lblMeses
             // 
             lblMeses.AutoSize = true;
-            lblMeses.Location = new Point(578, 97);
+            lblMeses.Location = new Point(578, 90);
             lblMeses.Name = "lblMeses";
             lblMeses.Size = new Size(48, 15);
             lblMeses.TabIndex = 29;
             lblMeses.Text = "Periodo";
             lblMeses.Visible = false;
             // 
+            // dtpReposicion
+            // 
+            dtpReposicion.Location = new Point(12, 122);
+            dtpReposicion.Name = "dtpReposicion";
+            dtpReposicion.Size = new Size(215, 23);
+            dtpReposicion.TabIndex = 22;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(350, 122);
+            label2.Name = "label2";
+            label2.Size = new Size(45, 15);
+            label2.TabIndex = 30;
+            label2.Text = "Buscar:";
+            // 
             // frmReposicion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(636, 464);
+            Controls.Add(label2);
             Controls.Add(lblMeses);
             Controls.Add(label3);
             Controls.Add(cmbEdificio);
             Controls.Add(txtBusco);
-            Controls.Add(btnBusco);
             Controls.Add(dgvRepone);
-            Controls.Add(label2);
-            Controls.Add(nudReposicion);
+            Controls.Add(dtpReposicion);
             Controls.Add(btnDay);
             Controls.Add(btnVoy);
             Controls.Add(label1);
@@ -291,7 +275,6 @@ namespace PreyectoDesarrollo_unicah
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudReposicion).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvRepone).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -303,8 +286,6 @@ namespace PreyectoDesarrollo_unicah
         private PictureBox pictureBox1;
         private Panel panel1;
         private PictureBox pictureBox3;
-        private Label label2;
-        private NumericUpDown nudReposicion;
         private Label label1;
         private DataGridView dgvRepone;
         private Label lblPersona;
@@ -317,5 +298,7 @@ namespace PreyectoDesarrollo_unicah
         private DataGridViewTextBoxColumn clmSeccion;
         private DataGridViewTextBoxColumn clmDocente;
         private DataGridViewTextBoxColumn clmRepo;
+        private DateTimePicker dtpReposicion;
+        private Label label2;
     }
 }
