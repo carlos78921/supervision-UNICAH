@@ -131,21 +131,16 @@ namespace PreyectoDesarrollo_unicah.CLASES
         public static DataTable tablaAdmin (DataGridView dgv)
         {
             DataTable dt = new DataTable();
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-                {
-                    SqlCommand cmd = new SqlCommand("PA_Admin", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                }
-            }
-            catch (Exception ex)
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
-                MessageBox.Show("Error al obtener datos: " + ex.Message);
+                SqlCommand cmd = new SqlCommand("PA_Admin", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
             }
+
             if (dt.Rows.Count > 0)
             {
                 dgv.Columns.Clear();
@@ -157,6 +152,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.AutoGenerateColumns = true;
                 dgv.Refresh(); // Forzar actualización de la UI
 
+                //Ajustar ancho de las columnas 
                 dgv.Columns[0].Width = 115;
                 dgv.Columns[1].Width = 170;
                 dgv.Columns[2].Width = 58;
@@ -196,7 +192,91 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return dtFechas;
         }
 
+        public static DataTable tablaJustifica(DataGridView dgv) //Decano
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("PA_Justifica", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            if (dt.Rows.Count > 0)
+            {
+                dgv.Columns.Clear();
 
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dt;
+                dgv.DataSource = bs;
+                bs.ResetBindings(false);
+                dgv.AutoGenerateColumns = true;
+                dgv.Refresh(); // Forzar actualización de la UI
+
+                //Ajustar ancho de las columnas
+                dgv.Columns[0].Visible = false;
+                dgv.Columns[1].Width = 150;
+                dgv.Columns[2].Width = 80;
+                dgv.Columns[3].Width = 66;
+                dgv.Columns[4].Width = 120;
+                dgv.Columns[5].Width = 304;
+            }
+
+            return dt;
+        }
+
+        public static void Justifico (DataGridView dgv, int Ausencia, string Justificacion)
+        {
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("PA_Insertar_Justificacion", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ID_Asistencia", Ausencia);
+                    cmd.Parameters.AddWithValue("@Justificacion", Justificacion);
+                    cmd.ExecuteNonQuery(); //Esto permite la ejecución de insert o update
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dgv.DataSource = dt;
+                }
+            }
+        }
+
+        public static DataTable tablaRepone(DataGridView dgv) //Decano
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("PA_Justifica", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            if (dt.Rows.Count > 0)
+            {
+                dgv.Columns.Clear();
+
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dt;
+                dgv.DataSource = bs;
+                bs.ResetBindings(false);
+                dgv.AutoGenerateColumns = true;
+                dgv.Refresh(); // Forzar actualización de la UI
+
+                //Ajustar ancho de las columnas
+                dgv.Columns[0].Visible = false;
+                dgv.Columns[1].Width = 150;
+                dgv.Columns[2].Width = 80;
+                dgv.Columns[3].Width = 66;
+                dgv.Columns[4].Width = 120;
+                dgv.Columns[5].Width = 304;
+            }
+            return dt;
+        }
         public DataTable codigo_doc()
         {
             DataTable dt = new DataTable();

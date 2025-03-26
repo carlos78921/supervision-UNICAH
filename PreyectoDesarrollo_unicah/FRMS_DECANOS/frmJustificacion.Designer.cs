@@ -69,6 +69,7 @@ namespace PreyectoDesarrollo_unicah
             btnAgregar.TabIndex = 29;
             btnAgregar.Text = "INSERT&AR JUSTIFICACIÓN";
             btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // btnVoy
             // 
@@ -159,7 +160,6 @@ namespace PreyectoDesarrollo_unicah
             // dgvJustificacion
             // 
             dgvJustificacion.AllowUserToAddRows = false;
-            dgvJustificacion.AllowUserToDeleteRows = false;
             dgvJustificacion.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvJustificacion.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha, clmSeccion, clmDoc, clmJustifica });
             dgvJustificacion.Location = new Point(13, 272);
@@ -175,7 +175,7 @@ namespace PreyectoDesarrollo_unicah
             clmClase.MinimumWidth = 6;
             clmClase.Name = "clmClase";
             clmClase.ReadOnly = true;
-            clmClase.Width = 125;
+            clmClase.Width = 150;
             // 
             // clmFecha
             // 
@@ -207,7 +207,7 @@ namespace PreyectoDesarrollo_unicah
             clmJustifica.MinimumWidth = 6;
             clmJustifica.Name = "clmJustifica";
             clmJustifica.ReadOnly = true;
-            clmJustifica.Width = 364;
+            clmJustifica.Width = 304;
             // 
             // label1
             // 
@@ -225,15 +225,17 @@ namespace PreyectoDesarrollo_unicah
             txtJustifica.Name = "txtJustifica";
             txtJustifica.Size = new Size(338, 147);
             txtJustifica.TabIndex = 37;
-            txtJustifica.KeyPress += txtJustifica_KeyPress;
+            txtJustifica.Text = "\r\n";
+            txtJustifica.TextChanged += txtJustifica_TextChanged;
             // 
             // lblCaracteres
             // 
             lblCaracteres.AutoSize = true;
             lblCaracteres.BackColor = SystemColors.Window;
-            lblCaracteres.Location = new Point(451, 122);
+            lblCaracteres.BorderStyle = BorderStyle.FixedSingle;
+            lblCaracteres.Location = new Point(448, 119);
             lblCaracteres.Name = "lblCaracteres";
-            lblCaracteres.Size = new Size(112, 15);
+            lblCaracteres.Size = new Size(114, 17);
             lblCaracteres.TabIndex = 38;
             lblCaracteres.Text = "Límite de caracteres";
             // 
@@ -287,7 +289,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(794, 591);
+            ClientSize = new Size(794, 645);
             Controls.Add(lblMeses);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -328,16 +330,16 @@ namespace PreyectoDesarrollo_unicah
         private Label label1;
         private TextBox txtJustifica;
         private Label lblCaracteres;
-        private DataGridViewTextBoxColumn clmClase;
-        private DataGridViewTextBoxColumn clmFecha;
-        private DataGridViewTextBoxColumn clmSeccion;
-        private DataGridViewTextBoxColumn clmDoc;
-        private DataGridViewTextBoxColumn clmJustifica;
         private Label lblPersona;
         private Label label3;
         private ComboBox cmbEdificio;
         private TextBox txtBusco;
         private Label label4;
         private Label lblMeses;
+        private DataGridViewTextBoxColumn clmClase;
+        private DataGridViewTextBoxColumn clmFecha;
+        private DataGridViewTextBoxColumn clmSeccion;
+        private DataGridViewTextBoxColumn clmDoc;
+        private DataGridViewTextBoxColumn clmJustifica;
     }
 }
