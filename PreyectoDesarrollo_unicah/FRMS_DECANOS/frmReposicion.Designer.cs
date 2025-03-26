@@ -39,7 +39,7 @@ namespace PreyectoDesarrollo_unicah
             label2 = new Label();
             nudReposicion = new NumericUpDown();
             label1 = new Label();
-            dataGridView1 = new DataGridView();
+            dgvRepone = new DataGridView();
             clmClase = new DataGridViewTextBoxColumn();
             clmFecha = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
@@ -57,7 +57,7 @@ namespace PreyectoDesarrollo_unicah
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudReposicion).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvRepone).BeginInit();
             SuspendLayout();
             // 
             // btnDay
@@ -68,6 +68,7 @@ namespace PreyectoDesarrollo_unicah
             btnDay.TabIndex = 21;
             btnDay.Text = "INSERT&AR";
             btnDay.UseVisualStyleBackColor = true;
+            btnDay.Click += btnDay_Click;
             // 
             // btnVoy
             // 
@@ -132,7 +133,6 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 25;
             lblPersona.Text = "Nombre_Persona";
-            lblPersona.Click += lblPersona_Click;
             // 
             // pictureBox3
             // 
@@ -156,7 +156,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // nudReposicion
             // 
-            nudReposicion.Location = new Point(120, 123);
+            nudReposicion.Location = new Point(123, 121);
             nudReposicion.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
             nudReposicion.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudReposicion.Name = "nudReposicion";
@@ -169,22 +169,22 @@ namespace PreyectoDesarrollo_unicah
             label1.AutoSize = true;
             label1.Location = new Point(266, 97);
             label1.Name = "label1";
-            label1.Size = new Size(141, 15);
+            label1.Size = new Size(142, 15);
             label1.TabIndex = 18;
             label1.Text = "REPORTE DE REPOSICIÓN";
             // 
-            // dataGridView1
+            // dgvRepone
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha, clmSeccion, clmDocente, clmRepo });
-            dataGridView1.Location = new Point(16, 150);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(610, 268);
-            dataGridView1.TabIndex = 24;
+            dgvRepone.AllowUserToAddRows = false;
+            dgvRepone.AllowUserToDeleteRows = false;
+            dgvRepone.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvRepone.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha, clmSeccion, clmDocente, clmRepo });
+            dgvRepone.Location = new Point(16, 150);
+            dgvRepone.Name = "dgvRepone";
+            dgvRepone.ReadOnly = true;
+            dgvRepone.RowHeadersWidth = 51;
+            dgvRepone.Size = new Size(610, 268);
+            dgvRepone.TabIndex = 24;
             // 
             // clmClase
             // 
@@ -192,7 +192,7 @@ namespace PreyectoDesarrollo_unicah
             clmClase.MinimumWidth = 6;
             clmClase.Name = "clmClase";
             clmClase.ReadOnly = true;
-            clmClase.Width = 125;
+            clmClase.Width = 150;
             // 
             // clmFecha
             // 
@@ -208,7 +208,7 @@ namespace PreyectoDesarrollo_unicah
             clmSeccion.MinimumWidth = 6;
             clmSeccion.Name = "clmSeccion";
             clmSeccion.ReadOnly = true;
-            clmSeccion.Width = 125;
+            clmSeccion.Width = 65;
             // 
             // clmDocente
             // 
@@ -216,7 +216,7 @@ namespace PreyectoDesarrollo_unicah
             clmDocente.MinimumWidth = 6;
             clmDocente.Name = "clmDocente";
             clmDocente.ReadOnly = true;
-            clmDocente.Width = 125;
+            clmDocente.Width = 212;
             // 
             // clmRepo
             // 
@@ -274,7 +274,7 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(cmbEdificio);
             Controls.Add(txtBusco);
             Controls.Add(btnBusco);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvRepone);
             Controls.Add(label2);
             Controls.Add(nudReposicion);
             Controls.Add(btnDay);
@@ -292,7 +292,7 @@ namespace PreyectoDesarrollo_unicah
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudReposicion).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvRepone).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -306,16 +306,16 @@ namespace PreyectoDesarrollo_unicah
         private Label label2;
         private NumericUpDown nudReposicion;
         private Label label1;
-        private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn clmClase;
-        private DataGridViewTextBoxColumn clmFecha;
-        private DataGridViewTextBoxColumn clmSeccion;
-        private DataGridViewTextBoxColumn clmDocente;
-        private DataGridViewTextBoxColumn clmRepo;
+        private DataGridView dgvRepone;
         private Label lblPersona;
         private TextBox txtBusco;
         private ComboBox cmbEdificio;
         private Label label3;
         private Label lblMeses;
+        private DataGridViewTextBoxColumn clmClase;
+        private DataGridViewTextBoxColumn clmFecha;
+        private DataGridViewTextBoxColumn clmSeccion;
+        private DataGridViewTextBoxColumn clmDocente;
+        private DataGridViewTextBoxColumn clmRepo;
     }
 }

@@ -251,7 +251,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("PA_Justifica", conn);
+                SqlCommand cmd = new SqlCommand("PA_Repone", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -277,46 +277,24 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
             return dt;
         }
-        public DataTable codigo_doc()
+
+        public static void Repongo(DataGridView dgv, int Ausencia, int dia)
         {
-            DataTable dt = new DataTable();
-            try
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
-                using (SqlConnection con = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("PA_Insertar_Justificacion", conn))
                 {
-                    con.Open();
-                    using (SqlCommand cmd = new SqlCommand("PA_Asistencia_Doc", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        /*if (string.IsNullOrEmpty(docente)) //No se lee el código del docente  
-                        {
-                            MessageBox.Show("Error: No se ha asignado un código de docente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return dt; //Concluye con mensaje de error
-                        }*/
-
-                        // Se asigna el parámetro con el código del docente.
-                        cmd.Parameters.AddWithValue("@cod_docente", docente);
-
-                        SqlDataAdapter da = new SqlDataAdapter(cmd); //Adaptador de comando por conexión
-                        da.Fill(dt); //Llenar los datos del PA
-
-                        /*foreach (DataRow row in dt.Rows) //Depuración: Mostrar columnas y valores en la fila
-                        {
-                            foreach (DataColumn col in dt.Columns)
-                            {
-                                MessageBox.Show($"Columna: {col.ColumnName}, Valor: {row[col]}");
-                            }
-                        */
-                    }
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ID_Asistencia", Ausencia);
+                    cmd.Parameters.AddWithValue("@Justificacion", Justificacion);
+                    cmd.ExecuteNonQuery(); //Esto permite la ejecución de insert o update
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dgv.DataSource = dt;
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al obtener datos: " + ex.Message);
-            }
-            /*Mostrar cantidad de filas según el PA
-              MessageBox.Show($"Filas obtenidas: {dt.Rows.Count}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
-            return dt;
         }
 
         public void tabla_docente(DataGridView dgv)

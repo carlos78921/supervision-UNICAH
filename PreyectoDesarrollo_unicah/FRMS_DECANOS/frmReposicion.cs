@@ -28,8 +28,11 @@ namespace PreyectoDesarrollo_unicah
         private void frmReposición_Load(object sender, EventArgs e)
         {
             lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
+            //Ajuste del formulario
             cmbEdificio.SelectedIndex = 0;
-            // ACCIONES_BD.cargar(dgvDoc,)
+
+            //Ajustes del bdd
+            ACCIONES_BD.tablaRepone(dgvRepone);
         }
 
         private void btnVoy_Click(object sender, EventArgs e)
@@ -60,11 +63,6 @@ namespace PreyectoDesarrollo_unicah
             SendMessage(this.Handle, 0x112, 0xf012, 0);  //El evento en memoria se mantiene
         }
 
-        private void lblPersona_Click(object sender, EventArgs e)
-        {
-            lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
-        }
-
         private void txtBusco_KeyPress(object sender, KeyPressEventArgs e)
         {
             Validaciones validar = new Validaciones();
@@ -74,6 +72,12 @@ namespace PreyectoDesarrollo_unicah
 
         private void cmbEdificio_KeyPress(object sender, KeyPressEventArgs e)
         {
+        }
+
+        private void btnDay_Click(object sender, EventArgs e) //SOLO ME FALTA INSERTAR FECHA DE REPOSICIÓN
+        {
+            ACCIONES_BD.tablaJustifica(dgvJustificacion);
+            //Ajustes en la BDD
         }
     }
 }
