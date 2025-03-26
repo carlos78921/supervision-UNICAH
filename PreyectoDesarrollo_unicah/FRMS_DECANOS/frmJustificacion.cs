@@ -77,13 +77,6 @@ namespace PreyectoDesarrollo_unicah
             validar.ValidarFiltro(e, txtBusco);
         }
 
-        /*private void txtJustifica_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Validaciones validar = new Validaciones();
-
-            validar.ValidarFiltro(e, txtJustifica);
-        }*/
-
         private void btnBusco_Click(object sender, EventArgs e)
         {
             string docenteBuscado = txtBusco.Text.Trim().ToLower();
@@ -145,7 +138,7 @@ namespace PreyectoDesarrollo_unicah
             // Si hay más de dos líneas, eliminar las adicionales
             if (lineas.Length > 2)
             {
-                txtJustifica.Lines = lineas.Take(2).ToArray();
+                txtJustifica.Lines = lineas.Take(2).ToArray(); //Despeja el dos del arreglo
             }
             else
             {
@@ -174,7 +167,7 @@ namespace PreyectoDesarrollo_unicah
             // "?" es un if para true y ":" es un else, donde esa resta al contener un valor que "suma caracteres" a dos, pues resta a dos para valor original, en renglón 2
             int conteoRenglon2 = txtJustifica.Text.Trim() == "" ? 0 : txtJustifica.Text.Length - Environment.NewLine.Length;
 
-            if (txtJustifica.Text.Length > Max)
+            if (txtJustifica.Text.Length > Max+1)
             {
                 txtJustifica.Text = txtJustifica.Text.Substring(0, Max); // Limitar la cantidad de caracteres
                 txtJustifica.SelectionStart = txtJustifica.Text.Length; // Mantener el cursor al final
