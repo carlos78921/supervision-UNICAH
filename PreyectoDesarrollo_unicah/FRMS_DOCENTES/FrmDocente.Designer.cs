@@ -35,19 +35,13 @@ namespace PreyectoDesarrollo_unicah
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
             dgvDoc = new DataGridView();
-            clmClase = new DataGridViewTextBoxColumn();
-            clmSeccion = new DataGridViewTextBoxColumn();
-            clmLunes = new DataGridViewCheckBoxColumn();
-            clmMartes = new DataGridViewCheckBoxColumn();
-            clmMiercoles = new DataGridViewCheckBoxColumn();
-            clmJueves = new DataGridViewCheckBoxColumn();
-            clmViernes = new DataGridViewCheckBoxColumn();
-            clmSabado = new DataGridViewCheckBoxColumn();
             label1 = new Label();
             label2 = new Label();
             nudWeeks = new NumericUpDown();
-            lblDoc = new Label();
             lblMeses = new Label();
+            monthCalendar1 = new MonthCalendar();
+            clmClase = new DataGridViewTextBoxColumn();
+            clmSeccion = new DataGridViewTextBoxColumn();
             btnLogout = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -59,7 +53,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(406, 283);
+            btnLogout.Location = new Point(425, 311);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(126, 23);
             btnLogout.TabIndex = 17;
@@ -131,87 +125,21 @@ namespace PreyectoDesarrollo_unicah
             dgvDoc.AllowUserToAddRows = false;
             dgvDoc.AllowUserToDeleteRows = false;
             dgvDoc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDoc.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmSeccion, clmLunes, clmMartes, clmMiercoles, clmJueves, clmViernes, clmSabado });
-            dgvDoc.Location = new Point(102, 139);
+            dgvDoc.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmSeccion });
+            dgvDoc.Location = new Point(12, 139);
             dgvDoc.Name = "dgvDoc";
             dgvDoc.ReadOnly = true;
             dgvDoc.RowHeadersWidth = 51;
-            dgvDoc.Size = new Size(368, 144);
+            dgvDoc.Size = new Size(261, 162);
             dgvDoc.TabIndex = 16;
             dgvDoc.CellContentClick += dgvDoc_CellContentClick;
-            // 
-            // clmClase
-            // 
-            clmClase.HeaderText = "Asignatura";
-            clmClase.MinimumWidth = 6;
-            clmClase.Name = "clmClase";
-            clmClase.ReadOnly = true;
-            clmClase.Width = 125;
-            // 
-            // clmSeccion
-            // 
-            clmSeccion.HeaderText = "Sección";
-            clmSeccion.MinimumWidth = 6;
-            clmSeccion.Name = "clmSeccion";
-            clmSeccion.ReadOnly = true;
-            clmSeccion.Width = 58;
-            // 
-            // clmLunes
-            // 
-            clmLunes.HeaderText = "L";
-            clmLunes.MinimumWidth = 6;
-            clmLunes.Name = "clmLunes";
-            clmLunes.ReadOnly = true;
-            clmLunes.Width = 20;
-            // 
-            // clmMartes
-            // 
-            clmMartes.HeaderText = "M";
-            clmMartes.MinimumWidth = 6;
-            clmMartes.Name = "clmMartes";
-            clmMartes.ReadOnly = true;
-            clmMartes.Width = 22;
-            // 
-            // clmMiercoles
-            // 
-            clmMiercoles.HeaderText = "X";
-            clmMiercoles.MinimumWidth = 6;
-            clmMiercoles.Name = "clmMiercoles";
-            clmMiercoles.ReadOnly = true;
-            clmMiercoles.Width = 22;
-            // 
-            // clmJueves
-            // 
-            clmJueves.HeaderText = "J";
-            clmJueves.MinimumWidth = 6;
-            clmJueves.Name = "clmJueves";
-            clmJueves.ReadOnly = true;
-            clmJueves.Width = 20;
-            // 
-            // clmViernes
-            // 
-            clmViernes.HeaderText = "V";
-            clmViernes.MinimumWidth = 6;
-            clmViernes.Name = "clmViernes";
-            clmViernes.ReadOnly = true;
-            clmViernes.Width = 20;
-            // 
-            // clmSabado
-            // 
-            clmSabado.HeaderText = "S";
-            clmSabado.MinimumWidth = 6;
-            clmSabado.Name = "clmSabado";
-            clmSabado.ReadOnly = true;
-            clmSabado.Resizable = DataGridViewTriState.True;
-            clmSabado.SortMode = DataGridViewColumnSortMode.Automatic;
-            clmSabado.Width = 20;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Location = new Point(127, 92);
             label1.Name = "label1";
-            label1.Size = new Size(131, 15);
+            label1.Size = new Size(132, 15);
             label1.TabIndex = 15;
             label1.Text = "ASISTENCIA PERSONAL";
             // 
@@ -231,16 +159,6 @@ namespace PreyectoDesarrollo_unicah
             nudWeeks.Size = new Size(49, 23);
             nudWeeks.TabIndex = 19;
             // 
-            // lblDoc
-            // 
-            lblDoc.AutoSize = true;
-            lblDoc.Location = new Point(12, 294);
-            lblDoc.Name = "lblDoc";
-            lblDoc.Size = new Size(51, 15);
-            lblDoc.TabIndex = 20;
-            lblDoc.Text = "Docente";
-            lblDoc.Visible = false;
-            // 
             // lblMeses
             // 
             lblMeses.AutoSize = true;
@@ -251,13 +169,35 @@ namespace PreyectoDesarrollo_unicah
             lblMeses.Text = "Periodo";
             lblMeses.Visible = false;
             // 
+            // monthCalendar1
+            // 
+            monthCalendar1.Location = new Point(284, 139);
+            monthCalendar1.Name = "monthCalendar1";
+            monthCalendar1.TabIndex = 22;
+            // 
+            // clmClase
+            // 
+            clmClase.HeaderText = "Asignatura";
+            clmClase.MinimumWidth = 6;
+            clmClase.Name = "clmClase";
+            clmClase.ReadOnly = true;
+            clmClase.Width = 150;
+            // 
+            // clmSeccion
+            // 
+            clmSeccion.HeaderText = "Sección";
+            clmSeccion.MinimumWidth = 6;
+            clmSeccion.Name = "clmSeccion";
+            clmSeccion.ReadOnly = true;
+            clmSeccion.Width = 58;
+            // 
             // frmDocente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(569, 318);
+            ClientSize = new Size(569, 346);
+            Controls.Add(monthCalendar1);
             Controls.Add(lblMeses);
-            Controls.Add(lblDoc);
             Controls.Add(nudWeeks);
             Controls.Add(label2);
             Controls.Add(btnLogout);
@@ -290,16 +230,10 @@ namespace PreyectoDesarrollo_unicah
         private Label lblPersona;
         private Label label2;
         private NumericUpDown nudWeeks;
-        private Label lblDoc;
         private Label lblMeses;
         private PictureBox pictureBox3;
         private DataGridViewTextBoxColumn clmClase;
         private DataGridViewTextBoxColumn clmSeccion;
-        private DataGridViewCheckBoxColumn clmLunes;
-        private DataGridViewCheckBoxColumn clmMartes;
-        private DataGridViewCheckBoxColumn clmMiercoles;
-        private DataGridViewCheckBoxColumn clmJueves;
-        private DataGridViewCheckBoxColumn clmViernes;
-        private DataGridViewCheckBoxColumn clmSabado;
+        private MonthCalendar monthCalendar1;
     }
 }
