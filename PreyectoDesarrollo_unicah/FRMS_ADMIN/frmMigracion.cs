@@ -20,9 +20,22 @@ namespace PreyectoDesarrollo_unicah
             InitializeComponent();
         }
 
+        //Proceso en carga de formulario
+        private void LimiteMes()
+        {
+            int año = DateTime.Now.Year;
+
+            // Definir el rango (20 enero - 18 abril del año actual), académicamente
+            mesAdmin.MinDate = new DateTime(año, 1, 20);
+            mesAdmin.MaxDate = new DateTime(año, 4, 18);
+        }
+
         private void frmMigración_Load(object sender, EventArgs e)
         {
             lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
+
+            //Ajuste del formulario
+            LimiteMes();
 
             //Ajustes del bdd
             ACCIONES_BD.tablaAdmin(dgvAdmin);

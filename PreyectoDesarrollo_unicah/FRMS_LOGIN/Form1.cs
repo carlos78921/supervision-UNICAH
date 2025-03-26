@@ -119,6 +119,12 @@ namespace PreyectoDesarrollo_unicah
                 return;
             }
 
+            if (contraseña != "Contraseña:" && contraseña.Length < 8)
+            {
+                MessageBox.Show("Comuníquese con el Administrador, y espere a que le asigne contraseña", "Error del Admin.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conexion.Open();

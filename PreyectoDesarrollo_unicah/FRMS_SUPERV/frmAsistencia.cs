@@ -50,6 +50,15 @@ namespace PreyectoDesarrollo_unicah
             cmbHora.SelectedIndex = 0;
         }
 
+        private void LimiteMes()
+        {
+            int año = DateTime.Now.Year;
+
+            // Definir el rango (20 enero - 18 abril del año actual), académicamente
+            mesSupervisor.MinDate = new DateTime(año, 1, 20);
+            mesSupervisor.MaxDate = new DateTime(año, 4, 18);
+        }
+
         private void FrmAsiste_Load(object sender, EventArgs e)
         {
             lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
@@ -57,6 +66,7 @@ namespace PreyectoDesarrollo_unicah
             dgvAsiste = (dgvAsiste as DataGridView);
 
             //Ajustes del formulario
+            LimiteMes();
             FiltroInicial();
 
             //Ajustes del bdd
