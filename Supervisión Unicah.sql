@@ -409,24 +409,36 @@ end
 exec PA_Asistencia_Doc 'Clase1', '0701', 0, 0, 0, 0, 0, 0	
 */
 
-/*
-CREATE PROCEDURE PA_Justificaciones
-with encryption
+CREATE PROCEDURE PA_Insertar_Justificacion
+    @ID_Asistencia INT,
+    @Justificacion NVARCHAR(200)
 AS
 BEGIN
-    SELECT 
-        Asignatura, 
-        Fecha [Fecha de Ausencia], 
-        Seccion, 
-        (nombre_empleado + ' ' + apellido_empleado) [Docente],
-        Justificacion
-    FROM Asistencia A
-    JOIN Clases C ON A.Cod_Asignatura = C.Cod_Asignatura 
-    JOIN Empleados E ON A.codigo_empleado = E.codigo_empleado
-    WHERE A.Justificacion IS NOT NULL
+    SET NOCOUNT ON;
+
+    UPDATE Asistencia
+    SET Observacion = @Justificacion
+    WHERE ID_Asistencia = @ID_Asistencia;
 END
-GO
-*/
+
+CREATE PROCEDURE PA_Justifica --Decano
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT distinct ID_Asistencia,
+		   C.Asignatura,
+           A.Fecha [Fecha de Ausencia],
+           (Nombre1 + ' ' + isnull(Nombre2,'') + ' ' + Apellido1 + ' ' + isnull(Apellido2,'')) AS [Docente],
+           S.Seccion,
+           A.Observacion [Justificacion]
+    FROM Asistencia A
+    JOIN Clases C ON A.ID_Clase = C.ID_Clase
+    JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
+    JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
+    JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
+    WHERE A.Presente = 0
+END
+
 
 /*create PROCEDURE PA_Reponer_Deca
 with encryption
