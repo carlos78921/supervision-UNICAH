@@ -78,7 +78,7 @@ namespace PreyectoDesarrollo_unicah
                 return;
             }
 
-                if (usuario == "Usuario:")
+            if (usuario == "Usuario:")
             {
                 txtusuario.Clear();
                 MessageBox.Show("Usuario no puede quedar vacío.", "Error Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -86,6 +86,8 @@ namespace PreyectoDesarrollo_unicah
                 return;
             }
 
+            /*La conexión se usa aquí para realizar operación de formulario y poder detener otras operaciones
+              con "return" */
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conexion.Open();
@@ -173,8 +175,11 @@ namespace PreyectoDesarrollo_unicah
                         }
                         else
                         {
-                            /*Cambio variables porque por ejemplo en cmd al colocarlo, "else" que es un proceso
-                            del using no permite repetir la misma variable, se hace ambiguo*/
+                            /*Uso la conexión de abajo por el mismo caso de la contraseña vacía, pero aquí es el caso 
+                              de contraseña incorrecta*/
+
+                            /*Cambio variables porque por ejemplo en cmd al colocarlo, "else" que es un 
+                            proceso del using no permite repetir la misma variable, se hace ambiguo*/
                             using (SqlCommand CMD = new SqlCommand("PA_Admin_Save", conexion)) 
                             {
                                 CMD.CommandType = CommandType.StoredProcedure;

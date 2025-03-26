@@ -56,8 +56,22 @@ namespace PreyectoDesarrollo_unicah
         {
             string usuario = txtUsuario.Text;
             string contraseña = txtContraseña.Text;
+
             if (contraseña == "Contraseña nueva:")
-                contraseña = "Contraseña:";
+            {
+                txtContraseña.Clear();
+                MessageBox.Show("Contraseña no puede quedar vacía.", "Error Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtContraseña.Text = contraseña;
+                return;
+            }
+
+            if (contraseña != "Contraseña nueva:" && contraseña.Length < 8)
+            {
+                MessageBox.Show("La contraseña debe tener al menos 8 caracteres.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
 
             if (string.IsNullOrEmpty(usuario) || usuario == "Usuario:") //Vacío con o sin un dato
             {
