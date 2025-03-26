@@ -14,11 +14,9 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
 {
     public partial class frmReporte : Form
     {
-        private frmAsistencia Asiste;  // Referencia al primer formulario
         public frmReporte(frmAsistencia asiste)
         {
             InitializeComponent();
-            Asiste = asiste;
         }
 
         private void frmReporte_Load(object sender, EventArgs e)
@@ -36,11 +34,11 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
         private void btnExcel_Click(object sender, EventArgs e)
         {
 
-            // Crear un DataTable para almacenar los datos del DataGridView
+            /*// Crear un DataTable para almacenar los datos del DataGridView
             DataTable dt = new DataTable();
 
             // Agregar las columnas del DataGridView primero
-            foreach (DataGridViewColumn columna in )
+            foreach (DataGridViewColumn columna in dgvAdmin)
             {
                 dt.Columns.Add(columna.HeaderText);
             }
@@ -121,8 +119,7 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
                     workbook.SaveAs(saveFileDialog.FileName);
                     MessageBox.Show("Asistencia exportada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-            }
-
+            */
         }
     }
 }
