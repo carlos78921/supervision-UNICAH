@@ -156,16 +156,16 @@ namespace PreyectoDesarrollo_unicah
 
         private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validaciones validar = new Validaciones();
-
-            validar.ValidarUsuario(e, txtUsuario);
+            string usuario = txtUsuario.Text;
+            string contraseña = txtContraseña.Text;
+            Validaciones.ValidarUsuario(e, usuario, contraseña);
         }
 
         private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validaciones validar = new Validaciones();
-
-            validar.ValidarContraseña(e, txtContraseña);
+            string usuario = txtUsuario.Text;
+            string contraseña = txtContraseña.Text;
+            Validaciones.ValidarContraseña(e, usuario, contraseña);
         }
     }
 }

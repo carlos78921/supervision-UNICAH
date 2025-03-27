@@ -10,6 +10,8 @@ using System.Security.Policy;
 using System.Drawing.Text;
 using System.Text.RegularExpressions;
 using System.Drawing;
+using PreyectoDesarrollo_unicah.FRMS_ADMIN;
+using PreyectoDesarrollo_unicah.FRMS_SUPERV;
 
 namespace PreyectoDesarrollo_unicah.CLASES
 {
@@ -27,12 +29,145 @@ namespace PreyectoDesarrollo_unicah.CLASES
             apellido = "";
         }
 
-        public ACCIONES_BD(string codigo) //Constructor parametrizado del docente
+        public ACCIONES_BD(string codigo)
         {
-            if (!string.IsNullOrEmpty(codigo)) //Validación requerida de codigo transferido
+            if (!string.IsNullOrEmpty(codigo))
             {
                 docente = codigo;
             }
+        }
+
+        public static bool AdminContraVacio(string usuario, string contraseña, Form Login)
+        {
+            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conexion.Open();
+                using (SqlCommand cmd = new SqlCommand("PA_Admin_Save", conexion))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Usuario", usuario);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            if (contraseña == "Contraseña:")
+                            {
+                                if (MessageBox.Show("Saludos Administrador, no podemos otorgar el acceso con su contraseña vacía, ¿olvidó su contraseña?", "Contraseña Vacía Admin.", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                                {
+                                    frmPierdoContraseña Lost = new frmPierdoContraseña();
+                                    Login.Hide();
+                                    Lost.Show();
+                                }
+                                return false;
+                            }
+                            if (contraseña.Length < 8)
+                            {
+                                if (MessageBox.Show("Saludos Administrador, su contraseña debe contener más de ocho caracteres, ¿olvidó su contraseña?", "Contraseña Corta", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                                {
+                                    frmPierdoContraseña Lost = new frmPierdoContraseña();
+                                    Login.Hide();
+                                    Lost.Show();
+                                }
+                                return false;
+                            }
+                        }                        
+                    }
+                }
+            }
+            return true;
+        }
+
+        public static void Login(string usuario, string contraseña, Form Login)
+        {
+            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conexion.Open();
+
+                using (SqlCommand cmd = new SqlCommand("PA_Login", conexion))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@usuario", usuario);
+                    cmd.Parameters.AddWithValue("@contrasena", contraseña);
+
+                    // Consulta para obtener el rol, nombre y apellido
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read()) // Verifica si hay usuario y contraseña para leer otros datos
+                        {
+                            string nombre = reader["nombre1"].ToString();
+                            string apellido = reader["apellido1"].ToString();
+                            string rolUsuario = reader["rol"].ToString();
+                            string codigoDocente = usuario.ToString();
+                            ACCIONES_BD.nombre = nombre;
+                            ACCIONES_BD.apellido = apellido;
+                            ACCIONES_BD.docente = codigoDocente;
+
+                            MessageBox.Show($"Bienvenido(a), {nombre} {apellido}. Su rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            if (rolUsuario == "administrador")
+                            {
+                                // Abrir la pantalla del administrador
+                                frmAdmin admin = new frmAdmin();
+                                admin.Show();
+                                Login.Hide();
+                            }
+                            else if (rolUsuario == "supervisor")
+                            {
+                                // Abrir las pantallas del supervisor
+                                frmSupervisor supervisor = new frmSupervisor();
+                                supervisor.Show();
+                                Login.Hide();
+                            }
+                            else if (rolUsuario == "decano")
+                            {
+                                // Abrir las pantallas del decano
+                                frmDecano decano = new frmDecano();
+                                decano.Show();
+                                Login.Hide();
+                            }
+                            else if (rolUsuario == "docente")
+                            {
+                                // Abrir las pantallas del docente
+                                frmDocente doc = new frmDocente();
+                                doc.Show();
+                                Login.Hide();
+                            }
+                        }
+                        else
+                        {
+                            if (!AdminContraseñaError(usuario, Login, conexion, reader))
+                                return;
+                            MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+        }
+
+        private static bool AdminContraseñaError(string usuario, Form Login, SqlConnection conexion, SqlDataReader read)
+        {
+                using (SqlCommand cmd = new SqlCommand("PA_Admin_Save", conexion))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Usuario", usuario);
+
+                    read.Close();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Usuario o contraseña incorrectos
+                            if (MessageBox.Show("Saludos Administrador, su contraseña es incorrecta, ¿olvidó su contraseña?", "Contraseña incorrecta", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                            {
+                                frmPierdoContraseña Lost = new frmPierdoContraseña();
+                                Login.Hide();
+                                Lost.Show();
+                            }
+                            return false;
+                        }
+                    }
+                }
+            return true;
         }
 
         public static void AdminContra(string contraseña)
@@ -44,7 +179,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 using (SqlCommand cmd = new SqlCommand(query, conexion))
                 {
                     cmd.Parameters.AddWithValue("@Contraseña", contraseña);
-                    cmd.ExecuteNonQuery(); //Esto permite la ejecución de insert o update
+                    cmd.ExecuteNonQuery(); 
                 }
             }
         }

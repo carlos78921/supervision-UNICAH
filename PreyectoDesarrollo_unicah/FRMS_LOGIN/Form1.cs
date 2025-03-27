@@ -1,3 +1,4 @@
+using DocumentFormat.OpenXml.Bibliography;
 using PreyectoDesarrollo_unicah.CLASES;
 using PreyectoDesarrollo_unicah.FRMS_ADMIN;
 using PreyectoDesarrollo_unicah.FRMS_SUPERV;
@@ -11,7 +12,7 @@ namespace PreyectoDesarrollo_unicah
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        public Form1() 
         {
             InitializeComponent();
         }
@@ -72,9 +73,8 @@ namespace PreyectoDesarrollo_unicah
             string contraseña = txtcontraseña.Text;
 
             if (!Validaciones.DatoVacio(usuario, contraseña, txtusuario))
-            {
+                // La validación falló, se detiene el proceso de login
                 return;
-            }
 
 
             if (!Validaciones.SoloNumero(usuario))
@@ -84,138 +84,26 @@ namespace PreyectoDesarrollo_unicah
                 return;
             }
 
-            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-            {
-                conexion.Open();
-                using (SqlCommand cmd = new SqlCommand("PA_Admin_Save", conexion))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Usuario", usuario);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read() && contraseña == "Contraseña:") 
-                        {
-                            if (MessageBox.Show("Saludos Administrador, no podemos otorgar el acceso con su contraseña vacía, ¿olvidó su contraseña?", "Contraseña vacía", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
-                            {
-                                frmPierdoContraseña Lost = new frmPierdoContraseña();
-                                this.Hide();
-                                Lost.Show();
-                            }
-                            return;
-                        }
-                    }
-                }
-            }
-
-            if (!Validaciones.CasoContraseña(contraseña, txtcontraseña))
-            {
-                // La validación falló, se detiene el proceso de login
+            if (!ACCIONES_BD.AdminContraVacio(usuario, contraseña, this))
                 return;
-            }
+            
+            if (!Validaciones.CasoContraseña(contraseña, txtcontraseña))
+                return;
 
-            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-            {
-                conexion.Open();
-
-                using (SqlCommand cmd = new SqlCommand("PA_Login", conexion))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@usuario", usuario);
-                    cmd.Parameters.AddWithValue("@contrasena", contraseña);
-
-                    // Consulta para obtener el rol, nombre y apellido
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read()) // Verifica si hay usuario y contraseña para leer otros datos
-                        {
-                            string nombre = reader["nombre1"].ToString();
-                            string apellido = reader["apellido1"].ToString();
-                            string rolUsuario = reader["rol"].ToString();
-                            string codigoDocente = usuario.ToString();
-                            ACCIONES_BD.nombre = nombre;
-                            ACCIONES_BD.apellido = apellido;
-                            ACCIONES_BD.docente = codigoDocente;
-
-                            MessageBox.Show($"Bienvenido(a), {nombre} {apellido}. Su rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            if (rolUsuario == "administrador")
-                            {
-                                // Abrir la pantalla del administrador
-                                frmAdmin admin = new frmAdmin();
-                                admin.Show();
-                                this.Hide();
-                            }
-                            else if (rolUsuario == "supervisor")
-                            {
-                                // Abrir las pantallas del supervisor
-                                frmSupervisor supervisor = new frmSupervisor();
-                                supervisor.Show();
-                                this.Hide();
-                            }
-                            else if (rolUsuario == "decano")
-                            {
-                                // Abrir las pantallas del decano
-                                frmDecano decano = new frmDecano();
-                                decano.Show();
-                                this.Hide();
-                            }
-                            else if (rolUsuario == "docente")
-                            {
-                                // Abrir las pantallas del docente
-                                frmDocente doc = new frmDocente();
-                                doc.Show();
-                                this.Hide();
-                            }
-                        }
-                        else
-                        {
-                            /*Uso la conexión de abajo por el mismo caso de la contraseña vacía, pero aquí es el caso 
-                              de contraseña incorrecta*/
-
-                            /*Cambio variables porque por ejemplo en cmd al colocarlo, "else" que es un 
-                            proceso del using no permite repetir la misma variable, se hace ambiguo*/
-                            using (SqlCommand CMD = new SqlCommand("PA_Admin_Save", conexion)) 
-                            {
-                                CMD.CommandType = CommandType.StoredProcedure;
-                                CMD.Parameters.AddWithValue("@Usuario", usuario);
-                                
-                                /*Debe cerrar un reader para poder abrir otro, aunque el primer reader esté
-                                cerrado, al usar de nuevo el control se abre*/
-                                reader.Close(); 
-                                using (SqlDataReader reading = CMD.ExecuteReader())
-                                {
-                                    if (reading.Read())
-                                    {
-                                        // Usuario o contraseña incorrectos
-                                        if (MessageBox.Show("Saludos Administrador, su contraseña es incorrecta, ¿olvidó su contraseña?", "Contraseña incorrecta", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
-                                        {
-                                            frmPierdoContraseña Lost = new frmPierdoContraseña();
-                                            this.Hide();
-                                            Lost.Show();
-                                        }
-                                        return;
-                                    }
-                                }
-                            }
-                            MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-            }
+            ACCIONES_BD.Login(usuario, contraseña, this);
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
-            //este es para poder mover el form
             ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0); //El evento en memoria se mantiene
+            SendMessage(this.Handle, 0x112, 0xf012, 0); 
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             //este es para poder mover el form
             ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0); //El evento en memoria se mantiene
+            SendMessage(this.Handle, 0x112, 0xf012, 0); 
         }
 
 
@@ -225,17 +113,24 @@ namespace PreyectoDesarrollo_unicah
             doc.Show();
         }
 
-        private void txtusuario_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtusuario_KeyPress(object sender, KeyPressEventArgs e) //Cuando aprieta tecla en texto vacío, en el caso sería "Enter"
         {
-            Validaciones validar = new Validaciones();
-
-            validar.ValidarUsuario(e, txtusuario);
+            string usuario = txtusuario.Text;
+            string contraseña = txtcontraseña.Text;
+            if (!Validaciones.ValidarUsuario(e, usuario, contraseña))
+                return;
+            if (e.KeyChar == (char)Keys.Enter)
+                ACCIONES_BD.Login(usuario, contraseña, this);
         }
 
         private void txtcontraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validaciones validar = new Validaciones();
-            validar.ValidarContraseña(e, txtcontraseña);
+            string usuario = txtusuario.Text;
+            string contraseña = txtcontraseña.Text;
+            if (!Validaciones.ValidarContraseña(e, usuario, contraseña))
+                return;
+            if (e.KeyChar == (char)Keys.Enter)
+                ACCIONES_BD.Login(usuario, contraseña, this);
         }
     }
 }

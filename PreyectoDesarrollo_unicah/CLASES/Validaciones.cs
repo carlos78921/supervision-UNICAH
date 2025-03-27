@@ -14,7 +14,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             if ((usuario == "Usuario:" || string.IsNullOrWhiteSpace(usuario)) && //Usuario y contraseña vacía
                 (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña))) 
             {
-                MessageBox.Show("Datos no escritos por usted, ingrese sus datos", "Error Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Datos no ingresados, ingrese sus datos", "Error Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -39,7 +39,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             if (contraseña == "Contraseña:")
             {
                 txtContraseña.Clear();
-                MessageBox.Show("Contraseña no puede quedar vacía, en caso de no obtener, consultar al administrador.", "Error Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Contraseña no puede quedar vacía, en caso de no obtener, consultar al administrador.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtContraseña.Text = contraseña;
                 return false;
             }
@@ -53,36 +53,41 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return true;
         }
 
-        public void ValidarCuenta(KeyPressEventArgs e, string textBox)
+        public static bool ValidarUsuario(KeyPressEventArgs e, string usuario, string contraseña)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                if (string.Equals(textBox, "Usuario:"))
-                    MessageBox.Show("Usuario no puede quedar vacío.", "Error Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (string.Equals(textBox, "Contraseña:"))
-                    MessageBox.Show("Contraseña no puede quedar vacía, en caso de no obtener, consultar al administrador.", "Error Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (usuario == "") 
+                {
+                    MessageBox.Show("Usuario no puede quedar vacío.", "Usuario Vacío", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                if (contraseña == "Contraseña:" || contraseña == "Contraseña nueva:")
+                {
+                    MessageBox.Show("No ingresó su contraseña, ingrese su contraseña", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
+            return true;
         }
-
-        public void ValidarUsuario(KeyPressEventArgs e, TextBox textBox)
+        public static bool ValidarContraseña(KeyPressEventArgs e, string usuario, string contraseña)
         {
-            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            if (e.KeyChar == (char)Keys.Enter)
             {
-                e.Handled = true; // Bloquea caracteres no permitidos
-            }
-            else
-            {
-                e.Handled = false;
-            }
+                if (contraseña == "")
+                {
+                    MessageBox.Show("Contraseña vacía, ingrese su contraseña", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
 
-            // Verifica si el campo está en blanco después de la entrada
-            if (string.IsNullOrEmpty(textBox.Text) && e.KeyChar == (char)Keys.Enter)
-            {
-                MessageBox.Show("Usuario no puede quedar vacío.", "Error Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                if (usuario == "Usuario:")
+                {
+                    MessageBox.Show("Usuario no detectado, ingrese usuario correcto", "No Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
-
-            ValidarCuenta(e, Convert.ToString(textBox));
+            return true;
         }
 
         public void ValidarContraseña(KeyPressEventArgs e, TextBox textBox)
@@ -99,7 +104,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 return;
             }
 
-            ValidarCuenta(e, Convert.ToString(textBox));
         }
 
         public void ValidarFiltro(KeyPressEventArgs e, TextBox textBox)
