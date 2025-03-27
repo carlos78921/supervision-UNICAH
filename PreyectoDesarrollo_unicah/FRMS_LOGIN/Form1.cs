@@ -106,13 +106,6 @@ namespace PreyectoDesarrollo_unicah
             SendMessage(this.Handle, 0x112, 0xf012, 0); 
         }
 
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            frmDocente doc = new frmDocente();
-            doc.Show();
-        }
-
         private void txtusuario_KeyPress(object sender, KeyPressEventArgs e) //Cuando aprieta tecla en texto vacío, en el caso sería "Enter"
         {
             string usuario = txtusuario.Text;
