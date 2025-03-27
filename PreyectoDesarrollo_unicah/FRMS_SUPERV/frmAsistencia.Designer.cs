@@ -53,7 +53,6 @@
             label6 = new Label();
             txtDoc = new TextBox();
             btnLogout = new Button();
-            lblMeses = new Label();
             mesSupervisor = new MonthCalendar();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -277,7 +276,7 @@
             txtDoc.Name = "txtDoc";
             txtDoc.Size = new Size(118, 23);
             txtDoc.TabIndex = 35;
-            txtDoc.KeyPress += txtDoc_KeyPress;
+            txtDoc.KeyUp += txtDoc_KeyUp;
             // 
             // btnLogout
             // 
@@ -288,16 +287,6 @@
             btnLogout.Text = "REGRESAR";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
-            // 
-            // lblMeses
-            // 
-            lblMeses.AutoSize = true;
-            lblMeses.Location = new Point(6, 92);
-            lblMeses.Name = "lblMeses";
-            lblMeses.Size = new Size(48, 15);
-            lblMeses.TabIndex = 41;
-            lblMeses.Text = "Periodo";
-            lblMeses.Visible = false;
             // 
             // mesSupervisor
             // 
@@ -312,7 +301,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1018, 475);
             Controls.Add(mesSupervisor);
-            Controls.Add(lblMeses);
             Controls.Add(btnLogout);
             Controls.Add(txtDoc);
             Controls.Add(label6);
@@ -364,7 +352,6 @@
         private GroupBox gbFiltro;
         private TextBox txtDoc;
         private Button btnLogout;
-        private Label lblMeses;
         private Button btnSalir;
         private MonthCalendar mesSupervisor;
         private DataGridViewTextBoxColumn clmDoc;

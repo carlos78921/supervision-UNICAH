@@ -55,6 +55,11 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public static bool ValidarUsuario(KeyPressEventArgs e, string usuario, string contraseña)
         {
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                e.Handled = true; // Bloquea caracteres no permitidos
+            else
+                e.Handled = false;
+
             if (e.KeyChar == (char)Keys.Enter)
             {
                 if (usuario == "") 
@@ -73,6 +78,11 @@ namespace PreyectoDesarrollo_unicah.CLASES
         }
         public static bool ValidarContraseña(KeyPressEventArgs e, string usuario, string contraseña)
         {
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                e.Handled = true; // Bloquea caracteres no permitidos
+            else
+                e.Handled = false;
+
             if (e.KeyChar == (char)Keys.Enter)
             {
                 if (contraseña == "")
@@ -88,22 +98,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 }
             }
             return true;
-        }
-
-        public void ValidarContraseña(KeyPressEventArgs e, TextBox textBox)
-        {
-            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
-                e.Handled = true; // Bloquea caracteres no permitidos
-            else
-                e.Handled = false;
-
-            // Verifica si el campo está en blanco después de la entrada
-            if (string.IsNullOrWhiteSpace(textBox.Text) && e.KeyChar == (char)Keys.Enter)
-            {
-                MessageBox.Show("Contraseña no puede quedar vacía, en caso de no obtener, consultar al administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
         }
 
         public void ValidarFiltro(KeyPressEventArgs e, TextBox textBox)

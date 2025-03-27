@@ -78,19 +78,19 @@ namespace PreyectoDesarrollo_unicah
             Menu.Show();
         }
 
-        private void frmSupervisor_MouseDown(object sender, MouseEventArgs e) 
+        private void frmSupervisor_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 ReleaseCapture();
-                SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0); 
+                SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
         }
 
         private void mesSupervisor_DateSelected(object sender, DateRangeEventArgs e)
         {
             DateTime fechaSeleccionada = e.Start.Date;
-            
+
             // Verificar si la fecha seleccionada es domingo
             if (mesSupervisor.SelectionStart.DayOfWeek == DayOfWeek.Sunday)
             {
@@ -141,11 +141,17 @@ namespace PreyectoDesarrollo_unicah
             validar.ValidarFiltro(e, txtClase);
         }
 
-        private void txtDoc_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Validaciones validar = new Validaciones();
+        private void txtDoc_KeyUp(object sender, KeyEventArgs e)
+        { 
+            string docente = txtDoc.Text.ToLower();
+            for (int i = 0; i < dgvAsiste.Rows.Count; i++)
+            {
+                dgvAsiste.Rows[i].Visible = false;
 
-            validar.ValidarFiltro(e, txtDoc);
+                if (dgvAsiste.Rows[i].Cells[0].Value != null &&
+                    dgvAsiste.Rows[i].Cells[0].Value.ToString().ToLower().Contains(docente))
+                    dgvAsiste.Rows[i].Visible = true;                    
+            }
         }
     }
 }
