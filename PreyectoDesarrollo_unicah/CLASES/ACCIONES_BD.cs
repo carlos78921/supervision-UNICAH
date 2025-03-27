@@ -298,7 +298,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public DataTable codigo_doc()
+        public DataTable codigo_doc_tabla() //Con esto muestra las filas por código del docente
         {
             DataTable dt = new DataTable();
             try
@@ -316,7 +316,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         }*/
 
                         // Se asigna el parámetro con el código del docente.
-                        cmd.Parameters.AddWithValue("@cod_docente", docente);
+                        cmd.Parameters.AddWithValue("@CodigoDocente", docente);
 
                         SqlDataAdapter da = new SqlDataAdapter(cmd); //Adaptador de comando por conexión
                         da.Fill(dt); //Llenar los datos del PA
@@ -342,7 +342,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public void tabla_docente(DataGridView dgv)
         {
-            DataTable dt = codigo_doc(); // Se llena los valores del PA según el código en DataTable
+            DataTable dt = codigo_doc_tabla(); // Se llena los valores del PA según el código en DataTable
 
             /* Depuración: Mostrar columnas leídas del dgv 
             foreach (DataColumn col in dt.Columns)
@@ -365,14 +365,10 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.AutoGenerateColumns = true;
                 dgv.Refresh(); // Forzar actualización de la UI
 
-                dgv.Columns[0].Width = 125;
+                dgv.Columns[0].Width = 150;
                 dgv.Columns[1].Width = 58;
-                dgv.Columns[2].Width = 20;
-                dgv.Columns[3].Width = 22;
-                dgv.Columns[4].Width = 22;
-                dgv.Columns[5].Width = 20;
-                dgv.Columns[6].Width = 20;
-                dgv.Columns[7].Width = 20;
+                dgv.Columns[2].Visible = false;
+                dgv.Columns[3].Visible = false;
             }
             else
             {
@@ -380,6 +376,35 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
+        public DataTable CargarAsistenciaDoc(MonthCalendar docFechas, string clase, string seccion, string aula, string edificio)
+        {
+            DataTable dtFechas = new DataTable();
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("PA_Fecha_Doc", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@CodDocente", docente);
+                cmd.Parameters.AddWithValue("@Asigna", clase);
+                cmd.Parameters.AddWithValue("@Seccion", seccion);
+                cmd.Parameters.AddWithValue("@Aula", aula);
+                cmd.Parameters.AddWithValue("@Edificio", edificio);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dtFechas);
+            }
+
+
+            foreach (DataRow row in dtFechas.Rows) //De la tabla del SQL para obtener campo fecha
+            {
+                docFechas.AddBoldedDate(Convert.ToDateTime(row["Fecha"]));
+            }
+
+            docFechas.UpdateBoldedDates();
+
+            return dtFechas;
+        }
 
         /*        public static void presenteSup(string docente, string asignatura, string seccion, string dia)
                 {

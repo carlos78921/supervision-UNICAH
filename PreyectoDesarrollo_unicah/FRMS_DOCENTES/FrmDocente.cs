@@ -37,18 +37,26 @@ namespace PreyectoDesarrollo_unicah
 
         private void frmDocente_Load(object sender, EventArgs e) //Método del formulario
         {
+            //Ajuste de forulario
+            lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
+
+            //Ajustes de BDD
             string doc = ACCIONES_BD.docente;
             if (string.IsNullOrEmpty(doc))
             {
                 MessageBox.Show("Error: Código del docente no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Hasta aquí concluye si sucede
             }
-            lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
-            ACCIONES_BD objDoc = new ACCIONES_BD(doc);
+
+            ACCIONES_BD objDoc = new ACCIONES_BD(doc); //Instancia para involucrar el atributo del docente
             dgvDoc.AutoGenerateColumns = true;
-            //MessageBox.Show($"Código del docente: {ACCIONES_BD.docente}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
             objDoc.tabla_docente(dgvDoc);
-            //MessageBox.Show($"Columnas en dgvDoc: {dgvDoc.Columns.Count}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            objDoc.CargarAsistenciaDoc(
+                mesDoc,
+                (string)dgvDoc.CurrentRow.Cells[0].Value,
+                (string)dgvDoc.CurrentRow.Cells[1].Value,
+                (string)dgvDoc.CurrentRow.Cells[2].Value,
+                (string)dgvDoc.CurrentRow.Cells[3].Value);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -90,6 +98,25 @@ namespace PreyectoDesarrollo_unicah
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void dgvDoc_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvDoc.CurrentRow != null)
+            {
+                // Extraer los valores de la fila seleccionada.
+                string Clase = dgvDoc.CurrentRow.Cells[0].Value.ToString();
+                string seccion = dgvDoc.CurrentRow.Cells[1].Value.ToString();
+                string aula = dgvDoc.CurrentRow.Cells[2].Value.ToString();
+                string edificio = dgvDoc.CurrentRow.Cells[3].Value.ToString();
+
+                // Limpiar las fechas resaltadas previas en el MonthCalendar.
+                mesDoc.RemoveAllBoldedDates();
+
+                // Llama al método para cargar las fechas marcadas para ese registro.
+                ACCIONES_BD objDoc = new ACCIONES_BD();
+                objDoc.CargarAsistenciaDoc(mesDoc, Clase, seccion, aula, edificio);
+            }
         }
     }
 }
