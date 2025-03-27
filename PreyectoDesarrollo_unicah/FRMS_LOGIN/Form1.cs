@@ -74,7 +74,7 @@ namespace PreyectoDesarrollo_unicah
             if ((usuario == "Usuario:" || string.IsNullOrWhiteSpace(usuario)) &&
                 (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña)))
             {
-                MessageBox.Show("Datos no escritos, ingrese sus datos", "Error Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Datos no escritos por usted, ingrese sus datos", "Error Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
