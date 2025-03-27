@@ -71,23 +71,19 @@ namespace PreyectoDesarrollo_unicah
             string usuario = txtusuario.Text;
             string contraseña = txtcontraseña.Text;
 
-            if ((usuario == "Usuario:" || string.IsNullOrWhiteSpace(usuario)) &&
-                (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña)))
+            if (!Validaciones.DatoVacio(usuario, contraseña, txtusuario))
             {
-                MessageBox.Show("Datos no escritos por usted, ingrese sus datos", "Error Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (usuario == "Usuario:")
+
+            if (!Validaciones.SoloNumero(usuario))
             {
-                txtusuario.Clear();
-                MessageBox.Show("Usuario no puede quedar vacío.", "Error Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtusuario.Text = usuario;
+                MessageBox.Show("El usuario corresponde a números", "Error Letras", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtusuario.Focus();
                 return;
             }
 
-            /*La conexión se usa aquí para realizar operación de formulario y poder detener otras operaciones
-              con "return" */
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conexion.Open();
@@ -97,7 +93,7 @@ namespace PreyectoDesarrollo_unicah
                     cmd.Parameters.AddWithValue("@Usuario", usuario);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read() && contraseña == "Contraseña:") // Verifica si hay usuario y contraseña para leer otros datos
+                        if (reader.Read() && contraseña == "Contraseña:") 
                         {
                             if (MessageBox.Show("Saludos Administrador, no podemos otorgar el acceso con su contraseña vacía, ¿olvidó su contraseña?", "Contraseña vacía", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                             {
@@ -111,17 +107,9 @@ namespace PreyectoDesarrollo_unicah
                 }
             }
 
-            if (contraseña == "Contraseña:")
+            if (!Validaciones.CasoContraseña(contraseña, txtcontraseña))
             {
-                txtcontraseña.Clear();
-                MessageBox.Show("Contraseña no puede quedar vacía, en caso de no obtener, consultar al administrador.", "Error Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtcontraseña.Text = contraseña;
-                return;
-            }
-
-            if (contraseña != "Contraseña:" && contraseña.Length < 8)
-            {
-                MessageBox.Show("Comuníquese con el Administrador, y espere a que le asigne contraseña", "Error del Admin.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // La validación falló, se detiene el proceso de login
                 return;
             }
 
