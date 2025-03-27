@@ -54,7 +54,6 @@ namespace PreyectoDesarrollo_unicah
         {
             int año = DateTime.Now.Year;
 
-            // Definir el rango (20 enero - 18 abril del año actual), académicamente
             mesSupervisor.MinDate = new DateTime(año, 1, 20);
             mesSupervisor.MaxDate = new DateTime(año, 4, 18);
         }
@@ -65,11 +64,9 @@ namespace PreyectoDesarrollo_unicah
 
             dgvAsiste = (dgvAsiste as DataGridView);
 
-            //Ajustes del formulario
             LimiteMes();
             FiltroInicial();
 
-            //Ajustes del bdd
             ACCIONES_BD.tablaSupervisor(dgvAsiste);
             ACCIONES_BD.CargarAsistenciaSuperv(mesSupervisor, (string)dgvAsiste.CurrentRow.Cells[0].Value, (string)dgvAsiste.CurrentRow.Cells[1].Value, (string)dgvAsiste.CurrentRow.Cells[2].Value, (string)dgvAsiste.CurrentRow.Cells[3].Value, (string)dgvAsiste.CurrentRow.Cells[4].Value);
         }
@@ -81,18 +78,27 @@ namespace PreyectoDesarrollo_unicah
             Menu.Show();
         }
 
-        private void frmSupervisor_MouseDown(object sender, MouseEventArgs e) //Evento del ratón "e"
+        private void frmSupervisor_MouseDown(object sender, MouseEventArgs e) 
         {
             if (e.Button == MouseButtons.Left)
             {
                 ReleaseCapture();
-                SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0); //El evento en memoria se mantiene
+                SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0); 
             }
         }
 
         private void mesSupervisor_DateSelected(object sender, DateRangeEventArgs e)
         {
             DateTime fechaSeleccionada = e.Start.Date;
+            
+            // Verificar si la fecha seleccionada es domingo
+            if (mesSupervisor.SelectionStart.DayOfWeek == DayOfWeek.Sunday)
+            {
+                MessageBox.Show("Los domingos no están disponibles para selección.",
+                              "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return;
+            }
 
             if (MessageBox.Show("¿Marcar asistencia para esta fecha?", "Confirmar",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
