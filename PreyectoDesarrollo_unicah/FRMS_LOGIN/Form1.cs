@@ -5,7 +5,7 @@ using PreyectoDesarrollo_unicah.FRMS_SUPERV;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Runtime.InteropServices; //Relacionado con Dll (Librería)
+using System.Runtime.InteropServices; 
 
 
 namespace PreyectoDesarrollo_unicah
