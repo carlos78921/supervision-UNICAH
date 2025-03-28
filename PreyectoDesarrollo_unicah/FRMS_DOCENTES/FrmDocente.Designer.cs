@@ -152,7 +152,7 @@ namespace PreyectoDesarrollo_unicah
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(127, 92);
+            label1.Location = new Point(221, 90);
             label1.Name = "label1";
             label1.Size = new Size(132, 15);
             label1.TabIndex = 15;
@@ -163,6 +163,7 @@ namespace PreyectoDesarrollo_unicah
             mesDoc.Location = new Point(284, 139);
             mesDoc.Name = "mesDoc";
             mesDoc.TabIndex = 22;
+            mesDoc.DateSelected += mesDoc_DateSelected;
             // 
             // lblWeek
             // 
