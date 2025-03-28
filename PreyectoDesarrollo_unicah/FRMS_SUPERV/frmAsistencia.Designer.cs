@@ -222,7 +222,7 @@
             // 
             cmbHora.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbHora.FormattingEnabled = true;
-            cmbHora.Items.AddRange(new object[] { "Sección", "0705", "0706A", "0902A", "1102", "1302", "1302BA", "1401", "1501", "1501A", "1701" });
+            cmbHora.Items.AddRange(new object[] { "", "0705", "0706A", "0902A", "1102", "1302", "1302BA", "1401", "1501", "1501A", "1701" });
             cmbHora.Location = new Point(461, 21);
             cmbHora.Name = "cmbHora";
             cmbHora.Size = new Size(85, 23);
@@ -233,7 +233,7 @@
             // 
             cmbAula.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbAula.FormattingEnabled = true;
-            cmbAula.Items.AddRange(new object[] { "Aula:", "101", "102", "106", "107", "202" });
+            cmbAula.Items.AddRange(new object[] { "", "101", "102", "106", "107", "202" });
             cmbAula.Location = new Point(268, 22);
             cmbAula.Name = "cmbAula";
             cmbAula.Size = new Size(85, 23);
@@ -244,7 +244,7 @@
             // 
             cmbEdificio.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdificio.FormattingEnabled = true;
-            cmbEdificio.Items.AddRange(new object[] { "Edificio:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M" });
+            cmbEdificio.Items.AddRange(new object[] { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M" });
             cmbEdificio.Location = new Point(70, 22);
             cmbEdificio.Name = "cmbEdificio";
             cmbEdificio.Size = new Size(85, 23);
