@@ -39,6 +39,8 @@ namespace PreyectoDesarrollo_unicah
             clmSeccion = new DataGridViewTextBoxColumn();
             label1 = new Label();
             mesDoc = new MonthCalendar();
+            lblWeek = new Label();
+            lblParcial = new Label();
             btnLogout = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -162,11 +164,31 @@ namespace PreyectoDesarrollo_unicah
             mesDoc.Name = "mesDoc";
             mesDoc.TabIndex = 22;
             // 
+            // lblWeek
+            // 
+            lblWeek.AutoSize = true;
+            lblWeek.Location = new Point(455, 120);
+            lblWeek.Name = "lblWeek";
+            lblWeek.Size = new Size(49, 15);
+            lblWeek.TabIndex = 24;
+            lblWeek.Text = "Semana";
+            // 
+            // lblParcial
+            // 
+            lblParcial.AutoSize = true;
+            lblParcial.Location = new Point(311, 120);
+            lblParcial.Name = "lblParcial";
+            lblParcial.Size = new Size(42, 15);
+            lblParcial.TabIndex = 23;
+            lblParcial.Text = "Parcial";
+            // 
             // frmDocente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(569, 346);
+            Controls.Add(lblWeek);
+            Controls.Add(lblParcial);
             Controls.Add(mesDoc);
             Controls.Add(btnLogout);
             Controls.Add(dgvDoc);
@@ -199,5 +221,7 @@ namespace PreyectoDesarrollo_unicah
         private DataGridViewTextBoxColumn clmClase;
         private DataGridViewTextBoxColumn clmSeccion;
         private MonthCalendar mesDoc;
+        private Label lblWeek;
+        private Label lblParcial;
     }
 }
