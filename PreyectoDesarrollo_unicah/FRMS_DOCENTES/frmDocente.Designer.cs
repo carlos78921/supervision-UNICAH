@@ -38,7 +38,6 @@ namespace PreyectoDesarrollo_unicah
             clmClase = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
             label1 = new Label();
-            lblMeses = new Label();
             mesDoc = new MonthCalendar();
             btnLogout = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -157,16 +156,6 @@ namespace PreyectoDesarrollo_unicah
             label1.TabIndex = 15;
             label1.Text = "ASISTENCIA PERSONAL";
             // 
-            // lblMeses
-            // 
-            lblMeses.AutoSize = true;
-            lblMeses.Location = new Point(503, 92);
-            lblMeses.Name = "lblMeses";
-            lblMeses.Size = new Size(48, 15);
-            lblMeses.TabIndex = 21;
-            lblMeses.Text = "Periodo";
-            lblMeses.Visible = false;
-            // 
             // mesDoc
             // 
             mesDoc.Location = new Point(284, 139);
@@ -179,7 +168,6 @@ namespace PreyectoDesarrollo_unicah
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(569, 346);
             Controls.Add(mesDoc);
-            Controls.Add(lblMeses);
             Controls.Add(btnLogout);
             Controls.Add(dgvDoc);
             Controls.Add(label1);
@@ -207,7 +195,6 @@ namespace PreyectoDesarrollo_unicah
         private DataGridView dgvDoc;
         private Label label1;
         private Label lblPersona;
-        private Label lblMeses;
         private PictureBox pictureBox3;
         private DataGridViewTextBoxColumn clmClase;
         private DataGridViewTextBoxColumn clmSeccion;

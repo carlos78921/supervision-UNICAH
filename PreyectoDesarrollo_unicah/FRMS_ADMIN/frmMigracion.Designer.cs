@@ -42,7 +42,7 @@ namespace PreyectoDesarrollo_unicah
             clmEmpleado = new DataGridViewTextBoxColumn();
             clmAulaFull = new DataGridViewTextBoxColumn();
             label1 = new Label();
-            lblPeriodo = new Label();
+            lblParcial = new Label();
             lblWeek = new Label();
             mesAdmin = new MonthCalendar();
             btnLogout = new Button();
@@ -187,14 +187,14 @@ namespace PreyectoDesarrollo_unicah
             label1.TabIndex = 12;
             label1.Text = "MIGRACIÓN DE DATOS";
             // 
-            // lblPeriodo
+            // lblParcial
             // 
-            lblPeriodo.AutoSize = true;
-            lblPeriodo.Location = new Point(791, 142);
-            lblPeriodo.Name = "lblPeriodo";
-            lblPeriodo.Size = new Size(42, 15);
-            lblPeriodo.TabIndex = 16;
-            lblPeriodo.Text = "Parcial";
+            lblParcial.AutoSize = true;
+            lblParcial.Location = new Point(791, 142);
+            lblParcial.Name = "lblParcial";
+            lblParcial.Size = new Size(42, 15);
+            lblParcial.TabIndex = 16;
+            lblParcial.Text = "Parcial";
             // 
             // lblWeek
             // 
@@ -218,7 +218,7 @@ namespace PreyectoDesarrollo_unicah
             ClientSize = new Size(1044, 405);
             Controls.Add(mesAdmin);
             Controls.Add(lblWeek);
-            Controls.Add(lblPeriodo);
+            Controls.Add(lblParcial);
             Controls.Add(btnExcel);
             Controls.Add(panel1);
             Controls.Add(btnLogout);
@@ -247,7 +247,7 @@ namespace PreyectoDesarrollo_unicah
         private DataGridView dgvAdmin;
         private Label label1;
         private Label lblPersona;
-        private Label lblPeriodo;
+        private Label lblParcial;
         private Label lblWeek;
         private MonthCalendar mesAdmin;
         private DataGridViewTextBoxColumn clmAsignaturaFacu;
