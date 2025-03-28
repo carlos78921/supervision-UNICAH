@@ -210,6 +210,7 @@ namespace PreyectoDesarrollo_unicah
             mesAdmin.Location = new Point(771, 166);
             mesAdmin.Name = "mesAdmin";
             mesAdmin.TabIndex = 19;
+            mesAdmin.DateSelected += mesAdmin_DateSelected;
             // 
             // frmMigracion
             // 

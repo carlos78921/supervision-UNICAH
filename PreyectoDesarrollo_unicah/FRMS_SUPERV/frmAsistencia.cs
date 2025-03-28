@@ -57,7 +57,7 @@ namespace PreyectoDesarrollo_unicah
             int año = DateTime.Now.Year;
 
             mesSupervisor.MinDate = new DateTime(año, 1, 20);
-            mesSupervisor.MaxDate = new DateTime(año, 4, 18);
+            mesSupervisor.MaxDate = new DateTime(año, 4, 12);
         }
 
         private void FrmAsiste_Load(object sender, EventArgs e)
@@ -93,12 +93,44 @@ namespace PreyectoDesarrollo_unicah
         {
             DateTime fechaSeleccionada = e.Start.Date;
 
+            // Definir la fecha de inicio del primer parcial
+            DateTime fechaInicio = new DateTime(DateTime.Now.Year, 1, 20); // 20 de enero
+
+            // Calcular la diferencia en días
+            int offsetDias = (fechaSeleccionada - fechaInicio).Days; // Puede ser negativo si está antes del 20/ene
+
+            // Cada semana son 7 días
+            // Tenemos 12 semanas en total (3 parciales * 4 semanas)
+            // Rango total: 0 <= offsetDias < 12 * 7 = 84
+
+            if (offsetDias < 0 || offsetDias >= 12 * 7)
+            {
+                // Fuera de rango (antes del 20/ene o después de 12 semanas)
+                lblParcial.Text = "Fuera de rango";
+                lblWeek.Text = "";
+                return;
+            }
+
+            // Calcular el índice de la semana (0 a 11)
+            int indiceSemana = offsetDias / 7; // entero
+
+            // Calcular el índice de parcial (0 a 2)
+            // 4 semanas por parcial => parcial = floor(indiceSemana / 4)
+            int indiceParcial = indiceSemana / 4; // 0 = parcial 1, 1 = parcial 2, 2 = parcial 3
+
+            // Convertir a 1-based
+            int parcial = indiceParcial + 1;     // 1..3
+            int semanaEnParcial = (indiceSemana % 4) + 1; // 1..4
+
+            // Mostrar en labels
+            lblParcial.Text = $"Parcial {parcial}";
+            lblWeek.Text = $"Semana {semanaEnParcial}";
+
             // Verificar si la fecha seleccionada es domingo
             if (mesSupervisor.SelectionStart.DayOfWeek == DayOfWeek.Sunday)
             {
                 MessageBox.Show("Los domingos no están disponibles para selección.",
                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
                 return;
             }
 
