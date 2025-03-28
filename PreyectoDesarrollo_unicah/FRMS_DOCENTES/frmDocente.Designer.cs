@@ -38,8 +38,6 @@ namespace PreyectoDesarrollo_unicah
             clmClase = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
             label1 = new Label();
-            label2 = new Label();
-            nudWeeks = new NumericUpDown();
             lblMeses = new Label();
             mesDoc = new MonthCalendar();
             btnLogout = new Button();
@@ -48,7 +46,6 @@ namespace PreyectoDesarrollo_unicah
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvDoc).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudWeeks).BeginInit();
             SuspendLayout();
             // 
             // btnLogout
@@ -160,22 +157,6 @@ namespace PreyectoDesarrollo_unicah
             label1.TabIndex = 15;
             label1.Text = "ASISTENCIA PERSONAL";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(130, 115);
-            label2.Name = "label2";
-            label2.Size = new Size(52, 15);
-            label2.TabIndex = 18;
-            label2.Text = "Semana:";
-            // 
-            // nudWeeks
-            // 
-            nudWeeks.Location = new Point(186, 110);
-            nudWeeks.Name = "nudWeeks";
-            nudWeeks.Size = new Size(49, 23);
-            nudWeeks.TabIndex = 19;
-            // 
             // lblMeses
             // 
             lblMeses.AutoSize = true;
@@ -199,8 +180,6 @@ namespace PreyectoDesarrollo_unicah
             ClientSize = new Size(569, 346);
             Controls.Add(mesDoc);
             Controls.Add(lblMeses);
-            Controls.Add(nudWeeks);
-            Controls.Add(label2);
             Controls.Add(btnLogout);
             Controls.Add(dgvDoc);
             Controls.Add(label1);
@@ -216,7 +195,6 @@ namespace PreyectoDesarrollo_unicah
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvDoc).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudWeeks).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -229,8 +207,6 @@ namespace PreyectoDesarrollo_unicah
         private DataGridView dgvDoc;
         private Label label1;
         private Label lblPersona;
-        private Label label2;
-        private NumericUpDown nudWeeks;
         private Label lblMeses;
         private PictureBox pictureBox3;
         private DataGridViewTextBoxColumn clmClase;

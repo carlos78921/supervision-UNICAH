@@ -456,6 +456,26 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return dt;
         }
 
+        public static void FiltrarDatosRepo(string Docente, string Edificio, DataGridView dgv)
+        {
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("PA_Buscar_Repo", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Docente", Docente);
+                    cmd.Parameters.AddWithValue("@Edificio", Edificio);
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dgv.DataSource = dt; // Cargamos los datos filtrados
+                }
+            }
+        }
+
         public static void Repongo(DataGridView dgv, int Ausencia, DateTimePicker dtp)
         {
             DateTime dia = dtp.Value; // DateTimePicker o cualquier otro control de fecha
