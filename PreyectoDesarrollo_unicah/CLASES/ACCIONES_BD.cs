@@ -401,6 +401,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
                     dgv.DataSource = dt; // Cargamos los datos filtrados
                 }
+                dgv.Columns[0].Visible = false;
             }
         }
 
@@ -456,7 +457,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return dt;
         }
 
-        public static void FiltrarDatosRepo(string Docente, string Edificio, DataGridView dgv)
+        public static void FiltrarDatosRepo(string Repo, string Edificio, DataGridView dgv)
         {
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
@@ -464,7 +465,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 using (SqlCommand cmd = new SqlCommand("PA_Buscar_Repo", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Docente", Docente);
+                    cmd.Parameters.AddWithValue("@Repo", Repo);
                     cmd.Parameters.AddWithValue("@Edificio", Edificio);
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -473,6 +474,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
                     dgv.DataSource = dt; // Cargamos los datos filtrados
                 }
+
+                dgv.Columns[0].Visible = false;
             }
         }
 

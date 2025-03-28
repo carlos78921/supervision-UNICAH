@@ -1,3 +1,4 @@
+using DocumentFormat.OpenXml.Wordprocessing;
 using PreyectoDesarrollo_unicah.CLASES;
 using System;
 using System.Collections.Generic;
@@ -72,12 +73,12 @@ namespace PreyectoDesarrollo_unicah
 
         private void txtBusco_KeyDown(object sender, KeyEventArgs e)
         {
-
+            ACCIONES_BD.FiltrarDatosRepo(txtBusco.Text, cmbEdificio.Text, dgvRepone);
         }
 
         private void cmbEdificio_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ACCIONES_BD.FiltrarDatosRepo(txtBusco.Text, cmbEdificio.Text, dgvRepone);
         }
     }
 }

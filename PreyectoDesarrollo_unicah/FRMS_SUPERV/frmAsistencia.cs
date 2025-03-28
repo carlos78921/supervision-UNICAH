@@ -121,21 +121,22 @@ namespace PreyectoDesarrollo_unicah
         {
             if (dgvAsiste.CurrentRow != null)
             {
-                // Extraer los valores de la fila seleccionada.
-object docenteValue = dgvAsiste.CurrentRow.Cells[0].Value;
-    string Docente = docenteValue != null ? docenteValue.ToString() : "";  // Asignar un valor vacío si es nulo
+                //Object almacena el dato de su tipo
+                object docenteValue = dgvAsiste.CurrentRow.Cells[0].Value; //Object porque un error indica el string considera como uso de objeto instancia al tomar la fila con ".valor.ToString()"
+                string Docente = docenteValue != null ? docenteValue.ToString() : "";  //Esto es verificación de una cadena que devuelve nulo por no asignarse o considerarse objeto
 
-    object claseValue = dgvAsiste.CurrentRow.Cells[1].Value;
-    string clase = claseValue != null ? claseValue.ToString() : "";
+                //"?" es if de Value != null, ":" es else
+                object claseValue = dgvAsiste.CurrentRow.Cells[1].Value;
+                string clase = claseValue != null ? claseValue.ToString() : "";
 
-    object seccionValue = dgvAsiste.CurrentRow.Cells[2].Value;
-    string seccion = seccionValue != null ? seccionValue.ToString() : "";
+                object seccionValue = dgvAsiste.CurrentRow.Cells[2].Value;
+                string seccion = seccionValue != null ? seccionValue.ToString() : "";
 
-    object aulaValue = dgvAsiste.CurrentRow.Cells[3].Value;
-    string aula = aulaValue != null ? aulaValue.ToString() : "";
+                object aulaValue = dgvAsiste.CurrentRow.Cells[3].Value;
+                string aula = aulaValue != null ? aulaValue.ToString() : "";
 
-    object edificioValue = dgvAsiste.CurrentRow.Cells[4].Value;
-    string edificio = edificioValue != null ? edificioValue.ToString() : "";
+                object edificioValue = dgvAsiste.CurrentRow.Cells[4].Value;
+                string edificio = edificioValue != null ? edificioValue.ToString() : "";
 
                 // Limpiar las fechas resaltadas previas en el MonthCalendar.
                 mesSupervisor.RemoveAllBoldedDates();

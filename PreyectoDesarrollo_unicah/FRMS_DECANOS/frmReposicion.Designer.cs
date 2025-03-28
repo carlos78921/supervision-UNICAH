@@ -207,7 +207,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             cmbEdificio.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdificio.FormattingEnabled = true;
-            cmbEdificio.Items.AddRange(new object[] { "Edificio:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M" });
+            cmbEdificio.Items.AddRange(new object[] { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M" });
             cmbEdificio.Location = new Point(533, 145);
             cmbEdificio.Name = "cmbEdificio";
             cmbEdificio.Size = new Size(78, 23);
