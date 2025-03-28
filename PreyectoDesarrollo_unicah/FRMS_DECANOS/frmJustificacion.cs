@@ -1,3 +1,4 @@
+using DocumentFormat.OpenXml.Wordprocessing;
 using PreyectoDesarrollo_unicah.CLASES;
 using System;
 using System.Collections.Generic;
@@ -65,51 +66,6 @@ namespace PreyectoDesarrollo_unicah
             SendMessage(this.Handle, 0x112, 0xf012, 0);  //El evento en memoria se mantiene
         }
 
-        private void lblPersona_Click(object sender, EventArgs e)
-        {
-            lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
-        }
-
-        private void txtBusco_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Validaciones validar = new Validaciones();
-
-            validar.ValidarFiltro(e, txtBusco);
-        }
-
-        private void btnBusco_Click(object sender, EventArgs e)
-        {
-            string docenteBuscado = txtBusco.Text.Trim().ToLower();
-
-            if (string.IsNullOrEmpty(docenteBuscado))
-            {
-                MessageBox.Show("Por favor, ingrese el nombre del docente a buscar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            bool encontrado = false;
-
-            foreach (DataGridViewRow row in dgvJustificacion.Rows)
-            {
-                if (row.Cells["Docente"].Value != null)
-                {
-                    string docente = row.Cells["Docente"].Value.ToString().ToLower();
-                    if (docente.Contains(docenteBuscado))
-                    {
-                        row.Selected = true; // Selecciona la fila encontrada
-                        dgvJustificacion.FirstDisplayedScrollingRowIndex = row.Index; // Desplaza la vista hasta la fila encontrada
-                        encontrado = true;
-                        break; // Termina la búsqueda en la primera coincidencia
-                    }
-                }
-            }
-
-            if (!encontrado)
-            {
-                MessageBox.Show("Docente no encontrado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtJustifica.Text.Trim()))
@@ -167,7 +123,7 @@ namespace PreyectoDesarrollo_unicah
             // "?" es un if para true y ":" es un else, donde esa resta al contener un valor que "suma caracteres" a dos, pues resta a dos para valor original, en renglón 2
             int conteoRenglon2 = txtJustifica.Text.Trim() == "" ? 0 : txtJustifica.Text.Length - Environment.NewLine.Length;
 
-            if (txtJustifica.Text.Length > Max+1)
+            if (txtJustifica.Text.Length > Max + 1)
             {
                 txtJustifica.Text = txtJustifica.Text.Substring(0, Max); // Limitar la cantidad de caracteres
                 txtJustifica.SelectionStart = txtJustifica.Text.Length; // Mantener el cursor al final
@@ -179,6 +135,16 @@ namespace PreyectoDesarrollo_unicah
         private void txtJustifica_TextChanged(object sender, EventArgs e)
         {
             Renglon2();
+        }
+
+        private void txtBusco_KeyDown(object sender, KeyEventArgs e)
+        {
+            ACCIONES_BD.FiltrarDatosJusto(txtBusco.Text, cmbEdificio.Text, dgvJustificacion);
+        }
+
+        private void cmbEdificio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ACCIONES_BD.FiltrarDatosJusto(txtBusco.Text, cmbEdificio.Text, dgvJustificacion);
         }
     }
 }

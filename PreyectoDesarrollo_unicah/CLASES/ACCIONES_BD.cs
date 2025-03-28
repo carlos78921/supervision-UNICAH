@@ -268,7 +268,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("PA_Buscar_Doc", conn))
+                using (SqlCommand cmd = new SqlCommand("PA_Buscar_Superv", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Docente", Docente);
@@ -382,6 +382,26 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
 
             return dt;
+        }
+
+        public static void FiltrarDatosJusto(string Docente, string Edificio, DataGridView dgv)
+        {
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("PA_Buscar_Justo", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Docente", Docente);
+                    cmd.Parameters.AddWithValue("@Edificio", Edificio);
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dgv.DataSource = dt; // Cargamos los datos filtrados
+                }
+            }
         }
 
         public static void Justifico (DataGridView dgv, int Ausencia, string Justificacion)

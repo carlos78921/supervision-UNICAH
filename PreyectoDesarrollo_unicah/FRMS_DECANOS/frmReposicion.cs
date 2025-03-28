@@ -63,22 +63,21 @@ namespace PreyectoDesarrollo_unicah
             SendMessage(this.Handle, 0x112, 0xf012, 0);  //El evento en memoria se mantiene
         }
 
-        private void txtBusco_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Validaciones validar = new Validaciones();
-
-            validar.ValidarFiltro(e, txtBusco);
-        }
-
-        private void cmbEdificio_KeyPress(object sender, KeyPressEventArgs e)
-        {
-        }
-
         private void btnDay_Click(object sender, EventArgs e) //SOLO ME FALTA INSERTAR FECHA DE REPOSICIÓN
         {
             //Ajustes en la BDD
             ACCIONES_BD.Repongo(dgvRepone, (int)dgvRepone.CurrentRow.Cells[0].Value, dtpReposicion);
             ACCIONES_BD.tablaRepone(dgvRepone);
+        }
+
+        private void txtBusco_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void cmbEdificio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

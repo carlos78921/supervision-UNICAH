@@ -138,7 +138,7 @@ namespace PreyectoDesarrollo_unicah
             label1.AutoSize = true;
             label1.Location = new Point(266, 97);
             label1.Name = "label1";
-            label1.Size = new Size(141, 15);
+            label1.Size = new Size(142, 15);
             label1.TabIndex = 18;
             label1.Text = "REPORTE DE REPOSICIÓN";
             // 
@@ -201,7 +201,7 @@ namespace PreyectoDesarrollo_unicah
             txtBusco.Name = "txtBusco";
             txtBusco.Size = new Size(223, 23);
             txtBusco.TabIndex = 26;
-            txtBusco.KeyPress += txtBusco_KeyPress;
+            txtBusco.KeyDown += txtBusco_KeyDown;
             // 
             // cmbEdificio
             // 
@@ -212,16 +212,16 @@ namespace PreyectoDesarrollo_unicah
             cmbEdificio.Name = "cmbEdificio";
             cmbEdificio.Size = new Size(78, 23);
             cmbEdificio.TabIndex = 27;
-            cmbEdificio.KeyPress += cmbEdificio_KeyPress;
+            cmbEdificio.SelectedIndexChanged += cmbEdificio_SelectedIndexChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(550, 122);
+            label3.Location = new Point(533, 122);
             label3.Name = "label3";
-            label3.Size = new Size(40, 15);
+            label3.Size = new Size(82, 15);
             label3.TabIndex = 28;
-            label3.Text = "Filtrar:";
+            label3.Text = "Filtrar Edificio:";
             // 
             // lblMeses
             // 

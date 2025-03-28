@@ -122,7 +122,6 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 10;
             lblPersona.Text = "Nombre_Persona";
-            lblPersona.Click += lblPersona_Click;
             // 
             // pictureBox3
             // 
@@ -244,6 +243,7 @@ namespace PreyectoDesarrollo_unicah
             cmbEdificio.Name = "cmbEdificio";
             cmbEdificio.Size = new Size(78, 23);
             cmbEdificio.TabIndex = 41;
+            cmbEdificio.SelectedIndexChanged += cmbEdificio_SelectedIndexChanged;
             // 
             // txtBusco
             // 
@@ -251,7 +251,7 @@ namespace PreyectoDesarrollo_unicah
             txtBusco.Name = "txtBusco";
             txtBusco.Size = new Size(190, 23);
             txtBusco.TabIndex = 40;
-            txtBusco.KeyPress += txtBusco_KeyPress;
+            txtBusco.KeyDown += txtBusco_KeyDown;
             // 
             // label4
             // 
