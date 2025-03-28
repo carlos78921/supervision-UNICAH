@@ -45,11 +45,13 @@
             label2 = new Label();
             label5 = new Label();
             txtClase = new TextBox();
-            btnBusca = new Button();
             cmbHora = new ComboBox();
             cmbAula = new ComboBox();
             cmbEdificio = new ComboBox();
             gbFiltro = new GroupBox();
+            label7 = new Label();
+            label4 = new Label();
+            label3 = new Label();
             label6 = new Label();
             txtDoc = new TextBox();
             btnLogout = new Button();
@@ -144,7 +146,7 @@
             dgvAsiste.Location = new Point(20, 224);
             dgvAsiste.Name = "dgvAsiste";
             dgvAsiste.ReadOnly = true;
-            dgvAsiste.Size = new Size(725, 216);
+            dgvAsiste.Size = new Size(725, 245);
             dgvAsiste.TabIndex = 17;
             dgvAsiste.SelectionChanged += dgvAsiste_SelectionChanged;
             // 
@@ -212,62 +214,89 @@
             // 
             txtClase.Location = new Point(519, 131);
             txtClase.Name = "txtClase";
-            txtClase.Size = new Size(168, 23);
+            txtClase.Size = new Size(226, 23);
             txtClase.TabIndex = 27;
-            txtClase.KeyPress += txtClase_KeyPress;
-            // 
-            // btnBusca
-            // 
-            btnBusca.Location = new Point(693, 119);
-            btnBusca.Name = "btnBusca";
-            btnBusca.Size = new Size(75, 39);
-            btnBusca.TabIndex = 28;
-            btnBusca.Text = "&Buscar Asignatura";
-            btnBusca.UseVisualStyleBackColor = true;
+            txtClase.KeyUp += txtClase_KeyUp;
             // 
             // cmbHora
             // 
+            cmbHora.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbHora.FormattingEnabled = true;
-            cmbHora.Items.AddRange(new object[] { "Sección:" });
-            cmbHora.Location = new Point(232, 22);
+            cmbHora.Items.AddRange(new object[] { "Sección:", "0705", "0706A", "0902A", "1102", "1302", "1302BA", "1401", "1501", "1501A", "1701" });
+            cmbHora.Location = new Point(461, 21);
             cmbHora.Name = "cmbHora";
             cmbHora.Size = new Size(85, 23);
             cmbHora.TabIndex = 30;
+            cmbHora.SelectedIndexChanged += cmbHora_SelectedIndexChanged;
             // 
             // cmbAula
             // 
+            cmbAula.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbAula.FormattingEnabled = true;
-            cmbAula.Items.AddRange(new object[] { "Aula:" });
-            cmbAula.Location = new Point(130, 22);
+            cmbAula.Items.AddRange(new object[] { "Aula:", "101", "102", "106", "107", "202" });
+            cmbAula.Location = new Point(268, 22);
             cmbAula.Name = "cmbAula";
             cmbAula.Size = new Size(85, 23);
             cmbAula.TabIndex = 31;
+            cmbAula.SelectedIndexChanged += cmbAula_SelectedIndexChanged;
             // 
             // cmbEdificio
             // 
+            cmbEdificio.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdificio.FormattingEnabled = true;
-            cmbEdificio.Items.AddRange(new object[] { "Edificio:" });
-            cmbEdificio.Location = new Point(27, 22);
+            cmbEdificio.Items.AddRange(new object[] { "Edificio:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M" });
+            cmbEdificio.Location = new Point(70, 22);
             cmbEdificio.Name = "cmbEdificio";
             cmbEdificio.Size = new Size(85, 23);
             cmbEdificio.TabIndex = 32;
+            cmbEdificio.SelectedIndexChanged += cmbEdificio_SelectedIndexChanged;
             // 
             // gbFiltro
             // 
+            gbFiltro.Controls.Add(label7);
+            gbFiltro.Controls.Add(label4);
+            gbFiltro.Controls.Add(label3);
             gbFiltro.Controls.Add(cmbEdificio);
             gbFiltro.Controls.Add(cmbHora);
             gbFiltro.Controls.Add(cmbAula);
-            gbFiltro.Location = new Point(444, 161);
+            gbFiltro.Location = new Point(74, 164);
             gbFiltro.Name = "gbFiltro";
-            gbFiltro.Size = new Size(324, 55);
+            gbFiltro.Size = new Size(589, 55);
             gbFiltro.TabIndex = 33;
             gbFiltro.TabStop = false;
             gbFiltro.Text = "Filtros";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(405, 25);
+            label7.Name = "label7";
+            label7.Size = new Size(51, 15);
+            label7.TabIndex = 45;
+            label7.Text = "Sección:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(228, 25);
+            label4.Name = "label4";
+            label4.Size = new Size(34, 15);
+            label4.TabIndex = 44;
+            label4.Text = "Aula:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(15, 25);
+            label3.Name = "label3";
+            label3.Size = new Size(49, 15);
+            label3.TabIndex = 43;
+            label3.Text = "Edificio:";
+            // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(303, 139);
+            label6.Location = new Point(20, 121);
             label6.Name = "label6";
             label6.Size = new Size(120, 30);
             label6.TabIndex = 34;
@@ -275,9 +304,9 @@
             // 
             // txtDoc
             // 
-            txtDoc.Location = new Point(303, 173);
+            txtDoc.Location = new Point(156, 131);
             txtDoc.Name = "txtDoc";
-            txtDoc.Size = new Size(118, 23);
+            txtDoc.Size = new Size(254, 23);
             txtDoc.TabIndex = 35;
             txtDoc.KeyUp += txtDoc_KeyUp;
             // 
@@ -308,7 +337,6 @@
             Controls.Add(txtDoc);
             Controls.Add(label6);
             Controls.Add(gbFiltro);
-            Controls.Add(btnBusca);
             Controls.Add(txtClase);
             Controls.Add(label5);
             Controls.Add(nudWeeks);
@@ -330,6 +358,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvAsiste).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudWeeks).EndInit();
             gbFiltro.ResumeLayout(false);
+            gbFiltro.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -347,7 +376,6 @@
         private Label label2;
         private Label label5;
         private TextBox txtClase;
-        private Button btnBusca;
         private Label label6;
         private ComboBox cmbHora;
         private ComboBox cmbAula;
@@ -362,5 +390,8 @@
         private DataGridViewTextBoxColumn clmSeccion;
         private DataGridViewTextBoxColumn clmAula;
         private DataGridViewTextBoxColumn clmEdificio;
+        private Label label7;
+        private Label label4;
+        private Label label3;
     }
 }

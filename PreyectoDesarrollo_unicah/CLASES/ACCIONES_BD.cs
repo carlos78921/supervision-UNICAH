@@ -263,7 +263,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return dt;
         }
 
-        public static void BuscoDocente(string Docente, DataGridView dgv)
+        public static void FiltrarDatosSuperv(string Docente, string clase, string Edificio, string Aula, string Seccion, DataGridView dgv)
         {
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
@@ -272,6 +272,11 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Docente", Docente);
+                    cmd.Parameters.AddWithValue("@Clase", clase);
+                    cmd.Parameters.AddWithValue("@Edificio", Edificio);
+                    cmd.Parameters.AddWithValue("@Aula", Aula);
+                    cmd.Parameters.AddWithValue("@Seccion", Seccion);
+
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -558,81 +563,5 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
             return dtFechas;
         }
-
-        /*        public static void presenteSup(string docente, string asignatura, string seccion, string dia)
-                {
-                    try
-                    {
-                        using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-                        {
-                            conn.Open();
-                            using (SqlCommand cmd = new SqlCommand("PA_Marcar_Asistencia", conn))
-                            {
-                                cmd.CommandType = CommandType.StoredProcedure;
-
-                                cmd.Parameters.AddWithValue("@Asignatura", asignatura);
-                                cmd.Parameters.AddWithValue("@Docente", docente);
-                                cmd.Parameters.AddWithValue("@Seccion", seccion);
-                                cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
-                                cmd.Parameters.AddWithValue("@Dia", dia);
-                                                cmd.ExecuteNonQuery(); //Esto permite la ejecución de insert o update 
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al marcar asistencia: " + ex.Message);
-                    }
-                }
-
-                public static void RegistrarFalta(string docente, string asignatura, string seccion, string dia)
-                {
-                    try
-                    {
-                        using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-                        {
-                            conn.Open();
-                            SqlCommand cmd = new SqlCommand("PA_Registrar_Falta", conn);
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            cmd.Parameters.AddWithValue("@Asignatura", asignatura);
-                            cmd.Parameters.AddWithValue("@Docente", docente);
-                            cmd.Parameters.AddWithValue("@Seccion", seccion);
-                            cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
-                            cmd.Parameters.AddWithValue("@Dia", dia);
-
-                            //                cmd.ExecuteNonQuery(); //Esto permite la ejecución de insert o update
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al registrar falta: " + ex.Message);
-                    }
-                }
-        */
-
-        /*public void cargar(DataGridView dgv, string nombreTabla)
-        {
-            try
-            {
-                string consulta = $"SELECT * FROM {nombreTabla}";
-                SqlDataAdapter da = new SqlDataAdapter(consulta, conexion.conectar); //usa la conexión de la clase `CONEXION_BD`
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                MessageBox.Show($"Filas cargadas: {dt.Rows.Count}"); //esto verifica cuántas filas se cargaron
-
-                if (dt.Rows.Count > 0) //se asegura de que hayan datos cargados al dataGridView
-                {
-                    dgv.DataSource = dt; //asigna el dataTable al dataGridView
-                }
-                else
-                {
-                    MessageBox.Show("No se encontraron datos en la tabla.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);   //captura los errores y los envia en un messagebox
-                }
-            }
-            catch { }
-        }
-        */
     }
 }

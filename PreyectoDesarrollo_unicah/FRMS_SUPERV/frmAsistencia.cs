@@ -34,7 +34,9 @@ namespace PreyectoDesarrollo_unicah
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
+            frmSupervisor Menu = new frmSupervisor();
+            Menu.Show();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -120,11 +122,20 @@ namespace PreyectoDesarrollo_unicah
             if (dgvAsiste.CurrentRow != null)
             {
                 // Extraer los valores de la fila seleccionada.
-                string Docente = dgvAsiste.CurrentRow.Cells[0].Value.ToString();
-                string clase = dgvAsiste.CurrentRow.Cells[1].Value.ToString();
-                string seccion = dgvAsiste.CurrentRow.Cells[2].Value.ToString();
-                string aula = dgvAsiste.CurrentRow.Cells[3].Value.ToString();
-                string edificio = dgvAsiste.CurrentRow.Cells[4].Value.ToString();
+object docenteValue = dgvAsiste.CurrentRow.Cells[0].Value;
+    string Docente = docenteValue != null ? docenteValue.ToString() : "";  // Asignar un valor vacío si es nulo
+
+    object claseValue = dgvAsiste.CurrentRow.Cells[1].Value;
+    string clase = claseValue != null ? claseValue.ToString() : "";
+
+    object seccionValue = dgvAsiste.CurrentRow.Cells[2].Value;
+    string seccion = seccionValue != null ? seccionValue.ToString() : "";
+
+    object aulaValue = dgvAsiste.CurrentRow.Cells[3].Value;
+    string aula = aulaValue != null ? aulaValue.ToString() : "";
+
+    object edificioValue = dgvAsiste.CurrentRow.Cells[4].Value;
+    string edificio = edificioValue != null ? edificioValue.ToString() : "";
 
                 // Limpiar las fechas resaltadas previas en el MonthCalendar.
                 mesSupervisor.RemoveAllBoldedDates();
@@ -134,16 +145,29 @@ namespace PreyectoDesarrollo_unicah
             }
         }
 
-        private void txtClase_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Validaciones validar = new Validaciones();
-
-            validar.ValidarFiltro(e, txtClase);
-        }
-
         private void txtDoc_KeyUp(object sender, KeyEventArgs e)
         {
-            ACCIONES_BD.BuscoDocente(txtDoc.Text, dgvAsiste);
+            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbEdificio.Text, cmbAula.Text, cmbHora.Text, dgvAsiste);
+        }
+
+        private void txtClase_KeyUp(object sender, KeyEventArgs e)
+        {
+            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbEdificio.Text, cmbAula.Text, cmbHora.Text, dgvAsiste);
+        }
+
+        private void cmbEdificio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbEdificio.Text, cmbAula.Text, cmbHora.Text, dgvAsiste);
+        }
+
+        private void cmbAula_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbEdificio.Text, cmbAula.Text, cmbHora.Text, dgvAsiste);
+        }
+
+        private void cmbHora_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbEdificio.Text, cmbAula.Text, cmbHora.Text, dgvAsiste);
         }
     }
 }
