@@ -54,11 +54,6 @@ namespace PreyectoDesarrollo_unicah
 
             //Ajustes de BDD
             string doc = ACCIONES_BD.docente;
-            if (string.IsNullOrEmpty(doc))
-            {
-                MessageBox.Show("Error: Código del docente no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // Hasta aquí concluye si sucede
-            }
 
             ACCIONES_BD objDoc = new ACCIONES_BD(doc); //Instancia para involucrar el atributo del docente
             dgvDoc.AutoGenerateColumns = true;
