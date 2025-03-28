@@ -350,6 +350,36 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return dtFechas;
         }
 
+        public static List<DateTime> CargarAsistenciaAdminExcel(string refiero, string curso, string seccion, string aula, string empleado)
+        {
+            List<DateTime> fechas = new List<DateTime>();
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("PA_Asistencia_Admin", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Referencia", refiero);
+                    cmd.Parameters.AddWithValue("@Curso", curso);
+                    cmd.Parameters.AddWithValue("@Seccion", seccion);
+                    cmd.Parameters.AddWithValue("@Aula", aula);
+                    cmd.Parameters.AddWithValue("@Empleado", empleado);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (!reader.IsDBNull(0))
+                            {
+                                fechas.Add(reader.GetDateTime(0));
+                            }
+                        }
+                    }
+                }
+            }
+            return fechas;
+        }
+
         public static DataTable tablaJustifica(DataGridView dgv) //Decano
         {
             DataTable dt = new DataTable();
