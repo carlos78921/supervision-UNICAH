@@ -192,9 +192,9 @@ namespace PreyectoDesarrollo_unicah
             lblPeriodo.AutoSize = true;
             lblPeriodo.Location = new Point(791, 142);
             lblPeriodo.Name = "lblPeriodo";
-            lblPeriodo.Size = new Size(48, 15);
+            lblPeriodo.Size = new Size(42, 15);
             lblPeriodo.TabIndex = 16;
-            lblPeriodo.Text = "Periodo";
+            lblPeriodo.Text = "Parcial";
             // 
             // lblWeek
             // 
