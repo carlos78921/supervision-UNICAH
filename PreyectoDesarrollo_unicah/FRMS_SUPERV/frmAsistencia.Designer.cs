@@ -222,7 +222,7 @@
             // 
             cmbHora.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbHora.FormattingEnabled = true;
-            cmbHora.Items.AddRange(new object[] { "Sección:", "0705", "0706A", "0902A", "1102", "1302", "1302BA", "1401", "1501", "1501A", "1701" });
+            cmbHora.Items.AddRange(new object[] { "Sección", "0705", "0706A", "0902A", "1102", "1302", "1302BA", "1401", "1501", "1501A", "1701" });
             cmbHora.Location = new Point(461, 21);
             cmbHora.Name = "cmbHora";
             cmbHora.Size = new Size(85, 23);

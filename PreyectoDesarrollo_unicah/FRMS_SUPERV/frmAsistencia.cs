@@ -147,27 +147,27 @@ object docenteValue = dgvAsiste.CurrentRow.Cells[0].Value;
 
         private void txtDoc_KeyUp(object sender, KeyEventArgs e)
         {
-            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbEdificio.Text, cmbAula.Text, cmbHora.Text, dgvAsiste);
+            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbHora.Text, cmbAula.Text, cmbEdificio.Text, dgvAsiste);
         }
 
         private void txtClase_KeyUp(object sender, KeyEventArgs e)
         {
-            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbEdificio.Text, cmbAula.Text, cmbHora.Text, dgvAsiste);
+            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbHora.Text, cmbAula.Text, cmbEdificio.Text, dgvAsiste);
         }
 
         private void cmbEdificio_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbEdificio.Text, cmbAula.Text, cmbHora.Text, dgvAsiste);
+            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbHora.Text, cmbAula.Text, cmbEdificio.Text, dgvAsiste);
         }
 
-        private void cmbAula_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbAula_SelectedIndexChanged(object sender, EventArgs e) 
         {
-            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbEdificio.Text, cmbAula.Text, cmbHora.Text, dgvAsiste);
+            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbHora.Text, cmbAula.Text, cmbEdificio.Text, dgvAsiste);
         }
 
         private void cmbHora_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbEdificio.Text, cmbAula.Text, cmbHora.Text, dgvAsiste);
+            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text,  cmbHora.Text, cmbAula.Text, cmbEdificio.Text, dgvAsiste);
         }
     }
 }

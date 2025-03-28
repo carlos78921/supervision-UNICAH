@@ -263,7 +263,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return dt;
         }
 
-        public static void FiltrarDatosSuperv(string Docente, string clase, string Edificio, string Aula, string Seccion, DataGridView dgv)
+        public static void FiltrarDatosSuperv(string Docente, string clase, string Seccion, string Aula, string Edificio, DataGridView dgv)
         {
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
@@ -273,9 +273,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Docente", Docente);
                     cmd.Parameters.AddWithValue("@Clase", clase);
-                    cmd.Parameters.AddWithValue("@Edificio", Edificio);
-                    cmd.Parameters.AddWithValue("@Aula", Aula);
                     cmd.Parameters.AddWithValue("@Seccion", Seccion);
+                    cmd.Parameters.AddWithValue("@Aula", Aula);
+                    cmd.Parameters.AddWithValue("@Edificio", Edificio);
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
