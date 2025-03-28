@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,6 +23,13 @@ namespace PreyectoDesarrollo_unicah
             // Envía el correo usando el codigo constante
             GenerarCorreo(codigo);
         }
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
+
         private string codigo;
         private string GenerarCodigo()
         {
@@ -49,7 +57,7 @@ namespace PreyectoDesarrollo_unicah
             SmtpClient client = new SmtpClient("mail.smtp2go.com", 2525);
             client.Credentials = new NetworkCredential("unicah.edu", "Password1");
             client.EnableSsl = true; //Habilitar encriptación de conexión
-            client.Send(msg); 
+            client.Send(msg);
 
             return true;
         }
@@ -87,6 +95,18 @@ namespace PreyectoDesarrollo_unicah
             {
                 MessageBox.Show("Código inválido");
             }
+        }
+
+        private void frmPierdoContraseña_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

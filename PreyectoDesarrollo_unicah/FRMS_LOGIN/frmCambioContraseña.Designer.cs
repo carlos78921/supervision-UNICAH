@@ -50,6 +50,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(440, 81);
             panel1.TabIndex = 5;
+            panel1.MouseDown += panel1_MouseDown;
             // 
             // pictureBox3
             // 
@@ -122,7 +123,7 @@
             Name = "frmCambioContraseña";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Frmolvidecontra";
-            Load += Frmolvidecontra_Load;
+            MouseDown += frmCambioContraseña_MouseDown;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

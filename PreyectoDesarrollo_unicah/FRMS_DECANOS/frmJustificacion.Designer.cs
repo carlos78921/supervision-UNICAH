@@ -30,7 +30,6 @@ namespace PreyectoDesarrollo_unicah
         {
             Button btnAgregar;
             Button btnVoy;
-            Button btnBusco;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
@@ -50,10 +49,8 @@ namespace PreyectoDesarrollo_unicah
             cmbEdificio = new ComboBox();
             txtBusco = new TextBox();
             label4 = new Label();
-            lblMeses = new Label();
             btnAgregar = new Button();
             btnVoy = new Button();
-            btnBusco = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -80,16 +77,6 @@ namespace PreyectoDesarrollo_unicah
             btnVoy.Text = "&Regresar";
             btnVoy.UseVisualStyleBackColor = true;
             btnVoy.Click += btnVoy_Click;
-            // 
-            // btnBusco
-            // 
-            btnBusco.Location = new Point(210, 146);
-            btnBusco.Name = "btnBusco";
-            btnBusco.Size = new Size(67, 23);
-            btnBusco.TabIndex = 39;
-            btnBusco.Text = "&Buscar";
-            btnBusco.UseVisualStyleBackColor = true;
-            btnBusco.Click += btnBusco_Click;
             // 
             // pictureBox2
             // 
@@ -244,16 +231,16 @@ namespace PreyectoDesarrollo_unicah
             label3.AutoSize = true;
             label3.Location = new Point(13, 182);
             label3.Name = "label3";
-            label3.Size = new Size(40, 15);
+            label3.Size = new Size(82, 15);
             label3.TabIndex = 42;
-            label3.Text = "Filtrar:";
+            label3.Text = "Filtrar Edificio:";
             // 
             // cmbEdificio
             // 
             cmbEdificio.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdificio.FormattingEnabled = true;
-            cmbEdificio.Items.AddRange(new object[] { "Edificio:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M" });
-            cmbEdificio.Location = new Point(59, 175);
+            cmbEdificio.Items.AddRange(new object[] { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M" });
+            cmbEdificio.Location = new Point(102, 179);
             cmbEdificio.Name = "cmbEdificio";
             cmbEdificio.Size = new Size(78, 23);
             cmbEdificio.TabIndex = 41;
@@ -275,27 +262,15 @@ namespace PreyectoDesarrollo_unicah
             label4.TabIndex = 43;
             label4.Text = "Docente:";
             // 
-            // lblMeses
-            // 
-            lblMeses.AutoSize = true;
-            lblMeses.Location = new Point(738, 93);
-            lblMeses.Name = "lblMeses";
-            lblMeses.Size = new Size(48, 15);
-            lblMeses.TabIndex = 44;
-            lblMeses.Text = "Periodo";
-            lblMeses.Visible = false;
-            // 
             // frmJustificacion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(794, 645);
-            Controls.Add(lblMeses);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(cmbEdificio);
             Controls.Add(txtBusco);
-            Controls.Add(btnBusco);
             Controls.Add(lblCaracteres);
             Controls.Add(txtJustifica);
             Controls.Add(label2);
@@ -335,7 +310,6 @@ namespace PreyectoDesarrollo_unicah
         private ComboBox cmbEdificio;
         private TextBox txtBusco;
         private Label label4;
-        private Label lblMeses;
         private DataGridViewTextBoxColumn clmClase;
         private DataGridViewTextBoxColumn clmFecha;
         private DataGridViewTextBoxColumn clmSeccion;
