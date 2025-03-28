@@ -142,16 +142,8 @@ namespace PreyectoDesarrollo_unicah
         }
 
         private void txtDoc_KeyUp(object sender, KeyEventArgs e)
-        { 
-            string docente = txtDoc.Text.ToLower();
-            for (int i = 0; i < dgvAsiste.Rows.Count; i++)
-            {
-                dgvAsiste.Rows[i].Visible = false;
-
-                if (dgvAsiste.Rows[i].Cells[0].Value != null &&
-                    dgvAsiste.Rows[i].Cells[0].Value.ToString().ToLower().Contains(docente))
-                    dgvAsiste.Rows[i].Visible = true;                    
-            }
+        {
+            ACCIONES_BD.BuscoDocente(txtDoc.Text, dgvAsiste);
         }
     }
 }

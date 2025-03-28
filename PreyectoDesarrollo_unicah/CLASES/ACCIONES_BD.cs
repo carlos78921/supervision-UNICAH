@@ -263,6 +263,24 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return dt;
         }
 
+        public static void BuscoDocente(string Docente, DataGridView dgv)
+        {
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("PA_Buscar_Doc", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Docente", Docente);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dgv.DataSource = dt; // Cargamos los datos filtrados
+                }
+            }
+        }
+
         public static DataTable tablaAdmin (DataGridView dgv)
         {
             DataTable dt = new DataTable();

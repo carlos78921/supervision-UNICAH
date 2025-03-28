@@ -131,7 +131,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(487, 97);
             label1.Name = "label1";
-            label1.Size = new Size(123, 15);
+            label1.Size = new Size(125, 15);
             label1.TabIndex = 12;
             label1.Text = "TOMA DE ASISTENCIA";
             // 
@@ -143,6 +143,7 @@
             dgvAsiste.Columns.AddRange(new DataGridViewColumn[] { clmDoc, clmClase, clmSeccion, clmAula, clmEdificio });
             dgvAsiste.Location = new Point(20, 224);
             dgvAsiste.Name = "dgvAsiste";
+            dgvAsiste.ReadOnly = true;
             dgvAsiste.Size = new Size(725, 216);
             dgvAsiste.TabIndex = 17;
             dgvAsiste.SelectionChanged += dgvAsiste_SelectionChanged;
@@ -172,12 +173,14 @@
             // 
             clmAula.HeaderText = "Aula";
             clmAula.Name = "clmAula";
+            clmAula.ReadOnly = true;
             clmAula.Width = 150;
             // 
             // clmEdificio
             // 
             clmEdificio.HeaderText = "Edificio";
             clmEdificio.Name = "clmEdificio";
+            clmEdificio.ReadOnly = true;
             // 
             // nudWeeks
             // 
