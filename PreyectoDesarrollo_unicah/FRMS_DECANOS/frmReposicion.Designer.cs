@@ -45,7 +45,6 @@ namespace PreyectoDesarrollo_unicah
             txtBusco = new TextBox();
             cmbEdificio = new ComboBox();
             label3 = new Label();
-            lblMeses = new Label();
             dtpReposicion = new DateTimePicker();
             label2 = new Label();
             btnDay = new Button();
@@ -223,16 +222,6 @@ namespace PreyectoDesarrollo_unicah
             label3.TabIndex = 28;
             label3.Text = "Filtrar Edificio:";
             // 
-            // lblMeses
-            // 
-            lblMeses.AutoSize = true;
-            lblMeses.Location = new Point(578, 90);
-            lblMeses.Name = "lblMeses";
-            lblMeses.Size = new Size(48, 15);
-            lblMeses.TabIndex = 29;
-            lblMeses.Text = "Periodo";
-            lblMeses.Visible = false;
-            // 
             // dtpReposicion
             // 
             dtpReposicion.Location = new Point(12, 122);
@@ -255,7 +244,6 @@ namespace PreyectoDesarrollo_unicah
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(636, 464);
             Controls.Add(label2);
-            Controls.Add(lblMeses);
             Controls.Add(label3);
             Controls.Add(cmbEdificio);
             Controls.Add(txtBusco);
@@ -292,7 +280,6 @@ namespace PreyectoDesarrollo_unicah
         private TextBox txtBusco;
         private ComboBox cmbEdificio;
         private Label label3;
-        private Label lblMeses;
         private DataGridViewTextBoxColumn clmClase;
         private DataGridViewTextBoxColumn clmFecha;
         private DataGridViewTextBoxColumn clmSeccion;
