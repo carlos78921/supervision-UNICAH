@@ -41,8 +41,6 @@
             clmSeccion = new DataGridViewTextBoxColumn();
             clmAula = new DataGridViewTextBoxColumn();
             clmEdificio = new DataGridViewTextBoxColumn();
-            nudWeeks = new NumericUpDown();
-            label2 = new Label();
             label5 = new Label();
             txtClase = new TextBox();
             cmbHora = new ComboBox();
@@ -56,12 +54,13 @@
             txtDoc = new TextBox();
             btnLogout = new Button();
             mesSupervisor = new MonthCalendar();
+            lblWeek = new Label();
+            lblParcial = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvAsiste).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudWeeks).BeginInit();
             gbFiltro.SuspendLayout();
             SuspendLayout();
             // 
@@ -183,23 +182,6 @@
             clmEdificio.HeaderText = "Edificio";
             clmEdificio.Name = "clmEdificio";
             clmEdificio.ReadOnly = true;
-            // 
-            // nudWeeks
-            // 
-            nudWeeks.Location = new Point(887, 398);
-            nudWeeks.Maximum = new decimal(new int[] { 5, 0, 0, 0 });
-            nudWeeks.Name = "nudWeeks";
-            nudWeeks.Size = new Size(49, 23);
-            nudWeeks.TabIndex = 23;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(829, 402);
-            label2.Name = "label2";
-            label2.Size = new Size(52, 15);
-            label2.TabIndex = 22;
-            label2.Text = "Semana:";
             // 
             // label5
             // 
@@ -327,11 +309,31 @@
             mesSupervisor.TabIndex = 42;
             mesSupervisor.DateSelected += mesSupervisor_DateSelected;
             // 
+            // lblWeek
+            // 
+            lblWeek.AutoSize = true;
+            lblWeek.Location = new Point(928, 204);
+            lblWeek.Name = "lblWeek";
+            lblWeek.Size = new Size(49, 15);
+            lblWeek.TabIndex = 44;
+            lblWeek.Text = "Semana";
+            // 
+            // lblParcial
+            // 
+            lblParcial.AutoSize = true;
+            lblParcial.Location = new Point(784, 204);
+            lblParcial.Name = "lblParcial";
+            lblParcial.Size = new Size(42, 15);
+            lblParcial.TabIndex = 43;
+            lblParcial.Text = "Parcial";
+            // 
             // frmAsistencia
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1018, 475);
+            Controls.Add(lblWeek);
+            Controls.Add(lblParcial);
             Controls.Add(mesSupervisor);
             Controls.Add(btnLogout);
             Controls.Add(txtDoc);
@@ -339,8 +341,6 @@
             Controls.Add(gbFiltro);
             Controls.Add(txtClase);
             Controls.Add(label5);
-            Controls.Add(nudWeeks);
-            Controls.Add(label2);
             Controls.Add(dgvAsiste);
             Controls.Add(panel1);
             Controls.Add(btnSalir);
@@ -356,7 +356,6 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvAsiste).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudWeeks).EndInit();
             gbFiltro.ResumeLayout(false);
             gbFiltro.PerformLayout();
             ResumeLayout(false);
@@ -372,8 +371,6 @@
         private Label label1;
         private DataGridView dgvAsiste;
         private Label lblPersona;
-        private NumericUpDown nudWeeks;
-        private Label label2;
         private Label label5;
         private TextBox txtClase;
         private Label label6;
@@ -393,5 +390,7 @@
         private Label label7;
         private Label label4;
         private Label label3;
+        private Label lblWeek;
+        private Label lblParcial;
     }
 }
