@@ -119,9 +119,9 @@ namespace PreyectoDesarrollo_unicah
             // 2. Recorrer cada fila del dgvAdmin para construir la fila en dt
             foreach (DataGridViewRow fila in dgvAdmin.Rows)
             {
-                if (!fila.IsNewRow) // Si no hay filas vacías
+                if (!fila.IsNewRow) // Ignorar la fila vacía al final del dgvAdmin
                 {
-                    DataRow dr = dt.NewRow(); // Crear filas vacías con la cantidad que tiene valores
+                    DataRow dr = dt.NewRow(); // Crear una nueva fila de las no vacías
 
                     // 2A. Copiar las 5 columnas del dgv (Referencia, Curso, Sección, Aula, Empleado)
                     for (int i = 0; i < dgvAdmin.Columns.Count; i++)
