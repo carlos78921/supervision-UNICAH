@@ -96,16 +96,16 @@ namespace PreyectoDesarrollo_unicah
             // 1. Crear el DataTable
             DataTable dt = new DataTable();
 
-            // 1A. Agregar las columnas del dgvAdmin
+            // 1A. Agregar las columnas del dgvAdmin al dt
             foreach (DataGridViewColumn columna in dgvAdmin.Columns)
             {
                 dt.Columns.Add(columna.HeaderText);
             }
 
-            // 1B. Agregar columnas para 4 semanas x 6 días (Lunes a Sábado)
+            // 1B. Estructurar columnas para 3 parciales x 4 semanas x 6 días (Lunes a Sábado)
             for (int parcial = 1; parcial <= 3; parcial++)
             {
-                for (int semana = 1; semana <= 4; semana++) // semana <= 12
+                for (int semana = 1; semana <= 4; semana++) 
                 {
                     string[] diasSemana = { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
                     foreach (string dia in diasSemana)
@@ -119,9 +119,9 @@ namespace PreyectoDesarrollo_unicah
             // 2. Recorrer cada fila del dgvAdmin para construir la fila en dt
             foreach (DataGridViewRow fila in dgvAdmin.Rows)
             {
-                if (!fila.IsNewRow)
+                if (!fila.IsNewRow) // Si no hay filas vacías
                 {
-                    DataRow dr = dt.NewRow();
+                    DataRow dr = dt.NewRow(); // Crear filas vacías con la cantidad que tiene valores
 
                     // 2A. Copiar las 5 columnas del dgv (Referencia, Curso, Sección, Aula, Empleado)
                     for (int i = 0; i < dgvAdmin.Columns.Count; i++)
