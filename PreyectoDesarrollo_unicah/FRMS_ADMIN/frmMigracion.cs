@@ -97,9 +97,11 @@ namespace PreyectoDesarrollo_unicah
             int semanas = 4; // Número de semanas
             for (int semana = 1; semana <= semanas; semana++)
             {
-                foreach (string dia in diasSemana)
+                for (int dia = 0; dia < 6; dia++) //6 días
                 {
-                    dt.Columns.Add($"Semana {semana} - {dia}");
+                    string columnName = $"Semana {semana} - {diasSemana[dia]}";
+                    if (!dt.Columns.Contains(columnName))
+                        dt.Columns.Add(columnName);
                 }
             }
 
@@ -183,6 +185,8 @@ namespace PreyectoDesarrollo_unicah
                     dt.Rows.Add(dr);
                 }
             }
+            MessageBox.Show("Total columnas: " + dt.Columns.Count);
+            //            MessageBox.Show("La columna de asistencia está en el índice: " + dt.Columns.IndexOf("Semana 2 - Lunes"));
             return dt;
         }
 
@@ -190,51 +194,56 @@ namespace PreyectoDesarrollo_unicah
         {
             DataTable dt = TransferirDatosExcel();
 
-            // Crear el archivo Excel con ClosedXML
-            using (var workbook = new XLWorkbook())
+            int baseColumns = 5; //Columnas del dgv
+            int columnasPorParcial = 4 * 6; //Cuatro semanas por seis días (lunes a sábado)
+
+            for (int parcial = 1; parcial <= 3; parcial++) // 3 parciales
             {
-                var hoja = workbook.Worksheets.Add("Asistencia");
-
-                // Insertar los datos en la celda (fila 3 en adelante)
-                hoja.Cell(3, 1).InsertTable(dt);
-
-                // Fusionar celdas y agregar encabezados de semanas
-                int columnasBase = dgvAdmin.Columns.Count; // 5
-                int semanas = 4;
-                int diasPorSemana = 6;
-                int columnaInicio = columnasBase + 1;
-
-                for (int semana = 1; semana <= semanas; semana++)
+                using (var workbook = new XLWorkbook())
                 {
-                    int columnaFin = columnaInicio + diasPorSemana - 1;
-                    hoja.Range(1, columnaInicio, 1, columnaFin).Merge();
-                    hoja.Cell(1, columnaInicio).Value = $"SEMANA {semana}";
-                    hoja.Cell(1, columnaInicio).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                    hoja.Cell(1, columnaInicio).Style.Font.Bold = true;
-                    hoja.Range(1, columnaInicio, 1, columnaFin).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
+                    DataTable dtParcial = dt.Clone();
 
-                    columnaInicio = columnaFin + 1;
-                }
+                    // Quitar todas las columnas de asistencia.
+                    for (int i = dtParcial.Columns.Count - 1; i >= baseColumns; i--)
+                    {
+                        dtParcial.Columns.RemoveAt(i);
+                    }
 
-                // Formato para los días de la semana (fila 2)
-                for (int col = columnasBase + 1; col <= dt.Columns.Count; col++)
-                {
-                    hoja.Cell(2, col).Style.Font.Bold = true;
-                    hoja.Cell(2, col).Style.Fill.BackgroundColor = XLColor.LightBlue;
-                }
+                    // Agregar solo las columnas del parcial actual.
+                    for (int i = 0; i < columnasPorParcial; i++)
+                    {
+                        int indiceReal = baseColumns + (parcial * columnasPorParcial) + i;
+                       MessageBox.Show($"Índice {i}, {indiceReal}, {(parcial * columnasPorParcial)}: {dt.Columns[indiceReal].ColumnName}");
+                        dtParcial.Columns.Add(dt.Columns[indiceReal].ColumnName, typeof(string));
+                    }
 
-                // Mostrar el diálogo para guardar el archivo
-                SaveFileDialog saveFileDialog = new SaveFileDialog
-                {
-                    Filter = "Archivo Excel (.xlsx)|*.xlsx",
-                    Title = "Guardar archivo Excel",
-                    FileName = "Asistencia.xlsx"
-                };
+                    // Copiar solo las filas con las columnas correctas.
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        DataRow newRow = dtParcial.NewRow();
+                        for (int i = 0; i < baseColumns; i++) newRow[i] = row[i];
+                        for (int i = 0; i < columnasPorParcial; i++)
+                        {
+                            int indiceReal = baseColumns + (parcial * columnasPorParcial) + i;
+                            newRow[baseColumns + i] = row[indiceReal];
+                        }
+                        dtParcial.Rows.Add(newRow);
+                    }
 
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    workbook.SaveAs(saveFileDialog.FileName);
-                    MessageBox.Show("Asistencia exportada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Guardar el archivo Excel.
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
+                        Filter = "Archivo Excel (.xlsx)|*.xlsx",
+                        Title = $"Guardar archivo Excel - Parcial {parcial + 1}",
+                        FileName = $"Asistencia_Parcial_{parcial + 1}.xlsx"
+                    };
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        workbook.Worksheets.Add(dtParcial, $"Parcial {parcial + 1}");
+                        workbook.SaveAs(saveFileDialog.FileName);
+                        MessageBox.Show($"Parcial {parcial + 1} exportado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
         }
@@ -248,18 +257,6 @@ namespace PreyectoDesarrollo_unicah
 
             // Calcular la diferencia en días
             int offsetDias = (fechaSeleccionada - fechaInicio).Days; // Puede ser negativo si está antes del 20/ene
-
-            // Cada semana son 7 días
-            // Tenemos 12 semanas en total (3 parciales * 4 semanas)
-            // Rango total: 0 <= offsetDias < 12 * 7 = 84
-
-            if (offsetDias < 0 || offsetDias >= 12 * 7)
-            {
-                // Fuera de rango (antes del 20/ene o después de 12 semanas)
-                lblParcial.Text = "Fuera de rango";
-                lblWeek.Text = "";
-                return;
-            }
 
             // Calcular el índice de la semana (0 a 11)
             int indiceSemana = offsetDias / 7; // entero
