@@ -352,7 +352,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public static List<DateTime> CargarAsistenciaAdminExcel(string refiero, string curso, string seccion, string aula, string empleado)
         {
-            List<DateTime> fechas = new List<DateTime>();
+            List<DateTime> fechas = new List<DateTime>(); //Me realiza la lista de fechas para poder ser detectadas, campo fecha está involucrada, por lo que puede leer el valor de fecha
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conn.Open();

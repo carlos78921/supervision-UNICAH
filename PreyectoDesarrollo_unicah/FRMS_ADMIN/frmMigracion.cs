@@ -28,8 +28,6 @@ namespace PreyectoDesarrollo_unicah
 
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
-
-
         //Proceso en carga de formulario
         private void LimiteMeses()
         {
@@ -130,23 +128,21 @@ namespace PreyectoDesarrollo_unicah
                     }
 
                     // 2B. Obtener datos para filtrar asistencia en la BD
-                    string refiero = fila.Cells[0].Value?.ToString(); // Referencia
-                    string curso = fila.Cells[1].Value?.ToString(); // Curso
-                    string seccion = fila.Cells[2].Value?.ToString(); // Sección
-                    string aula = fila.Cells[3].Value?.ToString(); // Aula
-                    string empleado = fila.Cells[4].Value?.ToString(); // Empleado
+                    string refiero = fila.Cells[0].Value?.ToString(); 
+                    string curso = fila.Cells[1].Value?.ToString(); 
+                    string seccion = fila.Cells[2].Value?.ToString(); 
+                    string aula = fila.Cells[3].Value?.ToString(); 
+                    string empleado = fila.Cells[4].Value?.ToString();
 
-                    // 2C. Obtener las fechas de asistencia para este registro
-                    //     Usarás el mismo PA_Asistencia_Admin (o uno similar) que llenas el MonthCalendar
+                    // 2C. Usar el mismo PA_Asistencia_Admin (o uno similar) que lleno del MonthCalendar para obtener los datos
                     List<DateTime> fechasAsistencia = ACCIONES_BD.CargarAsistenciaAdminExcel(refiero, curso, seccion, aula, empleado);
 
-                    // 2D. Llenar las columnas de asistencia (Semana X - Día) con "P" si la fecha coincide
-                    //     Necesitas definir cómo calcular la semana y el día de la fecha
+                    /* 2D. Llenar las columnas de asistencia (Semana X - Día) con "P" si la fecha coincide en la semana
+                           al operar valores según la estructura, realizaremos cálculo de semanas y día de la fecha*/
                     foreach (DateTime fecha in fechasAsistencia)
                     {
-                        // Calcular semana y día según tu rango
-                        // Por ejemplo, asumes un "Inicio de rango" para la semana 1
-                        DateTime fechaInicio = new DateTime(DateTime.Now.Year, 1, 20); // Ejemplo: 20 de enero
+                        // Le hacemos saber al foreach dónde detectará valor de estructura como en el calendario
+                        DateTime fechaInicio = mesAdmin.MinDate; 
                                                                                        // Podrías usar mesAdmin.MinDate si quieres usar el rango del MonthCalendar
 
                         // Distancia en días entre fechaInicio y la fecha de asistencia
