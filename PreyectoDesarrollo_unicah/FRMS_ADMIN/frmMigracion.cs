@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,6 +20,15 @@ namespace PreyectoDesarrollo_unicah
         {
             InitializeComponent();
         }
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+
+        private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
+
+
 
         //Proceso en carga de formulario
         private void LimiteMeses()
@@ -93,17 +103,18 @@ namespace PreyectoDesarrollo_unicah
             }
 
             // 1B. Agregar columnas para 4 semanas x 6 días (Lunes a Sábado)
-            string[] diasSemana = { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
-            int semanas = 4; // Número de semanas
-            for (int semana = 1; semana <= semanas; semana++)
+            for (int parcial = 1; parcial <= 3; parcial++)
             {
-                for (int dia = 0; dia < 6; dia++) //6 días
+                for (int semana = 1; semana <= 4; semana++) // semana <= 12
                 {
-                    string columnName = $"Semana {semana} - {diasSemana[dia]}";
-                    if (!dt.Columns.Contains(columnName))
-                        dt.Columns.Add(columnName);
+                    string[] diasSemana = { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
+                    foreach (string dia in diasSemana)
+                    {
+                        dt.Columns.Add($"Parcial {parcial} - Semana {semana} - {dia}");
+                    }
                 }
             }
+
 
             // 2. Recorrer cada fila del dgvAdmin para construir la fila en dt
             foreach (DataGridViewRow fila in dgvAdmin.Rows)
@@ -140,9 +151,8 @@ namespace PreyectoDesarrollo_unicah
 
                         // Distancia en días entre fechaInicio y la fecha de asistencia
                         int diasOffset = (fecha - fechaInicio).Days;
-                        if (diasOffset < 0 || diasOffset >= 4 * 7)
+                        if (diasOffset < 0 || diasOffset >= 12 * 7) // 12 semanas en lugar de 4
                         {
-                            // Si la fecha está fuera de las 4 semanas definidas, la ignoras
                             continue;
                         }
 
@@ -197,31 +207,41 @@ namespace PreyectoDesarrollo_unicah
             int baseColumns = 5; //Columnas del dgv
             int columnasPorParcial = 4 * 6; //Cuatro semanas por seis días (lunes a sábado)
 
-            for (int parcial = 1; parcial <= 3; parcial++) // 3 parciales
+            using (var workbook = new XLWorkbook())
             {
-                using (var workbook = new XLWorkbook())
+                // Iterar por cada parcial (0 a 2)
+                for (int parcial = 0; parcial < 3; parcial++)
                 {
+                    // Clonar la estructura del dtCompleto
                     DataTable dtParcial = dt.Clone();
 
-                    // Quitar todas las columnas de asistencia.
+                    // Eliminar las columnas de asistencia que no correspondan a este parcial.
+                    // Primero, eliminamos todas las columnas de asistencia del clon.
                     for (int i = dtParcial.Columns.Count - 1; i >= baseColumns; i--)
                     {
                         dtParcial.Columns.RemoveAt(i);
                     }
 
-                    // Agregar solo las columnas del parcial actual.
+                    // Agregar solo las columnas de asistencia de este parcial.
                     for (int i = 0; i < columnasPorParcial; i++)
                     {
+                        // El índice real en dtCompleto para la columna de asistencia:
                         int indiceReal = baseColumns + (parcial * columnasPorParcial) + i;
-                       MessageBox.Show($"Índice {i}, {indiceReal}, {(parcial * columnasPorParcial)}: {dt.Columns[indiceReal].ColumnName}");
+                        // Agregar la columna al dtParcial con el mismo nombre.
                         dtParcial.Columns.Add(dt.Columns[indiceReal].ColumnName, typeof(string));
                     }
 
-                    // Copiar solo las filas con las columnas correctas.
+                    // Ahora, copiar las filas filtrando las columnas de asistencia correspondientes.
                     foreach (DataRow row in dt.Rows)
                     {
                         DataRow newRow = dtParcial.NewRow();
-                        for (int i = 0; i < baseColumns; i++) newRow[i] = row[i];
+
+                        // Copiar las columnas base (por ejemplo, 0 a baseColumns-1).
+                        for (int i = 0; i < baseColumns; i++)
+                        {
+                            newRow[i] = row[i];
+                        }
+                        // Copiar las columnas de asistencia para este parcial.
                         for (int i = 0; i < columnasPorParcial; i++)
                         {
                             int indiceReal = baseColumns + (parcial * columnasPorParcial) + i;
@@ -230,20 +250,25 @@ namespace PreyectoDesarrollo_unicah
                         dtParcial.Rows.Add(newRow);
                     }
 
-                    // Guardar el archivo Excel.
-                    SaveFileDialog saveFileDialog = new SaveFileDialog
-                    {
-                        Filter = "Archivo Excel (.xlsx)|*.xlsx",
-                        Title = $"Guardar archivo Excel - Parcial {parcial + 1}",
-                        FileName = $"Asistencia_Parcial_{parcial + 1}.xlsx"
-                    };
+                    // Agregar una nueva hoja al libro para este parcial.
+                    var ws = workbook.Worksheets.Add($"Parcial {parcial + 1}");
+                    ws.Cell(1, 1).InsertTable(dtParcial);
 
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        workbook.Worksheets.Add(dtParcial, $"Parcial {parcial + 1}");
-                        workbook.SaveAs(saveFileDialog.FileName);
-                        MessageBox.Show($"Parcial {parcial + 1} exportado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    // Opcional: aplicar formato, ajustar anchos, encabezados, etc.
+                }
+
+                // Guardar el archivo Excel.
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Archivo Excel (.xlsx)|*.xlsx",
+                    Title = "Guardar archivo Excel",
+                    FileName = "Asistencia_Por_Parciales.xlsx"
+                };
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    workbook.SaveAs(saveFileDialog.FileName);
+                    MessageBox.Show("Exportación realizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -273,6 +298,18 @@ namespace PreyectoDesarrollo_unicah
             lblParcial.Text = $"Parcial {parcial}";
             lblWeek.Text = $"Semana {semanaEnParcial}";
 
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void frmMigracion_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }
