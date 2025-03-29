@@ -142,43 +142,36 @@ namespace PreyectoDesarrollo_unicah
                     foreach (DateTime fecha in fechasAsistencia)
                     {
                         // Le hacemos saber al foreach dónde detectará valor de estructura como en el calendario
-                        DateTime fechaInicio = mesAdmin.MinDate; 
-                                                                                       // Podrías usar mesAdmin.MinDate si quieres usar el rango del MonthCalendar
+                        DateTime fechaInicio = mesAdmin.MinDate;                                                                                        
 
                         // Distancia en días entre fechaInicio y la fecha de asistencia
                         int diasOffset = (fecha - fechaInicio).Days;
-                        if (diasOffset < 0 || diasOffset >= 12 * 7) // 12 semanas en lugar de 4
-                        {
-                            continue;
-                        }
+                        if (diasOffset < 0 || diasOffset >= 12 * 7) 
+                            continue;   
 
-                        // Calcular la semana (0 a 3) y el día de la semana (0 a 6)
-                        int numeroSemana = diasOffset / 7;   // 0 = semana 1, 1 = semana 2, ...
-                        int diaEnSemana = diasOffset % 7;    // 0 = lunes, 1 = martes, ...
-
-                        // Ojo: DateTime en C# define Monday = 1, Tuesday = 2, etc.
-                        // Si tu offset asume que 0 = lunes, 1 = martes, etc., ajusta la lógica.
-
+                        // Calcular la semana (0 a 3 o 1 a 4) y el día de la semana (0 a 6 o 1 a 7), estos por índice
+                        int numeroSemana = diasOffset / 7;   // 0 o aproximado a 1 = semana 1, 1 o aproximado a 2 = semana 2, ...
+                        int diaEnSemana = diasOffset % 7;    // "%" es símbolo de módulo, es decir que obtiene resultado del residuo, tradicionalmente dividiendo: 0/7 = 0 (Residuo) = lunes, 1/7 = 1 (Residuo) = martes, ...
+                        
                         // Asumiendo que "lunes" es el día 0 y "sábado" es el día 5,
-                        // debes asegurar que no te pases de 5 (sábado).
                         if (diaEnSemana >= 6)
-                            continue; // Si es domingo, por ejemplo, no lo registras
+                            continue; // Si es domingo, no se registra
 
-                        // Buscar la columna correspondiente
-                        // Las primeras 5 columnas son Referencia, Curso, Sección, Aula, Empleado
-                        // A partir de la columna 6 se encuentran las 4 semanas x 6 días
+                        /*Buscar el valor de columna correspondiente
+                          Las primeras 5 columnas de 0 a 4 son Referencia, Curso, Sección, Aula, Empleado
+                          A partir de la columna 6 se inicia y encuentran las 4 semanas x 6 días*/
                         int baseColumnIndex = dgvAdmin.Columns.Count; // 5
                                                                       // El offset de semana en columnas
                         int semanaColumnOffset = numeroSemana * 6;  // 6 días por semana
-                        int columnIndex = baseColumnIndex + semanaColumnOffset + diaEnSemana;
+                        int columnIndex = baseColumnIndex + semanaColumnOffset + diaEnSemana; //Esto es lógica en números grandes para coincidencia de valores en diasOffset, sin fijarse mucho en "columnas"
 
                         // Asignar "P" (presente) en esa columna
                         dr[columnIndex] = "P";
                     }
 
-                    // 2E. Para las columnas que no fueron asignadas, poner "-" 
-                    //     (Aunque ya lo hiciste con dr[columnIndex] = "P", 
-                    //      podrías inicializarlas antes en "-")
+                    /* 2E. Para las columnas que no fueron asignadas, poner "-" 
+                           (Aunque ya lo hiciste con dr[columnIndex] = "P", 
+                            podrías inicializarlas antes en "-")*/
                     for (int c = dgvAdmin.Columns.Count; c < dt.Columns.Count; c++)
                     {
                         if (string.IsNullOrEmpty(dr[c].ToString()))
