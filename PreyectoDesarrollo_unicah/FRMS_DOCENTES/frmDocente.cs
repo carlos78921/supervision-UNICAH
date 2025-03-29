@@ -102,10 +102,6 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void dgvDoc_SelectionChanged(object sender, EventArgs e)
         {
