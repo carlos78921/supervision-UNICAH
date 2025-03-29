@@ -28,19 +28,9 @@ namespace PreyectoDesarrollo_unicah
 
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
-        private void LimiteMeses()
-        {
-            int año = DateTime.Now.Year;
-
-            mesAdmin.MinDate = new DateTime(año, 1, 20);
-            mesAdmin.MaxDate = new DateTime(año, 4, 12);
-        }
-
         private void frmMigración_Load(object sender, EventArgs e)
         {
             lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
-
-            LimiteMeses();
 
             ACCIONES_BD.tablaAdmin(dgvAdmin);
             ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, (string)dgvAdmin.CurrentRow.Cells[0].Value, (string)dgvAdmin.CurrentRow.Cells[1].Value, (string)dgvAdmin.CurrentRow.Cells[2].Value, (string)dgvAdmin.CurrentRow.Cells[3].Value, (string)dgvAdmin.CurrentRow.Cells[4].Value);
