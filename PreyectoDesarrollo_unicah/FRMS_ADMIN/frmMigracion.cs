@@ -103,12 +103,17 @@ namespace PreyectoDesarrollo_unicah
                         dr[i] = fila.Cells[i].Value?.ToString();
                     }
 
-                    string refiero = fila.Cells[0].Value?.ToString(); string curso = fila.Cells[1].Value?.ToString(); string seccion = fila.Cells[2].Value?.ToString(); string aula = fila.Cells[3].Value?.ToString(); string empleado = fila.Cells[4].Value?.ToString();
+                    string refiero = fila.Cells[0].Value?.ToString(); 
+                    string curso = fila.Cells[1].Value?.ToString(); 
+                    string seccion = fila.Cells[2].Value?.ToString(); 
+                    string aula = fila.Cells[3].Value?.ToString(); 
+                    string empleado = fila.Cells[4].Value?.ToString();
+
                     List<DateTime> fechasAsistencia = ACCIONES_BD.CargarAsistenciaAdminExcel(refiero, curso, seccion, aula, empleado);
 
                     foreach (DateTime fecha in fechasAsistencia)
                     {
-                        DateTime fechaInicio = new DateTime(DateTime.Now.Year, 1, 20);
+                        DateTime fechaInicio = mesAdmin.MinDate;
                         int diasOffset = (fecha - fechaInicio).Days;
                         if (diasOffset < 0 || diasOffset >= 12 * 7)
                         {
