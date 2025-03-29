@@ -28,8 +28,6 @@ namespace PreyectoDesarrollo_unicah
 
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
-
-
         //Proceso en carga de formulario
         private void LimiteMeses()
         {
@@ -114,7 +112,6 @@ namespace PreyectoDesarrollo_unicah
                     }
                 }
             }
-
 
             // 2. Recorrer cada fila del dgvAdmin para construir la fila en dt
             foreach (DataGridViewRow fila in dgvAdmin.Rows)
