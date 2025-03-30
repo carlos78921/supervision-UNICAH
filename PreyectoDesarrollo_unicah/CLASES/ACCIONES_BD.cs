@@ -85,10 +85,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.Parameters.AddWithValue("@usuario", usuario);
                     cmd.Parameters.AddWithValue("@contrasena", contraseña);
 
-                    // Consulta para obtener el rol, nombre y apellido
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read()) // Verifica si hay usuario y contraseña para leer otros datos
+                        if (reader.Read()) 
                         {
                             string nombre = reader["nombre1"].ToString();
                             string apellido = reader["apellido1"].ToString();
@@ -102,28 +101,24 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
                             if (rolUsuario == "administrador")
                             {
-                                // Abrir la pantalla del administrador
                                 frmAdmin admin = new frmAdmin();
                                 admin.Show();
                                 Login.Hide();
                             }
                             else if (rolUsuario == "supervisor")
                             {
-                                // Abrir las pantallas del supervisor
                                 frmSupervisor supervisor = new frmSupervisor();
                                 supervisor.Show();
                                 Login.Hide();
                             }
                             else if (rolUsuario == "decano")
                             {
-                                // Abrir las pantallas del decano
                                 frmDecano decano = new frmDecano();
                                 decano.Show();
                                 Login.Hide();
                             }
                             else if (rolUsuario == "docente")
                             {
-                                // Abrir las pantallas del docente
                                 frmDocente doc = new frmDocente();
                                 doc.Show();
                                 Login.Hide();
@@ -142,27 +137,26 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         private static bool AdminContraseñaError(string usuario, Form Login, SqlConnection conexion, SqlDataReader read)
         {
-                using (SqlCommand cmd = new SqlCommand("PA_Admin_Save", conexion))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Usuario", usuario);
+            using (SqlCommand cmd = new SqlCommand("PA_Admin_Save", conexion))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Usuario", usuario);
 
-                    read.Close();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                read.Close();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
                     {
-                        if (reader.Read())
+                        if (MessageBox.Show("Saludos Administrador, su contraseña es incorrecta, ¿olvidó su contraseña?", "Contraseña incorrecta", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                         {
-                            // Usuario o contraseña incorrectos
-                            if (MessageBox.Show("Saludos Administrador, su contraseña es incorrecta, ¿olvidó su contraseña?", "Contraseña incorrecta", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
-                            {
-                                frmPierdoContraseña Lost = new frmPierdoContraseña();
-                                Login.Hide();
-                                Lost.Show();
-                            }
-                            return false;
+                            frmPierdoContraseña Lost = new frmPierdoContraseña();
+                            Login.Hide();
+                            Lost.Show();
                         }
+                        return false;
                     }
                 }
+            }
             return true;
         }
 
@@ -195,7 +189,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 cmd.Parameters.AddWithValue("@Edificio", edificio);
                 cmd.Parameters.AddWithValue("@Fecha", fechaMarca);
                 cmd.Parameters.AddWithValue("@Marca", Marco);
-                cmd.ExecuteNonQuery(); //Esto permite la ejecución de insert o update 
+                cmd.ExecuteNonQuery();
             }
         }
 
@@ -218,7 +212,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 da.Fill(dtFechas);
             }
 
-            foreach (DataRow row in dtFechas.Rows) //De la tabla del SQL para obtener campo fecha
+            foreach (DataRow row in dtFechas.Rows)
             {
                 supervisorFechas.AddBoldedDate(Convert.ToDateTime(row["Fecha"]));
             }
@@ -248,8 +242,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.DataSource = bs;
                 bs.ResetBindings(false);
                 dgv.AutoGenerateColumns = true;
-                dgv.Refresh(); // Forzar actualización de la UI
-
+                dgv.Refresh(); 
                 dgv.Columns[0].Width = 300;
                 dgv.Columns[1].Width = 250;
                 dgv.Columns[2].Width = 60;
@@ -277,7 +270,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    dgv.DataSource = dt; // Cargamos los datos filtrados
+                    dgv.DataSource = dt;
                 }
             }
         }
@@ -304,9 +297,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.DataSource = bs;
                 bs.ResetBindings(false);
                 dgv.AutoGenerateColumns = true;
-                dgv.Refresh(); // Forzar actualización de la UI
-
-                //Ajustar ancho de las columnas 
+                dgv.Refresh();
                 dgv.Columns[0].Width = 115;
                 dgv.Columns[1].Width = 170;
                 dgv.Columns[2].Width = 58;
@@ -336,7 +327,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
 
 
-            foreach (DataRow row in dtFechas.Rows) //De la tabla del SQL para obtener campo fecha
+            foreach (DataRow row in dtFechas.Rows)
             {
                 adminFechas.AddBoldedDate(Convert.ToDateTime(row["Fecha"]));
             }
@@ -376,7 +367,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return fechas;
         }
 
-        public static DataTable tablaJustifica(DataGridView dgv) //Decano
+        public static DataTable tablaJustifica(DataGridView dgv)
         {
             DataTable dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
@@ -396,9 +387,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.DataSource = bs;
                 bs.ResetBindings(false);
                 dgv.AutoGenerateColumns = true;
-                dgv.Refresh(); // Forzar actualización de la UI
-
-                //Ajustar ancho de las columnas
+                dgv.Refresh();
                 dgv.Columns[0].Visible = false;
                 dgv.Columns[1].Width = 150;
                 dgv.Columns[2].Width = 80;
@@ -425,7 +414,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    dgv.DataSource = dt; // Cargamos los datos filtrados
+                    dgv.DataSource = dt;
                 }
                 dgv.Columns[0].Visible = false;
             }
@@ -441,8 +430,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ID_Asistencia", Ausencia);
                     cmd.Parameters.AddWithValue("@Justificacion", Justificacion);
-                    cmd.ExecuteNonQuery(); //Esto permite la ejecución de insert o update
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    cmd.ExecuteNonQuery();                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     dgv.DataSource = dt;
@@ -450,8 +438,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static DataTable tablaRepone(DataGridView dgv) //Decano
-        {
+        public static DataTable tablaRepone(DataGridView dgv)         {
             DataTable dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
@@ -470,10 +457,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.DataSource = bs;
                 bs.ResetBindings(false);
                 dgv.AutoGenerateColumns = true;
-                dgv.Refresh(); // Forzar actualización de la UI
-
-                //Ajustar ancho de las columnas
-                dgv.Columns[0].Visible = false;
+                dgv.Refresh(); 
+                                dgv.Columns[0].Visible = false;
                 dgv.Columns[1].Width = 150;
                 dgv.Columns[2].Width = 80;
                 dgv.Columns[3].Width = 66;
@@ -498,8 +483,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    dgv.DataSource = dt; // Cargamos los datos filtrados
-                }
+                    dgv.DataSource = dt;                 }
 
                 dgv.Columns[0].Visible = false;
             }
@@ -507,8 +491,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public static void Repongo(DataGridView dgv, int Ausencia, DateTimePicker dtp)
         {
-            DateTime dia = dtp.Value; // DateTimePicker o cualquier otro control de fecha
-            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            DateTime dia = dtp.Value;             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand("PA_Insertar_Reposicion", conn))
@@ -516,8 +499,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ID_Asistencia", Ausencia);
                     cmd.Parameters.AddWithValue("@Fecha_Reposicion", dia);
-                    cmd.ExecuteNonQuery(); //Esto permite la ejecución de insert o update
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    cmd.ExecuteNonQuery();                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     dgv.DataSource = dt;
@@ -525,7 +507,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public DataTable codigo_doc_tabla() //Con esto muestra las filas por código del docente
+        public DataTable codigo_doc_tabla()
         {
             DataTable dt = new DataTable();
             try
@@ -536,25 +518,10 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     using (SqlCommand cmd = new SqlCommand("PA_Asistencia_Doc", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        /*if (string.IsNullOrEmpty(docente)) //No se lee el código del docente  
-                        {
-                            MessageBox.Show("Error: No se ha asignado un código de docente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return dt; //Concluye con mensaje de error
-                        }*/
 
-                        // Se asigna el parámetro con el código del docente.
                         cmd.Parameters.AddWithValue("@CodigoDocente", docente);
 
-                        SqlDataAdapter da = new SqlDataAdapter(cmd); //Adaptador de comando por conexión
-                        da.Fill(dt); //Llenar los datos del PA
-
-                        /*foreach (DataRow row in dt.Rows) //Depuración: Mostrar columnas y valores en la fila
-                        {
-                            foreach (DataColumn col in dt.Columns)
-                            {
-                                MessageBox.Show($"Columna: {col.ColumnName}, Valor: {row[col]}");
-                            }
-                        */
+                        SqlDataAdapter da = new SqlDataAdapter(cmd); da.Fill(dt);
                     }
                 }
             }
@@ -562,36 +529,24 @@ namespace PreyectoDesarrollo_unicah.CLASES
             {
                 MessageBox.Show("Error al obtener datos: " + ex.Message);
             }
-            /*Mostrar cantidad de filas según el PA
-              MessageBox.Show($"Filas obtenidas: {dt.Rows.Count}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
             return dt;
         }
 
         public void tabla_docente(DataGridView dgv)
         {
-            DataTable dt = codigo_doc_tabla(); // Se llena los valores del PA según el código en DataTable
-
-            /* Depuración: Mostrar columnas leídas del dgv 
-            foreach (DataColumn col in dt.Columns)
-            {
-                MessageBox.Show($"Columna encontrada: {col.ColumnName}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }*/
+            DataTable dt = codigo_doc_tabla(); 
 
             if (dt.Rows.Count > 0)
             {
-                /* Limpia las columnas actuales para evitar duplicados posiblemente por el PA
-                o columnas mal detectadas                 por más de una fila*/
                 dgv.Columns.Clear();
 
-                // Usa BindingSource para enlazar los datos
-                BindingSource bs = new BindingSource();
+                                BindingSource bs = new BindingSource();
                 bs.DataSource = dt;
                 dgv.DataSource = bs;
                 bs.ResetBindings(false);
 
                 dgv.AutoGenerateColumns = true;
-                dgv.Refresh(); // Forzar actualización de la UI
-
+                dgv.Refresh(); 
                 dgv.Columns[0].Width = 150;
                 dgv.Columns[1].Width = 58;
                 dgv.Columns[2].Visible = false;
@@ -623,7 +578,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
 
 
-            foreach (DataRow row in dtFechas.Rows) //De la tabla del SQL para obtener campo fecha
+            foreach (DataRow row in dtFechas.Rows)
             {
                 docFechas.AddBoldedDate(Convert.ToDateTime(row["Fecha"]));
             }
