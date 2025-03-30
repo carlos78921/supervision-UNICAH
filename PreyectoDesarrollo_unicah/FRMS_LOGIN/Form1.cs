@@ -109,7 +109,8 @@ namespace PreyectoDesarrollo_unicah
         {
             string usuario = txtusuario.Text;
             string contraseña = txtcontraseña.Text;
-            if (!Validaciones.ValidarUsuario(e, usuario, contraseña))
+            
+            if (!Validaciones.ValidarUsuario(e, usuario, contraseña, txtusuario))
                 return;
             if (e.KeyChar == (char)Keys.Enter)
                 ACCIONES_BD.Login(usuario, contraseña, this);
@@ -119,6 +120,10 @@ namespace PreyectoDesarrollo_unicah
         {
             string usuario = txtusuario.Text;
             string contraseña = txtcontraseña.Text;
+
+            if (!Validaciones.ValidarUsuario(e, usuario, contraseña, txtusuario))
+                return;
+
             if (!Validaciones.ValidarContraseña(e, usuario, contraseña))
                 return;
             if (e.KeyChar == (char)Keys.Enter)

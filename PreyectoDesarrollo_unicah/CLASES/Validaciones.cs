@@ -11,14 +11,14 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public static bool DatoVacio (string usuario, string contraseña, TextBox txtUsuario)
         {
-            if ((usuario == "Usuario:" || string.IsNullOrWhiteSpace(usuario)) && //Usuario y contraseña vacía
+            if ((usuario == "Usuario:" || string.IsNullOrWhiteSpace(usuario)) && 
                 (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña))) 
             {
                 MessageBox.Show("Datos no ingresados, ingrese sus datos", "Error Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (usuario == "Usuario:") //Usuario Vacío
+            if (usuario == "Usuario:") 
             {
                 txtUsuario.Clear();
                 MessageBox.Show("Usuario no puede quedar vacío.", "Error Usuario Vacío", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -46,14 +46,33 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
             if (contraseña != "Contraseña:" && contraseña.Length < 8)
             {
-                MessageBox.Show("Su contraseña debe contener más de ocho caracteres.\nComuníquese con el Administrador, y espere a que le asigne contraseña", "Error del Admin.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Su contraseña debe contener más de ocho caracteres.\nComuníquese con el Administrador, y espere a que le asigne contraseña", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             return true;
         }
 
-        public static bool ValidarUsuario(KeyPressEventArgs e, string usuario, string contraseña)
+        public static bool CasoContraseñaNueva(string contraseña, TextBox txtContraseña)
+        {
+            if (contraseña == "Contraseña nueva:")
+            {
+                txtContraseña.Clear();
+                MessageBox.Show("Contraseña no puede quedar vacía.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtContraseña.Text = contraseña;
+                return false;
+            }
+
+            if (contraseña != "Contraseña nueva:" && contraseña.Length < 8)
+            {
+                MessageBox.Show("La contraseña debe tener al menos 8 caracteres.", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool ValidarUsuario(KeyPressEventArgs e, string usuario, string contraseña, TextBox txtusuario)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
                 e.Handled = true; // Bloquea caracteres no permitidos
@@ -68,11 +87,19 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     return false;
                 }
 
+                if (!Validaciones.SoloNumero(usuario))
+                {
+                    MessageBox.Show("El usuario corresponde a números", "Error Letras", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtusuario.Focus();
+                    return false;
+                }
+
                 if (contraseña == "Contraseña:" || contraseña == "Contraseña nueva:")
                 {
                     MessageBox.Show("No ingresó su contraseña, ingrese su contraseña", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
+
             }
             return true;
         }
@@ -88,6 +115,12 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 if (contraseña == "")
                 {
                     MessageBox.Show("Contraseña vacía, ingrese su contraseña", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                if (contraseña != "" && contraseña.Length<8)
+                {
+                    MessageBox.Show("La contraseña debe contener más de 8 caracteres", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
 
