@@ -31,10 +31,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public ACCIONES_BD(string codigo)
         {
-            if (!string.IsNullOrEmpty(codigo))
-            {
-                docente = codigo;
-            }
+            docente = codigo;
         }
 
         public static bool AdminContraVacio(string usuario, string contraseña, Form Login)
