@@ -125,18 +125,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
             return true;
         }
-
-        public void ValidarFiltro(KeyPressEventArgs e, TextBox textBox)
-        {
-            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
-                e.Handled = true; // Bloquea caracteres no permitidos
-            else
-                e.Handled = false;
-
-            // Verifica si el campo está en blanco después de la entrada
-            if (string.IsNullOrWhiteSpace(textBox.Text) && e.KeyChar == (char)Keys.Enter)
-                MessageBox.Show("El campo no puede quedar en blanco.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
     }
 }
 
