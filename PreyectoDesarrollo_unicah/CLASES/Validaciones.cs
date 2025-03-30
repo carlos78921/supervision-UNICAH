@@ -12,7 +12,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
         public static bool DatoVacio (string usuario, string contraseña, TextBox txtUsuario)
         {
             if ((usuario == "Usuario:" || string.IsNullOrWhiteSpace(usuario)) && 
-                (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña))) 
+                (contraseña == "Contraseña:" || contraseña == "Contraseña nueva:" || string.IsNullOrWhiteSpace(contraseña))) 
             {
                 MessageBox.Show("Datos no ingresados, ingrese sus datos", "Error Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -21,7 +21,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             if (usuario == "Usuario:") 
             {
                 txtUsuario.Clear();
-                MessageBox.Show("Usuario no puede quedar vacío.", "Error Usuario Vacío", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Usuario no puede quedar vacío.", "Usuario Vacío", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUsuario.Text = usuario;
                 return false;
             }

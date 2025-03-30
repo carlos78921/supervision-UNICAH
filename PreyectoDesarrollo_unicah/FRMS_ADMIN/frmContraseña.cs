@@ -57,42 +57,13 @@ namespace PreyectoDesarrollo_unicah
             string usuario = txtUsuario.Text;
             string contraseña = txtContraseña.Text;
 
-            if (string.IsNullOrEmpty(usuario) || usuario == "Usuario:") //Vacío con o sin un dato
-            {
-                MessageBox.Show("Por favor ingrese el usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (!Validaciones.DatoVacio(usuario,contraseña, txtUsuario))
                 return;
-            }
 
             if (!Validaciones.CasoContraseñaNueva(contraseña, txtContraseña))
                 return;
 
-            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-            {
-                conexion.Open();
-
-                using (SqlCommand cmd = new SqlCommand("PA_Contra", conexion))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@usuario", usuario);
-                    cmd.Parameters.AddWithValue("@contraseña", contraseña);
-
-                    //"@" = Parámetro, "RetVal" = ReturnValue, SqlDbType.Int = Tipo de dato del retorno
-                    SqlParameter @retorno = cmd.Parameters.Add("RetVal", SqlDbType.Int);
-                    @retorno.Direction = ParameterDirection.ReturnValue; //Obtener el parámetro de retorno
-
-                    cmd.ExecuteNonQuery();
-
-                    int resultado = (int)@retorno.Value;
-                    if (resultado == 0)
-                    {
-                        MessageBox.Show("Usuario no encontrado");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Contraseña cambiada con éxito");
-                    }
-                }
-            }
+            ACCIONES_BD.AdminAsignaContra(usuario, contraseña);
         }
 
         private void txtUsuario_Enter(object sender, EventArgs e)
