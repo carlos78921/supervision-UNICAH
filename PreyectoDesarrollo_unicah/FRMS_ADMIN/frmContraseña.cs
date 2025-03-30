@@ -57,27 +57,15 @@ namespace PreyectoDesarrollo_unicah
             string usuario = txtUsuario.Text;
             string contraseña = txtContraseña.Text;
 
-            if (contraseña == "Contraseña nueva:")
-            {
-                txtContraseña.Clear();
-                MessageBox.Show("Contraseña no puede quedar vacía.", "Error Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtContraseña.Text = contraseña;
-                return;
-            }
-
-            if (contraseña != "Contraseña nueva:" && contraseña.Length < 8)
-            {
-                MessageBox.Show("La contraseña debe tener al menos 8 caracteres.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-
-
             if (string.IsNullOrEmpty(usuario) || usuario == "Usuario:") //Vacío con o sin un dato
             {
                 MessageBox.Show("Por favor ingrese el usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            if (!Validaciones.CasoContraseñaNueva(contraseña, txtContraseña))
+                return;
+
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conexion.Open();
@@ -158,7 +146,7 @@ namespace PreyectoDesarrollo_unicah
         {
             string usuario = txtUsuario.Text;
             string contraseña = txtContraseña.Text;
-            Validaciones.ValidarUsuario(e, usuario, contraseña);
+            Validaciones.ValidarUsuario(e, usuario, contraseña, txtUsuario);
         }
 
         private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)
