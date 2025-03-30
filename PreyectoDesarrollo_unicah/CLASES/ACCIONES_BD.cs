@@ -17,12 +17,10 @@ namespace PreyectoDesarrollo_unicah.CLASES
 {
     class ACCIONES_BD
     {
-        //Atributos
         public static string nombre, apellido;
         public static string docente;
         public CONEXION_BD conexion = new CONEXION_BD();
 
-        //Constructor
         public ACCIONES_BD()
         {
             nombre = "";
