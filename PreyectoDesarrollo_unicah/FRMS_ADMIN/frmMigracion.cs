@@ -140,7 +140,6 @@ namespace PreyectoDesarrollo_unicah
                     dt.Rows.Add(dr);
                 }
             }
-            MessageBox.Show("Total columnas: " + dt.Columns.Count);
             return dt;
         }
 
@@ -184,7 +183,6 @@ namespace PreyectoDesarrollo_unicah
 
                     var ws = workbook.Worksheets.Add($"Parcial {parcial + 1}");
                     ws.Cell(1, 1).InsertTable(dtParcial);
-
                 }
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog
