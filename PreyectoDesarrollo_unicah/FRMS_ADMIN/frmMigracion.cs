@@ -165,48 +165,45 @@ namespace PreyectoDesarrollo_unicah
                         int semanaColumnOffset = numeroSemana * 6;  // 6 días por semana
                         int columnIndex = baseColumnIndex + semanaColumnOffset + diaEnSemana; //Esto es lógica en números grandes para coincidencia de valores en diasOffset, sin fijarse mucho en "columnas"
 
-                        // Asignar "P" (presente) en esa columna
+                        // La columna detecta true o 1 y se asigna 
                         dr[columnIndex] = "P";
                     }
 
                     /* 2E. Para las columnas que no fueron asignadas, poner "-" 
-                           (Aunque ya lo hiciste con dr[columnIndex] = "P", 
-                            podrías inicializarlas antes en "-")*/
+                           (pudiendo inicializarlas antes) desde la quinta columna del dgvAdmin hasta 
+                           las última columna del dt*/
                     for (int c = dgvAdmin.Columns.Count; c < dt.Columns.Count; c++)
                     {
                         if (string.IsNullOrEmpty(dr[c].ToString()))
                         {
-                            dr[c] = "-";
+                            dr[c] = "-"; // En esto puede reflejarse más las inasistencias por where Presente = 1
                         }
                     }
 
-                    // 2F. Agregar la fila al DataTable
+                    // 2F. En las filas del dt agregar "-" si no cumple Presente = 1 
                     dt.Rows.Add(dr);
                 }
             }
-            MessageBox.Show("Total columnas: " + dt.Columns.Count);
-            //            MessageBox.Show("La columna de asistencia está en el índice: " + dt.Columns.IndexOf("Semana 2 - Lunes"));
             return dt;
         }
 
-        private void btnExcel_Click(object sender, EventArgs e) //Exportar datos del dgv y asistencia al excel, aunque solo están los valores del dgv puestos
+        private void btnExcel_Click(object sender, EventArgs e) 
         {
             DataTable dt = TransferirDatosExcel();
 
             int baseColumns = 5; //Columnas del dgv
             int columnasPorParcial = 4 * 6; //Cuatro semanas por seis días (lunes a sábado)
 
-            using (var workbook = new XLWorkbook())
+            using (var workbook = new XLWorkbook()) // "var" es una variable de tipo incógnito que está para asignar su tipo
             {
-                // Iterar por cada parcial (0 a 2)
+                // Iterar por cada parcial (0 a 2), este es bucle para las hojas, no valor
                 for (int parcial = 0; parcial < 3; parcial++)
                 {
                     // Clonar la estructura del dtCompleto
                     DataTable dtParcial = dt.Clone();
 
-                    // Eliminar las columnas de asistencia que no correspondan a este parcial.
-                    // Primero, eliminamos todas las columnas de asistencia del clon.
-                    for (int i = dtParcial.Columns.Count - 1; i >= baseColumns; i--)
+                    // Eliminar las columnas de asistencia que no correspondan al parcial actual
+                    for (int i = dtParcial.Columns.Count - 1; i >= baseColumns; i--) //dtParcia.Columns.Count tiene - 1 porque cuenta 77, entonces por posición para operar con el bucle lo deja 76 para llegar a 0
                     {
                         dtParcial.Columns.RemoveAt(i);
                     }
@@ -214,36 +211,36 @@ namespace PreyectoDesarrollo_unicah
                     // Agregar solo las columnas de asistencia de este parcial.
                     for (int i = 0; i < columnasPorParcial; i++)
                     {
-                        // El índice real en dtCompleto para la columna de asistencia:
+                        // Ilustrar estructura dtCompleto para dividir del bucle
                         int indiceReal = baseColumns + (parcial * columnasPorParcial) + i;
-                        // Agregar la columna al dtParcial con el mismo nombre.
-                        dtParcial.Columns.Add(dt.Columns[indiceReal].ColumnName, typeof(string));
+
+                        // Agregar la columna al dtParcial con el mismo nombre del indiceReal detectado
+                        dtParcial.Columns.Add(dt.Columns[indiceReal].ColumnName, typeof(string)); //"typeof" acude a considerar cadena en la columna para el ingreso de "P" y "-"
                     }
 
                     // Ahora, copiar las filas filtrando las columnas de asistencia correspondientes.
-                    foreach (DataRow row in dt.Rows)
+                    foreach (DataRow copia in dt.Rows)
                     {
-                        DataRow newRow = dtParcial.NewRow();
+                        DataRow valores = dtParcial.NewRow(); //Espacio para inserción (como dr del dtCompleto) a cantidad del dtCompleto
 
-                        // Copiar las columnas base (por ejemplo, 0 a baseColumns-1).
+                        // Copiar las columnas base (por ejemplo, 0 a baseColumns - 1 como 4).
                         for (int i = 0; i < baseColumns; i++)
                         {
-                            newRow[i] = row[i];
+                            valores[i] = copia[i];
                         }
-                        // Copiar las columnas de asistencia para este parcial.
+
+                        // Así como se estructuró, así se copia en la estructura
                         for (int i = 0; i < columnasPorParcial; i++)
                         {
                             int indiceReal = baseColumns + (parcial * columnasPorParcial) + i;
-                            newRow[baseColumns + i] = row[indiceReal];
+                            valores[baseColumns + i] = copia[indiceReal];
                         }
-                        dtParcial.Rows.Add(newRow);
+                        dtParcial.Rows.Add(valores);
                     }
 
-                    // Agregar una nueva hoja al libro para este parcial.
-                    var ws = workbook.Worksheets.Add($"Parcial {parcial + 1}");
+                    // Agregar una nueva hoja al libro para este parcial de 1 a 3 por el +1.
+                    var ws = workbook.Worksheets.Add($"Parcial {parcial + 1}"); //var es ahora tipo WorkBook, aunque de hecho antes fue var, entonces también coincide
                     ws.Cell(1, 1).InsertTable(dtParcial);
-
-                    // Opcional: aplicar formato, ajustar anchos, encabezados, etc.
                 }
 
                 // Guardar el archivo Excel.
@@ -254,10 +251,9 @@ namespace PreyectoDesarrollo_unicah
                     FileName = "Asistencia_Por_Parciales.xlsx"
                 };
 
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                if (saveFileDialog.ShowDialog() == DialogResult.OK) 
                 {
-                    workbook.SaveAs(saveFileDialog.FileName);
-                    MessageBox.Show("Exportación realizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    workbook.SaveAs(saveFileDialog.FileName); 
                 }
             }
         }
