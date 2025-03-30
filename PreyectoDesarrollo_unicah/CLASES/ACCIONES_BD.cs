@@ -19,6 +19,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
     {
         public static string nombre, apellido;
         public static string docente;
+
         public CONEXION_BD conexion = new CONEXION_BD();
 
         public ACCIONES_BD()
