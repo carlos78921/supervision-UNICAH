@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Drawing;
 using PreyectoDesarrollo_unicah.FRMS_ADMIN;
 using PreyectoDesarrollo_unicah.FRMS_SUPERV;
+using DocumentFormat.OpenXml.Office2013.Drawing.ChartStyle;
 
 namespace PreyectoDesarrollo_unicah.CLASES
 {
@@ -36,16 +37,19 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public static bool AdminContraVacio(string usuario, string contraseña, Form Login)
         {
-            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            //Declarar conexión a bdd con la cadena de conexión
+            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString)) //SqlConnection: tipo de dato SQL para conexión, conexion: nombre de dato, se instancia con 1 argumento (cadena de conexión: clase que referencia a variable de clase que referencia a identificador de variable)
             {
-                conexion.Open();
-                using (SqlCommand cmd = new SqlCommand("PA_Admin_Save", conexion))
+                conexion.Open(); //Abre la variable de SQLConecction
+                using (SqlCommand cmd = new SqlCommand("PA_Admin_Save", conexion)) // SqlCommand: tipo de dato SQL para comando, cmd: nombre de dato, se instancia con 2 argumentos ("Nombre del comando en PA", conexión SQL en variable o cadena)
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Usuario", usuario);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    cmd.CommandType = CommandType.StoredProcedure; //Del CommandType o tipo de comando = CommandType.StoredProcedure como referencia identificador: Procedimiento Almacenado, de CommandType
+                    cmd.Parameters.AddWithValue("@Usuario", usuario); // Parameters: parámetros en sql, AddWithValue: asignar el parámetro de visual (Parámetro con "@", valor con texto de control, variable o cadena)
+
+                    // Comando de ejecución consulta para obtener el rol, nombre y apellido
+                    using (SqlDataReader reader = cmd.ExecuteReader()) //SqlDataReader: tipo de dato de SQL, reader: nombre del dato, asignado por cmd.Ejecu
                     {
-                        if (reader.Read())
+                        if (reader.Read()) //Obtiene la variable de SqlDataReader
                         {
                             if (contraseña == "Contraseña:")
                             {
@@ -57,7 +61,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                                 }
                                 return false;
                             }
-                            if (contraseña.Length < 8)
+                            if (contraseña.Length < 8) //Length: Cantidad de caracteres
                             {
                                 if (MessageBox.Show("Saludos Administrador, su contraseña debe contener más de ocho caracteres, ¿olvidó su contraseña?", "Contraseña Corta", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                                 {
@@ -86,7 +90,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.Parameters.AddWithValue("@usuario", usuario);
                     cmd.Parameters.AddWithValue("@contrasena", contraseña);
 
-                    // Consulta para obtener el rol, nombre y apellido
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read()) // Verifica si hay usuario y contraseña para leer otros datos
