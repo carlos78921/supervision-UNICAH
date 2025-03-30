@@ -197,7 +197,6 @@ namespace PreyectoDesarrollo_unicah
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     workbook.SaveAs(saveFileDialog.FileName);
-                    MessageBox.Show("Exportación realizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
