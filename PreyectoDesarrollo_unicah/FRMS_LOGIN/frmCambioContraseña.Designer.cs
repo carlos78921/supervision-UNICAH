@@ -107,7 +107,7 @@
             btnContraseña.Name = "btnContraseña";
             btnContraseña.Size = new Size(408, 40);
             btnContraseña.TabIndex = 8;
-            btnContraseña.Text = "&REGISTRAR DATOS";
+            btnContraseña.Text = "&REGISTRAR CONTRASEÑA";
             btnContraseña.UseVisualStyleBackColor = false;
             btnContraseña.Click += btnContraseña_Click;
             // 
