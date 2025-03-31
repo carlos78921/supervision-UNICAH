@@ -73,7 +73,6 @@ namespace PreyectoDesarrollo_unicah
             string contraseña = txtcontraseña.Text;
 
             if (!Validaciones.DatoVacio(usuario, contraseña, txtusuario))
-                // La validación falló, se detiene el proceso de login
                 return;
 
 
@@ -105,7 +104,7 @@ namespace PreyectoDesarrollo_unicah
             SendMessage(this.Handle, 0x112, 0xf012, 0); 
         }
 
-        private void txtusuario_KeyPress(object sender, KeyPressEventArgs e) //Cuando aprieta tecla en texto vacío, en el caso sería "Enter"
+        private void txtusuario_KeyPress(object sender, KeyPressEventArgs e) 
         {
             string usuario = txtusuario.Text;
             string contraseña = txtcontraseña.Text;
