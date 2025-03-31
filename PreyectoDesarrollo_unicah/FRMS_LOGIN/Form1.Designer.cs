@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             txtusuario = new TextBox();
-            button1 = new Button();
+            btnLogin = new Button();
             panel1 = new Panel();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
@@ -56,19 +56,19 @@
             txtusuario.KeyPress += txtusuario_KeyPress;
             txtusuario.Leave += txtusuario_Leave;
             // 
-            // button1
+            // btnLogin
             // 
-            button1.BackColor = Color.White;
-            button1.FlatAppearance.BorderColor = SystemColors.HotTrack;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.Black;
-            button1.Location = new Point(168, 201);
-            button1.Name = "button1";
-            button1.Size = new Size(408, 40);
-            button1.TabIndex = 3;
-            button1.Text = "&INGRESAR";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btnLogin.BackColor = Color.White;
+            btnLogin.FlatAppearance.BorderColor = SystemColors.HotTrack;
+            btnLogin.FlatStyle = FlatStyle.Flat;
+            btnLogin.ForeColor = Color.Black;
+            btnLogin.Location = new Point(168, 201);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(408, 40);
+            btnLogin.TabIndex = 3;
+            btnLogin.Text = "&INGRESAR";
+            btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
             // 
             // panel1
             // 
@@ -138,7 +138,7 @@
             ClientSize = new Size(780, 287);
             Controls.Add(txtcontraseña);
             Controls.Add(panel1);
-            Controls.Add(button1);
+            Controls.Add(btnLogin);
             Controls.Add(txtusuario);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Form1";
@@ -156,7 +156,7 @@
         #endregion
 
         private TextBox txtusuario;
-        private Button button1;
+        private Button btnLogin;
         private Panel panel1;
         private TextBox txtcontraseña;
         private PictureBox pictureBox1;

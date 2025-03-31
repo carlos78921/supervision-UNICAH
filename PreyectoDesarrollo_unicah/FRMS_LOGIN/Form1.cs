@@ -67,7 +67,7 @@ namespace PreyectoDesarrollo_unicah
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             string usuario = txtusuario.Text;
             string contraseña = txtcontraseña.Text;
