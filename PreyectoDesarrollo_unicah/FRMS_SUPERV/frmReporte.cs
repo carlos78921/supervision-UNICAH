@@ -4,17 +4,19 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClosedXML.Excel;
 using PreyectoDesarrollo_unicah.CLASES;
+using System.Data.SqlClient;
 
 namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
 {
     public partial class frmReporte : Form
     {
-        public frmReporte(frmAsistencia asiste)
+        public frmReporte()
         {
             InitializeComponent();
         }
@@ -31,95 +33,154 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
             Menu.Show();
         }
 
+        private void btnChao_Click(object sender, EventArgs e)
+        {
+            frmSupervisor superv = new frmSupervisor();
+            this.Close();
+            superv.Show();
+        }
+
+        private DataTable TransferirDatosSuperExcel()
+        {
+            // 1. Crear el DataTable y llenarlo con los datos base desde la base de datos usando PA_Admin.
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("PA_Supervisor", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+            }
+            // Ahora dt tiene las 5 columnas base: Referencia, Curso, Sección, Aula y Empleado.
+
+            // 2. Agregar columnas para asistencia (12 semanas x 6 días = 72 columnas).
+            for (int parcial = 1; parcial <= 3; parcial++)
+            {
+                for (int semana = 1; semana <= 4; semana++)
+                {
+                    string[] diasSemana = { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
+                    foreach (string dia in diasSemana)
+                    {
+                        dt.Columns.Add($"Parcial {parcial} - Semana {semana} - {dia}");
+                    }
+                }
+            }
+            // Al final, dt tendrá 5 + 72 = 77 columnas.
+
+            // 3. Recorrer cada fila del dt (datos base) para llenar las columnas de asistencia.
+            // Se usará una fecha de inicio (por ejemplo, la mínima del calendario o una fecha fija).
+            DateTime fechaInicio = new DateTime(DateTime.Now.Year, 1, 20);
+            // Si el MonthCalendar está configurado correctamente, podrías usar:
+            // DateTime fechaInicio = mesAdmin.MinDate;
+
+            // Por cada fila (cada registro de PA_Admin)
+            foreach (DataRow row in dt.Rows)
+            {
+                string docente = row["Docente"].ToString();
+                string clase = row["Asignatura"].ToString();
+                string seccion = row["Seccion"].ToString();
+                string aula = row["Aula"].ToString();
+                string edificio = row["Edificio"].ToString();
+
+                // Obtener las fechas de asistencia para este registro usando tu método
+                List<DateTime> fechasAsistencia = ACCIONES_BD.CargarAsistenciaSuperExcel(docente, clase, seccion, aula, edificio);
+
+                // Recorrer cada fecha de asistencia
+                foreach (DateTime fecha in fechasAsistencia)
+                {
+                    // Calcular cuántos días han pasado desde fechaInicio
+                    int diasOffset = (fecha - fechaInicio).Days;
+                    // Aceptamos solo fechas dentro de 12 semanas (12*7 = 84 días)
+                    if (diasOffset < 0 || diasOffset >= 84)
+                        continue;
+
+                    // Calcular en qué semana (0 a 11) y en qué día (0 a 6)
+                    int numeroSemana = diasOffset / 7;    // si 0, estamos en la 1ª semana (en numeración base 0)
+                    int diaEnSemana = diasOffset % 7;       // 0 = lunes, 1 = martes, ... 6 = domingo
+
+                    // Si queremos solo lunes a sábado, ignoramos domingo (si diaEnSemana == 6)
+                    if (diaEnSemana >= 6)
+                        continue;
+
+                    // Las primeras 5 columnas son de datos base.
+                    int baseColumnIndex = 5;
+                    // Cada semana tiene 6 columnas (para 6 días).
+                    int semanaColumnOffset = numeroSemana * 6;
+                    int columnIndex = baseColumnIndex + semanaColumnOffset + diaEnSemana;
+                    // Asigna "P" (presente) en la columna calculada.
+                    row[columnIndex] = "P";
+
+
+                    // Rellenar con "-" las columnas de asistencia que no se hayan asignado.
+                    for (int c = baseColumnIndex; c < dt.Columns.Count; c++)
+                    {
+                        if (string.IsNullOrEmpty(row[c].ToString()))
+                        {
+                            row[c] = "-";
+                        }
+                    }
+                }
+            }
+
+            return dt;
+        }
+
         private void btnExcel_Click(object sender, EventArgs e)
         {
+            // Obtén el DataTable directamente de la base de datos (sin usar dgv).
+            DataTable dt = TransferirDatosSuperExcel();
 
-            /*// Crear un DataTable para almacenar los datos del DataGridView
-            DataTable dt = new DataTable();
-
-            // Agregar las columnas del DataGridView primero
-            foreach (DataGridViewColumn columna in dgvAdmin)
-            {
-                dt.Columns.Add(columna.HeaderText);
-            }
-
-            // Agregar las columnas de asistencia organizadas en 4 semanas
-            string[] diasSemana = { "lunes", "martes", "miércoles", "jueves", "viernes", "sábado" };
-            int semanas = 4; // Número de semanas
-            int columnasPorSemana = diasSemana.Length;
-
-            for (int semana = 1; semana <= semanas; semana++)
-            {
-                foreach (string dia in diasSemana)
-                {
-                    dt.Columns.Add($"Semana {semana} - {dia}"); // Solución: Nombres únicos
-                                                                // Agregar los días de la semana
-                }
-            }
-
-            // Agregar las filas al DataTable
-            foreach (DataGridViewRow fila in dgvAdmin.Rows)
-            {
-                DataRow dr = dt.NewRow();
-
-                // Llenar las primeras columnas con datos del DataGridView
-                foreach (DataGridViewCell celda in fila.Cells)
-                {
-                    dr[celda.ColumnIndex] = celda.Value?.ToString();
-                }
-
-                // Llenar las columnas de asistencia con valores predeterminados ("-" vacío)
-                for (int i = dgvAdmin.Columns.Count; i < dt.Columns.Count; i++)
-                {
-                    dr[i] = "-";
-                }
-
-                dt.Rows.Add(dr);
-            }
-
-            // Crear un archivo Excel con ClosedXML
+            int baseColumns = 5; int columnasPorParcial = 4 * 6;
             using (var workbook = new XLWorkbook())
             {
-                var hoja = workbook.Worksheets.Add("Asistencia");
-
-                // Insertar los datos en la celda (fila 3 en adelante para evitar superposición con encabezados)
-                hoja.Cell(3, 1).InsertTable(dt);
-
-                // Fusionar celdas y agregar encabezados de semanas
-                int columnaInicio = dgvAdmin.Columns.Count + 1;
-                for (int semana = 1; semana <= semanas; semana++)
+                for (int parcial = 0; parcial < 3; parcial++)
                 {
-                    int columnaFin = columnaInicio + columnasPorSemana - 1;
-                    hoja.Range(1, columnaInicio, 1, columnaFin).Merge();
-                    hoja.Cell(1, columnaInicio).Value = $"SEMANA {semana}";
-                    hoja.Cell(1, columnaInicio).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                    hoja.Cell(1, columnaInicio).Style.Font.Bold = true;
-                    hoja.Range(1, columnaInicio, 1, columnaFin).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
+                    DataTable dtParcial = dt.Clone();
 
-                    columnaInicio = columnaFin + 1;
+                    for (int i = dtParcial.Columns.Count - 1; i >= baseColumns; i--)
+                    {
+                        dtParcial.Columns.RemoveAt(i);
+                    }
+
+                    for (int i = 0; i < columnasPorParcial; i++)
+                    {
+                        int indiceReal = baseColumns + (parcial * columnasPorParcial) + i;
+                        dtParcial.Columns.Add(dt.Columns[indiceReal].ColumnName, typeof(string));
+                    }
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        DataRow newRow = dtParcial.NewRow();
+
+                        for (int i = 0; i < baseColumns; i++)
+                        {
+                            newRow[i] = row[i];
+                        }
+                        for (int i = 0; i < columnasPorParcial; i++)
+                        {
+                            int indiceReal = baseColumns + (parcial * columnasPorParcial) + i;
+                            newRow[baseColumns + i] = row[indiceReal];
+                        }
+                        dtParcial.Rows.Add(newRow);
+                    }
+
+                    var ws = workbook.Worksheets.Add($"Parcial {parcial + 1}");
+                    ws.Cell(1, 1).InsertTable(dtParcial);
                 }
 
-                // Formato para los días de la semana (negrita y color de fondo azul claro)
-                for (int col = dgvAdmin.Columns.Count + 1; col <= dt.Columns.Count; col++)
-                {
-                    hoja.Cell(2, col).Style.Font.Bold = true;
-                    hoja.Cell(2, col).Style.Fill.BackgroundColor = XLColor.LightBlue;
-                }
-
-                // Mostrar el diálogo para guardar el archivo
                 SaveFileDialog saveFileDialog = new SaveFileDialog
                 {
                     Filter = "Archivo Excel (.xlsx)|*.xlsx",
                     Title = "Guardar archivo Excel",
-                    FileName = "Asistencia.xlsx"
+                    FileName = "Reporte_Supervisor.xlsx"
                 };
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
                     workbook.SaveAs(saveFileDialog.FileName);
-                    MessageBox.Show("Asistencia exportada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            */
+            }
         }
     }
 }

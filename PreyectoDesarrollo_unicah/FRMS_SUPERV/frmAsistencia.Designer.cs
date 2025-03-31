@@ -369,7 +369,7 @@
         private Panel panel1;
         private PictureBox pictureBox3;
         private Label label1;
-        private DataGridView dgvAsiste;
+        public DataGridView dgvAsiste;
         private Label lblPersona;
         private Label label5;
         private TextBox txtClase;

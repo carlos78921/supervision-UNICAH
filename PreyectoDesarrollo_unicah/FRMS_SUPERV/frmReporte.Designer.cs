@@ -37,6 +37,7 @@
             pictureBox1 = new PictureBox();
             label1 = new Label();
             btnExcel = new Button();
+            btnChao = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
@@ -134,7 +135,7 @@
             // btnExcel
             // 
             btnExcel.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnExcel.Location = new Point(144, 108);
+            btnExcel.Location = new Point(33, 108);
             btnExcel.Name = "btnExcel";
             btnExcel.Size = new Size(172, 38);
             btnExcel.TabIndex = 14;
@@ -142,11 +143,23 @@
             btnExcel.UseVisualStyleBackColor = true;
             btnExcel.Click += btnExcel_Click;
             // 
+            // btnChao
+            // 
+            btnChao.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnChao.Location = new Point(249, 108);
+            btnChao.Name = "btnChao";
+            btnChao.Size = new Size(172, 38);
+            btnChao.TabIndex = 15;
+            btnChao.Text = "&Volver";
+            btnChao.UseVisualStyleBackColor = true;
+            btnChao.Click += btnChao_Click;
+            // 
             // frmReporte
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(449, 156);
+            Controls.Add(btnChao);
             Controls.Add(btnExcel);
             Controls.Add(label1);
             Controls.Add(panel1);
@@ -176,5 +189,6 @@
         private PictureBox pictureBox5;
         private Label label1;
         private Button btnExcel;
+        private Button btnChao;
     }
 }

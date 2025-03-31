@@ -67,6 +67,9 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
+            frmReporte Menu = new frmReporte();
+            this.Close();
+            Menu.Show();
         }
 
         private void frmSupervisor_Load(object sender, EventArgs e)

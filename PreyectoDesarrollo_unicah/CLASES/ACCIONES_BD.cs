@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Drawing;
 using PreyectoDesarrollo_unicah.FRMS_ADMIN;
 using PreyectoDesarrollo_unicah.FRMS_SUPERV;
+using DocumentFormat.OpenXml.Office.Word;
 
 namespace PreyectoDesarrollo_unicah.CLASES
 {
@@ -220,6 +221,35 @@ namespace PreyectoDesarrollo_unicah.CLASES
             supervisorFechas.UpdateBoldedDates();
 
             return dtFechas;
+        }
+
+        public static List<DateTime> CargarAsistenciaSuperExcel(string Docente, string clase, string seccion, string aula, string edificio)
+        {
+            List<DateTime> fechas = new List<DateTime>();
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("PA_Asistencia_Superv", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Docente", Docente);
+                cmd.Parameters.AddWithValue("@Asigno", clase);
+                cmd.Parameters.AddWithValue("@Seccion", seccion);
+                cmd.Parameters.AddWithValue("@Aula", aula);
+                cmd.Parameters.AddWithValue("@Edificio", edificio);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        if (!reader.IsDBNull(0))
+                        {
+                            fechas.Add(reader.GetDateTime(0));
+                        }
+                    }
+                }
+            }
+            return fechas;
         }
 
         public static DataTable tablaSupervisor(DataGridView dgv)
