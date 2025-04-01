@@ -127,7 +127,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     return false;
                 }
 
-                if (contraseña != "" && contraseña.Length<8)
+                if (contraseña != "" && contraseña.Length<8) //Por esto hay que unir con CasoContraseña, al igual que CasoDato
                 {
                     MessageBox.Show("La contraseña debe contener más de 8 caracteres", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
