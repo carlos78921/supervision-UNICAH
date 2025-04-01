@@ -28,7 +28,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
             if (usuario != "Usuario:" && usuario.Length > 4)
             {
-                MessageBox.Show("Su usuario debe contener cuatro o menos caracteres.\nComuníquese con el Administrador, y espere a que le asigne contraseña", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Su usuario debe contener cuatro o menos caracteres.", "Usuario Largo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -52,7 +52,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
             if (contraseña != "Contraseña:" && contraseña.Length < 8)
             {
-                MessageBox.Show("Su contraseña debe contener más de ocho caracteres.\nComuníquese con el Administrador, y espere a que le asigne contraseña", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Su contraseña debe contener más de ocho caracteres.\nComuníquese con el Administrador, y espere a que le asigne contraseña correcta", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -99,6 +99,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     txtusuario.Focus();
                     return false;
                 }
+
+                if (!Validaciones.CasoDato(usuario, contraseña, txtusuario))
+                    return false;
 
                 if (contraseña == "Contraseña:" || contraseña == "Contraseña nueva:")
                 {

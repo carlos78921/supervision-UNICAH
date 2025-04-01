@@ -57,7 +57,7 @@ namespace PreyectoDesarrollo_unicah
             string usuario = txtUsuario.Text;
             string contraseña = txtContraseña.Text;
 
-            if (!Validaciones.DatoVacio(usuario,contraseña, txtUsuario))
+            if (!Validaciones.CasoDato(usuario,contraseña, txtUsuario))
                 return;
 
             if (!Validaciones.CasoContraseñaNueva(contraseña, txtContraseña))
@@ -72,7 +72,6 @@ namespace PreyectoDesarrollo_unicah
             {
                 txtUsuario.Text = "";
             }
-
         }
 
         private void txtUsuario_Leave(object sender, EventArgs e)
