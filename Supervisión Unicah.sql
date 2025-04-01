@@ -181,9 +181,8 @@ BEGIN
 	SELECT nombre1, apellido1, rol 
 	FROM Empleados E	
 	join Nombres_Completos NC on E.ID_Empleado = NC.ID_Empleado 
-	WHERE codigo_empleado = @usuario AND isnull(contraseña,'Contraseña:') = @contrasena
+	WHERE codigo_empleado = @usuario AND binary_checksum(isnull(contraseña,'Contraseña:')) =binary_checksum(@contrasena)
 END
-GO 
 
 create proc PA_Contra
 @Usuario varchar(4),
