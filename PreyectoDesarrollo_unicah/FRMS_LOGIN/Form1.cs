@@ -72,7 +72,7 @@ namespace PreyectoDesarrollo_unicah
             string usuario = txtusuario.Text;
             string contraseña = txtcontraseña.Text;
 
-            if (!Validaciones.DatoVacio(usuario, contraseña, txtusuario))
+            if (!Validaciones.CasoDato(usuario, contraseña, txtusuario))
                 return;
 
 

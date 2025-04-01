@@ -9,7 +9,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
     internal class Validaciones
     {
 
-        public static bool DatoVacio (string usuario, string contraseña, TextBox txtUsuario)
+        public static bool CasoDato (string usuario, string contraseña, TextBox txtUsuario)
         {
             if ((usuario == "Usuario:" || string.IsNullOrWhiteSpace(usuario)) && 
                 (contraseña == "Contraseña:" || contraseña == "Contraseña nueva:" || string.IsNullOrWhiteSpace(contraseña))) 
@@ -23,6 +23,12 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 txtUsuario.Clear();
                 MessageBox.Show("Usuario no puede quedar vacío.", "Usuario Vacío", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUsuario.Text = usuario;
+                return false;
+            }
+
+            if (usuario != "Usuario:" && usuario.Length > 4)
+            {
+                MessageBox.Show("Su usuario debe contener cuatro o menos caracteres.\nComuníquese con el Administrador, y espere a que le asigne contraseña", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
