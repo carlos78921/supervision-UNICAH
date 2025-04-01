@@ -216,9 +216,9 @@ begin
 	else	
 	     return
 end
-
+go
 	
-create proc PA_Supervisor -- Toma de Asistencia para supervisor
+create proc PA_Supervisor -- Tabla del supervisor
 with encryption
 as                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 begin  
@@ -240,7 +240,7 @@ begin
 end
 go
 
-create proc PA_Asistencia_Superv
+create proc PA_Asistencia_Superv -- Calendario del supervisor
 @Docente varchar (100),
 @Asigno varchar (70),
 @Seccion varchar(7),
@@ -325,9 +325,36 @@ BEGIN
         WHERE ID_Asistencia = @ID_Asistencia;
     END
 END;
+go
+	
+create PROCEDURE PA_Buscar_Superv
+    @Docente VARCHAR(50),
+    @Clase VARCHAR(70),
+    @Aula VARCHAR(25),
+    @Seccion VARCHAR(7),
+	@Edificio VARCHAR(1)
 
---En asistencia insertan y luego actualizan
-create proc PA_Admin -- Para el Admin
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT DISTINCT 
+        (Nombre1 + ' ' + ISNULL(Nombre2, '') + ' ' + Apellido1 + ' ' + ISNULL(Apellido2, '')) AS Docente, 
+        Asignatura, Seccion, Aula, Edificio 
+    FROM Asistencia A
+    JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
+    JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
+    JOIN Clases C ON A.ID_Clase = C.ID_Clase
+    JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
+    WHERE ((Nombre1 + ' ' + ISNULL(Nombre2, '') + ' ' + Apellido1 + ' ' + ISNULL(Apellido2, '')) LIKE '%' + @Docente + '%' OR @Docente = '')
+      AND (Asignatura LIKE '%' + @Clase + '%' OR @Clase = '')
+	  AND (@Seccion = '' OR Seccion = @Seccion)
+      AND (@Aula = '' OR Aula = @Aula)
+	  AND (@Edificio = '' OR Edificio = @Edificio)
+END;
+go
+
+create proc PA_Admin -- Para tabla Admin
 with encryption
 as 
 begin
@@ -349,7 +376,7 @@ begin
 end
 go
 
-create proc PA_Asistencia_Admin
+create proc PA_Asistencia_Admin --Calendario del admin
 @Referencia varchar(16),
 @Curso varchar (70),
 @Seccion varchar(7),
@@ -382,6 +409,118 @@ begin
 end
 go
 
+
+CREATE PROCEDURE PA_Justifica --Decano
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT distinct ID_Asistencia,
+		   C.Asignatura,
+           A.Fecha [Fecha de Ausencia],
+           (Nombre1 + ' ' + isnull(Nombre2,'') + ' ' + Apellido1 + ' ' + isnull(Apellido2,'')) AS [Docente],
+           S.Seccion,
+           A.Observacion [Justificacion]
+    FROM Asistencia A
+    JOIN Clases C ON A.ID_Clase = C.ID_Clase
+    JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
+    JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
+    JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
+    WHERE A.Presente = 0
+END
+go
+	    
+CREATE PROCEDURE PA_Insertar_Justificacion
+    @ID_Asistencia INT,
+    @Justificacion NVARCHAR(200)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Asistencia
+    SET Observacion = @Justificacion
+    WHERE ID_Asistencia = @ID_Asistencia;
+END
+go
+
+create PROCEDURE PA_Buscar_Justo
+    @Docente VARCHAR(50),
+	@Edificio VARCHAR(9)
+
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT DISTINCT ID_Asistencia,
+          Asignatura, fecha 'Fecha de Ausencia', Seccion, (Nombre1 + ' ' + ISNULL(Nombre2, '') + ' ' + Apellido1 + ' ' + ISNULL(Apellido2, '')) AS Docente, 
+          Aula, Edificio, Observacion
+    FROM Asistencia A
+    JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
+    JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
+    JOIN Clases C ON A.ID_Clase = C.ID_Clase
+    JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
+    WHERE Presente = 0 and
+	  ((Nombre1 + ' ' + ISNULL(Nombre2, '') + ' ' + Apellido1 + ' ' + ISNULL(Apellido2, '')) LIKE '%' + @Docente + '%' OR @Docente = '')
+	  AND (@Edificio = '' OR Edificio = @Edificio)
+END;
+go
+
+CREATE PROCEDURE PA_Repone --Decano
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT distinct A.ID_Asistencia,
+           C.Asignatura,
+           A.Fecha AS [FechaAusencia],
+           (Nombre1 + ' ' + isnull(Nombre2,'') + ' ' + Apellido1 + ' ' + isnull(Apellido2,'')) AS [Docente],
+           S.Seccion,
+           A.Fecha_Reposicion
+    FROM Asistencia A
+    JOIN Clases C ON A.ID_Clase = C.ID_Clase
+    JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
+    JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
+    JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
+    WHERE A.Presente = 0
+END
+go
+
+CREATE PROCEDURE PA_Insertar_Reposicion --Decano
+    @ID_Asistencia INT,
+    @Fecha_Reposicion date
+AS
+BEGIN
+    SET NOCOUNT ON;
+ 
+    UPDATE Asistencia
+    SET Fecha_Reposicion = @Fecha_Reposicion
+    WHERE ID_Asistencia = @ID_Asistencia
+END
+go
+
+create PROCEDURE PA_Buscar_Repo
+@Repo varchar(80),	
+@Edificio VARCHAR(9)
+	
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT DISTINCT 
+        ID_Asistencia, Asignatura, fecha 'Fecha de Ausencia', Seccion, (Nombre1 + ' ' + ISNULL(Nombre2, '') + ' ' + Apellido1 + ' ' + ISNULL(Apellido2, '')) AS Docente, 
+        Fecha_Reposicion
+    FROM Asistencia A
+    JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
+    JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
+    JOIN Clases C ON A.ID_Clase = C.ID_Clase
+    JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
+    WHERE Presente = 0 and ((@Repo = ''  
+	  or ((Nombre1 + ' ' + ISNULL(Nombre2, '') + ' ' + Apellido1 + ' ' + ISNULL(Apellido2, '')) LIKE '%' + @Repo + '%')
+	  or (Asignatura LIKE '%' + @Repo + '%')
+	  or (Fecha like '%' + @Repo + '%')
+	  or (Seccion like '%' + @Repo + '%'))
+	  and (@Edificio = '' OR Edificio = @Edificio))
+END;
+go
+
 create PROCEDURE PA_Asistencia_Doc -- Tabla del docente
     @CodigoDocente VARCHAR(4)
 WITH ENCRYPTION
@@ -399,6 +538,7 @@ BEGIN
     JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
     WHERE E.Codigo_Empleado = @CodigoDocente;
 END;
+go
 
 create proc PA_Fecha_Doc -- Calendario del docente, relacionado al del supervisor pero sin marcar asistencia
 @CodDocente varchar(4),
@@ -430,69 +570,8 @@ begin
 
     SELECT Fecha FROM Asistencia WHERE Presente = 1 and ID_Clase = 1 and ID_Sitio = @ID_Sitio and ID_Empleado = @ID_Empleado;
 end
-
-CREATE PROCEDURE PA_Insertar_Justificacion
-    @ID_Asistencia INT,
-    @Justificacion NVARCHAR(200)
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    UPDATE Asistencia
-    SET Observacion = @Justificacion
-    WHERE ID_Asistencia = @ID_Asistencia;
-END
-
-
-CREATE PROCEDURE PA_Justifica --Decano
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT distinct ID_Asistencia,
-		   C.Asignatura,
-           A.Fecha [Fecha de Ausencia],
-           (Nombre1 + ' ' + isnull(Nombre2,'') + ' ' + Apellido1 + ' ' + isnull(Apellido2,'')) AS [Docente],
-           S.Seccion,
-           A.Observacion [Justificacion]
-    FROM Asistencia A
-    JOIN Clases C ON A.ID_Clase = C.ID_Clase
-    JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
-    JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
-    JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
-    WHERE A.Presente = 0
-END
-
-
-CREATE PROCEDURE PA_Repone --Decano
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT distinct A.ID_Asistencia,
-           C.Asignatura,
-           A.Fecha AS [FechaAusencia],
-           (Nombre1 + ' ' + isnull(Nombre2,'') + ' ' + Apellido1 + ' ' + isnull(Apellido2,'')) AS [Docente],
-           S.Seccion,
-           A.Fecha_Reposicion
-    FROM Asistencia A
-    JOIN Clases C ON A.ID_Clase = C.ID_Clase
-    JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
-    JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
-    JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
-    WHERE A.Presente = 0
-END
-
-CREATE PROCEDURE PA_Insertar_Reposicion --Decano
-    @ID_Asistencia INT,
-    @Fecha_Reposicion date
-AS
-BEGIN
-    SET NOCOUNT ON;
- 
-    UPDATE Asistencia
-    SET Fecha_Reposicion = @Fecha_Reposicion
-    WHERE ID_Asistencia = @ID_Asistencia
-END
-
+go
+	
 CREATE TRIGGER TGR_AdminContra
 ON Empleados
 AFTER UPDATE
@@ -510,7 +589,8 @@ BEGIN
         WHERE rol = 'Administrador';
     END
 END;
-
+go
+	
 CREATE TABLE Asistencia_Backup (
     BackupID INT IDENTITY(1,1) PRIMARY KEY,
     IDEmpleado INT,
@@ -518,7 +598,7 @@ CREATE TABLE Asistencia_Backup (
     Presente BIT,
     BackupFecha DATETIME DEFAULT GETDATE()
 )
-
+go
 
 CREATE TRIGGER TGR_BackupAsistencia
 ON Asistencia
