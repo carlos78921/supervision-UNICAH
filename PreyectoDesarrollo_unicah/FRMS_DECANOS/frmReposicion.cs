@@ -64,7 +64,7 @@ namespace PreyectoDesarrollo_unicah
             SendMessage(this.Handle, 0x112, 0xf012, 0);  //El evento en memoria se mantiene
         }
 
-        private void btnDay_Click(object sender, EventArgs e) //SOLO ME FALTA INSERTAR FECHA DE REPOSICIÓN
+        private void btnDay_Click(object sender, EventArgs e) 
         {
             //Ajustes en la BDD
             ACCIONES_BD.Repongo(dgvRepone, (int)dgvRepone.CurrentRow.Cells[0].Value, dtpReposicion);
