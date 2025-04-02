@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PreyectoDesarrollo_unicah.CLASES;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,7 +40,7 @@ namespace PreyectoDesarrollo_unicah
 
             for (int i = 0; i < 5; i++)
             {
-                resultado.Append(caracteres[random.Next(caracteres.Length)]);
+                resultado.Append(caracteres[random.Next(caracteres.Length)]); //Append: no devuelve instancia, sino como llamada de string en resultado tipo StringBuilder
             }
 
             return resultado.ToString();
@@ -85,15 +86,15 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
-            if (txtCode.Text == codigo)
+            if (!Validaciones.CodeVale()
+            {
+                MessageBox.Show("Código inválido");
+            }
+            else
             {
                 this.Close();
                 frmCambioContraseña Cambio = new frmCambioContraseña();
                 Cambio.Show();
-            }
-            else
-            {
-                MessageBox.Show("Código inválido");
             }
         }
 
@@ -107,6 +108,21 @@ namespace PreyectoDesarrollo_unicah
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void txtCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                e.Handled = true;
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (!Validaciones.CodeVale())
+                    return;
+
+                this.Close();
+                frmCambioContraseña Cambio = new frmCambioContraseña();
+                Cambio.Show();
+            }
         }
     }
 }

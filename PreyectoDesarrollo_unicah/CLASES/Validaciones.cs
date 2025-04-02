@@ -56,8 +56,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 MessageBox.Show("Su contraseña debe contener más de ocho caracteres.\nComuníquese con el Administrador, y espere a que le asigne contraseña correcta", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
-
             return true;
         }
 
@@ -66,6 +64,10 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return usuario.All(char.IsDigit); 
         }
 
+        public static bool CodeVale(object sender, EventArgs e)
+        {
+
+        }
 
         public static bool CasoContraseñaNueva(string contraseña, TextBox txtContraseña)
         {
