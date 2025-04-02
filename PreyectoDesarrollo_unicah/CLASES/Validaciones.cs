@@ -39,8 +39,15 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 return false;
             }
 
-            if (contraseña == "Contraseña:")
+            if ((contraseña != "Contraseña:") && usuario.Length < 8)
             {
+                MessageBox.Show("Su contraseña debe contener más de ocho caracteres.\nComuníquese con el Administrador, y espere a que le asigne contraseña correcta", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (contraseña == "Contraseña:" || contraseña == "")
+            {
+                //if (contraseña == "Contraseña Nueva:" ...)
                 txtContraseña.Clear();
                 MessageBox.Show("Contraseña no puede quedar vacía, en caso de no obtener, consultar al administrador.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtContraseña.Text = contraseña;
