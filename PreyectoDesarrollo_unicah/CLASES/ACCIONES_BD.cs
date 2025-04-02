@@ -47,9 +47,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     {
                         if (reader.Read())
                         {
-                            if (contraseña == "Contraseña:")
+                            if (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña))
                             {
-                                if (MessageBox.Show("Saludos Administrador, no podemos otorgar el acceso con su contraseña vacía, ¿olvidó su contraseña?", "Contraseña Vacía Admin.", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                                if (MessageBox.Show("Saludos Administrador, no podemos otorgar el acceso con su contraseña no ingresada, ¿olvidó su contraseña?", "Contraseña Vacía Admin.", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                                 {
                                     frmPierdoContraseña Lost = new frmPierdoContraseña();
                                     Login.Hide();
@@ -57,7 +57,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                                 }
                                 return false;
                             }
-                            if (contraseña.Length < 8)
+                            if ((contraseña == "Contraseña:" && contraseña.Length < 8))
                             {
                                 if (MessageBox.Show("Saludos Administrador, su contraseña debe contener más de ocho caracteres, ¿olvidó su contraseña?", "Contraseña Corta", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                                 {
