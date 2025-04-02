@@ -76,19 +76,9 @@ namespace PreyectoDesarrollo_unicah
             if (!Validaciones.LoginVale(sender, e, txtusuario, txtcontraseña, usuario, contraseña))
                 return;
 
-
-            if (!Validaciones.SoloNumero(usuario))
-            {
-                MessageBox.Show("El usuario corresponde a números", "Error Letras", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtusuario.Focus();
-                return;
-            }
-
             if (!ACCIONES_BD.AdminContraVacio(usuario, contraseña, this))
                 return;
             
-            if (!Validaciones.CasoContraseña(contraseña, txtcontraseña))
-                return;
 
             ACCIONES_BD.Login(usuario, contraseña, this);
         }
@@ -113,7 +103,9 @@ namespace PreyectoDesarrollo_unicah
             if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true; // Evita el sonido de error por defecto
-                Validaciones.LoginVale(sender, e, txtusuario, txtcontraseña, usuario, contraseña);
+                if (!Validaciones.LoginVale(sender, e, txtusuario, txtcontraseña, usuario, contraseña))
+                    return;
+                ACCIONES_BD.Login(usuario, contraseña, this);
             }
         }
 

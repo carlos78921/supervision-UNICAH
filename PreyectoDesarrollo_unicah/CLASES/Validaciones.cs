@@ -39,7 +39,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 return false;
             }
 
-            if ((contraseña != "Contraseña:") && usuario.Length < 8)
+            if ((contraseña != "Contraseña:") && contraseña.Length < 8)
             {
                 MessageBox.Show("Su contraseña debe contener más de ocho caracteres.\nComuníquese con el Administrador, y espere a que le asigne contraseña correcta", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
