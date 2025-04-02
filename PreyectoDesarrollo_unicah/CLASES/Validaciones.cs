@@ -62,16 +62,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return usuario.All(char.IsDigit); 
         }
 
-        public static bool CasoContraseña(string contraseña, TextBox txtContraseña)
-        {
-            if (contraseña != "Contraseña:" && contraseña.Length < 8)
-            {
-                MessageBox.Show("Su contraseña debe contener más de ocho caracteres.\nComuníquese con el Administrador, y espere a que le asigne contraseña correcta", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            return true;
-        }
 
         public static bool CasoContraseñaNueva(string contraseña, TextBox txtContraseña)
         {
@@ -89,60 +79,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 return false;
             }
 
-            return true;
-        }
-
-        public static bool Validación (KeyPressEventArgs e, string usuario, string contraseña, TextBox txtusuario)
-        {
-            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
-                e.Handled = true; // Bloquea caracteres no permitidos
-            else
-                e.Handled = false;
-
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                if (usuario == "") 
-                {
-                    MessageBox.Show("Usuario no puede quedar vacío.", "Usuario Vacío", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-
-/*                if (!Validaciones.CasoDato(usuario, contraseña, txtusuario))
-                    return false;*/
-
-                if (contraseña == "Contraseña:" || contraseña == "Contraseña nueva:")
-                {
-                    MessageBox.Show("No ingresó su contraseña, ingrese su contraseña", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-
-            }
-            return true;
-        }
-        public static bool ValidarContraseña(KeyPressEventArgs e, string usuario, string contraseña, TextBox txtcontraseña)
-        {
-            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
-                e.Handled = true; 
-            else
-                e.Handled = false;
-
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                if (contraseña == "")
-                {
-                    MessageBox.Show("Contraseña vacía, ingrese su contraseña", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-
-                if (!Validaciones.CasoContraseña(contraseña, txtcontraseña))
-                    return false;
-
-                if (usuario == "Usuario:")
-                {
-                    MessageBox.Show("Usuario no detectado, ingrese usuario correcto", "No Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
             return true;
         }
     }
