@@ -99,7 +99,7 @@
             txtContraseña.TabIndex = 9;
             txtContraseña.Text = "Contraseña nueva:";
             txtContraseña.Enter += txtContraseña_Enter;
-            txtContraseña.KeyPress += txtContraseña_KeyPress;
+            txtContraseña.KeyPress += Datos_KeyPress;
             txtContraseña.Leave += txtContraseña_Leave;
             // 
             // btnContra
@@ -128,7 +128,7 @@
             txtUsuario.TabIndex = 6;
             txtUsuario.Text = "Usuario:";
             txtUsuario.Enter += txtUsuario_Enter;
-            txtUsuario.KeyPress += txtUsuario_KeyPress;
+            txtUsuario.KeyPress += Datos_KeyPress;
             txtUsuario.Leave += txtUsuario_Leave;
             // 
             // btnSale

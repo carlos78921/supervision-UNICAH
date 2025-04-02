@@ -57,8 +57,8 @@ namespace PreyectoDesarrollo_unicah
             string usuario = txtUsuario.Text;
             string contraseña = txtContraseña.Text;
 
-            if (!Validaciones.CasoDato(usuario,contraseña, txtUsuario))
-                return;
+/*            if (!Validaciones.CasoDato(usuario,contraseña, txtUsuario))
+                return;*/
 
             if (!Validaciones.CasoContraseñaNueva(contraseña, txtContraseña))
                 return;
@@ -111,20 +111,10 @@ namespace PreyectoDesarrollo_unicah
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-
-        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        
+        private void Datos_KeyPress(object sender, KeyPressEventArgs e)
         {
-            string usuario = txtUsuario.Text;
-            string contraseña = txtContraseña.Text;
-            Validaciones.ValidarUsuario(e, usuario, contraseña, txtUsuario);
-        }
 
-        private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            string usuario = txtUsuario.Text;
-            string contraseña = txtContraseña.Text;
-            Validaciones.ValidarUsuario(e, usuario, contraseña, txtUsuario);
-            Validaciones.ValidarContraseña(e, usuario, contraseña);
         }
     }
 }

@@ -1,4 +1,5 @@
 using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using PreyectoDesarrollo_unicah.CLASES;
 using PreyectoDesarrollo_unicah.FRMS_ADMIN;
 using PreyectoDesarrollo_unicah.FRMS_SUPERV;
@@ -27,7 +28,7 @@ namespace PreyectoDesarrollo_unicah
         {
             Application.Exit();
         }
-
+        
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
@@ -72,7 +73,7 @@ namespace PreyectoDesarrollo_unicah
             string usuario = txtusuario.Text;
             string contraseña = txtcontraseña.Text;
 
-            if (!Validaciones.CasoDato(usuario, contraseña, txtusuario))
+            if (!Validaciones.LoginVale(sender, e, txtusuario, txtcontraseña, usuario, contraseña))
                 return;
 
 
@@ -104,29 +105,28 @@ namespace PreyectoDesarrollo_unicah
             SendMessage(this.Handle, 0x112, 0xf012, 0); 
         }
 
-        private void txtusuario_KeyPress(object sender, KeyPressEventArgs e) 
+        private void Datos_KeyPress(object sender, KeyPressEventArgs e)
         {
             string usuario = txtusuario.Text;
             string contraseña = txtcontraseña.Text;
-            
-            if (!Validaciones.ValidarUsuario(e, usuario, contraseña, txtusuario))
-                return;
+
             if (e.KeyChar == (char)Keys.Enter)
-                ACCIONES_BD.Login(usuario, contraseña, this);
+            {
+                e.Handled = true; // Evita el sonido de error por defecto
+                Validaciones.LoginVale(sender, e, txtusuario, txtcontraseña, usuario, contraseña);
+            }
+        }
+
+        private void txtusuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                e.Handled = true;
         }
 
         private void txtcontraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
-            string usuario = txtusuario.Text;
-            string contraseña = txtcontraseña.Text;
-
-            if (!Validaciones.ValidarUsuario(e, usuario, contraseña, txtusuario))
-                return;
-
-            if (!Validaciones.ValidarContraseña(e, usuario, contraseña))
-                return;
-            if (e.KeyChar == (char)Keys.Enter)
-                ACCIONES_BD.Login(usuario, contraseña, this);
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != (char)Keys.Back)
+                e.Handled = true;
         }
     }
 }
