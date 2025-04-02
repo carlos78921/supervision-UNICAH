@@ -64,9 +64,21 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return usuario.All(char.IsDigit); 
         }
 
-        public static bool CodeVale(object sender, EventArgs e)
+        public static bool CodeVale(object sender, EventArgs e, string codigo, TextBox txtCodigo)
         {
+            if (txtCodigo.Text != "Código:" | && txtCodigo.Text.Length != 5)
+            {
+                MessageBox.Show("El código debe contener cinco caracteres", "Error Cantidad Código", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
 
+            if (txtCodigo.Text == "Código:" || txtCodigo.Text == "") //Va en lugar 1
+            {
+                MessageBox.Show("Código no ingresado, ingresar código", "Código Vacío", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
         }
 
         public static bool CasoContraseñaNueva(string contraseña, TextBox txtContraseña)

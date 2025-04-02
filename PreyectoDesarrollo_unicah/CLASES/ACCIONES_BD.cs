@@ -57,7 +57,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                                 }
                                 return false;
                             }
-                            if ((contraseña == "Contraseña:" && contraseña.Length < 8))
+                            if ((contraseña != "Contraseña:" && contraseña.Length < 8))
                             {
                                 if (MessageBox.Show("Saludos Administrador, su contraseña debe contener más de ocho caracteres, ¿olvidó su contraseña?", "Contraseña Corta", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                                 {

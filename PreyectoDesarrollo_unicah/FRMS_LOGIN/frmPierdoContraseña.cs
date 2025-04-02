@@ -52,7 +52,7 @@ namespace PreyectoDesarrollo_unicah
             MailAddress To = new MailAddress("byrd_riverat42@unicah.edu", "BYRON DANIEL RIVERA TABORA"); //Para mí
             MailMessage msg = new MailMessage(From, To); //Correo de mí para mí
             msg.Subject = "Recuperación de contraseña"; //Asunto
-            msg.Body = "Código de acceso: " + codigo + ". Por seguridad, borrar el correo después de ingreso"; //Mensaje
+            msg.Body = "Código de acceso: " + codigo; //Mensaje
             msg.IsBodyHtml = false;
 
             SmtpClient client = new SmtpClient("mail.smtp2go.com", 2525);
@@ -86,16 +86,18 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
-            if (!Validaciones.CodeVale()
-            {
-                MessageBox.Show("Código inválido");
-            }
-            else
+            if (!Validaciones.CodeVale(sender, e, codigo, txtCode))
+                return;
+
+
+            if (codigo == txtCode.Text)
             {
                 this.Close();
                 frmCambioContraseña Cambio = new frmCambioContraseña();
                 Cambio.Show();
             }
+            else
+                MessageBox.Show("Código inválido", "Error Código");
         }
 
         private void frmPierdoContraseña_MouseDown(object sender, MouseEventArgs e)
@@ -116,13 +118,30 @@ namespace PreyectoDesarrollo_unicah
                 e.Handled = true;
             if (e.KeyChar == (char)Keys.Enter)
             {
-                if (!Validaciones.CodeVale())
+                if (!Validaciones.CodeVale(sender, e, codigo, txtCode))
                     return;
 
-                this.Close();
-                frmCambioContraseña Cambio = new frmCambioContraseña();
-                Cambio.Show();
+                if (codigo == txtCode.Text)
+                {
+                    this.Close();
+                    frmCambioContraseña Cambio = new frmCambioContraseña();
+                    Cambio.Show();
+                }
+                else
+                    MessageBox.Show("Código inválido", "Error Código");
             }
+        }
+
+        private void txtCode_Enter(object sender, EventArgs e)
+        {
+            if (txtCode.Text == "Código:")
+                txtCode.Text = "";
+        }
+
+        private void txtCode_Leave(object sender, EventArgs e)
+        {
+            if (txtCode.Text == "")
+                txtCode.Text = "Código:";
         }
     }
 }

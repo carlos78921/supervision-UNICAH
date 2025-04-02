@@ -109,7 +109,9 @@
             txtCode.Size = new Size(307, 23);
             txtCode.TabIndex = 10;
             txtCode.Text = "Código:";
+            txtCode.Enter += txtCode_Enter;
             txtCode.KeyPress += txtCode_KeyPress;
+            txtCode.Leave += txtCode_Leave;
             // 
             // label2
             // 
