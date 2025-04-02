@@ -11,9 +11,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public static bool LoginVale (object sender, EventArgs e, TextBox txtUsuario, TextBox txtContraseña, string usuario, string contraseña, Form Login)
         {
-            if (!ACCIONES_BD.AdminContraVacio(usuario, contraseña, Login))
-                return false;
-
             if ((usuario == "Usuario:" || usuario == "") && 
                (contraseña == "Contraseña:" || contraseña == "Contraseña nueva:" || contraseña == "")) 
             {
@@ -42,6 +39,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 return false;
             }
 
+            if (!ACCIONES_BD.AdminCasoContra(usuario, contraseña, Login))
+                return false;
+
             if (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña))
             {
                 //if (contraseña == "Contraseña Nueva:" ...)
@@ -56,6 +56,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 MessageBox.Show("Su contraseña debe contener más de ocho caracteres.\nComuníquese con el Administrador, y espere a que le asigne contraseña correcta", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+
 
             return true;
         }

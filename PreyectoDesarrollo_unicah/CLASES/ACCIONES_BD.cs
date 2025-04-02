@@ -34,7 +34,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             docente = codigo;
         }
 
-        public static bool AdminContraVacio(string usuario, string contraseña, Form Login)
+        public static bool AdminCasoContra(string usuario, string contraseña, Form Login)
         {
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
