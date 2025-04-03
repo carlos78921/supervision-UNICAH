@@ -72,5 +72,23 @@ namespace PreyectoDesarrollo_unicah
                 ACCIONES_BD.AdminContra(txtcontraseña.Text, this);
             }
         }
+
+        private void txtcontraseña_Enter(object sender, EventArgs e)
+        {
+            if (txtcontraseña.Text == "Contraseña nueva:")
+            {
+                txtcontraseña.Text = "";
+                txtcontraseña.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void txtcontraseña_Leave(object sender, EventArgs e)
+        {
+            if (txtcontraseña.Text == "")
+            {
+                txtcontraseña.Text = "Contraseña nueva:";
+                txtcontraseña.UseSystemPasswordChar = false;
+            }
+        }
     }
 }

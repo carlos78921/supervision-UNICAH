@@ -168,7 +168,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 conexion.Open();
                 using (SqlCommand cmd = new SqlCommand("PA_Contra", conexion))
                 {
-                    cmd.Parameters.AddWithValue("@Usuario", "1");
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Usuario", 1);
                     cmd.Parameters.AddWithValue("@Contraseña", contraseña);
                     cmd.ExecuteNonQuery();
 
