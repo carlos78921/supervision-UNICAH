@@ -60,8 +60,8 @@ namespace PreyectoDesarrollo_unicah
 /*            if (!Validaciones.CasoDato(usuario,contraseña, txtUsuario))
                 return;*/
 
-            if (!Validaciones.CasoContraseñaNueva(contraseña, txtContraseña))
-                return;
+/*            if (!Validaciones.CasoContraseñaNueva(contraseña, txtContraseña))
+                return;*/
 
             ACCIONES_BD.AdminAsignaContra(usuario, contraseña);
         }
