@@ -109,6 +109,7 @@ namespace PreyectoDesarrollo_unicah
 
         private void txtCode_KeyPress(object sender, KeyPressEventArgs e)
         {
+            e.KeyChar = char.ToUpper(e.KeyChar);
             if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
                 e.Handled = true;
             if (e.KeyChar == (char)Keys.Enter)
