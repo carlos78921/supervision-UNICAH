@@ -79,22 +79,16 @@ namespace PreyectoDesarrollo_unicah
             ACCIONES_BD.Login(usuario, contraseña, this);
         }
 
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        private void MoveForm_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0); 
-        }
-
-        private void Form1_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0); 
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
         private void Datos_KeyPress(object sender, KeyPressEventArgs e)
         {
             string usuario = txtusuario.Text;
-            string contraseña = txtcontraseña.Text;
+            string contraseña = txtcontraseña.Text.Trim();
 
             if (e.KeyChar == (char)Keys.Enter)
             {

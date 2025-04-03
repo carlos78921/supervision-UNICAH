@@ -81,7 +81,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(801, 81);
             panel1.TabIndex = 4;
-            panel1.MouseDown += panel1_MouseDown;
+            panel1.MouseDown += MoveForm_MouseDown;
             // 
             // pictureBox3
             // 
@@ -146,7 +146,7 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
-            MouseDown += Form1_MouseDown;
+            MouseDown += MoveForm_MouseDown;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
