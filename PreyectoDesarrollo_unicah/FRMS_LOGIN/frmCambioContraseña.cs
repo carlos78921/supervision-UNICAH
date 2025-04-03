@@ -36,7 +36,7 @@ namespace PreyectoDesarrollo_unicah
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿Ya recuerda la contraseña?", "Recuerdo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("¿Ya recuerda la contraseña?", "Recuerdo la Contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Form1 Login = new Form1();
                 this.Close();
@@ -53,13 +53,7 @@ namespace PreyectoDesarrollo_unicah
             Menu.Show();
         }
 
-        private void frmCambioContraseña_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
-        }
-
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        private void MoveForm_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
