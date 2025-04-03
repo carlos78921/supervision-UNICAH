@@ -422,7 +422,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     }
                     else
                     {
-                        MessageBox.Show("Contraseña cambiada con éxito");
+                        MessageBox.Show("Contraseña cambiada con éxito", "Contraseña Cambiada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
