@@ -71,7 +71,7 @@ namespace PreyectoDesarrollo_unicah
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string usuario = txtusuario.Text;
-            string contraseña = txtcontraseña.Text;
+            string contraseña = txtcontraseña.Text.Trim();
 
             if (!Validaciones.LoginVale(sender, e, txtusuario, txtcontraseña, usuario, contraseña, this))
                 return;
