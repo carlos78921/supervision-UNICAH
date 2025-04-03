@@ -96,6 +96,7 @@
             txtcontraseña.Size = new Size(408, 20);
             txtcontraseña.TabIndex = 9;
             txtcontraseña.Text = "Contraseña nueva:";
+            txtcontraseña.KeyPress += txtcontraseña_KeyPress;
             // 
             // btnContraseña
             // 

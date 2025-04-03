@@ -43,7 +43,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
             if (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña))
             {
-                //if (contraseña == "Contraseña Nueva:" ...)
                 txtContraseña.Clear();
                 MessageBox.Show("Contraseña no puede quedar vacía, en caso de no obtener, consultar al administrador.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtContraseña.Text = contraseña;
@@ -79,9 +78,11 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return true;
         }
 
-        public static bool CasoContraseñaNueva(string contraseña, TextBox txtContraseña)
+        public static bool CasoAsigno(string contraseña, TextBox txtContraseña)
         {
-            if (contraseña == "Contraseña nueva:")
+            //if usuario
+
+            if (contraseña == "Contraseña nueva:" || string.IsNullOrWhiteSpace(contraseña))
             {
                 txtContraseña.Clear();
                 MessageBox.Show("Contraseña no puede quedar vacía.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);

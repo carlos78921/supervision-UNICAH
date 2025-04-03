@@ -46,17 +46,31 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnContraseña_Click(object sender, EventArgs e)
         {
-            ACCIONES_BD.AdminContra(txtcontraseña.Text);
-            MessageBox.Show("Contraseña agregada, abriendo sesión de administrador, bienvenido", "Inicio de sesión Admin.", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            frmAdmin Menu = new frmAdmin();
-            this.Close();
-            Menu.Show();
+            string contraseña = txtcontraseña.Text.Trim();
+            if (!Validaciones.CasoAsigno(contraseña, txtcontraseña))
+                return;
+            ACCIONES_BD.AdminContra(txtcontraseña.Text, this);
         }
 
         private void MoveForm_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void txtcontraseña_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != (char)Keys.Back)
+                e.Handled = true;
+            string contraseña = txtcontraseña.Text.Trim();
+
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (!Validaciones.CasoAsigno(contraseña, txtcontraseña))
+                    return;
+                e.Handled = true; // Evita el sonido de error por defecto en símbolo de retorno
+                ACCIONES_BD.AdminContra(txtcontraseña.Text, this);
+            }
         }
     }
 }

@@ -161,16 +161,21 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return true;
         }
 
-        public static void AdminContra(string contraseña)
+        public static void AdminContra(string contraseña, Form Contra)
         {
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conexion.Open();
-                string query = "UPDATE Empleados SET Contraseña = @Contraseña WHERE Rol = 'Administrador'";
-                using (SqlCommand cmd = new SqlCommand(query, conexion))
+                using (SqlCommand cmd = new SqlCommand("PA_Contra", conexion))
                 {
+                    cmd.Parameters.AddWithValue("@Usuario", "1");
                     cmd.Parameters.AddWithValue("@Contraseña", contraseña);
-                    cmd.ExecuteNonQuery(); 
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Contraseña agregada, abriendo sesión de administrador, bienvenido", "Inicio de sesión Admin.", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    frmAdmin Menu = new frmAdmin();
+                    Contra.Close();
+                    Menu.Show();
                 }
             }
         }
