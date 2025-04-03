@@ -70,9 +70,10 @@ namespace PreyectoDesarrollo_unicah
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            this.Close();
-            Form1 Login = new Form1();
-            Login.Show();
+            if (MessageBox.Show($"¿Recordó su contraseña?\n\nSeleccionar <<Sí>> regresará al inicio de sesión\ny reiniciará su código","Recordé mi Contraseña",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+                this.Close();
+                Form1 Login = new Form1();
+                Login.Show();
         }
 
         private void btnRecibir_Click(object sender, EventArgs e)
@@ -100,13 +101,7 @@ namespace PreyectoDesarrollo_unicah
                 MessageBox.Show("Código inválido", "Error Código");
         }
 
-        private void frmPierdoContraseña_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
-        }
-
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        private void MoveForm_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);

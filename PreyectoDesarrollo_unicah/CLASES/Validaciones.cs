@@ -8,7 +8,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
 {
     internal class Validaciones
     {
-
         public static bool LoginVale (object sender, EventArgs e, TextBox txtUsuario, TextBox txtContraseña, string usuario, string contraseña, Form Login)
         {
             if ((usuario == "Usuario:" || usuario == "") && 
@@ -25,7 +24,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 return false;
             }
 
-            if ((usuario != "Usuario:") && usuario.Length > 4)
+            if (usuario != "Usuario:" && usuario.Length > 4)
             {
                 MessageBox.Show("Su usuario debe contener cuatro o menos caracteres.", "Usuario Largo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -66,18 +65,17 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public static bool CodeVale(object sender, EventArgs e, string codigo, TextBox txtCodigo)
         {
-            if (txtCodigo.Text != "Código:" | && txtCodigo.Text.Length != 5)
-            {
-                MessageBox.Show("El código debe contener cinco caracteres", "Error Cantidad Código", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (txtCodigo.Text == "Código:" || txtCodigo.Text == "") //Va en lugar 1
+            if (txtCodigo.Text == "Código:" || txtCodigo.Text == "") 
             {
                 MessageBox.Show("Código no ingresado, ingresar código", "Código Vacío", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
+            if (txtCodigo.Text != "Código:" && txtCodigo.Text.Length != 5)
+            {
+                MessageBox.Show("El código debe contener cinco caracteres", "Error Cantidad Código", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
             return true;
         }
 
