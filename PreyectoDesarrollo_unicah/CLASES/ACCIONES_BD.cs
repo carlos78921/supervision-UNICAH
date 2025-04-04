@@ -181,7 +181,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static void RegistrarAsistencia(DataGridView dgv, string Docente, string clase, string seccion, string aula, string edificio, DateTime fechaMarca, bool Marco)
+        public static void RegistrarAsistencia(DataGridView dgv, string Docente, string clase, string seccion, string aula, string edificio, bool Marco)
         {
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
@@ -194,39 +194,10 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 cmd.Parameters.AddWithValue("@Seccion", seccion);
                 cmd.Parameters.AddWithValue("@Aula", aula);
                 cmd.Parameters.AddWithValue("@Edificio", edificio);
-                cmd.Parameters.AddWithValue("@Fecha", fechaMarca);
+                cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
                 cmd.Parameters.AddWithValue("@Marca", Marco);
                 cmd.ExecuteNonQuery();
             }
-        }
-
-        public static DataTable CargarAsistenciaSuperv(MonthCalendar supervisorFechas, string Docente, string clase, string seccion, string aula, string edificio)
-        {
-            DataTable dtFechas = new DataTable();
-            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("PA_Asistencia_Superv", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("@Docente", Docente);
-                cmd.Parameters.AddWithValue("@Asigno", clase);
-                cmd.Parameters.AddWithValue("@Seccion", seccion);
-                cmd.Parameters.AddWithValue("@Aula", aula);
-                cmd.Parameters.AddWithValue("@Edificio", edificio);
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dtFechas);
-            }
-
-            foreach (DataRow row in dtFechas.Rows)
-            {
-                supervisorFechas.AddBoldedDate(Convert.ToDateTime(row["Fecha"]));
-            }
-
-            supervisorFechas.UpdateBoldedDates();
-
-            return dtFechas;
         }
 
         public static List<DateTime> CargarAsistenciaSuperExcel(string Docente, string clase, string seccion, string aula, string edificio)
@@ -284,6 +255,11 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.Columns[2].Width = 60;
                 dgv.Columns[3].Width = 150;
                 dgv.Columns[4].Visible = false;
+                dgv.Columns[5].Width = 55;
+                if (dgv.Columns.Contains("AsistenciaHoy"))
+                {
+                    dgv.Columns["AsistenciaHoy"].HeaderText = DateTime.Today.ToString("dddd dd/MM/yyyy");
+                }
             }
             return dt;
         }

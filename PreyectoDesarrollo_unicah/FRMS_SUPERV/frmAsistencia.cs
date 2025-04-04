@@ -1,4 +1,5 @@
-﻿using PreyectoDesarrollo_unicah.CLASES;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using PreyectoDesarrollo_unicah.CLASES;
 using PreyectoDesarrollo_unicah.FRMS_SUPERV;
 using System;
 using System.Collections.Generic;
@@ -53,10 +54,7 @@ namespace PreyectoDesarrollo_unicah
 
         private void LimiteMes()
         {
-            int año = DateTime.Now.Year;
 
-            mesSupervisor.MinDate = new DateTime(año, 1, 20);
-            mesSupervisor.MaxDate = new DateTime(año, 4, 12);
         }
 
         private void FrmAsiste_Load(object sender, EventArgs e)
@@ -69,7 +67,7 @@ namespace PreyectoDesarrollo_unicah
             FiltroInicial();
 
             ACCIONES_BD.tablaSupervisor(dgvAsiste);
-            ACCIONES_BD.CargarAsistenciaSuperv(mesSupervisor, (string)dgvAsiste.CurrentRow.Cells[0].Value, (string)dgvAsiste.CurrentRow.Cells[1].Value, (string)dgvAsiste.CurrentRow.Cells[2].Value, (string)dgvAsiste.CurrentRow.Cells[3].Value, (string)dgvAsiste.CurrentRow.Cells[4].Value);
+
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -88,118 +86,28 @@ namespace PreyectoDesarrollo_unicah
             }
         }
 
-        private void mesSupervisor_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            DateTime fechaSeleccionada = e.Start.Date;
-
-            // Definir la fecha de inicio del primer parcial
-            DateTime fechaInicio = new DateTime(DateTime.Now.Year, 1, 20); // 20 de enero
-
-            // Calcular la diferencia en días
-            int offsetDias = (fechaSeleccionada - fechaInicio).Days; // Puede ser negativo si está antes del 20/ene
-
-            // Cada semana son 7 días
-            // Tenemos 12 semanas en total (3 parciales * 4 semanas)
-            // Rango total: 0 <= offsetDias < 12 * 7 = 84
-
-            if (offsetDias < 0 || offsetDias >= 12 * 7)
-            {
-                // Fuera de rango (antes del 20/ene o después de 12 semanas)
-                lblParcial.Text = "Fuera de rango";
-                lblWeek.Text = "";
-                return;
-            }
-
-            // Calcular el índice de la semana (0 a 11)
-            int indiceSemana = offsetDias / 7; // entero
-
-            // Calcular el índice de parcial (0 a 2)
-            // 4 semanas por parcial => parcial = floor(indiceSemana / 4)
-            int indiceParcial = indiceSemana / 4; // 0 = parcial 1, 1 = parcial 2, 2 = parcial 3
-
-            // Convertir a 1-based
-            int parcial = indiceParcial + 1;     // 1..3
-            int semanaEnParcial = (indiceSemana % 4) + 1; // 1..4
-
-            // Mostrar en labels
-            lblParcial.Text = $"Parcial {parcial}";
-            lblWeek.Text = $"Semana {semanaEnParcial}";
-
-            // Verificar si la fecha seleccionada es domingo
-            if (mesSupervisor.SelectionStart.DayOfWeek == DayOfWeek.Sunday)
-            {
-                MessageBox.Show("Los domingos no están disponibles para selección.",
-                              "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (MessageBox.Show("¿Marcar asistencia para esta fecha?", "Confirmar",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                ACCIONES_BD.RegistrarAsistencia(dgvAsiste, (string)dgvAsiste.CurrentRow.Cells[0].Value, (string)dgvAsiste.CurrentRow.Cells[1].Value, (string)dgvAsiste.CurrentRow.Cells[2].Value, (string)dgvAsiste.CurrentRow.Cells[3].Value, (string)dgvAsiste.CurrentRow.Cells[4].Value, fechaSeleccionada.Date, true);
-                mesSupervisor.AddBoldedDate(fechaSeleccionada);
-                mesSupervisor.UpdateBoldedDates();
-            }
-            else
-            {
-                ACCIONES_BD.RegistrarAsistencia(dgvAsiste, (string)dgvAsiste.CurrentRow.Cells[0].Value, (string)dgvAsiste.CurrentRow.Cells[1].Value, (string)dgvAsiste.CurrentRow.Cells[2].Value, (string)dgvAsiste.CurrentRow.Cells[3].Value, (string)dgvAsiste.CurrentRow.Cells[4].Value, fechaSeleccionada.Date, false);
-                mesSupervisor.RemoveBoldedDate(fechaSeleccionada);
-                mesSupervisor.UpdateBoldedDates();
-            }
-        }
-
-        private void dgvAsiste_SelectionChanged(object sender, EventArgs e) //Método seguro para almacenar asistencias
-        {
-            if (dgvAsiste.CurrentRow != null)
-            {
-                //Object almacena el dato de su tipo
-                object docenteValue = dgvAsiste.CurrentRow.Cells[0].Value; //Object porque un error indica el string considera como uso de objeto instancia al tomar la fila con ".valor.ToString()"
-                string Docente = docenteValue != null ? docenteValue.ToString() : "";  //Esto es verificación de una cadena que devuelve nulo por no asignarse o considerarse objeto
-
-                //"?" es if de Value != null, ":" es else
-                object claseValue = dgvAsiste.CurrentRow.Cells[1].Value;
-                string clase = claseValue != null ? claseValue.ToString() : "";
-
-                object seccionValue = dgvAsiste.CurrentRow.Cells[2].Value;
-                string seccion = seccionValue != null ? seccionValue.ToString() : "";
-
-                object aulaValue = dgvAsiste.CurrentRow.Cells[3].Value;
-                string aula = aulaValue != null ? aulaValue.ToString() : "";
-
-                object edificioValue = dgvAsiste.CurrentRow.Cells[4].Value;
-                string edificio = edificioValue != null ? edificioValue.ToString() : "";
-
-                // Limpiar las fechas resaltadas previas en el MonthCalendar.
-                mesSupervisor.RemoveAllBoldedDates();
-
-                // Llama al método para cargar las fechas marcadas para ese registro.
-                ACCIONES_BD.CargarAsistenciaSuperv(mesSupervisor, Docente, clase, seccion, aula, edificio);
-            }
-        }
-
-        private void txtDoc_KeyUp(object sender, KeyEventArgs e)
+        private void Filtros(object sender, EventArgs e)
         {
             ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbHora.Text, cmbAula.Text, cmbEdificio.Text, dgvAsiste);
         }
 
-        private void txtClase_KeyUp(object sender, KeyEventArgs e)
+        private void dgvAsiste_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbHora.Text, cmbAula.Text, cmbEdificio.Text, dgvAsiste);
-        }
+            if (dgvAsiste.Columns[e.ColumnIndex].Name == "Nada")
+            {
+                var fila = dgvAsiste.Rows[e.RowIndex];
+                var chk = (DataGridViewCheckBoxCell)fila.Cells[e.ColumnIndex];
 
-        private void cmbEdificio_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbHora.Text, cmbAula.Text, cmbEdificio.Text, dgvAsiste);
-        }
+                bool marcado = (chk.Value != null && (bool)chk.Value == true);
 
-        private void cmbAula_SelectedIndexChanged(object sender, EventArgs e) 
-        {
-            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbHora.Text, cmbAula.Text, cmbEdificio.Text, dgvAsiste);
-        }
+                string docente = fila.Cells["Docente"].Value.ToString();
+                string asignatura = fila.Cells["Asignatura"].Value.ToString();
+                string seccion = fila.Cells["Seccion"].Value.ToString();
+                string aula = fila.Cells["Aula"].Value.ToString();
+                string edificio = fila.Cells["Edificio"].Value.ToString();
 
-        private void cmbHora_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text,  cmbHora.Text, cmbAula.Text, cmbEdificio.Text, dgvAsiste);
+                ACCIONES_BD.RegistrarAsistencia(dgvAsiste, docente, asignatura, seccion, aula, edificio, marcado);
+            }
         }
     }
 }
