@@ -38,10 +38,43 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return true;
         }
 
-        public static bool SoloNumero(string usuario) 
+                public static bool SoloNumero(string usuario) 
         {
             return usuario.All(char.IsDigit); 
         }
+
+        public static bool Contraseña(object sender, EventArgs e, string usuario, string contraseña, Form Login)
+        {
+            if (!ACCIONES_BD.AdminCasoContra(usuario, contraseña, Login))
+                return false;
+
+            if (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña))
+            {
+                MessageBox.Show("Contraseña no puede quedar vacía, en caso de no obtener, consultar al administrador.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if ((contraseña != "Contraseña:") && contraseña.Length < 8)
+            {
+                MessageBox.Show("Su contraseña debe contener más de ocho caracteres.\nComuníquese con el Administrador, y espere a que le asigne contraseña correcta", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (contraseña == "Contraseña nueva:" || string.IsNullOrWhiteSpace(contraseña))
+            {
+                MessageBox.Show("Contraseña no puede quedar vacía.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (contraseña != "Contraseña nueva:" && contraseña.Length < 8)
+            {
+                MessageBox.Show("La contraseña debe tener al menos 8 caracteres.", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
 
         public static bool CodeVale(object sender, EventArgs e, string codigo, TextBox txtCodigo)
         {
@@ -59,22 +92,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return true;
         }
 
-        public static bool Contraseña(string usuario, string contraseña)
-        {
-            if (contraseña == "Contraseña nueva:" || string.IsNullOrWhiteSpace(contraseña))
-            {
-                MessageBox.Show("Contraseña no puede quedar vacía.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (contraseña != "Contraseña nueva:" && contraseña.Length < 8)
-            {
-                MessageBox.Show("La contraseña debe tener al menos 8 caracteres.", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            return true;
-        }
         public static bool CasoAsigno(string contraseña, TextBox txtContraseña)
         {
             if (contraseña == "Contraseña nueva:" || string.IsNullOrWhiteSpace(contraseña))

@@ -53,7 +53,6 @@
             txtusuario.TabIndex = 1;
             txtusuario.Text = "Usuario:";
             txtusuario.Enter += txtusuario_Enter;
-            txtusuario.KeyPress += Datos_KeyPress;
             txtusuario.KeyPress += txtusuario_KeyPress;
             txtusuario.Leave += txtusuario_Leave;
             // 
@@ -128,7 +127,6 @@
             txtcontraseña.TabIndex = 2;
             txtcontraseña.Text = "Contraseña:";
             txtcontraseña.Enter += txtcontraseña_Enter;
-            txtcontraseña.KeyPress += Datos_KeyPress;
             txtcontraseña.KeyPress += txtcontraseña_KeyPress;
             txtcontraseña.Leave += txtcontraseña_Leave;
             // 

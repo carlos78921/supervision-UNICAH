@@ -13,7 +13,7 @@ namespace PreyectoDesarrollo_unicah
 {
     public partial class Form1 : Form
     {
-        public Form1() 
+        public Form1()
         {
             InitializeComponent();
         }
@@ -28,7 +28,7 @@ namespace PreyectoDesarrollo_unicah
         {
             Application.Exit();
         }
-        
+
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
@@ -76,7 +76,7 @@ namespace PreyectoDesarrollo_unicah
             if (!Validaciones.Usuario(sender, e, usuario, contraseña))
                 return;
 
-            if (!Validaciones.Contraseña(sender, e, contraseña, this))
+            if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this))
                 return;
 
             ACCIONES_BD.Login(usuario, contraseña, this);
@@ -86,20 +86,6 @@ namespace PreyectoDesarrollo_unicah
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
-        }
-
-        private void Datos_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            string usuario = txtusuario.Text;
-            string contraseña = txtcontraseña.Text.Trim();
-
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                e.Handled = true; // Evita el sonido de error por defecto
-                if (!Validaciones.Usuario(sender, e, usuario, txtusuario)
-                    return;
-                ACCIONES_BD.Login(usuario, contraseña, this);
-            }
         }
 
         private void txtusuario_KeyPress(object sender, KeyPressEventArgs e)
