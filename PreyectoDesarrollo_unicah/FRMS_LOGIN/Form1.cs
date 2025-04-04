@@ -73,7 +73,10 @@ namespace PreyectoDesarrollo_unicah
             string usuario = txtusuario.Text;
             string contraseña = txtcontraseña.Text.Trim();
 
-            if (!Validaciones.LoginVale(sender, e, txtusuario, txtcontraseña, usuario, contraseña, this))
+            if (!Validaciones.Usuario(sender, e, usuario, contraseña))
+                return;
+
+            if (!Validaciones.Contraseña(sender, e, contraseña, this))
                 return;
 
             ACCIONES_BD.Login(usuario, contraseña, this);
@@ -93,7 +96,7 @@ namespace PreyectoDesarrollo_unicah
             if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true; // Evita el sonido de error por defecto
-                if (!Validaciones.LoginVale(sender, e, txtusuario, txtcontraseña, usuario, contraseña, this))
+                if (!Validaciones.Usuario(sender, e, usuario, txtusuario)
                     return;
                 ACCIONES_BD.Login(usuario, contraseña, this);
             }

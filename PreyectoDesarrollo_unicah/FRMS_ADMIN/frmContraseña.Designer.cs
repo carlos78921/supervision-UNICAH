@@ -36,6 +36,7 @@
             btnContra = new Button();
             txtUsuario = new TextBox();
             btnSale = new Button();
+            lblPersona = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -45,6 +46,7 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.HotTrack;
+            panel1.Controls.Add(lblPersona);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
@@ -145,6 +147,17 @@
             btnSale.UseVisualStyleBackColor = false;
             btnSale.Click += btnSale_Click;
             // 
+            // lblPersona
+            // 
+            lblPersona.AutoSize = true;
+            lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPersona.ForeColor = Color.White;
+            lblPersona.Location = new Point(633, 56);
+            lblPersona.Name = "lblPersona";
+            lblPersona.Size = new Size(132, 18);
+            lblPersona.TabIndex = 12;
+            lblPersona.Text = "Nombre_Persona";
+            // 
             // frmContraseña
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -162,6 +175,7 @@
             Load += Frmolvidecontra_Load;
             MouseDown += frmContraseña_MouseDown;
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -179,5 +193,6 @@
         private Button btnContra;
         private TextBox txtUsuario;
         private Button btnSale;
+        private Label lblPersona;
     }
 }
