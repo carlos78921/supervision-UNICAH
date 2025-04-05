@@ -64,12 +64,20 @@ JOIN Nombres_Completos nc
          OR UPPER(LTRIM(RTRIM(Nombre4))) = UPPER(LTRIM(RTRIM(Apellido2)))
        )
 group by M.ID_Empleado, M.Cod_Empleado
+go
+
+create table DecanoFacultad -- Para esta tabla en los inserts puse que ID_Empleado de la decana, y las demás facultades al supervisor, esto para que realice filtro de registros por facultad
+(
+codigo_facu varchar(6) primary key,
+ID_Empleado int foreign key references Nombres_Completos(ID_Empleado)
+)
+go 
 
 create table Clases 
 (
 	ID_Clase int identity primary key,
 	Cod_Asignatura varchar(7),
-	Cod_Facultad varchar (6), 
+	Cod_Facultad varchar (6) foreign key references DecanoFacultad(codigo_facu), -- Esto funciona cuando las facultades sean iguales que el primario de DecanoFacultad
 	Asignatura varchar(70)
 )
 go
@@ -181,8 +189,9 @@ BEGIN
 	SELECT nombre1, apellido1, rol 
 	FROM Empleados E	
 	join Nombres_Completos NC on E.ID_Empleado = NC.ID_Empleado 
-	WHERE codigo_empleado = @usuario AND binary_checksum(isnull(contraseña,'Contraseña:')) =binary_checksum(@contrasena)
+	WHERE codigo_empleado = @usuario AND ltrim((rtrim(contraseña))) = @contrasena
 END
+GO 
 
 create proc PA_Contra
 @Usuario varchar(4),
@@ -216,63 +225,42 @@ begin
 	     return
 end
 go
-	
+
 create proc PA_Supervisor -- Tabla del supervisor
 with encryption
-as                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-begin  
-	select distinct (Nombre1 + ' ' + Nombre2 + ' ' + Apellido1 + ' ' + isnull(Apellido2,'')) [Docente], 
-	Asignatura,
-	Seccion, 
-	Aula,
-	Edificio
-	from Asistencia A
-	join Clases C
-	on A.ID_Clase = C.ID_Clase
-	join Sitio S
-	on A.ID_Sitio = S.ID_Sitio
-	join Empleados E 
-	on A.ID_Empleado = E.ID_Empleado
-	join Nombres_Completos NC
-	on E.ID_Empleado = NC.ID_Empleado
-	where codigo_empleado != '037'
-end
-go
+AS
+BEGIN
+    DECLARE @Hoy DATE = CAST(GETDATE() AS DATE);
 
-create proc PA_Asistencia_Superv -- Calendario del supervisor
-@Docente varchar (100),
-@Asigno varchar (70),
-@Seccion varchar(7),
-@Aula varchar(25),
-@Edificio char
-with encryption
-as 
-begin
-	/*Para fila específica:
-    Obtener ID del empleado*/
-	declare @ID_Empleado INT
-	select @ID_Empleado = ID_Empleado
-	from Nombres_Completos
-	where (Nombre1 + ' ' + Nombre2 + ' ' + Apellido1 + ' ' + Apellido2) = @Docente
-	declare @ID_Clase INT
- -- Obtener ID de la clase
-	select @ID_Clase = ID_Clase
-	from Clases
-	where Asignatura = @Asigno
-
-	declare @ID_Sitio INT
- -- Obtener ID de la clase
-	select @ID_Sitio = ID_Sitio
-	from Sitio
-	where Seccion = @Seccion and Aula = @Aula and Edificio = @Edificio
-
-    SELECT Fecha FROM Asistencia WHERE Presente = 1 and ID_Clase = @ID_Clase and ID_Sitio = @ID_Sitio and ID_Empleado = @ID_Empleado;
-end
+    SELECT distinct
+        (NC.Nombre1 + ' ' + NC.Nombre2 + ' ' + NC.Apellido1 + ' ' + ISNULL(NC.Apellido2, '')) AS Docente,
+        C.Asignatura,
+        S.Seccion,
+        S.Aula,
+        S.Edificio,
+        CASE 
+            WHEN EXISTS (
+                SELECT 1 FROM Asistencia A2
+                WHERE A2.ID_Empleado = E.ID_Empleado
+                  AND A2.ID_Clase = C.ID_Clase
+                  AND A2.ID_Sitio = S.ID_Sitio
+                  AND CAST(A2.Fecha AS DATE) = @Hoy
+                  AND A2.Presente = 1
+            ) THEN CAST(1 AS BIT)
+            ELSE CAST(0 AS BIT)
+        END AS AsistenciaHoy
+    FROM Clases C
+    JOIN Asistencia A ON A.ID_Clase = C.ID_Clase
+    JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
+    JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
+    JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
+    WHERE E.codigo_empleado != '037'
+END
 go
 
 create proc PA_Marcar_Asistencia 
-	@Asigno varchar(70),
 	@Docente varchar(31),
+	@Asigno varchar(70),
 	@Seccion varchar(7),
 	@Aula varchar(25),
 	@Edificio char,
@@ -304,8 +292,8 @@ BEGIN
     DECLARE @ID_Asistencia INT
      -- Verificar si ya existe un de asistencia por los ID y la fecha
     SELECT @ID_Asistencia = ID_Asistencia
-    FROM Asistencia
-    WHERE ID_Empleado = @ID_Empleado and ID_Sitio = @ID_Sitio and ID_Clase = @ID_Clase AND Fecha = @Fecha;
+    FROM Asistencia 
+    WHERE ID_Empleado = @ID_Empleado and ID_Sitio = @ID_Sitio and ID_Clase = @ID_Clase AND CAST(Fecha AS DATE) = CAST(@Fecha AS DATE);
 
 	if (@ID_Empleado is null or @ID_Sitio is null or @ID_Clase is null)
 		print('Problemas con el desarrollo del sistema')
@@ -325,7 +313,7 @@ BEGIN
     END
 END;
 go
-	
+
 create PROCEDURE PA_Buscar_Superv
     @Docente VARCHAR(50),
     @Clase VARCHAR(70),
@@ -408,26 +396,42 @@ begin
 end
 go
 
-
-CREATE PROCEDURE PA_Justifica --Decano
+create PROCEDURE PA_Justifica --Decano
+@CodigoDecano varchar(4)
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT distinct ID_Asistencia,
-		   C.Asignatura,
-           A.Fecha [Fecha de Ausencia],
-           (Nombre1 + ' ' + isnull(Nombre2,'') + ' ' + Apellido1 + ' ' + isnull(Apellido2,'')) AS [Docente],
+
+	DECLARE @codigo_facu VARCHAR(6);
+
+    SELECT @codigo_facu = codigo_facu
+    FROM DecanoFacultad DF
+    JOIN Nombres_Completos NC ON DF.ID_Empleado = NC.ID_Empleado
+	join Empleados E on E.ID_Empleado = NC.ID_Empleado
+    WHERE codigo_empleado = @CodigoDecano;
+
+    SELECT DISTINCT 
+           ID_Asistencia,
+		   Cod_Facultad,
+           Asignatura,
+           Fecha AS [Fecha de Ausencia],
+           (NC.Nombre1 + ' ' + ISNULL(NC.Nombre2, '') + ' ' + NC.Apellido1 + ' ' + ISNULL(NC.Apellido2, '')) AS [Docente],
            S.Seccion,
-           A.Observacion [Justificacion]
+           A.Observacion AS [Justificacion]
     FROM Asistencia A
     JOIN Clases C ON A.ID_Clase = C.ID_Clase
     JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
     JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
     JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
-    WHERE A.Presente = 0
-END
+    -- Filtrar por el código de facultad del decano:
+    WHERE C.Cod_Facultad = @codigo_facu  
+    AND A.Presente = 0;
+end
 go
-	    
+select * from Empleados where ID_Empleado = 3
+select * from DecanoFacultad
+select * from Clases
+
 CREATE PROCEDURE PA_Insertar_Justificacion
     @ID_Asistencia INT,
     @Justificacion NVARCHAR(200)
@@ -463,22 +467,23 @@ BEGIN
 END;
 go
 
-CREATE PROCEDURE PA_Repone --Decano
+create PROCEDURE PA_Repone --Decano
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT distinct A.ID_Asistencia,
-           C.Asignatura,
-           A.Fecha AS [FechaAusencia],
+    SELECT distinct ID_Asistencia,
+		   Asignatura,
+           Fecha [Fecha de Ausencia],
            (Nombre1 + ' ' + isnull(Nombre2,'') + ' ' + Apellido1 + ' ' + isnull(Apellido2,'')) AS [Docente],
-           S.Seccion,
-           A.Fecha_Reposicion
+           Seccion,
+           Fecha_Reposicion 'Fecha de Reposición'
     FROM Asistencia A
     JOIN Clases C ON A.ID_Clase = C.ID_Clase
     JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
     JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
     JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
-    WHERE A.Presente = 0
+    join DecanoFacultad DF on Cod_Facultad = codigo_facu
+    WHERE A.Presente = 0 and Cod_Facultad = codigo_facu
 END
 go
 
@@ -539,7 +544,7 @@ BEGIN
 END;
 go
 
-create proc PA_Fecha_Doc -- Calendario del docente, relacionado al del supervisor pero sin marcar asistencia
+alter proc PA_Fecha_Doc -- Calendario del docente
 @CodDocente varchar(4),
 @Asigna varchar (70),
 @Seccion varchar(7),
@@ -567,10 +572,10 @@ begin
 	from Sitio
 	where Seccion = @Seccion and Aula = @Aula and Edificio = @Edificio
 
-    SELECT Fecha FROM Asistencia WHERE Presente = 1 and ID_Clase = 1 and ID_Sitio = @ID_Sitio and ID_Empleado = @ID_Empleado;
+    SELECT Fecha FROM Asistencia WHERE Presente = 1 and ID_Clase = @ID_Clase and ID_Sitio = @ID_Sitio and ID_Empleado = @ID_Empleado;
 end
 go
-	
+
 CREATE TRIGGER TGR_AdminContra
 ON Empleados
 AFTER UPDATE
@@ -589,7 +594,7 @@ BEGIN
     END
 END;
 go
-	
+
 CREATE TABLE Asistencia_Backup (
     BackupID INT IDENTITY(1,1) PRIMARY KEY,
     IDEmpleado INT,
@@ -599,7 +604,7 @@ CREATE TABLE Asistencia_Backup (
 )
 go
 
-CREATE TRIGGER TGR_BackupAsistencia
+CREATE TRIGGER _BackupAsistencia
 ON Asistencia
 AFTER INSERT
 AS
