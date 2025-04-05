@@ -33,7 +33,7 @@ namespace PreyectoDesarrollo_unicah
             cmbEdificio.SelectedIndex = 0;
 
             //Ajustes del bdd
-            ACCIONES_BD.tablaRepone(dgvRepone);
+            ACCIONES_BD.tablaRepone(dgvRepone, ACCIONES_BD.empleado);
         }
 
         private void btnVoy_Click(object sender, EventArgs e)
@@ -61,7 +61,7 @@ namespace PreyectoDesarrollo_unicah
         {
             //Ajustes en la BDD
             ACCIONES_BD.Repongo(dgvRepone, (int)dgvRepone.CurrentRow.Cells[0].Value, dtpReposicion);
-            ACCIONES_BD.tablaRepone(dgvRepone);
+            ACCIONES_BD.tablaRepone(dgvRepone, ACCIONES_BD.empleado);
         }
 
         private void txtBusco_KeyDown(object sender, KeyEventArgs e)
