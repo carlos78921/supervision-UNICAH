@@ -467,13 +467,24 @@ END;
 go
 
 create PROCEDURE PA_Repone --Decano
+@CodigoDecano varchar(4)
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT distinct ID_Asistencia,
-		   Asignatura,
-           Fecha [Fecha de Ausencia],
-           (Nombre1 + ' ' + isnull(Nombre2,'') + ' ' + Apellido1 + ' ' + isnull(Apellido2,'')) AS [Docente],
+
+	DECLARE @codigo_facu VARCHAR(6);
+
+    SELECT @codigo_facu = codigo_facu
+    FROM DecanoFacultad DF
+    JOIN Nombres_Completos NC ON DF.ID_Empleado = NC.ID_Empleado
+	join Empleados E on E.ID_Empleado = NC.ID_Empleado
+    WHERE codigo_empleado = @CodigoDecano;
+
+    SELECT DISTINCT 
+           ID_Asistencia,
+           Asignatura,
+           Fecha AS [Fecha de Ausencia],
+           (NC.Nombre1 + ' ' + ISNULL(NC.Nombre2, '') + ' ' + NC.Apellido1 + ' ' + ISNULL(NC.Apellido2, '')) AS [Docente],
            Seccion,
            Fecha_Reposicion 'Fecha de Reposición'
     FROM Asistencia A
@@ -481,9 +492,10 @@ BEGIN
     JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
     JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
     JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
-    join DecanoFacultad DF on Cod_Facultad = codigo_facu
-    WHERE A.Presente = 0 and Cod_Facultad = codigo_facu
-END
+    -- Filtrar por el código de facultad del decano:
+    WHERE C.Cod_Facultad = @codigo_facu  
+    AND A.Presente = 0;
+end
 go
 
 CREATE PROCEDURE PA_Insertar_Reposicion --Decano
