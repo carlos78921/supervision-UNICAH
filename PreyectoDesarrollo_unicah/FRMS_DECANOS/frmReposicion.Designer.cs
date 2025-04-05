@@ -37,11 +37,6 @@ namespace PreyectoDesarrollo_unicah
             pictureBox3 = new PictureBox();
             label1 = new Label();
             dgvRepone = new DataGridView();
-            clmClase = new DataGridViewTextBoxColumn();
-            clmFecha = new DataGridViewTextBoxColumn();
-            clmSeccion = new DataGridViewTextBoxColumn();
-            clmDocente = new DataGridViewTextBoxColumn();
-            clmRepo = new DataGridViewTextBoxColumn();
             txtBusco = new TextBox();
             cmbEdificio = new ComboBox();
             label3 = new Label();
@@ -108,7 +103,7 @@ namespace PreyectoDesarrollo_unicah
             panel1.Name = "panel1";
             panel1.Size = new Size(809, 87);
             panel1.TabIndex = 11;
-            panel1.MouseDown += panel1_MouseDown;
+            panel1.MouseDown += MoveForm_MouseDown;
             // 
             // lblPersona
             // 
@@ -146,53 +141,12 @@ namespace PreyectoDesarrollo_unicah
             dgvRepone.AllowUserToAddRows = false;
             dgvRepone.AllowUserToDeleteRows = false;
             dgvRepone.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRepone.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha, clmSeccion, clmDocente, clmRepo });
             dgvRepone.Location = new Point(16, 183);
             dgvRepone.Name = "dgvRepone";
             dgvRepone.ReadOnly = true;
             dgvRepone.RowHeadersWidth = 51;
-            dgvRepone.Size = new Size(610, 235);
+            dgvRepone.Size = new Size(564, 235);
             dgvRepone.TabIndex = 24;
-            // 
-            // clmClase
-            // 
-            clmClase.HeaderText = "Asignatura";
-            clmClase.MinimumWidth = 6;
-            clmClase.Name = "clmClase";
-            clmClase.ReadOnly = true;
-            clmClase.Width = 150;
-            // 
-            // clmFecha
-            // 
-            clmFecha.HeaderText = "Fecha de Ausencia";
-            clmFecha.MinimumWidth = 6;
-            clmFecha.Name = "clmFecha";
-            clmFecha.ReadOnly = true;
-            clmFecha.Width = 130;
-            // 
-            // clmSeccion
-            // 
-            clmSeccion.HeaderText = "Sección";
-            clmSeccion.MinimumWidth = 6;
-            clmSeccion.Name = "clmSeccion";
-            clmSeccion.ReadOnly = true;
-            clmSeccion.Width = 65;
-            // 
-            // clmDocente
-            // 
-            clmDocente.HeaderText = "Docente";
-            clmDocente.MinimumWidth = 6;
-            clmDocente.Name = "clmDocente";
-            clmDocente.ReadOnly = true;
-            clmDocente.Width = 212;
-            // 
-            // clmRepo
-            // 
-            clmRepo.HeaderText = "Fecha de Reposición";
-            clmRepo.MinimumWidth = 6;
-            clmRepo.Name = "clmRepo";
-            clmRepo.ReadOnly = true;
-            clmRepo.Width = 138;
             // 
             // txtBusco
             // 
@@ -257,7 +211,7 @@ namespace PreyectoDesarrollo_unicah
             Name = "frmReposicion";
             Text = "FrmReporte";
             Load += frmReposición_Load;
-            MouseDown += frmReposición_MouseDown;
+            MouseDown += MoveForm_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
@@ -280,11 +234,6 @@ namespace PreyectoDesarrollo_unicah
         private TextBox txtBusco;
         private ComboBox cmbEdificio;
         private Label label3;
-        private DataGridViewTextBoxColumn clmClase;
-        private DataGridViewTextBoxColumn clmFecha;
-        private DataGridViewTextBoxColumn clmSeccion;
-        private DataGridViewTextBoxColumn clmDocente;
-        private DataGridViewTextBoxColumn clmRepo;
         private DateTimePicker dtpReposicion;
         private Label label2;
     }

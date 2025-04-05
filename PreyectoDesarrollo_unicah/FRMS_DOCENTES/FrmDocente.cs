@@ -14,7 +14,6 @@ namespace PreyectoDesarrollo_unicah
 {
     public partial class frmDocente : Form
     {
-        private static string docente;
         public frmDocente()
         {
             InitializeComponent();
@@ -53,12 +52,10 @@ namespace PreyectoDesarrollo_unicah
             LimiteMeses();
 
             //Ajustes de BDD
-            string doc = ACCIONES_BD.docente;
 
-            ACCIONES_BD objDoc = new ACCIONES_BD(doc); //Instancia para involucrar el atributo del docente
             dgvDoc.AutoGenerateColumns = true;
-            objDoc.tabla_docente(dgvDoc);
-            objDoc.CargarAsistenciaDoc(
+            ACCIONES_BD.tabla_docente(dgvDoc, ACCIONES_BD.empleado);
+            ACCIONES_BD.CargarAsistenciaDoc(
                 mesDoc,
                 (string)dgvDoc.CurrentRow.Cells[0].Value,
                 (string)dgvDoc.CurrentRow.Cells[1].Value,
@@ -115,8 +112,7 @@ namespace PreyectoDesarrollo_unicah
                 mesDoc.RemoveAllBoldedDates();
 
                 // Llama al método para cargar las fechas marcadas para ese registro.
-                ACCIONES_BD objDoc = new ACCIONES_BD();
-                objDoc.CargarAsistenciaDoc(mesDoc, Clase, seccion, aula, edificio);
+                ACCIONES_BD.CargarAsistenciaDoc(mesDoc, Clase, seccion, aula, edificio);
             }
         }
 

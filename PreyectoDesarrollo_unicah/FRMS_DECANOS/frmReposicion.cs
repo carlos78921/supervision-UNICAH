@@ -50,18 +50,11 @@ namespace PreyectoDesarrollo_unicah
             menu.Show();
         }
 
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        private void MoveForm_MouseDown(object sender, MouseEventArgs e)
         {
-            //este es para poder mover el form
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);  //El evento en memoria se mantiene
-        }
 
-        private void frmReposición_MouseDown(object sender, MouseEventArgs e)
-        {
-            //este es para poder mover el form
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);  //El evento en memoria se mantiene
         }
 
         private void btnDay_Click(object sender, EventArgs e) 

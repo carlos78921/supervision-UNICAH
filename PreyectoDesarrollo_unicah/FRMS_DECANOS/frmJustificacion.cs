@@ -35,7 +35,7 @@ namespace PreyectoDesarrollo_unicah
             txtJustifica.SelectionStart = txtJustifica.Text.Length; // (TextChanged) Colocar el cursor en la segunda línea cuando se opera esto
 
             //Ajuste en la BDD
-            ACCIONES_BD.tablaJustifica(dgvJustificacion);
+            ACCIONES_BD.tablaJustifica(dgvJustificacion, ACCIONES_BD.empleado);
         }
 
         private void btnVoy_Click(object sender, EventArgs e)
@@ -52,14 +52,7 @@ namespace PreyectoDesarrollo_unicah
             menu.Show();
         }
 
-        private void frmJustificación_MouseDown(object sender, MouseEventArgs e)
-        {
-            //este es para poder mover el form
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);  //El evento en memoria se mantiene
-        }
-
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        private void MoveForm_MouseDown(object sender, MouseEventArgs e)
         {
             //este es para poder mover el form
             ReleaseCapture();
@@ -71,7 +64,7 @@ namespace PreyectoDesarrollo_unicah
             if (!string.IsNullOrEmpty(txtJustifica.Text.Trim()))
             {
                 ACCIONES_BD.Justifico(dgvJustificacion, (int)dgvJustificacion.CurrentRow.Cells[0].Value, txtJustifica.Text);
-                ACCIONES_BD.tablaJustifica(dgvJustificacion); //Esto ayuda a actualizar la tabla, la línea anterior actualiza datos
+                ACCIONES_BD.tablaJustifica(dgvJustificacion, ACCIONES_BD.empleado); //Esto ayuda a actualizar la tabla, la línea anterior actualiza datos
             }
         }
 

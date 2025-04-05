@@ -19,7 +19,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
     class ACCIONES_BD
     {
         public static string nombre, apellido;
-        public static string docente;
+        public static string empleado;
 
         public CONEXION_BD conexion = new CONEXION_BD();
 
@@ -27,11 +27,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
         {
             nombre = "";
             apellido = "";
-        }
-
-        public ACCIONES_BD(string codigo)
-        {
-            docente = codigo;
         }
 
         public static bool AdminCasoContra(string usuario, string contraseña, Form Login)
@@ -93,10 +88,10 @@ namespace PreyectoDesarrollo_unicah.CLASES
                             string nombre = reader["nombre1"].ToString();
                             string apellido = reader["apellido1"].ToString();
                             string rolUsuario = reader["rol"].ToString();
-                            string codigoDocente = usuario.ToString();
-                            ACCIONES_BD.nombre = nombre;
-                            ACCIONES_BD.apellido = apellido;
-                            ACCIONES_BD.docente = codigoDocente;
+                            string codigo = usuario.ToString();
+                            nombre = nombre;
+                            apellido = apellido;
+                            empleado = codigo;
 
                             MessageBox.Show($"Bienvenido(a), {nombre} {apellido}. Su rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -232,7 +227,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             if (dgv.Columns.Contains("AsistenciaHoy"))
             {
                 dgv.Columns["AsistenciaHoy"].HeaderText = DateTime.Today.ToString("dddd dd/MM/yyyy");
-                dgv.Columns[5].Width = 55;
+                dgv.Columns[5].Width = 65;
                 dgv.Columns["AsistenciaHoy"].ReadOnly = false;
             }
 
@@ -412,9 +407,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     }
                 }
             }
-
         }
-        public static DataTable tablaJustifica(DataGridView dgv)
+
+        public static DataTable tablaJustifica(DataGridView dgv, string decanoCodigo)
         {
             DataTable dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
@@ -422,6 +417,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("PA_Justifica", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CodigoDecano", decanoCodigo);
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
             }
@@ -435,12 +432,14 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 bs.ResetBindings(false);
                 dgv.AutoGenerateColumns = true;
                 dgv.Refresh();
+
                 dgv.Columns[0].Visible = false;
-                dgv.Columns[1].Width = 150;
-                dgv.Columns[2].Width = 80;
-                dgv.Columns[3].Width = 66;
-                dgv.Columns[4].Width = 120;
-                dgv.Columns[5].Width = 304;
+                dgv.Columns[1].Visible = true;
+                dgv.Columns[2].Width = 150;
+                dgv.Columns[3].Width = 80;
+                dgv.Columns[4].Width = 66;
+                dgv.Columns[5].Width = 120;
+                dgv.Columns[6].Width = 304;
             }
 
             return dt;
@@ -485,7 +484,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static DataTable tablaRepone(DataGridView dgv)         {
+        public static DataTable tablaRepone(DataGridView dgv)         
+        {
             DataTable dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
@@ -506,13 +506,31 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.AutoGenerateColumns = true;
                 dgv.Refresh(); 
                 dgv.Columns[0].Visible = false;
-                dgv.Columns[1].Width = 150;
-                dgv.Columns[2].Width = 80;
-                dgv.Columns[3].Width = 66;
-                dgv.Columns[4].Width = 120;
-                dgv.Columns[5].Width = 304;
             }
+            dgv.Columns[1].Width = 150;
+            dgv.Columns[2].Width = 100;
+            dgv.Columns[3].Width = 300;
+            dgv.Columns[4].Width = 100;
+            dgv.Columns[5].Width = 125;
             return dt;
+        }
+
+        public static void Repongo(DataGridView dgv, int Ausencia, DateTimePicker dtp)
+        {
+            DateTime dia = dtp.Value; using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("PA_Insertar_Reposicion", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ID_Asistencia", Ausencia);
+                    cmd.Parameters.AddWithValue("@Fecha_Reposicion", dia);
+                    cmd.ExecuteNonQuery(); SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dgv.DataSource = dt;
+                }
+            }
         }
 
         public static void FiltrarDatosRepo(string Repo, string Edificio, DataGridView dgv)
@@ -537,58 +555,27 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static void Repongo(DataGridView dgv, int Ausencia, DateTimePicker dtp)
-        {
-            DateTime dia = dtp.Value;             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("PA_Insertar_Reposicion", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@ID_Asistencia", Ausencia);
-                    cmd.Parameters.AddWithValue("@Fecha_Reposicion", dia);
-                    cmd.ExecuteNonQuery();                     SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    dgv.DataSource = dt;
-                }
-            }
-        }
-
-        public DataTable codigo_doc_tabla()
+        public static DataTable tabla_docente(DataGridView dgv, string docenteCodigo)
         {
             DataTable dt = new DataTable();
-            try
+            using (SqlConnection con = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
-                using (SqlConnection con = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand("PA_Asistencia_Doc", con))
                 {
-                    con.Open();
-                    using (SqlCommand cmd = new SqlCommand("PA_Asistencia_Doc", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@CodigoDocente", docente);
+                    cmd.Parameters.AddWithValue("@CodigoDocente", docenteCodigo);
 
-                        SqlDataAdapter da = new SqlDataAdapter(cmd); da.Fill(dt);
-                    }
+                    SqlDataAdapter da = new SqlDataAdapter(cmd); da.Fill(dt);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al obtener datos: " + ex.Message);
-            }
-            return dt;
-        }
-
-        public void tabla_docente(DataGridView dgv)
-        {
-            DataTable dt = codigo_doc_tabla(); 
 
             if (dt.Rows.Count > 0)
             {
                 dgv.Columns.Clear();
 
-                                BindingSource bs = new BindingSource();
+                BindingSource bs = new BindingSource();
                 bs.DataSource = dt;
                 dgv.DataSource = bs;
                 bs.ResetBindings(false);
@@ -600,13 +587,10 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.Columns[2].Visible = false;
                 dgv.Columns[3].Visible = false;
             }
-            else
-            {
-                MessageBox.Show("No se encontraron registros.");
-            }
+            return dt;
         }
 
-        public DataTable CargarAsistenciaDoc(MonthCalendar docFechas, string clase, string seccion, string aula, string edificio)
+        public static DataTable CargarAsistenciaDoc(MonthCalendar docFechas, string clase, string seccion, string aula, string edificio)
         {
             DataTable dtFechas = new DataTable();
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
@@ -615,7 +599,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 SqlCommand cmd = new SqlCommand("PA_Fecha_Doc", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@CodDocente", docente);
+                cmd.Parameters.AddWithValue("@CodDocente", empleado);
                 cmd.Parameters.AddWithValue("@Asigna", clase);
                 cmd.Parameters.AddWithValue("@Seccion", seccion);
                 cmd.Parameters.AddWithValue("@Aula", aula);
