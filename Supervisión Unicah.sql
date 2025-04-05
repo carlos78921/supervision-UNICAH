@@ -231,16 +231,17 @@ with encryption
 AS
 BEGIN
     DECLARE @Hoy DATE = CAST(GETDATE() AS DATE);
-
-    SELECT distinct
+	DECLARE @AHora CHAR(2) = RIGHT('0' + CAST(DATEPART(HOUR, DATEADD(HOUR, -6, SYSDATETIMEOFFSET())) AS VARCHAR(2)), 2);
+    SELECT DISTINCT 
         (NC.Nombre1 + ' ' + NC.Nombre2 + ' ' + NC.Apellido1 + ' ' + ISNULL(NC.Apellido2, '')) AS Docente,
-        C.Asignatura,
-        S.Seccion,
-        S.Aula,
-        S.Edificio,
+        Asignatura,
+        Seccion,
+        Aula,
+        Edificio,
         CASE 
             WHEN EXISTS (
-                SELECT 1 FROM Asistencia A2
+                SELECT 1 
+                FROM Asistencia A2
                 WHERE A2.ID_Empleado = E.ID_Empleado
                   AND A2.ID_Clase = C.ID_Clase
                   AND A2.ID_Sitio = S.ID_Sitio
@@ -255,9 +256,11 @@ BEGIN
     JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
     JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
     WHERE E.codigo_empleado != '037'
+      -- Filtrar por la hora actual: se requiere que los dos primeros dígitos de Seccion sean iguales a la hora actual
+      AND LEFT(LTRIM(RTRIM(S.Seccion)), 2) = @AHora
 END
 go
-
+	    
 create proc PA_Marcar_Asistencia 
 	@Docente varchar(31),
 	@Asigno varchar(70),
