@@ -40,8 +40,8 @@
             clmClase = new DataGridViewTextBoxColumn();
             clmSeccion = new DataGridViewTextBoxColumn();
             clmAula = new DataGridViewTextBoxColumn();
-            clmFecha = new DataGridViewCheckBoxColumn();
             clmEdificio = new DataGridViewTextBoxColumn();
+            clmFecha = new DataGridViewCheckBoxColumn();
             label5 = new Label();
             txtClase = new TextBox();
             cmbHora = new ComboBox();
@@ -139,56 +139,50 @@
             dgvAsiste.AllowUserToAddRows = false;
             dgvAsiste.AllowUserToDeleteRows = false;
             dgvAsiste.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAsiste.Columns.AddRange(new DataGridViewColumn[] { clmDoc, clmClase, clmSeccion, clmAula, clmFecha, clmEdificio });
+            dgvAsiste.Columns.AddRange(new DataGridViewColumn[] { clmDoc, clmClase, clmSeccion, clmAula, clmEdificio, clmFecha });
             dgvAsiste.Location = new Point(20, 224);
             dgvAsiste.Name = "dgvAsiste";
-            dgvAsiste.ReadOnly = true;
-            dgvAsiste.Size = new Size(867, 245);
+            dgvAsiste.Size = new Size(877, 245);
             dgvAsiste.TabIndex = 17;
+            dgvAsiste.CellContentClick += dgvAsiste_CellContentClick;
             dgvAsiste.CellValueChanged += dgvAsiste_CellValueChanged;
             // 
             // clmDoc
             // 
             clmDoc.HeaderText = "Docente";
             clmDoc.Name = "clmDoc";
-            clmDoc.ReadOnly = true;
             clmDoc.Width = 300;
             // 
             // clmClase
             // 
             clmClase.HeaderText = "Asignatura";
             clmClase.Name = "clmClase";
-            clmClase.ReadOnly = true;
             clmClase.Width = 250;
             // 
             // clmSeccion
             // 
             clmSeccion.HeaderText = "Sección";
             clmSeccion.Name = "clmSeccion";
-            clmSeccion.ReadOnly = true;
             clmSeccion.Width = 60;
             // 
             // clmAula
             // 
             clmAula.HeaderText = "Aula";
             clmAula.Name = "clmAula";
-            clmAula.ReadOnly = true;
             clmAula.Width = 150;
-            // 
-            // clmFecha
-            // 
-            clmFecha.HeaderText = "Presente";
-            clmFecha.Name = "clmFecha";
-            clmFecha.ReadOnly = true;
-            clmFecha.Resizable = DataGridViewTriState.True;
-            clmFecha.SortMode = DataGridViewColumnSortMode.Automatic;
-            clmFecha.Width = 55;
             // 
             // clmEdificio
             // 
             clmEdificio.HeaderText = "Edificio";
             clmEdificio.Name = "clmEdificio";
-            clmEdificio.ReadOnly = true;
+            // 
+            // clmFecha
+            // 
+            clmFecha.HeaderText = "Presente";
+            clmFecha.Name = "clmFecha";
+            clmFecha.Resizable = DataGridViewTriState.True;
+            clmFecha.SortMode = DataGridViewColumnSortMode.Automatic;
+            clmFecha.Width = 55;
             // 
             // label5
             // 
@@ -301,7 +295,7 @@
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(903, 440);
+            btnLogout.Location = new Point(907, 440);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(86, 23);
             btnLogout.TabIndex = 38;
@@ -367,7 +361,7 @@
         private DataGridViewTextBoxColumn clmClase;
         private DataGridViewTextBoxColumn clmSeccion;
         private DataGridViewTextBoxColumn clmAula;
-        private DataGridViewCheckBoxColumn clmFecha;
         private DataGridViewTextBoxColumn clmEdificio;
+        private DataGridViewCheckBoxColumn clmFecha;
     }
 }

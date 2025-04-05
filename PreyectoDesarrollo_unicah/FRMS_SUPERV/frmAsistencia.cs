@@ -66,8 +66,13 @@ namespace PreyectoDesarrollo_unicah
             LimiteMes();
             FiltroInicial();
 
-            ACCIONES_BD.tablaSupervisor(dgvAsiste);
+            dgvAsiste.CurrentCellDirtyStateChanged += (s, ev)
+            => {
+                if (dgvAsiste.IsCurrentCellDirty)
+                    dgvAsiste.CommitEdit(DataGridViewDataErrorContexts.Commit);
+               };
 
+            ACCIONES_BD.tablaSupervisor(dgvAsiste);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -93,21 +98,29 @@ namespace PreyectoDesarrollo_unicah
 
         private void dgvAsiste_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvAsiste.Columns[e.ColumnIndex].Name == "Nada")
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            var columna = dgvAsiste.Columns[e.ColumnIndex];
+            if (columna.Name == "AsistenciaHoy")
             {
                 var fila = dgvAsiste.Rows[e.RowIndex];
-                var chk = (DataGridViewCheckBoxCell)fila.Cells[e.ColumnIndex];
 
-                bool marcado = (chk.Value != null && (bool)chk.Value == true);
+                string docente = fila.Cells[0].Value?.ToString();
+                string asignatura = fila.Cells[1].Value?.ToString();
+                string seccion = fila.Cells[2].Value?.ToString();
+                string aula = fila.Cells[3].Value?.ToString();
+                string edificio = fila.Cells[4].Value?.ToString();
+                bool marca = Convert.ToBoolean(fila.Cells["AsistenciaHoy"].Value);
 
-                string docente = fila.Cells["Docente"].Value.ToString();
-                string asignatura = fila.Cells["Asignatura"].Value.ToString();
-                string seccion = fila.Cells["Seccion"].Value.ToString();
-                string aula = fila.Cells["Aula"].Value.ToString();
-                string edificio = fila.Cells["Edificio"].Value.ToString();
-
-                ACCIONES_BD.RegistrarAsistencia(dgvAsiste, docente, asignatura, seccion, aula, edificio, marcado);
+                ACCIONES_BD.RegistrarAsistencia(dgvAsiste, docente, asignatura, seccion, aula, edificio, marca);
             }
+        }
+
+        private void dgvAsiste_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvAsiste.Columns[e.ColumnIndex].Name == "AsistenciaHoy" && e.RowIndex >= 0)
+                dgvAsiste.CommitEdit(DataGridViewDataErrorContexts.Commit);
         }
     }
 }

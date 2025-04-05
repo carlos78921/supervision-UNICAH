@@ -181,25 +181,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static void RegistrarAsistencia(DataGridView dgv, string Docente, string clase, string seccion, string aula, string edificio, bool Marco)
-        {
-            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("PA_Marcar_Asistencia", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("@Docente", Docente);
-                cmd.Parameters.AddWithValue("@Asigno", clase);
-                cmd.Parameters.AddWithValue("@Seccion", seccion);
-                cmd.Parameters.AddWithValue("@Aula", aula);
-                cmd.Parameters.AddWithValue("@Edificio", edificio);
-                cmd.Parameters.AddWithValue("@Fecha", DateTime.Today);
-                cmd.Parameters.AddWithValue("@Marca", Marco);
-                cmd.ExecuteNonQuery();
-            }
-        }
-
         public static List<DateTime> CargarAsistenciaSuperExcel(string Docente, string clase, string seccion, string aula, string edificio)
         {
             List<DateTime> fechas = new List<DateTime>();
@@ -229,9 +210,10 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return fechas;
         }
 
-        public static DataTable tablaSupervisor(DataGridView dgv)
+        public static void tablaSupervisor(DataGridView dgv)
         {
             DataTable dt = new DataTable();
+
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand("PA_Supervisor", conn);
@@ -240,28 +222,50 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
             }
-            if (dt.Rows.Count > 0)
-            {
-                dgv.Columns.Clear();
 
-                BindingSource bs = new BindingSource();
-                bs.DataSource = dt;
-                dgv.DataSource = bs;
-                bs.ResetBindings(false);
-                dgv.AutoGenerateColumns = true;
-                dgv.Refresh(); 
-                dgv.Columns[0].Width = 300;
-                dgv.Columns[1].Width = 250;
-                dgv.Columns[2].Width = 60;
-                dgv.Columns[3].Width = 150;
-                dgv.Columns[4].Visible = false;
+            dgv.Columns.Clear();
+            dgv.DataSource = dt;
+            dgv.AutoGenerateColumns = true;
+            dgv.Refresh();
+
+            // Ajustar columnas
+            if (dgv.Columns.Contains("AsistenciaHoy"))
+            {
+                dgv.Columns["AsistenciaHoy"].HeaderText = DateTime.Today.ToString("dddd dd/MM/yyyy");
                 dgv.Columns[5].Width = 55;
-                if (dgv.Columns.Contains("AsistenciaHoy"))
-                {
-                    dgv.Columns["AsistenciaHoy"].HeaderText = DateTime.Today.ToString("dddd dd/MM/yyyy");
-                }
+                dgv.Columns["AsistenciaHoy"].ReadOnly = false;
             }
-            return dt;
+
+            dgv.Columns[0].Width = 300;
+            dgv.Columns[0].ReadOnly = true;
+            dgv.Columns[1].Width = 250;
+            dgv.Columns[1].ReadOnly = true;
+            dgv.Columns[2].Width = 60;
+            dgv.Columns[2].ReadOnly = true;
+            dgv.Columns[3].Width = 150;
+            dgv.Columns[3].ReadOnly = true;
+            dgv.Columns[4].Visible = false;
+        }
+
+
+        public static void RegistrarAsistencia(DataGridView dgv, string Docente, string clase, string seccion, string aula, string edificio, bool Marco)
+        {
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand("PA_Marcar_Asistencia", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Docente", Docente);
+                cmd.Parameters.AddWithValue("@Asigno", clase);
+                cmd.Parameters.AddWithValue("@Seccion", seccion);
+                cmd.Parameters.AddWithValue("@Aula", aula);
+                cmd.Parameters.AddWithValue("@Edificio", edificio);
+                cmd.Parameters.AddWithValue("@Fecha", DateTime.Now.Date);
+                cmd.Parameters.AddWithValue("@Marca", Marco);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public static void FiltrarDatosSuperv(string Docente, string clase, string Seccion, string Aula, string Edificio, DataGridView dgv)
