@@ -505,7 +505,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 bs.ResetBindings(false);
                 dgv.AutoGenerateColumns = true;
                 dgv.Refresh(); 
-                                dgv.Columns[0].Visible = false;
+                dgv.Columns[0].Visible = false;
                 dgv.Columns[1].Width = 150;
                 dgv.Columns[2].Width = 80;
                 dgv.Columns[3].Width = 66;
@@ -530,7 +530,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    dgv.DataSource = dt;                 }
+                    dgv.DataSource = dt;                 
+                }
 
                 dgv.Columns[0].Visible = false;
             }
