@@ -412,7 +412,6 @@ BEGIN
 
     SELECT DISTINCT 
            ID_Asistencia,
-		   Cod_Facultad,
            Asignatura,
            Fecha AS [Fecha de Ausencia],
            (NC.Nombre1 + ' ' + ISNULL(NC.Nombre2, '') + ' ' + NC.Apellido1 + ' ' + ISNULL(NC.Apellido2, '')) AS [Docente],
