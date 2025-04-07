@@ -44,11 +44,9 @@
             clmFecha = new DataGridViewCheckBoxColumn();
             label5 = new Label();
             txtClase = new TextBox();
-            cmbHora = new ComboBox();
             cmbAula = new ComboBox();
             cmbEdificio = new ComboBox();
             gbFiltro = new GroupBox();
-            label7 = new Label();
             label4 = new Label();
             label3 = new Label();
             label6 = new Label();
@@ -187,7 +185,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(446, 134);
+            label5.Location = new Point(20, 188);
             label5.Name = "label5";
             label5.Size = new Size(67, 15);
             label5.TabIndex = 26;
@@ -195,22 +193,11 @@
             // 
             // txtClase
             // 
-            txtClase.Location = new Point(519, 131);
+            txtClase.Location = new Point(106, 180);
             txtClase.Name = "txtClase";
-            txtClase.Size = new Size(226, 23);
+            txtClase.Size = new Size(304, 23);
             txtClase.TabIndex = 27;
             txtClase.KeyUp += Filtros;
-            // 
-            // cmbHora
-            // 
-            cmbHora.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbHora.FormattingEnabled = true;
-            cmbHora.Items.AddRange(new object[] { "", "0705", "0706A", "0902A", "1102", "1302", "1302BA", "1401", "1501", "1501A", "1701" });
-            cmbHora.Location = new Point(461, 21);
-            cmbHora.Name = "cmbHora";
-            cmbHora.Size = new Size(85, 23);
-            cmbHora.TabIndex = 30;
-            cmbHora.SelectedIndexChanged += Filtros;
             // 
             // cmbAula
             // 
@@ -236,27 +223,16 @@
             // 
             // gbFiltro
             // 
-            gbFiltro.Controls.Add(label7);
             gbFiltro.Controls.Add(label4);
             gbFiltro.Controls.Add(label3);
             gbFiltro.Controls.Add(cmbEdificio);
-            gbFiltro.Controls.Add(cmbHora);
             gbFiltro.Controls.Add(cmbAula);
-            gbFiltro.Location = new Point(74, 164);
+            gbFiltro.Location = new Point(440, 121);
             gbFiltro.Name = "gbFiltro";
-            gbFiltro.Size = new Size(589, 55);
+            gbFiltro.Size = new Size(370, 55);
             gbFiltro.TabIndex = 33;
             gbFiltro.TabStop = false;
             gbFiltro.Text = "Filtros";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(405, 25);
-            label7.Name = "label7";
-            label7.Size = new Size(51, 15);
-            label7.TabIndex = 45;
-            label7.Text = "Sección:";
             // 
             // label4
             // 
@@ -283,7 +259,7 @@
             label6.Name = "label6";
             label6.Size = new Size(120, 30);
             label6.TabIndex = 34;
-            label6.Text = "Nombre y/o apellido \r\n         del docente";
+            label6.Text = "Nombre y/o apellido \r\n         del docente:";
             // 
             // txtDoc
             // 
@@ -347,14 +323,12 @@
         private Label label5;
         private TextBox txtClase;
         private Label label6;
-        private ComboBox cmbHora;
         private ComboBox cmbAula;
         private ComboBox cmbEdificio;
         private GroupBox gbFiltro;
         private TextBox txtDoc;
         private Button btnLogout;
         private Button btnSalir;
-        private Label label7;
         private Label label4;
         private Label label3;
         private DataGridViewTextBoxColumn clmDoc;
