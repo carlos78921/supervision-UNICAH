@@ -298,8 +298,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static void Periodo(DateTimePicker inicio, DateTimePicker fin, MonthCalendar trimestre)
+        public static void Periodo(DateTimePicker inicio, DateTimePicker fin, Button periodo, MonthCalendar trimestre)
         {
+            //Colocar la validación enabled de los tres controles aquí en el principio
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conexion.Open();
