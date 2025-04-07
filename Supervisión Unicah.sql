@@ -1,12 +1,8 @@
-create database Supervision_Unicah 
+/*create database Supervision_Unicah 
 go
 
-use Supervision_Unicah 
-go
---Primero ejecutar los dos comandos para importar, luego coméntenlo para ejecutar todo
-
+use Supervision_Unicah*/
 set nocount on
-
 create table Nombres_Completos (
 	ID_Empleado int identity primary key,
 	Nombre1 varchar(9),
@@ -15,8 +11,14 @@ create table Nombres_Completos (
 	Apellido2 varchar(11)
 )
 --Recuerden que son cuatro actores
-go
 
+insert into Nombres_Completos (Nombre1, Apellido1) values
+('Sr.', 'Admin.')
+
+insert into Nombres_Completos (Nombre1, Apellido1) values
+('Sr.', 'Dago')
+
+-- Todos los decanos
 insert into Nombres_Completos
 select Nombre1, Nombre2, Nombre3, Nombre4
 from Empleo$
@@ -30,14 +32,13 @@ CREATE TABLE Empleados (
 )
 go
 
-alter table Migración$DatosExternos_3
+alter table Migración$
 add ID_Empleado int foreign key references Nombres_Completos(ID_Empleado)
 go
 
--- ¿Qué es esto?
 UPDATE M
 SET M.ID_Empleado = NC.ID_Empleado
-FROM Migración$DatosExternos_3 M
+FROM Migración$ M
 JOIN Nombres_Completos NC
   ON UPPER(LTRIM(RTRIM(M.Nombre1))) = UPPER(LTRIM(RTRIM(nc.Nombre1)))
   AND UPPER(LTRIM(RTRIM(M.Nombre2))) = UPPER(LTRIM(RTRIM(nc.Nombre2)))
@@ -47,14 +48,23 @@ JOIN Nombres_Completos NC
           or UPPER(LTRIM(RTRIM(Nombre4))) = UPPER(LTRIM(RTRIM(Apellido2)))
 	  )
 go
+--select * from Migración$
 
--- ¿Qué es esto?
+--select * from Nombres_Completos where Nombre2 = 'Sarai' -- Verificar ID_Empleado para decano
+
+insert into Empleados (ID_Empleado, rol, codigo_empleado) values
+(1, 'administrador', 1)
+insert into Empleados (ID_Empleado, rol, codigo_empleado) values
+(2, 'supervisor', 2)
+insert into Empleados (ID_Empleado, rol, codigo_empleado) values
+(3, 'decano', '037')
+
 INSERT INTO Empleados (ID_Empleado, rol, codigo_empleado)
 SELECT 
-    M.ID_Empleado,                           
-    'docente' AS rol,                   
-    M.Cod_Empleado                         
-FROM Migración$DatosExternos_3 M
+    M.ID_Empleado,                           -- Se obtiene el ID correcto de la tabla Nombres_Completos
+    'docente' AS rol,                   -- Se asigna un valor fijo para el rol
+    M.Cod_Empleado                         -- Se extrae el código de empleado desde la tabla importada
+FROM Migración$ M
 JOIN Nombres_Completos nc
     ON UPPER(LTRIM(RTRIM(M.Nombre1))) = UPPER(LTRIM(RTRIM(nc.Nombre1)))
    AND UPPER(LTRIM(RTRIM(M.Nombre2))) = UPPER(LTRIM(RTRIM(nc.Nombre2)))
@@ -66,34 +76,41 @@ JOIN Nombres_Completos nc
 group by M.ID_Empleado, M.Cod_Empleado
 go
 
-create table DecanoFacultad -- Para esta tabla en los inserts puse que ID_Empleado de la decana, y las demás facultades al supervisor, esto para que realice filtro de registros por facultad
+create table DecanoFacultad
 (
 codigo_facu varchar(6) primary key,
 ID_Empleado int foreign key references Nombres_Completos(ID_Empleado)
 )
 go 
 
+insert into DecanoFacultad
+select * from Decanos$
+go
+
 create table Clases 
 (
 	ID_Clase int identity primary key,
 	Cod_Asignatura varchar(7),
-	Cod_Facultad varchar (6) foreign key references DecanoFacultad(codigo_facu), -- Esto funciona cuando las facultades sean iguales que el primario de DecanoFacultad
-	Asignatura varchar(70)
+	Cod_Facultad varchar (6) foreign key references DecanoFacultad(codigo_facu), 
+	Asignatura varchar(70),
+	InicioDia TINYINT,     
+    FinDia TINYINT,
+    DiasPermitidos INT
 )
 go
 
 insert into Clases 
-select Codigo_Asignatura, Codigo_Facultad, Curso
+select * 
 from Clase$
 go
 
-alter table Migración$DatosExternos_3
+alter table Migración$
 add ID_Clase int foreign key references Clases (ID_Clase)
 go
 
 UPDATE M
 SET M.ID_Clase = C.ID_Clase
-FROM Migración$DatosExternos_3 M
+FROM Migración$ M
 JOIN Clases C
   ON Codigo_Asignatura = Cod_Asignatura and
      Codigo_Facultad = Cod_Facultad and
@@ -103,7 +120,7 @@ go
 create table Sitio
 (
 	ID_Sitio int identity primary key,
-        Edificio char,
+    Edificio char,
 	Aula varchar(25),
 	Seccion varchar (6)    
 )
@@ -114,13 +131,13 @@ select *
 from Lugares$
 go
 
-alter table Migración$DatosExternos_3
+alter table Migración$
 add ID_Sitio int foreign key references Sitio(ID_Sitio)
 go
 
 UPDATE M
 SET M.ID_Sitio = S.ID_Sitio
-FROM Migración$DatosExternos_3 M
+FROM Migración$ M
 JOIN Sitio S
   ON M.Aula = S.Aula and
      M.Edificio = S.Edificio and
@@ -130,27 +147,27 @@ go
 drop table Clase$
 drop table Lugares$
 drop table Empleo$
-alter table Migración$DatosExternos_3
+alter table Migración$
 drop column Curso
-alter table Migración$DatosExternos_3
+alter table Migración$
 drop column Seccion
-alter table Migración$DatosExternos_3
+alter table Migración$
 drop column Aula
-alter table Migración$DatosExternos_3
+alter table Migración$
 drop column Cod_Empleado
-alter table Migración$DatosExternos_3
+alter table Migración$
 drop column Edificio
-alter table Migración$DatosExternos_3
+alter table Migración$
 drop column Codigo_Facultad
-alter table Migración$DatosExternos_3
+alter table Migración$
 drop column Codigo_Asignatura
-alter table Migración$DatosExternos_3
+alter table Migración$
 drop column Nombre1
-alter table Migración$DatosExternos_3
+alter table Migración$
 drop column Nombre2
-alter table Migración$DatosExternos_3
+alter table Migración$
 drop column Nombre3
-alter table Migración$DatosExternos_3
+alter table Migración$
 drop column Nombre4
 go
 
@@ -158,7 +175,7 @@ create table Asistencia -- ¿Habrá tantos inserts con un checkbox desmarcado?
 ( 
 	ID_Asistencia int identity primary key,
 	ID_Clase int foreign key references Clases (ID_Clase),
-    	ID_Sitio int foreign key references Sitio (ID_Sitio),
+    ID_Sitio int foreign key references Sitio (ID_Sitio),
 	ID_Empleado int foreign key references Nombres_Completos(ID_Empleado),
 	Fecha date,
 	Observacion nvarchar(150), 
@@ -168,7 +185,7 @@ create table Asistencia -- ¿Habrá tantos inserts con un checkbox desmarcado?
 go
 
 insert into Asistencia (ID_Empleado, ID_Clase, ID_Sitio)
-select ID_Empleado, ID_Clase, ID_Sitio from Migración$DatosExternos_3
+select ID_Empleado, ID_Clase, ID_Sitio from Migración$
 go
 
 update Asistencia
@@ -176,9 +193,9 @@ set Presente = 0
 go
 
 update Asistencia
-set Fecha = getdate()
+set Fecha = CAST(DATEADD(HOUR, -6, GETDATE()) as DATE)
 go
-	
+
 -- Procedimientos Almacenados
 create PROCEDURE PA_Login
 @usuario VARCHAR(4),
@@ -227,17 +244,22 @@ end
 go
 
 create proc PA_Supervisor -- Tabla del supervisor
-with encryption
+WITH ENCRYPTION
 AS
 BEGIN
-    DECLARE @Hoy DATE = CAST(GETDATE() AS DATE);
-	DECLARE @AHora CHAR(2) = RIGHT('0' + CAST(DATEPART(HOUR, DATEADD(HOUR, -6, SYSDATETIMEOFFSET())) AS VARCHAR(2)), 2);
+	DECLARE @Hoy DATE = CAST(DATEADD(HOUR, -6, SYSDATETIMEOFFSET()) AS DATE);
+    DECLARE @AHora CHAR(2) = RIGHT('0' + CAST(DATEPART(HOUR, DATEADD(HOUR, -6, SYSDATETIMEOFFSET())) AS VARCHAR(2)), 2);
+
+    SET DATEFIRST 1; -- Asegura que lunes sea 1
+    DECLARE @DiaSemana TINYINT = DATEPART(WEEKDAY, DATEADD(HOUR, -6, SYSDATETIMEOFFSET()));
+    DECLARE @BitDiaSemana INT = POWER(2, @DiaSemana - 1);
+
     SELECT DISTINCT 
         (NC.Nombre1 + ' ' + NC.Nombre2 + ' ' + NC.Apellido1 + ' ' + ISNULL(NC.Apellido2, '')) AS Docente,
-        Asignatura,
-        Seccion,
-        Aula,
-        Edificio,
+        C.Asignatura,
+        S.Seccion,
+        S.Aula,
+        S.Edificio,
         CASE 
             WHEN EXISTS (
                 SELECT 1 
@@ -255,12 +277,19 @@ BEGIN
     JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
     JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
     JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
-    WHERE E.codigo_empleado != '037'
-      -- Filtrar por la hora actual: se requiere que los dos primeros dígitos de Seccion sean iguales a la hora actual
-      AND LEFT(LTRIM(RTRIM(S.Seccion)), 2) = @AHora
+    WHERE 
+        E.codigo_empleado != '037'
+        AND LEFT(LTRIM(RTRIM(S.Seccion)), 2) = @AHora
+        AND (
+            -- Filtrado por rango de días (si existe)
+            (@DiaSemana BETWEEN C.InicioDia AND C.FinDia)
+            OR
+            -- Filtrado por días específicos (si existe)
+            (C.DiasPermitidos IS NOT NULL AND (C.DiasPermitidos & @BitDiaSemana) > 0)
+        )
 END
-go
-	    
+GO
+
 create proc PA_Marcar_Asistencia 
 	@Docente varchar(31),
 	@Asigno varchar(70),
@@ -430,9 +459,6 @@ BEGIN
     AND A.Presente = 0;
 end
 go
-select * from Empleados where ID_Empleado = 3
-select * from DecanoFacultad
-select * from Clases
 
 CREATE PROCEDURE PA_Insertar_Justificacion
     @ID_Asistencia INT,
@@ -557,8 +583,8 @@ BEGIN
     WHERE E.Codigo_Empleado = @CodigoDocente;
 END;
 go
-
-alter proc PA_Fecha_Doc -- Calendario del docente
+ 
+create proc PA_Fecha_Doc -- Calendario del docente
 @CodDocente varchar(4),
 @Asigna varchar (70),
 @Seccion varchar(7),
@@ -608,23 +634,3 @@ BEGIN
     END
 END;
 go
-
-CREATE TABLE Asistencia_Backup (
-    BackupID INT IDENTITY(1,1) PRIMARY KEY,
-    IDEmpleado INT,
-    Fecha DATETIME,
-    Presente BIT,
-    BackupFecha DATETIME DEFAULT GETDATE()
-)
-go
-
-CREATE TRIGGER _BackupAsistencia
-ON Asistencia
-AFTER INSERT
-AS
-BEGIN
-    -- Verifica que las columnas existen en la tabla Asistencia
-    INSERT INTO Asistencia_Backup (IDEmpleado, Fecha, Presente, BackupFecha)
-    SELECT i.ID_Empleado, i.Fecha, i.Presente, GETDATE()
-    FROM inserted i;
-END;
