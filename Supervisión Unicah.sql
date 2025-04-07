@@ -206,7 +206,7 @@ BEGIN
 	SELECT nombre1, apellido1, rol 
 	FROM Empleados E	
 	join Nombres_Completos NC on E.ID_Empleado = NC.ID_Empleado 
-	WHERE codigo_empleado = @usuario AND ltrim((rtrim(contraseña))) = @contrasena
+	WHERE codigo_empleado = @usuario AND binary_checksum(ltrim((rtrim(contraseña)))) =  binary_checksum(ltrim((rtrim(@contrasena))))
 END
 GO 
 
