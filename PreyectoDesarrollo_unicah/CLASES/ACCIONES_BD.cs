@@ -34,7 +34,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conexion.Open();
-                using (SqlCommand cmd = new SqlCommand("PA_Admin_Save", conexion))
+                using (SqlCommand cmd = new SqlCommand("PA_Admin_Save", conexion)) 
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Usuario", usuario);
@@ -161,10 +161,10 @@ namespace PreyectoDesarrollo_unicah.CLASES
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
                 conexion.Open();
-                using (SqlCommand cmd = new SqlCommand("PA_Contra", conexion))
+
+                string trigger = "UPDATE Empleados SET Contraseña = @Contraseña WHERE rol = 'Administrador'";
+                using (SqlCommand cmd = new SqlCommand(trigger, conexion))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Usuario", 1);
                     cmd.Parameters.AddWithValue("@Contraseña", contraseña);
                     cmd.ExecuteNonQuery();
 
@@ -263,7 +263,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static void FiltrarDatosSuperv(string Docente, string clase, string Seccion, string Aula, string Edificio, DataGridView dgv)
+        public static void FiltrarDatosSuperv(string Docente, string clase, string Aula, string Edificio, DataGridView dgv)
         {
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
@@ -273,7 +273,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Docente", Docente);
                     cmd.Parameters.AddWithValue("@Clase", clase);
-                    cmd.Parameters.AddWithValue("@Seccion", Seccion);
                     cmd.Parameters.AddWithValue("@Aula", Aula);
                     cmd.Parameters.AddWithValue("@Edificio", Edificio);
 

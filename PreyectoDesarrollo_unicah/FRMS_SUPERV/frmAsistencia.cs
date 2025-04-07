@@ -49,7 +49,6 @@ namespace PreyectoDesarrollo_unicah
         {
             cmbEdificio.SelectedIndex = 0;
             cmbAula.SelectedIndex = 0;
-            cmbHora.SelectedIndex = 0;
         }
 
         private void LimiteMes()
@@ -93,7 +92,7 @@ namespace PreyectoDesarrollo_unicah
 
         private void Filtros(object sender, EventArgs e)
         {
-            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbHora.Text, cmbAula.Text, cmbEdificio.Text, dgvAsiste);
+            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbAula.Text, cmbEdificio.Text, dgvAsiste);
         }
 
         private void dgvAsiste_CellValueChanged(object sender, DataGridViewCellEventArgs e)

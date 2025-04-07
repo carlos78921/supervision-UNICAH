@@ -31,12 +31,14 @@ namespace PreyectoDesarrollo_unicah
         private void frmMigración_Load(object sender, EventArgs e)
         {
             lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
+            dtpInicio.MinDate = DateTime.Now;
+            dtpFin.MinDate = DateTime.Now;
 
             ACCIONES_BD.tablaAdmin(dgvAdmin);
             ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, (string)dgvAdmin.CurrentRow.Cells[0].Value, (string)dgvAdmin.CurrentRow.Cells[1].Value, (string)dgvAdmin.CurrentRow.Cells[2].Value, (string)dgvAdmin.CurrentRow.Cells[3].Value, (string)dgvAdmin.CurrentRow.Cells[4].Value);
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
+        
+        private void Salir(object sender, EventArgs e)
         {
             this.Close();
             frmAdmin Admin = new frmAdmin();
@@ -46,13 +48,6 @@ namespace PreyectoDesarrollo_unicah
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            frmAdmin Admin = new frmAdmin();
-            Admin.Show();
         }
 
         private void dgvAdmin_SelectionChanged(object sender, EventArgs e)
@@ -103,10 +98,10 @@ namespace PreyectoDesarrollo_unicah
                         dr[i] = fila.Cells[i].Value?.ToString();
                     }
 
-                    string refiero = fila.Cells[0].Value?.ToString(); 
-                    string curso = fila.Cells[1].Value?.ToString(); 
-                    string seccion = fila.Cells[2].Value?.ToString(); 
-                    string aula = fila.Cells[3].Value?.ToString(); 
+                    string refiero = fila.Cells[0].Value?.ToString();
+                    string curso = fila.Cells[1].Value?.ToString();
+                    string seccion = fila.Cells[2].Value?.ToString();
+                    string aula = fila.Cells[3].Value?.ToString();
                     string empleado = fila.Cells[4].Value?.ToString();
 
                     List<DateTime> fechasAsistencia = ACCIONES_BD.CargarAsistenciaAdminExcel(refiero, curso, seccion, aula, empleado);
@@ -201,26 +196,36 @@ namespace PreyectoDesarrollo_unicah
         {
             DateTime fechaSeleccionada = e.Start;
 
-            DateTime fechaInicio = new DateTime(DateTime.Now.Year, 1, 20);
+            DateTime fechaInicio = dtpInicio.Value;
             int offsetDias = (fechaSeleccionada - fechaInicio).Days;
             int indiceSemana = offsetDias / 7;
             int indiceParcial = indiceSemana / 4;
             int parcial = indiceParcial + 1; int semanaEnParcial = (indiceSemana % 4) + 1;
             lblParcial.Text = $"Parcial {parcial}";
             lblWeek.Text = $"Semana {semanaEnParcial}";
-
         }
 
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        private void MoveForm_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void frmMigracion_MouseDown(object sender, MouseEventArgs e)
+        private void btnPeriodo_Click(object sender, EventArgs e)
         {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
+            DateTime inicio = dtpInicio.Value;
+            DateTime fin = dtpFin.Value;
+
+            // Asegurar que la fecha final sea mayor o igual a la actual
+
+            // Establecer el rango en el calendario
+            mesAdmin.MinDate = inicio;
+            mesAdmin.MaxDate = fin;
+
+            // Desactivar controles
+            dtpInicio.Enabled = false;
+            dtpFin.Enabled = false;
+            btnPeriodo.Enabled = false;
         }
     }
 }
