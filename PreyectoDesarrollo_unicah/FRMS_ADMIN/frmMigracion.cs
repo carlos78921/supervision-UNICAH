@@ -226,6 +226,8 @@ namespace PreyectoDesarrollo_unicah
             dtpInicio.Enabled = false;
             dtpFin.Enabled = false;
             btnPeriodo.Enabled = false;
+
+            ACCIONES_BD.CrearPeriodo(inicio, fin);
         }
     }
 }
