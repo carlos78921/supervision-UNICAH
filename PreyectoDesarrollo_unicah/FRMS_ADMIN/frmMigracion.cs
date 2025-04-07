@@ -31,9 +31,9 @@ namespace PreyectoDesarrollo_unicah
         private void frmMigración_Load(object sender, EventArgs e)
         {
             lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
-            dtpInicio.MinDate = DateTime.Now;
-            dtpFin.MinDate = DateTime.Now;
+            
 
+            ACCIONES_BD.Periodo(dtpInicio, dtpFin, mesAdmin);
             ACCIONES_BD.tablaAdmin(dgvAdmin);
             ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, (string)dgvAdmin.CurrentRow.Cells[0].Value, (string)dgvAdmin.CurrentRow.Cells[1].Value, (string)dgvAdmin.CurrentRow.Cells[2].Value, (string)dgvAdmin.CurrentRow.Cells[3].Value, (string)dgvAdmin.CurrentRow.Cells[4].Value);
         }

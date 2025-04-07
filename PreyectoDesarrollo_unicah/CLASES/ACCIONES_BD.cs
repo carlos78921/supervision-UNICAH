@@ -285,6 +285,53 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
+        public static void CrearPeriodo(DateTime inicio, DateTime fin)
+        {
+            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conexion.Open();
+                string trigger = "INSERT INTO Periodo (FechaInicio, FechaFin) VALUES (@inicio, @fin)";
+                SqlCommand cmd = new SqlCommand(trigger, conexion);
+                cmd.Parameters.AddWithValue("@inicio", inicio.Date);
+                cmd.Parameters.AddWithValue("@fin", fin.Date);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static void Periodo(DateTimePicker inicio, DateTimePicker fin, MonthCalendar trimestre)
+        {
+            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand("PA_Periodo", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    inicio.Value = (DateTime)(reader["FechaInicio"]);
+                    fin.Value = (DateTime)(reader["FechaFin"]);
+                    trimestre.MinDate = (DateTime)(reader["FechaInicio"]);
+                    trimestre.MaxDate = (DateTime)(reader["FechaFin"]);
+                }
+            }
+        }
+
+        public static void Periodo(MonthCalendar trimestre)
+        {
+            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand("PA_Periodo", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    trimestre.MinDate = (DateTime)(reader["FechaInicio"]);
+                    trimestre.MaxDate = (DateTime)(reader["FechaFinal"]);
+                }
+            }
+        }
+
         public static DataTable tablaAdmin (DataGridView dgv)
         {
             DataTable dt = new DataTable();
