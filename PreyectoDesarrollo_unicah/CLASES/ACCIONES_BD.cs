@@ -299,10 +299,11 @@ namespace PreyectoDesarrollo_unicah.CLASES
         }
 
         public static void Periodo(DateTimePicker inicio, DateTimePicker fin, Button periodo, MonthCalendar trimestre)
-        {
-            //Colocar la validación enabled de los tres controles aquí en el principio
+        {            
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
+                inicio.MinDate = DateTime.Now;
+
                 conexion.Open();
                 SqlCommand cmd = new SqlCommand("PA_Periodo", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -313,6 +314,20 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     fin.Value = (DateTime)(reader["FechaFin"]);
                     trimestre.MinDate = (DateTime)(reader["FechaInicio"]);
                     trimestre.MaxDate = (DateTime)(reader["FechaFin"]);
+                }
+
+                if (DateTime.Now >= inicio.Value)
+                {
+                    inicio.Enabled = false;
+                    fin.Enabled = false;
+                    periodo.Enabled = false;
+                }
+
+                if (DateTime.Now >= fin.Value)
+                {
+                    inicio.Enabled = true;
+                    fin.Enabled = true;
+                    periodo.Enabled = true;
                 }
             }
         }

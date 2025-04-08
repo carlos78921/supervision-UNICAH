@@ -216,8 +216,6 @@ namespace PreyectoDesarrollo_unicah
             // mesAdmin
             // 
             mesAdmin.Location = new Point(790, 272);
-            mesAdmin.MaxDate = new DateTime(2025, 4, 12, 0, 0, 0, 0);
-            mesAdmin.MinDate = new DateTime(2025, 1, 20, 0, 0, 0, 0);
             mesAdmin.Name = "mesAdmin";
             mesAdmin.TabIndex = 19;
             mesAdmin.DateSelected += mesAdmin_DateSelected;
