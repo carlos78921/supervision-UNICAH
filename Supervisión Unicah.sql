@@ -2,6 +2,7 @@
 go
 
 use Supervision_Unicah*/
+
 set nocount on
 create table Nombres_Completos (
 	ID_Empleado int identity primary key,
@@ -74,6 +75,14 @@ JOIN Nombres_Completos nc
          OR UPPER(LTRIM(RTRIM(Nombre4))) = UPPER(LTRIM(RTRIM(Apellido2)))
        )
 group by M.ID_Empleado, M.Cod_Empleado
+go
+
+create table Periodo
+(
+ID_Periodo int identity primary key,
+FechaInicio date,
+FechaFin date
+)
 go
 
 create table DecanoFacultad
@@ -346,32 +355,58 @@ BEGIN
 END;
 go
 
-create PROCEDURE PA_Buscar_Superv
+alter PROCEDURE PA_Buscar_Superv
     @Docente VARCHAR(50),
     @Clase VARCHAR(70),
     @Aula VARCHAR(25),
-    @Seccion VARCHAR(7),
 	@Edificio VARCHAR(1)
-
 AS
 BEGIN
+	DECLARE @Hoy DATE = CAST(DATEADD(HOUR, -6, SYSDATETIMEOFFSET()) AS DATE);
+    DECLARE @AHora CHAR(2) = RIGHT('0' + CAST(DATEPART(HOUR, DATEADD(HOUR, -6, SYSDATETIMEOFFSET())) AS VARCHAR(2)), 2);
+
+    SET DATEFIRST 1; -- Asegura que lunes sea 1
+    DECLARE @DiaSemana TINYINT = DATEPART(WEEKDAY, DATEADD(HOUR, -6, SYSDATETIMEOFFSET()));
+    DECLARE @BitDiaSemana INT = POWER(2, @DiaSemana - 1);
+
     SET NOCOUNT ON;
 
     SELECT DISTINCT 
         (Nombre1 + ' ' + ISNULL(Nombre2, '') + ' ' + Apellido1 + ' ' + ISNULL(Apellido2, '')) AS Docente, 
-        Asignatura, Seccion, Aula, Edificio 
-    FROM Asistencia A
+        Asignatura, Aula, Edificio,
+        CASE 
+            WHEN EXISTS (
+                SELECT 1 
+                FROM Asistencia A2
+                WHERE A2.ID_Empleado = E.ID_Empleado
+                  AND A2.ID_Clase = C.ID_Clase
+                  AND A2.ID_Sitio = S.ID_Sitio
+                  AND CAST(A2.Fecha AS DATE) = @Hoy
+                  AND A2.Presente = 1
+            ) THEN CAST(1 AS BIT)
+            ELSE CAST(0 AS BIT)
+        END AS AsistenciaHoy
+	FROM Asistencia A
     JOIN Empleados E ON A.ID_Empleado = E.ID_Empleado
     JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
     JOIN Clases C ON A.ID_Clase = C.ID_Clase
     JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
     WHERE ((Nombre1 + ' ' + ISNULL(Nombre2, '') + ' ' + Apellido1 + ' ' + ISNULL(Apellido2, '')) LIKE '%' + @Docente + '%' OR @Docente = '')
       AND (Asignatura LIKE '%' + @Clase + '%' OR @Clase = '')
-	  AND (@Seccion = '' OR Seccion = @Seccion)
       AND (@Aula = '' OR Aula = @Aula)
 	  AND (@Edificio = '' OR Edificio = @Edificio)
 END;
 go
+
+CREATE proc PA_Periodo
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT top 1 FechaInicio, FechaFin
+    FROM Periodo;
+END
+GO
 
 create proc PA_Admin -- Para tabla Admin
 with encryption
@@ -634,3 +669,16 @@ BEGIN
     END
 END;
 go
+
+CREATE TRIGGER TRG_Periodo
+ON Periodo
+INSTEAD OF INSERT
+AS
+BEGIN
+    -- Elimina cualquier registro previo
+    DELETE FROM Periodo;
+	select * from Empleados
+    -- Inserta el nuevo que viene del formulario
+    INSERT INTO Periodo (FechaInicio, FechaFin)
+    SELECT FechaInicio, FechaFin FROM inserted;
+END
