@@ -35,24 +35,13 @@ namespace PreyectoDesarrollo_unicah
         }
 
 
-        //Proceso en carga de formulario
-        private void LimiteMeses()
-        {
-            int año = DateTime.Now.Year;
-
-            // Definir el rango (20 enero - 18 abril del año actual), académicamente
-            mesDoc.MinDate = new DateTime(año, 1, 20);
-            mesDoc.MaxDate = new DateTime(año, 4, 12);
-        }
-
         private void frmDocente_Load(object sender, EventArgs e) //Método del formulario
         {
             //Ajuste de forulario
-            lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
-            LimiteMeses();
+            lblPersona.Text = ACCIONES_BD.Persona();
 
             //Ajustes de BDD
-
+            ACCIONES_BD.Periodo(mesDoc);
             dgvDoc.AutoGenerateColumns = true;
             ACCIONES_BD.tabla_docente(dgvDoc, ACCIONES_BD.empleado);
             ACCIONES_BD.CargarAsistenciaDoc(
