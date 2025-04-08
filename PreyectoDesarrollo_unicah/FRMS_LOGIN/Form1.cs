@@ -79,7 +79,8 @@ namespace PreyectoDesarrollo_unicah
             if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this))
                 return;
 
-            ACCIONES_BD.Login(usuario, contraseña, this);
+            ACCIONES_BD Login = new ACCIONES_BD();
+            Login.Login(usuario, contraseña, this);
         }
 
         private void MoveForm_MouseDown(object sender, MouseEventArgs e)

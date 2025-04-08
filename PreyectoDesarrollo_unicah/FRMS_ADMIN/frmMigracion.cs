@@ -31,8 +31,7 @@ namespace PreyectoDesarrollo_unicah
 
         private void frmMigración_Load(object sender, EventArgs e)
         {
-            lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
-            
+            lblPersona.Text = ACCIONES_BD.Persona();
 
             ACCIONES_BD.Periodo(dtpInicio, dtpFin, btnPeriodo, mesAdmin);
             ACCIONES_BD.tablaAdmin(dgvAdmin);

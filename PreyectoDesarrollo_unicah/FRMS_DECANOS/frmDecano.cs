@@ -29,8 +29,7 @@ namespace PreyectoDesarrollo_unicah
 
         private void Frm_Admin_Load(object sender, EventArgs e)
         {
-            lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
-            // ACCIONES_BD.cargar(dgvDoc,)
+            lblPersona.Text = ACCIONES_BD.Persona();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

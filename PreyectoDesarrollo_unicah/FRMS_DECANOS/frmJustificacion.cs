@@ -28,7 +28,7 @@ namespace PreyectoDesarrollo_unicah
 
         private void frmJustificación_Load(object sender, EventArgs e)
         {
-            lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
+            lblPersona.Text = ACCIONES_BD.Persona();
 
             //Ajuste de controles
             txtJustifica.Text = Environment.NewLine; // (TextChanged) Mantener la primera línea vacía cuando se opera esto

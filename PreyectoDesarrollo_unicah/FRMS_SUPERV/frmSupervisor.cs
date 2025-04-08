@@ -74,7 +74,7 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
 
         private void frmSupervisor_Load(object sender, EventArgs e)
         {
-            lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
+            lblPersona.Text = ACCIONES_BD.Persona();
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)

@@ -18,8 +18,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 {
     class ACCIONES_BD
     {
-        public static string nombre, apellido;
-        public static string empleado;
+        public static string nombre, apellido, empleado;
 
         public CONEXION_BD conexion = new CONEXION_BD();
 
@@ -69,7 +68,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return true;
         }
 
-        public static void Login(string usuario, string contraseña, Form Login)
+        public void Login(string usuario, string contraseña, Form Login)
         {
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
@@ -85,12 +84,10 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     {
                         if (reader.Read()) 
                         {
-                            string nombre = reader["nombre1"].ToString();
-                            string apellido = reader["apellido1"].ToString();
+                            nombre = reader["nombre1"].ToString();
+                            apellido = reader["apellido1"].ToString();
                             string rolUsuario = reader["rol"].ToString();
                             string codigo = usuario.ToString();
-                            nombre = nombre;
-                            apellido = apellido;
                             empleado = codigo;
 
                             MessageBox.Show($"Bienvenido(a), {nombre} {apellido}. Su rol es: {rolUsuario}", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -129,6 +126,13 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     }
                 }
             }
+        }
+
+        public static string Persona()
+        {
+            string name = nombre.ToLower();
+            string ape = apellido.ToLower();
+            return char.ToUpper(name[0]) + name.Substring(1) + ' ' + char.ToUpper(ape[0]) + ape.Substring(1); //Substring ubica cadena inicial a leer
         }
 
         private static bool AdminContraseñaError(string usuario, Form Login, SqlConnection conexion, SqlDataReader read)
@@ -242,7 +246,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
             dgv.Columns[4].Visible = false;
         }
 
-
         public static void RegistrarAsistencia(DataGridView dgv, string Docente, string clase, string seccion, string aula, string edificio, bool Marco)
         {
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
@@ -341,7 +344,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 if (reader.Read())
                 {                    
                     trimestre.MinDate = (DateTime)(reader["FechaInicio"]);
-                    trimestre.MaxDate = (DateTime)(reader["FechaFinal"]);
+                    trimestre.MaxDate = (DateTime)(reader["FechaFin"]);
                 }
             }
         }

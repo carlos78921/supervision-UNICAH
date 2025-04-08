@@ -28,7 +28,8 @@ namespace PreyectoDesarrollo_unicah
 
         private void frmReposición_Load(object sender, EventArgs e)
         {
-            lblPersona.Text = $"{ACCIONES_BD.nombre} {ACCIONES_BD.apellido}";
+            lblPersona.Text = ACCIONES_BD.Persona();
+            
             //Ajuste del formulario
             cmbEdificio.SelectedIndex = 0;
 

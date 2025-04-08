@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using ClosedXML.Excel;
 using PreyectoDesarrollo_unicah.CLASES;
 using System.Data.SqlClient;
+using DocumentFormat.OpenXml.Office.Word;
 
 namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
 {
@@ -42,21 +43,21 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
 
         private DataTable TransferirDatosSuperExcel()
         {
-            // 1. Crear el DataTable y llenarlo con los datos base desde la base de datos usando PA_Admin.
+            // 1. Crear el DataTable y llenarlo con los datos base desde la base de datos usando la tabla del supervisor sin "Presente"
             DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            using (SqlConnection muestra = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("PA_Supervisor", conn))
+                muestra.Open();
+                using (SqlCommand tabla = new SqlCommand("PA_Supervisor_Excel", muestra))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
+                    tabla.CommandType = CommandType.StoredProcedure;
+                    SqlDataAdapter da = new SqlDataAdapter(tabla);
+                    da.Fill(dt);                    
                 }
             }
-            // Ahora dt tiene las 5 columnas base: Referencia, Curso, Sección, Aula y Empleado.
 
-            // 2. Agregar columnas para asistencia (12 semanas x 6 días = 72 columnas).
+            /* Ahora dt tiene las 5 columnas base: Docente, Asignatura, Aula, Sección y Edificio.
+               2. Agregar columnas para asistencia (12 semanas x 6 días = 72 columnas).*/
             for (int parcial = 1; parcial <= 3; parcial++)
             {
                 for (int semana = 1; semana <= 4; semana++)
@@ -68,15 +69,26 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
                     }
                 }
             }
-            // Al final, dt tendrá 5 + 72 = 77 columnas.
+            /* Al final, dt tendrá 5 + 72 = 77 columnas.
 
-            // 3. Recorrer cada fila del dt (datos base) para llenar las columnas de asistencia.
-            // Se usará una fecha de inicio (por ejemplo, la mínima del calendario o una fecha fija).
-            DateTime fechaInicio = new DateTime(DateTime.Now.Year, 1, 20);
-            // Si el MonthCalendar está configurado correctamente, podrías usar:
-            // DateTime fechaInicio = mesAdmin.MinDate;
+             3. Recorrer cada fila del dt (datos base) para llenar las columnas de asistencia.
+             Se usará una fecha de inicio (por ejemplo, la mínima del calendario o una fecha fija).*/
 
-            // Por cada fila (cada registro de PA_Admin)
+            // Conectar a la base de datos para obtener la fecha de inicio.
+            DateTime fechaInicio = DateTime.Now; //Valor por defecto, luego se cambiará
+            using (SqlConnection fecha = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                fecha.Open();
+                SqlCommand inicio = new SqlCommand("PA_Periodo", fecha);
+                inicio.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = inicio.ExecuteReader();
+                if (reader.Read())
+                {
+                    fechaInicio = reader.GetDateTime(0); 
+                }
+            }
+
+            // Por cada fila (cada registro de la tabla del supervisor)
             foreach (DataRow row in dt.Rows)
             {
                 string docente = row["Docente"].ToString();
@@ -85,7 +97,7 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
                 string aula = row["Aula"].ToString();
                 string edificio = row["Edificio"].ToString();
 
-                // Obtener las fechas de asistencia para este registro usando tu método
+                // Obtener las fechas de asistencia para este registro usando el método de PA para fechas
                 List<DateTime> fechasAsistencia = ACCIONES_BD.CargarAsistenciaSuperExcel(docente, clase, seccion, aula, edificio);
 
                 // Recorrer cada fecha de asistencia
@@ -130,7 +142,7 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
 
         private void btnExcel_Click(object sender, EventArgs e)
         {
-            // Obtén el DataTable directamente de la base de datos (sin usar dgv).
+            // Obtener el DataTable directamente de la base de datos (sin usar dgv).
             DataTable dt = TransferirDatosSuperExcel();
 
             int baseColumns = 5; int columnasPorParcial = 4 * 6;
