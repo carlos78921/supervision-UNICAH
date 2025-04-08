@@ -58,7 +58,7 @@ namespace PreyectoDesarrollo_unicah
                     btnPeriodo.Enabled = false;
                 }
             if (inicio.Date != DateTime.Now.Date)
-                    ACCIONES_BD.CrearPeriodo(inicio, fin);
+                ACCIONES_BD.CrearPeriodo(inicio, fin);
         }
 
         private void Salir(object sender, EventArgs e)
@@ -211,7 +211,14 @@ namespace PreyectoDesarrollo_unicah
                 };
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    workbook.SaveAs(saveFileDialog.FileName);
+                    try
+                    {
+                        workbook.SaveAs(saveFileDialog.FileName);
+                    }
+                    catch (IOException) //En caso que no se guarde por cualquier error
+                    {
+                        MessageBox.Show("El archivo ya está abierto en Excel.\nPor favor, ciérralo antes de guardar.", "Archivo en uso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
             }
         }
 
@@ -268,6 +275,58 @@ namespace PreyectoDesarrollo_unicah
                         fin.Enabled = true;
                         periodo.Enabled = true;
                     }
+                }
+            }
+        }
+
+        private void btnSQL_Click(object sender, EventArgs e)
+        {
+            string rutaExcel = ""; //Por defecto asignado, o vacío para después luego asignarse
+            DataTable dt = new DataTable();
+
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Archivos Excel (*.xlsx)|*.xlsx";
+                ofd.Title = "Seleccionar archivo Excel";
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    rutaExcel = ofd.FileName;
+                }
+            }
+
+            using (var workbook = new XLWorkbook(rutaExcel))
+            {
+                var hoja = workbook.Worksheet(1); // Primer hoja
+                bool encabezado = true;
+
+                foreach (var fila in hoja.RowsUsed())
+                {
+                    if (encabezado)
+                    {
+                        foreach (var celda in fila.Cells())
+                            dt.Columns.Add(celda.Value.ToString());
+                        encabezado = false;
+                    }
+                    else
+                    {
+                        dt.Rows.Add();
+                        int i = 0;
+                        foreach (var celda in fila.Cells())
+                        {
+                            dt.Rows[dt.Rows.Count - 1][i] = celda.Value.ToString();
+                            i++;
+                        }
+                    }
+                }
+            }
+            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conexion.Open();
+                using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conexion))
+                {
+                    bulkCopy.DestinationTableName = "NombreDeTuTablaSQL";
+                    bulkCopy.WriteToServer(dt);
                 }
             }
         }

@@ -191,7 +191,14 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
                 };
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    workbook.SaveAs(saveFileDialog.FileName);
+                    try
+                    {
+                        workbook.SaveAs(saveFileDialog.FileName);
+                    }
+                    catch (IOException) //En caso que no se guarde por cualquier error
+                    {
+                        MessageBox.Show("El archivo ya está abierto en Excel.\nPor favor, ciérralo antes de guardar.", "Archivo en uso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
             }
         }
     }

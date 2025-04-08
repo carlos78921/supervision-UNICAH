@@ -30,6 +30,7 @@ namespace PreyectoDesarrollo_unicah
         {
             Button btnLogout;
             Button btnExcel;
+            Button btnSQL;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
@@ -53,6 +54,7 @@ namespace PreyectoDesarrollo_unicah
             btnPeriodo = new Button();
             btnLogout = new Button();
             btnExcel = new Button();
+            btnSQL = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -63,9 +65,9 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(911, 446);
+            btnLogout.Location = new Point(866, 474);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(126, 29);
+            btnLogout.Size = new Size(122, 21);
             btnLogout.TabIndex = 14;
             btnLogout.Text = "&REGRESAR";
             btnLogout.UseVisualStyleBackColor = true;
@@ -73,9 +75,9 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnExcel
             // 
-            btnExcel.Location = new Point(778, 444);
+            btnExcel.Location = new Point(922, 446);
             btnExcel.Name = "btnExcel";
-            btnExcel.Size = new Size(108, 42);
+            btnExcel.Size = new Size(122, 22);
             btnExcel.TabIndex = 15;
             btnExcel.Text = "&EXPORTAR A EXCEL";
             btnExcel.UseVisualStyleBackColor = true;
@@ -147,7 +149,7 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.Location = new Point(13, 124);
             dgvAdmin.Name = "dgvAdmin";
             dgvAdmin.ReadOnly = true;
-            dgvAdmin.Size = new Size(746, 358);
+            dgvAdmin.Size = new Size(746, 368);
             dgvAdmin.TabIndex = 13;
             dgvAdmin.SelectionChanged += dgvAdmin_SelectionChanged;
             // 
@@ -275,11 +277,22 @@ namespace PreyectoDesarrollo_unicah
             btnPeriodo.UseVisualStyleBackColor = true;
             btnPeriodo.Click += btnPeriodo_Click;
             // 
+            // btnSQL
+            // 
+            btnSQL.Location = new Point(774, 446);
+            btnSQL.Name = "btnSQL";
+            btnSQL.Size = new Size(133, 22);
+            btnSQL.TabIndex = 26;
+            btnSQL.Text = "&MIGRAR EXCEL A SQL";
+            btnSQL.UseVisualStyleBackColor = true;
+            btnSQL.Click += btnSQL_Click;
+            // 
             // frmMigracion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1056, 494);
+            ClientSize = new Size(1056, 504);
+            Controls.Add(btnSQL);
             Controls.Add(btnPeriodo);
             Controls.Add(groupBox1);
             Controls.Add(mesAdmin);
