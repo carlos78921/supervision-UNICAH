@@ -341,7 +341,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
-                {
+                {                    
                     trimestre.MinDate = (DateTime)(reader["FechaInicio"]);
                     trimestre.MaxDate = (DateTime)(reader["FechaFinal"]);
                 }

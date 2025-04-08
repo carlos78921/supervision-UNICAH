@@ -203,7 +203,7 @@
             // 
             cmbAula.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbAula.FormattingEnabled = true;
-            cmbAula.Items.AddRange(new object[] { "", "101", "102", "106", "107", "202" });
+            cmbAula.Items.AddRange(new object[] { "", "101", "102", "105", "106", "107" });
             cmbAula.Location = new Point(268, 22);
             cmbAula.Name = "cmbAula";
             cmbAula.Size = new Size(85, 23);

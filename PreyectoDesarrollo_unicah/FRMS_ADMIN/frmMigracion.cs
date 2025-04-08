@@ -216,18 +216,22 @@ namespace PreyectoDesarrollo_unicah
             DateTime inicio = dtpInicio.Value;
             DateTime fin = dtpFin.Value;
 
-            // Asegurar que la fecha final sea mayor o igual a la actual
-
             // Establecer el rango en el calendario
             mesAdmin.MinDate = inicio;
             mesAdmin.MaxDate = fin;
 
-            // Desactivar controles
-            dtpInicio.Enabled = false;
-            dtpFin.Enabled = false;
-            btnPeriodo.Enabled = false;
-
-            ACCIONES_BD.CrearPeriodo(inicio, fin);
+            if (inicio.Date == DateTime.Now.Date)
+            {
+                if (MessageBox.Show("¿Seguro que quiere definir el inicio hoy?" +
+                "\nNo podrá definir de nuevo si no es el que desea", "Iniciar Periodo",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    ACCIONES_BD.CrearPeriodo(inicio, fin);
+                    dtpInicio.Enabled = false;
+                    dtpFin.Enabled = false;
+                    btnPeriodo.Enabled = false;
+                }
+            }
         }
     }
 }
