@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -209,6 +210,44 @@ namespace PreyectoDesarrollo_unicah
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        public static void Periodo(DateTimePicker inicio, DateTimePicker fin, Button periodo, MonthCalendar trimestre)
+        {
+            // Primero deshabilitamos los controles por defecto
+            inicio.Enabled = false;
+            fin.Enabled = false;
+            periodo.Enabled = false;
+
+            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand("PA_Periodo", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    DateTime fechaInicio = (DateTime)(reader["FechaInicio"]);
+                    DateTime fechaFin = (DateTime)(reader["FechaFin"]);
+
+                    inicio.Value = fechaInicio;
+                    fin.Value = fechaFin;
+
+                    trimestre.MinDate = fechaInicio;
+                    trimestre.MaxDate = fechaFin;
+
+                    DateTime hoy = DateTime.Today;
+
+                    // Validación para habilitar/deshabilitar controles
+                    if (hoy >= fechaInicio && hoy <= fechaFin)
+                    {
+                        inicio.Enabled = true;
+                        fin.Enabled = true;
+                        periodo.Enabled = true;
+                    }
+                }
+            }
         }
 
         private void btnPeriodo_Click(object sender, EventArgs e)
