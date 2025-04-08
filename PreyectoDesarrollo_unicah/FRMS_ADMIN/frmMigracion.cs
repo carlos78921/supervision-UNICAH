@@ -38,7 +38,30 @@ namespace PreyectoDesarrollo_unicah
             ACCIONES_BD.tablaAdmin(dgvAdmin);
             ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, (string)dgvAdmin.CurrentRow.Cells[0].Value, (string)dgvAdmin.CurrentRow.Cells[1].Value, (string)dgvAdmin.CurrentRow.Cells[2].Value, (string)dgvAdmin.CurrentRow.Cells[3].Value, (string)dgvAdmin.CurrentRow.Cells[4].Value);
         }
-        
+
+        private void btnPeriodo_Click(object sender, EventArgs e)
+        {
+            DateTime inicio = dtpInicio.Value;
+            DateTime fin = dtpFin.Value;
+
+            // Establecer el rango en el calendario
+            mesAdmin.MinDate = inicio;
+            mesAdmin.MaxDate = fin;
+
+            if (inicio.Date == DateTime.Now.Date)
+                if (MessageBox.Show("¿Seguro que quiere definir el inicio hoy?" +
+                "\nNo podrá definir de nuevo si no es el que desea", "Iniciar Periodo",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    ACCIONES_BD.CrearPeriodo(inicio, fin);
+                    dtpInicio.Enabled = false;
+                    dtpFin.Enabled = false;
+                    btnPeriodo.Enabled = false;
+                }
+            if (inicio.Date != DateTime.Now.Date)
+                    ACCIONES_BD.CrearPeriodo(inicio, fin);
+        }
+
         private void Salir(object sender, EventArgs e)
         {
             this.Close();
@@ -246,29 +269,6 @@ namespace PreyectoDesarrollo_unicah
                         fin.Enabled = true;
                         periodo.Enabled = true;
                     }
-                }
-            }
-        }
-
-        private void btnPeriodo_Click(object sender, EventArgs e)
-        {
-            DateTime inicio = dtpInicio.Value;
-            DateTime fin = dtpFin.Value;
-
-            // Establecer el rango en el calendario
-            mesAdmin.MinDate = inicio;
-            mesAdmin.MaxDate = fin;
-
-            if (inicio.Date == DateTime.Now.Date)
-            {
-                if (MessageBox.Show("¿Seguro que quiere definir el inicio hoy?" +
-                "\nNo podrá definir de nuevo si no es el que desea", "Iniciar Periodo",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                {
-                    ACCIONES_BD.CrearPeriodo(inicio, fin);
-                    dtpInicio.Enabled = false;
-                    dtpFin.Enabled = false;
-                    btnPeriodo.Enabled = false;
                 }
             }
         }

@@ -302,8 +302,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
         {            
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
-                inicio.MinDate = DateTime.Now;
-
                 conexion.Open();
                 SqlCommand cmd = new SqlCommand("PA_Periodo", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
