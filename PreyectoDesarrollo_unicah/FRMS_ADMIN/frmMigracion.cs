@@ -33,6 +33,7 @@ namespace PreyectoDesarrollo_unicah
         {
             lblPersona.Text = ACCIONES_BD.Persona();
 
+            mesAdmin.MinDate = dtpInicio.Value;
             ACCIONES_BD.Periodo(dtpInicio, dtpFin, btnPeriodo, mesAdmin);
             ACCIONES_BD.tablaAdmin(dgvAdmin);
             ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, (string)dgvAdmin.CurrentRow.Cells[0].Value, (string)dgvAdmin.CurrentRow.Cells[1].Value, (string)dgvAdmin.CurrentRow.Cells[2].Value, (string)dgvAdmin.CurrentRow.Cells[3].Value, (string)dgvAdmin.CurrentRow.Cells[4].Value);
@@ -217,7 +218,7 @@ namespace PreyectoDesarrollo_unicah
                     }
                     catch (IOException) //En caso que no se guarde por cualquier error
                     {
-                        MessageBox.Show("El archivo ya está abierto en Excel.\nPor favor, ciérralo antes de guardar.", "Archivo en uso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("El archivo está abierto en Excel.\nPor favor, cerrar antes de guardar.", "Archivo en uso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
             }
         }
@@ -241,94 +242,121 @@ namespace PreyectoDesarrollo_unicah
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        public static void Periodo(DateTimePicker inicio, DateTimePicker fin, Button periodo, MonthCalendar trimestre)
-        {
-            // Primero deshabilitamos los controles por defecto
-            inicio.Enabled = false;
-            fin.Enabled = false;
-            periodo.Enabled = false;
-
-            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-            {
-                conexion.Open();
-                SqlCommand cmd = new SqlCommand("PA_Periodo", conexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    DateTime fechaInicio = (DateTime)(reader["FechaInicio"]);
-                    DateTime fechaFin = (DateTime)(reader["FechaFin"]);
-
-                    inicio.Value = fechaInicio;
-                    fin.Value = fechaFin;
-
-                    trimestre.MinDate = fechaInicio;
-                    trimestre.MaxDate = fechaFin;
-
-                    DateTime hoy = DateTime.Today;
-
-                    // Validación para habilitar/deshabilitar controles
-                    if (hoy >= fechaInicio && hoy <= fechaFin)
-                    {
-                        inicio.Enabled = true;
-                        fin.Enabled = true;
-                        periodo.Enabled = true;
-                    }
-                }
-            }
-        }
-
         private void btnSQL_Click(object sender, EventArgs e)
         {
             string rutaExcel = ""; //Por defecto asignado, o vacío para después luego asignarse
-            DataTable dt = new DataTable();
-
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Filter = "Archivos Excel (*.xlsx)|*.xlsx";
                 ofd.Title = "Seleccionar archivo Excel";
 
+
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    rutaExcel = ofd.FileName;
+                    try
+                    {
+                        rutaExcel = ofd.FileName;
+                    }
+                    catch (IOException)
+                    {
+                        MessageBox.Show("Debe cerrar el Excel seleccionado", "Excel abierto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
 
+            if (string.IsNullOrEmpty(rutaExcel))
+            {
+                MessageBox.Show("No se seleccionó algún archivo.");
+                return;
+            }
+
+            // Abrir el workbook con ClosedXML
             using (var workbook = new XLWorkbook(rutaExcel))
             {
-                var hoja = workbook.Worksheet(1); // Primer hoja
-                bool encabezado = true;
-
-                foreach (var fila in hoja.RowsUsed())
+                // Procesar cada hoja de forma independiente (suponemos hojas 1 a 5)
+                for (int h = 1; h <= 5; h++)
                 {
-                    if (encabezado)
+                    // Crear un nuevo DataTable para la hoja actual
+                    DataTable dt = new DataTable();
+
+                    // Obtener la hoja
+                    var hoja = workbook.Worksheet(h);
+                    bool encabezado = true;
+
+                    // Recorrer las filas usadas en la hoja
+                    foreach (var fila in hoja.RowsUsed())
                     {
-                        foreach (var celda in fila.Cells())
-                            dt.Columns.Add(celda.Value.ToString());
-                        encabezado = false;
-                    }
-                    else
-                    {
-                        dt.Rows.Add();
-                        int i = 0;
-                        foreach (var celda in fila.Cells())
+                        if (encabezado)
                         {
-                            dt.Rows[dt.Rows.Count - 1][i] = celda.Value.ToString();
-                            i++;
+                            // Agregar columnas según la primera fila (encabezado)
+                            foreach (var celda in fila.Cells())
+                            {
+                                dt.Columns.Add(celda.Value.ToString());
+                            }
+                            encabezado = false;
+                        }
+                        else
+                        {
+                            // Agregar filas: crear un DataRow y llenarlo con los valores de la fila
+                            DataRow dr = dt.NewRow();
+                            int i = 0;
+                            foreach (var celda in fila.Cells(1, dt.Columns.Count))
+                            {
+                                dr[i] = celda.Value.ToString();
+                                i++;
+                            }
+                            dt.Rows.Add(dr);
+                        }
+                    }
+                    // Usar SqlBulkCopy para insertar los datos en la tabla SQL correspondiente
+                    using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+                    {
+                        conexion.Open();
+                        using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conexion))
+                        {
+                            // Ahora, según el índice de la hoja, determinamos el nombre de la tabla SQL destino.
+                            string tablaDestino = "";
+                            switch (h)
+                            {
+                                case 1:
+                                    tablaDestino = "DecanoFacultad";
+                                    bulkCopy.ColumnMappings.Add("Codigo_Facultad", "codigo_facu");
+                                    bulkCopy.ColumnMappings.Add("ID_Empleado", "ID_Empleado");
+                                    break;
+                                case 2:
+                                    tablaDestino = "Sitio";
+                                    bulkCopy.ColumnMappings.Add("Edificio", "Edificio");
+                                    bulkCopy.ColumnMappings.Add("Aula", "Aula");
+                                    bulkCopy.ColumnMappings.Add("Seccion", "Seccion");
+                                    break;
+                                case 3:
+                                    tablaDestino = "Clases";
+                                    bulkCopy.ColumnMappings.Add("Codigo_Asignatura", "Cod_Asignatura");
+                                    bulkCopy.ColumnMappings.Add("Codigo_Facultad", "Cod_Facultad");
+                                    bulkCopy.ColumnMappings.Add("Curso", "Asignatura");
+                                    bulkCopy.ColumnMappings.Add("InicioDia", "InicioDia");
+                                    bulkCopy.ColumnMappings.Add("FinDia", "FinDia");
+                                    bulkCopy.ColumnMappings.Add("DiaElegido", "DiasPermitidos");
+                                    break;
+                                case 4:
+                                    tablaDestino = "Nombres_Completos";
+                                    bulkCopy.ColumnMappings.Add("Nombre1", "Nombre1");
+                                    bulkCopy.ColumnMappings.Add("Nombre2", "Nombre2");
+                                    bulkCopy.ColumnMappings.Add("Nombre3", "Apellido1");
+                                    bulkCopy.ColumnMappings.Add("Nombre4", "Apellido1");
+                                    break;
+                                default:
+                                    // Si por alguna razón llega a otro valor, sal del bucle o configura un valor por defecto.
+                                    continue;
+                            }
+
+                            bulkCopy.DestinationTableName = tablaDestino;
+                            bulkCopy.WriteToServer(dt);
                         }
                     }
                 }
             }
-            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-            {
-                conexion.Open();
-                using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conexion))
-                {
-                    bulkCopy.DestinationTableName = "NombreDeTuTablaSQL";
-                    bulkCopy.WriteToServer(dt);
-                }
-            }
+            MessageBox.Show("Importación completada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

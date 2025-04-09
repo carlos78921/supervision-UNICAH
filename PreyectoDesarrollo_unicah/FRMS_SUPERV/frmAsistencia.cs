@@ -51,10 +51,6 @@ namespace PreyectoDesarrollo_unicah
             cmbAula.SelectedIndex = 0;
         }
 
-        private void LimiteMes()
-        {
-
-        }
 
         private void FrmAsiste_Load(object sender, EventArgs e)
         {
@@ -62,7 +58,6 @@ namespace PreyectoDesarrollo_unicah
 
             dgvAsiste = (dgvAsiste as DataGridView);
 
-            LimiteMes();
             FiltroInicial();
 
             dgvAsiste.CurrentCellDirtyStateChanged += (s, ev)

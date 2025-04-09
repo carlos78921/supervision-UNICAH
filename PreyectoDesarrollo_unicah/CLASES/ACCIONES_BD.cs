@@ -215,11 +215,13 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
             {
+                conn.Open();
                 SqlCommand cmd = new SqlCommand("PA_Supervisor", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
+                conn.Close();
             }
 
             dgv.Columns.Clear();
@@ -235,6 +237,21 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.Columns["AsistenciaHoy"].ReadOnly = false;
             }
 
+            using (SqlConnection conn1 = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            {
+                conn1.Open();
+                SqlCommand time = new SqlCommand("PA_Periodo", conn1);
+                time.CommandType = CommandType.StoredProcedure;
+                using (SqlDataReader reader = time.ExecuteReader())
+                {
+                    if (reader.Read())
+                        if (DateTime.Today >= Convert.ToDateTime(reader["FechaInicio"]) && DateTime.Today <= Convert.ToDateTime(reader["FechaFin"]))
+                            dgv.Columns[5].Visible = true;
+                        else
+                            dgv.Columns[5].Visible = false;
+                }
+                conn1.Close();
+            }
             dgv.Columns[0].Width = 300;
             dgv.Columns[0].ReadOnly = true;
             dgv.Columns[1].Width = 250;
@@ -316,6 +333,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     trimestre.MinDate = (DateTime)(reader["FechaInicio"]);
                     trimestre.MaxDate = (DateTime)(reader["FechaFin"]);
                 }
+                else
+                    return;
 
                 if (DateTime.Now >= inicio.Value)
                 {
