@@ -29,7 +29,8 @@ namespace PreyectoDesarrollo_unicah
         private void frmReposición_Load(object sender, EventArgs e)
         {
             lblPersona.Text = ACCIONES_BD.Persona();
-            
+            dtpReposicion.MinDate = DateTime.Today;            
+
             //Ajuste del formulario
             cmbEdificio.SelectedIndex = 0;
 
