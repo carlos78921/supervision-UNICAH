@@ -258,6 +258,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             dgv.Columns[1].ReadOnly = true;
             dgv.Columns[2].Width = 60;
             dgv.Columns[2].ReadOnly = true;
+            dgv.Columns[2].HeaderText = "Sección";
             dgv.Columns[3].Width = 150;
             dgv.Columns[3].ReadOnly = true;
             dgv.Columns[4].Visible = false;
@@ -394,6 +395,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.Columns[0].Width = 115;
                 dgv.Columns[1].Width = 170;
                 dgv.Columns[2].Width = 58;
+                dgv.Columns[2].HeaderText = "Sección";
                 dgv.Columns[3].Width = 183;
                 dgv.Columns[4].Width = 325;
             }
@@ -520,7 +522,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.Columns[2].Width = 80;
                 dgv.Columns[3].Width = 66;
                 dgv.Columns[4].Width = 120;
+                dgv.Columns[4].HeaderText = "Sección";
                 dgv.Columns[5].Width = 304;
+                dgv.Columns[5].HeaderText = "Justificación";
             }
 
             return dt;
@@ -594,7 +598,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
             dgv.Columns[2].Width = 100;
             dgv.Columns[3].Width = 300;
             dgv.Columns[4].Width = 100;
+            dgv.Columns[4].HeaderText = "Sección";
             dgv.Columns[5].Width = 125;
+            dgv.Columns[5].HeaderText = "Fecha de Reposición";
             return dt;
         }
 
@@ -667,6 +673,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.Refresh(); 
                 dgv.Columns[0].Width = 150;
                 dgv.Columns[1].Width = 58;
+                dgv.Columns[1].HeaderText = "Sección";
                 dgv.Columns[2].Visible = false;
                 dgv.Columns[3].Visible = false;
             }
