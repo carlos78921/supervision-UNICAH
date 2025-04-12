@@ -47,6 +47,8 @@
             cmbAula = new ComboBox();
             cmbEdificio = new ComboBox();
             gbFiltro = new GroupBox();
+            label2 = new Label();
+            cmbSeccion = new ComboBox();
             label4 = new Label();
             label3 = new Label();
             label6 = new Label();
@@ -204,7 +206,7 @@
             cmbAula.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbAula.FormattingEnabled = true;
             cmbAula.Items.AddRange(new object[] { "", "101", "102", "105", "106", "107" });
-            cmbAula.Location = new Point(268, 22);
+            cmbAula.Location = new Point(151, 43);
             cmbAula.Name = "cmbAula";
             cmbAula.Size = new Size(85, 23);
             cmbAula.TabIndex = 31;
@@ -215,7 +217,7 @@
             cmbEdificio.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdificio.FormattingEnabled = true;
             cmbEdificio.Items.AddRange(new object[] { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M" });
-            cmbEdificio.Location = new Point(70, 22);
+            cmbEdificio.Location = new Point(24, 43);
             cmbEdificio.Name = "cmbEdificio";
             cmbEdificio.Size = new Size(85, 23);
             cmbEdificio.TabIndex = 32;
@@ -229,15 +231,35 @@
             gbFiltro.Controls.Add(cmbAula);
             gbFiltro.Location = new Point(440, 121);
             gbFiltro.Name = "gbFiltro";
-            gbFiltro.Size = new Size(370, 55);
+            gbFiltro.Size = new Size(255, 82);
             gbFiltro.TabIndex = 33;
             gbFiltro.TabStop = false;
             gbFiltro.Text = "Filtros";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(701, 131);
+            label2.Name = "label2";
+            label2.Size = new Size(148, 45);
+            label2.TabIndex = 46;
+            label2.Text = "EN CASO DE EMERGENCIA\r\n              Filtro de \r\n              Sección:";
+            // 
+            // cmbSeccion
+            // 
+            cmbSeccion.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbSeccion.FormattingEnabled = true;
+            cmbSeccion.Items.AddRange(new object[] { "", "0705", "0706A", "0801", "0802", "1102", "1302", "1302BA", "1401", "1501", "1501A" });
+            cmbSeccion.Location = new Point(724, 179);
+            cmbSeccion.Name = "cmbSeccion";
+            cmbSeccion.Size = new Size(85, 23);
+            cmbSeccion.TabIndex = 45;
+            cmbSeccion.SelectedIndexChanged += Filtros;
+            // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(228, 25);
+            label4.Location = new Point(178, 22);
             label4.Name = "label4";
             label4.Size = new Size(34, 15);
             label4.TabIndex = 44;
@@ -246,7 +268,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(15, 25);
+            label3.Location = new Point(43, 25);
             label3.Name = "label3";
             label3.Size = new Size(49, 15);
             label3.TabIndex = 43;
@@ -284,7 +306,9 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(999, 475);
+            Controls.Add(label2);
             Controls.Add(btnLogout);
+            Controls.Add(cmbSeccion);
             Controls.Add(txtDoc);
             Controls.Add(label6);
             Controls.Add(gbFiltro);
@@ -337,5 +361,7 @@
         private DataGridViewTextBoxColumn clmAula;
         private DataGridViewTextBoxColumn clmEdificio;
         private DataGridViewCheckBoxColumn clmFecha;
+        private Label label2;
+        private ComboBox cmbSeccion;
     }
 }
