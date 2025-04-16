@@ -14,6 +14,7 @@ using PreyectoDesarrollo_unicah.FRMS_ADMIN;
 using PreyectoDesarrollo_unicah.FRMS_SUPERV;
 using DocumentFormat.OpenXml.Office.Word;
 
+
 namespace PreyectoDesarrollo_unicah.CLASES
 {
     class ACCIONES_BD
@@ -26,6 +27,19 @@ namespace PreyectoDesarrollo_unicah.CLASES
         {
             nombre = "";
             apellido = "";
+        }
+
+        public static void CrearBDD()
+        {
+            string ConexionServidor = "Server=tcp:mssql-193001-0.cloudclusters.net,10058;User ID=BD;Password=Changeme00!+;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;";
+            using (SqlConnection conn = new SqlConnection(ConexionServidor))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("PA_Supervision_Unicah", conn))
+                {
+                    cmd.ExecuteNonQuery();                
+                }
+            }
         }
 
         public static bool AdminCasoContra(string usuario, string contraseña, Form Login)
