@@ -39,6 +39,16 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 {
                     cmd.ExecuteNonQuery();                
                 }
+
+                //Si el usuario es igual a 1 (rol del administrador), aparece messagebox sobre transferir datos de excel a sql e insertar el id_empleado el rol, código de usuario y contraseña
+                if (MessageBox.Show("¿Desea transferir los datos de Excel a SQL?", "Transferir Datos", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    using (SqlCommand cmd = new SqlCommand("PA_Transferir_Datos", conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Datos transferidos con éxito", "Transferencia Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
             }
         }
 
