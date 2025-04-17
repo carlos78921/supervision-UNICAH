@@ -76,7 +76,7 @@ namespace PreyectoDesarrollo_unicah
             if (!Validaciones.Usuario(sender, e, usuario, contraseña))
                 return;
 
-            ACCIONES_BD.CrearBDD();
+            ACCIONES_BD.CrearBDD(usuario);
 
             if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this))
                 return;

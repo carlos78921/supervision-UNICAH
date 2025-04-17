@@ -13,6 +13,7 @@ using System.Drawing;
 using PreyectoDesarrollo_unicah.FRMS_ADMIN;
 using PreyectoDesarrollo_unicah.FRMS_SUPERV;
 using DocumentFormat.OpenXml.Office.Word;
+using ClosedXML.Excel;
 
 
 namespace PreyectoDesarrollo_unicah.CLASES
@@ -29,29 +30,126 @@ namespace PreyectoDesarrollo_unicah.CLASES
             apellido = "";
         }
 
-        public static void CrearBDD()
+        public static void CrearBDD(string usuario)
         {
             string ConexionServidor = "Server=tcp:mssql-193001-0.cloudclusters.net,10058;User ID=BD;Password=Changeme00!+;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;";
             using (SqlConnection conn = new SqlConnection(ConexionServidor))
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("PA_Supervision_Unicah", conn))
+                using (SqlCommand crear = new SqlCommand("PA_Supervision_Unicah", conn))
                 {
-                    cmd.ExecuteNonQuery();                
+                    crear.ExecuteNonQuery();
                 }
+                conn.Close();
+            }
 
-                //Si el usuario es igual a 1 (rol del administrador), aparece messagebox sobre transferir datos de excel a sql e insertar el id_empleado el rol, código de usuario y contraseña
-                if (MessageBox.Show("¿Desea transferir los datos de Excel a SQL?", "Transferir Datos", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+             using (SqlConnection conexionBDD = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+             {
+                conexionBDD.Open();
+                //Si el usuario es igual al código de empleado del rol del administrador, aparece messagebox sobre transferir datosDoc de excel a sql e insertar el id_empleado el rol, código de usuario y contraseña
+                using (SqlCommand admin = new SqlCommand("PA_Admin_Save", conexionBDD))
                 {
-                    using (SqlCommand cmd = new SqlCommand("PA_Transferir_Datos", conn))
+                    admin.CommandType = CommandType.StoredProcedure;
+                    admin.Parameters.AddWithValue("@Usuario", usuario);
+                    using (SqlDataReader reader = admin.ExecuteReader())
                     {
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Datos transferidos con éxito", "Transferencia Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (!reader.Read())
+                        {
+                            MessageBox.Show("Datos no encontrados, importar los datos correspondientes de Excel para iniciar programa con datos");
+                            string rutaArchivo = "";
+                            using (OpenFileDialog ofd = new OpenFileDialog())
+                            {
+                                ofd.Filter = "Archivos Excel (*.xlsx)|*.xlsx";
+                                ofd.Title = "Seleccionar archivo Excel";
+                                if (ofd.ShowDialog() == DialogResult.OK)
+                                {
+                                    try
+                                    {
+                                        rutaArchivo = ofd.FileName;
+                                    }
+                                    catch (IOException)
+                                    {
+                                        MessageBox.Show("Debe cerrar el Excel seleccionado", "Excel abierto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }                                 
+                                }
+                            }
+                            DataTable autoridades = CrearDatos(rutaArchivo, "Autoridades");
+                            DataTable docentes = CrearDatos(rutaArchivo, "Docentes");
+ 
+                            foreach (DataRow row in autoridades.Rows)
+                            {
+                                using (SqlCommand datosAuto = new SqlCommand("PA_Nombres_Completos", conexionBDD))
+                                {
+                                    datosAuto.CommandType = CommandType.StoredProcedure;
+                                    datosAuto.Parameters.AddWithValue("@Nombre1", row["Nombre1"].ToString());
+                                    datosAuto.Parameters.AddWithValue("@Nombre2", row["Nombre2"].ToString());
+                                    datosAuto.Parameters.AddWithValue("@Nombre3", row["Nombre3"].ToString());
+                                    datosAuto.Parameters.AddWithValue("@Nombre4", row["Nombre4"].ToString());
+                                    datosAuto.ExecuteNonQuery();
+                                }
+                            }
+
+                            foreach (DataRow row in docentes.Rows)
+                            {
+                                using (SqlCommand datosDoc = new SqlCommand("PA_Nombres_Completos", conexionBDD))
+                                {
+                                    datosDoc.CommandType = CommandType.StoredProcedure;
+                                    datosDoc.Parameters.AddWithValue("@Nombre1", row["Nombre1"].ToString());
+                                    datosDoc.Parameters.AddWithValue("@Nombre2", row["Nombre2"].ToString());
+                                    datosDoc.Parameters.AddWithValue("@Nombre3", row["Nombre3"].ToString());
+                                    datosDoc.Parameters.AddWithValue("@Nombre4", row["Nombre4"].ToString());
+                                    datosDoc.ExecuteNonQuery();
+                                }
+                            }
+                        }
                     }
                 }
-            }
+             }
         }
 
+
+        public static DataTable CrearDatos(string rutaArchivo, string roles)
+        {
+            var dt = new DataTable();
+            using (var workbook = new XLWorkbook(rutaArchivo))
+            {
+                // Intenta obtener la hoja por nombre
+                if (!workbook.Worksheets.TryGetWorksheet(roles, out IXLWorksheet hoja))
+                    throw new ArgumentException($"Datos no hayados. Importe los datos correctos de Excel");
+
+                bool esPrimeraFila = true;
+
+                foreach (var fila in hoja.RowsUsed())
+                {
+                    // La primera fila la usamos para crear las columnas del DataTable
+                    if (esPrimeraFila)
+                    {
+                        foreach (var celda in fila.Cells())
+                        {
+                            // Si el encabezado está vacío, le pones un nombre genérico
+                            string nombreCol = string.IsNullOrWhiteSpace(celda.GetString())
+                                ? $"Col{celda.Address.ColumnNumber}"
+                                : celda.GetString().Trim();
+                            dt.Columns.Add(nombreCol);
+                        }
+                        esPrimeraFila = false;
+                    }
+                    else
+                    {
+                        // Las filas siguientes agregan registros
+                        var nuevaFila = dt.NewRow();
+                        int colIndex = 0;
+                        foreach (var celda in fila.Cells(1, dt.Columns.Count))
+                        {
+                            // Coloca el valor de la celda (como string) en la columna correspondiente
+                            nuevaFila[colIndex++] = celda.Value.ToString().Trim() ?? string.Empty;
+                        }
+                        dt.Rows.Add(nuevaFila);
+                    }
+                }
+                return dt;
+            }
+        }
         public static bool AdminCasoContra(string usuario, string contraseña, Form Login)
         {
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
