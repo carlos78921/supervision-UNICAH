@@ -14,6 +14,7 @@ using PreyectoDesarrollo_unicah.FRMS_ADMIN;
 using PreyectoDesarrollo_unicah.FRMS_SUPERV;
 using DocumentFormat.OpenXml.Office.Word;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Drawing;
 
 
 namespace PreyectoDesarrollo_unicah.CLASES
@@ -30,7 +31,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             apellido = "";
         }
 
-        public static void CrearBDD(string usuario)
+        public static bool CrearBDD(string usuario)
         {
             string ConexionServidor = "Server=tcp:mssql-193001-0.cloudclusters.net,10058;User ID=BD;Password=Changeme00!+;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;";
             using (SqlConnection conn = new SqlConnection(ConexionServidor))
@@ -55,7 +56,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     {
                         if (!reader.Read())
                         {
-                            MessageBox.Show("Datos no encontrados, importar los datos correspondientes de Excel para iniciar programa con datos");
+                            MessageBox.Show("Datos no encontrados, importar los datos correspondientes de Excel para iniciar programa con datos", "Encontrar Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            reader.Close();
                             string rutaArchivo = "";
                             using (OpenFileDialog ofd = new OpenFileDialog())
                             {
@@ -73,9 +75,12 @@ namespace PreyectoDesarrollo_unicah.CLASES
                                     }                                 
                                 }
                             }
+                            
                             DataTable autoridades = CrearDatos(rutaArchivo, "Autoridades");
-                            DataTable docentes = CrearDatos(rutaArchivo, "Docentes");
- 
+                            if (autoridades == null)
+                                return false;
+                            DataTable docentes = CrearDatos(rutaArchivo, "Empleados");
+
                             foreach (DataRow row in autoridades.Rows)
                             {
                                 using (SqlCommand datosAuto = new SqlCommand("PA_Nombres_Completos", conexionBDD))
@@ -86,6 +91,18 @@ namespace PreyectoDesarrollo_unicah.CLASES
                                     datosAuto.Parameters.AddWithValue("@Nombre3", row["Nombre3"].ToString());
                                     datosAuto.Parameters.AddWithValue("@Nombre4", row["Nombre4"].ToString());
                                     datosAuto.ExecuteNonQuery();
+                                }
+
+                                using (SqlCommand IdAuto = new SqlCommand("PA_Autoridades", conexionBDD))
+                                {
+                                    IdAuto.CommandType = CommandType.StoredProcedure;
+                                    IdAuto.Parameters.AddWithValue("@Nombre1", row["Nombre1"].ToString());
+                                    IdAuto.Parameters.AddWithValue("@Nombre2", row["Nombre2"].ToString());
+                                    IdAuto.Parameters.AddWithValue("@Nombre3", row["Nombre3"].ToString());
+                                    IdAuto.Parameters.AddWithValue("@Nombre4", row["Nombre4"].ToString());
+                                    IdAuto.Parameters.AddWithValue("@codigo", row["Cod_Empleado"].ToString());
+                                    IdAuto.Parameters.AddWithValue("@rol", row["rol"].ToString());
+                                    IdAuto.ExecuteNonQuery();
                                 }
                             }
 
@@ -100,13 +117,13 @@ namespace PreyectoDesarrollo_unicah.CLASES
                                     datosDoc.Parameters.AddWithValue("@Nombre4", row["Nombre4"].ToString());
                                     datosDoc.ExecuteNonQuery();
                                 }
-                            }
+                            }                            
                         }
                     }
                 }
              }
+             return true;
         }
-
 
         public static DataTable CrearDatos(string rutaArchivo, string roles)
         {
@@ -115,7 +132,10 @@ namespace PreyectoDesarrollo_unicah.CLASES
             {
                 // Intenta obtener la hoja por nombre
                 if (!workbook.Worksheets.TryGetWorksheet(roles, out IXLWorksheet hoja))
-                    throw new ArgumentException($"Datos no hayados. Importe los datos correctos de Excel");
+                {
+                    MessageBox.Show("Datos no hayados. Importe los datos correctos de Excel", "Datos incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return null;
+                }
 
                 bool esPrimeraFila = true;
 
