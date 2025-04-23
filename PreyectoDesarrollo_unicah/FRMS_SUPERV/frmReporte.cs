@@ -45,7 +45,7 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
         {
             // 1. Crear el DataTable y llenarlo con los datos base desde la base de datos usando la tabla del supervisor sin "Presente"
             DataTable dt = new DataTable();
-            using (SqlConnection muestra = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            using (SqlConnection muestra = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
                 muestra.Open();
                 using (SqlCommand tabla = new SqlCommand("PA_Supervisor_Excel", muestra))
@@ -76,7 +76,7 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
 
             // Conectar a la base de datos para obtener la fecha de inicio.
             DateTime fechaInicio = DateTime.Now; //Valor por defecto, luego se cambiará
-            using (SqlConnection fecha = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
+            using (SqlConnection fecha = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
                 fecha.Open();
                 SqlCommand inicio = new SqlCommand("PA_Periodo", fecha);
@@ -191,14 +191,16 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
                 };
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
                     try
                     {
                         workbook.SaveAs(saveFileDialog.FileName);
                     }
-                    catch (IOException) //En caso que no se guarde por cualquier error
+                    catch (IOException)
                     {
-                        MessageBox.Show("El archivo ya está abierto en Excel.\nPor favor, ciérralo antes de guardar.", "Archivo en uso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("El archivo ya está abierto en Excel.\nPor favor cerrar antes de guardar.", "Archivo en uso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
+                }
             }
         }
     }

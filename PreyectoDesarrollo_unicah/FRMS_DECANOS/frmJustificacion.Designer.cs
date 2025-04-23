@@ -76,7 +76,7 @@ namespace PreyectoDesarrollo_unicah
             btnVoy.TabIndex = 27;
             btnVoy.Text = "&Regresar";
             btnVoy.UseVisualStyleBackColor = true;
-            btnVoy.Click += btnVoy_Click;
+            btnVoy.Click += Salir;
             // 
             // pictureBox2
             // 
@@ -97,7 +97,7 @@ namespace PreyectoDesarrollo_unicah
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
+            pictureBox1.Click += Salir;
             // 
             // panel1
             // 

@@ -36,7 +36,8 @@ namespace PreyectoDesarrollo_unicah
             mesAdmin.MinDate = dtpInicio.Value;
             ACCIONES_BD.Periodo(dtpInicio, dtpFin, btnPeriodo, mesAdmin);
             ACCIONES_BD.tablaAdmin(dgvAdmin);
-            ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, (string)dgvAdmin.CurrentRow.Cells[0].Value, (string)dgvAdmin.CurrentRow.Cells[1].Value, (string)dgvAdmin.CurrentRow.Cells[2].Value, (string)dgvAdmin.CurrentRow.Cells[3].Value, (string)dgvAdmin.CurrentRow.Cells[4].Value);
+            if (dgvAdmin.Rows.Count > 0)
+                ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, (string)dgvAdmin.CurrentRow.Cells[0].Value, (string)dgvAdmin.CurrentRow.Cells[1].Value, (string)dgvAdmin.CurrentRow.Cells[2].Value, (string)dgvAdmin.CurrentRow.Cells[3].Value, (string)dgvAdmin.CurrentRow.Cells[4].Value);
         }
 
         private void btnPeriodo_Click(object sender, EventArgs e)
@@ -91,138 +92,6 @@ namespace PreyectoDesarrollo_unicah
 
         }
 
-        private DataTable TransferirDatosExcel()
-        {
-            DataTable dt = new DataTable();
-
-            foreach (DataGridViewColumn columna in dgvAdmin.Columns)
-            {
-                dt.Columns.Add(columna.HeaderText);
-            }
-
-            for (int parcial = 1; parcial <= 3; parcial++)
-            {
-                for (int semana = 1; semana <= 4; semana++)
-                {
-                    string[] diasSemana = { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
-                    foreach (string dia in diasSemana)
-                    {
-                        dt.Columns.Add($"Parcial {parcial} - Semana {semana} - {dia}");
-                    }
-                }
-            }
-
-            foreach (DataGridViewRow fila in dgvAdmin.Rows)
-            {
-                if (!fila.IsNewRow)
-                {
-                    DataRow dr = dt.NewRow();
-                    for (int i = 0; i < dgvAdmin.Columns.Count; i++)
-                    {
-                        dr[i] = fila.Cells[i].Value?.ToString();
-                    }
-
-                    string refiero = fila.Cells[0].Value?.ToString();
-                    string curso = fila.Cells[1].Value?.ToString();
-                    string seccion = fila.Cells[2].Value?.ToString();
-                    string aula = fila.Cells[3].Value?.ToString();
-                    string empleado = fila.Cells[4].Value?.ToString();
-
-                    List<DateTime> fechasAsistencia = ACCIONES_BD.CargarAsistenciaAdminExcel(refiero, curso, seccion, aula, empleado);
-
-                    foreach (DateTime fecha in fechasAsistencia)
-                    {
-                        DateTime fechaInicio = mesAdmin.MinDate;
-                        int diasOffset = (fecha - fechaInicio).Days;
-                        if (diasOffset < 0 || diasOffset >= 12 * 7)
-                        {
-                            continue;
-                        }
-
-                        int numeroSemana = diasOffset / 7; int diaEnSemana = diasOffset % 7;
-
-                        if (diaEnSemana >= 6)
-                            continue;
-                        int baseColumnIndex = dgvAdmin.Columns.Count; int semanaColumnOffset = numeroSemana * 6; int columnIndex = baseColumnIndex + semanaColumnOffset + diaEnSemana;
-
-                        dr[columnIndex] = "P";
-                    }
-
-                    for (int c = dgvAdmin.Columns.Count; c < dt.Columns.Count; c++)
-                    {
-                        if (string.IsNullOrEmpty(dr[c].ToString()))
-                        {
-                            dr[c] = "-";
-                        }
-                    }
-
-                    dt.Rows.Add(dr);
-                }
-            }
-            return dt;
-        }
-
-        private void btnExcel_Click(object sender, EventArgs e)
-        {
-            DataTable dt = TransferirDatosExcel();
-
-            int baseColumns = 5; int columnasPorParcial = 4 * 6;
-            using (var workbook = new XLWorkbook())
-            {
-                for (int parcial = 0; parcial < 3; parcial++)
-                {
-                    DataTable dtParcial = dt.Clone();
-
-                    for (int i = dtParcial.Columns.Count - 1; i >= baseColumns; i--)
-                    {
-                        dtParcial.Columns.RemoveAt(i);
-                    }
-
-                    for (int i = 0; i < columnasPorParcial; i++)
-                    {
-                        int indiceReal = baseColumns + (parcial * columnasPorParcial) + i;
-                        dtParcial.Columns.Add(dt.Columns[indiceReal].ColumnName, typeof(string));
-                    }
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        DataRow newRow = dtParcial.NewRow();
-
-                        for (int i = 0; i < baseColumns; i++)
-                        {
-                            newRow[i] = row[i];
-                        }
-                        for (int i = 0; i < columnasPorParcial; i++)
-                        {
-                            int indiceReal = baseColumns + (parcial * columnasPorParcial) + i;
-                            newRow[baseColumns + i] = row[indiceReal];
-                        }
-                        dtParcial.Rows.Add(newRow);
-                    }
-
-                    var ws = workbook.Worksheets.Add($"Parcial {parcial + 1}");
-                    ws.Cell(1, 1).InsertTable(dtParcial);
-                }
-
-                SaveFileDialog saveFileDialog = new SaveFileDialog
-                {
-                    Filter = "Archivo Excel (.xlsx)|*.xlsx",
-                    Title = "Guardar archivo Excel",
-                    FileName = "Asistencia_Por_Parciales.xlsx"
-                };
-
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    try
-                    {
-                        workbook.SaveAs(saveFileDialog.FileName);
-                    }
-                    catch (IOException) //En caso que no se guarde por cualquier error
-                    {
-                        MessageBox.Show("El archivo está abierto en Excel.\nPor favor, cerrar antes de guardar.", "Archivo en uso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-            }
-        }
-
         private void mesAdmin_DateSelected(object sender, DateRangeEventArgs e)
         {
             DateTime fechaSeleccionada = e.Start;
@@ -244,119 +113,147 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnSQL_Click(object sender, EventArgs e)
         {
-            string rutaExcel = ""; //Por defecto asignado, o vacío para después luego asignarse
+            ACCIONES_BD.MigrarDatosNuevo();
+            ACCIONES_BD.tablaAdmin(dgvAdmin);
+            if (dgvAdmin.Rows.Count > 0)
+                ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, (string)dgvAdmin.CurrentRow.Cells[0].Value, (string)dgvAdmin.CurrentRow.Cells[1].Value, (string)dgvAdmin.CurrentRow.Cells[2].Value, (string)dgvAdmin.CurrentRow.Cells[3].Value, (string)dgvAdmin.CurrentRow.Cells[4].Value);
+        }
+
+        private static void RespaldoExcel()
+        {
+            DataTable dt = ACCIONES_BD.RespaldoBDD();
+
+            using (var wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt, "Asistencia");
+
+                using (var sfd = new SaveFileDialog())
+                {
+                    sfd.Filter = "Archivo Excel (*.xlsx)|*.xlsx";
+                    sfd.Title = "Guardar respaldo de Asistencia";
+                    sfd.FileName = "Respaldo_Asistencia.xlsx";
+
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            wb.SaveAs(sfd.FileName);
+                            MessageBox.Show(
+                                "Respaldo guardado correctamente.",
+                                "Respaldo exitoso",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information
+                            );
+                        }
+                        catch (Exception ex)
+                        {
+                            // ¿Es un bloqueo por "being used by another process"?
+                            if (ex is IOException ||
+                                ex is Win32Exception ||
+                                ex.Message.Contains("being used by another process"))
+                                MessageBox.Show("Por favor cerrar el archivo seleccionado para guardar", "Interrupción de Archivo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnReinicioBDD_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Está seguro de que desea reiniciar la base de datos?\nEste acto hará que salga por completo del programa para iniciar de nuevo sus datos", "Reinicio de BDD", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                if (MessageBox.Show("¿Desea guardar las asistencias antes del reinicio?", "Guardar Asistencias", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    RespaldoExcel();
+                    ACCIONES_BD.ReiniciarBDD("Supervision_Unicah");
+                }
+                else              
+                    ACCIONES_BD.ReiniciarBDD("Supervision_Unicah");                                    
+                MessageBox.Show("Base de datos reiniciada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Saliendo del programa", "Cerrando Programa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Application.Exit();
+            }
+        }
+
+        private void btnListaLoad_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Seleccione el archivo Excel original", "Excel original");
+            ACCIONES_BD.MigrarDatosViejo();
+            MessageBox.Show("Ahora seleccione el archivo Excel con la asistencia", "Cargar Asistencia");
+            string rutaExcel = ""; 
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Filter = "Archivos Excel (*.xlsx)|*.xlsx";
                 ofd.Title = "Seleccionar archivo Excel";
-
-
-                if (ofd.ShowDialog() == DialogResult.OK)
+                var dr = ofd.ShowDialog();
+                if (dr != DialogResult.OK)
                 {
-                    try
+                    return;
+                }
+                else
+                {
+                    rutaExcel = ofd.FileName;
+
+                    string Excel = System.IO.Path.GetExtension(rutaExcel);
+                    if (string.IsNullOrEmpty(Excel))
                     {
-                        rutaExcel = ofd.FileName;
-                    }
-                    catch (IOException)
-                    {
-                        MessageBox.Show("Debe cerrar el Excel seleccionado", "Excel abierto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                 }
             }
 
-            if (string.IsNullOrEmpty(rutaExcel))
+            string tempFile = System.IO.Path.Combine(
+                                      System.IO.Path.GetTempPath(),
+                                      Guid.NewGuid().ToString() + ".xlsx"
+                                      );
+            try
             {
-                MessageBox.Show("No se seleccionó algún archivo.");
-                return;
-            }
+                File.Copy(rutaExcel, tempFile, overwrite: true);
+                DataTable dtLista = ACCIONES_BD.CrearDatos(tempFile, "Asistencia");
 
-            // Abrir el workbook con ClosedXML
-            using (var workbook = new XLWorkbook(rutaExcel))
-            {
-                // Procesar cada hoja de forma independiente (suponemos hojas 1 a 5)
-                for (int h = 1; h <= 5; h++)
+                using (var conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
                 {
-                    // Crear un nuevo DataTable para la hoja actual
-                    DataTable dt = new DataTable();
+                    conn.Open();
 
-                    // Obtener la hoja
-                    var hoja = workbook.Worksheet(h);
-                    bool encabezado = true;
-
-                    // Recorrer las filas usadas en la hoja
-                    foreach (var fila in hoja.RowsUsed())
+                    using (var cmd = new SqlCommand("PA_CargaRespaldo", conn))
                     {
-                        if (encabezado)
+                        foreach (DataRow row in dtLista.Rows)
                         {
-                            // Agregar columnas según la primera fila (encabezado)
-                            foreach (var celda in fila.Cells())
-                            {
-                                dt.Columns.Add(celda.Value.ToString());
-                            }
-                            encabezado = false;
-                        }
-                        else
-                        {
-                            // Agregar filas: crear un DataRow y llenarlo con los valores de la fila
-                            DataRow dr = dt.NewRow();
-                            int i = 0;
-                            foreach (var celda in fila.Cells(1, dt.Columns.Count))
-                            {
-                                dr[i] = celda.Value.ToString();
-                                i++;
-                            }
-                            dt.Rows.Add(dr);
+                            cmd.Parameters.Clear();
+
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@ID_Clase", row["ID_Clase"]);
+                            cmd.Parameters.AddWithValue("@ID_Sitio", row["ID_Sitio"]);
+                            cmd.Parameters.AddWithValue("@ID_Empleado", row["ID_Empleado"]);
+                            cmd.Parameters.Add("@Fecha", SqlDbType.Date).Value = row.Field<DateTime>("Fecha"); 
+                            cmd.Parameters.AddWithValue("@Observa", row["Observacion"]);
+                            if (row.IsNull("Fecha_Reposicion"))
+                                cmd.Parameters.Add("@Repone", SqlDbType.Date).Value = DBNull.Value;
+                            else
+                                cmd.Parameters.Add("@Repone", SqlDbType.Date).
+                                Value = row.Field<DateTime>("Fecha_Reposicion");
+                            cmd.Parameters.Add("@Marca", SqlDbType.Bit)
+                               .Value = row.Field<bool>("Presente");
+
+                            cmd.ExecuteNonQuery();
                         }
                     }
-                    // Usar SqlBulkCopy para insertar los datos en la tabla SQL correspondiente
-                    using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectar.ConnectionString))
-                    {
-                        conexion.Open();
-                        using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conexion))
-                        {
-                            // Ahora, según el índice de la hoja, determinamos el nombre de la tabla SQL destino.
-                            string tablaDestino = "";
-                            switch (h)
-                            {
-                                case 1:
-                                    tablaDestino = "DecanoFacultad";
-                                    bulkCopy.ColumnMappings.Add("Codigo_Facultad", "codigo_facu");
-                                    bulkCopy.ColumnMappings.Add("ID_Empleado", "ID_Empleado");
-                                    break;
-                                case 2:
-                                    tablaDestino = "Sitio";
-                                    bulkCopy.ColumnMappings.Add("Edificio", "Edificio");
-                                    bulkCopy.ColumnMappings.Add("Aula", "Aula");
-                                    bulkCopy.ColumnMappings.Add("Seccion", "Seccion");
-                                    break;
-                                case 3:
-                                    tablaDestino = "Clases";
-                                    bulkCopy.ColumnMappings.Add("Codigo_Asignatura", "Cod_Asignatura");
-                                    bulkCopy.ColumnMappings.Add("Codigo_Facultad", "Cod_Facultad");
-                                    bulkCopy.ColumnMappings.Add("Curso", "Asignatura");
-                                    bulkCopy.ColumnMappings.Add("InicioDia", "InicioDia");
-                                    bulkCopy.ColumnMappings.Add("FinDia", "FinDia");
-                                    bulkCopy.ColumnMappings.Add("DiaElegido", "DiasPermitidos");
-                                    break;
-                                case 4:
-                                    tablaDestino = "Nombres_Completos";
-                                    bulkCopy.ColumnMappings.Add("Nombre1", "Nombre1");
-                                    bulkCopy.ColumnMappings.Add("Nombre2", "Nombre2");
-                                    bulkCopy.ColumnMappings.Add("Nombre3", "Apellido1");
-                                    bulkCopy.ColumnMappings.Add("Nombre4", "Apellido1");
-                                    break;
-                                default:
-                                    // Si por alguna razón llega a otro valor, sal del bucle o configura un valor por defecto.
-                                    continue;
-                            }
-
-                            bulkCopy.DestinationTableName = tablaDestino;
-                            bulkCopy.WriteToServer(dt);
-                        }
-                    }
+                    conn.Close();
                 }
             }
-            MessageBox.Show("Importación completada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            finally
+            {
+                try { File.Delete(tempFile); }
+                catch { }
+            }
+            ACCIONES_BD.tablaAdmin(dgvAdmin);
+            ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, (string)dgvAdmin.CurrentRow.Cells[0].Value, (string)dgvAdmin.CurrentRow.Cells[1].Value, (string)dgvAdmin.CurrentRow.Cells[2].Value, (string)dgvAdmin.CurrentRow.Cells[3].Value, (string)dgvAdmin.CurrentRow.Cells[4].Value);
+            dgvAdmin.Refresh();
+        }
+
+        private void btnListaSave_Click(object sender, EventArgs e)
+        {
+            RespaldoExcel();
         }
     }
 }

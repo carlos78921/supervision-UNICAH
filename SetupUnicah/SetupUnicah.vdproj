@@ -15,7 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_D0F3F05483BE41B1B4F049E1AB5ADDD7"
+        "MsmKey" = "8:_145B20BBE74148D28C034D4A8561FD9C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -76,6 +76,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -165,7 +173,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SetupUnicah"
         "ProductCode" = "8:{89B3CED7-EE4A-4C33-BE5B-9725D03DAF61}"
-        "PackageCode" = "8:{318A6216-0AA8-4120-ABE8-60D4AECF1916}"
+        "PackageCode" = "8:{AFE42E6E-296F-4E39-93EA-D4D5B03C168B}"
         "UpgradeCode" = "8:{5308D466-AD02-461C-8A01-1661097978AF}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -684,9 +692,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D0F3F05483BE41B1B4F049E1AB5ADDD7"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_145B20BBE74148D28C034D4A8561FD9C"
             {
-            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\obj\\Release\\net8.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\obj\\Release\\net8.0-windows\\PreyectoDesarrollo_unicah.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7D4B46D3D071415987C9D396C2D55173"
@@ -705,7 +713,7 @@
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:PublishItems"
+            "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{0BB40A2B-2B32-4898-9F45-584C5C9DE4A6}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"

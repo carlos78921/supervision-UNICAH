@@ -29,8 +29,10 @@ namespace PreyectoDesarrollo_unicah
         private void InitializeComponent()
         {
             Button btnLogout;
-            Button btnExcel;
             Button btnSQL;
+            Button btnReinicioBDD;
+            Button btnListaLoad;
+            Button btnListaSave;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
@@ -53,8 +55,10 @@ namespace PreyectoDesarrollo_unicah
             groupBox1 = new GroupBox();
             btnPeriodo = new Button();
             btnLogout = new Button();
-            btnExcel = new Button();
             btnSQL = new Button();
+            btnReinicioBDD = new Button();
+            btnListaLoad = new Button();
+            btnListaSave = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -65,23 +69,53 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(866, 474);
+            btnLogout.Location = new Point(859, 543);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(122, 21);
+            btnLogout.Size = new Size(145, 24);
             btnLogout.TabIndex = 14;
-            btnLogout.Text = "&REGRESAR";
+            btnLogout.Text = "REGRE&SAR";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += Salir;
             // 
-            // btnExcel
+            // btnSQL
             // 
-            btnExcel.Location = new Point(922, 446);
-            btnExcel.Name = "btnExcel";
-            btnExcel.Size = new Size(122, 22);
-            btnExcel.TabIndex = 15;
-            btnExcel.Text = "&EXPORTAR A EXCEL";
-            btnExcel.UseVisualStyleBackColor = true;
-            btnExcel.Click += btnExcel_Click;
+            btnSQL.Location = new Point(781, 446);
+            btnSQL.Name = "btnSQL";
+            btnSQL.Size = new Size(151, 46);
+            btnSQL.TabIndex = 26;
+            btnSQL.Text = "&MIGRAR DATOS DE EXCEL A LA BASE DE DATOS";
+            btnSQL.UseVisualStyleBackColor = true;
+            btnSQL.Click += btnSQL_Click;
+            // 
+            // btnReinicioBDD
+            // 
+            btnReinicioBDD.Location = new Point(941, 446);
+            btnReinicioBDD.Name = "btnReinicioBDD";
+            btnReinicioBDD.Size = new Size(108, 46);
+            btnReinicioBDD.TabIndex = 27;
+            btnReinicioBDD.Text = "&REINICIAR \r\nBASE DE DATOS";
+            btnReinicioBDD.UseVisualStyleBackColor = true;
+            btnReinicioBDD.Click += btnReinicioBDD_Click;
+            // 
+            // btnListaLoad
+            // 
+            btnListaLoad.Location = new Point(941, 498);
+            btnListaLoad.Name = "btnListaLoad";
+            btnListaLoad.Size = new Size(108, 39);
+            btnListaLoad.TabIndex = 28;
+            btnListaLoad.Text = "&CARGAR ASISTENCIA";
+            btnListaLoad.UseVisualStyleBackColor = true;
+            btnListaLoad.Click += btnListaLoad_Click;
+            // 
+            // btnListaSave
+            // 
+            btnListaSave.Location = new Point(781, 498);
+            btnListaSave.Name = "btnListaSave";
+            btnListaSave.Size = new Size(151, 39);
+            btnListaSave.TabIndex = 29;
+            btnListaSave.Text = "&GUARDAR ASISTENCIA";
+            btnListaSave.UseVisualStyleBackColor = true;
+            btnListaSave.Click += btnListaSave_Click;
             // 
             // pictureBox2
             // 
@@ -149,7 +183,7 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.Location = new Point(13, 124);
             dgvAdmin.Name = "dgvAdmin";
             dgvAdmin.ReadOnly = true;
-            dgvAdmin.Size = new Size(746, 368);
+            dgvAdmin.Size = new Size(746, 437);
             dgvAdmin.TabIndex = 13;
             dgvAdmin.SelectionChanged += dgvAdmin_SelectionChanged;
             // 
@@ -277,28 +311,20 @@ namespace PreyectoDesarrollo_unicah
             btnPeriodo.UseVisualStyleBackColor = true;
             btnPeriodo.Click += btnPeriodo_Click;
             // 
-            // btnSQL
-            // 
-            btnSQL.Location = new Point(774, 446);
-            btnSQL.Name = "btnSQL";
-            btnSQL.Size = new Size(133, 22);
-            btnSQL.TabIndex = 26;
-            btnSQL.Text = "&MIGRAR EXCEL A SQL";
-            btnSQL.UseVisualStyleBackColor = true;
-            btnSQL.Click += btnSQL_Click;
-            // 
             // frmMigracion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1056, 504);
+            ClientSize = new Size(1056, 573);
+            Controls.Add(btnListaSave);
+            Controls.Add(btnListaLoad);
+            Controls.Add(btnReinicioBDD);
             Controls.Add(btnSQL);
             Controls.Add(btnPeriodo);
             Controls.Add(groupBox1);
             Controls.Add(mesAdmin);
             Controls.Add(lblWeek);
             Controls.Add(lblParcial);
-            Controls.Add(btnExcel);
             Controls.Add(panel1);
             Controls.Add(btnLogout);
             Controls.Add(dgvAdmin);

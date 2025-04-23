@@ -16,43 +16,15 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
     internal class CONEXION_BD
     {
-        public static string conexion = "Server=tcp:mssql-193001-0.cloudclusters.net,10058;Initial Catalog=Supervision_Unicah;User ID=BD;Password=Changeme00!+;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;";
-        public static SqlConnection conectar = new SqlConnection(conexion);
+        public static string ConexionServidor = "Server=tcp:mssql-193001-0.cloudclusters.net,10058;User ID=BD;Password=Changeme00!+;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;";
+        public static string conexionBDD = "Server=tcp:mssql-193001-0.cloudclusters.net,10058;Initial Catalog=Supervision_Unicah;User ID=BD;Password=Changeme00!+;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;";
+
+        public static SqlConnection conectarServidor = new SqlConnection(ConexionServidor);
+        public static SqlConnection conectarBDD = new SqlConnection(conexionBDD);
+    
 
         public CONEXION_BD() 
         {
-        }
-
-        public void abrir() //aqui se habre la conexion de la BDD
-        {
-/*            try
-            {
-                if (conectar.State == ConnectionState.Closed)
-                {
-                    conectar.Open();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"ERROR AL ABRIR LA CONEXIÓN: {ex.Message}", "ERROR");  //captura los errores y los envia en un messagebox
-            }*/
-        }
-
-
-        public void cerrar()    //aqui se cierra la conexion de la BDD
-        {
-/*            try {
-
-                if (conectar.State == ConnectionState.Open)
-                {
-                   conectar.Close();
-                }
-            }
-            catch (Exception ex)    
-            {
-
-                MessageBox.Show($"ERROR AL CERRAR LA CONEXIÓN: {ex.Message}", "ERROR"); //captura los errores y los envia en un messagebox
-            }*/
         }
     }
 }

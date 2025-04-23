@@ -38,14 +38,7 @@ namespace PreyectoDesarrollo_unicah
             ACCIONES_BD.tablaJustifica(dgvJustificacion, ACCIONES_BD.empleado);
         }
 
-        private void btnVoy_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            frmDecano menu = new frmDecano();
-            menu.Show();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void Salir (object sender, EventArgs e)
         {
             this.Close();
             frmDecano menu = new frmDecano();
