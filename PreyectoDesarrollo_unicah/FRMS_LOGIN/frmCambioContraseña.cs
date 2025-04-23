@@ -1,4 +1,5 @@
-﻿using PreyectoDesarrollo_unicah.CLASES;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using PreyectoDesarrollo_unicah.CLASES;
 using PreyectoDesarrollo_unicah.FRMS_ADMIN;
 using System;
 using System.Collections.Generic;
@@ -46,8 +47,9 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnContraseña_Click(object sender, EventArgs e)
         {
-            string contraseña = txtcontraseña.Text.Trim();
-            if (!Validaciones.CasoAsigno(contraseña, txtcontraseña))
+            TextBox txtadmin = new TextBox();
+            string admin = "", contraseña = txtcontraseña.Text.Trim();
+            if (!Validaciones.Contraseña(sender, e, admin, contraseña, this, txtadmin, txtcontraseña))
                 return;
             ACCIONES_BD.AdminContra(txtcontraseña.Text, this);
         }
@@ -62,11 +64,12 @@ namespace PreyectoDesarrollo_unicah
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != (char)Keys.Back)
                 e.Handled = true;
-            string contraseña = txtcontraseña.Text.Trim();
+            TextBox txtadmin = new TextBox();
+            string admin = "", contraseña = txtcontraseña.Text.Trim();
 
             if (e.KeyChar == (char)Keys.Enter)
             {
-                if (!Validaciones.CasoAsigno(contraseña, txtcontraseña))
+                if (!Validaciones.Contraseña(sender, e, admin, contraseña, this, txtadmin, txtcontraseña))
                     return;
                 e.Handled = true; // Evita el sonido de error por defecto en símbolo de retorno
                 ACCIONES_BD.AdminContra(txtcontraseña.Text, this);

@@ -8,61 +8,69 @@ namespace PreyectoDesarrollo_unicah.CLASES
 {
     internal class Validaciones
     {
-        public static bool Usuario (object sender, EventArgs e, string usuario, string contraseña)
+        public static bool Usuario (object sender, EventArgs e, string usuario, string contraseña, TextBox user)
         {
             if ((usuario == "Usuario:" || usuario == "") && 
                (contraseña == "Contraseña:" || contraseña == "Contraseña nueva:" || contraseña == "")) 
             {
                 MessageBox.Show("Datos no ingresados, ingrese sus datos", "Error Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                user.Focus();
                 return false;
             }
 
             if (!SoloNumero(usuario) && usuario.Length <= 4)
             {
                 MessageBox.Show("El usuario corresponde a números", "Error Letras", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                user.Focus();
                 return false;
             }
 
             if (usuario != "Usuario:" && usuario.Length > 4)
             {
                 MessageBox.Show("Su usuario debe contener cuatro o menos caracteres.", "Usuario Largo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                user.Focus();
                 return false;
             }
 
             if (usuario == "Usuario:" || usuario == "")
             {
                 MessageBox.Show("Usuario no ingresado, ingrese su usuario", "Error Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                user.Focus();
                 return false;
             }
 
             return true;
         }
 
-                public static bool SoloNumero(string usuario) 
+        private static bool SoloNumero(string usuario)
         {
-            return usuario.All(char.IsDigit); 
+            return usuario.All(char.IsDigit);
         }
 
-        public static bool Contraseña(object sender, EventArgs e, string usuario, string contraseña, Form Login)
+        public static bool Contraseña(object sender, EventArgs e, string usuario, string contraseña, Form Login, TextBox user, TextBox contra)
         {
-            if (!ACCIONES_BD.AdminCasoContra(usuario, contraseña, Login))
-                return false;
+            if (user != null)
+                if (!ACCIONES_BD.AdminCasoContra(usuario, contraseña, Login))
+                    return false;
 
             if (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña))
             {
                 MessageBox.Show("Contraseña no puede quedar vacía, en caso de no obtener, consultar al administrador.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                contra.Focus();
                 return false;
             }
 
             if ((contraseña != "Contraseña:") && contraseña.Length < 8)
             {
                 MessageBox.Show("Su contraseña debe contener más de ocho caracteres.\nComuníquese con el Administrador, y espere a que le asigne contraseña correcta", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                contra.Focus();
                 return false;
             }
 
             if (contraseña == "Contraseña nueva:" || string.IsNullOrWhiteSpace(contraseña))
             {
                 MessageBox.Show("Contraseña no puede quedar vacía.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                contra.Focus();
                 return false;
             }
 

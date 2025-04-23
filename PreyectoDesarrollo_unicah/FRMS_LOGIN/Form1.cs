@@ -73,13 +73,13 @@ namespace PreyectoDesarrollo_unicah
             string usuario = txtusuario.Text;
             string contraseña = txtcontraseña.Text.Trim();
 
-            if (!Validaciones.Usuario(sender, e, usuario, contraseña))
+            if (!Validaciones.Usuario(sender, e, usuario, contraseña, txtusuario))
                 return;
 
             if (!ACCIONES_BD.CrearBDD(usuario))
                 return;
 
-            if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this))
+            if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this, txtusuario, txtcontraseña))
                 return;
 
             ACCIONES_BD Login = new ACCIONES_BD();
