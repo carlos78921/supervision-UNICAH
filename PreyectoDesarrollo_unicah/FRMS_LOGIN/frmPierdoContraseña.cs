@@ -90,7 +90,6 @@ namespace PreyectoDesarrollo_unicah
             if (!Validaciones.CodeVale(sender, e, codigo, txtCode))
                 return;
 
-
             if (codigo == txtCode.Text)
             {
                 this.Close();

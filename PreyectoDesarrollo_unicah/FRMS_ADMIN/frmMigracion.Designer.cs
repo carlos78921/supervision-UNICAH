@@ -72,7 +72,7 @@ namespace PreyectoDesarrollo_unicah
             btnLogout.Location = new Point(859, 543);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(145, 24);
-            btnLogout.TabIndex = 14;
+            btnLogout.TabIndex = 8;
             btnLogout.Text = "REGRE&SAR";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += Salir;
@@ -82,7 +82,7 @@ namespace PreyectoDesarrollo_unicah
             btnSQL.Location = new Point(781, 446);
             btnSQL.Name = "btnSQL";
             btnSQL.Size = new Size(151, 46);
-            btnSQL.TabIndex = 26;
+            btnSQL.TabIndex = 4;
             btnSQL.Text = "&MIGRAR DATOS DE EXCEL A LA BASE DE DATOS";
             btnSQL.UseVisualStyleBackColor = true;
             btnSQL.Click += btnSQL_Click;
@@ -92,7 +92,7 @@ namespace PreyectoDesarrollo_unicah
             btnReinicioBDD.Location = new Point(941, 446);
             btnReinicioBDD.Name = "btnReinicioBDD";
             btnReinicioBDD.Size = new Size(108, 46);
-            btnReinicioBDD.TabIndex = 27;
+            btnReinicioBDD.TabIndex = 5;
             btnReinicioBDD.Text = "&REINICIAR \r\nBASE DE DATOS";
             btnReinicioBDD.UseVisualStyleBackColor = true;
             btnReinicioBDD.Click += btnReinicioBDD_Click;
@@ -102,7 +102,7 @@ namespace PreyectoDesarrollo_unicah
             btnListaLoad.Location = new Point(941, 498);
             btnListaLoad.Name = "btnListaLoad";
             btnListaLoad.Size = new Size(108, 39);
-            btnListaLoad.TabIndex = 28;
+            btnListaLoad.TabIndex = 7;
             btnListaLoad.Text = "&CARGAR ASISTENCIA";
             btnListaLoad.UseVisualStyleBackColor = true;
             btnListaLoad.Click += btnListaLoad_Click;
@@ -112,7 +112,7 @@ namespace PreyectoDesarrollo_unicah
             btnListaSave.Location = new Point(781, 498);
             btnListaSave.Name = "btnListaSave";
             btnListaSave.Size = new Size(151, 39);
-            btnListaSave.TabIndex = 29;
+            btnListaSave.TabIndex = 6;
             btnListaSave.Text = "&GUARDAR ASISTENCIA";
             btnListaSave.UseVisualStyleBackColor = true;
             btnListaSave.Click += btnListaSave_Click;
@@ -261,7 +261,7 @@ namespace PreyectoDesarrollo_unicah
             dtpInicio.Location = new Point(60, 22);
             dtpInicio.Name = "dtpInicio";
             dtpInicio.Size = new Size(210, 23);
-            dtpInicio.TabIndex = 20;
+            dtpInicio.TabIndex = 1;
             // 
             // label2
             // 
@@ -286,7 +286,7 @@ namespace PreyectoDesarrollo_unicah
             dtpFin.Location = new Point(59, 60);
             dtpFin.Name = "dtpFin";
             dtpFin.Size = new Size(210, 23);
-            dtpFin.TabIndex = 22;
+            dtpFin.TabIndex = 2;
             // 
             // groupBox1
             // 
@@ -306,7 +306,7 @@ namespace PreyectoDesarrollo_unicah
             btnPeriodo.Location = new Point(872, 216);
             btnPeriodo.Name = "btnPeriodo";
             btnPeriodo.Size = new Size(98, 23);
-            btnPeriodo.TabIndex = 25;
+            btnPeriodo.TabIndex = 3;
             btnPeriodo.Text = "Definir Periodo";
             btnPeriodo.UseVisualStyleBackColor = true;
             btnPeriodo.Click += btnPeriodo_Click;

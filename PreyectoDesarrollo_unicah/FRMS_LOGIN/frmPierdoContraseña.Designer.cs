@@ -97,7 +97,7 @@
             btnEnviar.Location = new Point(420, 171);
             btnEnviar.Name = "btnEnviar";
             btnEnviar.Size = new Size(139, 40);
-            btnEnviar.TabIndex = 8;
+            btnEnviar.TabIndex = 3;
             btnEnviar.Text = "&ENVIAR CÓDIGO";
             btnEnviar.UseVisualStyleBackColor = false;
             btnEnviar.Click += btnEnviar_Click;
@@ -107,7 +107,7 @@
             txtCode.Location = new Point(234, 115);
             txtCode.Name = "txtCode";
             txtCode.Size = new Size(307, 23);
-            txtCode.TabIndex = 10;
+            txtCode.TabIndex = 1;
             txtCode.Text = "Código:";
             txtCode.Enter += txtCode_Enter;
             txtCode.KeyPress += txtCode_KeyPress;
@@ -141,7 +141,7 @@
             btnRecibir.Location = new Point(220, 171);
             btnRecibir.Name = "btnRecibir";
             btnRecibir.Size = new Size(139, 40);
-            btnRecibir.TabIndex = 13;
+            btnRecibir.TabIndex = 2;
             btnRecibir.Text = "&GENERAR CÓDIGO";
             btnRecibir.UseVisualStyleBackColor = false;
             btnRecibir.Click += btnRecibir_Click;

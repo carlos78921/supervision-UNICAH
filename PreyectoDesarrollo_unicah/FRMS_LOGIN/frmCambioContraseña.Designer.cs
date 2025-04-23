@@ -94,7 +94,7 @@
             txtcontraseña.Location = new Point(12, 95);
             txtcontraseña.Name = "txtcontraseña";
             txtcontraseña.Size = new Size(408, 20);
-            txtcontraseña.TabIndex = 9;
+            txtcontraseña.TabIndex = 1;
             txtcontraseña.Text = "Contraseña nueva:";
             txtcontraseña.Enter += txtcontraseña_Enter;
             txtcontraseña.KeyPress += txtcontraseña_KeyPress;
@@ -109,7 +109,7 @@
             btnContraseña.Location = new Point(12, 130);
             btnContraseña.Name = "btnContraseña";
             btnContraseña.Size = new Size(408, 40);
-            btnContraseña.TabIndex = 8;
+            btnContraseña.TabIndex = 2;
             btnContraseña.Text = "&REGISTRAR CONTRASEÑA";
             btnContraseña.UseVisualStyleBackColor = false;
             btnContraseña.Click += btnContraseña_Click;

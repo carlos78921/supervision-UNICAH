@@ -48,7 +48,7 @@ namespace PreyectoDesarrollo_unicah
             btnLogOut.Location = new Point(279, 87);
             btnLogOut.Name = "btnLogOut";
             btnLogOut.Size = new Size(123, 65);
-            btnLogOut.TabIndex = 9;
+            btnLogOut.TabIndex = 3;
             btnLogOut.Text = "&CERRAR SESIÓN";
             btnLogOut.UseVisualStyleBackColor = true;
             btnLogOut.Click += btnLogOut_Click;
@@ -58,7 +58,7 @@ namespace PreyectoDesarrollo_unicah
             btnJustifica.Location = new Point(9, 87);
             btnJustifica.Name = "btnJustifica";
             btnJustifica.Size = new Size(123, 65);
-            btnJustifica.TabIndex = 10;
+            btnJustifica.TabIndex = 1;
             btnJustifica.Text = "&JUSTIFICACIONES";
             btnJustifica.UseVisualStyleBackColor = true;
             btnJustifica.Click += btnJustifica_Click;
@@ -68,7 +68,7 @@ namespace PreyectoDesarrollo_unicah
             btnReponer.Location = new Point(144, 87);
             btnReponer.Name = "btnReponer";
             btnReponer.Size = new Size(123, 65);
-            btnReponer.TabIndex = 11;
+            btnReponer.TabIndex = 2;
             btnReponer.Text = "&REPOSICIÓN DE CLASES";
             btnReponer.UseVisualStyleBackColor = true;
             btnReponer.Click += btnReponer_Click;

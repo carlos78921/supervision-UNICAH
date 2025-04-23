@@ -83,9 +83,7 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
                 inicio.CommandType = CommandType.StoredProcedure;
                 SqlDataReader reader = inicio.ExecuteReader();
                 if (reader.Read())
-                {
                     fechaInicio = reader.GetDateTime(0); 
-                }
             }
 
             // Por cada fila (cada registro de la tabla del supervisor)
@@ -98,7 +96,7 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
                 string edificio = row["Edificio"].ToString();
 
                 // Obtener las fechas de asistencia para este registro usando el método de PA para fechas
-                List<DateTime> fechasAsistencia = ACCIONES_BD.CargarAsistenciaSuperExcel(docente, clase, seccion, aula, edificio);
+                List<DateTime> fechasAsistencia = ACCIONES_BD.CargarAsistenciaSuperv(docente, clase, seccion, aula, edificio);
 
                 // Recorrer cada fecha de asistencia
                 foreach (DateTime fecha in fechasAsistencia)

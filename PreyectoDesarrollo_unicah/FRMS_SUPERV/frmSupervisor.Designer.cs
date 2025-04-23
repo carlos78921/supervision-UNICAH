@@ -47,7 +47,7 @@
             btnReporte.Location = new Point(146, 90);
             btnReporte.Name = "btnReporte";
             btnReporte.Size = new Size(123, 65);
-            btnReporte.TabIndex = 14;
+            btnReporte.TabIndex = 2;
             btnReporte.Text = "&REPORTE";
             btnReporte.UseVisualStyleBackColor = true;
             btnReporte.Click += btnReporte_Click;
@@ -57,7 +57,7 @@
             btnMarca.Location = new Point(11, 90);
             btnMarca.Name = "btnMarca";
             btnMarca.Size = new Size(123, 65);
-            btnMarca.TabIndex = 13;
+            btnMarca.TabIndex = 1;
             btnMarca.Text = "&TOMA DE ASISTENCIA";
             btnMarca.UseVisualStyleBackColor = true;
             btnMarca.Click += btnMarca_Click;
@@ -67,7 +67,7 @@
             btnLogOut.Location = new Point(281, 90);
             btnLogOut.Name = "btnLogOut";
             btnLogOut.Size = new Size(123, 65);
-            btnLogOut.TabIndex = 12;
+            btnLogOut.TabIndex = 3;
             btnLogOut.Text = "&CERRAR SESIÓN";
             btnLogOut.UseVisualStyleBackColor = true;
             btnLogOut.Click += btnLogout_Click;

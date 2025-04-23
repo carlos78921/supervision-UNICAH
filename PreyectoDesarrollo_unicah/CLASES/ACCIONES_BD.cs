@@ -823,7 +823,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static List<DateTime> CargarAsistenciaSuperExcel(string Docente, string clase, string seccion, string aula, string edificio)
+        public static List<DateTime> CargarAsistenciaSuperv(string Docente, string clase, string seccion, string aula, string edificio)
         {
             List<DateTime> fechas = new List<DateTime>();
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
@@ -885,7 +885,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return dt;
         }
 
-        public static DataTable CargarAsistenciaAdmin(MonthCalendar adminFechas, string refiero, string curso, string seccion, string aula, string empleo)
+        public static DataTable CargarAsistenciaSuperv(MonthCalendar adminFechas, string refiero, string curso, string seccion, string aula, string empleo)
         {
             DataTable dtFechas = new DataTable();
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))

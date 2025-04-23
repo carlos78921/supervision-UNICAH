@@ -89,12 +89,14 @@ namespace PreyectoDesarrollo_unicah.CLASES
             if (txtCodigo.Text == "Código:" || txtCodigo.Text == "") 
             {
                 MessageBox.Show("Código no ingresado, ingresar código", "Código Vacío", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCodigo.Focus();
                 return false;
             }
 
             if (txtCodigo.Text != "Código:" && txtCodigo.Text.Length != 5)
             {
                 MessageBox.Show("El código debe contener cinco caracteres", "Error Cantidad Código", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCodigo.Focus();
                 return false;
             }
             return true;

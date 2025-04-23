@@ -36,8 +36,6 @@ namespace PreyectoDesarrollo_unicah
             mesAdmin.MinDate = dtpInicio.Value;
             ACCIONES_BD.Periodo(dtpInicio, dtpFin, btnPeriodo, mesAdmin);
             ACCIONES_BD.tablaAdmin(dgvAdmin);
-            if (dgvAdmin.Rows.Count > 0)
-                ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, (string)dgvAdmin.CurrentRow.Cells[0].Value, (string)dgvAdmin.CurrentRow.Cells[1].Value, (string)dgvAdmin.CurrentRow.Cells[2].Value, (string)dgvAdmin.CurrentRow.Cells[3].Value, (string)dgvAdmin.CurrentRow.Cells[4].Value);
         }
 
         private void btnPeriodo_Click(object sender, EventArgs e)
@@ -75,23 +73,6 @@ namespace PreyectoDesarrollo_unicah
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void dgvAdmin_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvAdmin.CurrentRow != null)
-            {
-                string refiero = dgvAdmin.CurrentRow.Cells[0].Value.ToString();
-                string curso = dgvAdmin.CurrentRow.Cells[1].Value.ToString();
-                string seccion = dgvAdmin.CurrentRow.Cells[2].Value.ToString();
-                string aula = dgvAdmin.CurrentRow.Cells[3].Value.ToString();
-                string empleo = dgvAdmin.CurrentRow.Cells[4].Value.ToString();
-
-                mesAdmin.RemoveAllBoldedDates();
-
-                ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, refiero, curso, seccion, aula, empleo);
-            }
-
-        }
-
         private void mesAdmin_DateSelected(object sender, DateRangeEventArgs e)
         {
             DateTime fechaSeleccionada = e.Start;
@@ -115,8 +96,6 @@ namespace PreyectoDesarrollo_unicah
         {
             ACCIONES_BD.MigrarDatosNuevo();
             ACCIONES_BD.tablaAdmin(dgvAdmin);
-            if (dgvAdmin.Rows.Count > 0)
-                ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, (string)dgvAdmin.CurrentRow.Cells[0].Value, (string)dgvAdmin.CurrentRow.Cells[1].Value, (string)dgvAdmin.CurrentRow.Cells[2].Value, (string)dgvAdmin.CurrentRow.Cells[3].Value, (string)dgvAdmin.CurrentRow.Cells[4].Value);
         }
 
         private static void RespaldoExcel()
@@ -247,7 +226,6 @@ namespace PreyectoDesarrollo_unicah
                 catch { }
             }
             ACCIONES_BD.tablaAdmin(dgvAdmin);
-            ACCIONES_BD.CargarAsistenciaAdmin(mesAdmin, (string)dgvAdmin.CurrentRow.Cells[0].Value, (string)dgvAdmin.CurrentRow.Cells[1].Value, (string)dgvAdmin.CurrentRow.Cells[2].Value, (string)dgvAdmin.CurrentRow.Cells[3].Value, (string)dgvAdmin.CurrentRow.Cells[4].Value);
             dgvAdmin.Refresh();
         }
 

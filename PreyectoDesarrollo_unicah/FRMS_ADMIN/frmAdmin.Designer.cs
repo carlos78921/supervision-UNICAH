@@ -58,7 +58,7 @@
             btnAsigna.Location = new Point(148, 87);
             btnAsigna.Name = "btnAsigna";
             btnAsigna.Size = new Size(123, 65);
-            btnAsigna.TabIndex = 15;
+            btnAsigna.TabIndex = 2;
             btnAsigna.Text = "&ASIGNAR CONTRASEÑA";
             btnAsigna.UseVisualStyleBackColor = true;
             btnAsigna.Click += btnAsigna_Click;
@@ -68,7 +68,7 @@
             btnMigra.Location = new Point(13, 87);
             btnMigra.Name = "btnMigra";
             btnMigra.Size = new Size(123, 65);
-            btnMigra.TabIndex = 14;
+            btnMigra.TabIndex = 1;
             btnMigra.Text = "&MIGRAR DATOS";
             btnMigra.UseVisualStyleBackColor = true;
             btnMigra.Click += btnMigra_Click;
@@ -78,7 +78,7 @@
             btnLogOut.Location = new Point(283, 87);
             btnLogOut.Name = "btnLogOut";
             btnLogOut.Size = new Size(123, 65);
-            btnLogOut.TabIndex = 13;
+            btnLogOut.TabIndex = 3;
             btnLogOut.Text = "&CERRAR SESIÓN";
             btnLogOut.UseVisualStyleBackColor = true;
             btnLogOut.Click += btnLogOut_Click;
