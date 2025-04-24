@@ -1,6 +1,5 @@
 using ClosedXML.Excel;
 using PreyectoDesarrollo_unicah.CLASES;
-using PreyectoDesarrollo_unicah.FRMS_ADMIN;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +14,9 @@ using System.Windows.Forms;
 
 namespace PreyectoDesarrollo_unicah
 {
-    public partial class frmMigracion : Form
+    public partial class frmAdmin : Form
     {
-        public frmMigracion()
+        public frmAdmin()
         {
             InitializeComponent();
         }
@@ -64,8 +63,8 @@ namespace PreyectoDesarrollo_unicah
         private void Salir(object sender, EventArgs e)
         {
             this.Close();
-            frmAdmin Admin = new frmAdmin();
-            Admin.Show();
+            Form1 Login = new Form1();
+            Login.Show();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -249,6 +248,41 @@ namespace PreyectoDesarrollo_unicah
                     cmd.Parameters.AddWithValue("@Nombre4", dgvAdmin.CurrentRow.Cells[4].Value);
                     cmd.Parameters.AddWithValue("@Contraseña", dgvAdmin.CurrentRow.Cells[5].Value);
                     cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
+            MessageBox.Show("Nombre completo actualizado en la base de datos", "Nombre completo cambiado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void dgvAdmin_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 5 && e.Value != null)
+                e.Value = new string('*', e.Value.ToString().Length);
+        }
+
+        private void dgvAdmin_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dgvAdmin.CurrentCell.ColumnIndex == 5)
+            {
+                TextBox txt = e.Control as TextBox;
+                if (txt != null)
+                    txt.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void txtBusca_KeyDown(object sender, KeyEventArgs e)
+        {
+            using (var conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("PA_Admin_Busca", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Dato", txtBusca.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dgvAdmin.DataSource = dt;
                 }
                 conn.Close();
             }

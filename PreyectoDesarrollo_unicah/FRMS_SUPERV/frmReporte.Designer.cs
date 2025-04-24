@@ -138,7 +138,7 @@
             btnExcel.Location = new Point(33, 108);
             btnExcel.Name = "btnExcel";
             btnExcel.Size = new Size(172, 38);
-            btnExcel.TabIndex = 14;
+            btnExcel.TabIndex = 1;
             btnExcel.Text = "&Reportar";
             btnExcel.UseVisualStyleBackColor = true;
             btnExcel.Click += btnExcel_Click;
@@ -149,7 +149,7 @@
             btnChao.Location = new Point(249, 108);
             btnChao.Name = "btnChao";
             btnChao.Size = new Size(172, 38);
-            btnChao.TabIndex = 15;
+            btnChao.TabIndex = 2;
             btnChao.Text = "&Volver";
             btnChao.UseVisualStyleBackColor = true;
             btnChao.Click += btnChao_Click;

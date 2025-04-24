@@ -47,10 +47,10 @@
             cmbAula = new ComboBox();
             cmbEdificio = new ComboBox();
             gbFiltro = new GroupBox();
-            label2 = new Label();
-            cmbSeccion = new ComboBox();
             label4 = new Label();
             label3 = new Label();
+            label2 = new Label();
+            cmbSeccion = new ComboBox();
             label6 = new Label();
             txtDoc = new TextBox();
             btnLogout = new Button();
@@ -198,7 +198,7 @@
             txtClase.Location = new Point(106, 180);
             txtClase.Name = "txtClase";
             txtClase.Size = new Size(304, 23);
-            txtClase.TabIndex = 27;
+            txtClase.TabIndex = 2;
             txtClase.KeyUp += Filtros;
             // 
             // cmbAula
@@ -209,7 +209,7 @@
             cmbAula.Location = new Point(151, 43);
             cmbAula.Name = "cmbAula";
             cmbAula.Size = new Size(85, 23);
-            cmbAula.TabIndex = 31;
+            cmbAula.TabIndex = 4;
             cmbAula.SelectedIndexChanged += Filtros;
             // 
             // cmbEdificio
@@ -220,7 +220,7 @@
             cmbEdificio.Location = new Point(24, 43);
             cmbEdificio.Name = "cmbEdificio";
             cmbEdificio.Size = new Size(85, 23);
-            cmbEdificio.TabIndex = 32;
+            cmbEdificio.TabIndex = 3;
             cmbEdificio.SelectedIndexChanged += Filtros;
             // 
             // gbFiltro
@@ -235,26 +235,6 @@
             gbFiltro.TabIndex = 33;
             gbFiltro.TabStop = false;
             gbFiltro.Text = "Filtros";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(701, 131);
-            label2.Name = "label2";
-            label2.Size = new Size(148, 45);
-            label2.TabIndex = 46;
-            label2.Text = "EN CASO DE EMERGENCIA\r\n              Filtro de \r\n              Sección:";
-            // 
-            // cmbSeccion
-            // 
-            cmbSeccion.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbSeccion.FormattingEnabled = true;
-            cmbSeccion.Items.AddRange(new object[] { "", "0705", "0706A", "0801", "0802", "1102", "1302", "1302BA", "1401", "1501", "1501A" });
-            cmbSeccion.Location = new Point(724, 179);
-            cmbSeccion.Name = "cmbSeccion";
-            cmbSeccion.Size = new Size(85, 23);
-            cmbSeccion.TabIndex = 45;
-            cmbSeccion.SelectedIndexChanged += Filtros;
             // 
             // label4
             // 
@@ -274,6 +254,26 @@
             label3.TabIndex = 43;
             label3.Text = "Edificio:";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(724, 131);
+            label2.Name = "label2";
+            label2.Size = new Size(148, 45);
+            label2.TabIndex = 46;
+            label2.Text = "EN CASO DE EMERGENCIA\r\n              Filtro de \r\n              Sección:";
+            // 
+            // cmbSeccion
+            // 
+            cmbSeccion.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbSeccion.FormattingEnabled = true;
+            cmbSeccion.Items.AddRange(new object[] { "", "0705", "0706A", "0801", "0802", "1102", "1302", "1302BA", "1401", "1501", "1501A" });
+            cmbSeccion.Location = new Point(746, 179);
+            cmbSeccion.Name = "cmbSeccion";
+            cmbSeccion.Size = new Size(85, 23);
+            cmbSeccion.TabIndex = 5;
+            cmbSeccion.SelectedIndexChanged += Filtros;
+            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -288,16 +288,16 @@
             txtDoc.Location = new Point(156, 131);
             txtDoc.Name = "txtDoc";
             txtDoc.Size = new Size(254, 23);
-            txtDoc.TabIndex = 35;
+            txtDoc.TabIndex = 1;
             txtDoc.KeyUp += Filtros;
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(907, 440);
+            btnLogout.Location = new Point(907, 420);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(86, 23);
-            btnLogout.TabIndex = 38;
-            btnLogout.Text = "REGRESAR";
+            btnLogout.Size = new Size(86, 43);
+            btnLogout.TabIndex = 6;
+            btnLogout.Text = "&CERRAR SESIÓN";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 

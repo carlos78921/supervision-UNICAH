@@ -1,6 +1,6 @@
 namespace PreyectoDesarrollo_unicah
 {
-    partial class frmMigracion
+    partial class frmAdmin
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@ namespace PreyectoDesarrollo_unicah
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             Button btnLogout;
             Button btnSQL;
             Button btnReinicioBDD;
@@ -40,6 +41,11 @@ namespace PreyectoDesarrollo_unicah
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
             dgvAdmin = new DataGridView();
+            clmID = new DataGridViewTextBoxColumn();
+            clmN1 = new DataGridViewTextBoxColumn();
+            clmN2 = new DataGridViewTextBoxColumn();
+            clmA1 = new DataGridViewTextBoxColumn();
+            clmA2 = new DataGridViewTextBoxColumn();
             label1 = new Label();
             lblParcial = new Label();
             lblWeek = new Label();
@@ -50,12 +56,10 @@ namespace PreyectoDesarrollo_unicah
             dtpFin = new DateTimePicker();
             groupBox1 = new GroupBox();
             btnPeriodo = new Button();
-            clmID = new DataGridViewTextBoxColumn();
-            clmN1 = new DataGridViewTextBoxColumn();
-            clmN2 = new DataGridViewTextBoxColumn();
-            clmA1 = new DataGridViewTextBoxColumn();
-            clmA2 = new DataGridViewTextBoxColumn();
             groupBox2 = new GroupBox();
+            lblBusca = new Label();
+            txtBusca = new TextBox();
+            toolTip1 = new ToolTip(components);
             btnLogout = new Button();
             btnSQL = new Button();
             btnReinicioBDD = new Button();
@@ -120,6 +124,16 @@ namespace PreyectoDesarrollo_unicah
             btnListaSave.UseVisualStyleBackColor = true;
             btnListaSave.Click += btnListaSave_Click;
             // 
+            // btnName
+            // 
+            btnName.Location = new Point(868, 323);
+            btnName.Name = "btnName";
+            btnName.Size = new Size(136, 47);
+            btnName.TabIndex = 25;
+            btnName.Text = "&ACTUALIZAR NOMBRE COMPLETO";
+            btnName.UseVisualStyleBackColor = true;
+            btnName.Click += btnName_Click;
+            // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
@@ -183,10 +197,38 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.AllowUserToDeleteRows = false;
             dgvAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAdmin.Columns.AddRange(new DataGridViewColumn[] { clmID, clmN1, clmN2, clmA1, clmA2 });
-            dgvAdmin.Location = new Point(13, 124);
+            dgvAdmin.Location = new Point(13, 160);
             dgvAdmin.Name = "dgvAdmin";
-            dgvAdmin.Size = new Size(582, 437);
+            dgvAdmin.Size = new Size(582, 401);
             dgvAdmin.TabIndex = 13;
+            dgvAdmin.CellFormatting += dgvAdmin_CellFormatting;
+            dgvAdmin.EditingControlShowing += dgvAdmin_EditingControlShowing;
+            // 
+            // clmID
+            // 
+            clmID.HeaderText = "ID del Empleado";
+            clmID.Name = "clmID";
+            clmID.Width = 140;
+            // 
+            // clmN1
+            // 
+            clmN1.HeaderText = "Nombre 1";
+            clmN1.Name = "clmN1";
+            // 
+            // clmN2
+            // 
+            clmN2.HeaderText = "Nombre 2";
+            clmN2.Name = "clmN2";
+            // 
+            // clmA1
+            // 
+            clmA1.HeaderText = "Apellido 1";
+            clmA1.Name = "clmA1";
+            // 
+            // clmA2
+            // 
+            clmA2.HeaderText = "Apellido 2";
+            clmA2.Name = "clmA2";
             // 
             // label1
             // 
@@ -278,42 +320,6 @@ namespace PreyectoDesarrollo_unicah
             btnPeriodo.UseVisualStyleBackColor = true;
             btnPeriodo.Click += btnPeriodo_Click;
             // 
-            // clmID
-            // 
-            clmID.HeaderText = "ID del Empleado";
-            clmID.Name = "clmID";
-            clmID.Width = 140;
-            // 
-            // clmN1
-            // 
-            clmN1.HeaderText = "Nombre 1";
-            clmN1.Name = "clmN1";
-            // 
-            // clmN2
-            // 
-            clmN2.HeaderText = "Nombre 2";
-            clmN2.Name = "clmN2";
-            // 
-            // clmA1
-            // 
-            clmA1.HeaderText = "Apellido 1";
-            clmA1.Name = "clmA1";
-            // 
-            // clmA2
-            // 
-            clmA2.HeaderText = "Apellido 2";
-            clmA2.Name = "clmA2";
-            // 
-            // btnName
-            // 
-            btnName.Location = new Point(868, 323);
-            btnName.Name = "btnName";
-            btnName.Size = new Size(136, 47);
-            btnName.TabIndex = 25;
-            btnName.Text = "&ACTUALIZAR NOMBRE COMPLETO";
-            btnName.UseVisualStyleBackColor = true;
-            btnName.Click += btnName_Click;
-            // 
             // groupBox2
             // 
             groupBox2.Location = new Point(862, 230);
@@ -323,11 +329,31 @@ namespace PreyectoDesarrollo_unicah
             groupBox2.TabStop = false;
             groupBox2.Text = "Opciones";
             // 
-            // frmMigracion
+            // lblBusca
+            // 
+            lblBusca.AutoSize = true;
+            lblBusca.Location = new Point(12, 136);
+            lblBusca.Name = "lblBusca";
+            lblBusca.Size = new Size(45, 15);
+            lblBusca.TabIndex = 26;
+            lblBusca.Text = "Buscar:";
+            // 
+            // txtBusca
+            // 
+            txtBusca.Location = new Point(63, 131);
+            txtBusca.Name = "txtBusca";
+            txtBusca.Size = new Size(532, 23);
+            txtBusca.TabIndex = 27;
+            toolTip1.SetToolTip(txtBusca, "Presiona Enter para mayor efecto");
+            txtBusca.KeyDown += txtBusca_KeyDown;
+            // 
+            // frmAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1020, 576);
+            Controls.Add(txtBusca);
+            Controls.Add(lblBusca);
             Controls.Add(btnName);
             Controls.Add(btnListaSave);
             Controls.Add(btnListaLoad);
@@ -344,7 +370,7 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(label1);
             Controls.Add(groupBox2);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "frmMigracion";
+            Name = "frmAdmin";
             Text = "FrmReporte";
             Load += frmMigración_Load;
             MouseDown += MoveForm_MouseDown;
@@ -384,5 +410,8 @@ namespace PreyectoDesarrollo_unicah
         private DataGridViewTextBoxColumn clmA1;
         private DataGridViewTextBoxColumn clmA2;
         private GroupBox groupBox2;
+        private Label lblBusca;
+        private TextBox txtBusca;
+        private ToolTip toolTip1;
     }
 }

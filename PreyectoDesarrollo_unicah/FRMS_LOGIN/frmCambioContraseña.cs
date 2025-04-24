@@ -1,6 +1,5 @@
 ﻿using DocumentFormat.OpenXml.Spreadsheet;
 using PreyectoDesarrollo_unicah.CLASES;
-using PreyectoDesarrollo_unicah.FRMS_ADMIN;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

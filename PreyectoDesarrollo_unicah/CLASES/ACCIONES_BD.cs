@@ -591,7 +591,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
                             if (rolUsuario == "administrador")
                             {
-                                frmMigracion admin = new frmMigracion();
+                                frmAdmin admin = new frmAdmin();
                                 admin.Show();
                                 Login.Hide();
                             }
@@ -717,7 +717,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.ExecuteNonQuery();
 
                     MessageBox.Show("Contraseña agregada, abriendo sesión de administrador, bienvenido", "Inicio de sesión Admin.", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    frmMigracion Menu = new frmMigracion();
+                    frmAdmin Menu = new frmAdmin();
                     Contra.Close();
                     Menu.Show();
                 }
