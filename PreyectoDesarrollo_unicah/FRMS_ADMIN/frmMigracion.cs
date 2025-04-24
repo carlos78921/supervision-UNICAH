@@ -146,8 +146,8 @@ namespace PreyectoDesarrollo_unicah
                     RespaldoExcel();
                     ACCIONES_BD.ReiniciarBDD("Supervision_Unicah");
                 }
-                else              
-                    ACCIONES_BD.ReiniciarBDD("Supervision_Unicah");                                    
+                else
+                    ACCIONES_BD.ReiniciarBDD("Supervision_Unicah");
                 MessageBox.Show("Base de datos reiniciada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 MessageBox.Show("Saliendo del programa", "Cerrando Programa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Application.Exit();
@@ -159,7 +159,7 @@ namespace PreyectoDesarrollo_unicah
             MessageBox.Show("Seleccione el archivo Excel original", "Excel original");
             ACCIONES_BD.MigrarDatosViejo();
             MessageBox.Show("Ahora seleccione el archivo Excel con la asistencia", "Cargar Asistencia");
-            string rutaExcel = ""; 
+            string rutaExcel = "";
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Filter = "Archivos Excel (*.xlsx)|*.xlsx";
@@ -204,7 +204,7 @@ namespace PreyectoDesarrollo_unicah
                             cmd.Parameters.AddWithValue("@ID_Clase", row["ID_Clase"]);
                             cmd.Parameters.AddWithValue("@ID_Sitio", row["ID_Sitio"]);
                             cmd.Parameters.AddWithValue("@ID_Empleado", row["ID_Empleado"]);
-                            cmd.Parameters.Add("@Fecha", SqlDbType.Date).Value = row.Field<DateTime>("Fecha"); 
+                            cmd.Parameters.Add("@Fecha", SqlDbType.Date).Value = row.Field<DateTime>("Fecha");
                             cmd.Parameters.AddWithValue("@Observa", row["Observacion"]);
                             if (row.IsNull("Fecha_Reposicion"))
                                 cmd.Parameters.Add("@Repone", SqlDbType.Date).Value = DBNull.Value;
@@ -232,6 +232,26 @@ namespace PreyectoDesarrollo_unicah
         private void btnListaSave_Click(object sender, EventArgs e)
         {
             RespaldoExcel();
+        }
+
+        private void btnName_Click(object sender, EventArgs e)
+        {
+            using (var conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("PA_Datos", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ID", dgvAdmin.CurrentRow.Cells[0].Value);
+                    cmd.Parameters.AddWithValue("@Nombre1", dgvAdmin.CurrentRow.Cells[1].Value);
+                    cmd.Parameters.AddWithValue("@Nombre2", dgvAdmin.CurrentRow.Cells[2].Value);
+                    cmd.Parameters.AddWithValue("@Nombre3", dgvAdmin.CurrentRow.Cells[3].Value);
+                    cmd.Parameters.AddWithValue("@Nombre4", dgvAdmin.CurrentRow.Cells[4].Value);
+                    cmd.Parameters.AddWithValue("@Contraseña", dgvAdmin.CurrentRow.Cells[5].Value);
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
         }
     }
 }

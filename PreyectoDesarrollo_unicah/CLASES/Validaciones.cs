@@ -101,26 +101,5 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
             return true;
         }
-
-        public static bool CasoAsigno(string contraseña, TextBox txtContraseña)
-        {
-            if (contraseña == "Contraseña nueva:" || string.IsNullOrWhiteSpace(contraseña))
-            {
-                txtContraseña.Clear();
-                MessageBox.Show("Contraseña no puede quedar vacía.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtContraseña.Text = contraseña;
-                return false;
-            }
-
-            if (contraseña != "Contraseña nueva:" && contraseña.Length < 8)
-            {
-                MessageBox.Show("La contraseña debe tener al menos 8 caracteres.", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            return true;
-        }
     }
 }
-
-

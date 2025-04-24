@@ -10,7 +10,6 @@ using System.Security.Policy;
 using System.Drawing.Text;
 using System.Text.RegularExpressions;
 using System.Drawing;
-using PreyectoDesarrollo_unicah.FRMS_ADMIN;
 using PreyectoDesarrollo_unicah.FRMS_SUPERV;
 using DocumentFormat.OpenXml.Office.Word;
 using ClosedXML.Excel;
@@ -592,7 +591,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
                             if (rolUsuario == "administrador")
                             {
-                                frmAdmin admin = new frmAdmin();
+                                frmMigracion admin = new frmMigracion();
                                 admin.Show();
                                 Login.Hide();
                             }
@@ -718,7 +717,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.ExecuteNonQuery();
 
                     MessageBox.Show("Contraseña agregada, abriendo sesión de administrador, bienvenido", "Inicio de sesión Admin.", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    frmAdmin Menu = new frmAdmin();
+                    frmMigracion Menu = new frmMigracion();
                     Contra.Close();
                     Menu.Show();
                 }
@@ -875,12 +874,12 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 bs.ResetBindings(false);
                 dgv.AutoGenerateColumns = true;
                 dgv.Refresh();
-                dgv.Columns[0].Width = 115;
-                dgv.Columns[1].Width = 170;
-                dgv.Columns[2].Width = 58;
-                dgv.Columns[2].HeaderText = "Sección";
-                dgv.Columns[3].Width = 183;
-                dgv.Columns[4].Width = 325;
+                dgv.Columns[0].Width = 140;
+                dgv.Columns[0].ReadOnly = true;
+                dgv.Columns[1].Width = 100;
+                dgv.Columns[2].Width = 100;
+                dgv.Columns[3].Width = 100;
+                dgv.Columns[4].Width = 100;
             }
             return dt;
         }
@@ -913,37 +912,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
             adminFechas.UpdateBoldedDates();
 
             return dtFechas;
-        }
-
-        public static void AdminAsignaContra(string usuario, string contraseña)
-        {
-            using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
-            {
-                conexion.Open();
-
-                using (SqlCommand cmd = new SqlCommand("PA_Contra", conexion))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@usuario", usuario);
-                    cmd.Parameters.AddWithValue("@contraseña", contraseña);
-
-                    //"@" = Parámetro, "RetVal" = ReturnValue, SqlDbType.Int = Tipo de dato del retorno
-                    SqlParameter @retorno = cmd.Parameters.Add("RetVal", SqlDbType.Int);
-                    @retorno.Direction = ParameterDirection.ReturnValue; //Obtener el parámetro de retorno
-
-                    cmd.ExecuteNonQuery();
-
-                    int resultado = (int)@retorno.Value;
-                    if (resultado == 0)
-                    {
-                        MessageBox.Show("Usuario no encontrado");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Contraseña cambiada con éxito", "Contraseña Cambiada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
         }
 
         public static void CrearPeriodo(DateTime inicio, DateTime fin)

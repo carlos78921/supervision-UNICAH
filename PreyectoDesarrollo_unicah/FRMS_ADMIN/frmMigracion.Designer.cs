@@ -33,17 +33,13 @@ namespace PreyectoDesarrollo_unicah
             Button btnReinicioBDD;
             Button btnListaLoad;
             Button btnListaSave;
+            Button btnName;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
             dgvAdmin = new DataGridView();
-            clmAsignaturaFacu = new DataGridViewTextBoxColumn();
-            clmCurso = new DataGridViewTextBoxColumn();
-            clmSeccion = new DataGridViewTextBoxColumn();
-            clmEmpleado = new DataGridViewTextBoxColumn();
-            clmAulaFull = new DataGridViewTextBoxColumn();
             label1 = new Label();
             lblParcial = new Label();
             lblWeek = new Label();
@@ -54,11 +50,18 @@ namespace PreyectoDesarrollo_unicah
             dtpFin = new DateTimePicker();
             groupBox1 = new GroupBox();
             btnPeriodo = new Button();
+            clmID = new DataGridViewTextBoxColumn();
+            clmN1 = new DataGridViewTextBoxColumn();
+            clmN2 = new DataGridViewTextBoxColumn();
+            clmA1 = new DataGridViewTextBoxColumn();
+            clmA2 = new DataGridViewTextBoxColumn();
+            groupBox2 = new GroupBox();
             btnLogout = new Button();
             btnSQL = new Button();
             btnReinicioBDD = new Button();
             btnListaLoad = new Button();
             btnListaSave = new Button();
+            btnName = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -69,9 +72,9 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(859, 543);
+            btnLogout.Location = new Point(867, 537);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(145, 24);
+            btnLogout.Size = new Size(137, 32);
             btnLogout.TabIndex = 8;
             btnLogout.Text = "REGRE&SAR";
             btnLogout.UseVisualStyleBackColor = true;
@@ -79,19 +82,19 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnSQL
             // 
-            btnSQL.Location = new Point(781, 446);
+            btnSQL.Location = new Point(867, 253);
             btnSQL.Name = "btnSQL";
-            btnSQL.Size = new Size(151, 46);
+            btnSQL.Size = new Size(137, 59);
             btnSQL.TabIndex = 4;
-            btnSQL.Text = "&MIGRAR DATOS DE EXCEL A LA BASE DE DATOS";
+            btnSQL.Text = "&MIGRAR DATOS DE EXCEL A LA \r\nBASE DE DATOS";
             btnSQL.UseVisualStyleBackColor = true;
             btnSQL.Click += btnSQL_Click;
             // 
             // btnReinicioBDD
             // 
-            btnReinicioBDD.Location = new Point(941, 446);
+            btnReinicioBDD.Location = new Point(867, 480);
             btnReinicioBDD.Name = "btnReinicioBDD";
-            btnReinicioBDD.Size = new Size(108, 46);
+            btnReinicioBDD.Size = new Size(137, 46);
             btnReinicioBDD.TabIndex = 5;
             btnReinicioBDD.Text = "&REINICIAR \r\nBASE DE DATOS";
             btnReinicioBDD.UseVisualStyleBackColor = true;
@@ -99,9 +102,9 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnListaLoad
             // 
-            btnListaLoad.Location = new Point(941, 498);
+            btnListaLoad.Location = new Point(867, 431);
             btnListaLoad.Name = "btnListaLoad";
-            btnListaLoad.Size = new Size(108, 39);
+            btnListaLoad.Size = new Size(137, 39);
             btnListaLoad.TabIndex = 7;
             btnListaLoad.Text = "&CARGAR ASISTENCIA";
             btnListaLoad.UseVisualStyleBackColor = true;
@@ -109,18 +112,18 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnListaSave
             // 
-            btnListaSave.Location = new Point(781, 498);
+            btnListaSave.Location = new Point(867, 383);
             btnListaSave.Name = "btnListaSave";
-            btnListaSave.Size = new Size(151, 39);
+            btnListaSave.Size = new Size(137, 39);
             btnListaSave.TabIndex = 6;
-            btnListaSave.Text = "&GUARDAR ASISTENCIA";
+            btnListaSave.Text = "&GUARDAR \r\nASISTENCIA";
             btnListaSave.UseVisualStyleBackColor = true;
             btnListaSave.Click += btnListaSave_Click;
             // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(995, 0);
+            pictureBox2.Location = new Point(944, 3);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(29, 20);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -131,7 +134,7 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(1030, 0);
+            pictureBox1.Location = new Point(979, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 20);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -148,7 +151,7 @@ namespace PreyectoDesarrollo_unicah
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(-4, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1062, 87);
+            panel1.Size = new Size(1026, 87);
             panel1.TabIndex = 11;
             panel1.MouseDown += MoveForm_MouseDown;
             // 
@@ -179,48 +182,11 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.AllowUserToAddRows = false;
             dgvAdmin.AllowUserToDeleteRows = false;
             dgvAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAdmin.Columns.AddRange(new DataGridViewColumn[] { clmAsignaturaFacu, clmCurso, clmSeccion, clmEmpleado, clmAulaFull });
+            dgvAdmin.Columns.AddRange(new DataGridViewColumn[] { clmID, clmN1, clmN2, clmA1, clmA2 });
             dgvAdmin.Location = new Point(13, 124);
             dgvAdmin.Name = "dgvAdmin";
-            dgvAdmin.ReadOnly = true;
-            dgvAdmin.Size = new Size(746, 437);
+            dgvAdmin.Size = new Size(582, 437);
             dgvAdmin.TabIndex = 13;
-            dgvAdmin.SelectionChanged += dgvAdmin_SelectionChanged;
-            // 
-            // clmAsignaturaFacu
-            // 
-            clmAsignaturaFacu.HeaderText = "Referencia";
-            clmAsignaturaFacu.Name = "clmAsignaturaFacu";
-            clmAsignaturaFacu.ReadOnly = true;
-            clmAsignaturaFacu.Width = 115;
-            // 
-            // clmCurso
-            // 
-            clmCurso.HeaderText = "Curso";
-            clmCurso.Name = "clmCurso";
-            clmCurso.ReadOnly = true;
-            clmCurso.Width = 170;
-            // 
-            // clmSeccion
-            // 
-            clmSeccion.HeaderText = "Sección";
-            clmSeccion.Name = "clmSeccion";
-            clmSeccion.ReadOnly = true;
-            clmSeccion.Width = 58;
-            // 
-            // clmEmpleado
-            // 
-            clmEmpleado.HeaderText = "Empleado";
-            clmEmpleado.Name = "clmEmpleado";
-            clmEmpleado.ReadOnly = true;
-            clmEmpleado.Width = 325;
-            // 
-            // clmAulaFull
-            // 
-            clmAulaFull.HeaderText = "Aula";
-            clmAulaFull.Name = "clmAulaFull";
-            clmAulaFull.ReadOnly = true;
-            clmAulaFull.Width = 183;
             // 
             // label1
             // 
@@ -234,7 +200,7 @@ namespace PreyectoDesarrollo_unicah
             // lblParcial
             // 
             lblParcial.AutoSize = true;
-            lblParcial.Location = new Point(828, 256);
+            lblParcial.Location = new Point(652, 234);
             lblParcial.Name = "lblParcial";
             lblParcial.Size = new Size(42, 15);
             lblParcial.TabIndex = 16;
@@ -243,7 +209,7 @@ namespace PreyectoDesarrollo_unicah
             // lblWeek
             // 
             lblWeek.AutoSize = true;
-            lblWeek.Location = new Point(939, 256);
+            lblWeek.Location = new Point(763, 234);
             lblWeek.Name = "lblWeek";
             lblWeek.Size = new Size(49, 15);
             lblWeek.TabIndex = 17;
@@ -251,7 +217,8 @@ namespace PreyectoDesarrollo_unicah
             // 
             // mesAdmin
             // 
-            mesAdmin.Location = new Point(790, 272);
+            mesAdmin.CalendarDimensions = new Size(1, 2);
+            mesAdmin.Location = new Point(607, 253);
             mesAdmin.Name = "mesAdmin";
             mesAdmin.TabIndex = 19;
             mesAdmin.DateSelected += mesAdmin_DateSelected;
@@ -294,7 +261,7 @@ namespace PreyectoDesarrollo_unicah
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(dtpFin);
-            groupBox1.Location = new Point(768, 110);
+            groupBox1.Location = new Point(611, 124);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(276, 100);
             groupBox1.TabIndex = 24;
@@ -303,19 +270,65 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnPeriodo
             // 
-            btnPeriodo.Location = new Point(872, 216);
+            btnPeriodo.Location = new Point(906, 152);
             btnPeriodo.Name = "btnPeriodo";
-            btnPeriodo.Size = new Size(98, 23);
+            btnPeriodo.Size = new Size(98, 44);
             btnPeriodo.TabIndex = 3;
             btnPeriodo.Text = "Definir Periodo";
             btnPeriodo.UseVisualStyleBackColor = true;
             btnPeriodo.Click += btnPeriodo_Click;
             // 
+            // clmID
+            // 
+            clmID.HeaderText = "ID del Empleado";
+            clmID.Name = "clmID";
+            clmID.Width = 140;
+            // 
+            // clmN1
+            // 
+            clmN1.HeaderText = "Nombre 1";
+            clmN1.Name = "clmN1";
+            // 
+            // clmN2
+            // 
+            clmN2.HeaderText = "Nombre 2";
+            clmN2.Name = "clmN2";
+            // 
+            // clmA1
+            // 
+            clmA1.HeaderText = "Apellido 1";
+            clmA1.Name = "clmA1";
+            // 
+            // clmA2
+            // 
+            clmA2.HeaderText = "Apellido 2";
+            clmA2.Name = "clmA2";
+            // 
+            // btnName
+            // 
+            btnName.Location = new Point(868, 323);
+            btnName.Name = "btnName";
+            btnName.Size = new Size(136, 47);
+            btnName.TabIndex = 25;
+            btnName.Text = "&ACTUALIZAR NOMBRE COMPLETO";
+            btnName.UseVisualStyleBackColor = true;
+            btnName.Click += btnName_Click;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Location = new Point(862, 230);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(149, 341);
+            groupBox2.TabIndex = 25;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Opciones";
+            // 
             // frmMigracion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1056, 573);
+            ClientSize = new Size(1020, 576);
+            Controls.Add(btnName);
             Controls.Add(btnListaSave);
             Controls.Add(btnListaLoad);
             Controls.Add(btnReinicioBDD);
@@ -329,6 +342,7 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(btnLogout);
             Controls.Add(dgvAdmin);
             Controls.Add(label1);
+            Controls.Add(groupBox2);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmMigracion";
             Text = "FrmReporte";
@@ -358,16 +372,17 @@ namespace PreyectoDesarrollo_unicah
         private Label lblParcial;
         private Label lblWeek;
         private MonthCalendar mesAdmin;
-        private DataGridViewTextBoxColumn clmAsignaturaFacu;
-        private DataGridViewTextBoxColumn clmCurso;
-        private DataGridViewTextBoxColumn clmSeccion;
-        private DataGridViewTextBoxColumn clmEmpleado;
-        private DataGridViewTextBoxColumn clmAulaFull;
         private DateTimePicker dtpInicio;
         private Label label2;
         private Label label3;
         private DateTimePicker dtpFin;
         private GroupBox groupBox1;
         private Button btnPeriodo;
+        private DataGridViewTextBoxColumn clmID;
+        private DataGridViewTextBoxColumn clmN1;
+        private DataGridViewTextBoxColumn clmN2;
+        private DataGridViewTextBoxColumn clmA1;
+        private DataGridViewTextBoxColumn clmA2;
+        private GroupBox groupBox2;
     }
 }
