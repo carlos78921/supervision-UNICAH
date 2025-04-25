@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
@@ -39,6 +40,7 @@
             btnRecibir = new Button();
             txtMail = new TextBox();
             label1 = new Label();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -99,7 +101,7 @@
             btnEnviar.Location = new Point(418, 219);
             btnEnviar.Name = "btnEnviar";
             btnEnviar.Size = new Size(139, 40);
-            btnEnviar.TabIndex = 3;
+            btnEnviar.TabIndex = 4;
             btnEnviar.Text = "&ENVIAR CÓDIGO";
             btnEnviar.UseVisualStyleBackColor = false;
             btnEnviar.Click += btnEnviar_Click;
@@ -109,8 +111,9 @@
             txtCode.Location = new Point(231, 159);
             txtCode.Name = "txtCode";
             txtCode.Size = new Size(307, 23);
-            txtCode.TabIndex = 1;
+            txtCode.TabIndex = 2;
             txtCode.Text = "Código:";
+            toolTip1.SetToolTip(txtCode, "Presione tecla \"Enter\" para \"Enviar\" código");
             txtCode.Enter += txtCode_Enter;
             txtCode.KeyPress += txtCode_KeyPress;
             txtCode.Leave += txtCode_Leave;
@@ -144,7 +147,7 @@
             btnRecibir.Location = new Point(218, 219);
             btnRecibir.Name = "btnRecibir";
             btnRecibir.Size = new Size(139, 40);
-            btnRecibir.TabIndex = 2;
+            btnRecibir.TabIndex = 3;
             btnRecibir.Text = "&GENERAR CÓDIGO";
             btnRecibir.UseVisualStyleBackColor = false;
             btnRecibir.Click += btnRecibir_Click;
@@ -154,8 +157,9 @@
             txtMail.Location = new Point(231, 109);
             txtMail.Name = "txtMail";
             txtMail.Size = new Size(307, 23);
-            txtMail.TabIndex = 12;
+            txtMail.TabIndex = 1;
             txtMail.Text = "Correo:";
+            toolTip1.SetToolTip(txtMail, "Presione tecla \"Enter\" para generar código");
             txtMail.Enter += txtMail_Enter;
             txtMail.KeyPress += txtMail_KeyPress;
             txtMail.Leave += txtMail_Leave;
@@ -209,5 +213,6 @@
         private Button btnRecibir;
         private TextBox txtMail;
         private Label label1;
+        private ToolTip toolTip1;
     }
 }

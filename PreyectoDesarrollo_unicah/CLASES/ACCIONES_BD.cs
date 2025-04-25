@@ -882,6 +882,10 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.Columns[2].Width = 100;
                 dgv.Columns[3].Width = 100;
                 dgv.Columns[4].Width = 100;
+                dgv.Columns[5].Width = 110;
+                dgv.Columns[6].Width = 116;
+                dgv.Columns[7].Width = 110;
+                dgv.Columns[0].ReadOnly = true;
             }
             return dt;
         }

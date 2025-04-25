@@ -22,7 +22,6 @@ namespace PreyectoDesarrollo_unicah
             // Genera el código constante por asignación
             codigo = GenerarCodigo();
         }
-        private string correo;
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -31,6 +30,9 @@ namespace PreyectoDesarrollo_unicah
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
         private string codigo;
+        private string correo;
+        private int vez = 0;
+
         private string GenerarCodigo()
         {
             const string caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -48,6 +50,10 @@ namespace PreyectoDesarrollo_unicah
         private bool GenerarCorreo(string codigo)
         {
             correo = txtMail.Text;
+            lblCode.Visible = true;
+            vez++;
+            if (vez > 1)
+                lblCode.Text = "Su código ha sido generado de nuevo";
             MailAddress From = new MailAddress("byrd_riverat42@unicah.edu", "BYRON DANIEL RIVERA TABORA"); //De mí
             MailAddress To = new MailAddress(correo, "Administrador(a)"); //Para mí
             MailMessage msg = new MailMessage(From, To); //Correo de mí para mí
@@ -78,11 +84,8 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnRecibir_Click(object sender, EventArgs e)
         {
-            lblCode.Visible = true;
-            int vez = 0;
-            vez++;
-            if (vez > 1)
-                lblCode.Text = "Su código ha sido generado de nuevo";
+            if (!Validaciones.Correo(sender, e, txtMail))
+                return;
             //Esto cambia el código
             codigo = GenerarCodigo();
             // Envía el correo usando el codigo constante
@@ -91,7 +94,7 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
-            if (!Validaciones.CodeVale(sender, e, codigo, txtCode))
+            if (!Validaciones.Codigo(sender, e, txtCode))
                 return;
 
             if (codigo == txtCode.Text)
@@ -110,14 +113,17 @@ namespace PreyectoDesarrollo_unicah
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void KeyPressValida(object sender, KeyPressEventArgs e)
+        private void txtCode_KeyPress(object sender, KeyPressEventArgs e)
         {
+            e.KeyChar = char.ToUpper(e.KeyChar);
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                e.Handled = true;
             if (e.KeyChar == (char)Keys.Enter)
             {
-                if (!Validaciones.CodeVale(sender, e, codigo, txtCode))
+                if (!Validaciones.Codigo(sender, e, txtCode))
                     return;
 
-                if (codigo == txtCode.Text)
+                if(codigo == txtCode.Text)
                 {
                     this.Close();
                     frmCambioContraseña Cambio = new frmCambioContraseña();
@@ -128,19 +134,18 @@ namespace PreyectoDesarrollo_unicah
             }
         }
 
-        private void txtCode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.KeyChar = char.ToUpper(e.KeyChar);
-            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
-                e.Handled = true;
-            KeyPressValida(sender, e);
-        }
-
         private void txtMail_KeyPress(object sender, KeyPressEventArgs e)
         {
+            e.KeyChar = char.ToLower(e.KeyChar);
             if (e.KeyChar == (char)Keys.Space)
                 e.Handled = true;
-            KeyPressValida(sender, e);
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (!Validaciones.Correo(sender, e, txtMail))
+                    return;
+                codigo = GenerarCodigo();
+                GenerarCorreo(codigo);
+            }
         }
 
 

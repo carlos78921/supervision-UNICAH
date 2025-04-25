@@ -35,7 +35,7 @@ namespace PreyectoDesarrollo_unicah.FRMS_ADMIN
 
         private void frmOrden_Load(object sender, EventArgs e)
         {
-            using(var conexion = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
+            using (var conexion = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
                 conexion.Open();
                 using (SqlCommand cmd = new SqlCommand("PA_Docentes", conexion))
@@ -48,6 +48,17 @@ namespace PreyectoDesarrollo_unicah.FRMS_ADMIN
             }
         }
 
+        private void Salir(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Desea cancelar la organización de datos?", "Organización cancelada", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                this.Close();
+                frmAdmin Menu = new frmAdmin();
+                Menu.Show();
+            }
+        }
+
+     
         /*        private bool CodigoFacultadExiste(string codigoFacultad)
                 {
                     using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conexion))

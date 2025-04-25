@@ -41,9 +41,7 @@
             btnNew = new Button();
             btnQuitar = new Button();
             btnBye = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            tableLayoutPanel1 = new TableLayoutPanel();
+            btnSigue = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -135,6 +133,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += Salir;
             // 
             // dgvTablas
             // 
@@ -149,7 +148,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(369, 428);
+            btnAdd.Location = new Point(388, 428);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(100, 30);
             btnAdd.TabIndex = 11;
@@ -158,7 +157,7 @@
             // 
             // btnNew
             // 
-            btnNew.Location = new Point(369, 464);
+            btnNew.Location = new Point(388, 464);
             btnNew.Name = "btnNew";
             btnNew.Size = new Size(100, 30);
             btnNew.TabIndex = 12;
@@ -167,66 +166,44 @@
             // 
             // btnQuitar
             // 
-            btnQuitar.Location = new Point(475, 428);
+            btnQuitar.Location = new Point(494, 428);
             btnQuitar.Name = "btnQuitar";
-            btnQuitar.Size = new Size(100, 30);
+            btnQuitar.Size = new Size(114, 30);
             btnQuitar.TabIndex = 13;
             btnQuitar.Text = "&ELIMINAR";
             btnQuitar.UseVisualStyleBackColor = true;
             // 
             // btnBye
             // 
-            btnBye.Location = new Point(595, 465);
+            btnBye.Location = new Point(614, 445);
             btnBye.Name = "btnBye";
-            btnBye.Size = new Size(112, 30);
+            btnBye.Size = new Size(81, 30);
             btnBye.TabIndex = 14;
             btnBye.Text = "&REGRESAR";
             btnBye.UseVisualStyleBackColor = true;
+            btnBye.Click += Salir;
             // 
-            // button2
+            // btnSigue
             // 
-            button2.Location = new Point(475, 464);
-            button2.Name = "button2";
-            button2.Size = new Size(100, 30);
-            button2.TabIndex = 15;
-            button2.Text = "&SELECCIONAR";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(595, 429);
-            button3.Name = "button3";
-            button3.Size = new Size(114, 30);
-            button3.TabIndex = 16;
-            button3.Text = "SIGUIENTE &TABLA";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 63.1728058F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 36.8271942F));
-            tableLayoutPanel1.Location = new Point(360, 425);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(353, 73);
-            tableLayoutPanel1.TabIndex = 17;
+            btnSigue.Location = new Point(494, 464);
+            btnSigue.Name = "btnSigue";
+            btnSigue.Size = new Size(114, 30);
+            btnSigue.TabIndex = 16;
+            btnSigue.Text = "SIGUIENTE &TABLA";
+            btnSigue.UseVisualStyleBackColor = true;
             // 
             // frmOrden
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(717, 503);
-            Controls.Add(button3);
-            Controls.Add(button2);
             Controls.Add(btnBye);
+            Controls.Add(btnSigue);
             Controls.Add(btnQuitar);
             Controls.Add(btnNew);
             Controls.Add(btnAdd);
             Controls.Add(dgvTablas);
             Controls.Add(panel1);
-            Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmOrden";
             Text = "FrmMigrar";
@@ -269,7 +246,6 @@
         private Button btnQuitar;
         private Button btnBye;
         private Button button2;
-        private Button button3;
-        private TableLayoutPanel tableLayoutPanel1;
+        private Button btnSigue;
     }
 }

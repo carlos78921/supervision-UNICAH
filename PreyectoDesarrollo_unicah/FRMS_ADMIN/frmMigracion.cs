@@ -242,28 +242,37 @@ namespace PreyectoDesarrollo_unicah
                 using (SqlCommand cmd = new SqlCommand("PA_Datos", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@ID", dgvAdmin.CurrentRow.Cells[0].Value);
-                    cmd.Parameters.AddWithValue("@Nombre1", dgvAdmin.CurrentRow.Cells[1].Value);
-                    cmd.Parameters.AddWithValue("@Nombre2", dgvAdmin.CurrentRow.Cells[2].Value);
-                    cmd.Parameters.AddWithValue("@Nombre3", dgvAdmin.CurrentRow.Cells[3].Value);
-                    cmd.Parameters.AddWithValue("@Nombre4", dgvAdmin.CurrentRow.Cells[4].Value);
-                    cmd.Parameters.AddWithValue("@Contraseña", dgvAdmin.CurrentRow.Cells[5].Value);
-                    cmd.ExecuteNonQuery();
+                    for (int row = 0; row < dgvAdmin.Rows.Count; row++)
+                    {
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@ID", dgvAdmin.Rows[row].Cells[0].Value);
+                        cmd.Parameters.AddWithValue("@Nombre1", dgvAdmin.Rows[row].Cells[1].Value);
+                        cmd.Parameters.AddWithValue("@Nombre2", dgvAdmin.Rows[row].Cells[2].Value);
+                        cmd.Parameters.AddWithValue("@Nombre3", dgvAdmin.Rows[row].Cells[3].Value);
+                        cmd.Parameters.AddWithValue("@Nombre4", dgvAdmin.Rows[row].Cells[4].Value);
+                        cmd.Parameters.AddWithValue("@rol", dgvAdmin.Rows[row].Cells[5].Value);
+                        cmd.Parameters.AddWithValue("@usuario", dgvAdmin.Rows[row].Cells[6].Value);
+                        cmd.Parameters.AddWithValue("@Contraseña", dgvAdmin.Rows[row].Cells[7].Value);
+                        cmd.ExecuteNonQuery();
+                    }
                 }
                 conn.Close();
             }
-            MessageBox.Show("Nombre completo actualizado en la base de datos", "Nombre completo cambiado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Datos del usuario actualizado en la base de datos", "Datos cambiados", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void dgvAdmin_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 5 && e.Value != null)
+            if (e.ColumnIndex == 7 && e.Value != null)
+            {
                 e.Value = new string('*', e.Value.ToString().Length);
+                e.FormattingApplied = true; //Esto para no afectar después por "contra" como valor sin asterísco
+            }
         }
 
         private void dgvAdmin_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (dgvAdmin.CurrentCell.ColumnIndex == 5)
+            if (dgvAdmin.CurrentCell.ColumnIndex == 7)
             {
                 TextBox txt = e.Control as TextBox;
                 if (txt != null)
@@ -286,6 +295,18 @@ namespace PreyectoDesarrollo_unicah
                     dgvAdmin.DataSource = dt;
                 }
                 conn.Close();
+            }
+        }
+
+        private void dgvAdmin_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvAdmin.Columns[e.ColumnIndex].Name == "contraseña")
+            {
+                if (MessageBox.Show("¿Desea cambiar la contraseña?", "Cambiar contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    dgvAdmin.Columns[7].ReadOnly = false;
+                    dgvAdmin.CurrentRow.Cells[7].Value = "";
+                }
             }
         }
     }

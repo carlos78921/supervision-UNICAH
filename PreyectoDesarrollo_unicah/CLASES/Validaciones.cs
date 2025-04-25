@@ -8,8 +8,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
 {
     internal class Validaciones
     {
-        private static string Rol;
-
         public static bool Usuario (object sender, EventArgs e, string usuario, string contraseña, TextBox user)
         {
             if ((usuario == "Usuario:" || usuario == "") && 
@@ -85,8 +83,28 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return true;
         }
 
+        public static bool Correo(object sender, EventArgs e, TextBox txtCorreo)
+        {
+            int arroba = txtCorreo.Text.IndexOf('@');
+            if (txtCorreo.Text == "Correo:" || txtCorreo.Text == "")
+            {
+                MessageBox.Show("Correo no ingresado, ingresar correo", "Correo Vacío", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCorreo.Focus();
+                return false;
+            }
 
-        public static bool CodeVale(object sender, EventArgs e, string codigo, TextBox txtCodigo)
+            string rtrim = txtCorreo.Text.Substring(arroba + 1);
+            if (txtCorreo.Text == "@" || !txtCorreo.Text.Contains("@") ||
+                string.IsNullOrWhiteSpace(rtrim))
+            {
+                MessageBox.Show("Correo no válido", "Correo no detectado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCorreo.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        public static bool Codigo(object sender, EventArgs e, TextBox txtCodigo)
         {
             if (txtCodigo.Text == "Código:" || txtCodigo.Text == "") 
             {
@@ -101,6 +119,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 txtCodigo.Focus();
                 return false;
             }
+
+
             return true;
         }
     }

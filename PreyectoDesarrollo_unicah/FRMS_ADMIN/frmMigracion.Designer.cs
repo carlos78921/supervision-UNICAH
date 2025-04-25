@@ -130,7 +130,7 @@ namespace PreyectoDesarrollo_unicah
             btnName.Name = "btnName";
             btnName.Size = new Size(136, 47);
             btnName.TabIndex = 25;
-            btnName.Text = "&ACTUALIZAR NOMBRE COMPLETO";
+            btnName.Text = "&ACTUALIZAR \r\nDATOS EMPLEADO";
             btnName.UseVisualStyleBackColor = true;
             btnName.Click += btnName_Click;
             // 
@@ -201,6 +201,7 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.Name = "dgvAdmin";
             dgvAdmin.Size = new Size(582, 401);
             dgvAdmin.TabIndex = 13;
+            dgvAdmin.CellClick += dgvAdmin_CellClick;
             dgvAdmin.CellFormatting += dgvAdmin_CellFormatting;
             dgvAdmin.EditingControlShowing += dgvAdmin_EditingControlShowing;
             // 
@@ -347,7 +348,7 @@ namespace PreyectoDesarrollo_unicah
             toolTip1.SetToolTip(txtBusca, "Presiona Enter para mayor efecto");
             txtBusca.KeyDown += txtBusca_KeyDown;
             // 
-            // frmAdmin
+            // frmMigracion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -370,7 +371,7 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(label1);
             Controls.Add(groupBox2);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "frmAdmin";
+            Name = "frmMigracion";
             Text = "FrmReporte";
             Load += frmMigración_Load;
             MouseDown += MoveForm_MouseDown;
