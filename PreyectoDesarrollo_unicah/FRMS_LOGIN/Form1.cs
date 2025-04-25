@@ -91,6 +91,22 @@ namespace PreyectoDesarrollo_unicah
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
+        private void Datos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                string usuario = txtusuario.Text;
+                string contraseña = txtcontraseña.Text.Trim();
+                if (!Validaciones.Usuario(sender, e, usuario, contraseña, txtusuario))
+                    return;
+                if (!ACCIONES_BD.CrearBDD(usuario))
+                    return;
+                if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this, txtusuario, txtcontraseña))
+                    return;
+                ACCIONES_BD Login = new ACCIONES_BD();
+                Login.Login(usuario, contraseña, this);
+            }
+        }
         private void txtusuario_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)

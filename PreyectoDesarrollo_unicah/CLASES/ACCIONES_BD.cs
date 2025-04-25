@@ -14,6 +14,7 @@ using PreyectoDesarrollo_unicah.FRMS_SUPERV;
 using DocumentFormat.OpenXml.Office.Word;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Drawing;
+using System.ComponentModel;
 
 
 namespace PreyectoDesarrollo_unicah.CLASES
@@ -21,6 +22,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
     class ACCIONES_BD
     {
         public static string nombre, apellido, empleado;
+        public readonly string RolForzado;
 
         public CONEXION_BD conexion = new CONEXION_BD();
 
@@ -29,7 +31,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
             nombre = "";
             apellido = "";
         }
-
         public static bool CrearBDD(string usuario)
         {
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarServidor.ConnectionString))
@@ -591,7 +592,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
                             if (rolUsuario == "administrador")
                             {
-                                frmAdmin admin = new frmAdmin();
+                                frmMigracion admin = new frmMigracion();
                                 admin.Show();
                                 Login.Hide();
                             }
@@ -717,7 +718,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.ExecuteNonQuery();
 
                     MessageBox.Show("Contraseña agregada, abriendo sesión de administrador, bienvenido", "Inicio de sesión Admin.", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    frmAdmin Menu = new frmAdmin();
+                    frmMigracion Menu = new frmMigracion();
                     Contra.Close();
                     Menu.Show();
                 }
@@ -1032,6 +1033,54 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
+        public static DataTable tablaJustificaTodo()
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
+            using (SqlCommand cmd = new SqlCommand("PA_Justifica_Todo", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CodigoDecano", empleado);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+
+
+            using (var sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Archivo Excel (*.xlsx)|*.xlsx";
+                sfd.Title = "Guardar Reporte Justificaciones";
+                sfd.FileName = "Justificaciones.xlsx";
+
+                using (var wb = new XLWorkbook())
+                {
+                    wb.Worksheets.Add(dt, "Justificaciones");
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            wb.SaveAs(sfd.FileName);
+                            MessageBox.Show(
+                                "Respaldo guardado correctamente.",
+                                "Respaldo exitoso",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information
+                            );
+                        }
+                        catch (Exception ex)
+                        {
+                            // ¿Es un bloqueo por "being used by another process"?
+                            if (ex is IOException ||
+                                ex is Win32Exception ||
+                                ex.Message.Contains("being used by another process"))
+                                MessageBox.Show("Por favor cerrar el archivo seleccionado para guardar", "Interrupción de Archivo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+            return dt;
+        }
+
         public static void FiltrarDatosJusto(string Docente, string Edificio, DataGridView dgv)
         {
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
@@ -1085,6 +1134,54 @@ namespace PreyectoDesarrollo_unicah.CLASES
             dgv.Columns[4].HeaderText = "Sección";
             dgv.Columns[5].Width = 125;
             dgv.Columns[5].HeaderText = "Fecha de Reposición";
+            return dt;
+        }
+
+        public static DataTable tablaReponeTodo()
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
+            using (SqlCommand cmd = new SqlCommand("PA_Repone_Todo", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CodigoDecano", empleado);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+
+
+            using (var sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Archivo Excel (*.xlsx)|*.xlsx";
+                sfd.Title = "Guardar Reporte Reposiciones";
+                sfd.FileName = "Reposiciones.xlsx";
+
+                using (var wb = new XLWorkbook())
+                {
+                    wb.Worksheets.Add(dt, "Reposiciones");
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            wb.SaveAs(sfd.FileName);
+                            MessageBox.Show(
+                                "Respaldo guardado correctamente.",
+                                "Respaldo exitoso",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information
+                            );
+                        }
+                        catch (Exception ex)
+                        {
+                            // ¿Es un bloqueo por "being used by another process"?
+                            if (ex is IOException ||
+                                ex is Win32Exception ||
+                                ex.Message.Contains("being used by another process"))
+                                MessageBox.Show("Por favor cerrar el archivo seleccionado para guardar", "Interrupción de Archivo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
             return dt;
         }
 

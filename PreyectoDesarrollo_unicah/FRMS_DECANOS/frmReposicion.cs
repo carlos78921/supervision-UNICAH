@@ -29,7 +29,7 @@ namespace PreyectoDesarrollo_unicah
         private void frmReposición_Load(object sender, EventArgs e)
         {
             lblPersona.Text = ACCIONES_BD.Persona();
-            dtpReposicion.MinDate = DateTime.Today;            
+            dtpReposicion.MinDate = DateTime.Today;
 
             //Ajuste del formulario
             cmbEdificio.SelectedIndex = 0;
@@ -59,7 +59,7 @@ namespace PreyectoDesarrollo_unicah
 
         }
 
-        private void btnDay_Click(object sender, EventArgs e) 
+        private void btnDay_Click(object sender, EventArgs e)
         {
             //Ajustes en la BDD
             ACCIONES_BD.Repongo(dgvRepone, (int)dgvRepone.CurrentRow.Cells[0].Value, dtpReposicion);
@@ -74,6 +74,11 @@ namespace PreyectoDesarrollo_unicah
         private void cmbEdificio_SelectedIndexChanged(object sender, EventArgs e)
         {
             ACCIONES_BD.FiltrarDatosRepo(txtBusco.Text, cmbEdificio.Text, dgvRepone);
+        }
+
+        private void btnReporta_Click(object sender, EventArgs e)
+        {
+            ACCIONES_BD.tablaReponeTodo();
         }
     }
 }

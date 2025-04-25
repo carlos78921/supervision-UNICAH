@@ -30,6 +30,7 @@ namespace PreyectoDesarrollo_unicah
         {
             Button btnAgregar;
             Button btnVoy;
+            Button btnReporta;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
@@ -51,6 +52,7 @@ namespace PreyectoDesarrollo_unicah
             label4 = new Label();
             btnAgregar = new Button();
             btnVoy = new Button();
+            btnReporta = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -64,7 +66,7 @@ namespace PreyectoDesarrollo_unicah
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(126, 44);
             btnAgregar.TabIndex = 29;
-            btnAgregar.Text = "INSERT&AR JUSTIFICACIÓN";
+            btnAgregar.Text = "&INSERTAR JUSTIFICACIÓN";
             btnAgregar.UseVisualStyleBackColor = true;
             btnAgregar.Click += btnAgregar_Click;
             // 
@@ -74,9 +76,19 @@ namespace PreyectoDesarrollo_unicah
             btnVoy.Name = "btnVoy";
             btnVoy.Size = new Size(126, 24);
             btnVoy.TabIndex = 27;
-            btnVoy.Text = "&Regresar";
+            btnVoy.Text = "&REGRESAR";
             btnVoy.UseVisualStyleBackColor = true;
             btnVoy.Click += Salir;
+            // 
+            // btnReporta
+            // 
+            btnReporta.Location = new Point(391, 592);
+            btnReporta.Name = "btnReporta";
+            btnReporta.Size = new Size(126, 44);
+            btnReporta.TabIndex = 44;
+            btnReporta.Text = "&REPORTAR JUSTIFICACIONES";
+            btnReporta.UseVisualStyleBackColor = true;
+            btnReporta.Click += btnReporta_Click;
             // 
             // pictureBox2
             // 
@@ -267,6 +279,7 @@ namespace PreyectoDesarrollo_unicah
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(794, 645);
+            Controls.Add(btnReporta);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(cmbEdificio);

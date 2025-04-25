@@ -30,6 +30,7 @@ namespace PreyectoDesarrollo_unicah
         {
             Button btnDay;
             Button btnVoy;
+            Button btnReporta;
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
@@ -44,6 +45,7 @@ namespace PreyectoDesarrollo_unicah
             label2 = new Label();
             btnDay = new Button();
             btnVoy = new Button();
+            btnReporta = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -70,6 +72,16 @@ namespace PreyectoDesarrollo_unicah
             btnVoy.Text = "&REGRESAR";
             btnVoy.UseVisualStyleBackColor = true;
             btnVoy.Click += btnVoy_Click;
+            // 
+            // btnReporta
+            // 
+            btnReporta.Location = new Point(358, 424);
+            btnReporta.Name = "btnReporta";
+            btnReporta.Size = new Size(153, 28);
+            btnReporta.TabIndex = 45;
+            btnReporta.Text = "&REPORTAR REPOSICIONES";
+            btnReporta.UseVisualStyleBackColor = true;
+            btnReporta.Click += btnReporta_Click;
             // 
             // pictureBox2
             // 
@@ -197,6 +209,7 @@ namespace PreyectoDesarrollo_unicah
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(636, 464);
+            Controls.Add(btnReporta);
             Controls.Add(label2);
             Controls.Add(label3);
             Controls.Add(cmbEdificio);

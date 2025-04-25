@@ -46,6 +46,7 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnContraseña_Click(object sender, EventArgs e)
         {
+            ACCIONES_BD.nombre = "Sr(a)."; ACCIONES_BD.apellido = "Admin.";
             TextBox txtadmin = new TextBox();
             string admin = "", contraseña = txtcontraseña.Text.Trim();
             if (!Validaciones.Contraseña(sender, e, admin, contraseña, this, txtadmin, txtcontraseña))

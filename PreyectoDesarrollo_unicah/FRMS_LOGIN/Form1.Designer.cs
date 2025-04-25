@@ -54,7 +54,9 @@
             txtusuario.Text = "Usuario:";
             txtusuario.Enter += txtusuario_Enter;
             txtusuario.KeyPress += txtusuario_KeyPress;
+            txtusuario.KeyPress += Datos_KeyPress;
             txtusuario.Leave += txtusuario_Leave;
+
             // 
             // btnLogin
             // 
@@ -128,6 +130,7 @@
             txtcontraseña.Text = "Contraseña:";
             txtcontraseña.Enter += txtcontraseña_Enter;
             txtcontraseña.KeyPress += txtcontraseña_KeyPress;
+            txtcontraseña.KeyPress += Datos_KeyPress;
             txtcontraseña.Leave += txtcontraseña_Leave;
             // 
             // Form1

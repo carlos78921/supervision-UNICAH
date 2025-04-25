@@ -8,6 +8,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
 {
     internal class Validaciones
     {
+        private static string Rol;
+
         public static bool Usuario (object sender, EventArgs e, string usuario, string contraseña, TextBox user)
         {
             if ((usuario == "Usuario:" || usuario == "") && 

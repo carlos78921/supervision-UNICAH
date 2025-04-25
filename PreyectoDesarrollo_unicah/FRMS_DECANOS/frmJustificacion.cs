@@ -38,7 +38,7 @@ namespace PreyectoDesarrollo_unicah
             ACCIONES_BD.tablaJustifica(dgvJustificacion, ACCIONES_BD.empleado);
         }
 
-        private void Salir (object sender, EventArgs e)
+        private void Salir(object sender, EventArgs e)
         {
             this.Close();
             frmDecano menu = new frmDecano();
@@ -131,6 +131,11 @@ namespace PreyectoDesarrollo_unicah
         private void cmbEdificio_SelectedIndexChanged(object sender, EventArgs e)
         {
             ACCIONES_BD.FiltrarDatosJusto(txtBusco.Text, cmbEdificio.Text, dgvJustificacion);
+        }
+
+        private void btnReporta_Click(object sender, EventArgs e)
+        {
+            ACCIONES_BD.tablaJustificaTodo();
         }
     }
 }

@@ -194,9 +194,12 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
                     {
                         workbook.SaveAs(saveFileDialog.FileName);
                     }
-                    catch (IOException)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("El archivo ya está abierto en Excel.\nPor favor cerrar antes de guardar.", "Archivo en uso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        if (ex is IOException ||
+                            ex is Win32Exception ||
+                            ex.Message.Contains("being used by another process"))
+                            MessageBox.Show("El archivo ya está abierto en Excel.\nPor favor cerrar antes de guardar.", "Archivo en uso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
