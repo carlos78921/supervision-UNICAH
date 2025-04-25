@@ -21,9 +21,8 @@ namespace PreyectoDesarrollo_unicah
             InitializeComponent();
             // Genera el código constante por asignación
             codigo = GenerarCodigo();
-            // Envía el correo usando el codigo constante
-            GenerarCorreo(codigo);
         }
+        private string correo;
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -48,8 +47,9 @@ namespace PreyectoDesarrollo_unicah
 
         private bool GenerarCorreo(string codigo)
         {
+            correo = txtMail.Text;
             MailAddress From = new MailAddress("byrd_riverat42@unicah.edu", "BYRON DANIEL RIVERA TABORA"); //De mí
-            MailAddress To = new MailAddress("byrd_riverat42@unicah.edu", "BYRON DANIEL RIVERA TABORA"); //Para mí
+            MailAddress To = new MailAddress(correo, "Administrador(a)"); //Para mí
             MailMessage msg = new MailMessage(From, To); //Correo de mí para mí
             msg.Subject = "Recuperación de contraseña"; //Asunto
             msg.Body = "Código de acceso: " + codigo; //Mensaje
@@ -78,7 +78,10 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnRecibir_Click(object sender, EventArgs e)
         {
-            lblCode.Text = "Su código ha sido generado de nuevo";
+            int vez = 0;
+            vez++;
+            if (vez>1)
+                lblCode.Text = "Su código ha sido generado de nuevo";
             //Esto cambia el código
             codigo = GenerarCodigo();
             // Envía el correo usando el codigo constante

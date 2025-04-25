@@ -1,5 +1,6 @@
 using ClosedXML.Excel;
 using PreyectoDesarrollo_unicah.CLASES;
+using PreyectoDesarrollo_unicah.FRMS_ADMIN;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -63,8 +64,8 @@ namespace PreyectoDesarrollo_unicah
         private void Salir(object sender, EventArgs e)
         {
             this.Close();
-            Form1 Login = new Form1();
-            Login.Show();
+            frmAdmin Menu = new frmAdmin();
+            Menu.Show();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)

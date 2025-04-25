@@ -37,6 +37,8 @@
             label2 = new Label();
             lblCode = new Label();
             btnRecibir = new Button();
+            txtMail = new TextBox();
+            label1 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -94,7 +96,7 @@
             btnEnviar.FlatAppearance.BorderColor = SystemColors.HotTrack;
             btnEnviar.FlatStyle = FlatStyle.Flat;
             btnEnviar.ForeColor = Color.Black;
-            btnEnviar.Location = new Point(420, 171);
+            btnEnviar.Location = new Point(418, 219);
             btnEnviar.Name = "btnEnviar";
             btnEnviar.Size = new Size(139, 40);
             btnEnviar.TabIndex = 3;
@@ -104,7 +106,7 @@
             // 
             // txtCode
             // 
-            txtCode.Location = new Point(234, 115);
+            txtCode.Location = new Point(231, 159);
             txtCode.Name = "txtCode";
             txtCode.Size = new Size(307, 23);
             txtCode.TabIndex = 1;
@@ -116,7 +118,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(336, 91);
+            label2.Location = new Point(333, 141);
             label2.Name = "label2";
             label2.Size = new Size(100, 15);
             label2.TabIndex = 9;
@@ -126,11 +128,12 @@
             // lblCode
             // 
             lblCode.AutoSize = true;
-            lblCode.Location = new Point(284, 147);
+            lblCode.Location = new Point(282, 195);
             lblCode.Name = "lblCode";
             lblCode.Size = new Size(209, 15);
             lblCode.TabIndex = 11;
             lblCode.Text = "Un código ha sido enviado a su correo";
+            lblCode.Visible = false;
             // 
             // btnRecibir
             // 
@@ -138,7 +141,7 @@
             btnRecibir.FlatAppearance.BorderColor = SystemColors.HotTrack;
             btnRecibir.FlatStyle = FlatStyle.Flat;
             btnRecibir.ForeColor = Color.Black;
-            btnRecibir.Location = new Point(220, 171);
+            btnRecibir.Location = new Point(218, 219);
             btnRecibir.Name = "btnRecibir";
             btnRecibir.Size = new Size(139, 40);
             btnRecibir.TabIndex = 2;
@@ -146,11 +149,31 @@
             btnRecibir.UseVisualStyleBackColor = false;
             btnRecibir.Click += btnRecibir_Click;
             // 
+            // txtMail
+            // 
+            txtMail.Location = new Point(231, 109);
+            txtMail.Name = "txtMail";
+            txtMail.Size = new Size(307, 23);
+            txtMail.TabIndex = 12;
+            txtMail.Text = "Correo:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(333, 91);
+            label1.Name = "label1";
+            label1.Size = new Size(97, 15);
+            label1.TabIndex = 13;
+            label1.Text = "Ingrese su correo";
+            label1.Visible = false;
+            // 
             // frmPierdoContraseña
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(764, 222);
+            ClientSize = new Size(764, 271);
+            Controls.Add(txtMail);
+            Controls.Add(label1);
             Controls.Add(btnRecibir);
             Controls.Add(lblCode);
             Controls.Add(txtCode);
@@ -181,5 +204,7 @@
         private Label label2;
         private Label lblCode;
         private Button btnRecibir;
+        private TextBox txtMail;
+        private Label label1;
     }
 }

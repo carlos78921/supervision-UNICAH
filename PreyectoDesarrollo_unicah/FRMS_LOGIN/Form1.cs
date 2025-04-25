@@ -107,6 +107,7 @@ namespace PreyectoDesarrollo_unicah
                 Login.Login(usuario, contraseña, this);
             }
         }
+
         private void txtusuario_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
