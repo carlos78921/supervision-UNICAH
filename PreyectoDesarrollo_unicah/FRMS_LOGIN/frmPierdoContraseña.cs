@@ -55,7 +55,7 @@ namespace PreyectoDesarrollo_unicah
             if (vez > 1)
                 lblCode.Text = "Su código ha sido generado de nuevo";
             MailAddress From = new MailAddress("byrd_riverat42@unicah.edu", "BYRON DANIEL RIVERA TABORA"); //De mí
-            MailAddress To = new MailAddress(correo, "Administrador(a)"); //Para mí
+            MailAddress To = new MailAddress(correo, "Administrador(a)"); //Para ti
             MailMessage msg = new MailMessage(From, To); //Correo de mí para mí
             msg.Subject = "Recuperación de contraseña"; //Asunto
             msg.Body = "Código de acceso: " + codigo; //Mensaje

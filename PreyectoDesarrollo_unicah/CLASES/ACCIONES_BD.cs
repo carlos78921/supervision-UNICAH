@@ -15,7 +15,6 @@ using DocumentFormat.OpenXml.Office.Word;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Drawing;
 using System.ComponentModel;
-using PreyectoDesarrollo_unicah.FRMS_ADMIN;
 
 
 namespace PreyectoDesarrollo_unicah.CLASES
