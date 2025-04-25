@@ -70,17 +70,18 @@ namespace PreyectoDesarrollo_unicah
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿Recordó su contraseña?\n\nSeleccionar <<Sí>> regresará al inicio de sesión\ny reiniciará su código","Recordé mi Contraseña",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("¿Recordó su contraseña?\n\nSeleccionar <<Sí>> regresará al inicio de sesión\ny reiniciará su código", "Recordé mi Contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 this.Close();
-                Form1 Login = new Form1();
-                Login.Show();
+            Form1 Login = new Form1();
+            Login.Show();
         }
 
         private void btnRecibir_Click(object sender, EventArgs e)
         {
+            lblCode.Visible = true;
             int vez = 0;
             vez++;
-            if (vez>1)
+            if (vez > 1)
                 lblCode.Text = "Su código ha sido generado de nuevo";
             //Esto cambia el código
             codigo = GenerarCodigo();
@@ -109,11 +110,8 @@ namespace PreyectoDesarrollo_unicah
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void txtCode_KeyPress(object sender, KeyPressEventArgs e)
+        private void KeyPressValida(object sender, KeyPressEventArgs e)
         {
-            e.KeyChar = char.ToUpper(e.KeyChar);
-            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
-                e.Handled = true;
             if (e.KeyChar == (char)Keys.Enter)
             {
                 if (!Validaciones.CodeVale(sender, e, codigo, txtCode))
@@ -130,6 +128,22 @@ namespace PreyectoDesarrollo_unicah
             }
         }
 
+        private void txtCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = char.ToUpper(e.KeyChar);
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                e.Handled = true;
+            KeyPressValida(sender, e);
+        }
+
+        private void txtMail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+                e.Handled = true;
+            KeyPressValida(sender, e);
+        }
+
+
         private void txtCode_Enter(object sender, EventArgs e)
         {
             if (txtCode.Text == "Código:")
@@ -140,6 +154,18 @@ namespace PreyectoDesarrollo_unicah
         {
             if (txtCode.Text == "")
                 txtCode.Text = "Código:";
+        }
+
+        private void txtMail_Enter(object sender, EventArgs e)
+        {
+            if (txtMail.Text == "Correo:")
+                txtMail.Text = "";
+        }
+
+        private void txtMail_Leave(object sender, EventArgs e)
+        {
+            if (txtMail.Text == "")
+                txtMail.Text = "Correo:";
         }
     }
 }

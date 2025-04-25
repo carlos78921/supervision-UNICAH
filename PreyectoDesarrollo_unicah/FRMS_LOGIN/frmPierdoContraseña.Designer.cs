@@ -156,6 +156,9 @@
             txtMail.Size = new Size(307, 23);
             txtMail.TabIndex = 12;
             txtMail.Text = "Correo:";
+            txtMail.Enter += txtMail_Enter;
+            txtMail.KeyPress += txtMail_KeyPress;
+            txtMail.Leave += txtMail_Leave;
             // 
             // label1
             // 
