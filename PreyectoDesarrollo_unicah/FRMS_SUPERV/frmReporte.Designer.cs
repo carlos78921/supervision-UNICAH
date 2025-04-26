@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReporte));
             panel1 = new Panel();
             pictureBox4 = new PictureBox();
             pictureBox5 = new PictureBox();
@@ -128,7 +129,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(153, 90);
             label1.Name = "label1";
-            label1.Size = new Size(157, 15);
+            label1.Size = new Size(156, 15);
             label1.TabIndex = 13;
             label1.Text = "SACAR REPORTE POR EXCEL";
             // 
@@ -164,6 +165,7 @@
             Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmReporte";
             Text = "frmReporte";
             Load += frmReporte_Load;

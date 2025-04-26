@@ -31,6 +31,7 @@ namespace PreyectoDesarrollo_unicah
             Button btnDay;
             Button btnVoy;
             Button btnReporta;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReposicion));
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
@@ -59,7 +60,7 @@ namespace PreyectoDesarrollo_unicah
             btnDay.Name = "btnDay";
             btnDay.Size = new Size(211, 23);
             btnDay.TabIndex = 21;
-            btnDay.Text = "INSERT&AR DÕA DE REPOSICI”N";
+            btnDay.Text = "INSERT&AR D√çA DE REPOSICI√ìN";
             btnDay.UseVisualStyleBackColor = true;
             btnDay.Click += btnDay_Click;
             // 
@@ -144,9 +145,9 @@ namespace PreyectoDesarrollo_unicah
             label1.AutoSize = true;
             label1.Location = new Point(266, 97);
             label1.Name = "label1";
-            label1.Size = new Size(142, 15);
+            label1.Size = new Size(141, 15);
             label1.TabIndex = 18;
-            label1.Text = "REPORTE DE REPOSICI”N";
+            label1.Text = "REPORTE DE REPOSICI√ìN";
             // 
             // dgvRepone
             // 
@@ -221,9 +222,10 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmReposicion";
             Text = "FrmReporte";
-            Load += frmReposiciÛn_Load;
+            Load += frmReposici√≥n_Load;
             MouseDown += MoveForm_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PreyectoDesarrollo_unicah", "PreyectoDesarrollo_unicah\PreyectoDesarrollo_unicah.csproj", "{0BB40A2B-2B32-4898-9F45-584C5C9DE4A6}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupUnicah", "SetupUnicah\SetupUnicah.vdproj", "{19533033-9211-442C-97F2-7B72ED7938D3}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup Supervisión Unicah FInal", "Setup Supervisión Unicah FInal\Setup Supervisión Unicah FInal.vdproj", "{9D61BDD4-266F-EA17-2A86-492510DCA8E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,9 +17,8 @@ Global
 		{0BB40A2B-2B32-4898-9F45-584C5C9DE4A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BB40A2B-2B32-4898-9F45-584C5C9DE4A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BB40A2B-2B32-4898-9F45-584C5C9DE4A6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{19533033-9211-442C-97F2-7B72ED7938D3}.Debug|Any CPU.ActiveCfg = Debug
-		{19533033-9211-442C-97F2-7B72ED7938D3}.Debug|Any CPU.Build.0 = Debug
-		{19533033-9211-442C-97F2-7B72ED7938D3}.Release|Any CPU.ActiveCfg = Release
+		{9D61BDD4-266F-EA17-2A86-492510DCA8E6}.Debug|Any CPU.ActiveCfg = Debug
+		{9D61BDD4-266F-EA17-2A86-492510DCA8E6}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

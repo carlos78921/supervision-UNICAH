@@ -35,6 +35,7 @@ namespace PreyectoDesarrollo_unicah
             Button btnListaLoad;
             Button btnListaSave;
             Button btnName;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdmin));
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
@@ -236,9 +237,9 @@ namespace PreyectoDesarrollo_unicah
             label1.AutoSize = true;
             label1.Location = new Point(453, 99);
             label1.Name = "label1";
-            label1.Size = new Size(129, 15);
+            label1.Size = new Size(128, 15);
             label1.TabIndex = 12;
-            label1.Text = "MIGRACIÓN DE DATOS";
+            label1.Text = "MIGRACIÃ“N DE DATOS";
             // 
             // lblParcial
             // 
@@ -348,7 +349,7 @@ namespace PreyectoDesarrollo_unicah
             toolTip1.SetToolTip(txtBusca, "Presiona Enter para mayor efecto");
             txtBusca.KeyDown += txtBusca_KeyDown;
             // 
-            // frmMigracion
+            // frmAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -371,9 +372,10 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(label1);
             Controls.Add(groupBox2);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "frmMigracion";
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "frmAdmin";
             Text = "FrmReporte";
-            Load += frmMigración_Load;
+            Load += frmMigraciÃ³n_Load;
             MouseDown += MoveForm_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

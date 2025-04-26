@@ -28,7 +28,7 @@ namespace PreyectoDesarrollo_unicah
 
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
-        private void frmMigración_Load(object sender, EventArgs e)
+        private void frmMigraciÃ³n_Load(object sender, EventArgs e)
         {
             lblPersona.Text = ACCIONES_BD.Persona();
 
@@ -47,8 +47,8 @@ namespace PreyectoDesarrollo_unicah
             mesAdmin.MaxDate = fin;
 
             if (inicio.Date == DateTime.Now.Date)
-                if (MessageBox.Show("¿Seguro que quiere definir el inicio hoy?" +
-                "\nNo podrá definir de nuevo si no es el que desea", "Iniciar Periodo",
+                if (MessageBox.Show("ï¿½Seguro que quiere definir el inicio hoy?" +
+                "\nNo podrï¿½ definir de nuevo si no es el que desea", "Iniciar Periodo",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     ACCIONES_BD.CrearPeriodo(inicio, fin);
@@ -125,11 +125,11 @@ namespace PreyectoDesarrollo_unicah
                         }
                         catch (Exception ex)
                         {
-                            // ¿Es un bloqueo por "being used by another process"?
+                            // ï¿½Es un bloqueo por "being used by another process"?
                             if (ex is IOException ||
                                 ex is Win32Exception ||
                                 ex.Message.Contains("being used by another process"))
-                                MessageBox.Show("Por favor cerrar el archivo seleccionado para guardar", "Interrupción de Archivo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("Por favor cerrar el archivo seleccionado para guardar", "Interrupciï¿½n de Archivo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -138,16 +138,16 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnReinicioBDD_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿Está seguro de que desea reiniciar la base de datos?\nEste acto hará que salga por completo del programa para iniciar de nuevo sus datos", "Reinicio de BDD", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (MessageBox.Show("ï¿½Estï¿½ seguro de que desea reiniciar la base de datos?\nEste acto harï¿½ que salga por completo del programa para iniciar de nuevo sus datos", "Reinicio de BDD", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                if (MessageBox.Show("¿Desea guardar las asistencias antes del reinicio?", "Guardar Asistencias", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("ï¿½Desea guardar las asistencias antes del reinicio?", "Guardar Asistencias", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     RespaldoExcel();
                     ACCIONES_BD.ReiniciarBDD("Supervision_Unicah");
                 }
                 else
                     ACCIONES_BD.ReiniciarBDD("Supervision_Unicah");
-                MessageBox.Show("Base de datos reiniciada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Base de datos reiniciada exitosamente.", "ï¿½xito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 MessageBox.Show("Saliendo del programa", "Cerrando Programa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Application.Exit();
             }
@@ -251,7 +251,7 @@ namespace PreyectoDesarrollo_unicah
                         cmd.Parameters.AddWithValue("@Nombre4", dgvAdmin.Rows[row].Cells[4].Value);
                         cmd.Parameters.AddWithValue("@rol", dgvAdmin.Rows[row].Cells[5].Value);
                         cmd.Parameters.AddWithValue("@usuario", dgvAdmin.Rows[row].Cells[6].Value);
-                        cmd.Parameters.AddWithValue("@Contraseña", dgvAdmin.Rows[row].Cells[7].Value);
+                        cmd.Parameters.AddWithValue("@ContraseÃ±a", dgvAdmin.Rows[row].Cells[7].Value);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -265,7 +265,7 @@ namespace PreyectoDesarrollo_unicah
             if (e.ColumnIndex == 7 && e.Value != null)
             {
                 e.Value = new string('*', e.Value.ToString().Length);
-                e.FormattingApplied = true; //Esto para no afectar después por "contra" como valor sin asterísco
+                e.FormattingApplied = true; //Esto para no afectar despuï¿½s por "contra" como valor sin asterï¿½sco
             }
         }
 
@@ -299,9 +299,9 @@ namespace PreyectoDesarrollo_unicah
 
         private void dgvAdmin_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvAdmin.Columns[e.ColumnIndex].Name == "contraseña")
+            if (dgvAdmin.Columns[e.ColumnIndex].Name == "contraseï¿½a")
             {
-                if (MessageBox.Show("¿Desea cambiar la contraseña?", "Cambiar contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("ï¿½Desea cambiar la contraseï¿½a?", "Cambiar contraseï¿½a", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     dgvAdmin.Columns[7].ReadOnly = false;
                     dgvAdmin.CurrentRow.Cells[7].Value = "";

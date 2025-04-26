@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSupervisor));
             btnReporte = new Button();
             btnMarca = new Button();
             btnLogOut = new Button();
@@ -140,6 +141,7 @@
             Controls.Add(btnMarca);
             Controls.Add(btnLogOut);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmSupervisor";
             Text = "frmSupervisor";
             Load += frmSupervisor_Load;

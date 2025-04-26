@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAsistencia));
             btnSalir = new Button();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
@@ -130,7 +131,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(487, 97);
             label1.Name = "label1";
-            label1.Size = new Size(125, 15);
+            label1.Size = new Size(123, 15);
             label1.TabIndex = 12;
             label1.Text = "TOMA DE ASISTENCIA";
             // 
@@ -319,6 +320,7 @@
             Controls.Add(btnSalir);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmAsistencia";
             Text = "FrmReporte";
             Load += FrmAsiste_Load;

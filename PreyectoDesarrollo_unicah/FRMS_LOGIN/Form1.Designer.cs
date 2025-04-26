@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             txtusuario = new TextBox();
             btnLogin = new Button();
             panel1 = new Panel();
@@ -53,10 +54,8 @@
             txtusuario.TabIndex = 1;
             txtusuario.Text = "Usuario:";
             txtusuario.Enter += txtusuario_Enter;
-            txtusuario.KeyPress += txtusuario_KeyPress;
             txtusuario.KeyPress += Datos_KeyPress;
             txtusuario.Leave += txtusuario_Leave;
-
             // 
             // btnLogin
             // 
@@ -129,7 +128,6 @@
             txtcontraseña.TabIndex = 2;
             txtcontraseña.Text = "Contraseña:";
             txtcontraseña.Enter += txtcontraseña_Enter;
-            txtcontraseña.KeyPress += txtcontraseña_KeyPress;
             txtcontraseña.KeyPress += Datos_KeyPress;
             txtcontraseña.Leave += txtcontraseña_Leave;
             // 
@@ -144,6 +142,7 @@
             Controls.Add(btnLogin);
             Controls.Add(txtusuario);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";

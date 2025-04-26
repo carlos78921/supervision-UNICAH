@@ -29,6 +29,7 @@ namespace PreyectoDesarrollo_unicah
         private void InitializeComponent()
         {
             Button btnLogout;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocente));
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
@@ -51,18 +52,18 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(425, 311);
+            btnLogout.Location = new Point(776, 598);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(126, 23);
             btnLogout.TabIndex = 17;
-            btnLogout.Text = "&CERRAR SESIÓN";
+            btnLogout.Text = "&CERRAR SESIÃ“N";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(507, 3);
+            pictureBox2.Location = new Point(848, 3);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(29, 20);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -73,7 +74,7 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(542, 3);
+            pictureBox1.Location = new Point(883, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 20);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -90,7 +91,7 @@ namespace PreyectoDesarrollo_unicah
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(-4, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(574, 87);
+            panel1.Size = new Size(914, 87);
             panel1.TabIndex = 11;
             panel1.MouseDown += panel1_MouseDown;
             // 
@@ -99,7 +100,7 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.AutoSize = true;
             lblPersona.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPersona.ForeColor = Color.White;
-            lblPersona.Location = new Point(386, 63);
+            lblPersona.Location = new Point(780, 63);
             lblPersona.Name = "lblPersona";
             lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 22;
@@ -127,7 +128,7 @@ namespace PreyectoDesarrollo_unicah
             dgvDoc.Name = "dgvDoc";
             dgvDoc.ReadOnly = true;
             dgvDoc.RowHeadersWidth = 51;
-            dgvDoc.Size = new Size(261, 162);
+            dgvDoc.Size = new Size(618, 467);
             dgvDoc.TabIndex = 16;
             dgvDoc.CellContentClick += dgvDoc_CellContentClick;
             dgvDoc.SelectionChanged += dgvDoc_SelectionChanged;
@@ -142,7 +143,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // clmSeccion
             // 
-            clmSeccion.HeaderText = "Sección";
+            clmSeccion.HeaderText = "SecciÃ³n";
             clmSeccion.MinimumWidth = 6;
             clmSeccion.Name = "clmSeccion";
             clmSeccion.ReadOnly = true;
@@ -153,13 +154,13 @@ namespace PreyectoDesarrollo_unicah
             label1.AutoSize = true;
             label1.Location = new Point(221, 90);
             label1.Name = "label1";
-            label1.Size = new Size(132, 15);
+            label1.Size = new Size(131, 15);
             label1.TabIndex = 15;
             label1.Text = "ASISTENCIA PERSONAL";
             // 
             // mesDoc
             // 
-            mesDoc.Location = new Point(284, 139);
+            mesDoc.Location = new Point(642, 114);
             mesDoc.Name = "mesDoc";
             mesDoc.TabIndex = 22;
             mesDoc.DateSelected += mesDoc_DateSelected;
@@ -167,7 +168,7 @@ namespace PreyectoDesarrollo_unicah
             // lblWeek
             // 
             lblWeek.AutoSize = true;
-            lblWeek.Location = new Point(455, 120);
+            lblWeek.Location = new Point(813, 95);
             lblWeek.Name = "lblWeek";
             lblWeek.Size = new Size(49, 15);
             lblWeek.TabIndex = 24;
@@ -176,7 +177,7 @@ namespace PreyectoDesarrollo_unicah
             // lblParcial
             // 
             lblParcial.AutoSize = true;
-            lblParcial.Location = new Point(311, 120);
+            lblParcial.Location = new Point(669, 95);
             lblParcial.Name = "lblParcial";
             lblParcial.Size = new Size(42, 15);
             lblParcial.TabIndex = 23;
@@ -186,7 +187,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(569, 346);
+            ClientSize = new Size(908, 633);
             Controls.Add(lblWeek);
             Controls.Add(lblParcial);
             Controls.Add(mesDoc);
@@ -195,6 +196,7 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmDocente";
             Text = "FrmReporte";
             Load += frmDocente_Load;
@@ -218,10 +220,10 @@ namespace PreyectoDesarrollo_unicah
         private Label label1;
         private Label lblPersona;
         private PictureBox pictureBox3;
-        private DataGridViewTextBoxColumn clmClase;
-        private DataGridViewTextBoxColumn clmSeccion;
         private MonthCalendar mesDoc;
         private Label lblWeek;
         private Label lblParcial;
+        private DataGridViewTextBoxColumn clmClase;
+        private DataGridViewTextBoxColumn clmSeccion;
     }
 }

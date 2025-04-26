@@ -31,6 +31,7 @@ namespace PreyectoDesarrollo_unicah
             Button btnAgregar;
             Button btnVoy;
             Button btnReporta;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmJustificacion));
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
@@ -66,7 +67,7 @@ namespace PreyectoDesarrollo_unicah
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(126, 44);
             btnAgregar.TabIndex = 29;
-            btnAgregar.Text = "&INSERTAR JUSTIFICACI覰";
+            btnAgregar.Text = "&INSERTAR JUSTIFICACI脫N";
             btnAgregar.UseVisualStyleBackColor = true;
             btnAgregar.Click += btnAgregar_Click;
             // 
@@ -149,11 +150,11 @@ namespace PreyectoDesarrollo_unicah
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(310, 123);
+            label2.Location = new Point(276, 122);
             label2.Name = "label2";
             label2.Size = new Size(123, 15);
             label2.TabIndex = 30;
-            label2.Text = "Justificaci髇 detallada";
+            label2.Text = "Justificaci贸n detallada";
             // 
             // dgvJustificacion
             // 
@@ -185,7 +186,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // clmSeccion
             // 
-            clmSeccion.HeaderText = "Secci髇";
+            clmSeccion.HeaderText = "Secci贸n";
             clmSeccion.MinimumWidth = 6;
             clmSeccion.Name = "clmSeccion";
             clmSeccion.ReadOnly = true;
@@ -201,7 +202,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // clmJustifica
             // 
-            clmJustifica.HeaderText = "Justificaci髇";
+            clmJustifica.HeaderText = "Justificaci贸n";
             clmJustifica.MinimumWidth = 6;
             clmJustifica.Name = "clmJustifica";
             clmJustifica.ReadOnly = true;
@@ -212,9 +213,9 @@ namespace PreyectoDesarrollo_unicah
             label1.AutoSize = true;
             label1.Location = new Point(310, 93);
             label1.Name = "label1";
-            label1.Size = new Size(173, 15);
+            label1.Size = new Size(171, 15);
             label1.TabIndex = 25;
-            label1.Text = "JUSTIFICACI覰 DE ASISTENCIA";
+            label1.Text = "JUSTIFICACI脫N DE ASISTENCIA";
             // 
             // txtJustifica
             // 
@@ -235,7 +236,7 @@ namespace PreyectoDesarrollo_unicah
             lblCaracteres.Name = "lblCaracteres";
             lblCaracteres.Size = new Size(114, 17);
             lblCaracteres.TabIndex = 38;
-            lblCaracteres.Text = "L韒ite de caracteres";
+            lblCaracteres.Text = "L铆mite de caracteres";
             // 
             // label3
             // 
@@ -293,9 +294,10 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmJustificacion";
             Text = "FrmReporte";
-            Load += frmJustificaci髇_Load;
+            Load += frmJustificaci贸n_Load;
             MouseDown += MoveForm_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

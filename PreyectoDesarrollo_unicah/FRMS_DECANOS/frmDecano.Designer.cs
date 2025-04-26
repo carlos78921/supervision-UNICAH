@@ -29,6 +29,7 @@ namespace PreyectoDesarrollo_unicah
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDecano));
             btnLogOut = new Button();
             btnJustifica = new Button();
             btnReponer = new Button();
@@ -141,6 +142,7 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(btnLogOut);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmDecano";
             Text = "Frm_Admin";
             Load += Frm_Admin_Load;
