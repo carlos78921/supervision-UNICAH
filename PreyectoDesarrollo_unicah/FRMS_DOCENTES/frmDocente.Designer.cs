@@ -52,9 +52,10 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(776, 598);
+            btnLogout.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.Location = new Point(727, 567);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(126, 23);
+            btnLogout.Size = new Size(175, 54);
             btnLogout.TabIndex = 17;
             btnLogout.Text = "&CERRAR SESIÓN";
             btnLogout.UseVisualStyleBackColor = true;
@@ -128,7 +129,7 @@ namespace PreyectoDesarrollo_unicah
             dgvDoc.Name = "dgvDoc";
             dgvDoc.ReadOnly = true;
             dgvDoc.RowHeadersWidth = 51;
-            dgvDoc.Size = new Size(618, 467);
+            dgvDoc.Size = new Size(261, 467);
             dgvDoc.TabIndex = 16;
             dgvDoc.CellContentClick += dgvDoc_CellContentClick;
             dgvDoc.SelectionChanged += dgvDoc_SelectionChanged;
@@ -154,13 +155,14 @@ namespace PreyectoDesarrollo_unicah
             label1.AutoSize = true;
             label1.Location = new Point(221, 90);
             label1.Name = "label1";
-            label1.Size = new Size(131, 15);
+            label1.Size = new Size(132, 15);
             label1.TabIndex = 15;
             label1.Text = "ASISTENCIA PERSONAL";
             // 
             // mesDoc
             // 
-            mesDoc.Location = new Point(642, 114);
+            mesDoc.CalendarDimensions = new Size(2, 2);
+            mesDoc.Location = new Point(345, 222);
             mesDoc.Name = "mesDoc";
             mesDoc.TabIndex = 22;
             mesDoc.DateSelected += mesDoc_DateSelected;
@@ -168,18 +170,20 @@ namespace PreyectoDesarrollo_unicah
             // lblWeek
             // 
             lblWeek.AutoSize = true;
-            lblWeek.Location = new Point(813, 95);
+            lblWeek.Font = new Font("Segoe UI", 18F);
+            lblWeek.Location = new Point(659, 181);
             lblWeek.Name = "lblWeek";
-            lblWeek.Size = new Size(49, 15);
+            lblWeek.Size = new Size(99, 32);
             lblWeek.TabIndex = 24;
             lblWeek.Text = "Semana";
             // 
             // lblParcial
             // 
             lblParcial.AutoSize = true;
-            lblParcial.Location = new Point(669, 95);
+            lblParcial.Font = new Font("Segoe UI", 18F);
+            lblParcial.Location = new Point(436, 181);
             lblParcial.Name = "lblParcial";
-            lblParcial.Size = new Size(42, 15);
+            lblParcial.Size = new Size(81, 32);
             lblParcial.TabIndex = 23;
             lblParcial.Text = "Parcial";
             // 
