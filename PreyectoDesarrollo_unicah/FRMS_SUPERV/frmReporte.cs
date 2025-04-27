@@ -140,6 +140,9 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
 
         private void btnExcel_Click(object sender, EventArgs e)
         {
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
+
             // Obtener el DataTable directamente de la base de datos (sin usar dgv).
             DataTable dt = TransferirDatosSuperExcel();
 

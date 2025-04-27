@@ -167,7 +167,7 @@ namespace PreyectoDesarrollo_unicah
             txtBusco.Name = "txtBusco";
             txtBusco.Size = new Size(223, 23);
             txtBusco.TabIndex = 26;
-            txtBusco.KeyDown += txtBusco_KeyDown;
+            txtBusco.KeyDown += Filtros;
             // 
             // cmbEdificio
             // 
@@ -178,7 +178,7 @@ namespace PreyectoDesarrollo_unicah
             cmbEdificio.Name = "cmbEdificio";
             cmbEdificio.Size = new Size(78, 23);
             cmbEdificio.TabIndex = 27;
-            cmbEdificio.SelectedIndexChanged += cmbEdificio_SelectedIndexChanged;
+            cmbEdificio.SelectedIndexChanged += Filtros;
             // 
             // label3
             // 

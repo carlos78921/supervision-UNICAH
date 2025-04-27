@@ -995,26 +995,16 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
             }
-            if (dt.Rows.Count > 0)
-            {
-                dgv.Columns.Clear();
+            dgv.AutoGenerateColumns = true;
+            dgv.DataSource = dt;
+            dgv.Refresh();
 
-                BindingSource bs = new BindingSource();
-                bs.DataSource = dt;
-                dgv.DataSource = bs;
-                bs.ResetBindings(false);
-                dgv.AutoGenerateColumns = true;
-                dgv.Refresh();
-
-                dgv.Columns[0].Visible = false;
-                dgv.Columns[1].Width = 150;
-                dgv.Columns[2].Width = 80;
-                dgv.Columns[3].Width = 66;
-                dgv.Columns[4].Width = 120;
-                dgv.Columns[4].HeaderText = "Sección";
-                dgv.Columns[5].Width = 304;
-                dgv.Columns[5].HeaderText = "Justificación";
-            }
+            dgv.Columns[0].Visible = false;
+            dgv.Columns[1].Width = 150;
+            dgv.Columns[2].Width = 100;
+            dgv.Columns[3].Width = 300;
+            dgv.Columns[4].Width = 100;
+            dgv.Columns[5].Width = 304;
 
             return dt;
         }
@@ -1064,12 +1054,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         try
                         {
                             wb.SaveAs(sfd.FileName);
-                            MessageBox.Show(
-                                "Respaldo guardado correctamente.",
-                                "Respaldo exitoso",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information
-                            );
                         }
                         catch (Exception ex)
                         {
@@ -1095,6 +1079,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Docente", Docente);
                     cmd.Parameters.AddWithValue("@Edificio", Edificio);
+                    cmd.Parameters.AddWithValue("@CodigoDecano", empleado);
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -1119,25 +1104,15 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
             }
-            if (dt.Rows.Count > 0)
-            {
-                dgv.Columns.Clear();
+            dgv.AutoGenerateColumns = true;
+            dgv.DataSource = dt;
+            dgv.Refresh();
 
-                BindingSource bs = new BindingSource();
-                bs.DataSource = dt;
-                dgv.DataSource = bs;
-                bs.ResetBindings(false);
-                dgv.AutoGenerateColumns = true;
-                dgv.Refresh(); 
-                dgv.Columns[0].Visible = false;
-            }
             dgv.Columns[1].Width = 150;
             dgv.Columns[2].Width = 100;
             dgv.Columns[3].Width = 300;
             dgv.Columns[4].Width = 100;
-            dgv.Columns[4].HeaderText = "Sección";
             dgv.Columns[5].Width = 125;
-            dgv.Columns[5].HeaderText = "Fecha de Reposición";
             return dt;
         }
 
@@ -1168,12 +1143,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         try
                         {
                             wb.SaveAs(sfd.FileName);
-                            MessageBox.Show(
-                                "Respaldo guardado correctamente.",
-                                "Respaldo exitoso",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information
-                            );
                         }
                         catch (Exception ex)
                         {
@@ -1191,7 +1160,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public static void Repongo(DataGridView dgv, int Ausencia, DateTimePicker dtp)
         {
-            DateTime dia = dtp.Value; using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
+            DateTime dia = dtp.Value; 
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand("PA_Insertar_Reposicion", conn))
@@ -1217,6 +1187,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Repo", Repo);
                     cmd.Parameters.AddWithValue("@Edificio", Edificio);
+                    cmd.Parameters.AddWithValue("@CodigoDecano", empleado);
+
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();

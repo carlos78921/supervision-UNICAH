@@ -17,7 +17,6 @@ namespace PreyectoDesarrollo_unicah
         public frmDecano()
         {
             InitializeComponent();
-
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -68,6 +67,24 @@ namespace PreyectoDesarrollo_unicah
         private void lblPersona_Click(object sender, EventArgs e)
         {
             lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
+        }
+
+        private void btnReponer_Click(object sender, EventArgs e)
+        {
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
+            this.Close();
+            frmReposicion Repo = new frmReposicion();
+            Repo.Show();
+        }
+
+        private void btnJustifica_Click(object sender, EventArgs e)
+        {
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
+            this.Close();
+            frmJustificacion Justo = new frmJustificacion();
+            Justo.Show();
         }
     }
 }

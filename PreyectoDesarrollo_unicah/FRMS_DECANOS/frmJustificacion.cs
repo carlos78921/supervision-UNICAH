@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices; //Relacionado con Dll (Librer�a)
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,12 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            if (dgvJustificacion.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccionar una fila para insertar justificación", "Error selección", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            CONEXION_BD.ConexionPerdida(this);
             if (!string.IsNullOrEmpty(txtJustifica.Text.Trim()))
             {
                 ACCIONES_BD.Justifico(dgvJustificacion, (int)dgvJustificacion.CurrentRow.Cells[0].Value, txtJustifica.Text);
@@ -123,18 +130,17 @@ namespace PreyectoDesarrollo_unicah
             Renglon2();
         }
 
-        private void txtBusco_KeyDown(object sender, KeyEventArgs e)
+        private void Filtros(object sender, EventArgs e)
         {
-            ACCIONES_BD.FiltrarDatosJusto(txtBusco.Text, cmbEdificio.Text, dgvJustificacion);
-        }
-
-        private void cmbEdificio_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
             ACCIONES_BD.FiltrarDatosJusto(txtBusco.Text, cmbEdificio.Text, dgvJustificacion);
         }
 
         private void btnReporta_Click(object sender, EventArgs e)
         {
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
             ACCIONES_BD.tablaJustificaTodo();
         }
     }

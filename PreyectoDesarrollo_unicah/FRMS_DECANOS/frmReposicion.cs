@@ -1,3 +1,4 @@
+using DocumentFormat.OpenXml.Office.SpreadSheetML.Y2023.MsForms;
 using DocumentFormat.OpenXml.Wordprocessing;
 using PreyectoDesarrollo_unicah.CLASES;
 using System;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices; //Relacionado con Dll (Librer�a)
 using System.Text;
 using System.Threading.Tasks;
@@ -61,23 +63,28 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnDay_Click(object sender, EventArgs e)
         {
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
+            if (dgvRepone.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccionar una fila para insertar día de reposición", "Error selección", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             //Ajustes en la BDD
             ACCIONES_BD.Repongo(dgvRepone, (int)dgvRepone.CurrentRow.Cells[0].Value, dtpReposicion);
             ACCIONES_BD.tablaRepone(dgvRepone, ACCIONES_BD.empleado);
         }
 
-        private void txtBusco_KeyDown(object sender, KeyEventArgs e)
-        {
-            ACCIONES_BD.FiltrarDatosRepo(txtBusco.Text, cmbEdificio.Text, dgvRepone);
-        }
-
-        private void cmbEdificio_SelectedIndexChanged(object sender, EventArgs e)
+        private void Filtros(object sender, EventArgs e)
         {
             ACCIONES_BD.FiltrarDatosRepo(txtBusco.Text, cmbEdificio.Text, dgvRepone);
         }
 
         private void btnReporta_Click(object sender, EventArgs e)
         {
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
             ACCIONES_BD.tablaReponeTodo();
         }
     }

@@ -39,11 +39,6 @@ namespace PreyectoDesarrollo_unicah
             pictureBox3 = new PictureBox();
             label2 = new Label();
             dgvJustificacion = new DataGridView();
-            clmClase = new DataGridViewTextBoxColumn();
-            clmFecha = new DataGridViewTextBoxColumn();
-            clmSeccion = new DataGridViewTextBoxColumn();
-            clmDoc = new DataGridViewTextBoxColumn();
-            clmJustifica = new DataGridViewTextBoxColumn();
             label1 = new Label();
             txtJustifica = new TextBox();
             lblCaracteres = new Label();
@@ -160,7 +155,6 @@ namespace PreyectoDesarrollo_unicah
             // 
             dgvJustificacion.AllowUserToAddRows = false;
             dgvJustificacion.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvJustificacion.Columns.AddRange(new DataGridViewColumn[] { clmClase, clmFecha, clmSeccion, clmDoc, clmJustifica });
             dgvJustificacion.Location = new Point(13, 272);
             dgvJustificacion.Name = "dgvJustificacion";
             dgvJustificacion.ReadOnly = true;
@@ -168,52 +162,12 @@ namespace PreyectoDesarrollo_unicah
             dgvJustificacion.Size = new Size(773, 304);
             dgvJustificacion.TabIndex = 26;
             // 
-            // clmClase
-            // 
-            clmClase.HeaderText = "Asignatura";
-            clmClase.MinimumWidth = 6;
-            clmClase.Name = "clmClase";
-            clmClase.ReadOnly = true;
-            clmClase.Width = 150;
-            // 
-            // clmFecha
-            // 
-            clmFecha.HeaderText = "Fecha de Ausencia";
-            clmFecha.MinimumWidth = 6;
-            clmFecha.Name = "clmFecha";
-            clmFecha.ReadOnly = true;
-            clmFecha.Width = 80;
-            // 
-            // clmSeccion
-            // 
-            clmSeccion.HeaderText = "Sección";
-            clmSeccion.MinimumWidth = 6;
-            clmSeccion.Name = "clmSeccion";
-            clmSeccion.ReadOnly = true;
-            clmSeccion.Width = 66;
-            // 
-            // clmDoc
-            // 
-            clmDoc.HeaderText = "Docente";
-            clmDoc.MinimumWidth = 6;
-            clmDoc.Name = "clmDoc";
-            clmDoc.ReadOnly = true;
-            clmDoc.Width = 120;
-            // 
-            // clmJustifica
-            // 
-            clmJustifica.HeaderText = "Justificación";
-            clmJustifica.MinimumWidth = 6;
-            clmJustifica.Name = "clmJustifica";
-            clmJustifica.ReadOnly = true;
-            clmJustifica.Width = 304;
-            // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Location = new Point(310, 93);
             label1.Name = "label1";
-            label1.Size = new Size(171, 15);
+            label1.Size = new Size(173, 15);
             label1.TabIndex = 25;
             label1.Text = "JUSTIFICACIÓN DE ASISTENCIA";
             // 
@@ -256,7 +210,7 @@ namespace PreyectoDesarrollo_unicah
             cmbEdificio.Name = "cmbEdificio";
             cmbEdificio.Size = new Size(78, 23);
             cmbEdificio.TabIndex = 41;
-            cmbEdificio.SelectedIndexChanged += cmbEdificio_SelectedIndexChanged;
+            cmbEdificio.SelectedIndexChanged += Filtros;
             // 
             // txtBusco
             // 
@@ -264,7 +218,7 @@ namespace PreyectoDesarrollo_unicah
             txtBusco.Name = "txtBusco";
             txtBusco.Size = new Size(190, 23);
             txtBusco.TabIndex = 40;
-            txtBusco.KeyDown += txtBusco_KeyDown;
+            txtBusco.KeyDown += Filtros;
             // 
             // label4
             // 
@@ -325,10 +279,5 @@ namespace PreyectoDesarrollo_unicah
         private ComboBox cmbEdificio;
         private TextBox txtBusco;
         private Label label4;
-        private DataGridViewTextBoxColumn clmClase;
-        private DataGridViewTextBoxColumn clmFecha;
-        private DataGridViewTextBoxColumn clmSeccion;
-        private DataGridViewTextBoxColumn clmDoc;
-        private DataGridViewTextBoxColumn clmJustifica;
     }
 }

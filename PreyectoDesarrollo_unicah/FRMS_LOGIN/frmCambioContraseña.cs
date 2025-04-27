@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,6 +47,8 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnContraseña_Click(object sender, EventArgs e)
         {
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
             ACCIONES_BD.nombre = "Sr(a)."; ACCIONES_BD.apellido = "Admin.";
             TextBox txtadmin = new TextBox();
             string admin = "", contraseña = txtcontraseña.Text.Trim();

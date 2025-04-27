@@ -5,6 +5,7 @@ using PreyectoDesarrollo_unicah.FRMS_SUPERV;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices; 
 
 
@@ -71,6 +72,10 @@ namespace PreyectoDesarrollo_unicah
         {
             string usuario = txtusuario.Text;
             string contraseña = txtcontraseña.Text.Trim();
+
+
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
 
             if (!Validaciones.Usuario(sender, e, usuario, contraseña, txtusuario))
                 return;

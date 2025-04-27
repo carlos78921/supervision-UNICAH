@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,8 +22,24 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public static SqlConnection conectarServidor = new SqlConnection(ConexionServidor);
         public static SqlConnection conectarBDD = new SqlConnection(conexionBDD);
-    
 
+        public static bool ConexionPerdida(Form MiForm)
+        {
+            if (!NetworkInterface.GetIsNetworkAvailable())
+            {
+                MessageBox.Show(
+                    "No hay conexión de red. Se requiere de Internet para trabajar en el programa",
+                    "Sin conexión",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                Form1 Login = new Form1();
+                Login.Show();
+                MiForm.Close();
+                return false;
+            }
+            return true;
+        }
         public CONEXION_BD() 
         {
         }
