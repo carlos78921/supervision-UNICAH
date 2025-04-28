@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="FRMS_ADMIN\frmAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_DECANOS\frmDecano.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_DECANOS\frmJustificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_DECANOS\frmReposicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_DOCENTES\frmDocente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_LOGIN\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_LOGIN\frmCambioContraseña.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_LOGIN\frmPierdoContraseña.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_SUPERV\frmAsistencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_SUPERV\frmReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMS_SUPERV\frmSupervisor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
