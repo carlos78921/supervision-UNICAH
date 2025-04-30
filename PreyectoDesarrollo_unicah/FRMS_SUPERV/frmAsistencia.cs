@@ -87,6 +87,8 @@ namespace PreyectoDesarrollo_unicah
 
         private void Filtros(object sender, EventArgs e)
         {
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
             ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbAula.Text, cmbEdificio.Text, cmbSeccion.Text, dgvAsiste);
         }
 

@@ -29,7 +29,6 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
             this.MouseDown += frmSupervisor_MouseDown;
         }
 
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -60,6 +59,9 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
 
         private void btnMarca_Click(object sender, EventArgs e)
         {
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
+
             this.Close();
             frmAsistencia asisto = new frmAsistencia();
             asisto.Show();
@@ -67,6 +69,9 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
+
             frmReporte Menu = new frmReporte();
             this.Close();
             Menu.Show();

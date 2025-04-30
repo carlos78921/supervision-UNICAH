@@ -39,17 +39,26 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnPeriodo_Click(object sender, EventArgs e)
         {
+
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
             DateTime inicio = dtpInicio.Value;
             DateTime fin = dtpFin.Value;
+
+            if (inicio > fin)
+            {
+                MessageBox.Show("La fecha de inicio no puede ser mayor a la fecha de fin", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             // Establecer el rango en el calendario
             mesAdmin.MinDate = inicio;
             mesAdmin.MaxDate = fin;
 
             if (inicio.Date == DateTime.Now.Date)
-                if (MessageBox.Show("�Seguro que quiere definir el inicio hoy?" +
-                "\nNo podr� definir de nuevo si no es el que desea", "Iniciar Periodo",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                if (MessageBox.Show("¿Seguro que quiere definir el inicio hoy?" +
+                "\nNo podrá definir de nuevo si no es el que desea", "Iniciar Periodo",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     ACCIONES_BD.CrearPeriodo(inicio, fin);
                     dtpInicio.Enabled = false;
@@ -93,6 +102,11 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnSQL_Click(object sender, EventArgs e)
         {
+
+
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
+
             ACCIONES_BD.MigrarDatosNuevo();
             ACCIONES_BD.tablaAdmin(dgvAdmin);
         }
@@ -125,11 +139,19 @@ namespace PreyectoDesarrollo_unicah
                         }
                         catch (Exception ex)
                         {
+
                             // �Es un bloqueo por "being used by another process"?
                             if (ex is IOException ||
                                 ex is Win32Exception ||
                                 ex.Message.Contains("being used by another process"))
                                 MessageBox.Show("Por favor cerrar el archivo seleccionado para guardar", "Interrupci�n de Archivo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                            // ¿Es un bloqueo por "being used by another process"?
+                            if (ex is IOException ||
+                                ex is Win32Exception ||
+                                ex.Message.Contains("being used by another process"))
+                                MessageBox.Show("Por favor cerrar el archivo seleccionado para guardar", "Interrupción de Archivo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                         }
                     }
                 }
@@ -138,23 +160,32 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnReinicioBDD_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("�Est� seguro de que desea reiniciar la base de datos?\nEste acto har� que salga por completo del programa para iniciar de nuevo sus datos", "Reinicio de BDD", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
+            if (MessageBox.Show("¿Está seguro de que desea reiniciar la base de datos?\nEste acto hará que cierre sesión sin datos", "Reinicio de BDD", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                if (MessageBox.Show("�Desea guardar las asistencias antes del reinicio?", "Guardar Asistencias", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("¿Desea guardar las asistencias antes del reinicio?", "Guardar Asistencias", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     RespaldoExcel();
                     ACCIONES_BD.ReiniciarBDD("Supervision_Unicah");
                 }
                 else
                     ACCIONES_BD.ReiniciarBDD("Supervision_Unicah");
-                MessageBox.Show("Base de datos reiniciada exitosamente.", "�xito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show("Saliendo del programa", "Cerrando Programa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Application.Exit();
+                MessageBox.Show("Base de datos reiniciada exitosamente.", "éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Cerrando Sesión", "Cierre de sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);        
+                Form1 Login = new Form1();
+                Login.Show();
+                this.Close();
             }
         }
 
         private void btnListaLoad_Click(object sender, EventArgs e)
         {
+
+
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
+
             MessageBox.Show("Seleccione el archivo Excel original", "Excel original");
             ACCIONES_BD.MigrarDatosViejo();
             MessageBox.Show("Ahora seleccione el archivo Excel con la asistencia", "Cargar Asistencia");
@@ -230,11 +261,21 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnListaSave_Click(object sender, EventArgs e)
         {
+
+
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
+
             RespaldoExcel();
         }
 
         private void btnName_Click(object sender, EventArgs e)
         {
+
+
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
+
             using (var conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
                 conn.Open();
@@ -265,7 +306,11 @@ namespace PreyectoDesarrollo_unicah
             if (e.ColumnIndex == 7 && e.Value != null)
             {
                 e.Value = new string('*', e.Value.ToString().Length);
+
                 e.FormattingApplied = true; //Esto para no afectar despu�s por "contra" como valor sin aster�sco
+
+                e.FormattingApplied = true; //Esto para no afectar después por "contra" como valor sin asterísco
+
             }
         }
 
@@ -281,6 +326,11 @@ namespace PreyectoDesarrollo_unicah
 
         private void txtBusca_KeyDown(object sender, KeyEventArgs e)
         {
+
+
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
+
             using (var conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
                 conn.Open();
@@ -299,13 +349,15 @@ namespace PreyectoDesarrollo_unicah
 
         private void dgvAdmin_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvAdmin.Columns[e.ColumnIndex].Name == "contrase�a")
+            if (dgvAdmin.Columns[e.ColumnIndex].Name == "contraseña")
             {
-                if (MessageBox.Show("�Desea cambiar la contrase�a?", "Cambiar contrase�a", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("¿Desea cambiar la contraseña?", "Cambiar contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     dgvAdmin.Columns[7].ReadOnly = false;
                     dgvAdmin.CurrentRow.Cells[7].Value = "";
                 }
+                else
+                    dgvAdmin.Columns[7].ReadOnly = true;
             }
         }
     }

@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -84,6 +85,8 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnRecibir_Click(object sender, EventArgs e)
         {
+            if (!CONEXION_BD.ConexionPerdida(this))
+                return;
             if (!Validaciones.Correo(sender, e, txtMail))
                 return;
             //Esto cambia el código
