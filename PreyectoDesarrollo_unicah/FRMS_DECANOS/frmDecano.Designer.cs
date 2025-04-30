@@ -77,7 +77,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.CERRAR;
+            pictureBox1.Image = Properties.Resources.;
             pictureBox1.Location = new Point(381, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 20);
@@ -88,7 +88,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.minimizar_signo;
+            pictureBox2.Image = Properties.Resources;
             pictureBox2.Location = new Point(346, 3);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(29, 20);
