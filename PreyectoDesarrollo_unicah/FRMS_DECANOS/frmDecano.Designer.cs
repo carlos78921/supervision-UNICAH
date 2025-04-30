@@ -1,9 +1,5 @@
-﻿
-<<<<<<< HEAD
-=======
-using PreyectoDesarrollo_unicah.CLASES;
+﻿using PreyectoDesarrollo_unicah.CLASES;
 
->>>>>>> Estilo-Byron
 namespace PreyectoDesarrollo_unicah
 {
     partial class frmDecano
@@ -160,23 +156,6 @@ namespace PreyectoDesarrollo_unicah
             ResumeLayout(false);
         }
 
-<<<<<<< HEAD
-        private void btnReponer_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            frmReposicion Repo = new frmReposicion();
-            Repo.Show();
-        }
-
-        private void btnJustifica_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            frmJustificacion Justo = new frmJustificacion();
-            Justo.Show();
-        }
-
-=======
->>>>>>> Estilo-Byron
 #endregion
         private Button btnLogOut;
         private Button btnJustifica;

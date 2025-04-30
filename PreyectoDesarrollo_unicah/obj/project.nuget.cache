@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "N83qzxo3yqk=",
+  "dgSpecHash": "AwERFdlYPgU=",
   "success": true,
-  "projectFilePath": "C:\\Users\\DELL\\Documents\\Llamar a 9756-5949\\Desarrollo de Software\\Sistema de Supervisión Unicah\\supervision-UNICAH-Estilo-Byron\\PreyectoDesarrollo_unicah\\PreyectoDesarrollo_unicah.csproj",
+  "projectFilePath": "C:\\Users\\DELL\\Documents\\Llamar a 9756-5949\\Desarrollo de Software\\Sistema de Supervisión Unicah\\PreyectoDesarrollo_unicah\\PreyectoDesarrollo_unicah.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\closedxml\\0.104.2\\closedxml.0.104.2.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\closedxml.parser\\1.2.0\\closedxml.parser.1.2.0.nupkg.sha512",

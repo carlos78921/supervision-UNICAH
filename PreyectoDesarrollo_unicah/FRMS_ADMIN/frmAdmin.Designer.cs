@@ -137,7 +137,6 @@ namespace PreyectoDesarrollo_unicah
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.minimizar_signo;
             pictureBox2.Location = new Point(944, 3);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(29, 20);
@@ -148,7 +147,6 @@ namespace PreyectoDesarrollo_unicah
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.CERRAR;
             pictureBox1.Location = new Point(979, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 20);
@@ -184,7 +182,6 @@ namespace PreyectoDesarrollo_unicah
             // pictureBox3
             // 
             pictureBox3.BackgroundImageLayout = ImageLayout.None;
-            pictureBox3.Image = Properties.Resources.CircularFondoAzul;
             pictureBox3.Location = new Point(-25, 0);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(143, 81);

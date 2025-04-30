@@ -14,10 +14,6 @@ namespace PreyectoDesarrollo_unicah
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-<<<<<<< HEAD
-            Validaciones Rol= new Validaciones();
-=======
->>>>>>> Estilo-Byron
             Application.Run(new Form1());
         }
     }
