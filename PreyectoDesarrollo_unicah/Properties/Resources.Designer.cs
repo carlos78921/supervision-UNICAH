@@ -59,42 +59,35 @@ namespace PreyectoDesarrollo_unicah.Properties {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CERRAR
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap CERRAR {
+            get {
                 object obj = ResourceManager.GetObject("CERRAR", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CircularFondoAzul
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap CircularFondoAzul {
+            get {
                 object obj = ResourceManager.GetObject("CircularFondoAzul", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap minimizar_signo
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap minimizar_signo {
+            get {
                 object obj = ResourceManager.GetObject("minimizar-signo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
     }
 }

@@ -156,7 +156,7 @@ namespace PreyectoDesarrollo_unicah
             ResumeLayout(false);
         }
 
-#endregion
+        #endregion
         private Button btnLogOut;
         private Button btnJustifica;
         private Button btnReponer;
