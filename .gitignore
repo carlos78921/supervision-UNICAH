@@ -1,0 +1,21 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/PreyectoDesarrollo_unicah/CopilotIndices/17.12.53.23981/CodeChunks.db-shm
+/.vs/PreyectoDesarrollo_unicah/CopilotIndices/17.12.53.23981/CodeChunks.db-wal
+/.vs/PreyectoDesarrollo_unicah/CopilotIndices/17.12.53.23981/SemanticSymbols.db
+/.vs/PreyectoDesarrollo_unicah/CopilotIndices/17.12.53.23981/SemanticSymbols.db-shm
+/.vs/PreyectoDesarrollo_unicah/CopilotIndices/17.12.53.23981/SemanticSymbols.db-wal
+/.vs/PreyectoDesarrollo_unicah/DesignTimeBuild/.dtbcache.v2
+/.vs/PreyectoDesarrollo_unicah/FileContentIndex/c1ced5d3-4d75-447a-bb24-0ee4ca5c7762.vsidx
+/.vs/PreyectoDesarrollo_unicah/FileContentIndex/f5a7034a-9bd4-4c66-a0d3-1972a8117211.vsidx
+/.vs/PreyectoDesarrollo_unicah/v17/.futdcache.v2
+/.vs/PreyectoDesarrollo_unicah/v17/.suo
+/.vs/PreyectoDesarrollo_unicah/v17/DocumentLayout.backup.json
+/.vs/PreyectoDesarrollo_unicah/v17/DocumentLayout.json
+/.vs/ProjectEvaluation/preyectodesarrollo_unicah.metadata.v9.bin
+/.vs/ProjectEvaluation/preyectodesarrollo_unicah.projects.v9.bin
+/.vs/ProjectEvaluation/preyectodesarrollo_unicah.strings.v9.bin
+/.vs/Sistema de Supervisión Unicah/CopilotIndices/17.12.53.23981/SemanticSymbols.db-shm
+/.vs/Sistema de Supervisión Unicah/CopilotIndices/17.12.53.23981/SemanticSymbols.db-wal
