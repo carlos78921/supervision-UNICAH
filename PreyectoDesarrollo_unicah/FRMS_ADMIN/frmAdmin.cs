@@ -1,4 +1,5 @@
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Wordprocessing;
 using PreyectoDesarrollo_unicah.CLASES;
 using System;
 using System.Collections.Generic;
@@ -92,7 +93,7 @@ namespace PreyectoDesarrollo_unicah
             int offsetDias = (fechaSeleccionada - fechaInicio).Days;
             int indiceSemana = offsetDias / 7;
             int indiceParcial = indiceSemana / 4;
-            int parcial = indiceParcial + 1; 
+            int parcial = indiceParcial + 1;
             int semanaEnParcial = (indiceSemana % 4) + 1;
             lblParcial.Text = $"Parcial {parcial}";
             lblWeek.Text = $"Semana {semanaEnParcial}";
@@ -174,7 +175,7 @@ namespace PreyectoDesarrollo_unicah
                 else
                     ACCIONES_BD.ReiniciarBDD("Supervision_Unicah");
                 MessageBox.Show("Base de datos reiniciada exitosamente.", "éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show("Cerrando Sesión", "Cierre de sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);        
+                MessageBox.Show("Cerrando Sesión", "Cierre de sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Form1 Login = new Form1();
                 Login.Show();
                 this.Close();
@@ -272,6 +273,27 @@ namespace PreyectoDesarrollo_unicah
             if (!CONEXION_BD.ConexionPerdida(this))
                 return;
 
+            var codigosVacios = new List<int>(); //En lista filas (índices) como tipo int, de las filas vacías detectadas
+            for (int i = 0; i < dgvAdmin.Rows.Count; i++)
+            {
+                var codigoFila = dgvAdmin.Rows[i].Cells[6].Value;
+                string code = codigoFila?.ToString() ?? ""; //Si no es nulo, se considera texto (incluye espacio sin caracter, pero ese se valida), si lo es, se considera ""
+                if (string.IsNullOrWhiteSpace(dgvAdmin.Rows[i].Cells[6].Value.ToString()))
+                    codigosVacios.Add(i + 1);
+            }
+
+            if (codigosVacios.Count > 0)
+            {
+                string lista = string.Join(", ", codigosVacios); //Join concatena los elementos de la lista en más de un elemento para varios tipos de dato en cadena
+                MessageBox.Show($"Código vacío en la fila detectada: {lista}.\nRellenar los códigos para actualizar la tabla",
+                "Datos incompletos por código",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+                );
+
+                return; 
+            }
+
             using (var conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
                 conn.Open();
@@ -299,17 +321,16 @@ namespace PreyectoDesarrollo_unicah
 
         private void dgvAdmin_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 7 && e.Value != null)
+            if (e.ColumnIndex == 7 && e.Value != null) //Al cargar el formulario, se observa el texto de contraseña cubierta con asteríscos
             {
                 e.Value = new string('*', e.Value.ToString().Length);
-
                 e.FormattingApplied = true; //Esto para no afectar después por "contra" como valor sin asterísco
             }
         }
 
         private void dgvAdmin_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (dgvAdmin.CurrentCell.ColumnIndex == 7)
+            if (dgvAdmin.CurrentCell.ColumnIndex == 7) // Los caracteres son puntos de contraseña al escribir
             {
                 TextBox txt = e.Control as TextBox;
                 if (txt != null)
@@ -349,6 +370,28 @@ namespace PreyectoDesarrollo_unicah
                 }
                 else
                     dgvAdmin.Columns[7].ReadOnly = true;
+            }
+        }
+
+        private void dgvAdmin_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            string valorActual = dgvAdmin.Rows[e.RowIndex].Cells[6].Value.ToString();
+
+            if (string.IsNullOrWhiteSpace(valorActual))
+                return;
+
+            for (int i = 0; i < dgvAdmin.Rows.Count; i++)
+            {
+                if (i == e.RowIndex) continue; // Ignorar la misma fila
+
+                string valorComparar = dgvAdmin.Rows[i].Cells[6].Value.ToString();
+
+                if (!string.IsNullOrEmpty(valorComparar) && valorComparar.Equals(valorActual))
+                {
+                    MessageBox.Show($"Código existente entre fila actual {e.RowIndex + 1} con fila {i + 1}.\nPor favor cambiar código diferente", "Valor duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    dgvAdmin.Rows[e.RowIndex].Cells[6].Value = "";
+                    break;
+                }
             }
         }
     }

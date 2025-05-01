@@ -197,6 +197,7 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.Size = new Size(582, 401);
             dgvAdmin.TabIndex = 13;
             dgvAdmin.CellClick += dgvAdmin_CellClick;
+            dgvAdmin.CellEndEdit += dgvAdmin_CellEndEdit;
             dgvAdmin.CellFormatting += dgvAdmin_CellFormatting;
             dgvAdmin.EditingControlShowing += dgvAdmin_EditingControlShowing;
             // 
