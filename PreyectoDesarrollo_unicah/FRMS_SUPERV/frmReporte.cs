@@ -12,6 +12,7 @@ using ClosedXML.Excel;
 using PreyectoDesarrollo_unicah.CLASES;
 using System.Data.SqlClient;
 using DocumentFormat.OpenXml.Office.Word;
+using System.Runtime.InteropServices;
 
 namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
 {
@@ -21,6 +22,12 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
         {
             InitializeComponent();
         }
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
         private void frmReporte_Load(object sender, EventArgs e)
         {
@@ -52,7 +59,7 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
                 {
                     tabla.CommandType = CommandType.StoredProcedure;
                     SqlDataAdapter da = new SqlDataAdapter(tabla);
-                    da.Fill(dt);                    
+                    da.Fill(dt);
                 }
             }
 
@@ -83,7 +90,7 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
                 inicio.CommandType = CommandType.StoredProcedure;
                 SqlDataReader reader = inicio.ExecuteReader();
                 if (reader.Read())
-                    fechaInicio = reader.GetDateTime(0); 
+                    fechaInicio = reader.GetDateTime(0);
             }
 
             // Por cada fila (cada registro de la tabla del supervisor)
@@ -206,6 +213,18 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
                     }
                 }
             }
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        
+        private void MoveForm_MouseDown(object sender, MouseEventArgs e) 
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0); //El evento en memoria se mantiene
         }
     }
 }

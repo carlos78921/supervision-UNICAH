@@ -31,7 +31,7 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.Text = ACCIONES_BD.Persona();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void Cerrar(object sender, EventArgs e)
         {
             this.Close();
             Form1 Login = new Form1();
@@ -43,30 +43,11 @@ namespace PreyectoDesarrollo_unicah
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void btnLogOut_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Form1 Login = new Form1();
-            Login.Show();
-        }
-
-        private void frmDecano_MouseDown(object sender, MouseEventArgs e)
-        {
-            //este es para poder mover el form
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
-        }
-
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        private void Mover_Form(object sender, MouseEventArgs e)
         {
             //este es para poder mover el form
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);  //El evento en memoria se mantiene
-        }
-
-        private void lblPersona_Click(object sender, EventArgs e)
-        {
-            lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
         }
 
         private void btnReponer_Click(object sender, EventArgs e)

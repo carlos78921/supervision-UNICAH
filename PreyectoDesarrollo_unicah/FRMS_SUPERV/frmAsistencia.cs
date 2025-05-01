@@ -29,10 +29,9 @@ namespace PreyectoDesarrollo_unicah
         public frmAsistencia()
         {
             InitializeComponent();
-            this.MouseDown += frmSupervisor_MouseDown;
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void Cerrar(object sender, EventArgs e)
         {
             this.Close();
             frmSupervisor Menu = new frmSupervisor();
@@ -61,28 +60,20 @@ namespace PreyectoDesarrollo_unicah
             FiltroInicial();
 
             dgvAsiste.CurrentCellDirtyStateChanged += (s, ev)
-            => {
+            =>
+            {
                 if (dgvAsiste.IsCurrentCellDirty)
                     dgvAsiste.CommitEdit(DataGridViewDataErrorContexts.Commit);
-               };
+            };
 
             ACCIONES_BD.tablaSupervisor(dgvAsiste);
         }
 
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            frmSupervisor Menu = new frmSupervisor();
-            Menu.Show();
-        }
 
-        private void frmSupervisor_MouseDown(object sender, MouseEventArgs e)
+        private void MoveForm_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
-            }
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
         }
 
         private void Filtros(object sender, EventArgs e)

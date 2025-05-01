@@ -40,14 +40,7 @@ namespace PreyectoDesarrollo_unicah
             ACCIONES_BD.tablaRepone(dgvRepone, ACCIONES_BD.empleado);
         }
 
-        private void btnVoy_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            frmDecano menu = new frmDecano();
-            menu.Show();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void Cerrar(object sender, EventArgs e)
         {
             this.Close();
             frmDecano menu = new frmDecano();
@@ -58,7 +51,6 @@ namespace PreyectoDesarrollo_unicah
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);  //El evento en memoria se mantiene
-
         }
 
         private void btnDay_Click(object sender, EventArgs e)

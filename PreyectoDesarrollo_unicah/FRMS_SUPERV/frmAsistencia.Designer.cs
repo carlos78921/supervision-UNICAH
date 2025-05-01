@@ -90,7 +90,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
+            pictureBox1.Click += Cerrar;
             // 
             // panel1
             // 
@@ -103,6 +103,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1003, 87);
             panel1.TabIndex = 11;
+            panel1.MouseDown += MoveForm_MouseDown;
             // 
             // lblPersona
             // 
@@ -131,7 +132,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(487, 97);
             label1.Name = "label1";
-            label1.Size = new Size(123, 15);
+            label1.Size = new Size(125, 15);
             label1.TabIndex = 12;
             label1.Text = "TOMA DE ASISTENCIA";
             // 
@@ -300,7 +301,7 @@
             btnLogout.TabIndex = 6;
             btnLogout.Text = "&CERRAR SESIÓN";
             btnLogout.UseVisualStyleBackColor = true;
-            btnLogout.Click += btnLogout_Click;
+            btnLogout.Click += Cerrar;
             // 
             // frmAsistencia
             // 
@@ -324,7 +325,7 @@
             Name = "frmAsistencia";
             Text = "FrmReporte";
             Load += FrmAsiste_Load;
-            MouseDown += frmSupervisor_MouseDown;
+            MouseDown += MoveForm_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);

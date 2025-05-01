@@ -71,7 +71,7 @@
             btnLogOut.TabIndex = 3;
             btnLogOut.Text = "&CERRAR SESIÓN";
             btnLogOut.UseVisualStyleBackColor = true;
-            btnLogOut.Click += btnLogout_Click;
+            btnLogOut.Click += Cerrar;
             // 
             // panel1
             // 
@@ -84,7 +84,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(420, 82);
             panel1.TabIndex = 15;
-            panel1.MouseDown += panel1_MouseDown;
+            panel1.MouseDown += MoveForm_MouseDown;
             // 
             // lblPersona
             // 
@@ -96,7 +96,6 @@
             lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 9;
             lblPersona.Text = "Nombre_Persona";
-            lblPersona.Click += lblPersona_Click;
             // 
             // pictureBox3
             // 
@@ -129,7 +128,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
+            pictureBox1.Click += Cerrar;
             // 
             // frmSupervisor
             // 
@@ -145,6 +144,7 @@
             Name = "frmSupervisor";
             Text = "frmSupervisor";
             Load += frmSupervisor_Load;
+            MouseDown += MoveForm_MouseDown;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();

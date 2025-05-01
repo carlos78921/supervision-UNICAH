@@ -37,17 +37,13 @@ namespace PreyectoDesarrollo_unicah
         private void txtusuario_Enter(object sender, EventArgs e)
         {
             if (txtusuario.Text == "Usuario:")
-            {
                 txtusuario.Text = "";
-            }
         }
 
         private void txtusuario_Leave(object sender, EventArgs e)
         {
             if (txtusuario.Text == "")
-            {
                 txtusuario.Text = "Usuario:";
-            }
         }
 
         private void txtcontraseña_Enter(object sender, EventArgs e)
@@ -117,12 +113,14 @@ namespace PreyectoDesarrollo_unicah
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
                 e.Handled = true;
+            Datos_KeyPress(sender, e);
         }
 
         private void txtcontraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != (char)Keys.Back)
                 e.Handled = true;
+            Datos_KeyPress(sender, e);
         }
     }
 }

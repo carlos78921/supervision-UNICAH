@@ -92,7 +92,8 @@ namespace PreyectoDesarrollo_unicah
             int offsetDias = (fechaSeleccionada - fechaInicio).Days;
             int indiceSemana = offsetDias / 7;
             int indiceParcial = indiceSemana / 4;
-            int parcial = indiceParcial + 1; int semanaEnParcial = (indiceSemana % 4) + 1;
+            int parcial = indiceParcial + 1; 
+            int semanaEnParcial = (indiceSemana % 4) + 1;
             lblParcial.Text = $"Parcial {parcial}";
             lblWeek.Text = $"Semana {semanaEnParcial}";
         }
@@ -182,8 +183,6 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnListaLoad_Click(object sender, EventArgs e)
         {
-
-
             if (!CONEXION_BD.ConexionPerdida(this))
                 return;
 
@@ -262,8 +261,6 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnListaSave_Click(object sender, EventArgs e)
         {
-
-
             if (!CONEXION_BD.ConexionPerdida(this))
                 return;
 
@@ -272,8 +269,6 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnName_Click(object sender, EventArgs e)
         {
-
-
             if (!CONEXION_BD.ConexionPerdida(this))
                 return;
 
@@ -308,10 +303,7 @@ namespace PreyectoDesarrollo_unicah
             {
                 e.Value = new string('*', e.Value.ToString().Length);
 
-                e.FormattingApplied = true; //Esto para no afectar despu�s por "contra" como valor sin aster�sco
-
                 e.FormattingApplied = true; //Esto para no afectar después por "contra" como valor sin asterísco
-
             }
         }
 
@@ -327,8 +319,6 @@ namespace PreyectoDesarrollo_unicah
 
         private void txtBusca_KeyDown(object sender, KeyEventArgs e)
         {
-
-
             if (!CONEXION_BD.ConexionPerdida(this))
                 return;
 

@@ -20,16 +20,12 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
         [DllImport("user32.dll")]
         private static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
 
-        private const int WM_NCLBUTTONDOWN = 0xA1;
-        private const int HTCAPTION = 0x2;
-
         public frmSupervisor()
         {
             InitializeComponent();
-            this.MouseDown += frmSupervisor_MouseDown;
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void Cerrar(object sender, EventArgs e)
         {
             this.Close();
             Form1 Login = new Form1();
@@ -39,22 +35,6 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Form1 Login = new Form1();
-            Login.Show();
-        }
-
-        private void frmSupervisor_MouseDown(object sender, MouseEventArgs e) //Evento del ratón "e"
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0); //El evento en memoria se mantiene
-            }
         }
 
         private void btnMarca_Click(object sender, EventArgs e)
@@ -82,15 +62,10 @@ namespace PreyectoDesarrollo_unicah.FRMS_SUPERV
             lblPersona.Text = ACCIONES_BD.Persona();
         }
 
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        private void MoveForm_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
-        }
-
-        private void lblPersona_Click(object sender, EventArgs e)
-        {
-
+            SendMessage(this.Handle, 0x112, 0xf012, 0); //El evento en memoria se mantiene
         }
     }
 }

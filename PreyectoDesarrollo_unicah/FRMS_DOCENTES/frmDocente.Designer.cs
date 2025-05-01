@@ -59,7 +59,7 @@ namespace PreyectoDesarrollo_unicah
             btnLogout.TabIndex = 17;
             btnLogout.Text = "&CERRAR SESIÓN";
             btnLogout.UseVisualStyleBackColor = true;
-            btnLogout.Click += btnLogout_Click;
+            btnLogout.Click += Cerrar;
             // 
             // pictureBox2
             // 
@@ -81,7 +81,7 @@ namespace PreyectoDesarrollo_unicah
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
+            pictureBox1.Click += Cerrar;
             // 
             // panel1
             // 
@@ -94,7 +94,7 @@ namespace PreyectoDesarrollo_unicah
             panel1.Name = "panel1";
             panel1.Size = new Size(914, 87);
             panel1.TabIndex = 11;
-            panel1.MouseDown += panel1_MouseDown;
+            panel1.MouseDown += MoveForm_MouseDown;
             // 
             // lblPersona
             // 
@@ -106,7 +106,6 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 22;
             lblPersona.Text = "Nombre_Persona";
-            lblPersona.Click += lblPersona_Click;
             // 
             // pictureBox3
             // 
@@ -131,7 +130,6 @@ namespace PreyectoDesarrollo_unicah
             dgvDoc.RowHeadersWidth = 51;
             dgvDoc.Size = new Size(261, 467);
             dgvDoc.TabIndex = 16;
-            dgvDoc.CellContentClick += dgvDoc_CellContentClick;
             dgvDoc.SelectionChanged += dgvDoc_SelectionChanged;
             // 
             // clmClase
@@ -204,7 +202,7 @@ namespace PreyectoDesarrollo_unicah
             Name = "frmDocente";
             Text = "FrmReporte";
             Load += frmDocente_Load;
-            MouseDown += frmDocente_MouseDown;
+            MouseDown += MoveForm_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
