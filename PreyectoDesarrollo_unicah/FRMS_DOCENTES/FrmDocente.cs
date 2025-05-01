@@ -27,14 +27,6 @@ namespace PreyectoDesarrollo_unicah
 
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Form1 Login = new Form1();
-            Login.Show();
-        }
-
-
         private void frmDocente_Load(object sender, EventArgs e) //M�todo del formulario
         {
             //Ajuste de forulario
@@ -52,7 +44,7 @@ namespace PreyectoDesarrollo_unicah
                 (string)dgvDoc.CurrentRow.Cells[3].Value);
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void Cerrar(object sender, EventArgs e)
         {
             this.Close();
             Form1 Login = new Form1();
@@ -64,28 +56,11 @@ namespace PreyectoDesarrollo_unicah
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void dgvDoc_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void frmDocente_MouseDown(object sender, MouseEventArgs e)
+        private void MoveForm_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
+            SendMessage(this.Handle, 0x112, 0xf012, 0); 
         }
-
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);  
-        }
-
-        private void lblPersona_Click(object sender, EventArgs e)
-        {
-            lblPersona.Text = ACCIONES_BD.nombre + " " + ACCIONES_BD.apellido;
-        }
-
 
         private void dgvDoc_SelectionChanged(object sender, EventArgs e)
         {
@@ -109,12 +84,12 @@ namespace PreyectoDesarrollo_unicah
         {
             DateTime fechaSeleccionada = e.Start.Date;
             // Definir la fecha de inicio del primer parcial
-            DateTime fechaInicio = new DateTime(DateTime.Now.Year, 1, 20); // 20 de enero
+            DateTime fechaInicio = mesDoc.MinDate; // Fecha de inicio del
 
             // Calcular la diferencia en d�as
             int offsetDias = (fechaSeleccionada - fechaInicio).Days; // Puede ser negativo si est� antes del 20/ene
 
-            // Cada semana son 7 d�as
+            // Cada semana son 7 días
             // Tenemos 12 semanas en total (3 parciales * 4 semanas)
             // Rango total: 0 <= offsetDias < 12 * 7 = 84
 
@@ -126,10 +101,10 @@ namespace PreyectoDesarrollo_unicah
                 return;
             }
 
-            // Calcular el �ndice de la semana (0 a 11)
+            // Calcular el índice de la semana (0 a 11)
             int indiceSemana = offsetDias / 7; // entero
 
-            // Calcular el �ndice de parcial (0 a 2)
+            // Calcular el índice de parcial (0 a 2)
             // 4 semanas por parcial => parcial = floor(indiceSemana / 4)
             int indiceParcial = indiceSemana / 4; // 0 = parcial 1, 1 = parcial 2, 2 = parcial 3
 

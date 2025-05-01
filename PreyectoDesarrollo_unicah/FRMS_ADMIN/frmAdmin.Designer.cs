@@ -42,11 +42,6 @@ namespace PreyectoDesarrollo_unicah
             lblPersona = new Label();
             pictureBox3 = new PictureBox();
             dgvAdmin = new DataGridView();
-            clmID = new DataGridViewTextBoxColumn();
-            clmN1 = new DataGridViewTextBoxColumn();
-            clmN2 = new DataGridViewTextBoxColumn();
-            clmA1 = new DataGridViewTextBoxColumn();
-            clmA2 = new DataGridViewTextBoxColumn();
             label1 = new Label();
             lblParcial = new Label();
             lblWeek = new Label();
@@ -197,7 +192,6 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.AllowUserToAddRows = false;
             dgvAdmin.AllowUserToDeleteRows = false;
             dgvAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAdmin.Columns.AddRange(new DataGridViewColumn[] { clmID, clmN1, clmN2, clmA1, clmA2 });
             dgvAdmin.Location = new Point(13, 160);
             dgvAdmin.Name = "dgvAdmin";
             dgvAdmin.Size = new Size(582, 401);
@@ -205,32 +199,6 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.CellClick += dgvAdmin_CellClick;
             dgvAdmin.CellFormatting += dgvAdmin_CellFormatting;
             dgvAdmin.EditingControlShowing += dgvAdmin_EditingControlShowing;
-            // 
-            // clmID
-            // 
-            clmID.HeaderText = "ID del Empleado";
-            clmID.Name = "clmID";
-            clmID.Width = 140;
-            // 
-            // clmN1
-            // 
-            clmN1.HeaderText = "Nombre 1";
-            clmN1.Name = "clmN1";
-            // 
-            // clmN2
-            // 
-            clmN2.HeaderText = "Nombre 2";
-            clmN2.Name = "clmN2";
-            // 
-            // clmA1
-            // 
-            clmA1.HeaderText = "Apellido 1";
-            clmA1.Name = "clmA1";
-            // 
-            // clmA2
-            // 
-            clmA2.HeaderText = "Apellido 2";
-            clmA2.Name = "clmA2";
             // 
             // label1
             // 
@@ -407,11 +375,6 @@ namespace PreyectoDesarrollo_unicah
         private DateTimePicker dtpFin;
         private GroupBox groupBox1;
         private Button btnPeriodo;
-        private DataGridViewTextBoxColumn clmID;
-        private DataGridViewTextBoxColumn clmN1;
-        private DataGridViewTextBoxColumn clmN2;
-        private DataGridViewTextBoxColumn clmA1;
-        private DataGridViewTextBoxColumn clmA2;
         private GroupBox groupBox2;
         private Label lblBusca;
         private TextBox txtBusca;
