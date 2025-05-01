@@ -1,0 +1,8 @@
+C:\Users\DELL\Documents\Llamar a 9756-5949\Desarrollo de Software\Sistema de Supervisión Unicah\PreyectoDesarrollo_unicah\bin\Release\net8.0-windows\publish\win-x64\PreyectoDesarrollo_unicah.pdb
+C:\Users\DELL\Documents\Llamar a 9756-5949\Desarrollo de Software\Sistema de Supervisión Unicah\PreyectoDesarrollo_unicah\bin\Release\net8.0-windows\publish\win-x64\D3DCompiler_47_cor3.dll
+C:\Users\DELL\Documents\Llamar a 9756-5949\Desarrollo de Software\Sistema de Supervisión Unicah\PreyectoDesarrollo_unicah\bin\Release\net8.0-windows\publish\win-x64\PenImc_cor3.dll
+C:\Users\DELL\Documents\Llamar a 9756-5949\Desarrollo de Software\Sistema de Supervisión Unicah\PreyectoDesarrollo_unicah\bin\Release\net8.0-windows\publish\win-x64\PresentationNative_cor3.dll
+C:\Users\DELL\Documents\Llamar a 9756-5949\Desarrollo de Software\Sistema de Supervisión Unicah\PreyectoDesarrollo_unicah\bin\Release\net8.0-windows\publish\win-x64\vcruntime140_cor3.dll
+C:\Users\DELL\Documents\Llamar a 9756-5949\Desarrollo de Software\Sistema de Supervisión Unicah\PreyectoDesarrollo_unicah\bin\Release\net8.0-windows\publish\win-x64\wpfgfx_cor3.dll
+C:\Users\DELL\Documents\Llamar a 9756-5949\Desarrollo de Software\Sistema de Supervisión Unicah\PreyectoDesarrollo_unicah\bin\Release\net8.0-windows\publish\win-x64\sni.dll
+C:\Users\DELL\Documents\Llamar a 9756-5949\Desarrollo de Software\Sistema de Supervisión Unicah\PreyectoDesarrollo_unicah\bin\Release\net8.0-windows\publish\win-x64\PreyectoDesarrollo_unicah.exe

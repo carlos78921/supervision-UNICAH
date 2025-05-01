@@ -15,13 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_2649F2F8C3CC4FC6971204318C248B64"
+        "MsmKey" = "8:_A0F5AA3B41514D90ABCC0C85C6CD959B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F2D25319BF65443C84A153B743EAFC40"
+        "MsmKey" = "8:_A7A46C23215941A2B3F5F2C03AC99B11"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -50,6 +50,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -106,12 +114,32 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F2D25319BF65443C84A153B743EAFC40"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A0F5AA3B41514D90ABCC0C85C6CD959B"
             {
             "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\images.ico"
             "TargetName" = "8:images.ico"
             "Tag" = "8:"
             "Folder" = "8:_60FD6333AAB1422092BBB8C8BA5D44B6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A7A46C23215941A2B3F5F2C03AC99B11"
+            {
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PreyectoDesarrollo_unicah.exe"
+            "TargetName" = "8:PreyectoDesarrollo_unicah.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_36425A280F924F459030B26A45F735B1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -183,7 +211,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Setup Supervisión Unicah FInal"
         "ProductCode" = "8:{C275C7F4-6ECD-4AEB-B473-9CB4B67769DD}"
-        "PackageCode" = "8:{B8FB43C9-0F30-42A1-AB01-27268B0E0704}"
+        "PackageCode" = "8:{E718EB7A-4780-4E4B-89AD-870FAC777893}"
         "UpgradeCode" = "8:{4A816E3E-DC08-426C-A86D-EC0C5C2CA7F3}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -191,12 +219,12 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:Unicah"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:Setup Supervisión Unicah FInal"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:Unicah Config"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -303,18 +331,18 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D431B89E27024CCCA62AE072CDF8843F"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6954896295054BD79F9906F618E26E54"
             {
-            "Name" = "8:Shortcut to %sResultado principal from PreyectoDesarrollo_unicah (Active)"
+            "Name" = "8:Supervisión Unicah"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_2649F2F8C3CC4FC6971204318C248B64"
+            "Target" = "8:_A7A46C23215941A2B3F5F2C03AC99B11"
             "Folder" = "8:_60FD6333AAB1422092BBB8C8BA5D44B6"
             "WorkingFolder" = "8:_36425A280F924F459030B26A45F735B1"
-            "Icon" = "8:_F2D25319BF65443C84A153B743EAFC40"
+            "Icon" = "8:_A0F5AA3B41514D90ABCC0C85C6CD959B"
             "Feature" = "8:"
             }
         }
@@ -716,34 +744,6 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_2649F2F8C3CC4FC6971204318C248B64"
-            {
-            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\obj\\Debug\\net8.0-windows\\PreyectoDesarrollo_unicah.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_36425A280F924F459030B26A45F735B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{0BB40A2B-2B32-4898-9F45-584C5C9DE4A6}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
         }
     }
 }
