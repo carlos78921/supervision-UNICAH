@@ -51,11 +51,8 @@ namespace PreyectoDesarrollo_unicah
                 return;
             }
 
-            // Establecer el rango en el calendario
-            mesAdmin.MinDate = inicio;
-            mesAdmin.MaxDate = fin;
-
             if (inicio.Date == DateTime.Now.Date)
+            {
                 if (MessageBox.Show("¿Seguro que quiere definir el inicio hoy?" +
                 "\nNo podrá definir de nuevo si no es el que desea", "Iniciar Periodo",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -64,9 +61,15 @@ namespace PreyectoDesarrollo_unicah
                     dtpInicio.Enabled = false;
                     dtpFin.Enabled = false;
                     btnPeriodo.Enabled = false;
+                    return;
                 }
-            if (inicio.Date != DateTime.Now.Date)
+            }
+            else
                 ACCIONES_BD.CrearPeriodo(inicio, fin);
+
+            //Ya se puede  el rango en el calendario
+            mesAdmin.MinDate = inicio;
+            mesAdmin.MaxDate = fin;
         }
 
         private void Salir(object sender, EventArgs e)
@@ -102,8 +105,6 @@ namespace PreyectoDesarrollo_unicah
 
         private void btnSQL_Click(object sender, EventArgs e)
         {
-
-
             if (!CONEXION_BD.ConexionPerdida(this))
                 return;
 
