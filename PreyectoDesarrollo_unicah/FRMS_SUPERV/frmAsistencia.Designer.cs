@@ -37,12 +37,6 @@
             pictureBox3 = new PictureBox();
             label1 = new Label();
             dgvAsiste = new DataGridView();
-            clmDoc = new DataGridViewTextBoxColumn();
-            clmClase = new DataGridViewTextBoxColumn();
-            clmSeccion = new DataGridViewTextBoxColumn();
-            clmAula = new DataGridViewTextBoxColumn();
-            clmEdificio = new DataGridViewTextBoxColumn();
-            clmFecha = new DataGridViewCheckBoxColumn();
             label5 = new Label();
             txtClase = new TextBox();
             cmbAula = new ComboBox();
@@ -141,50 +135,12 @@
             dgvAsiste.AllowUserToAddRows = false;
             dgvAsiste.AllowUserToDeleteRows = false;
             dgvAsiste.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAsiste.Columns.AddRange(new DataGridViewColumn[] { clmDoc, clmClase, clmSeccion, clmAula, clmEdificio, clmFecha });
             dgvAsiste.Location = new Point(20, 224);
             dgvAsiste.Name = "dgvAsiste";
             dgvAsiste.Size = new Size(877, 245);
             dgvAsiste.TabIndex = 17;
             dgvAsiste.CellContentClick += dgvAsiste_CellContentClick;
             dgvAsiste.CellValueChanged += dgvAsiste_CellValueChanged;
-            // 
-            // clmDoc
-            // 
-            clmDoc.HeaderText = "Docente";
-            clmDoc.Name = "clmDoc";
-            clmDoc.Width = 300;
-            // 
-            // clmClase
-            // 
-            clmClase.HeaderText = "Asignatura";
-            clmClase.Name = "clmClase";
-            clmClase.Width = 250;
-            // 
-            // clmSeccion
-            // 
-            clmSeccion.HeaderText = "Sección";
-            clmSeccion.Name = "clmSeccion";
-            clmSeccion.Width = 60;
-            // 
-            // clmAula
-            // 
-            clmAula.HeaderText = "Aula";
-            clmAula.Name = "clmAula";
-            clmAula.Width = 150;
-            // 
-            // clmEdificio
-            // 
-            clmEdificio.HeaderText = "Edificio";
-            clmEdificio.Name = "clmEdificio";
-            // 
-            // clmFecha
-            // 
-            clmFecha.HeaderText = "Presente";
-            clmFecha.Name = "clmFecha";
-            clmFecha.Resizable = DataGridViewTriState.True;
-            clmFecha.SortMode = DataGridViewColumnSortMode.Automatic;
-            clmFecha.Width = 55;
             // 
             // label5
             // 
@@ -358,12 +314,6 @@
         private Button btnSalir;
         private Label label4;
         private Label label3;
-        private DataGridViewTextBoxColumn clmDoc;
-        private DataGridViewTextBoxColumn clmClase;
-        private DataGridViewTextBoxColumn clmSeccion;
-        private DataGridViewTextBoxColumn clmAula;
-        private DataGridViewTextBoxColumn clmEdificio;
-        private DataGridViewCheckBoxColumn clmFecha;
         private Label label2;
         private ComboBox cmbSeccion;
     }
