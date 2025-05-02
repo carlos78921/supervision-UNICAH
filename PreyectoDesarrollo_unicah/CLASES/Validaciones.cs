@@ -72,6 +72,12 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 return false;
             }
 
+            if (contraseña.Length > 150 && user == null) //Al actualizar el límite, recompilar esta solución y el setup
+            {
+                MessageBox.Show("Contraseña difícil de recordar", "Contraseña pasó límite máximo de 150 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             if (contraseña == "Contraseña nueva:" || string.IsNullOrWhiteSpace(contraseña))
             {
                 MessageBox.Show("Contraseña no puede quedar vacía.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
