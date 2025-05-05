@@ -1111,8 +1111,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Docente", Docente);
                     cmd.Parameters.AddWithValue("@Edificio", Edificio);
-
-
                     cmd.Parameters.AddWithValue("@CodigoDecano", empleado);
 
 
@@ -1254,8 +1252,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Repo", Repo);
                     cmd.Parameters.AddWithValue("@Edificio", Edificio);
-
-
                     cmd.Parameters.AddWithValue("@CodigoDecano", empleado);
 
 

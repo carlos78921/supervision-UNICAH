@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:Setup Supervisión Unicah FInal"
+"ProjectName" = "8:Setup Supervision Unicah"
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
@@ -15,13 +15,55 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_A0F5AA3B41514D90ABCC0C85C6CD959B"
+        "MsmKey" = "8:_0469030F66464E6A90052D5324E0CB10"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A7A46C23215941A2B3F5F2C03AC99B11"
+        "MsmKey" = "8:_0D3595D3B5E54A3A91318AC8DDE8B91D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_16EACB7D347E4FB8A6CF8E0586FBBA92"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_511A0BFA43AD496498158BADFC08CCF1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9AEE2D2F4E0643FAB5089E846BCD6803"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C83FA5524CB4424B9AAC19BF539EF3F7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D91FF1A23C9E405BA0A327A4F8160667"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F22B8E49D4454FBBB1A3D69522160CB6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FAB928C95B094CCBA5932B4C08B41E43"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -82,6 +124,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -114,12 +164,12 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A0F5AA3B41514D90ABCC0C85C6CD959B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0469030F66464E6A90052D5324E0CB10"
             {
-            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\images.ico"
-            "TargetName" = "8:images.ico"
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PresentationNative_cor3.dll"
+            "TargetName" = "8:PresentationNative_cor3.dll"
             "Tag" = "8:"
-            "Folder" = "8:_60FD6333AAB1422092BBB8C8BA5D44B6"
+            "Folder" = "8:_9B3EC183D88345278481357B39B97F07"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -134,12 +184,152 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A7A46C23215941A2B3F5F2C03AC99B11"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0D3595D3B5E54A3A91318AC8DDE8B91D"
+            {
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\sni.dll"
+            "TargetName" = "8:sni.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_9B3EC183D88345278481357B39B97F07"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_16EACB7D347E4FB8A6CF8E0586FBBA92"
+            {
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\D3DCompiler_47_cor3.dll"
+            "TargetName" = "8:D3DCompiler_47_cor3.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_9B3EC183D88345278481357B39B97F07"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_511A0BFA43AD496498158BADFC08CCF1"
             {
             "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PreyectoDesarrollo_unicah.exe"
             "TargetName" = "8:PreyectoDesarrollo_unicah.exe"
             "Tag" = "8:"
-            "Folder" = "8:_36425A280F924F459030B26A45F735B1"
+            "Folder" = "8:_9B3EC183D88345278481357B39B97F07"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9AEE2D2F4E0643FAB5089E846BCD6803"
+            {
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\images.ico"
+            "TargetName" = "8:images.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_9B3EC183D88345278481357B39B97F07"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C83FA5524CB4424B9AAC19BF539EF3F7"
+            {
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\vcruntime140_cor3.dll"
+            "TargetName" = "8:vcruntime140_cor3.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_9B3EC183D88345278481357B39B97F07"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D91FF1A23C9E405BA0A327A4F8160667"
+            {
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\wpfgfx_cor3.dll"
+            "TargetName" = "8:wpfgfx_cor3.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_9B3EC183D88345278481357B39B97F07"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F22B8E49D4454FBBB1A3D69522160CB6"
+            {
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PreyectoDesarrollo_unicah.pdb"
+            "TargetName" = "8:PreyectoDesarrollo_unicah.pdb"
+            "Tag" = "8:"
+            "Folder" = "8:_9B3EC183D88345278481357B39B97F07"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FAB928C95B094CCBA5932B4C08B41E43"
+            {
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PenImc_cor3.dll"
+            "TargetName" = "8:PenImc_cor3.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_9B3EC183D88345278481357B39B97F07"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -162,7 +352,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_36425A280F924F459030B26A45F735B1"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -170,6 +360,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_9B3EC183D88345278481357B39B97F07"
+                    {
+                    "Name" = "8:Unicah"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_AA498BFDE3854919A6B1D77C2FA88F45"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_42E0B9F1EC74427884EBF98A9364CCF2"
@@ -209,9 +410,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Setup Supervisión Unicah FInal"
+        "ProductName" = "8:Setup Supervisión Unicah"
         "ProductCode" = "8:{C275C7F4-6ECD-4AEB-B473-9CB4B67769DD}"
-        "PackageCode" = "8:{E718EB7A-4780-4E4B-89AD-870FAC777893}"
+        "PackageCode" = "8:{3B9F8E6C-3CF4-47D8-A884-8A52B08112A4}"
         "UpgradeCode" = "8:{4A816E3E-DC08-426C-A86D-EC0C5C2CA7F3}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -222,7 +423,7 @@
         "Manufacturer" = "8:Unicah"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Setup Supervisión Unicah FInal"
+        "Title" = "8:Setup Supervisión Unicah"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Unicah Config"
         "Keywords" = "8:"
@@ -232,7 +433,7 @@
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
-        "TargetPlatform" = "3:0"
+        "TargetPlatform" = "3:1"
         "PreBuildEvent" = "8:"
         "PostBuildEvent" = "8:"
         "RunPostBuildEvent" = "3:0"
@@ -331,18 +532,18 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6954896295054BD79F9906F618E26E54"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_66CBBFC84F0C402F8AFE57181FEC9953"
             {
-            "Name" = "8:Supervisión Unicah"
+            "Name" = "8:Sistema de Supervisión UNICAH"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_A7A46C23215941A2B3F5F2C03AC99B11"
+            "Target" = "8:_511A0BFA43AD496498158BADFC08CCF1"
             "Folder" = "8:_60FD6333AAB1422092BBB8C8BA5D44B6"
-            "WorkingFolder" = "8:_36425A280F924F459030B26A45F735B1"
-            "Icon" = "8:_A0F5AA3B41514D90ABCC0C85C6CD959B"
+            "WorkingFolder" = "8:_9B3EC183D88345278481357B39B97F07"
+            "Icon" = "8:_9AEE2D2F4E0643FAB5089E846BCD6803"
             "Feature" = "8:"
             }
         }
