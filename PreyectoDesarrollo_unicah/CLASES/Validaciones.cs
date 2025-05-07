@@ -10,35 +10,46 @@ namespace PreyectoDesarrollo_unicah.CLASES
     {
         public static bool Usuario (object sender, EventArgs e, string usuario, string contraseña, TextBox user)
         {
-            if ((usuario == "Usuario:" || usuario == "") && 
-               (contraseña == "Contraseña:" || contraseña == "Contraseña nueva:" || contraseña == "")) 
+            if (contraseña != "6")
             {
-                MessageBox.Show("Datos no ingresados, ingrese sus datos", "Error Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                user.Focus();
-                return false;
-            }
+                if ((usuario == "Usuario:" || usuario == "") &&
+                   (contraseña == "Contraseña:" || contraseña == "Contraseña nueva:" || contraseña == ""))
+                {
+                    MessageBox.Show("Datos no ingresados, ingrese sus datos", "Error Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    user.Focus();
+                    return false;
+                }
 
-            if (!SoloNumero(usuario) && usuario.Length <= 4)
+                if (!SoloNumero(usuario) && usuario.Length <= 4)
+                {
+                    MessageBox.Show("El usuario corresponde a números", "Error Letras", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    user.Focus();
+                    return false;
+                }
+
+                if (usuario.Length > 4)
+                {
+                    MessageBox.Show("Su usuario debe contener cuatro o menos caracteres.", "Usuario Largo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    user.Focus();
+                    return false;
+                }
+
+                if (usuario == "Usuario:" || usuario == "")
+                {
+                    MessageBox.Show("Usuario no ingresado, ingrese su usuario", "Error Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    user.Focus();
+                    return false;
+                }
+            }
+            else
             {
-                MessageBox.Show("El usuario corresponde a números", "Error Letras", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                user.Focus();
-                return false;
-            }
+                if (usuario == "")
+                {
+                    MessageBox.Show("Código no ingresado, ingrese el código del empleado", "Error Ingreso Código", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
 
-            if (usuario != "Usuario:" && usuario.Length > 4)
-            {
-                MessageBox.Show("Su usuario debe contener cuatro o menos caracteres.", "Usuario Largo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                user.Focus();
-                return false;
             }
-
-            if (usuario == "Usuario:" || usuario == "")
-            {
-                MessageBox.Show("Usuario no ingresado, ingrese su usuario", "Error Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                user.Focus();
-                return false;
-            }
-
             return true;
         }
 
@@ -128,5 +139,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
             return true;
         }
+
+
     }
 }

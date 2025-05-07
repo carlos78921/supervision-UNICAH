@@ -273,6 +273,31 @@ namespace PreyectoDesarrollo_unicah
             if (!CONEXION_BD.ConexionPerdida(this))
                 return;
 
+            TextBox valido = new TextBox();
+
+            switch (dgvAdmin.CurrentCell.ColumnIndex)
+            {
+                case 1:
+                    //                    valido = txtNombre1;
+                    break;
+                case 2:
+                    //valido = txtNombre2;
+                    break;
+                case 3:
+                    //valido = txtNombre3;
+                    break;
+                case 4:
+                    //valido = txtNombre4;
+                    break;
+                case 6:
+                    valido.Text = dgvAdmin.CurrentRow.Cells[6].Value.ToString();
+                    if (!Validaciones.Usuario(sender, e, valido.Text, "6", valido))
+                    {
+                        dgvAdmin.Enabled = true;
+                        return;
+                    }
+                    break;
+            }
             var codigosVacios = new List<int>(); //En lista filas (índices) como tipo int, de las filas vacías detectadas
             for (int i = 0; i < dgvAdmin.Rows.Count; i++)
             {
@@ -291,7 +316,7 @@ namespace PreyectoDesarrollo_unicah
                 MessageBoxIcon.Error
                 );
 
-                return; 
+                return;
             }
 
             using (var conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
@@ -317,6 +342,7 @@ namespace PreyectoDesarrollo_unicah
                 conn.Close();
             }
             MessageBox.Show("Datos del usuario actualizado en la base de datos", "Datos cambiados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            dgvAdmin.Enabled = true; //Para que se pueda editar después de guardar
         }
 
         private void dgvAdmin_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -330,11 +356,11 @@ namespace PreyectoDesarrollo_unicah
 
         private void dgvAdmin_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (dgvAdmin.CurrentCell.ColumnIndex == 7) // Los caracteres son puntos de contraseña al escribir
+            if (dgvAdmin.CurrentCell.ColumnIndex == 7)
             {
-                TextBox txt = e.Control as TextBox;
-                if (txt != null)
-                    txt.UseSystemPasswordChar = true;
+                TextBox txtContra = e.Control as TextBox;
+                if (txtContra != null)
+                    txtContra.UseSystemPasswordChar = true;
             }
         }
 
@@ -377,9 +403,6 @@ namespace PreyectoDesarrollo_unicah
         {
             string valorActual = dgvAdmin.Rows[e.RowIndex].Cells[6].Value.ToString();
 
-            if (string.IsNullOrWhiteSpace(valorActual))
-                return;
-
             for (int i = 0; i < dgvAdmin.Rows.Count; i++)
             {
                 if (i == e.RowIndex) continue; // Ignorar la misma fila
@@ -393,6 +416,17 @@ namespace PreyectoDesarrollo_unicah
                     break;
                 }
             }
+
+            // Aunque la edición se termine, este método ejecuta además para el DataGridView al enfocar
+            this.BeginInvoke((Action)(() =>
+            {
+                dgvAdmin.ClearSelection();
+                dgvAdmin.CurrentCell = dgvAdmin.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                dgvAdmin.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;
+                dgvAdmin.RefreshEdit();
+                dgvAdmin.Focus();
+                dgvAdmin.Enabled = false;
+            }));
         }
     }
 }
