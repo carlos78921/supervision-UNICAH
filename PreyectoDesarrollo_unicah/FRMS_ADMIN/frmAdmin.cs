@@ -278,22 +278,67 @@ namespace PreyectoDesarrollo_unicah
             switch (dgvAdmin.CurrentCell.ColumnIndex)
             {
                 case 1:
-                    //                    valido = txtNombre1;
+                    valido.Text = dgvAdmin.CurrentRow.Cells[1].Value.ToString();
+                    if (!Validaciones.NombreApellido(valido.Text, 1))
+                    {
+                        dgvAdmin.Enabled = true;
+                        dgvAdmin.Focus();
+                        dgvAdmin.BeginEdit(true);
+                        return;
+                    }
                     break;
                 case 2:
-                    //valido = txtNombre2;
+                    valido.Text = dgvAdmin.CurrentRow.Cells[2].Value.ToString();
+                    if (!Validaciones.NombreApellido(valido.Text, 2))
+                    {
+                        dgvAdmin.Enabled = true;
+                        dgvAdmin.Focus();
+                        dgvAdmin.BeginEdit(true);
+                        return;
+                    }
                     break;
                 case 3:
-                    //valido = txtNombre3;
+                    valido.Text = dgvAdmin.CurrentRow.Cells[3].Value.ToString();
+                    if (!Validaciones.NombreApellido(valido.Text, 3))
+                    {
+                        dgvAdmin.Enabled = true;
+                        dgvAdmin.Focus();
+                        dgvAdmin.BeginEdit(true);
+                        return;
+                    }
                     break;
                 case 4:
-                    //valido = txtNombre4;
+                    valido.Text = dgvAdmin.CurrentRow.Cells[4].Value.ToString();
+                    if (!Validaciones.NombreApellido(valido.Text, 4))
+                    {
+                        dgvAdmin.Enabled = true;
+                        dgvAdmin.Focus();
+                        dgvAdmin.BeginEdit(true);
+                        return;
+                    }
+                    break;
+                case 5:
+                    valido.Text = dgvAdmin.CurrentRow.Cells[5].Value.ToString();
+                    if (valido.Text != "administrador" || valido.Text != "supervisor" || valido.Text != "decano" || valido.Text != "docente")
+                    {
+                        MessageBox.Show($"Ingresar exactamanente uno de los roles válidos:\n" +
+                        $"- administrador\n" +
+                        $"- supervisor\n" +
+                        $"- decano\n" +
+                        $"- docente", "Rol no válido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        dgvAdmin.Enabled = true;
+                        dgvAdmin.Focus();
+                        dgvAdmin.BeginEdit(true);
+                        return;
+                    }
                     break;
                 case 6:
                     valido.Text = dgvAdmin.CurrentRow.Cells[6].Value.ToString();
                     if (!Validaciones.Usuario(sender, e, valido.Text, "6", valido))
                     {
                         dgvAdmin.Enabled = true;
+                        dgvAdmin.Focus();
+                        dgvAdmin.BeginEdit(true);
                         return;
                     }
                     break;
@@ -418,6 +463,7 @@ namespace PreyectoDesarrollo_unicah
             }
 
             // Aunque la edición se termine, este método ejecuta además para el DataGridView al enfocar
+            // El administrador solo edita una celda por botón
             this.BeginInvoke((Action)(() =>
             {
                 dgvAdmin.ClearSelection();
@@ -426,6 +472,7 @@ namespace PreyectoDesarrollo_unicah
                 dgvAdmin.RefreshEdit();
                 dgvAdmin.Focus();
                 dgvAdmin.Enabled = false;
+                MessageBox.Show("Haga clic en el botón de <<ACTUALIZAR DATOS EMPLEADO>> para validar su cambio", "Validar cambio", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }));
         }
     }

@@ -614,6 +614,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                                 doc.Show();
                                 Login.Hide();
                             }
+                            else
+                                MessageBox.Show("Rol no reconocido. Contacte al administrador para ajustar su rol y accesar", "Error de Rol", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                         {

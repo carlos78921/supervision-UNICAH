@@ -20,7 +20,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     return false;
                 }
 
-                if (!SoloNumero(usuario) && usuario.Length <= 4)
+                if (!SoloNumero(usuario))
                 {
                     MessageBox.Show("El usuario corresponde a números", "Error Letras", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     user.Focus();
@@ -45,10 +45,21 @@ namespace PreyectoDesarrollo_unicah.CLASES
             {
                 if (usuario == "")
                 {
-                    MessageBox.Show("Código no ingresado, ingrese el código del empleado", "Error Ingreso Código", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Código no ingresado, ingrese el código del empleado", "Error Ingreso Código", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
 
+                if (!SoloNumero(usuario))
+                {
+                    MessageBox.Show("El código corresponde a números", "Error Letras", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                if (usuario.Length > 4)
+                {
+                    MessageBox.Show("El código debe contener cuatro o menos caracteres.", "Código Largo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
             return true;
         }
@@ -135,11 +146,40 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 txtCodigo.Focus();
                 return false;
             }
-
-
             return true;
         }
 
+        private static bool SoloLetra(string usuario)
+        {
+            return usuario.All(char.IsLetter);
+        }
 
+        public static bool NombreApellido(string persona, int apellido)
+        {
+            if (apellido < 4)
+            {
+                if (!SoloLetra(persona))
+                {
+                    MessageBox.Show("El nombre y apellido no puede contener número(s)", "Error números", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                if (string.IsNullOrWhiteSpace(persona))
+                {
+                    MessageBox.Show("Nombre o apellido no ingresado, ingresar nombre o apellido", "Nombre o Apellido Vacío", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            else
+            {
+                if (!SoloLetra(persona))
+                {
+                    MessageBox.Show("El nombre y apellido no puede contener número(s)", "Error números", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }
