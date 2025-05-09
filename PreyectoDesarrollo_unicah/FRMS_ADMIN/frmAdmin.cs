@@ -279,7 +279,7 @@ namespace PreyectoDesarrollo_unicah
             {
                 case 1:
                     valido.Text = dgvAdmin.CurrentRow.Cells[1].Value.ToString();
-                    if (!Validaciones.NombreApellido(valido.Text, 1))
+                    if (!Validaciones.ValeAdmin(valido.Text, 1))
                     {
                         dgvAdmin.Enabled = true;
                         dgvAdmin.Focus();
@@ -289,7 +289,7 @@ namespace PreyectoDesarrollo_unicah
                     break;
                 case 2:
                     valido.Text = dgvAdmin.CurrentRow.Cells[2].Value.ToString();
-                    if (!Validaciones.NombreApellido(valido.Text, 2))
+                    if (!Validaciones.ValeAdmin(valido.Text, 2))
                     {
                         dgvAdmin.Enabled = true;
                         dgvAdmin.Focus();
@@ -299,7 +299,7 @@ namespace PreyectoDesarrollo_unicah
                     break;
                 case 3:
                     valido.Text = dgvAdmin.CurrentRow.Cells[3].Value.ToString();
-                    if (!Validaciones.NombreApellido(valido.Text, 3))
+                    if (!Validaciones.ValeAdmin(valido.Text, 3))
                     {
                         dgvAdmin.Enabled = true;
                         dgvAdmin.Focus();
@@ -309,7 +309,7 @@ namespace PreyectoDesarrollo_unicah
                     break;
                 case 4:
                     valido.Text = dgvAdmin.CurrentRow.Cells[4].Value.ToString();
-                    if (!Validaciones.NombreApellido(valido.Text, 4))
+                    if (!Validaciones.ValeAdmin(valido.Text, 4))
                     {
                         dgvAdmin.Enabled = true;
                         dgvAdmin.Focus();
@@ -319,13 +319,8 @@ namespace PreyectoDesarrollo_unicah
                     break;
                 case 5:
                     valido.Text = dgvAdmin.CurrentRow.Cells[5].Value.ToString();
-                    if (valido.Text != "administrador" || valido.Text != "supervisor" || valido.Text != "decano" || valido.Text != "docente")
+                    if (!Validaciones.ValeAdmin(valido.Text, 5))
                     {
-                        MessageBox.Show($"Ingresar exactamanente uno de los roles válidos:\n" +
-                        $"- administrador\n" +
-                        $"- supervisor\n" +
-                        $"- decano\n" +
-                        $"- docente", "Rol no válido", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         dgvAdmin.Enabled = true;
                         dgvAdmin.Focus();
                         dgvAdmin.BeginEdit(true);
@@ -335,6 +330,16 @@ namespace PreyectoDesarrollo_unicah
                 case 6:
                     valido.Text = dgvAdmin.CurrentRow.Cells[6].Value.ToString();
                     if (!Validaciones.Usuario(sender, e, valido.Text, "6", valido))
+                    {
+                        dgvAdmin.Enabled = true;
+                        dgvAdmin.Focus();
+                        dgvAdmin.BeginEdit(true);
+                        return;
+                    }
+                    break;
+                case 7:
+                    valido.Text = dgvAdmin.CurrentRow.Cells[7].Value.ToString();
+                    if (!Validaciones.Contraseña(sender, e, "", valido.Text, this, null, null))
                     {
                         dgvAdmin.Enabled = true;
                         dgvAdmin.Focus();
@@ -380,7 +385,7 @@ namespace PreyectoDesarrollo_unicah
                         cmd.Parameters.AddWithValue("@Nombre4", dgvAdmin.Rows[row].Cells[4].Value);
                         cmd.Parameters.AddWithValue("@rol", dgvAdmin.Rows[row].Cells[5].Value);
                         cmd.Parameters.AddWithValue("@usuario", dgvAdmin.Rows[row].Cells[6].Value);
-                        cmd.Parameters.AddWithValue("@Contraseña", dgvAdmin.Rows[row].Cells[7].Value);
+                        cmd.Parameters.AddWithValue("@Contraseña", dgvAdmin.Rows[row].Cells[7].Value.ToString().Trim());
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -401,12 +406,36 @@ namespace PreyectoDesarrollo_unicah
 
         private void dgvAdmin_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
+            if (e.Control is TextBox celdatxt)
+            {
+//                nombres.KeyPress -= Nombres_KeyPress; Cuestión de seguridad para desvinculación en uso del método
+                int celda = dgvAdmin.CurrentCell.ColumnIndex;
+                if (celda >= 1 && celda <= 7)
+                    celdatxt.KeyPress += Celda_KeyPress;
+            }
+
             if (dgvAdmin.CurrentCell.ColumnIndex == 7)
             {
                 TextBox txtContra = e.Control as TextBox;
                 if (txtContra != null)
                     txtContra.UseSystemPasswordChar = true;
             }
+        }
+
+        private void Celda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (dgvAdmin.CurrentCell.ColumnIndex < 5)
+                if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back && !"áéíóúÁÉÍÓÚüÜ'".Contains(e.KeyChar))
+                    e.Handled = true;
+            if (dgvAdmin.CurrentCell.ColumnIndex == 5)
+                if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                    e.Handled = true;
+            if (dgvAdmin.CurrentCell.ColumnIndex == 6)
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                    e.Handled = true;
+            if (dgvAdmin.CurrentCell.ColumnIndex == 7)
+                if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != (char)Keys.Back)
+                    e.Handled = true;
         }
 
         private void txtBusca_KeyDown(object sender, KeyEventArgs e)

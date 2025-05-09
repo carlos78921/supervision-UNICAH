@@ -34,6 +34,7 @@ namespace PreyectoDesarrollo_unicah
             Button btnReinicioBDD;
             Button btnListaLoad;
             Button btnListaSave;
+            Button btnName;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdmin));
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();

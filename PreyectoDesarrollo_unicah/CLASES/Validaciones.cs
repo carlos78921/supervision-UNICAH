@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,7 +9,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 {
     internal class Validaciones
     {
-        public static bool Usuario (object sender, EventArgs e, string usuario, string contraseña, TextBox user)
+        public static bool Usuario(object sender, EventArgs e, string usuario, string contraseña, TextBox user)
         {
             if (contraseña != "6")
             {
@@ -49,12 +50,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     return false;
                 }
 
-                if (!SoloNumero(usuario))
-                {
-                    MessageBox.Show("El código corresponde a números", "Error Letras", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
-
                 if (usuario.Length > 4)
                 {
                     MessageBox.Show("El código debe contener cuatro o menos caracteres.", "Código Largo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -72,41 +67,58 @@ namespace PreyectoDesarrollo_unicah.CLASES
         public static bool Contraseña(object sender, EventArgs e, string usuario, string contraseña, Form Login, TextBox user, TextBox contra)
         {
             if (user != null)
+            {
                 if (!ACCIONES_BD.AdminCasoContra(usuario, contraseña, Login))
                     return false;
 
-            if (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña))
-            {
-                MessageBox.Show("Contraseña no puede quedar vacía, en caso de no obtener, consultar al administrador.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                contra.Focus();
-                return false;
-            }
+                if (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña))
+                {
+                    MessageBox.Show("Contraseña no puede quedar vacía, en caso de no obtener, consultar al administrador.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    contra.Focus();
+                    return false;
+                }
 
-            if (contraseña.Length < 8 && user == null)
-            {
-                MessageBox.Show("La contraseña debe tener al menos 8 caracteres.", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else if (contraseña.Length < 8)
-            {
-                MessageBox.Show("Su contraseña debe contener más de ocho caracteres.\nComuníquese con el Administrador, y espere a que le asigne contraseña correcta", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                contra.Focus();
-                return false;
-            }
+                if (contraseña.Length < 8)
+                {
+                    MessageBox.Show("Su contraseña debe contener más de ocho caracteres.\nComuníquese con el Administrador, y espere a que le asigne contraseña correcta", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    contra.Focus();
+                    return false;
+                }
 
-            if (contraseña.Length > 150 && user == null) //Al actualizar el límite, recompilar esta solución y el setup
-            {
-                MessageBox.Show("Contraseña difícil de recordar", "Contraseña pasó límite máximo de 150 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
+                if (contraseña.Length > 150) 
+                {
+                    MessageBox.Show("Contraseña difícil de recordar", "Contraseña pasó límite máximo de 150 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
 
-            if (contraseña == "Contraseña nueva:" || string.IsNullOrWhiteSpace(contraseña))
-            {
-                MessageBox.Show("Contraseña no puede quedar vacía.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                contra.Focus();
-                return false;
+                if (contraseña == "Contraseña nueva:" || string.IsNullOrWhiteSpace(contraseña))
+                {
+                    MessageBox.Show("Contraseña no puede quedar vacía.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    contra.Focus();
+                    return false;
+                }
             }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(contraseña))
+                {
+                    MessageBox.Show("Contraseña no puede quedar vacía", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
 
+                if (contraseña.Length < 8)
+                {
+                    MessageBox.Show("La contraseña debe tener al menos 8 caracteres.", "Contraseña Corta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                if (contraseña.Length > 150)
+                {
+                    MessageBox.Show("Contraseña difícil de recordar", "Contraseña pasó límite máximo de 150 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+            }
             return true;
         }
 
@@ -133,7 +145,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public static bool Codigo(object sender, EventArgs e, TextBox txtCodigo)
         {
-            if (txtCodigo.Text == "Código:" || txtCodigo.Text == "") 
+            if (txtCodigo.Text == "Código:" || txtCodigo.Text == "")
             {
                 MessageBox.Show("Código no ingresado, ingresar código", "Código Vacío", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodigo.Focus();
@@ -149,36 +161,40 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return true;
         }
 
-        private static bool SoloLetra(string usuario)
+        public static bool ValeAdmin(string persona, int campo)
         {
-            return usuario.All(char.IsLetter);
-        }
-
-        public static bool NombreApellido(string persona, int apellido)
-        {
-            if (apellido < 4)
+            if (campo < 4)
             {
-                if (!SoloLetra(persona))
+                if (persona == "")
                 {
-                    MessageBox.Show("El nombre y apellido no puede contener número(s)", "Error números", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Nombre o apellido no ingresado, ingresar nombre o apellido", "Nombre o Apellido Vacío", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
 
-                if (string.IsNullOrWhiteSpace(persona))
+                if (persona.Length > 20)
                 {
-                    MessageBox.Show("Nombre o apellido no ingresado, ingresar nombre o apellido", "Nombre o Apellido Vacío", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El nombre o apellido debe contener a lo más 20 caracteres", "Error Cantidad Nombre o Apellido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
-            else
+            if (campo > 4)
             {
-                if (!SoloLetra(persona))
+                if (persona == "")
                 {
-                    MessageBox.Show("El nombre y apellido no puede contener número(s)", "Error números", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Rol no ingresado, ingresar rol", "Rol Vacío", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                if (persona != "administrador" && persona != "supervisor" && persona != "decano" && persona != "docente")
+                {
+                    MessageBox.Show($"Ingresar exactamanente uno de los roles válidos:\n" +
+                    $"- administrador\n" +
+                    $"- supervisor\n" +
+                    $"- decano\n" +
+                    $"- docente", "Rol no válido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
-
             return true;
         }
     }
