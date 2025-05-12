@@ -348,26 +348,6 @@ namespace PreyectoDesarrollo_unicah
                     }
                     break;
             }
-            var codigosVacios = new List<int>(); //En lista filas (índices) como tipo int, de las filas vacías detectadas
-            for (int i = 0; i < dgvAdmin.Rows.Count; i++)
-            {
-                var codigoFila = dgvAdmin.Rows[i].Cells[6].Value;
-                string code = codigoFila?.ToString() ?? ""; //Si no es nulo, se considera texto (incluye espacio sin caracter, pero ese se valida), si lo es, se considera ""
-                if (string.IsNullOrWhiteSpace(dgvAdmin.Rows[i].Cells[6].Value.ToString()))
-                    codigosVacios.Add(i + 1);
-            }
-
-            if (codigosVacios.Count > 0)
-            {
-                string lista = string.Join(", ", codigosVacios); //Join concatena los elementos de la lista en más de un elemento para varios tipos de dato en cadena
-                MessageBox.Show($"Código vacío en la fila detectada: {lista}.\nRellenar los códigos para actualizar la tabla",
-                "Datos incompletos por código",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error
-                );
-
-                return;
-            }
 
             using (var conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
@@ -377,7 +357,7 @@ namespace PreyectoDesarrollo_unicah
                     cmd.CommandType = CommandType.StoredProcedure;
                     for (int row = 0; row < dgvAdmin.Rows.Count; row++)
                     {
-                        cmd.Parameters.Clear();
+                        cmd.Parameters.Clear(); //Evita error de parámetros
                         cmd.Parameters.AddWithValue("@ID", dgvAdmin.Rows[row].Cells[0].Value);
                         cmd.Parameters.AddWithValue("@Nombre1", dgvAdmin.Rows[row].Cells[1].Value);
                         cmd.Parameters.AddWithValue("@Nombre2", dgvAdmin.Rows[row].Cells[2].Value);
@@ -487,7 +467,7 @@ namespace PreyectoDesarrollo_unicah
                 {
                     MessageBox.Show($"Código existente entre fila actual {e.RowIndex + 1} con fila {i + 1}.\nPor favor cambiar código diferente", "Valor duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dgvAdmin.Rows[e.RowIndex].Cells[6].Value = "";
-                    break;
+                    break; //Para el for
                 }
             }
 
