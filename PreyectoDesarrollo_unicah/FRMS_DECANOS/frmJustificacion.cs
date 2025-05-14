@@ -7,7 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.NetworkInformation;
-using System.Runtime.InteropServices; //Relacionado con Dll (Librer�a)
+using System.Runtime.InteropServices; //Relacionado con Dll (Librería)
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,8 +32,8 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.Text = ACCIONES_BD.Persona();
 
             //Ajuste de controles
-            txtJustifica.Text = Environment.NewLine; // (TextChanged) Mantener la primera l�nea vac�a cuando se opera esto
-            txtJustifica.SelectionStart = txtJustifica.Text.Length; // (TextChanged) Colocar el cursor en la segunda l�nea cuando se opera esto
+            txtJustifica.Text = Environment.NewLine; // (TextChanged) Mantener la primera línea vacía cuando se opera esto
+            txtJustifica.SelectionStart = txtJustifica.Text.Length; // (TextChanged) Colocar el cursor en la segunda línea cuando se opera esto
 
             //Ajuste en la BDD
             ACCIONES_BD.tablaJustifica(dgvJustificacion, ACCIONES_BD.empleado);
@@ -68,6 +68,11 @@ namespace PreyectoDesarrollo_unicah
                 ACCIONES_BD.Justifico(dgvJustificacion, (int)dgvJustificacion.CurrentRow.Cells[0].Value, txtJustifica.Text);
                 ACCIONES_BD.tablaJustifica(dgvJustificacion, ACCIONES_BD.empleado); //Esto ayuda a actualizar la tabla, la línea anterior actualiza datos
             }
+            else
+            { 
+                MessageBox.Show("Justificación no ingresada, ingresar justificación", "Justificación Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtJustifica.Focus();
+            }
         }
 
         //Métodos para el textbox de justificación
@@ -82,40 +87,32 @@ namespace PreyectoDesarrollo_unicah
 
             // Asegurar que la primera línea está vacía
             if (lineas.Length > 0)
-            {
                 lineas[0] = ""; // Vaciar la primera línea
-            }
 
             // Si hay mes de dos líneas, eliminar las adicionales
             if (lineas.Length > 2)
-            {
                 txtJustifica.Lines = lineas.Take(2).ToArray(); //Despeja el dos del arreglo
-            }
             else
-            {
                 txtJustifica.Lines = lineas; // Asignar líneas modificadas
-            }
 
-            // Si el usuario borra todo, mantener la primera l�nea vac�a y el cursor en la segunda l�nea
+            // Si el usuario borra todo, mantener la primera línea vacía y el cursor en la segunda línea
             if (txtJustifica.Text.Trim() == "")
-            {
                 txtJustifica.Text = Environment.NewLine;
-            }
 
-            txtJustifica.SelectionStart = txtJustifica.Text.Length; // Mantener el cursor en la segunda l�nea
+            txtJustifica.SelectionStart = txtJustifica.Text.Length; // Mantener el cursor en la segunda línea
 
-            bloqueado = false; //Desactiva m�todo contador de caracteres
+            bloqueado = false; //Desactiva método contador de caracteres
 
             ContarChars(); //Aquí se ubica por orden
         }
 
         private void ContarChars()
         {
-            int Max = 150; // L�mite m�ximo de caracteres
+            int Max = 150; // Límite máximo de caracteres
             if (bloqueado) return;
             bloqueado = true;
 
-            // "?" es un if para true y ":" es un else, donde esa resta al contener un valor que "suma caracteres" a dos, pues resta a dos para valor original, en rengl�n 2
+            // "?" es un if para true y ":" es un else, donde esa resta al contener un valor que "suma caracteres" a dos, pues resta a dos para valor original, en renglón 2
             int conteoRenglon2 = txtJustifica.Text.Trim() == "" ? 0 : txtJustifica.Text.Length - Environment.NewLine.Length;
 
             if (txtJustifica.Text.Length > Max + 1)

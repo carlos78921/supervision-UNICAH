@@ -20,6 +20,7 @@ namespace PreyectoDesarrollo_unicah
         public frmAdmin()
         {
             InitializeComponent();
+            dgvAdmin.ShowCellToolTips = false;
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -441,12 +442,12 @@ namespace PreyectoDesarrollo_unicah
 
         private void dgvAdmin_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvAdmin.Columns[e.ColumnIndex].Name == "contraseña")
+            if (dgvAdmin.Columns[e.ColumnIndex].Name == "Contraseña")
             {
                 if (MessageBox.Show("¿Desea cambiar la contraseña?", "Cambiar contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     dgvAdmin.Columns[7].ReadOnly = false;
-                    dgvAdmin.CurrentRow.Cells[7].Value = "";
+                    dgvAdmin.CurrentRow.Cells[7].Value = ""; //Con esto descartamos el problema que al actualizar, los valores sean asteríscos
                 }
                 else
                     dgvAdmin.Columns[7].ReadOnly = true;
