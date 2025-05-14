@@ -64,12 +64,13 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return usuario.All(char.IsDigit);
         }
 
-        public static bool Contraseña(object sender, EventArgs e, string usuario, string contraseña, Form Login, TextBox user, TextBox contra)
+        public static bool Contraseña(object sender, EventArgs e, string usuario, string contraseña, Form Login, TextBox user, TextBox contra, string admin)
         {
             if (user != null)
             {
-                if (!ACCIONES_BD.AdminCasoContra(usuario, contraseña, Login))
-                    return false;
+                if (admin == "administrador")
+                    if (!ACCIONES_BD.AdminCasoContra(usuario, contraseña, Login, contra))
+                        return false;
 
                 if (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña))
                 {

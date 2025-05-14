@@ -17,6 +17,8 @@ namespace PreyectoDesarrollo_unicah
         {
             InitializeComponent();
         }
+        private string rol = Program.RolExe;
+
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -69,21 +71,21 @@ namespace PreyectoDesarrollo_unicah
             string usuario = txtusuario.Text;
             string contraseña = txtcontraseña.Text.Trim();
 
-
             if (!CONEXION_BD.ConexionPerdida(this))
                 return;
 
             if (!Validaciones.Usuario(sender, e, usuario, contraseña, txtusuario))
                 return;
 
-            if (!ACCIONES_BD.CrearBDD(usuario))
-                return;
+            if (rol == "administrador")
+                if (!ACCIONES_BD.CrearBDD(usuario))
+                    return;
 
-            if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this, txtusuario, txtcontraseña))
+            if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this, txtusuario, txtcontraseña, rol))
                 return;
 
             ACCIONES_BD Login = new ACCIONES_BD();
-            Login.Login(usuario, contraseña, this);
+            Login.Login(usuario, contraseña, this, rol);
         }
 
         private void MoveForm_MouseDown(object sender, MouseEventArgs e)
@@ -102,10 +104,10 @@ namespace PreyectoDesarrollo_unicah
                     return;
                 if (!ACCIONES_BD.CrearBDD(usuario))
                     return;
-                if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this, txtusuario, txtcontraseña))
+                if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this, txtusuario, txtcontraseña, rol))
                     return;
                 ACCIONES_BD Login = new ACCIONES_BD();
-                Login.Login(usuario, contraseña, this);
+                Login.Login(usuario, contraseña, this, rol);
             }
         }
 

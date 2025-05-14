@@ -340,7 +340,7 @@ namespace PreyectoDesarrollo_unicah
                     break;
                 case 7:
                     valido.Text = dgvAdmin.CurrentRow.Cells[7].Value.ToString();
-                    if (!Validaciones.Contraseña(sender, e, "", valido.Text, this, null, null))
+                    if (!Validaciones.Contraseña(sender, e, "", valido.Text, this, null, null, ""))
                     {
                         dgvAdmin.Enabled = true;
                         dgvAdmin.Focus();

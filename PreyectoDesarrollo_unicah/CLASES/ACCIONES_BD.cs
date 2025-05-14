@@ -15,6 +15,7 @@ using DocumentFormat.OpenXml.Office.Word;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Drawing;
 using System.ComponentModel;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 
 namespace PreyectoDesarrollo_unicah.CLASES
@@ -48,17 +49,14 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 DataTable autoridades = new DataTable(); //Declaro así considerando como tabla nula
                 conexionBDD.Open();
 
-                using (SqlCommand admin = new SqlCommand("PA_Datos_Vacíos", conexionBDD))
+                using (SqlCommand admin = new SqlCommand("PA_No_Admin", conexionBDD))
                 {
                     admin.CommandType = CommandType.StoredProcedure;
-                    admin.Parameters.AddWithValue("@Usuario", usuario);
-                    using (SqlDataReader reader = admin.ExecuteReader())
-                    {
-                        if (!reader.Read())
+                    object valor = admin.ExecuteScalar();
+                        if ((int)(valor) == 0)
                         {
-                            MessageBox.Show("Datos no encontrados, importar los datos correspondientes de Excel para iniciar programa con datos", "Encontrar Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            reader.Close();
-                            string rutaArchivo = "";
+                        MessageBox.Show("Ningún administrador encontrado, importar los datos correspondientes de Excel para iniciar programa con datos\n(al menos con un administrador)", "Encontrar Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        string rutaArchivo = "";
                             using (OpenFileDialog ofd = new OpenFileDialog())
                             {
                                 ofd.Filter = "Archivos Excel (*.xlsx)|*.xlsx";
@@ -134,7 +132,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                                 }
                             }
                         }
-                    }
                 }
                 conexionBDD.Close();
              }
@@ -566,7 +563,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return dt;
         }
 
-        public void Login(string usuario, string contraseña, Form Login)
+        public void Login(string usuario, string contraseña, Form Login, string rolAccess)
         {
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
@@ -619,9 +616,10 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         }
                         else
                         {
-                            if (!AdminContraseñaError(usuario, Login, conexion, reader))
-                                return;
-                            MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            if (rolAccess == "administrador")
+                                if (!AdminContraseñaError(usuario, Login, conexion, reader)) 
+                                    return;
+                            MessageBox.Show("Usuario o contraseña incorrectos.\nComunicarse con el administrador en\ncaso de inconveniencia", "Error dato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -642,12 +640,12 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 return char.ToUpper(name[0]) + name.Substring(1) + ' ' + char.ToUpper(ape[0]) + ape.Substring(1); //Substring ubica cadena inicial a leer
         }
 
-        public static bool AdminCasoContra(string usuario, string contraseña, Form Login)
+        public static bool AdminCasoContra(string usuario, string contraseña, Form Login, TextBox contra)
         {
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
                 conexion.Open();
-                using (SqlCommand cmd = new SqlCommand("PA_Admin_Save", conexion)) 
+                using (SqlCommand cmd = new SqlCommand("PA_Admin_Save", conexion))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Usuario", usuario);
@@ -665,9 +663,10 @@ namespace PreyectoDesarrollo_unicah.CLASES
                                 }
                                 return false;
                             }
-                            if ((contraseña != "Contraseña:" && contraseña.Length < 8))
+
+                            if (contraseña.Length < 8)
                             {
-                                if (MessageBox.Show("Saludos Administrador, su contraseña debe contener más de ocho caracteres, ¿olvidó su contraseña?", "Contraseña Corta", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                                if (MessageBox.Show("Saludos Administrador, su contraseña debe contener más de ocho caracteres, ¿perdió su contraseña?", "Contraseña Corta Admin.", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                                 {
                                     frmPierdoContraseña Lost = new frmPierdoContraseña();
                                     Login.Hide();
@@ -675,11 +674,34 @@ namespace PreyectoDesarrollo_unicah.CLASES
                                 }
                                 return false;
                             }
-                        }                        
+                        }
+                        else
+                        {
+                            if (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña))
+                            {
+                                if (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña))
+                                {
+                                    MessageBox.Show("Contraseña no puede quedar vacía.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    contra.Focus();
+                                    return false;
+                                }
+                            }
+
+                            if (contraseña.Length < 8)
+                            {
+                                if (MessageBox.Show("La contraseña debe tener al menos 8 caracteres", "Contraseña Corta", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                                {
+                                    frmPierdoContraseña Lost = new frmPierdoContraseña();
+                                    Login.Hide();
+                                    Lost.Show();
+                                }
+                                return false;
+                            }
+                        }
                     }
                 }
+                return true;
             }
-            return true;
         }
  
         private static bool AdminContraseñaError(string usuario, Form Login, SqlConnection conexion, SqlDataReader read)
@@ -702,6 +724,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         }
                         return false;
                     }
+/*                    else
+                        MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);*/
                 }
             }
             return true;

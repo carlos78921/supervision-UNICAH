@@ -50,9 +50,8 @@ namespace PreyectoDesarrollo_unicah
             if (!CONEXION_BD.ConexionPerdida(this))
                 return;
             ACCIONES_BD.nombre = "Sr(a)."; ACCIONES_BD.apellido = "Admin.";
-            TextBox txtadmin = new TextBox();
             string admin = "", contraseña = txtcontraseña.Text.Trim();
-            if (!Validaciones.Contraseña(sender, e, admin, contraseña, this, txtadmin, txtcontraseña))
+            if (!Validaciones.Contraseña(sender, e, admin, contraseña, this, null, txtcontraseña, ""))
                 return;
             ACCIONES_BD.AdminContra(txtcontraseña.Text, this);
         }
@@ -67,12 +66,11 @@ namespace PreyectoDesarrollo_unicah
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != (char)Keys.Back)
                 e.Handled = true;
-            TextBox txtadmin = new TextBox();
             string admin = "", contraseña = txtcontraseña.Text.Trim();
 
             if (e.KeyChar == (char)Keys.Enter)
             {
-                if (!Validaciones.Contraseña(sender, e, admin, contraseña, this, txtadmin, txtcontraseña))
+                if (!Validaciones.Contraseña(sender, e, admin, contraseña, this, null, txtcontraseña, ""))
                     return;
                 e.Handled = true; // Evita el sonido de error por defecto en símbolo de retorno
                 ACCIONES_BD.AdminContra(txtcontraseña.Text, this);
