@@ -76,9 +76,25 @@ namespace PreyectoDesarrollo_unicah
 
         private void Salir(object sender, EventArgs e)
         {
-            this.Close();
-            Form1 Login = new Form1();
-            Login.Show();
+            DialogResult opcion = MessageBox.Show("¿Desea guardar las asistencias actuales antes de cerrar sesión?\nPresione <<Cancelar>> para mantener sesión abierta", "Guardar Asistencia Antes de Salir", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            if (opcion == DialogResult.Yes)
+            { 
+                if (!RespaldoExcel())
+                    return;
+                this.Close();
+                Form1 Login = new Form1();
+                Login.Show();
+            }
+            if (opcion == DialogResult.No)
+            {
+                this.Close();
+                Form1 Login = new Form1();
+                Login.Show();
+            }
+            if (opcion == DialogResult.Cancel)
+            {
+                return;
+            }
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -115,7 +131,7 @@ namespace PreyectoDesarrollo_unicah
             ACCIONES_BD.tablaAdmin(dgvAdmin);
         }
 
-        private static void RespaldoExcel()
+        private static bool RespaldoExcel()
         {
             DataTable dt = ACCIONES_BD.RespaldoBDD();
 
@@ -144,22 +160,20 @@ namespace PreyectoDesarrollo_unicah
                         catch (Exception ex)
                         {
 
-                            // �Es un bloqueo por "being used by another process"?
-                            if (ex is IOException ||
-                                ex is Win32Exception ||
-                                ex.Message.Contains("being used by another process"))
-                                MessageBox.Show("Por favor cerrar el archivo seleccionado para guardar", "Interrupci�n de Archivo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
                             // ¿Es un bloqueo por "being used by another process"?
                             if (ex is IOException ||
                                 ex is Win32Exception ||
                                 ex.Message.Contains("being used by another process"))
                                 MessageBox.Show("Por favor cerrar el archivo seleccionado para guardar", "Interrupción de Archivo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
                         }
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
             }
+            return true;
         }
 
         private void btnReinicioBDD_Click(object sender, EventArgs e)

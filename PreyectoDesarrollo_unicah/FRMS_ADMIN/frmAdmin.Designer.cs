@@ -76,7 +76,7 @@ namespace PreyectoDesarrollo_unicah
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(137, 32);
             btnLogout.TabIndex = 8;
-            btnLogout.Text = "REGRE&SAR";
+            btnLogout.Text = "CERRAR &SESIÓN";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += Salir;
             // 
