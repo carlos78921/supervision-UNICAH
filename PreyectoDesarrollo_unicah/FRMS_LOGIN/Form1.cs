@@ -37,8 +37,6 @@ namespace PreyectoDesarrollo_unicah
                 }
             }
             catch { rol = "desconocido"; }
-
-            MessageBox.Show("Rol cargado: " + rol);
         }
 
 [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
