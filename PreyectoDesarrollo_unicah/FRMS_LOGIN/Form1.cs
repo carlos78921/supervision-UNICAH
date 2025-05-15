@@ -1,5 +1,6 @@
 using DocumentFormat.OpenXml.Bibliography;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using Microsoft.Win32;
 using PreyectoDesarrollo_unicah.CLASES;
 using PreyectoDesarrollo_unicah.FRMS_SUPERV;
 using System.Data;
@@ -16,11 +17,31 @@ namespace PreyectoDesarrollo_unicah
         public Form1()
         {
             InitializeComponent();
+            SeguridadRol();
         }
-        private string rol = Program.RolExe;
 
+        public static string rol = "desconocido";
 
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private void SeguridadRol()
+        {
+            try
+            {
+                using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Unicah"))
+                {
+                    if (key != null)
+                    {
+                        object value = key.GetValue("Rol");
+                        if (value != null)
+                            rol = value.ToString().ToLower();
+                    }
+                }
+            }
+            catch { rol = "desconocido"; }
+
+            MessageBox.Show("Rol cargado: " + rol);
+        }
+
+[DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
