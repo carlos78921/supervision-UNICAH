@@ -9,8 +9,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>images.ico</ApplicationIcon>
     <StartupObject>PreyectoDesarrollo_unicah.Program</StartupObject>
-	<UseAppHost>false</UseAppHost>
-  </PropertyGroup>
+    <CopyLockedFilesAsTemporary>true</CopyLockedFilesAsTemporary>
+	</PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <Optimize>True</Optimize>
