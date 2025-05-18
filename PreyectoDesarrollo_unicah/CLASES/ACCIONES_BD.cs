@@ -828,6 +828,16 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public static void FiltrarDatosSuperv(string Docente, string clase, string Aula, string Edificio, string Seccion, DataGridView dgv)
         {
+            int horaSeccion;
+            if (Seccion.Length >= 2 && int.TryParse(Seccion.Substring(0, 2), out horaSeccion))
+            {
+                if (horaSeccion > DateTime.Now.Hour)
+                {
+                    MessageBox.Show("No se pueden filtrar secciones futuras, por favor esperar\npara poder filtrarlas", "Sección futura", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+            }
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
                 conn.Open();
