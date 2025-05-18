@@ -44,6 +44,9 @@ namespace PreyectoDesarrollo_unicah
             label3 = new Label();
             dtpReposicion = new DateTimePicker();
             label2 = new Label();
+            dateTimePicker1 = new DateTimePicker();
+            label4 = new Label();
+            pnlAusencia = new Panel();
             btnDay = new Button();
             btnVoy = new Button();
             btnReporta = new Button();
@@ -56,9 +59,9 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnDay
             // 
-            btnDay.Location = new Point(16, 154);
+            btnDay.Location = new Point(12, 189);
             btnDay.Name = "btnDay";
-            btnDay.Size = new Size(211, 23);
+            btnDay.Size = new Size(215, 23);
             btnDay.TabIndex = 21;
             btnDay.Text = "INSERT&AR DÍA DE REPOSICIÓN";
             btnDay.UseVisualStyleBackColor = true;
@@ -66,17 +69,17 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnVoy
             // 
-            btnVoy.Location = new Point(524, 424);
+            btnVoy.Location = new Point(524, 446);
             btnVoy.Name = "btnVoy";
             btnVoy.Size = new Size(102, 29);
             btnVoy.TabIndex = 20;
-            btnVoy.Text = "&REGRESAR";
+            btnVoy.Text = "REGRE&SAR";
             btnVoy.UseVisualStyleBackColor = true;
             btnVoy.Click += Cerrar;
             // 
             // btnReporta
             // 
-            btnReporta.Location = new Point(358, 424);
+            btnReporta.Location = new Point(358, 446);
             btnReporta.Name = "btnReporta";
             btnReporta.Size = new Size(153, 28);
             btnReporta.TabIndex = 45;
@@ -145,7 +148,7 @@ namespace PreyectoDesarrollo_unicah
             label1.AutoSize = true;
             label1.Location = new Point(266, 97);
             label1.Name = "label1";
-            label1.Size = new Size(141, 15);
+            label1.Size = new Size(142, 15);
             label1.TabIndex = 18;
             label1.Text = "REPORTE DE REPOSICIÓN";
             // 
@@ -154,18 +157,18 @@ namespace PreyectoDesarrollo_unicah
             dgvRepone.AllowUserToAddRows = false;
             dgvRepone.AllowUserToDeleteRows = false;
             dgvRepone.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRepone.Location = new Point(16, 183);
+            dgvRepone.Location = new Point(12, 221);
             dgvRepone.Name = "dgvRepone";
             dgvRepone.ReadOnly = true;
             dgvRepone.RowHeadersWidth = 51;
-            dgvRepone.Size = new Size(564, 235);
+            dgvRepone.Size = new Size(564, 219);
             dgvRepone.TabIndex = 24;
             // 
             // txtBusco
             // 
-            txtBusco.Location = new Point(266, 145);
+            txtBusco.Location = new Point(402, 141);
             txtBusco.Name = "txtBusco";
-            txtBusco.Size = new Size(223, 23);
+            txtBusco.Size = new Size(224, 23);
             txtBusco.TabIndex = 26;
             txtBusco.KeyDown += Filtros;
             // 
@@ -174,7 +177,7 @@ namespace PreyectoDesarrollo_unicah
             cmbEdificio.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdificio.FormattingEnabled = true;
             cmbEdificio.Items.AddRange(new object[] { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M" });
-            cmbEdificio.Location = new Point(533, 145);
+            cmbEdificio.Location = new Point(546, 180);
             cmbEdificio.Name = "cmbEdificio";
             cmbEdificio.Size = new Size(78, 23);
             cmbEdificio.TabIndex = 27;
@@ -183,7 +186,7 @@ namespace PreyectoDesarrollo_unicah
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(533, 122);
+            label3.Location = new Point(459, 184);
             label3.Name = "label3";
             label3.Size = new Size(82, 15);
             label3.TabIndex = 28;
@@ -191,7 +194,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // dtpReposicion
             // 
-            dtpReposicion.Location = new Point(12, 122);
+            dtpReposicion.Location = new Point(12, 160);
             dtpReposicion.Name = "dtpReposicion";
             dtpReposicion.Size = new Size(215, 23);
             dtpReposicion.TabIndex = 22;
@@ -199,17 +202,42 @@ namespace PreyectoDesarrollo_unicah
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(350, 122);
+            label2.Location = new Point(486, 120);
             label2.Name = "label2";
             label2.Size = new Size(45, 15);
             label2.TabIndex = 30;
             label2.Text = "Buscar:";
             // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(12, 124);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(215, 23);
+            dateTimePicker1.TabIndex = 46;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(233, 120);
+            label4.Name = "label4";
+            label4.Size = new Size(109, 30);
+            label4.TabIndex = 47;
+            label4.Text = "Seleccionar fecha \r\nde ausencia pasada";
+            // 
+            // pnlAusencia
+            // 
+            pnlAusencia.Location = new Point(7, 116);
+            pnlAusencia.Name = "pnlAusencia";
+            pnlAusencia.Size = new Size(343, 39);
+            pnlAusencia.TabIndex = 48;
+            // 
             // frmReposicion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(636, 464);
+            ClientSize = new Size(636, 484);
+            Controls.Add(label4);
+            Controls.Add(dateTimePicker1);
             Controls.Add(btnReporta);
             Controls.Add(label2);
             Controls.Add(label3);
@@ -221,6 +249,7 @@ namespace PreyectoDesarrollo_unicah
             Controls.Add(btnVoy);
             Controls.Add(label1);
             Controls.Add(panel1);
+            Controls.Add(pnlAusencia);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmReposicion";
@@ -251,5 +280,8 @@ namespace PreyectoDesarrollo_unicah
         private Label label3;
         private DateTimePicker dtpReposicion;
         private Label label2;
+        private DateTimePicker dateTimePicker1;
+        private Label label4;
+        private Panel pnlAusencia;
     }
 }

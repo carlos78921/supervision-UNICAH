@@ -15,37 +15,37 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_00DBC34654C34D33BC4899180D4683CF"
+        "MsmKey" = "8:_08C79A716A1C407DAD599FEBEC94DB69"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_18BD4CE1939B4151B268247118BEBD87"
+        "MsmKey" = "8:_10A03CCFAB6448DB97F20F3F2E2FBF4A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_398B2BA8F24F4459BAFB2F53B2B989D7"
+        "MsmKey" = "8:_7FF6D92BB3654A80A94C193287F637E6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9F33F629060043C0AF5200528F9232CB"
+        "MsmKey" = "8:_882EA58E110F440A9CFD26ADA1A87D2F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A370DEBD3B764C24A09BC1C6198642E6"
+        "MsmKey" = "8:_A7DF33800E0041628FB623F4B2CE818B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_C3C9ACDC505C4565AC9E8A6984F726BA"
+        "MsmKey" = "8:_ACD6BE1B7A994518A1E9270F6D843840"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -57,13 +57,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C96718BB58084CABBCEB77FB9AB27034"
+        "MsmKey" = "8:_D40493FB475F4E1FBACF4882C5AC93E8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F261ADB6AFD244B7A2CAE3A7DBE9F468"
+        "MsmKey" = "8:_F06267FF231E4A97853F63F3E4671D3B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -92,6 +92,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -146,10 +154,10 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_00DBC34654C34D33BC4899180D4683CF"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_08C79A716A1C407DAD599FEBEC94DB69"
             {
-            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\sni.dll"
-            "TargetName" = "8:sni.dll"
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PresentationNative_cor3.dll"
+            "TargetName" = "8:PresentationNative_cor3.dll"
             "Tag" = "8:"
             "Folder" = "8:_81CC9A7D81E544F3807BE2BC2BC536CA"
             "Condition" = "8:"
@@ -166,10 +174,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_18BD4CE1939B4151B268247118BEBD87"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_10A03CCFAB6448DB97F20F3F2E2FBF4A"
             {
-            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PenImc_cor3.dll"
-            "TargetName" = "8:PenImc_cor3.dll"
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PreyectoDesarrollo_unicah.exe"
+            "TargetName" = "8:Administrador.exe"
             "Tag" = "8:"
             "Folder" = "8:_81CC9A7D81E544F3807BE2BC2BC536CA"
             "Condition" = "8:"
@@ -186,27 +194,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_398B2BA8F24F4459BAFB2F53B2B989D7"
-            {
-            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\wpfgfx_cor3.dll"
-            "TargetName" = "8:wpfgfx_cor3.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_81CC9A7D81E544F3807BE2BC2BC536CA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9F33F629060043C0AF5200528F9232CB"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7FF6D92BB3654A80A94C193287F637E6"
             {
             "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\vcruntime140_cor3.dll"
             "TargetName" = "8:vcruntime140_cor3.dll"
@@ -226,10 +214,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A370DEBD3B764C24A09BC1C6198642E6"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_882EA58E110F440A9CFD26ADA1A87D2F"
             {
-            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PreyectoDesarrollo_unicah.pdb"
-            "TargetName" = "8:PreyectoDesarrollo_unicah.pdb"
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\sni.dll"
+            "TargetName" = "8:sni.dll"
             "Tag" = "8:"
             "Folder" = "8:_81CC9A7D81E544F3807BE2BC2BC536CA"
             "Condition" = "8:"
@@ -246,10 +234,30 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C3C9ACDC505C4565AC9E8A6984F726BA"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A7DF33800E0041628FB623F4B2CE818B"
             {
-            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PresentationNative_cor3.dll"
-            "TargetName" = "8:PresentationNative_cor3.dll"
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\wpfgfx_cor3.dll"
+            "TargetName" = "8:wpfgfx_cor3.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_81CC9A7D81E544F3807BE2BC2BC536CA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ACD6BE1B7A994518A1E9270F6D843840"
+            {
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PenImc_cor3.dll"
+            "TargetName" = "8:PenImc_cor3.dll"
             "Tag" = "8:"
             "Folder" = "8:_81CC9A7D81E544F3807BE2BC2BC536CA"
             "Condition" = "8:"
@@ -286,7 +294,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C96718BB58084CABBCEB77FB9AB27034"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D40493FB475F4E1FBACF4882C5AC93E8"
             {
             "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\D3DCompiler_47_cor3.dll"
             "TargetName" = "8:D3DCompiler_47_cor3.dll"
@@ -306,10 +314,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F261ADB6AFD244B7A2CAE3A7DBE9F468"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F06267FF231E4A97853F63F3E4671D3B"
             {
-            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PreyectoDesarrollo_unicah.exe"
-            "TargetName" = "8:Administrador.exe"
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PreyectoDesarrollo_unicah.pdb"
+            "TargetName" = "8:PreyectoDesarrollo_unicah.pdb"
             "Tag" = "8:"
             "Folder" = "8:_81CC9A7D81E544F3807BE2BC2BC536CA"
             "Condition" = "8:"
@@ -405,7 +413,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Setup Supervisión UNICAH Administrador"
         "ProductCode" = "8:{45E38ED4-A586-46FF-9959-61533CB44A72}"
-        "PackageCode" = "8:{42924DE7-CA6F-4089-804B-180D484926AB}"
+        "PackageCode" = "8:{1AE6665B-934A-40C2-AA42-838BE7F92E05}"
         "UpgradeCode" = "8:{9E5C5D1E-8410-4449-AA75-68BB450E2B68}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -533,7 +541,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_479BDC69DF3F468384757339109E4AA5"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F1618CF74387491FAD462A9390274A9E"
             {
             "Name" = "8:Admin.exe"
             "Arguments" = "8:"
@@ -541,7 +549,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_F261ADB6AFD244B7A2CAE3A7DBE9F468"
+            "Target" = "8:_10A03CCFAB6448DB97F20F3F2E2FBF4A"
             "Folder" = "8:_7A253DC4173140488533D7E4B4424A47"
             "WorkingFolder" = "8:_81CC9A7D81E544F3807BE2BC2BC536CA"
             "Icon" = "8:"

@@ -39,7 +39,7 @@ namespace PreyectoDesarrollo_unicah
             catch { rol = "desconocido"; }
         }
 
-[DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
@@ -121,8 +121,9 @@ namespace PreyectoDesarrollo_unicah
                 string contraseña = txtcontraseña.Text.Trim();
                 if (!Validaciones.Usuario(sender, e, usuario, contraseña, txtusuario))
                     return;
-                if (!ACCIONES_BD.CrearBDD(usuario))
-                    return;
+                if (rol == "administrador")
+                    if (!ACCIONES_BD.CrearBDD(usuario))
+                        return;
                 if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this, txtusuario, txtcontraseña, rol))
                     return;
                 ACCIONES_BD Login = new ACCIONES_BD();

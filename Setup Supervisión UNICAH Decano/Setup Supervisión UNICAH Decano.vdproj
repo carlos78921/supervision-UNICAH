@@ -15,37 +15,19 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_1216294A2C904247AEC1D56DD105D653"
+        "MsmKey" = "8:_15E84A89728B470994A083DF48C418B1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_16235914A694437891BC7F2DABFDDF08"
+        "MsmKey" = "8:_2924AEB89E8C45AB9E25F407385313B8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_268F7F2FC5884165ACC78BFCFCEF58F9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_36B9D90E8E0745D29FD4E8905128923C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_46E6CE8DBA2E42CEB72F27529BE9B4E4"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4A1B85A687804742B3BBE3499DA86CA5"
+        "MsmKey" = "8:_78C4AC776C33483F89A681B2F2A57CFA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -57,13 +39,31 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8D20C21FF31E41C8AD3C9A2DB8C1E867"
+        "MsmKey" = "8:_B81BE51346A840CF8D6B11DA64F684E0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_C39E2186BCC548CDB96A704859C47E0D"
+        "MsmKey" = "8:_C0369FC67A9F4CBE91D104ABCFC2A21E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D8F735342F23483C8E45CC561680D854"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DC6EE03B05A34874877CB23106EE7A8E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E8416FA5255542C19E78D6934C9CD33D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -154,87 +154,7 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1216294A2C904247AEC1D56DD105D653"
-            {
-            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PreyectoDesarrollo_unicah.exe"
-            "TargetName" = "8:Decano.exe"
-            "Tag" = "8:"
-            "Folder" = "8:_713E4349E48E452F867CD50004C67865"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_16235914A694437891BC7F2DABFDDF08"
-            {
-            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\vcruntime140_cor3.dll"
-            "TargetName" = "8:vcruntime140_cor3.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_713E4349E48E452F867CD50004C67865"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_268F7F2FC5884165ACC78BFCFCEF58F9"
-            {
-            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\sni.dll"
-            "TargetName" = "8:sni.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_713E4349E48E452F867CD50004C67865"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_36B9D90E8E0745D29FD4E8905128923C"
-            {
-            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PresentationNative_cor3.dll"
-            "TargetName" = "8:PresentationNative_cor3.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_713E4349E48E452F867CD50004C67865"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_46E6CE8DBA2E42CEB72F27529BE9B4E4"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_15E84A89728B470994A083DF48C418B1"
             {
             "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PenImc_cor3.dll"
             "TargetName" = "8:PenImc_cor3.dll"
@@ -254,7 +174,27 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4A1B85A687804742B3BBE3499DA86CA5"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2924AEB89E8C45AB9E25F407385313B8"
+            {
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\wpfgfx_cor3.dll"
+            "TargetName" = "8:wpfgfx_cor3.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_713E4349E48E452F867CD50004C67865"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_78C4AC776C33483F89A681B2F2A57CFA"
             {
             "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\D3DCompiler_47_cor3.dll"
             "TargetName" = "8:D3DCompiler_47_cor3.dll"
@@ -294,7 +234,67 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8D20C21FF31E41C8AD3C9A2DB8C1E867"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B81BE51346A840CF8D6B11DA64F684E0"
+            {
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PresentationNative_cor3.dll"
+            "TargetName" = "8:PresentationNative_cor3.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_713E4349E48E452F867CD50004C67865"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C0369FC67A9F4CBE91D104ABCFC2A21E"
+            {
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\vcruntime140_cor3.dll"
+            "TargetName" = "8:vcruntime140_cor3.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_713E4349E48E452F867CD50004C67865"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D8F735342F23483C8E45CC561680D854"
+            {
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PreyectoDesarrollo_unicah.exe"
+            "TargetName" = "8:Decano.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_713E4349E48E452F867CD50004C67865"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DC6EE03B05A34874877CB23106EE7A8E"
             {
             "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\PreyectoDesarrollo_unicah.pdb"
             "TargetName" = "8:PreyectoDesarrollo_unicah.pdb"
@@ -314,10 +314,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C39E2186BCC548CDB96A704859C47E0D"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E8416FA5255542C19E78D6934C9CD33D"
             {
-            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\wpfgfx_cor3.dll"
-            "TargetName" = "8:wpfgfx_cor3.dll"
+            "SourcePath" = "8:..\\PreyectoDesarrollo_unicah\\bin\\Release\\net8.0-windows\\publish\\win-x64\\sni.dll"
+            "TargetName" = "8:sni.dll"
             "Tag" = "8:"
             "Folder" = "8:_713E4349E48E452F867CD50004C67865"
             "Condition" = "8:"
@@ -541,18 +541,18 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_CFEA660C412D4024A745D5BB4BE5E5B7"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3A9F39774A6B4992BCF87D50C697A3CF"
             {
-            "Name" = "8:Sistema de Supervisión UNICAH (Decano)"
+            "Name" = "8:Sistema de Supervisión UNICAH (Decano).exe"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_1216294A2C904247AEC1D56DD105D653"
+            "Target" = "8:_D8F735342F23483C8E45CC561680D854"
             "Folder" = "8:_25CC572746424830A032AA804BF60307"
             "WorkingFolder" = "8:_713E4349E48E452F867CD50004C67865"
-            "Icon" = "8:"
+            "Icon" = "8:_7F3811AA3EBD4BB88E35CBE6EED909CC"
             "Feature" = "8:"
             }
         }
