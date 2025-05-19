@@ -32,7 +32,7 @@ namespace PreyectoDesarrollo_unicah
         {
             lblPersona.Text = ACCIONES_BD.Persona();
             dtpReposicion.MinDate = DateTime.Today;
-
+            dtpAusencia.MaxDate = DateTime.Today;
             //Ajuste del formulario
             cmbEdificio.SelectedIndex = 0;
 
@@ -70,7 +70,7 @@ namespace PreyectoDesarrollo_unicah
 
         private void Filtros(object sender, EventArgs e)
         {
-            ACCIONES_BD.FiltrarDatosRepo(txtBusco.Text, cmbEdificio.Text, dgvRepone);
+            ACCIONES_BD.FiltrarDatosRepo(txtBusco.Text, cmbEdificio.Text, dtpAusencia.Value, dgvRepone);
         }
 
         private void btnReporta_Click(object sender, EventArgs e)

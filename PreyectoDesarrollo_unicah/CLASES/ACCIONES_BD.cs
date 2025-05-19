@@ -1137,7 +1137,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return dt;
         }
 
-        public static void FiltrarDatosJusto(string Docente, string Edificio, DataGridView dgv)
+        public static void FiltrarDatosJusto(string Docente, string Edificio, DateTime Pasado, DataGridView dgv)
         {
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
@@ -1147,6 +1147,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Docente", Docente);
                     cmd.Parameters.AddWithValue("@Edificio", Edificio);
+                    cmd.Parameters.AddWithValue("@FechaPasada", Pasado);
                     cmd.Parameters.AddWithValue("@CodigoDecano", empleado);
 
 
@@ -1278,7 +1279,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static void FiltrarDatosRepo(string Repo, string Edificio, DataGridView dgv)
+        public static void FiltrarDatosRepo(string Repo, string Edificio, DateTime Pasado, DataGridView dgv)
         {
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
@@ -1288,9 +1289,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Repo", Repo);
                     cmd.Parameters.AddWithValue("@Edificio", Edificio);
+                    cmd.Parameters.AddWithValue("@FechaPasada", Pasado);
                     cmd.Parameters.AddWithValue("@CodigoDecano", empleado);
-
-
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();

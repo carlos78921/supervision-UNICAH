@@ -47,7 +47,7 @@ namespace PreyectoDesarrollo_unicah
             txtBusco = new TextBox();
             label4 = new Label();
             label5 = new Label();
-            dateTimePicker1 = new DateTimePicker();
+            dtpAusencia = new DateTimePicker();
             pnlAusencia = new Panel();
             btnAgregar = new Button();
             btnVoy = new Button();
@@ -242,12 +242,13 @@ namespace PreyectoDesarrollo_unicah
             label5.TabIndex = 50;
             label5.Text = "Seleccionar fecha \r\nde ausencia pasada";
             // 
-            // dateTimePicker1
+            // dtpAusencia
             // 
-            dateTimePicker1.Location = new Point(23, 228);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(215, 23);
-            dateTimePicker1.TabIndex = 49;
+            dtpAusencia.Location = new Point(23, 228);
+            dtpAusencia.Name = "dtpAusencia";
+            dtpAusencia.Size = new Size(215, 23);
+            dtpAusencia.TabIndex = 49;
+            dtpAusencia.ValueChanged += Filtros;
             // 
             // pnlAusencia
             // 
@@ -262,7 +263,7 @@ namespace PreyectoDesarrollo_unicah
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(794, 645);
             Controls.Add(label5);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dtpAusencia);
             Controls.Add(pnlAusencia);
             Controls.Add(btnReporta);
             Controls.Add(label4);
@@ -310,7 +311,7 @@ namespace PreyectoDesarrollo_unicah
         private TextBox txtBusco;
         private Label label4;
         private Label label5;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpAusencia;
         private Panel pnlAusencia;
     }
 }

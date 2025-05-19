@@ -32,8 +32,9 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.Text = ACCIONES_BD.Persona();
 
             //Ajuste de controles
-            txtJustifica.Text = Environment.NewLine; // (TextChanged) Mantener la primera línea vacía cuando se opera esto
-            txtJustifica.SelectionStart = txtJustifica.Text.Length; // (TextChanged) Colocar el cursor en la segunda línea cuando se opera esto
+            txtJustifica.Text = Environment.NewLine; //  Mantener la primera línea vacía cuando se opera esto
+            txtJustifica.SelectionStart = txtJustifica.Text.Length; // Colocar el cursor en la segunda línea cuando se opera esto
+            dtpAusencia.MaxDate = DateTime.Today;
 
             //Ajuste en la BDD
             ACCIONES_BD.tablaJustifica(dgvJustificacion, ACCIONES_BD.empleado);
@@ -69,7 +70,7 @@ namespace PreyectoDesarrollo_unicah
                 ACCIONES_BD.tablaJustifica(dgvJustificacion, ACCIONES_BD.empleado); //Esto ayuda a actualizar la tabla, la línea anterior actualiza datos
             }
             else
-            { 
+            {
                 MessageBox.Show("Justificación no ingresada, ingresar justificación", "Justificación Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtJustifica.Focus();
             }
@@ -133,7 +134,7 @@ namespace PreyectoDesarrollo_unicah
         {
             if (!CONEXION_BD.ConexionPerdida(this))
                 return;
-            ACCIONES_BD.FiltrarDatosJusto(txtBusco.Text, cmbEdificio.Text, dgvJustificacion);
+            ACCIONES_BD.FiltrarDatosJusto(txtBusco.Text, cmbEdificio.Text, dtpAusencia.Value, dgvJustificacion);
         }
 
         private void btnReporta_Click(object sender, EventArgs e)

@@ -44,7 +44,7 @@ namespace PreyectoDesarrollo_unicah
             label3 = new Label();
             dtpReposicion = new DateTimePicker();
             label2 = new Label();
-            dateTimePicker1 = new DateTimePicker();
+            dtpAusencia = new DateTimePicker();
             label4 = new Label();
             pnlAusencia = new Panel();
             btnDay = new Button();
@@ -208,12 +208,13 @@ namespace PreyectoDesarrollo_unicah
             label2.TabIndex = 30;
             label2.Text = "Buscar:";
             // 
-            // dateTimePicker1
+            // dtpAusencia
             // 
-            dateTimePicker1.Location = new Point(12, 124);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(215, 23);
-            dateTimePicker1.TabIndex = 46;
+            dtpAusencia.Location = new Point(12, 124);
+            dtpAusencia.Name = "dtpAusencia";
+            dtpAusencia.Size = new Size(215, 23);
+            dtpAusencia.TabIndex = 46;
+            dtpAusencia.ValueChanged += Filtros;
             // 
             // label4
             // 
@@ -237,7 +238,7 @@ namespace PreyectoDesarrollo_unicah
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(636, 484);
             Controls.Add(label4);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dtpAusencia);
             Controls.Add(btnReporta);
             Controls.Add(label2);
             Controls.Add(label3);
@@ -280,7 +281,7 @@ namespace PreyectoDesarrollo_unicah
         private Label label3;
         private DateTimePicker dtpReposicion;
         private Label label2;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpAusencia;
         private Label label4;
         private Panel pnlAusencia;
     }
