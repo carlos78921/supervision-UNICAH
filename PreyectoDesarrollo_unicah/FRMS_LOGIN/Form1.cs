@@ -123,6 +123,8 @@ namespace PreyectoDesarrollo_unicah
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
+                if (!CONEXION_BD.ConexionPerdida(this))
+                    return;
                 string usuario = txtusuario.Text;
                 string contraseña = txtcontraseña.Text.Trim();
                 if (!Validaciones.Usuario(sender, e, usuario, contraseña, txtusuario))
