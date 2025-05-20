@@ -324,7 +324,7 @@ namespace PreyectoDesarrollo_unicah
                     break;
                 case 4:
                     valido.Text = dgvAdmin.CurrentRow.Cells[4].Value.ToString();
-                    if (!Validaciones.ValeAdmin(valido.Text, 4))
+                    if (!Validaciones.Usuario(sender, e, valido.Text, "4", valido))
                     {
                         dgvAdmin.Enabled = true;
                         dgvAdmin.Focus();
@@ -334,26 +334,6 @@ namespace PreyectoDesarrollo_unicah
                     break;
                 case 5:
                     valido.Text = dgvAdmin.CurrentRow.Cells[5].Value.ToString();
-                    if (!Validaciones.ValeAdmin(valido.Text, 5))
-                    {
-                        dgvAdmin.Enabled = true;
-                        dgvAdmin.Focus();
-                        dgvAdmin.BeginEdit(true);
-                        return;
-                    }
-                    break;
-                case 6:
-                    valido.Text = dgvAdmin.CurrentRow.Cells[6].Value.ToString();
-                    if (!Validaciones.Usuario(sender, e, valido.Text, "6", valido))
-                    {
-                        dgvAdmin.Enabled = true;
-                        dgvAdmin.Focus();
-                        dgvAdmin.BeginEdit(true);
-                        return;
-                    }
-                    break;
-                case 7:
-                    valido.Text = dgvAdmin.CurrentRow.Cells[7].Value.ToString();
                     if (!Validaciones.Contraseña(sender, e, "", valido.Text, this, null, null, ""))
                     {
                         dgvAdmin.Enabled = true;
@@ -374,25 +354,27 @@ namespace PreyectoDesarrollo_unicah
                     {
                         cmd.Parameters.Clear(); //Evita error de parámetros
                         cmd.Parameters.AddWithValue("@ID", dgvAdmin.Rows[row].Cells[0].Value);
-                        cmd.Parameters.AddWithValue("@Nombre1", dgvAdmin.Rows[row].Cells[1].Value);
-                        cmd.Parameters.AddWithValue("@Nombre2", dgvAdmin.Rows[row].Cells[2].Value);
-                        cmd.Parameters.AddWithValue("@Nombre3", dgvAdmin.Rows[row].Cells[3].Value);
-                        cmd.Parameters.AddWithValue("@Nombre4", dgvAdmin.Rows[row].Cells[4].Value);
-                        cmd.Parameters.AddWithValue("@rol", dgvAdmin.Rows[row].Cells[5].Value);
-                        cmd.Parameters.AddWithValue("@usuario", dgvAdmin.Rows[row].Cells[6].Value);
-                        cmd.Parameters.AddWithValue("@Contraseña", dgvAdmin.Rows[row].Cells[7].Value.ToString().Trim());
+                        cmd.Parameters.AddWithValue("@Nombre", dgvAdmin.Rows[row].Cells[1].Value);
+                        cmd.Parameters.AddWithValue("@Apellido", dgvAdmin.Rows[row].Cells[2].Value);
+                        cmd.Parameters.AddWithValue("@rol", dgvAdmin.Rows[row].Cells[3].Value);
+                        cmd.Parameters.AddWithValue("@usuario", dgvAdmin.Rows[row].Cells[4].Value);
+                        cmd.Parameters.AddWithValue("@Contraseña", dgvAdmin.Rows[row].Cells[5].Value.ToString().Trim());
                         cmd.ExecuteNonQuery();
                     }
                 }
                 conn.Close();
             }
             MessageBox.Show("Datos del usuario actualizado en la base de datos", "Datos cambiados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            btnSQL.Enabled = true;
+            btnListaSave.Enabled = true;
+            btnListaLoad.Enabled = true;
+            btnReinicioBDD.Enabled = true;
             dgvAdmin.Enabled = true; //Para que se pueda editar después de guardar
         }
 
         private void dgvAdmin_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 7 && e.Value != null) //Al cargar el formulario, se observa el texto de contraseña cubierta con asteríscos
+            if (e.ColumnIndex == 5 && e.Value != null) //Al cargar el formulario, se observa el texto de contraseña cubierta con asteríscos
             {
                 e.Value = new string('*', e.Value.ToString().Length);
                 e.FormattingApplied = true; //Esto para no afectar después por "contra" como valor sin asterísco
@@ -405,11 +387,11 @@ namespace PreyectoDesarrollo_unicah
             {
 //                nombres.KeyPress -= Nombres_KeyPress; Cuestión de seguridad para desvinculación en uso del método
                 int celda = dgvAdmin.CurrentCell.ColumnIndex;
-                if (celda >= 1 && celda <= 7)
+                if (celda >= 1 && celda <= 5)
                     celdatxt.KeyPress += Celda_KeyPress;
             }
 
-            if (dgvAdmin.CurrentCell.ColumnIndex == 7)
+            if (dgvAdmin.CurrentCell.ColumnIndex == 5)
             {
                 TextBox txtContra = e.Control as TextBox;
                 if (txtContra != null)
@@ -419,16 +401,16 @@ namespace PreyectoDesarrollo_unicah
 
         private void Celda_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (dgvAdmin.CurrentCell.ColumnIndex < 5)
+            if (dgvAdmin.CurrentCell.ColumnIndex < 3)
                 if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back && !"áéíóúÁÉÍÓÚüÜ'".Contains(e.KeyChar))
                     e.Handled = true;
-            if (dgvAdmin.CurrentCell.ColumnIndex == 5)
+            if (dgvAdmin.CurrentCell.ColumnIndex == 3)
                 if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back)
                     e.Handled = true;
-            if (dgvAdmin.CurrentCell.ColumnIndex == 6)
+            if (dgvAdmin.CurrentCell.ColumnIndex == 4)
                 if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
                     e.Handled = true;
-            if (dgvAdmin.CurrentCell.ColumnIndex == 7)
+            if (dgvAdmin.CurrentCell.ColumnIndex == 5)
                 if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != (char)Keys.Back)
                     e.Handled = true;
         }
@@ -460,28 +442,28 @@ namespace PreyectoDesarrollo_unicah
             {
                 if (MessageBox.Show("¿Desea cambiar la contraseña?", "Cambiar contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    dgvAdmin.Columns[7].ReadOnly = false;
-                    dgvAdmin.CurrentRow.Cells[7].Value = ""; //Con esto descartamos el problema que al actualizar, los valores sean asteríscos
+                    dgvAdmin.Columns[5].ReadOnly = false;
+                    dgvAdmin.CurrentRow.Cells[5].Value = ""; //Con esto descartamos el problema que al actualizar, los valores sean asteríscos
                 }
                 else
-                    dgvAdmin.Columns[7].ReadOnly = true;
+                    dgvAdmin.Columns[5].ReadOnly = true;
             }
         }
 
         private void dgvAdmin_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            string valorActual = dgvAdmin.Rows[e.RowIndex].Cells[6].Value.ToString();
+            string valorActual = dgvAdmin.Rows[e.RowIndex].Cells[4].Value.ToString();
 
             for (int i = 0; i < dgvAdmin.Rows.Count; i++)
             {
                 if (i == e.RowIndex) continue; // Ignorar la misma fila
 
-                string valorComparar = dgvAdmin.Rows[i].Cells[6].Value.ToString();
+                string valorComparar = dgvAdmin.Rows[i].Cells[4].Value.ToString();
 
                 if (!string.IsNullOrEmpty(valorComparar) && valorComparar.Equals(valorActual))
                 {
                     MessageBox.Show($"Código existente entre fila actual {e.RowIndex + 1} con fila {i + 1}.\nPor favor cambiar código diferente", "Valor duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dgvAdmin.Rows[e.RowIndex].Cells[6].Value = "";
+                    dgvAdmin.Rows[e.RowIndex].Cells[4].Value = "";
                     break; //Para el for
                 }
             }
@@ -496,6 +478,10 @@ namespace PreyectoDesarrollo_unicah
                 dgvAdmin.RefreshEdit();
                 dgvAdmin.Focus();
                 dgvAdmin.Enabled = false;
+                btnSQL.Enabled = false;
+                btnListaSave.Enabled = false;
+                btnListaLoad.Enabled = false;
+                btnReinicioBDD.Enabled = false;
                 MessageBox.Show("Haga clic en el botón de <<ACTUALIZAR DATOS EMPLEADO>> para validar su cambio", "Validar cambio", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }));
         }

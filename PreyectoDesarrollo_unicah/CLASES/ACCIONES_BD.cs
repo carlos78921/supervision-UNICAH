@@ -112,20 +112,16 @@ namespace PreyectoDesarrollo_unicah.CLASES
                                 using (SqlCommand datosAuto = new SqlCommand("PA_Nombres_Completos", conexionBDD))
                                 {
                                     datosAuto.CommandType = CommandType.StoredProcedure;
-                                    datosAuto.Parameters.AddWithValue("@Nombre1", row["Nombre1"].ToString());
-                                    datosAuto.Parameters.AddWithValue("@Nombre2", row["Nombre2"].ToString());
-                                    datosAuto.Parameters.AddWithValue("@Nombre3", row["Nombre3"].ToString());
-                                    datosAuto.Parameters.AddWithValue("@Nombre4", row["Nombre4"].ToString());
+                                    datosAuto.Parameters.AddWithValue("@Nombre", row["Nombre"].ToString());
+                                    datosAuto.Parameters.AddWithValue("@Apellido", row["Apellido"].ToString());
                                     datosAuto.ExecuteNonQuery();
                                 }
 
                                 using (SqlCommand IdAuto = new SqlCommand("PA_Empleados", conexionBDD))
                                 {
                                     IdAuto.CommandType = CommandType.StoredProcedure;
-                                    IdAuto.Parameters.AddWithValue("@Nombre1", row["Nombre1"].ToString());
-                                    IdAuto.Parameters.AddWithValue("@Nombre2", row["Nombre2"].ToString());
-                                    IdAuto.Parameters.AddWithValue("@Nombre3", row["Nombre3"].ToString());
-                                    IdAuto.Parameters.AddWithValue("@Nombre4", row["Nombre4"].ToString());
+                                    IdAuto.Parameters.AddWithValue("@Nombre", row["Nombre"].ToString());
+                                    IdAuto.Parameters.AddWithValue("@Apellido", row["Apellido"].ToString());
                                     IdAuto.Parameters.AddWithValue("@codigo", row["Cod_Empleado"].ToString());
                                     IdAuto.Parameters.AddWithValue("@rol", row["rol"].ToString());
                                     IdAuto.ExecuteNonQuery();
@@ -294,20 +290,16 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         using (var cmd = new SqlCommand("PA_Nombres_Completos", conn))
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Nombre1", row["Nombre1"]);
-                            cmd.Parameters.AddWithValue("@Nombre2", row["Nombre2"]);
-                            cmd.Parameters.AddWithValue("@Nombre3", row["Nombre3"]);
-                            cmd.Parameters.AddWithValue("@Nombre4", row["Nombre4"]);
+                            cmd.Parameters.AddWithValue("@Nombre", row["Nombre"]);
+                            cmd.Parameters.AddWithValue("@Apellido", row["Apellido"]);
                             cmd.ExecuteNonQuery();
                         }
 
                         using (var cmd = new SqlCommand("PA_Empleados", conn))
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Nombre1", row["Nombre1"]);
-                            cmd.Parameters.AddWithValue("@Nombre2", row["Nombre2"]);
-                            cmd.Parameters.AddWithValue("@Nombre3", row["Nombre3"]);
-                            cmd.Parameters.AddWithValue("@Nombre4", row["Nombre4"]);
+                            cmd.Parameters.AddWithValue("@Nombre", row["Nombre"]);
+                            cmd.Parameters.AddWithValue("@Apellido", row["Apellido"]);
                             cmd.Parameters.AddWithValue("@codigo", row["Cod_Empleado"]);
                             cmd.Parameters.AddWithValue("@rol", row["rol"]);
                             cmd.ExecuteNonQuery();
@@ -361,10 +353,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                             cmd.Parameters.AddWithValue("@Aula", row["Aula"]);
                             cmd.Parameters.AddWithValue("@Seccion", row["Seccion"]);
                             cmd.Parameters.AddWithValue("@Edificio", row["Edificio"]);
-                            cmd.Parameters.AddWithValue("@Nombre1", row["Nombre1"]);
-                            cmd.Parameters.AddWithValue("@Nombre2", row["Nombre2"]);
-                            cmd.Parameters.AddWithValue("@Nombre3", row["Nombre3"]);
-                            cmd.Parameters.AddWithValue("@Nombre4", row["Nombre4"]);
+                            cmd.Parameters.AddWithValue("@Nombre", row["Nombre"]);
+                            cmd.Parameters.AddWithValue("@Apellido", row["Apellido"]);
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -449,20 +439,16 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         using (var cmd = new SqlCommand("PA_Nombres_Completos", conn))
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Nombre1", row["Nombre1"]);
-                            cmd.Parameters.AddWithValue("@Nombre2", row["Nombre2"]);
-                            cmd.Parameters.AddWithValue("@Nombre3", row["Nombre3"]);
-                            cmd.Parameters.AddWithValue("@Nombre4", row["Nombre4"]);
+                            cmd.Parameters.AddWithValue("@Nombre", row["Nombre"]);
+                            cmd.Parameters.AddWithValue("@Apellido", row["Apellido"]);
                             cmd.ExecuteNonQuery();
                         }
 
                         using (var cmd = new SqlCommand("PA_Empleados", conn))
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Nombre1", row["Nombre1"]);
-                            cmd.Parameters.AddWithValue("@Nombre2", row["Nombre2"]);
-                            cmd.Parameters.AddWithValue("@Nombre3", row["Nombre3"]);
-                            cmd.Parameters.AddWithValue("@Nombre4", row["Nombre4"]);
+                            cmd.Parameters.AddWithValue("@Nombre", row["Nombre"]);
+                            cmd.Parameters.AddWithValue("@Apellido", row["Apellido"]);
                             cmd.Parameters.AddWithValue("@codigo", row["Cod_Empleado"]);
                             cmd.Parameters.AddWithValue("@rol", row["rol"]);
                             cmd.ExecuteNonQuery();
@@ -579,8 +565,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     {
                         if (reader.Read())
                         {
-                            nombre = reader["nombre1"].ToString();
-                            apellido = reader["apellido1"].ToString();
+                            nombre = reader["Nombre"].ToString();
+                            apellido = reader["Apellido"].ToString();
                             string rolUsuario = reader["rol"].ToString();
                             string codigo = usuario.ToString();
                             empleado = codigo;
@@ -915,11 +901,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 dgv.Columns[0].ReadOnly = true;
                 dgv.Columns[1].Width = 100;
                 dgv.Columns[2].Width = 100;
-                dgv.Columns[3].Width = 100;
-                dgv.Columns[4].Width = 100;
+                dgv.Columns[3].Width = 110;
+                dgv.Columns[4].Width = 116;
                 dgv.Columns[5].Width = 110;
-                dgv.Columns[6].Width = 116;
-                dgv.Columns[7].Width = 110;
                 dgv.Columns[0].ReadOnly = true;
             }
             return dt;

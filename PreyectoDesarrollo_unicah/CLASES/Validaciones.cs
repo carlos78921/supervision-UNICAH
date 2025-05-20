@@ -11,7 +11,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
     {
         public static bool Usuario(object sender, EventArgs e, string usuario, string contraseña, TextBox user)
         {
-            if (contraseña != "6")
+            if (contraseña != "4")
             {
                 if ((usuario == "Usuario:" || usuario == "") &&
                    (contraseña == "Contraseña:" || contraseña == "Contraseña nueva:" || contraseña == ""))
@@ -164,7 +164,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public static bool ValeAdmin(string persona, int campo)
         {
-            if (campo < 4)
+            if (campo < 2)
             {
                 if (persona == "")
                 {
@@ -174,11 +174,11 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
                 if (persona.Length > 20)
                 {
-                    MessageBox.Show("El nombre o apellido debe contener a lo más 20 caracteres", "Error Cantidad Nombre o Apellido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("El nombre y apellido debe contener a lo más 20 caracteres", "Error Cantidad Nombre o Apellido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
-            if (campo > 4)
+            else
             {
                 if (persona == "")
                 {

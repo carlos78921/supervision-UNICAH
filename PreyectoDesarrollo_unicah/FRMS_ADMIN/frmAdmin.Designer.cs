@@ -30,10 +30,6 @@ namespace PreyectoDesarrollo_unicah
         {
             components = new System.ComponentModel.Container();
             Button btnLogout;
-            Button btnSQL;
-            Button btnReinicioBDD;
-            Button btnListaLoad;
-            Button btnListaSave;
             Button btnName;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdmin));
             pictureBox2 = new PictureBox();
@@ -377,6 +373,10 @@ namespace PreyectoDesarrollo_unicah
         private GroupBox groupBox1;
         private Button btnPeriodo;
         private Button btnName;
+        private Button btnSQL;
+        private Button btnListaSave;
+        private Button btnListaLoad;
+        private Button btnReinicioBDD;
         private GroupBox groupBox2;
         private Label lblBusca;
         private TextBox txtBusca;
