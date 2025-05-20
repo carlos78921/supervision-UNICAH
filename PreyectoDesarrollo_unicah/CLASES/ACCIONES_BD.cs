@@ -822,8 +822,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     MessageBox.Show("No se pueden filtrar secciones futuras, por favor esperar\npara poder filtrarlas", "Sección futura", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
             }
+            else
+                MessageBox.Show("Secciones cargadas presentes o pasadas: " + dgv.Rows.Count, "Secciones presentes o pasados", MessageBoxButtons.OK, MessageBoxIcon.Information);            
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
                 conn.Open();

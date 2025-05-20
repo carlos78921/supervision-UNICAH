@@ -76,25 +76,9 @@ namespace PreyectoDesarrollo_unicah
 
         private void Salir(object sender, EventArgs e)
         {
-            DialogResult opcion = MessageBox.Show("¿Desea guardar las asistencias actuales antes de cerrar sesión?\nPresione <<Cancelar>> para mantener sesión abierta", "Guardar Asistencia Antes de Salir", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            if (opcion == DialogResult.Yes)
-            { 
-                if (!RespaldoExcel())
-                    return;
-                this.Close();
-                Form1 Login = new Form1();
-                Login.Show();
-            }
-            if (opcion == DialogResult.No)
-            {
-                this.Close();
-                Form1 Login = new Form1();
-                Login.Show();
-            }
-            if (opcion == DialogResult.Cancel)
-            {
-                return;
-            }
+            this.Close();
+            Form1 Login = new Form1();
+            Login.Show();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -131,156 +115,19 @@ namespace PreyectoDesarrollo_unicah
             ACCIONES_BD.tablaAdmin(dgvAdmin);
         }
 
-        private static bool RespaldoExcel()
-        {
-            DataTable dt = ACCIONES_BD.RespaldoBDD();
-
-            using (var wb = new XLWorkbook())
-            {
-                wb.Worksheets.Add(dt, "Asistencia");
-
-                using (var sfd = new SaveFileDialog())
-                {
-                    sfd.Filter = "Archivo Excel (*.xlsx)|*.xlsx";
-                    sfd.Title = "Guardar respaldo de Asistencia";
-                    sfd.FileName = "Respaldo_Asistencia.xlsx";
-
-                    if (sfd.ShowDialog() == DialogResult.OK)
-                    {
-                        try
-                        {
-                            wb.SaveAs(sfd.FileName);
-                            MessageBox.Show(
-                                "Respaldo guardado correctamente.",
-                                "Respaldo exitoso",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information
-                            );
-                        }
-                        catch (Exception ex)
-                        {
-
-                            // ¿Es un bloqueo por "being used by another process"?
-                            if (ex is IOException ||
-                                ex is Win32Exception ||
-                                ex.Message.Contains("being used by another process"))
-                                MessageBox.Show("Por favor cerrar el archivo seleccionado para guardar", "Interrupción de Archivo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
         private void btnReinicioBDD_Click(object sender, EventArgs e)
         {
             if (!CONEXION_BD.ConexionPerdida(this))
                 return;
             if (MessageBox.Show("¿Está seguro de que desea reiniciar la base de datos?\nEste acto hará que cierre sesión sin datos", "Reinicio de BDD", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                if (MessageBox.Show("¿Desea guardar las asistencias antes del reinicio?", "Guardar Asistencias", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    RespaldoExcel();
-                    ACCIONES_BD.ReiniciarBDD("Supervision_Unicah");
-                }
-                else
-                    ACCIONES_BD.ReiniciarBDD("Supervision_Unicah");
+                ACCIONES_BD.ReiniciarBDD("Supervision_Unicah");
                 MessageBox.Show("Base de datos reiniciada exitosamente.", "éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 MessageBox.Show("Cerrando Sesión", "Cierre de sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Form1 Login = new Form1();
                 Login.Show();
                 this.Close();
             }
-        }
-
-        private void btnListaLoad_Click(object sender, EventArgs e)
-        {
-            if (!CONEXION_BD.ConexionPerdida(this))
-                return;
-
-            MessageBox.Show("Seleccione el archivo Excel original", "Excel original");
-            ACCIONES_BD.MigrarDatosViejo();
-            MessageBox.Show("Ahora seleccione el archivo Excel con la asistencia", "Cargar Asistencia");
-            string rutaExcel = "";
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Filter = "Archivos Excel (*.xlsx)|*.xlsx";
-                ofd.Title = "Seleccionar archivo Excel";
-                var dr = ofd.ShowDialog();
-                if (dr != DialogResult.OK)
-                {
-                    return;
-                }
-                else
-                {
-                    rutaExcel = ofd.FileName;
-
-                    string Excel = System.IO.Path.GetExtension(rutaExcel);
-                    if (string.IsNullOrEmpty(Excel))
-                    {
-                        return;
-                    }
-                }
-            }
-
-            string tempFile = System.IO.Path.Combine(
-                                      System.IO.Path.GetTempPath(),
-                                      Guid.NewGuid().ToString() + ".xlsx"
-                                      );
-            try
-            {
-                File.Copy(rutaExcel, tempFile, overwrite: true);
-                DataTable dtLista = ACCIONES_BD.CrearDatos(tempFile, "Asistencia");
-
-                using (var conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
-                {
-                    conn.Open();
-
-                    using (var cmd = new SqlCommand("PA_CargaRespaldo", conn))
-                    {
-                        foreach (DataRow row in dtLista.Rows)
-                        {
-                            cmd.Parameters.Clear();
-
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@ID_Clase", row["ID_Clase"]);
-                            cmd.Parameters.AddWithValue("@ID_Sitio", row["ID_Sitio"]);
-                            cmd.Parameters.AddWithValue("@ID_Empleado", row["ID_Empleado"]);
-                            cmd.Parameters.Add("@Fecha", SqlDbType.Date).Value = row.Field<DateTime>("Fecha");
-                            cmd.Parameters.AddWithValue("@Observa", row["Observacion"]);
-                            if (row.IsNull("Fecha_Reposicion"))
-                                cmd.Parameters.Add("@Repone", SqlDbType.Date).Value = DBNull.Value;
-                            else
-                                cmd.Parameters.Add("@Repone", SqlDbType.Date).
-                                Value = row.Field<DateTime>("Fecha_Reposicion");
-                            cmd.Parameters.Add("@Marca", SqlDbType.Bit)
-                               .Value = row.Field<bool>("Presente");
-
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                    conn.Close();
-                }
-            }
-            finally
-            {
-                try { File.Delete(tempFile); }
-                catch { }
-            }
-            ACCIONES_BD.tablaAdmin(dgvAdmin);
-            dgvAdmin.Refresh();
-        }
-
-        private void btnListaSave_Click(object sender, EventArgs e)
-        {
-            if (!CONEXION_BD.ConexionPerdida(this))
-                return;
-
-            RespaldoExcel();
         }
 
         private void btnName_Click(object sender, EventArgs e)
@@ -366,8 +213,6 @@ namespace PreyectoDesarrollo_unicah
             }
             MessageBox.Show("Datos del usuario actualizado en la base de datos", "Datos cambiados", MessageBoxButtons.OK, MessageBoxIcon.Information);
             btnSQL.Enabled = true;
-            btnListaSave.Enabled = true;
-            btnListaLoad.Enabled = true;
             btnReinicioBDD.Enabled = true;
             dgvAdmin.Enabled = true; //Para que se pueda editar después de guardar
         }
@@ -479,8 +324,6 @@ namespace PreyectoDesarrollo_unicah
                 dgvAdmin.Focus();
                 dgvAdmin.Enabled = false;
                 btnSQL.Enabled = false;
-                btnListaSave.Enabled = false;
-                btnListaLoad.Enabled = false;
                 btnReinicioBDD.Enabled = false;
                 MessageBox.Show("Haga clic en el botón de <<ACTUALIZAR DATOS EMPLEADO>> para validar su cambio", "Validar cambio", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }));

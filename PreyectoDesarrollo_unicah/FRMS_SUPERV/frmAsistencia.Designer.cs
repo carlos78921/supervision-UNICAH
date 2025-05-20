@@ -49,6 +49,8 @@
             label6 = new Label();
             txtDoc = new TextBox();
             btnLogout = new Button();
+            btnListaSave = new Button();
+            btnListaLoad = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -255,15 +257,37 @@
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(86, 43);
             btnLogout.TabIndex = 6;
-            btnLogout.Text = "&CERRAR SESIÓN";
+            btnLogout.Text = "CERRAR &SESIÓN";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += Cerrar;
+            // 
+            // btnListaSave
+            // 
+            btnListaSave.Location = new Point(907, 307);
+            btnListaSave.Name = "btnListaSave";
+            btnListaSave.Size = new Size(86, 43);
+            btnListaSave.TabIndex = 47;
+            btnListaSave.Text = "&GUARDAR ASISTENCIAS";
+            btnListaSave.UseVisualStyleBackColor = true;
+            btnListaSave.Click += btnListaSave_Click;
+            // 
+            // btnListaLoad
+            // 
+            btnListaLoad.Location = new Point(907, 362);
+            btnListaLoad.Name = "btnListaLoad";
+            btnListaLoad.Size = new Size(86, 43);
+            btnListaLoad.TabIndex = 48;
+            btnListaLoad.Text = "&CARGAR ASISTENCIAS";
+            btnListaLoad.UseVisualStyleBackColor = true;
+            btnListaLoad.Click += btnListaLoad_Click;
             // 
             // frmAsistencia
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(999, 475);
+            Controls.Add(btnListaLoad);
+            Controls.Add(btnListaSave);
             Controls.Add(label2);
             Controls.Add(btnLogout);
             Controls.Add(cmbSeccion);
@@ -316,5 +340,7 @@
         private Label label3;
         private Label label2;
         private ComboBox cmbSeccion;
+        private Button btnListaSave;
+        private Button btnListaLoad;
     }
 }

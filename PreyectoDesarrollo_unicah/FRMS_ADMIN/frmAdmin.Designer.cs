@@ -31,6 +31,8 @@ namespace PreyectoDesarrollo_unicah
             components = new System.ComponentModel.Container();
             Button btnLogout;
             Button btnName;
+            Button btnSQL;
+            Button btnReinicioBDD;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdmin));
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
@@ -53,78 +55,61 @@ namespace PreyectoDesarrollo_unicah
             txtBusca = new TextBox();
             toolTip1 = new ToolTip(components);
             btnLogout = new Button();
+            btnName = new Button();
             btnSQL = new Button();
             btnReinicioBDD = new Button();
-            btnListaLoad = new Button();
-            btnListaSave = new Button();
-            btnName = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvAdmin).BeginInit();
             groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(867, 537);
+            btnLogout.Font = new Font("Segoe UI", 9F);
+            btnLogout.Location = new Point(17, 270);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(137, 32);
+            btnLogout.Size = new Size(117, 32);
             btnLogout.TabIndex = 8;
             btnLogout.Text = "CERRAR &SESIÓN";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += Salir;
             // 
+            // btnName
+            // 
+            btnName.Font = new Font("Segoe UI", 9F);
+            btnName.Location = new Point(17, 124);
+            btnName.Name = "btnName";
+            btnName.Size = new Size(117, 47);
+            btnName.TabIndex = 25;
+            btnName.Text = "&ACTUALIZAR \r\nDATOS EMPLEADO";
+            btnName.UseVisualStyleBackColor = true;
+            btnName.Click += btnName_Click;
+            // 
             // btnSQL
             // 
-            btnSQL.Location = new Point(867, 253);
+            btnSQL.Font = new Font("Segoe UI", 9F);
+            btnSQL.Location = new Point(17, 48);
             btnSQL.Name = "btnSQL";
-            btnSQL.Size = new Size(137, 59);
+            btnSQL.Size = new Size(117, 59);
             btnSQL.TabIndex = 4;
-            btnSQL.Text = "&MIGRAR DATOS DE EXCEL A LA \r\nBASE DE DATOS";
+            btnSQL.Text = "&MIGRAR DATOS \r\nDE EXCEL A LA \r\nBASE DE DATOS";
             btnSQL.UseVisualStyleBackColor = true;
             btnSQL.Click += btnSQL_Click;
             // 
             // btnReinicioBDD
             // 
-            btnReinicioBDD.Location = new Point(867, 480);
+            btnReinicioBDD.Font = new Font("Segoe UI", 9F);
+            btnReinicioBDD.Location = new Point(17, 209);
             btnReinicioBDD.Name = "btnReinicioBDD";
-            btnReinicioBDD.Size = new Size(137, 46);
+            btnReinicioBDD.Size = new Size(117, 46);
             btnReinicioBDD.TabIndex = 5;
             btnReinicioBDD.Text = "&REINICIAR \r\nBASE DE DATOS";
             btnReinicioBDD.UseVisualStyleBackColor = true;
             btnReinicioBDD.Click += btnReinicioBDD_Click;
-            // 
-            // btnListaLoad
-            // 
-            btnListaLoad.Location = new Point(867, 431);
-            btnListaLoad.Name = "btnListaLoad";
-            btnListaLoad.Size = new Size(137, 39);
-            btnListaLoad.TabIndex = 7;
-            btnListaLoad.Text = "&CARGAR ASISTENCIA";
-            btnListaLoad.UseVisualStyleBackColor = true;
-            btnListaLoad.Click += btnListaLoad_Click;
-            // 
-            // btnListaSave
-            // 
-            btnListaSave.Location = new Point(867, 383);
-            btnListaSave.Name = "btnListaSave";
-            btnListaSave.Size = new Size(137, 39);
-            btnListaSave.TabIndex = 6;
-            btnListaSave.Text = "&GUARDAR \r\nASISTENCIA";
-            btnListaSave.UseVisualStyleBackColor = true;
-            btnListaSave.Click += btnListaSave_Click;
-            // 
-            // btnName
-            // 
-            btnName.Location = new Point(868, 323);
-            btnName.Name = "btnName";
-            btnName.Size = new Size(136, 47);
-            btnName.TabIndex = 25;
-            btnName.Text = "&ACTUALIZAR \r\nDATOS EMPLEADO";
-            btnName.UseVisualStyleBackColor = true;
-            btnName.Click += btnName_Click;
             // 
             // pictureBox2
             // 
@@ -190,7 +175,7 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAdmin.Location = new Point(13, 160);
             dgvAdmin.Name = "dgvAdmin";
-            dgvAdmin.Size = new Size(582, 401);
+            dgvAdmin.Size = new Size(582, 400);
             dgvAdmin.TabIndex = 13;
             dgvAdmin.CellClick += dgvAdmin_CellClick;
             dgvAdmin.CellEndEdit += dgvAdmin_CellEndEdit;
@@ -209,18 +194,20 @@ namespace PreyectoDesarrollo_unicah
             // lblParcial
             // 
             lblParcial.AutoSize = true;
-            lblParcial.Location = new Point(652, 234);
+            lblParcial.Font = new Font("Segoe UI", 10F);
+            lblParcial.Location = new Point(650, 229);
             lblParcial.Name = "lblParcial";
-            lblParcial.Size = new Size(42, 15);
+            lblParcial.Size = new Size(48, 19);
             lblParcial.TabIndex = 16;
             lblParcial.Text = "Parcial";
             // 
             // lblWeek
             // 
             lblWeek.AutoSize = true;
-            lblWeek.Location = new Point(763, 234);
+            lblWeek.Font = new Font("Segoe UI", 10F);
+            lblWeek.Location = new Point(761, 229);
             lblWeek.Name = "lblWeek";
-            lblWeek.Size = new Size(49, 15);
+            lblWeek.Size = new Size(57, 19);
             lblWeek.TabIndex = 17;
             lblWeek.Text = "Semana";
             // 
@@ -279,19 +266,24 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnPeriodo
             // 
-            btnPeriodo.Location = new Point(906, 152);
+            btnPeriodo.Location = new Point(898, 152);
             btnPeriodo.Name = "btnPeriodo";
-            btnPeriodo.Size = new Size(98, 44);
+            btnPeriodo.Size = new Size(106, 44);
             btnPeriodo.TabIndex = 3;
-            btnPeriodo.Text = "Definir Periodo";
+            btnPeriodo.Text = "&DEFINIR\r\nPERIODO";
             btnPeriodo.UseVisualStyleBackColor = true;
             btnPeriodo.Click += btnPeriodo_Click;
             // 
             // groupBox2
             // 
-            groupBox2.Location = new Point(862, 230);
+            groupBox2.Controls.Add(btnName);
+            groupBox2.Controls.Add(btnSQL);
+            groupBox2.Controls.Add(btnReinicioBDD);
+            groupBox2.Controls.Add(btnLogout);
+            groupBox2.Font = new Font("Segoe UI", 11F);
+            groupBox2.Location = new Point(862, 244);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(149, 341);
+            groupBox2.Size = new Size(149, 316);
             groupBox2.TabIndex = 25;
             groupBox2.TabStop = false;
             groupBox2.Text = "Opciones";
@@ -321,18 +313,12 @@ namespace PreyectoDesarrollo_unicah
             ClientSize = new Size(1020, 576);
             Controls.Add(txtBusca);
             Controls.Add(lblBusca);
-            Controls.Add(btnName);
-            Controls.Add(btnListaSave);
-            Controls.Add(btnListaLoad);
-            Controls.Add(btnReinicioBDD);
-            Controls.Add(btnSQL);
             Controls.Add(btnPeriodo);
             Controls.Add(groupBox1);
             Controls.Add(mesAdmin);
             Controls.Add(lblWeek);
             Controls.Add(lblParcial);
             Controls.Add(panel1);
-            Controls.Add(btnLogout);
             Controls.Add(dgvAdmin);
             Controls.Add(label1);
             Controls.Add(groupBox2);
@@ -350,6 +336,7 @@ namespace PreyectoDesarrollo_unicah
             ((System.ComponentModel.ISupportInitialize)dgvAdmin).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -374,8 +361,6 @@ namespace PreyectoDesarrollo_unicah
         private Button btnPeriodo;
         private Button btnName;
         private Button btnSQL;
-        private Button btnListaSave;
-        private Button btnListaLoad;
         private Button btnReinicioBDD;
         private GroupBox groupBox2;
         private Label lblBusca;

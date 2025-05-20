@@ -58,13 +58,19 @@ namespace PreyectoDesarrollo_unicah
         private void txtusuario_Enter(object sender, EventArgs e)
         {
             if (txtusuario.Text == "Usuario:")
+            {
                 txtusuario.Text = "";
+                txtusuario.UseSystemPasswordChar = true;
+            }
         }
 
         private void txtusuario_Leave(object sender, EventArgs e)
         {
             if (txtusuario.Text == "")
+            {
                 txtusuario.Text = "Usuario:";
+                txtusuario.UseSystemPasswordChar = false;
+            }
         }
 
         private void txtcontraseña_Enter(object sender, EventArgs e)
