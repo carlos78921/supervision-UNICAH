@@ -89,28 +89,6 @@ namespace PreyectoDesarrollo_unicah
             btnName.UseVisualStyleBackColor = true;
             btnName.Click += btnName_Click;
             // 
-            // btnSQL
-            // 
-            btnSQL.Font = new Font("Segoe UI", 9F);
-            btnSQL.Location = new Point(17, 48);
-            btnSQL.Name = "btnSQL";
-            btnSQL.Size = new Size(117, 59);
-            btnSQL.TabIndex = 4;
-            btnSQL.Text = "&MIGRAR DATOS \r\nDE EXCEL A LA \r\nBASE DE DATOS";
-            btnSQL.UseVisualStyleBackColor = true;
-            btnSQL.Click += btnSQL_Click;
-            // 
-            // btnReinicioBDD
-            // 
-            btnReinicioBDD.Font = new Font("Segoe UI", 9F);
-            btnReinicioBDD.Location = new Point(17, 209);
-            btnReinicioBDD.Name = "btnReinicioBDD";
-            btnReinicioBDD.Size = new Size(117, 46);
-            btnReinicioBDD.TabIndex = 5;
-            btnReinicioBDD.Text = "&REINICIAR \r\nBASE DE DATOS";
-            btnReinicioBDD.UseVisualStyleBackColor = true;
-            btnReinicioBDD.Click += btnReinicioBDD_Click;
-            // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
@@ -174,6 +152,7 @@ namespace PreyectoDesarrollo_unicah
             dgvAdmin.AllowUserToDeleteRows = false;
             dgvAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAdmin.Location = new Point(13, 160);
+            dgvAdmin.MultiSelect = false;
             dgvAdmin.Name = "dgvAdmin";
             dgvAdmin.Size = new Size(582, 400);
             dgvAdmin.TabIndex = 13;
@@ -287,6 +266,28 @@ namespace PreyectoDesarrollo_unicah
             groupBox2.TabIndex = 25;
             groupBox2.TabStop = false;
             groupBox2.Text = "Opciones";
+            // 
+            // btnSQL
+            // 
+            btnSQL.Font = new Font("Segoe UI", 9F);
+            btnSQL.Location = new Point(17, 48);
+            btnSQL.Name = "btnSQL";
+            btnSQL.Size = new Size(117, 59);
+            btnSQL.TabIndex = 4;
+            btnSQL.Text = "&MIGRAR DATOS \r\nDE EXCEL A LA \r\nBASE DE DATOS";
+            btnSQL.UseVisualStyleBackColor = true;
+            btnSQL.Click += btnSQL_Click;
+            // 
+            // btnReinicioBDD
+            // 
+            btnReinicioBDD.Font = new Font("Segoe UI", 9F);
+            btnReinicioBDD.Location = new Point(17, 209);
+            btnReinicioBDD.Name = "btnReinicioBDD";
+            btnReinicioBDD.Size = new Size(117, 46);
+            btnReinicioBDD.TabIndex = 5;
+            btnReinicioBDD.Text = "&REINICIAR \r\nBASE DE DATOS";
+            btnReinicioBDD.UseVisualStyleBackColor = true;
+            btnReinicioBDD.Click += btnReinicioBDD_Click;
             // 
             // lblBusca
             // 

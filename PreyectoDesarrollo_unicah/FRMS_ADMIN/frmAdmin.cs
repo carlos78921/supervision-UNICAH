@@ -236,12 +236,14 @@ namespace PreyectoDesarrollo_unicah
                     celdatxt.KeyPress += Celda_KeyPress;
             }
 
+            TextBox txtContra = e.Control as TextBox;
             if (dgvAdmin.CurrentCell.ColumnIndex == 5)
             {
-                TextBox txtContra = e.Control as TextBox;
                 if (txtContra != null)
                     txtContra.UseSystemPasswordChar = true;
             }
+            else
+                txtContra.UseSystemPasswordChar = false;
         }
 
         private void Celda_KeyPress(object sender, KeyPressEventArgs e)
@@ -283,6 +285,8 @@ namespace PreyectoDesarrollo_unicah
 
         private void dgvAdmin_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1 || e.ColumnIndex == -1)
+                return; // Cancelar comportamiento por defecto
             if (dgvAdmin.Columns[e.ColumnIndex].Name == "Contraseña")
             {
                 if (MessageBox.Show("¿Desea cambiar la contraseña?", "Cambiar contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
