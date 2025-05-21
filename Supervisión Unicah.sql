@@ -13,10 +13,8 @@ begin
 		create table Nombres_Completos 
 		(
 		ID_Empleado int identity primary key,
-		Nombre1 varchar(20),
-		Nombre2 varchar(20),
-		Apellido1 varchar(20),
-		Apellido2 varchar(20)
+		Nombre varchar(20),
+		Apellido varchar(20)
 		)	
 
 		CREATE TABLE Empleados 
@@ -76,10 +74,8 @@ begin
 		DECLARE @sql NVARCHAR(MAX)
 		SET @sql = '
 		create proc dbo.PA_Nombres_Completos
-		@Nombre1 varchar(9),
-		@Nombre2 varchar(11),
-		@Nombre3 varchar(13),
-		@Nombre4 varchar(11)
+		@Nombre varchar(9),		
+		@Apellido varchar(13)
 		with encryption
 		as 
 		begin
@@ -88,14 +84,12 @@ begin
 	    IF NOT EXISTS (
         SELECT 1 
         FROM Nombres_Completos 
-        WHERE Nombre1 = @Nombre1
-        AND ISNULL(Nombre2, '''') = ISNULL(@Nombre2, '''')
-        AND Apellido1 = @Nombre3
-        AND ISNULL(Apellido2, '''') = ISNULL(@Nombre4, '''')
+        WHERE Nombre = @Nombre
+        AND Apellido = @Apellido
 	    )
 		BEGIN
-			INSERT INTO Nombres_Completos (Nombre1, Nombre2, Apellido1, Apellido2)
-			VALUES (@Nombre1, @Nombre2, @Nombre3, @Nombre4);
+			INSERT INTO Nombres_Completos (Nombre, Apellido)
+			VALUES (@Nombre, @Apellido);
 		END
 	end
 		'
@@ -111,12 +105,17 @@ exec (@finalSQL)
 		WITH ENCRYPTION
 		AS
 		BEGIN
-			SELECT nombre1, apellido1, rol 
-			FROM Empleados E
-			JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
-			WHERE codigo_empleado = @usuario 
-			AND BINARY_CHECKSUM(LTRIM(RTRIM(contraseña))) = BINARY_CHECKSUM(LTRIM(RTRIM(@contrasena)))
+			IF EXISTS (SELECT * FROM sys.databases WHERE name = ''Supervision_Unicah'')
+			begin			
+				SELECT Nombre, Apellido, rol 
+				FROM Empleados E
+				JOIN Nombres_Completos NC ON E.ID_Empleado = NC.ID_Empleado
+				WHERE codigo_empleado = @usuario 
+				AND BINARY_CHECKSUM(LTRIM(RTRIM(contraseña))) = BINARY_CHECKSUM(LTRIM(RTRIM(@contrasena)))
+			end
 		END 
+
+		
 		'
 
 SET @finalSQL = 'USE Supervision_Unicah; EXEC(''' + REPLACE(@sql, '''', '''''') + ''')'
@@ -155,10 +154,8 @@ end
 
 		SET @sql = '
 		create proc dbo.PA_Empleados
-		@Nombre1 varchar(9),
-		@Nombre2 varchar(11),
-		@Nombre3 varchar(13),
-		@Nombre4 varchar(11),
+		@Nombre varchar(9),		
+		@Apellido varchar(13),		
 		@rol varchar(50),
 		@codigo varchar(4)
 		with encryption
@@ -167,27 +164,21 @@ end
 			IF EXISTS (
 			SELECT 1 
 			FROM Nombres_Completos
-			WHERE Nombre1 = @Nombre1
-			AND ISNULL(Nombre2, '''') = ISNULL(@Nombre2, '''')
-			AND Apellido1 = @Nombre3
-			AND ISNULL(Apellido2, '''') = ISNULL(@Nombre4, '''')
+			WHERE Nombre = @Nombre
+			AND Apellido = @Apellido
 			)	
 			begin	
 				if not exists (
 				select E.ID_Empleado from Empleados E join Nombres_Completos NC on E.ID_Empleado = NC.ID_Empleado 
-				WHERE Nombre1 = @Nombre1
-				AND ISNULL(Nombre2, '''') = ISNULL(@Nombre2, '''')
-				AND Apellido1 = @Nombre3
-				AND ISNULL(Apellido2, '''') = ISNULL(@Nombre4, '''') 
+				WHERE Nombre = @Nombre
+				AND Apellido = @Apellido
 				)
 	   
 				INSERT INTO Empleados (ID_Empleado, rol, codigo_empleado)
 				select NC.ID_Empleado, @rol, @codigo
 				from Nombres_Completos NC
-				WHERE Nombre1 = @Nombre1
-				AND ISNULL(Nombre2, '''') = ISNULL(@Nombre2, '''')
-				AND Apellido1 = @Nombre3
-				AND ISNULL(Apellido2, '''') = ISNULL(@Nombre4, '''') 
+				WHERE Nombre = @Nombre
+				AND Apellido = @Apellido
 				print (''Cantidad de registros actualizados'')
 			end
 		end 
@@ -270,10 +261,10 @@ exec (@finalSQL)
 		@Aula varchar(25), 
 		@Seccion varchar(6),
 		@Edificio varchar(1),
-		@Nombre1 varchar(9),
-		@Nombre2 varchar(11),
-		@Nombre3 varchar(13),
-		@Nombre4 varchar(11)		
+		@Nombre varchar(9),
+		
+		@Apellido varchar(13)
+				
 		as 
 		begin 
 			if not exists (select 1 from Asistencia A
@@ -283,10 +274,8 @@ exec (@finalSQL)
 			where 
 			Asignatura = @Clase	and 
 			Seccion = @Seccion and Aula = @Aula and Edificio = @Edificio and
-			Nombre1 = @Nombre1 AND ISNULL(Nombre2, '''') = ISNULL(@Nombre2, '''') AND 
-			Apellido1 = @Nombre3 AND ISNULL(Apellido2, '''') = ISNULL(@Nombre4, '''')
-			)	
-							
+			Nombre = @Nombre AND Apellido = @Apellido 
+			)								
 			declare @ID_Clase int;
 			select @ID_Clase = ID_Clase
 			from Clases
@@ -300,10 +289,8 @@ exec (@finalSQL)
 			declare @ID_Empleado INT;
 			select @ID_Empleado = ID_Empleado
 			from Nombres_Completos
-			WHERE Nombre1 = @Nombre1
-			AND ISNULL(Nombre2, '''') = ISNULL(@Nombre2, '''')
-			AND Apellido1 = @Nombre3
-			AND ISNULL(Apellido2, '''') = ISNULL(@Nombre4, '''')
+			WHERE Nombre = @Nombre
+			AND Apellido = @Apellido
 
 			declare @fecha date
 			set @fecha = CAST(DATEADD(HOUR, -6, SYSDATETIMEOFFSET()) AS DATE)
@@ -316,10 +303,8 @@ exec (@finalSQL)
 
 SET @sql = '
 create proc dbo.PA_Datos
-	@Nombre1 varchar(9),
-	@Nombre2 varchar(11),
-	@Nombre3 varchar(13),
-	@Nombre4 varchar(11),
+	@Nombre varchar(9),	
+	@Apellido varchar(13),	
 	@rol varchar (30), 
 	@usuario varchar(4),
     @Contraseña varchar(255),
@@ -328,12 +313,9 @@ with encryption
 as 
 begin
     update Nombres_Completos
-    set Nombre1 = @Nombre1,
-	Nombre2 = @Nombre2,
-	Apellido1 = @Nombre3,
-	Apellido2 = @Nombre4
+    set Nombre = @Nombre,
+	Apellido = @Apellido
 	where ID_Empleado = @ID;
-
 	update Empleados
 	set rol = @rol,
 	codigo_empleado = @usuario,
@@ -427,7 +409,7 @@ end
     DECLARE @BitDiaSemana INT = POWER(2, @DiaSemana - 1);
 
     SELECT DISTINCT 
-        (NC.Nombre1 + '' '' + NC.Nombre2 + '' '' + NC.Apellido1 + '' '' + ISNULL(NC.Apellido2, '''')) AS Docente,
+        (Nombre  + '' '' + Apellido) AS Docente,
         C.Asignatura,
         S.Seccion,
         S.Aula,
@@ -484,7 +466,7 @@ BEGIN
 	declare @ID_Empleado INT;
 	select @ID_Empleado = ID_Empleado
 	from Nombres_Completos
-	where (Nombre1 + '' '' + Nombre2 + '' '' + Apellido1 + '' '' + Apellido2) = @Docente;
+	where (Nombre + '' '' + Apellido) = @Docente;
 
 	declare @ID_Clase INT;
 	-- Obtener ID de la clase
@@ -546,7 +528,7 @@ BEGIN
     SET NOCOUNT ON;
 
     SELECT DISTINCT 
-        (Nombre1 + '' '' + ISNULL(Nombre2, '''') + '' '' + Apellido1 + '' '' + ISNULL(Apellido2, '''')) AS Docente, 
+        (Nombre + '' '' + Apellido) AS Docente, 
         Asignatura, 
         Seccion, 
         Aula, 
@@ -570,11 +552,11 @@ BEGIN
     WHERE (LEFT(LTRIM(RTRIM(S.Seccion)), 2) = @AHora
            OR ((@DiaSemana BETWEEN C.InicioDia AND C.FinDia)
                OR (C.DiasPermitidos IS NOT NULL AND (C.DiasPermitidos & @BitDiaSemana) > 0)))
-      AND ((Nombre1 + '' '' + ISNULL(Nombre2, '''') + '' '' + Apellido1 + '' '' + ISNULL(Apellido2, '''')) LIKE ''%'' + @Docente + ''%'' OR @Docente = '''')
+      AND ((Nombre + '' '' + Apellido) LIKE ''%'' + @Docente + ''%'' OR @Docente = '''')
       AND (Asignatura LIKE ''%'' + @Clase + ''%'' OR @Clase = '''')
       AND (@Aula = '''' OR Aula = @Aula)
 	  AND (@Edificio = '''' OR Edificio = @Edificio)
-	  AND (@Seccion = '''' OR Seccion = @Seccion);
+	  AND ((@Seccion = '' and @ahora >= Seccion)  OR Seccion = @Seccion);
 END;
 ';
     SET @finalSQL = 'USE Supervision_Unicah; EXEC(''' + REPLACE(@sql, '''', '''''') + ''')';
@@ -585,7 +567,7 @@ create proc PA_Supervisor_Excel
 with encryption
 as                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 begin  
-	select distinct (Nombre1 + '' '' + Nombre2 + '' '' + Apellido1 + '' '' + isnull(Apellido2,'''')) [Docente], 
+	select distinct (Nombre + '' '' + Apellido) [Docente], 
 	Asignatura,
 	Seccion, 
 	Aula,
@@ -624,9 +606,8 @@ with encryption
 as
 begin
 	select distinct
-	NC.ID_Empleado ''ID del empleado'', Nombre1 ''Nombre 1'', isnull(Nombre2,'''') ''Nombre 2'', 
-	Apellido1 ''Apellido 1'', isnull(Apellido2,'''') ''Apellido 2'', Rol, codigo_empleado [Código de empleado], Contraseña 
-	--isnull: comando de condición para insertar valor nulo como vacío o '' (este solo es de un valor y su reemplazo)
+	NC.ID_Empleado ''ID del empleado'', Nombre, Apellido,  
+	Rol, codigo_empleado [Código de empleado], Contraseña 
 	from Empleados E
 	join Nombres_Completos NC on E.ID_Empleado = NC.ID_Empleado
 END;
@@ -645,10 +626,8 @@ END;
 
 		SELECT
         NC.ID_Empleado   AS [ID del empleado],
-        NC.Nombre1       AS [Nombre 1],
-        ISNULL(NC.Nombre2, '''')  AS [Nombre 2],
-        NC.Apellido1     AS [Apellido 1],
-        ISNULL(NC.Apellido2, '''') AS [Apellido 2],
+        Nombre,
+        Apellido,
 		Rol,
 		codigo_empleado [Codigo de Empleado],
         Contraseña
@@ -659,12 +638,10 @@ END;
 
         @Dato IS NULL
         OR CAST(NC.ID_Empleado AS VARCHAR(10)) = @Dato
-        OR NC.Nombre1    LIKE ''%'' + @Dato + ''%''
-        OR NC.Nombre2    LIKE ''%'' + @Dato + ''%''
-        OR NC.Apellido1  LIKE ''%'' + @Dato + ''%''
-        OR NC.Apellido2  LIKE ''%'' + @Dato + ''%''
-		or Rol LIKE '%' + @Dato + '%'
-		or codigo_empleado LIKE '%' + @Dato + '%'
+        OR NC.Nombre    LIKE ''%'' + @Dato + ''%''
+        OR NC.Apellido  LIKE ''%'' + @Dato + ''%''
+		or Rol LIKE ''%'' + @Dato + ''%''
+		or codigo_empleado LIKE ''%'' + @Dato + ''%''
 
         OR E.contraseña  = @Dato;
 	END;
@@ -687,7 +664,7 @@ begin
 	declare @ID_Empleado INT;
 	select @ID_Empleado = ID_Empleado
 	from Nombres_Completos
-	where (Nombre1 + '' '' + Nombre2 + '' '' + Apellido1 + '' '' + Apellido2) = @Docente;
+	where (Nombre + '' '' + Apellido) = @Docente;
 
 	declare @ID_Clase INT;
 	-- Obtener ID de la clase
@@ -719,7 +696,7 @@ with encryption
 AS
 BEGIN
     SET NOCOUNT ON;
-	Busca
+
 	DECLARE @codigo_facu VARCHAR(6);
 
     SELECT @codigo_facu = codigo_facu
@@ -732,7 +709,7 @@ BEGIN
            ID_Asistencia,
            Asignatura,
 		   Fecha [Fecha de Ausencia],
-           (Nombre1 + '' '' + ISNULL(Nombre2, '''') + '' '' + Apellido1 + '' '' + ISNULL(Nombre2, '''')) [Docente],
+           (Nombre + '' '' + Apellido) [Docente],
 		   Seccion [Sección],
 	       Observacion [Justificación]           
     FROM Asistencia A
@@ -768,10 +745,7 @@ BEGIN
     SELECT DISTINCT
            C.Asignatura,
            A.Fecha           AS [Fecha de Ausencia],
-           (NC.Nombre1 
-            + '' '' + ISNULL(NC.Nombre2,'''') 
-            + '' '' + NC.Apellido1 
-            + '' '' + ISNULL(NC.Apellido2,''''))      AS [Docente],
+           (NC.Nombre + '' '' + NC.Apellido) AS [Docente],
            S.Seccion,
            A.Observacion    AS [Justificación]
     FROM Asistencia A
@@ -809,7 +783,8 @@ END
 create proc dbo.PA_Buscar_Justo
     @Docente VARCHAR(50),
 	@Edificio VARCHAR(9),
-	@CodigoDecano varchar(4)
+	@CodigoDecano varchar(4),
+	@FechaPasada date
 with encryption
 AS
 BEGIN
@@ -827,7 +802,7 @@ BEGIN
            ID_Asistencia,
            Asignatura,
 		   Fecha [Fecha de Ausencia],
-           (Nombre1 + '' '' + ISNULL(Nombre2, '''') + '' '' + Apellido1 + '' '' + ISNULL(Apellido2, '''')) [Docente],
+           (Nombre + '' '' + Apellido) [Docente],
 		   Seccion [Sección],
 	       Observacion [Justificación]           
     FROM Asistencia A
@@ -836,10 +811,10 @@ BEGIN
     JOIN Clases C ON A.ID_Clase = C.ID_Clase
     JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
     WHERE Presente = 0 
-      and ((Nombre1 + '' '' + ISNULL(Nombre2, '''') + '' '' + Apellido1 + '' '' + ISNULL(Apellido2, '''')) LIKE ''%'' + @Docente + ''%'' OR @Docente = '''')
-	  AND (@Edificio = '''' OR Edificio = @Edificio);
+      and ((Nombre + '' '' + Apellido) LIKE ''%'' + @Docente + ''%'' OR @Docente = '''')
+	  AND (@Edificio = '''' OR Edificio = @Edificio)
 	  and C.Cod_Facultad = @codigo_facu  
-	  AND CAST(A.Fecha AS DATE) = CAST(DATEADD(HOUR, -6, SYSDATETIMEOFFSET()) AS DATE);
+	  AND Fecha = @FechaPasada;
 END
 ';
     SET @finalSQL = 'USE Supervision_Unicah; EXEC(''' + REPLACE(@sql, '''', '''''') + ''')';
@@ -865,7 +840,7 @@ BEGIN
            ID_Asistencia,
            Asignatura,
 		   Fecha [Fecha de Ausencia],
-           (Nombre1 + '' '' + ISNULL(Nombre2, '''') + '' '' + Apellido1 + '' '' + ISNULL(Nombre2, '''')) [Docente],
+           (Nombre + '' '' + Apellido) [Docente],
 		   Seccion [Sección],
            Fecha_Reposicion [Fecha de Reposición]
 
@@ -902,7 +877,7 @@ BEGIN
            ID_Asistencia,
            Asignatura,
            Fecha AS [Fecha de Ausencia],
-           (NC.Nombre1 + '' '' + ISNULL(Nombre2, '''') + '' '' + NC.Apellido1 + '' '' + ISNULL(Nombre2, '''')) AS [Docente],
+           (Nombre + '' '' + Apellido) AS [Docente],
            Seccion,
            Fecha_Reposicion ''Fecha de Reposición''
     FROM Asistencia A
@@ -957,7 +932,7 @@ BEGIN
            ID_Asistencia,
            Asignatura,
 		   Fecha [Fecha de Ausencia],
-           (Nombre1 + '' '' + ISNULL(Nombre2, '''') + '' '' + Apellido1 + '' '' + ISNULL(Nombre2, '''')) [Docente],
+           (Nombre + '' '' + Apellido) [Docente],
 		   Seccion [Sección],
            Fecha_Reposicion [Fecha de Reposición]
     FROM Asistencia A
@@ -967,14 +942,13 @@ BEGIN
     JOIN Sitio S ON A.ID_Sitio = S.ID_Sitio
     WHERE Presente = 0 
       AND ((@Repo = ''''
-	        OR ((Nombre1 + '' '' + ISNULL(Nombre2, '''') + '' '' + Apellido1 + '' '' + ISNULL(Apellido2, '''')) LIKE ''%'' + @Repo + ''%'')
+	        OR ((Nombre + '' '' + Apellido) LIKE ''%'' + @Repo + ''%'')
 	        OR (Asignatura LIKE ''%'' + @Repo + ''%'')
 	        OR (Fecha LIKE ''%'' + @Repo + ''%'')
 	        OR (Seccion LIKE ''%'' + @Repo + ''%''))
 	        AND (@Edificio = '''' OR Edificio = @Edificio))
 			and C.Cod_Facultad = @codigo_facu  
 			AND CAST(Fecha AS DATE) = CAST(DATEADD(HOUR, -6, SYSDATETIMEOFFSET()) AS DATE);
-
 END
 ';
     SET @finalSQL = 'USE Supervision_Unicah; EXEC(''' + REPLACE(@sql, '''', '''''') + ''')';
