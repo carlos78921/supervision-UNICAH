@@ -556,7 +556,13 @@ BEGIN
       AND (Asignatura LIKE ''%'' + @Clase + ''%'' OR @Clase = '''')
       AND (@Aula = '''' OR Aula = @Aula)
 	  AND (@Edificio = '''' OR Edificio = @Edificio)
-	  AND ((@Seccion = '' and @ahora >= Seccion)  OR Seccion = @Seccion);
+      and (
+	     -- Filtrado por rango de días (si existe)
+            (@DiaSemana BETWEEN C.InicioDia AND C.FinDia)
+            OR
+            -- Filtrado por días específicos (si existe)
+            (C.DiasPermitidos IS NOT NULL AND (C.DiasPermitidos & @BitDiaSemana) > 0)
+        )
 END;
 ';
     SET @finalSQL = 'USE Supervision_Unicah; EXEC(''' + REPLACE(@sql, '''', '''''') + ''')';
@@ -874,7 +880,6 @@ BEGIN
     WHERE codigo_empleado = @CodigoDecano;
 
     SELECT DISTINCT 
-           ID_Asistencia,
            Asignatura,
            Fecha AS [Fecha de Ausencia],
            (Nombre + '' '' + Apellido) AS [Docente],
@@ -914,7 +919,8 @@ END
 CREATE proc dbo.PA_Buscar_Repo
     @Repo varchar(80),	
     @Edificio VARCHAR(9),
-	@CodigoDecano varchar(4)
+	@CodigoDecano varchar(4),
+	@FechaPasada date
 	with encryption
 AS
 BEGIN
@@ -948,8 +954,8 @@ BEGIN
 	        OR (Seccion LIKE ''%'' + @Repo + ''%''))
 	        AND (@Edificio = '''' OR Edificio = @Edificio))
 			and C.Cod_Facultad = @codigo_facu  
-			AND CAST(Fecha AS DATE) = CAST(DATEADD(HOUR, -6, SYSDATETIMEOFFSET()) AS DATE);
-END
+			AND Fecha = @FechaPasada;
+END 
 ';
     SET @finalSQL = 'USE Supervision_Unicah; EXEC(''' + REPLACE(@sql, '''', '''''') + ''')';
     EXEC(@finalSQL);
