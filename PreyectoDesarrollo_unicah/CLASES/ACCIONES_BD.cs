@@ -1098,15 +1098,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         try
                         {
                             wb.SaveAs(sfd.FileName);
-
-                            MessageBox.Show(
-                                "Respaldo guardado correctamente.",
-                                "Respaldo exitoso",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information
-                            );
-
-
                         }
                         catch (Exception ex)
                         {
@@ -1219,15 +1210,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         try
                         {
                             wb.SaveAs(sfd.FileName);
-
-                            MessageBox.Show(
-                                "Respaldo guardado correctamente.",
-                                "Respaldo exitoso",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information
-                            );
-
-
                         }
                         catch (Exception ex)
                         {
