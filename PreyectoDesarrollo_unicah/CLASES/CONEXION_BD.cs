@@ -17,8 +17,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
     internal class CONEXION_BD
     {
-        public static string ConexionServidor = "DATA SOURCE= DESKTOP-F4DAE1B\\SQLEXPRESS; Integrated Security=True"; 
-        public static string conexionBDD = "DATA SOURCE= DESKTOP-F4DAE1B\\SQLEXPRESS; Initial Catalog=Supervision_Unicah; Integrated Security=True";
+        public static string ConexionServidor = "DATA SOURCE= Servidor de SQL Local; Integrated Security=True"; 
+        public static string conexionBDD = "DATA SOURCE= Servidor de SQL Local; Initial Catalog=Supervision_Unicah; Integrated Security=True";
 
         public static SqlConnection conectarServidor = new SqlConnection(ConexionServidor);
         public static SqlConnection conectarBDD = new SqlConnection(conexionBDD);
