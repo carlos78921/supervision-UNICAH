@@ -87,3 +87,4 @@ C:\Users\DELL\Documents\Llamar a 9756-5949\Desarrollo de Software\Sistema de Sup
 C:\Users\DELL\Documents\Llamar a 9756-5949\Desarrollo de Software\Sistema de Supervisión Unicah\PreyectoDesarrollo_unicah\obj\Debug\net8.0-windows\PreyectoDesarrollo_unicah.pdb
 C:\Users\DELL\Documents\Llamar a 9756-5949\Desarrollo de Software\Sistema de Supervisión Unicah\PreyectoDesarrollo_unicah\obj\Debug\net8.0-windows\PreyectoDesarrollo_unicah.genruntimeconfig.cache
 C:\Users\DELL\Documents\Llamar a 9756-5949\Desarrollo de Software\Sistema de Supervisión Unicah\PreyectoDesarrollo_unicah\obj\Debug\net8.0-windows\ref\PreyectoDesarrollo_unicah.dll
+C:\Users\DELL\Documents\Llamar a 9756-5949\Desarrollo de Software\Sistema de Supervisión Unicah\PreyectoDesarrollo_unicah\bin\Debug\net8.0-windows\PreyectoDesarrollo_unicah.exe
