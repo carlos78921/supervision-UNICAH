@@ -103,7 +103,7 @@ namespace PreyectoDesarrollo_unicah
                 return;
 
             if (rol == "administrador")
-                if (!ACCIONES_BD.CrearBDD(usuario))
+                if (!ACCIONES_BD.CrearBDD())
                     return;
 
             if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this, txtusuario, txtcontraseña, rol))
@@ -130,7 +130,7 @@ namespace PreyectoDesarrollo_unicah
                 if (!Validaciones.Usuario(sender, e, usuario, contraseña, txtusuario))
                     return;
                 if (rol == "administrador")
-                    if (!ACCIONES_BD.CrearBDD(usuario))
+                    if (!ACCIONES_BD.CrearBDD())
                         return;
                 if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this, txtusuario, txtcontraseña, rol))
                     return;

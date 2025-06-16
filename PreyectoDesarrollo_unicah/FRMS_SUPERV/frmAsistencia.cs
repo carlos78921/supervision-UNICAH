@@ -174,7 +174,7 @@ namespace PreyectoDesarrollo_unicah
                 return;
 
             MessageBox.Show("Seleccione el archivo Excel original", "Excel original");
-            ACCIONES_BD.MigrarDatosViejo();
+            ACCIONES_BD.MigrarDatos();
             MessageBox.Show("Ahora seleccione el archivo Excel con la asistencia", "Cargar Asistencia");
             string rutaExcel = "";
             using (OpenFileDialog ofd = new OpenFileDialog())
