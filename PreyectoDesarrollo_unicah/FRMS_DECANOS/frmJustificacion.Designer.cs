@@ -229,9 +229,9 @@ namespace PreyectoDesarrollo_unicah
             label4.AutoSize = true;
             label4.Location = new Point(14, 126);
             label4.Name = "label4";
-            label4.Size = new Size(54, 15);
+            label4.Size = new Size(45, 15);
             label4.TabIndex = 43;
-            label4.Text = "Docente:";
+            label4.Text = "Buscar:";
             // 
             // label5
             // 

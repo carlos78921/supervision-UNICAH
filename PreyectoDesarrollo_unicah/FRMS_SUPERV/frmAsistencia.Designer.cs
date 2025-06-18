@@ -46,11 +46,11 @@
             label3 = new Label();
             label2 = new Label();
             cmbSeccion = new ComboBox();
-            label6 = new Label();
-            txtDoc = new TextBox();
             btnLogout = new Button();
             btnListaSave = new Button();
             btnListaLoad = new Button();
+            label6 = new Label();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -147,7 +147,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(20, 188);
+            label5.Location = new Point(33, 188);
             label5.Name = "label5";
             label5.Size = new Size(67, 15);
             label5.TabIndex = 26;
@@ -155,7 +155,7 @@
             // 
             // txtClase
             // 
-            txtClase.Location = new Point(106, 180);
+            txtClase.Location = new Point(130, 179);
             txtClase.Name = "txtClase";
             txtClase.Size = new Size(304, 23);
             txtClase.TabIndex = 2;
@@ -234,23 +234,6 @@
             cmbSeccion.TabIndex = 5;
             cmbSeccion.SelectedIndexChanged += Filtros;
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(20, 121);
-            label6.Name = "label6";
-            label6.Size = new Size(120, 30);
-            label6.TabIndex = 34;
-            label6.Text = "Nombre y/o apellido \r\n         del docente:";
-            // 
-            // txtDoc
-            // 
-            txtDoc.Location = new Point(156, 131);
-            txtDoc.Name = "txtDoc";
-            txtDoc.Size = new Size(254, 23);
-            txtDoc.TabIndex = 1;
-            txtDoc.KeyUp += Filtros;
-            // 
             // btnLogout
             // 
             btnLogout.Location = new Point(907, 420);
@@ -281,17 +264,35 @@
             btnListaLoad.UseVisualStyleBackColor = true;
             btnListaLoad.Click += btnListaLoad_Click;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(12, 157);
+            label6.Name = "label6";
+            label6.Size = new Size(120, 30);
+            label6.TabIndex = 34;
+            label6.Text = "Nombre y/o apellido \r\n         del docente:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(45, 131);
+            label7.Name = "label7";
+            label7.Size = new Size(42, 15);
+            label7.TabIndex = 49;
+            label7.Text = "Buscar";
+            // 
             // frmAsistencia
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(999, 475);
+            Controls.Add(label7);
             Controls.Add(btnListaLoad);
             Controls.Add(btnListaSave);
             Controls.Add(label2);
             Controls.Add(btnLogout);
             Controls.Add(cmbSeccion);
-            Controls.Add(txtDoc);
             Controls.Add(label6);
             Controls.Add(gbFiltro);
             Controls.Add(txtClase);
@@ -329,11 +330,9 @@
         private Label lblPersona;
         private Label label5;
         private TextBox txtClase;
-        private Label label6;
         private ComboBox cmbAula;
         private ComboBox cmbEdificio;
         private GroupBox gbFiltro;
-        private TextBox txtDoc;
         private Button btnLogout;
         private Button btnSalir;
         private Label label4;
@@ -342,5 +341,7 @@
         private ComboBox cmbSeccion;
         private Button btnListaSave;
         private Button btnListaLoad;
+        private Label label6;
+        private Label label7;
     }
 }
