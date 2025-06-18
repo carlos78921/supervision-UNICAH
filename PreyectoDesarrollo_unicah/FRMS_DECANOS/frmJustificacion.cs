@@ -34,11 +34,7 @@ namespace PreyectoDesarrollo_unicah
             //Ajuste de controles
             txtJustifica.Text = Environment.NewLine; //  Mantener la primera línea vacía cuando se opera esto
             txtJustifica.SelectionStart = txtJustifica.Text.Length; // Colocar el cursor en la segunda línea cuando se opera esto
-<<<<<<< HEAD
             dtpAusencia.MaxDate = DateTime.Today;
-=======
-            dtpA.MaxDate = DateTime.Today;
->>>>>>> 49e3ff8 (Cambio forzozo)
 
             //Ajuste en la BDD
             ACCIONES_BD.tablaJustifica(dgvJustificacion, ACCIONES_BD.empleado);
