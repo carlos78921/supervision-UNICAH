@@ -35,6 +35,7 @@
             pictureBox1 = new PictureBox();
             txtcontraseña = new TextBox();
             btnContraseña = new Button();
+            label1 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -49,7 +50,7 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(440, 81);
+            panel1.Size = new Size(550, 81);
             panel1.TabIndex = 5;
             panel1.MouseDown += MoveForm_MouseDown;
             // 
@@ -67,7 +68,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.minimizar_signo;
-            pictureBox2.Location = new Point(373, 3);
+            pictureBox2.Location = new Point(483, 3);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(29, 20);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -78,7 +79,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CERRAR;
-            pictureBox1.Location = new Point(408, 3);
+            pictureBox1.Location = new Point(518, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 20);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -92,7 +93,7 @@
             txtcontraseña.BorderStyle = BorderStyle.None;
             txtcontraseña.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtcontraseña.ForeColor = Color.Black;
-            txtcontraseña.Location = new Point(12, 95);
+            txtcontraseña.Location = new Point(124, 118);
             txtcontraseña.Name = "txtcontraseña";
             txtcontraseña.Size = new Size(408, 20);
             txtcontraseña.TabIndex = 1;
@@ -107,7 +108,7 @@
             btnContraseña.FlatAppearance.BorderColor = SystemColors.HotTrack;
             btnContraseña.FlatStyle = FlatStyle.Flat;
             btnContraseña.ForeColor = Color.Black;
-            btnContraseña.Location = new Point(12, 130);
+            btnContraseña.Location = new Point(79, 158);
             btnContraseña.Name = "btnContraseña";
             btnContraseña.Size = new Size(408, 40);
             btnContraseña.TabIndex = 2;
@@ -115,11 +116,23 @@
             btnContraseña.UseVisualStyleBackColor = false;
             btnContraseña.Click += btnContraseña_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(12, 103);
+            label1.Name = "label1";
+            label1.Size = new Size(107, 42);
+            label1.TabIndex = 6;
+            label1.Text = "Contraseña \r\nnueva:";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // frmCambioContraseña
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(439, 188);
+            ClientSize = new Size(549, 231);
+            Controls.Add(label1);
             Controls.Add(txtcontraseña);
             Controls.Add(btnContraseña);
             Controls.Add(panel1);
@@ -145,5 +158,6 @@
         private PictureBox pictureBox1;
         private TextBox txtcontraseña;
         private Button btnContraseña;
+        private Label label1;
     }
 }
