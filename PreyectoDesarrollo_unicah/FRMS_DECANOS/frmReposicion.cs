@@ -8,7 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.NetworkInformation;
-using System.Runtime.InteropServices; //Relacionado con Dll (Librer�a)
+using System.Runtime.InteropServices; //Relacionado con Dll (Librería)
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,7 +32,7 @@ namespace PreyectoDesarrollo_unicah
         {
             lblPersona.Text = ACCIONES_BD.Persona();
             dtpReposicion.MinDate = DateTime.Today;
-
+            dtpAusencia.MaxDate = DateTime.Today;
             //Ajuste del formulario
             cmbEdificio.SelectedIndex = 0;
 
@@ -40,14 +40,7 @@ namespace PreyectoDesarrollo_unicah
             ACCIONES_BD.tablaRepone(dgvRepone, ACCIONES_BD.empleado);
         }
 
-        private void btnVoy_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            frmDecano menu = new frmDecano();
-            menu.Show();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void Cerrar(object sender, EventArgs e)
         {
             this.Close();
             frmDecano menu = new frmDecano();
@@ -58,7 +51,6 @@ namespace PreyectoDesarrollo_unicah
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);  //El evento en memoria se mantiene
-
         }
 
         private void btnDay_Click(object sender, EventArgs e)
@@ -78,7 +70,7 @@ namespace PreyectoDesarrollo_unicah
 
         private void Filtros(object sender, EventArgs e)
         {
-            ACCIONES_BD.FiltrarDatosRepo(txtBusco.Text, cmbEdificio.Text, dgvRepone);
+            ACCIONES_BD.FiltrarDatosRepo(txtBusco.Text, cmbEdificio.Text, dtpAusencia.Value, dgvRepone);
         }
 
         private void btnReporta_Click(object sender, EventArgs e)

@@ -33,9 +33,16 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
-                Form1 Login = new Form1();
-                Login.Show();
-                MiForm.Close();
+
+                if (MiForm is Form1)
+                    return false;
+                else
+                {
+                    // No existe: creas uno nuevo
+                    Form Login = new Form1();
+                    Login.Show();
+                    MiForm.Close();
+                }
                 return false;
             }
             return true;

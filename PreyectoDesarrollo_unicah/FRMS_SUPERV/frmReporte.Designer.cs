@@ -60,6 +60,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(450, 87);
             panel1.TabIndex = 12;
+            panel1.MouseDown += MoveForm_MouseDown;
             // 
             // pictureBox4
             // 
@@ -70,6 +71,7 @@
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 25;
             pictureBox4.TabStop = false;
+            pictureBox4.Click += pictureBox4_Click;
             // 
             // pictureBox5
             // 
@@ -129,7 +131,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(153, 90);
             label1.Name = "label1";
-            label1.Size = new Size(156, 15);
+            label1.Size = new Size(157, 15);
             label1.TabIndex = 13;
             label1.Text = "SACAR REPORTE POR EXCEL";
             // 
@@ -169,6 +171,7 @@
             Name = "frmReporte";
             Text = "frmReporte";
             Load += frmReporte_Load;
+            MouseDown += MoveForm_MouseDown;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();

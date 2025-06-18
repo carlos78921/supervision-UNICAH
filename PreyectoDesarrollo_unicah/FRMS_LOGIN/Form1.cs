@@ -1,5 +1,6 @@
 using DocumentFormat.OpenXml.Bibliography;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using Microsoft.Win32;
 using PreyectoDesarrollo_unicah.CLASES;
 using PreyectoDesarrollo_unicah.FRMS_SUPERV;
 using System.Data;
@@ -16,6 +17,26 @@ namespace PreyectoDesarrollo_unicah
         public Form1()
         {
             InitializeComponent();
+            SeguridadRol();
+        }
+
+        public static string rol = "desconocido";
+
+        private void SeguridadRol()
+        {
+            try
+            {
+                using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Unicah"))
+                {
+                    if (key != null)
+                    {
+                        object value = key.GetValue("Rol");
+                        if (value != null)
+                            rol = value.ToString().ToLower();
+                    }
+                }
+            }
+            catch { rol = "desconocido"; }
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -39,6 +60,7 @@ namespace PreyectoDesarrollo_unicah
             if (txtusuario.Text == "Usuario:")
             {
                 txtusuario.Text = "";
+                txtusuario.UseSystemPasswordChar = true;
             }
         }
 
@@ -47,6 +69,7 @@ namespace PreyectoDesarrollo_unicah
             if (txtusuario.Text == "")
             {
                 txtusuario.Text = "Usuario:";
+                txtusuario.UseSystemPasswordChar = false;
             }
         }
 
@@ -73,21 +96,21 @@ namespace PreyectoDesarrollo_unicah
             string usuario = txtusuario.Text;
             string contraseña = txtcontraseña.Text.Trim();
 
-
             if (!CONEXION_BD.ConexionPerdida(this))
                 return;
 
             if (!Validaciones.Usuario(sender, e, usuario, contraseña, txtusuario))
                 return;
 
-            if (!ACCIONES_BD.CrearBDD(usuario))
-                return;
+            if (rol == "administrador")
+                if (!ACCIONES_BD.CrearBDD())
+                    return;
 
-            if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this, txtusuario, txtcontraseña))
+            if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this, txtusuario, txtcontraseña, rol))
                 return;
 
             ACCIONES_BD Login = new ACCIONES_BD();
-            Login.Login(usuario, contraseña, this);
+            Login.Login(usuario, contraseña, this, rol);
         }
 
         private void MoveForm_MouseDown(object sender, MouseEventArgs e)
@@ -100,29 +123,53 @@ namespace PreyectoDesarrollo_unicah
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
+                if (!CONEXION_BD.ConexionPerdida(this))
+                    return;
                 string usuario = txtusuario.Text;
                 string contraseña = txtcontraseña.Text.Trim();
                 if (!Validaciones.Usuario(sender, e, usuario, contraseña, txtusuario))
                     return;
-                if (!ACCIONES_BD.CrearBDD(usuario))
-                    return;
-                if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this, txtusuario, txtcontraseña))
+                if (rol == "administrador")
+                    if (!ACCIONES_BD.CrearBDD())
+                        return;
+                if (!Validaciones.Contraseña(sender, e, usuario, contraseña, this, txtusuario, txtcontraseña, rol))
                     return;
                 ACCIONES_BD Login = new ACCIONES_BD();
-                Login.Login(usuario, contraseña, this);
+                Login.Login(usuario, contraseña, this, rol);
             }
         }
 
         private void txtusuario_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
                 e.Handled = true;
+            Datos_KeyPress(sender, e);
         }
 
         private void txtcontraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != (char)Keys.Back)
                 e.Handled = true;
+            Datos_KeyPress(sender, e);
+        }
+
+        bool mostrar = false; //Variable obligatoria por asignar y fuera del método para evitar error de asignar solo falso cuando está dentro del método evento 
+        private void pbMostrar_Click(object sender, EventArgs e)
+        {
+            if (mostrar)
+            {
+                // Ocultar contraseña
+                txtcontraseña.UseSystemPasswordChar = true;
+                pbMostrar.Image = Properties.Resources.Ojo_Esconde;
+                mostrar = false;
+            }
+            else
+            {
+                // Mostrar contraseña
+                txtcontraseña.UseSystemPasswordChar = false;
+                pbMostrar.Image = Properties.Resources.Ojo;
+                mostrar = true;
+            }
         }
     }
 }

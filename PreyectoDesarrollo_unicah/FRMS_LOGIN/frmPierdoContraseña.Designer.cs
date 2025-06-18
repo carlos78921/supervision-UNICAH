@@ -99,7 +99,7 @@
             btnEnviar.FlatAppearance.BorderColor = SystemColors.HotTrack;
             btnEnviar.FlatStyle = FlatStyle.Flat;
             btnEnviar.ForeColor = Color.Black;
-            btnEnviar.Location = new Point(418, 219);
+            btnEnviar.Location = new Point(419, 254);
             btnEnviar.Name = "btnEnviar";
             btnEnviar.Size = new Size(139, 40);
             btnEnviar.TabIndex = 4;
@@ -109,9 +109,10 @@
             // 
             // txtCode
             // 
-            txtCode.Location = new Point(231, 159);
+            txtCode.Font = new Font("Century Gothic", 12F);
+            txtCode.Location = new Point(231, 176);
             txtCode.Name = "txtCode";
-            txtCode.Size = new Size(307, 23);
+            txtCode.Size = new Size(307, 27);
             txtCode.TabIndex = 2;
             txtCode.Text = "Código:";
             toolTip1.SetToolTip(txtCode, "Presione tecla \"Enter\" para \"Enviar\" código");
@@ -122,9 +123,10 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(333, 141);
+            label2.Font = new Font("Century Gothic", 12F);
+            label2.Location = new Point(310, 152);
             label2.Name = "label2";
-            label2.Size = new Size(100, 15);
+            label2.Size = new Size(146, 21);
             label2.TabIndex = 9;
             label2.Text = "Ingrese su código";
             label2.Visible = false;
@@ -132,9 +134,10 @@
             // lblCode
             // 
             lblCode.AutoSize = true;
-            lblCode.Location = new Point(282, 195);
+            lblCode.Font = new Font("Century Gothic", 12F);
+            lblCode.Location = new Point(234, 216);
             lblCode.Name = "lblCode";
-            lblCode.Size = new Size(209, 15);
+            lblCode.Size = new Size(307, 21);
             lblCode.TabIndex = 11;
             lblCode.Text = "Un código ha sido enviado a su correo";
             lblCode.Visible = false;
@@ -145,7 +148,7 @@
             btnRecibir.FlatAppearance.BorderColor = SystemColors.HotTrack;
             btnRecibir.FlatStyle = FlatStyle.Flat;
             btnRecibir.ForeColor = Color.Black;
-            btnRecibir.Location = new Point(218, 219);
+            btnRecibir.Location = new Point(219, 254);
             btnRecibir.Name = "btnRecibir";
             btnRecibir.Size = new Size(139, 40);
             btnRecibir.TabIndex = 3;
@@ -155,9 +158,10 @@
             // 
             // txtMail
             // 
-            txtMail.Location = new Point(231, 109);
+            txtMail.Font = new Font("Century Gothic", 12F);
+            txtMail.Location = new Point(231, 112);
             txtMail.Name = "txtMail";
-            txtMail.Size = new Size(307, 23);
+            txtMail.Size = new Size(307, 27);
             txtMail.TabIndex = 1;
             txtMail.Text = "Correo:";
             toolTip1.SetToolTip(txtMail, "Presione tecla \"Enter\" para generar código");
@@ -168,9 +172,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(333, 91);
+            label1.Font = new Font("Century Gothic", 12F);
+            label1.Location = new Point(310, 88);
             label1.Name = "label1";
-            label1.Size = new Size(97, 15);
+            label1.Size = new Size(141, 21);
             label1.TabIndex = 13;
             label1.Text = "Ingrese su correo";
             label1.Visible = false;
@@ -179,7 +184,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(764, 271);
+            ClientSize = new Size(764, 306);
             Controls.Add(txtMail);
             Controls.Add(label1);
             Controls.Add(btnRecibir);

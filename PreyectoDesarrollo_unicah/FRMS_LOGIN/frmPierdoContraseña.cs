@@ -78,9 +78,11 @@ namespace PreyectoDesarrollo_unicah
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("¿Recordó su contraseña?\n\nSeleccionar <<Sí>> regresará al inicio de sesión\ny reiniciará su código", "Recordé mi Contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
                 this.Close();
-            Form1 Login = new Form1();
-            Login.Show();
+                Form1 Login = new Form1();
+                Login.Show();
+            }
         }
 
         private void btnRecibir_Click(object sender, EventArgs e)

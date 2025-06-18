@@ -46,6 +46,9 @@ namespace PreyectoDesarrollo_unicah
             cmbEdificio = new ComboBox();
             txtBusco = new TextBox();
             label4 = new Label();
+            label5 = new Label();
+            dtpAusencia = new DateTimePicker();
+            pnlAusencia = new Panel();
             btnAgregar = new Button();
             btnVoy = new Button();
             btnReporta = new Button();
@@ -68,13 +71,13 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnVoy
             // 
-            btnVoy.Location = new Point(659, 602);
+            btnVoy.Location = new Point(659, 592);
             btnVoy.Name = "btnVoy";
-            btnVoy.Size = new Size(126, 24);
+            btnVoy.Size = new Size(126, 44);
             btnVoy.TabIndex = 27;
             btnVoy.Text = "&REGRESAR";
             btnVoy.UseVisualStyleBackColor = true;
-            btnVoy.Click += Salir;
+            btnVoy.Click += Cerrar;
             // 
             // btnReporta
             // 
@@ -105,7 +108,7 @@ namespace PreyectoDesarrollo_unicah
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += Salir;
+            pictureBox1.Click += Cerrar;
             // 
             // panel1
             // 
@@ -145,11 +148,12 @@ namespace PreyectoDesarrollo_unicah
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(276, 122);
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(280, 121);
             label2.Name = "label2";
-            label2.Size = new Size(123, 15);
+            label2.Size = new Size(164, 21);
             label2.TabIndex = 30;
-            label2.Text = "Justificación detallada";
+            label2.Text = "Justificación detallada:";
             // 
             // dgvJustificacion
             // 
@@ -173,10 +177,10 @@ namespace PreyectoDesarrollo_unicah
             // 
             // txtJustifica
             // 
-            txtJustifica.Location = new Point(447, 119);
+            txtJustifica.Location = new Point(449, 119);
             txtJustifica.Multiline = true;
             txtJustifica.Name = "txtJustifica";
-            txtJustifica.Size = new Size(338, 147);
+            txtJustifica.Size = new Size(337, 147);
             txtJustifica.TabIndex = 37;
             txtJustifica.Text = "\r\n";
             txtJustifica.TextChanged += txtJustifica_TextChanged;
@@ -186,7 +190,7 @@ namespace PreyectoDesarrollo_unicah
             lblCaracteres.AutoSize = true;
             lblCaracteres.BackColor = SystemColors.Window;
             lblCaracteres.BorderStyle = BorderStyle.FixedSingle;
-            lblCaracteres.Location = new Point(448, 119);
+            lblCaracteres.Location = new Point(449, 119);
             lblCaracteres.Name = "lblCaracteres";
             lblCaracteres.Size = new Size(114, 17);
             lblCaracteres.TabIndex = 38;
@@ -225,15 +229,42 @@ namespace PreyectoDesarrollo_unicah
             label4.AutoSize = true;
             label4.Location = new Point(14, 126);
             label4.Name = "label4";
-            label4.Size = new Size(54, 15);
+            label4.Size = new Size(45, 15);
             label4.TabIndex = 43;
-            label4.Text = "Docente:";
+            label4.Text = "Buscar:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(244, 224);
+            label5.Name = "label5";
+            label5.Size = new Size(109, 30);
+            label5.TabIndex = 50;
+            label5.Text = "Seleccionar fecha \r\nde ausencia pasada";
+            // 
+            // dtpAusencia
+            // 
+            dtpAusencia.Location = new Point(23, 228);
+            dtpAusencia.Name = "dtpAusencia";
+            dtpAusencia.Size = new Size(215, 23);
+            dtpAusencia.TabIndex = 49;
+            dtpAusencia.ValueChanged += Filtros;
+            // 
+            // pnlAusencia
+            // 
+            pnlAusencia.Location = new Point(18, 220);
+            pnlAusencia.Name = "pnlAusencia";
+            pnlAusencia.Size = new Size(343, 39);
+            pnlAusencia.TabIndex = 51;
             // 
             // frmJustificacion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(794, 645);
+            Controls.Add(label5);
+            Controls.Add(dtpAusencia);
+            Controls.Add(pnlAusencia);
             Controls.Add(btnReporta);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -279,5 +310,8 @@ namespace PreyectoDesarrollo_unicah
         private ComboBox cmbEdificio;
         private TextBox txtBusco;
         private Label label4;
+        private Label label5;
+        private DateTimePicker dtpAusencia;
+        private Panel pnlAusencia;
     }
 }

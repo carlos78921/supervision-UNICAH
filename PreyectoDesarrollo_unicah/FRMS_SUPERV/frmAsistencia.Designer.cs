@@ -37,12 +37,6 @@
             pictureBox3 = new PictureBox();
             label1 = new Label();
             dgvAsiste = new DataGridView();
-            clmDoc = new DataGridViewTextBoxColumn();
-            clmClase = new DataGridViewTextBoxColumn();
-            clmSeccion = new DataGridViewTextBoxColumn();
-            clmAula = new DataGridViewTextBoxColumn();
-            clmEdificio = new DataGridViewTextBoxColumn();
-            clmFecha = new DataGridViewCheckBoxColumn();
             label5 = new Label();
             txtClase = new TextBox();
             cmbAula = new ComboBox();
@@ -52,9 +46,11 @@
             label3 = new Label();
             label2 = new Label();
             cmbSeccion = new ComboBox();
-            label6 = new Label();
-            txtDoc = new TextBox();
             btnLogout = new Button();
+            btnListaSave = new Button();
+            btnListaLoad = new Button();
+            label6 = new Label();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -90,7 +86,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
+            pictureBox1.Click += Cerrar;
             // 
             // panel1
             // 
@@ -103,6 +99,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1003, 87);
             panel1.TabIndex = 11;
+            panel1.MouseDown += MoveForm_MouseDown;
             // 
             // lblPersona
             // 
@@ -131,7 +128,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(487, 97);
             label1.Name = "label1";
-            label1.Size = new Size(123, 15);
+            label1.Size = new Size(125, 15);
             label1.TabIndex = 12;
             label1.Text = "TOMA DE ASISTENCIA";
             // 
@@ -140,7 +137,6 @@
             dgvAsiste.AllowUserToAddRows = false;
             dgvAsiste.AllowUserToDeleteRows = false;
             dgvAsiste.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAsiste.Columns.AddRange(new DataGridViewColumn[] { clmDoc, clmClase, clmSeccion, clmAula, clmEdificio, clmFecha });
             dgvAsiste.Location = new Point(20, 224);
             dgvAsiste.Name = "dgvAsiste";
             dgvAsiste.Size = new Size(877, 245);
@@ -148,47 +144,10 @@
             dgvAsiste.CellContentClick += dgvAsiste_CellContentClick;
             dgvAsiste.CellValueChanged += dgvAsiste_CellValueChanged;
             // 
-            // clmDoc
-            // 
-            clmDoc.HeaderText = "Docente";
-            clmDoc.Name = "clmDoc";
-            clmDoc.Width = 300;
-            // 
-            // clmClase
-            // 
-            clmClase.HeaderText = "Asignatura";
-            clmClase.Name = "clmClase";
-            clmClase.Width = 250;
-            // 
-            // clmSeccion
-            // 
-            clmSeccion.HeaderText = "Sección";
-            clmSeccion.Name = "clmSeccion";
-            clmSeccion.Width = 60;
-            // 
-            // clmAula
-            // 
-            clmAula.HeaderText = "Aula";
-            clmAula.Name = "clmAula";
-            clmAula.Width = 150;
-            // 
-            // clmEdificio
-            // 
-            clmEdificio.HeaderText = "Edificio";
-            clmEdificio.Name = "clmEdificio";
-            // 
-            // clmFecha
-            // 
-            clmFecha.HeaderText = "Presente";
-            clmFecha.Name = "clmFecha";
-            clmFecha.Resizable = DataGridViewTriState.True;
-            clmFecha.SortMode = DataGridViewColumnSortMode.Automatic;
-            clmFecha.Width = 55;
-            // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(20, 188);
+            label5.Location = new Point(33, 188);
             label5.Name = "label5";
             label5.Size = new Size(67, 15);
             label5.TabIndex = 26;
@@ -196,7 +155,7 @@
             // 
             // txtClase
             // 
-            txtClase.Location = new Point(106, 180);
+            txtClase.Location = new Point(130, 179);
             txtClase.Name = "txtClase";
             txtClase.Size = new Size(304, 23);
             txtClase.TabIndex = 2;
@@ -275,42 +234,65 @@
             cmbSeccion.TabIndex = 5;
             cmbSeccion.SelectedIndexChanged += Filtros;
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(20, 121);
-            label6.Name = "label6";
-            label6.Size = new Size(120, 30);
-            label6.TabIndex = 34;
-            label6.Text = "Nombre y/o apellido \r\n         del docente:";
-            // 
-            // txtDoc
-            // 
-            txtDoc.Location = new Point(156, 131);
-            txtDoc.Name = "txtDoc";
-            txtDoc.Size = new Size(254, 23);
-            txtDoc.TabIndex = 1;
-            txtDoc.KeyUp += Filtros;
-            // 
             // btnLogout
             // 
             btnLogout.Location = new Point(907, 420);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(86, 43);
             btnLogout.TabIndex = 6;
-            btnLogout.Text = "&CERRAR SESIÓN";
+            btnLogout.Text = "&REGRESAR";
             btnLogout.UseVisualStyleBackColor = true;
-            btnLogout.Click += btnLogout_Click;
+            btnLogout.Click += Cerrar;
+            // 
+            // btnListaSave
+            // 
+            btnListaSave.Location = new Point(907, 307);
+            btnListaSave.Name = "btnListaSave";
+            btnListaSave.Size = new Size(86, 43);
+            btnListaSave.TabIndex = 47;
+            btnListaSave.Text = "&GUARDAR ASISTENCIAS";
+            btnListaSave.UseVisualStyleBackColor = true;
+            btnListaSave.Click += btnListaSave_Click;
+            // 
+            // btnListaLoad
+            // 
+            btnListaLoad.Location = new Point(907, 362);
+            btnListaLoad.Name = "btnListaLoad";
+            btnListaLoad.Size = new Size(86, 43);
+            btnListaLoad.TabIndex = 48;
+            btnListaLoad.Text = "&CARGAR ASISTENCIAS";
+            btnListaLoad.UseVisualStyleBackColor = true;
+            btnListaLoad.Click += btnListaLoad_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(12, 157);
+            label6.Name = "label6";
+            label6.Size = new Size(120, 30);
+            label6.TabIndex = 34;
+            label6.Text = "Nombre y/o apellido \r\n         del docente:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(45, 131);
+            label7.Name = "label7";
+            label7.Size = new Size(42, 15);
+            label7.TabIndex = 49;
+            label7.Text = "Buscar";
             // 
             // frmAsistencia
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(999, 475);
+            Controls.Add(label7);
+            Controls.Add(btnListaLoad);
+            Controls.Add(btnListaSave);
             Controls.Add(label2);
             Controls.Add(btnLogout);
             Controls.Add(cmbSeccion);
-            Controls.Add(txtDoc);
             Controls.Add(label6);
             Controls.Add(gbFiltro);
             Controls.Add(txtClase);
@@ -324,7 +306,7 @@
             Name = "frmAsistencia";
             Text = "FrmReporte";
             Load += FrmAsiste_Load;
-            MouseDown += frmSupervisor_MouseDown;
+            MouseDown += MoveForm_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
@@ -348,22 +330,18 @@
         private Label lblPersona;
         private Label label5;
         private TextBox txtClase;
-        private Label label6;
         private ComboBox cmbAula;
         private ComboBox cmbEdificio;
         private GroupBox gbFiltro;
-        private TextBox txtDoc;
         private Button btnLogout;
         private Button btnSalir;
         private Label label4;
         private Label label3;
-        private DataGridViewTextBoxColumn clmDoc;
-        private DataGridViewTextBoxColumn clmClase;
-        private DataGridViewTextBoxColumn clmSeccion;
-        private DataGridViewTextBoxColumn clmAula;
-        private DataGridViewTextBoxColumn clmEdificio;
-        private DataGridViewCheckBoxColumn clmFecha;
         private Label label2;
         private ComboBox cmbSeccion;
+        private Button btnListaSave;
+        private Button btnListaLoad;
+        private Label label6;
+        private Label label7;
     }
 }

@@ -1,5 +1,4 @@
-﻿
-using PreyectoDesarrollo_unicah.CLASES;
+﻿using PreyectoDesarrollo_unicah.CLASES;
 
 namespace PreyectoDesarrollo_unicah
 {
@@ -54,7 +53,7 @@ namespace PreyectoDesarrollo_unicah
             btnLogOut.TabIndex = 3;
             btnLogOut.Text = "&CERRAR SESIÓN";
             btnLogOut.UseVisualStyleBackColor = true;
-            btnLogOut.Click += btnLogOut_Click;
+            btnLogOut.Click += Cerrar;
             // 
             // btnJustifica
             // 
@@ -85,7 +84,7 @@ namespace PreyectoDesarrollo_unicah
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
+            pictureBox1.Click += Cerrar;
             // 
             // pictureBox2
             // 
@@ -119,7 +118,6 @@ namespace PreyectoDesarrollo_unicah
             lblPersona.Size = new Size(132, 18);
             lblPersona.TabIndex = 9;
             lblPersona.Text = "Nombre_Persona";
-            lblPersona.Click += lblPersona_Click;
             // 
             // panel1
             // 
@@ -132,7 +130,7 @@ namespace PreyectoDesarrollo_unicah
             panel1.Name = "panel1";
             panel1.Size = new Size(420, 81);
             panel1.TabIndex = 6;
-            panel1.MouseDown += panel1_MouseDown;
+            panel1.MouseDown += Mover_Form;
             // 
             // frmDecano
             // 
@@ -148,7 +146,7 @@ namespace PreyectoDesarrollo_unicah
             Name = "frmDecano";
             Text = "Frm_Admin";
             Load += Frm_Admin_Load;
-            MouseDown += frmDecano_MouseDown;
+            MouseDown += Mover_Form;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -157,7 +155,7 @@ namespace PreyectoDesarrollo_unicah
             ResumeLayout(false);
         }
 
-#endregion
+        #endregion
         private Button btnLogOut;
         private Button btnJustifica;
         private Button btnReponer;

@@ -15,13 +15,15 @@ using DocumentFormat.OpenXml.Office.Word;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Drawing;
 using System.ComponentModel;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 
 namespace PreyectoDesarrollo_unicah.CLASES
 {
     class ACCIONES_BD
     {
-        public static string nombre, apellido, empleado;
+        public static string nombre, apellido, empleado, rutaExcel = "", tempFile; 
+
         public readonly string RolForzado;
 
         public CONEXION_BD conexion = new CONEXION_BD();
@@ -30,8 +32,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
         {
             nombre = "";
             apellido = "";
+            rutaExcel = "";
         }
-        public static bool CrearBDD(string usuario)
+        public static bool CrearBDD()
         {
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarServidor.ConnectionString))
             {
@@ -40,106 +43,90 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 {
                     crear.ExecuteNonQuery();
                 }
-                conn.Close();
             }
 
-             using (SqlConnection conexionBDD = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
-             {
-                DataTable autoridades = new DataTable(); //Declaro así considerando como tabla nula
+            using (SqlConnection conexionBDD = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
+            {
                 conexionBDD.Open();
-
-                using (SqlCommand admin = new SqlCommand("PA_Datos_Vacíos", conexionBDD))
+                using (SqlCommand admin = new SqlCommand("PA_No_Admin", conexionBDD))
                 {
-                    admin.CommandType = CommandType.StoredProcedure;
-                    admin.Parameters.AddWithValue("@Usuario", usuario);
-                    using (SqlDataReader reader = admin.ExecuteReader())
+                    object valor = admin.ExecuteScalar();
+                    if ((int)valor == 0)
                     {
-                        if (!reader.Read())
-                        {
-                            MessageBox.Show("Datos no encontrados, importar los datos correspondientes de Excel para iniciar programa con datos", "Encontrar Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            reader.Close();
-                            string rutaArchivo = "";
-                            using (OpenFileDialog ofd = new OpenFileDialog())
-                            {
-                                ofd.Filter = "Archivos Excel (*.xlsx)|*.xlsx";
-                                ofd.Title = "Seleccionar archivo Excel";
-                                var dr = ofd.ShowDialog();
-                                if (dr != DialogResult.OK)
-                                {
-                                    // El usuario canceló o cerró el diálogo: salimos
-                                    return false;
-                                }
-                                else
-                                {
-                                    rutaArchivo = ofd.FileName;
+                        MessageBox.Show("Ningún administrador encontrado...", "Importar datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                    string Excel = System.IO.Path.GetExtension(rutaArchivo);
-                                    if (!Excel.Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
-                                    {
-                                        MessageBox.Show("El archivo seleccionado no es un archivo Excel válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        return false;
-                                    }
-                                }
-                            }
+                        string ruta = MostrarDialogoArchivoExcel();
+                        if (string.IsNullOrEmpty(ruta)) return false;
 
-                            string tempFile = System.IO.Path.Combine(
-                                              System.IO.Path.GetTempPath(),
-                                              Guid.NewGuid().ToString() + ".xlsx"
-                                              );
-                            try
-                            {
-                                File.Copy(rutaArchivo, tempFile, overwrite: true);
-
-                                // Ahora sí podemos abrir la copia sin problemas de bloqueo
-                                using (var workbook = new XLWorkbook(tempFile))
-                                {
-                                    autoridades = CrearDatos(tempFile, "Autoridades");
-                                }
-                            }
-                            catch (IOException)
-                            {
-                                MessageBox.Show("Error de Examinación", "Archivo bloqueado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                            finally
-                            {
-                                try { File.Delete(tempFile); }
-                                catch
-                                {
-                                    MessageBox.Show("Error de Examinación", "Archivo bloqueado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                            }
-
-                            foreach (DataRow row in autoridades.Rows)
-                            {
-                                using (SqlCommand datosAuto = new SqlCommand("PA_Nombres_Completos", conexionBDD))
-                                {
-                                    datosAuto.CommandType = CommandType.StoredProcedure;
-                                    datosAuto.Parameters.AddWithValue("@Nombre1", row["Nombre1"].ToString());
-                                    datosAuto.Parameters.AddWithValue("@Nombre2", row["Nombre2"].ToString());
-                                    datosAuto.Parameters.AddWithValue("@Nombre3", row["Nombre3"].ToString());
-                                    datosAuto.Parameters.AddWithValue("@Nombre4", row["Nombre4"].ToString());
-                                    datosAuto.ExecuteNonQuery();
-                                }
-
-                                using (SqlCommand IdAuto = new SqlCommand("PA_Empleados", conexionBDD))
-                                {
-                                    IdAuto.CommandType = CommandType.StoredProcedure;
-                                    IdAuto.Parameters.AddWithValue("@Nombre1", row["Nombre1"].ToString());
-                                    IdAuto.Parameters.AddWithValue("@Nombre2", row["Nombre2"].ToString());
-                                    IdAuto.Parameters.AddWithValue("@Nombre3", row["Nombre3"].ToString());
-                                    IdAuto.Parameters.AddWithValue("@Nombre4", row["Nombre4"].ToString());
-                                    IdAuto.Parameters.AddWithValue("@codigo", row["Cod_Empleado"].ToString());
-                                    IdAuto.Parameters.AddWithValue("@rol", row["rol"].ToString());
-                                    IdAuto.ExecuteNonQuery();
-                                }
-                            }
-                        }
+                        CrearEmpleadosDesdeExcel(ruta);
                     }
                 }
                 conexionBDD.Close();
-             }
-             return true;
+            }
+
+            return true;
         }
+
+        public static void CrearEmpleadosDesdeExcel(string rutaExcel)
+        {
+            DataTable autoridades = CrearDatos(rutaExcel, "Autoridades");
+
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
+            {
+                conn.Open();
+
+                foreach (DataRow row in autoridades.Rows)
+                {
+                    using (SqlCommand datosAuto = new SqlCommand("PA_Nombres_Completos", conn))
+                    {
+                        datosAuto.CommandType = CommandType.StoredProcedure;
+                        datosAuto.Parameters.AddWithValue("@Nombre", row["Nombre"]);
+                        datosAuto.Parameters.AddWithValue("@Apellido", row["Apellido"]);
+                        datosAuto.ExecuteNonQuery();
+                    }
+
+                    using (SqlCommand IdAuto = new SqlCommand("PA_Empleados", conn))
+                    {
+                        IdAuto.CommandType = CommandType.StoredProcedure;
+                        IdAuto.Parameters.AddWithValue("@Nombre", row["Nombre"]);
+                        IdAuto.Parameters.AddWithValue("@Apellido", row["Apellido"]);
+                        IdAuto.Parameters.AddWithValue("@codigo", row["Cod_Empleado"]);
+                        IdAuto.Parameters.AddWithValue("@rol", row["rol"]);
+                        IdAuto.ExecuteNonQuery();
+                    }
+                }
+
+                conn.Close();
+            }
+        }
+
+        public static string MostrarDialogoArchivoExcel()
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Archivos Excel (*.xlsx)|*.xlsx";
+                ofd.Title = "Seleccionar archivo Excel";
+
+                DialogResult resultado = ofd.ShowDialog();
+                if (resultado != DialogResult.OK)
+                {
+                    // Usuario canceló
+                    return null;
+                }
+
+                string ruta = ofd.FileName;
+                string extension = System.IO.Path.GetExtension(ruta);
+
+                if (!extension.Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show("El archivo seleccionado no es un archivo Excel válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+                return ruta;
+            }
+        }
+
 
         public static DataTable CrearDatos(string rutaArchivo, string hojaNombre)
         {
@@ -159,25 +146,20 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 {
                     var nombre = celda.GetString().Trim();
                     // Decide tipo según el nombre de la columna
-                    if (nombre.Equals("Fecha", StringComparison.OrdinalIgnoreCase) ||
+                    if (nombre.Equals("Fecha", StringComparison.OrdinalIgnoreCase) || //OrdinalIgnoreCase detecta la cadena con cualquier letra normal o especial (como ñ, á, ü, etc.), ignorando las mayúsculas y minúsculas
                         nombre.Equals("Fecha_Reposicion", StringComparison.OrdinalIgnoreCase))
-                    {
                         dt.Columns.Add(nombre, typeof(DateTime));
-                    }
+
                     else if (nombre.Equals("ID_Clase", StringComparison.OrdinalIgnoreCase) ||
                              nombre.Equals("ID_Sitio", StringComparison.OrdinalIgnoreCase) ||
                              nombre.Equals("ID_Empleado", StringComparison.OrdinalIgnoreCase))
-                    {
                         dt.Columns.Add(nombre, typeof(int));
-                    }
+ 
                     else if (nombre.Equals("Presente", StringComparison.OrdinalIgnoreCase))
-                    {
                         dt.Columns.Add(nombre, typeof(bool));
-                    }
+
                     else
-                    {
                         dt.Columns.Add(nombre, typeof(string));
-                    }
                 }
 
                 // 2) Resto de filas = datos
@@ -201,11 +183,11 @@ namespace PreyectoDesarrollo_unicah.CLASES
                                 if (raw is DateTime dtVal)
                                     fecha = dtVal;
                                 else if (raw is double oa)
-                                    // Excel almacena fechas como OADate
+                                    // Excel almacena fechas como OADate, entonces se detecta del programa
                                     fecha = DateTime.FromOADate(oa);
                                 else if (!DateTime.TryParse(raw?.ToString(), out fecha))
                                 {
-                                    // Aquí decides: saltar la fila, o asignar default.
+                                    // Aquí se decide: saltar la fila, o asignar default.
                                     // Por ejemplo, lanzamos para que sepas en qué celda falla:
                                     throw new FormatException(
                                       $"Fila {fila.RowNumber()}, columna «{colName}»: «{raw}» no es fecha válida."
@@ -215,18 +197,13 @@ namespace PreyectoDesarrollo_unicah.CLASES
                             }
                         }
                         else if (dt.Columns[i].DataType == typeof(bool))
-                        {
-                            // Lee booleans directamente
+                            // Lee booleanos directamente
                             dr[i] = celda.GetValue<bool>();
-                        }
+
                         else if (dt.Columns[i].DataType == typeof(int))
-                        {
                             dr[i] = celda.GetValue<int>();
-                        }
                         else // strings u otros
-                        {
                             dr[i] = celda.GetValue<string>()?.Trim() ?? string.Empty;
-                        }
                     }
 
                     dt.Rows.Add(dr);
@@ -235,338 +212,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return dt;
         }
 
-        public static void MigrarDatosNuevo()
-        {
-            DataTable empleados = new DataTable();
-            DataTable decanos = new DataTable();
-            DataTable clases = new DataTable();
-            DataTable Lugares = new DataTable();
-            string rutaExcel = ""; //Por defecto asignado, o vacío para después luego asignarse
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Filter = "Archivos Excel (*.xlsx)|*.xlsx";
-                ofd.Title = "Seleccionar archivo Excel";
-                var dr = ofd.ShowDialog();
-                if (dr != DialogResult.OK)
-                {
-                    // El usuario canceló o cerró el diálogo: salimos
-                    return;
-                }
-                else
-                {
-                    rutaExcel = ofd.FileName;
-
-                    string Excel = System.IO.Path.GetExtension(rutaExcel);
-                    if (!Excel.Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
-                    {
-                        MessageBox.Show("El archivo seleccionado no es un archivo Excel válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (string.IsNullOrEmpty(Excel))
-                    {
-                        return;
-                    }
-                }
-            }
-
-            string tempFile = System.IO.Path.Combine(
-                                      System.IO.Path.GetTempPath(),
-                                      Guid.NewGuid().ToString() + ".xlsx"
-                                      );
-            try
-            {
-                File.Copy(rutaExcel, tempFile, overwrite: true);
-
-                // 3) Leer cada hoja sólo una vez
-                var dtEmpleados = CrearDatos(tempFile, "Empleados");
-                if (dtEmpleados.Rows.Count == 0)
-                { 
-                    return;
-                }
-                var dtDecanos = CrearDatos(tempFile, "Decanos");
-                var dtClases = CrearDatos(tempFile, "Clase");
-                var dtLugares = CrearDatos(tempFile, "Lugares");
-                var dtLista = CrearDatos(tempFile, "Migración");
-
-                using (var conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
-                {
-                    conn.Open();
-
-                    foreach (DataRow row in dtEmpleados.Rows)
-                    {
-                        using (var cmd = new SqlCommand("PA_Nombres_Completos", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Nombre1", row["Nombre1"]);
-                            cmd.Parameters.AddWithValue("@Nombre2", row["Nombre2"]);
-                            cmd.Parameters.AddWithValue("@Nombre3", row["Nombre3"]);
-                            cmd.Parameters.AddWithValue("@Nombre4", row["Nombre4"]);
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        using (var cmd = new SqlCommand("PA_Empleados", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Nombre1", row["Nombre1"]);
-                            cmd.Parameters.AddWithValue("@Nombre2", row["Nombre2"]);
-                            cmd.Parameters.AddWithValue("@Nombre3", row["Nombre3"]);
-                            cmd.Parameters.AddWithValue("@Nombre4", row["Nombre4"]);
-                            cmd.Parameters.AddWithValue("@codigo", row["Cod_Empleado"]);
-                            cmd.Parameters.AddWithValue("@rol", row["rol"]);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-
-                    foreach (DataRow row in dtDecanos.Rows)
-                    {
-                        using (var cmd = new SqlCommand("PA_DecanoFacultad", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Codigo_Facu", row["Codigo_Facultad"]);
-                            cmd.Parameters.AddWithValue("@ID", row["ID_Empleado"]);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-
-                    foreach (DataRow row in dtClases.Rows)
-                    {
-                        using (var cmd = new SqlCommand("PA_Clases", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Cod_Clase", row["Codigo_Asignatura"]);
-                            cmd.Parameters.AddWithValue("@Cod_Facu", row["Codigo_Facultad"]);
-                            cmd.Parameters.AddWithValue("@Clase", row["Curso"]);
-                            cmd.Parameters.AddWithValue("@inicio", row["InicioDia"]);
-                            cmd.Parameters.AddWithValue("@fin", row["FinDia"]);
-                            cmd.Parameters.AddWithValue("@dia", row["DiaElegido"]);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-
-                    foreach (DataRow row in dtLugares.Rows)
-                    {
-                        using (var cmd = new SqlCommand("PA_Lugares", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Edificio", row["Edificio"]);
-                            cmd.Parameters.AddWithValue("@Aula", row["Aula"]);
-                            cmd.Parameters.AddWithValue("@Seccion", row["Seccion"]);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-
-                    foreach (DataRow row in dtLista.Rows)
-                    {
-                        using (var cmd = new SqlCommand("PA_Asistencia", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Clase", row["Curso"]);
-                            cmd.Parameters.AddWithValue("@Aula", row["Aula"]);
-                            cmd.Parameters.AddWithValue("@Seccion", row["Seccion"]);
-                            cmd.Parameters.AddWithValue("@Edificio", row["Edificio"]);
-                            cmd.Parameters.AddWithValue("@Nombre1", row["Nombre1"]);
-                            cmd.Parameters.AddWithValue("@Nombre2", row["Nombre2"]);
-                            cmd.Parameters.AddWithValue("@Nombre3", row["Nombre3"]);
-                            cmd.Parameters.AddWithValue("@Nombre4", row["Nombre4"]);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-
-
-                    conn.Close();
-                }
-
-                MessageBox.Show(
-                    "Datos migrados con éxito",
-                    "Migración de Datos",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-            }
-            finally
-            {
-                try { File.Delete(tempFile); }
-                catch { }
-            }
-        }
-
-        public static void MigrarDatosViejo()
-        {
-            DataTable empleados = new DataTable();
-            DataTable decanos = new DataTable();
-            DataTable clases = new DataTable();
-            DataTable Lugares = new DataTable();
-            string rutaExcel = ""; //Por defecto asignado, o vacío para después luego asignarse
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Filter = "Archivos Excel (*.xlsx)|*.xlsx";
-                ofd.Title = "Seleccionar archivo Excel";
-                var dr = ofd.ShowDialog();
-                if (dr != DialogResult.OK)
-                {
-                    // El usuario canceló o cerró el diálogo: salimos
-                    return;
-                }
-                else
-                {
-                    rutaExcel = ofd.FileName;
-
-                    string Excel = System.IO.Path.GetExtension(rutaExcel);
-                    if (!Excel.Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
-                    {
-                        MessageBox.Show("El archivo seleccionado no es un archivo Excel válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (string.IsNullOrEmpty(Excel))
-                    {
-                        return;
-                    }
-                }
-            }
-
-            string tempFile = System.IO.Path.Combine(
-                                      System.IO.Path.GetTempPath(),
-                                      Guid.NewGuid().ToString() + ".xlsx"
-                                      );
-            try
-            {
-                File.Copy(rutaExcel, tempFile, overwrite: true);
-
-                // 3) Leer cada hoja sólo una vez
-                var dtEmpleados = CrearDatos(tempFile, "Empleados");
-                if (dtEmpleados.Rows.Count == 0)
-                {
-                    return;
-                }
-                var dtDecanos = CrearDatos(tempFile, "Decanos");
-                var dtClases = CrearDatos(tempFile, "Clase");
-                var dtLugares = CrearDatos(tempFile, "Lugares");
-                var dtLista = CrearDatos(tempFile, "Migración");
-
-                using (var conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
-                {
-                    conn.Open();
-
-                    foreach (DataRow row in dtEmpleados.Rows)
-                    {
-                        using (var cmd = new SqlCommand("PA_Nombres_Completos", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Nombre1", row["Nombre1"]);
-                            cmd.Parameters.AddWithValue("@Nombre2", row["Nombre2"]);
-                            cmd.Parameters.AddWithValue("@Nombre3", row["Nombre3"]);
-                            cmd.Parameters.AddWithValue("@Nombre4", row["Nombre4"]);
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        using (var cmd = new SqlCommand("PA_Empleados", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Nombre1", row["Nombre1"]);
-                            cmd.Parameters.AddWithValue("@Nombre2", row["Nombre2"]);
-                            cmd.Parameters.AddWithValue("@Nombre3", row["Nombre3"]);
-                            cmd.Parameters.AddWithValue("@Nombre4", row["Nombre4"]);
-                            cmd.Parameters.AddWithValue("@codigo", row["Cod_Empleado"]);
-                            cmd.Parameters.AddWithValue("@rol", row["rol"]);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-
-                    foreach (DataRow row in dtDecanos.Rows)
-                    {
-                        using (var cmd = new SqlCommand("PA_DecanoFacultad", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Codigo_Facu", row["Codigo_Facultad"]);
-                            cmd.Parameters.AddWithValue("@ID", row["ID_Empleado"]);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-
-                    foreach (DataRow row in dtClases.Rows)
-                    {
-                        using (var cmd = new SqlCommand("PA_Clases", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Cod_Clase", row["Codigo_Asignatura"]);
-                            cmd.Parameters.AddWithValue("@Cod_Facu", row["Codigo_Facultad"]);
-                            cmd.Parameters.AddWithValue("@Clase", row["Curso"]);
-                            cmd.Parameters.AddWithValue("@inicio", row["InicioDia"]);
-                            cmd.Parameters.AddWithValue("@fin", row["FinDia"]);
-                            cmd.Parameters.AddWithValue("@dia", row["DiaElegido"]);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-
-                    foreach (DataRow row in dtLugares.Rows)
-                    {
-                        using (var cmd = new SqlCommand("PA_Lugares", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Edificio", row["Edificio"]);
-                            cmd.Parameters.AddWithValue("@Aula", row["Aula"]);
-                            cmd.Parameters.AddWithValue("@Seccion", row["Seccion"]);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-
-                    conn.Close();
-                }
-
-                MessageBox.Show(
-                    "Datos migrados con éxito",
-                    "Migración de Datos",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-            }
-            finally
-            {
-                try { File.Delete(tempFile); }
-                catch { }
-            }
-        }
-
-        public static void ReiniciarBDD(string bdd)
-        {
-            var builder = new SqlConnectionStringBuilder(CONEXION_BD.conectarServidor.ConnectionString)
-            {
-                InitialCatalog = "master"
-            };
-
-            using (var conn = new SqlConnection(builder.ConnectionString))
-            using (var cmd = new SqlCommand("PA_NoBDD", conn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@DatabaseName", bdd);
-
-                conn.Open();
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-        public static DataTable RespaldoBDD()
-        {
-            DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("PA_Respaldo", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.ExecuteNonQuery();
-                    using (var da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dt);
-                    }
-                }
-
-                conn.Close();
-            }
-            return dt;
-        }
-
-        public void Login(string usuario, string contraseña, Form Login)
+        public void Login(string usuario, string contraseña, Form Login, string rolAccess)
         {
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
@@ -582,8 +228,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     {
                         if (reader.Read())
                         {
-                            nombre = reader["nombre1"].ToString();
-                            apellido = reader["apellido1"].ToString();
+                            nombre = reader["Nombre"].ToString();
+                            apellido = reader["Apellido"].ToString();
                             string rolUsuario = reader["rol"].ToString();
                             string codigo = usuario.ToString();
                             empleado = codigo;
@@ -614,12 +260,15 @@ namespace PreyectoDesarrollo_unicah.CLASES
                                 doc.Show();
                                 Login.Hide();
                             }
+                            else
+                                MessageBox.Show("Rol no reconocido. Contacte al administrador para ajustar su rol y accesar", "Error de Rol", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                         {
-                            if (!AdminContraseñaError(usuario, Login, conexion, reader))
-                                return;
-                            MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            if (rolAccess == "administrador")
+                                if (!AdminContraseñaError(usuario, Login, conexion, reader)) 
+                                    return;
+                            MessageBox.Show("Usuario o contraseña incorrectos.\nComunicarse con el administrador en\ncaso de inconveniencia", "Error dato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -640,12 +289,12 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 return char.ToUpper(name[0]) + name.Substring(1) + ' ' + char.ToUpper(ape[0]) + ape.Substring(1); //Substring ubica cadena inicial a leer
         }
 
-        public static bool AdminCasoContra(string usuario, string contraseña, Form Login)
+        public static bool AdminCasoContra(string usuario, string contraseña, Form Login, TextBox contra)
         {
             using (SqlConnection conexion = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
                 conexion.Open();
-                using (SqlCommand cmd = new SqlCommand("PA_Admin_Save", conexion)) 
+                using (SqlCommand cmd = new SqlCommand("PA_Admin_Save", conexion))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Usuario", usuario);
@@ -663,21 +312,20 @@ namespace PreyectoDesarrollo_unicah.CLASES
                                 }
                                 return false;
                             }
-                            if ((contraseña != "Contraseña:" && contraseña.Length < 8))
+                        }
+                        else
+                        {
+                            if (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña))
                             {
-                                if (MessageBox.Show("Saludos Administrador, su contraseña debe contener más de ocho caracteres, ¿olvidó su contraseña?", "Contraseña Corta", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
-                                {
-                                    frmPierdoContraseña Lost = new frmPierdoContraseña();
-                                    Login.Hide();
-                                    Lost.Show();
-                                }
+                                MessageBox.Show("Contraseña no puede quedar vacía.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                contra.Focus();
                                 return false;
                             }
-                        }                        
+                        }
                     }
                 }
+                return true;
             }
-            return true;
         }
  
         private static bool AdminContraseñaError(string usuario, Form Login, SqlConnection conexion, SqlDataReader read)
@@ -700,9 +348,13 @@ namespace PreyectoDesarrollo_unicah.CLASES
                         }
                         return false;
                     }
+                    else
+                    { 
+                        MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
                 }
             }
-            return true;
         }
 
         public static void AdminContra(string contraseña, Form Contra)
@@ -722,6 +374,246 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     Contra.Close();
                     Menu.Show();
                 }
+            }
+        }
+
+        public static void MigrarDatosNuevo()
+        {
+            MigrarDatos();
+            try
+            {
+                File.Copy(rutaExcel, tempFile, overwrite: true);
+
+                var dtLista = CrearDatos(tempFile, "Migración");
+
+                using (var conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
+                {
+                    conn.Open();
+
+                    foreach (DataRow row in dtLista.Rows)
+                    {
+                        using (var cmd = new SqlCommand("PA_Asistencia", conn))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@Clase", row["Curso"]);
+                            cmd.Parameters.AddWithValue("@Aula", row["Aula"]);
+                            cmd.Parameters.AddWithValue("@Seccion", row["Seccion"]);
+                            cmd.Parameters.AddWithValue("@Edificio", row["Edificio"]);
+                            cmd.Parameters.AddWithValue("@Nombre", row["Nombre"]);
+                            cmd.Parameters.AddWithValue("@Apellido", row["Apellido"]);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+
+                    conn.Close();
+                }
+            }
+            finally
+            {
+                try { File.Delete(tempFile); }
+                catch { }
+            }
+        }
+
+        public static void MigrarDatos()
+        {
+            DataTable empleados = new DataTable();
+            DataTable decanos = new DataTable();
+            DataTable clases = new DataTable();
+            DataTable Lugares = new DataTable();
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Archivos Excel (*.xlsx)|*.xlsx";
+                ofd.Title = "Seleccionar archivo Excel";
+                var dr = ofd.ShowDialog();
+                if (dr != DialogResult.OK)
+                    // El usuario canceló o cerró el diálogo: salimos
+                    return;
+                else
+                {
+                    rutaExcel = ofd.FileName;
+
+                    string Excel = System.IO.Path.GetExtension(rutaExcel);
+                    if (!Excel.Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
+                    {
+                        MessageBox.Show("El archivo seleccionado no es un archivo Excel válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    if (string.IsNullOrEmpty(Excel))
+                        return;
+                }
+            }
+
+            tempFile = System.IO.Path.Combine(
+                                      System.IO.Path.GetTempPath(),
+                                      Guid.NewGuid().ToString() + ".xlsx"
+                                      );
+            try
+            {
+                File.Copy(rutaExcel, tempFile, overwrite: true);
+
+                // 3) Leer cada hoja sólo una vez
+                var dtEmpleados = CrearDatos(tempFile, "Empleados");
+                if (dtEmpleados.Rows.Count == 0)
+                {
+                    return;
+                }
+                var dtDecanos = CrearDatos(tempFile, "Decanos");
+                var dtClases = CrearDatos(tempFile, "Clase");
+                var dtLugares = CrearDatos(tempFile, "Lugares");
+
+                using (var conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
+                {
+                    conn.Open();
+
+                    foreach (DataRow row in dtEmpleados.Rows)
+                    {
+                        using (var cmd = new SqlCommand("PA_Nombres_Completos", conn))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@Nombre", row["Nombre"]);
+                            cmd.Parameters.AddWithValue("@Apellido", row["Apellido"]);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        using (var cmd = new SqlCommand("PA_Empleados", conn))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@Nombre", row["Nombre"]);
+                            cmd.Parameters.AddWithValue("@Apellido", row["Apellido"]);
+                            cmd.Parameters.AddWithValue("@codigo", row["Cod_Empleado"]);
+                            cmd.Parameters.AddWithValue("@rol", row["rol"]);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    foreach (DataRow row in dtDecanos.Rows)
+                    {
+                        using (var cmd = new SqlCommand("PA_DecanoFacultad", conn))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@Codigo_Facu", row["Codigo_Facultad"]);
+                            cmd.Parameters.AddWithValue("@ID", row["ID_Empleado"]);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    foreach (DataRow row in dtClases.Rows)
+                    {
+                        using (var cmd = new SqlCommand("PA_Clases", conn))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@Cod_Clase", row["Codigo_Asignatura"]);
+                            cmd.Parameters.AddWithValue("@Cod_Facu", row["Codigo_Facultad"]);
+                            cmd.Parameters.AddWithValue("@Clase", row["Curso"]);
+                            cmd.Parameters.AddWithValue("@inicio", row["InicioDia"]);
+                            cmd.Parameters.AddWithValue("@fin", row["FinDia"]);
+                            cmd.Parameters.AddWithValue("@dia", row["DiaElegido"]);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    foreach (DataRow row in dtLugares.Rows)
+                    {
+                        using (var cmd = new SqlCommand("PA_Lugares", conn))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@Edificio", row["Edificio"]);
+                            cmd.Parameters.AddWithValue("@Aula", row["Aula"]);
+                            cmd.Parameters.AddWithValue("@Seccion", row["Seccion"]);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    conn.Close();
+                }
+
+                MessageBox.Show(
+                    "Datos migrados con éxito",
+                    "Migración de Datos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            finally
+            {
+                try { File.Delete(tempFile); }
+                catch { }
+            }
+        }
+
+        public static DataTable tablaAdmin(DataGridView dgv)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand("PA_Admin", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+
+            if (dt.Rows.Count > 0)
+            {
+                dgv.Columns.Clear();
+
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dt;
+                dgv.DataSource = bs;
+                bs.ResetBindings(false);
+                dgv.AutoGenerateColumns = true;
+                dgv.Refresh();
+                dgv.Columns[0].Width = 140;
+                dgv.Columns[0].ReadOnly = true;
+                dgv.Columns[1].Width = 100;
+                dgv.Columns[2].Width = 100;
+                dgv.Columns[3].Width = 110;
+                dgv.Columns[4].Width = 116;
+                dgv.Columns[5].Width = 110;
+                dgv.Columns[0].ReadOnly = true;
+            }
+            return dt;
+        }
+
+        public static DataTable RespaldoBDD()
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("PA_Respaldo", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+                    using (var da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+
+                conn.Close();
+            }
+            return dt;
+        }
+
+        public static void ReiniciarBDD(string bdd)
+        {
+            var builder = new SqlConnectionStringBuilder(CONEXION_BD.conectarServidor.ConnectionString)
+            {
+                InitialCatalog = "master" //use master
+            };
+
+            using (var conn = new SqlConnection(builder.ConnectionString))
+            using (var cmd = new SqlCommand("PA_NoBDD", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@DatabaseName", bdd);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
 
@@ -802,6 +694,17 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public static void FiltrarDatosSuperv(string Docente, string clase, string Aula, string Edificio, string Seccion, DataGridView dgv)
         {
+            int horaSeccion;
+            if (Seccion.Length >= 2 && int.TryParse(Seccion.Substring(0, 2), out horaSeccion))
+            {
+                if (horaSeccion > DateTime.Now.Hour)
+                {
+                    MessageBox.Show("No se pueden filtrar secciones futuras, por favor esperar\npara poder filtrarlas", "Sección futura", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            else
+                MessageBox.Show("Secciones cargadas presentes o pasadas: " + dgv.Rows.Count, "Secciones presentes o pasados", MessageBoxButtons.OK, MessageBoxIcon.Information);            
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
                 conn.Open();
@@ -850,43 +753,6 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 }
             }
             return fechas;
-        }
-
-        public static DataTable tablaAdmin (DataGridView dgv)
-        {
-            DataTable dt = new DataTable();
-
-            using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
-            {
-                SqlCommand cmd = new SqlCommand("PA_Admin", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-            }
-
-            if (dt.Rows.Count > 0)
-            {
-                dgv.Columns.Clear();
-
-                BindingSource bs = new BindingSource();
-                bs.DataSource = dt;
-                dgv.DataSource = bs;
-                bs.ResetBindings(false);
-                dgv.AutoGenerateColumns = true;
-                dgv.Refresh();
-                dgv.Columns[0].Width = 140;
-                dgv.Columns[0].ReadOnly = true;
-                dgv.Columns[1].Width = 100;
-                dgv.Columns[2].Width = 100;
-                dgv.Columns[3].Width = 100;
-                dgv.Columns[4].Width = 100;
-                dgv.Columns[5].Width = 110;
-                dgv.Columns[6].Width = 116;
-                dgv.Columns[7].Width = 110;
-                dgv.Columns[0].ReadOnly = true;
-            }
-            return dt;
         }
 
         public static DataTable CargarAsistenciaSuperv(MonthCalendar adminFechas, string refiero, string curso, string seccion, string aula, string empleo)
@@ -995,6 +861,28 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
             }
+
+            if (dt.Rows.Count > 0)
+            {
+                dgv.Columns.Clear();
+
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dt;
+                dgv.DataSource = bs;
+                bs.ResetBindings(false);
+                dgv.AutoGenerateColumns = true;
+                dgv.Refresh();
+
+                dgv.Columns[0].Visible = false;
+                dgv.Columns[1].Width = 150;
+                dgv.Columns[2].Width = 80;
+                dgv.Columns[3].Width = 66;
+                dgv.Columns[4].Width = 120;
+                dgv.Columns[4].HeaderText = "Sección";
+                dgv.Columns[5].Width = 304;
+                dgv.Columns[5].HeaderText = "Justificación";
+            }
+
             dgv.AutoGenerateColumns = true;
             dgv.DataSource = dt;
             dgv.Refresh();
@@ -1005,6 +893,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             dgv.Columns[3].Width = 300;
             dgv.Columns[4].Width = 100;
             dgv.Columns[5].Width = 304;
+
 
             return dt;
         }
@@ -1069,7 +958,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             return dt;
         }
 
-        public static void FiltrarDatosJusto(string Docente, string Edificio, DataGridView dgv)
+        public static void FiltrarDatosJusto(string Docente, string Edificio, DateTime Pasado, DataGridView dgv)
         {
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
@@ -1079,7 +968,9 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Docente", Docente);
                     cmd.Parameters.AddWithValue("@Edificio", Edificio);
+                    cmd.Parameters.AddWithValue("@FechaPasada", Pasado);
                     cmd.Parameters.AddWithValue("@CodigoDecano", empleado);
+
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -1104,15 +995,36 @@ namespace PreyectoDesarrollo_unicah.CLASES
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
             }
+
+            if (dt.Rows.Count > 0)
+            {
+                dgv.Columns.Clear();
+
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dt;
+                dgv.DataSource = bs;
+                bs.ResetBindings(false);
+                dgv.AutoGenerateColumns = true;
+                dgv.Refresh(); 
+                dgv.Columns[0].Visible = false;
+            }
+
             dgv.AutoGenerateColumns = true;
             dgv.DataSource = dt;
             dgv.Refresh();
+
 
             dgv.Columns[1].Width = 150;
             dgv.Columns[2].Width = 100;
             dgv.Columns[3].Width = 300;
             dgv.Columns[4].Width = 100;
+
+            dgv.Columns[4].HeaderText = "Sección";
             dgv.Columns[5].Width = 125;
+            dgv.Columns[5].HeaderText = "Fecha de Reposición";
+
+            dgv.Columns[5].Width = 125;
+
             return dt;
         }
 
@@ -1160,8 +1072,10 @@ namespace PreyectoDesarrollo_unicah.CLASES
 
         public static void Repongo(DataGridView dgv, int Ausencia, DateTimePicker dtp)
         {
-            DateTime dia = dtp.Value; 
+
+            DateTime dia = dtp.Value;
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
+
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand("PA_Insertar_Reposicion", conn))
@@ -1177,7 +1091,7 @@ namespace PreyectoDesarrollo_unicah.CLASES
             }
         }
 
-        public static void FiltrarDatosRepo(string Repo, string Edificio, DataGridView dgv)
+        public static void FiltrarDatosRepo(string Repo, string Edificio, DateTime Pasado, DataGridView dgv)
         {
             using (SqlConnection conn = new SqlConnection(CONEXION_BD.conectarBDD.ConnectionString))
             {
@@ -1187,8 +1101,8 @@ namespace PreyectoDesarrollo_unicah.CLASES
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Repo", Repo);
                     cmd.Parameters.AddWithValue("@Edificio", Edificio);
+                    cmd.Parameters.AddWithValue("@FechaPasada", Pasado);
                     cmd.Parameters.AddWithValue("@CodigoDecano", empleado);
-
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();

@@ -36,10 +36,14 @@
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             txtcontraseña = new TextBox();
+            pbMostrar = new PictureBox();
+            label1 = new Label();
+            label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbMostrar).BeginInit();
             SuspendLayout();
             // 
             // txtusuario
@@ -54,7 +58,7 @@
             txtusuario.TabIndex = 1;
             txtusuario.Text = "Usuario:";
             txtusuario.Enter += txtusuario_Enter;
-            txtusuario.KeyPress += Datos_KeyPress;
+            txtusuario.KeyPress += txtusuario_KeyPress;
             txtusuario.Leave += txtusuario_Leave;
             // 
             // btnLogin
@@ -62,6 +66,7 @@
             btnLogin.BackColor = Color.White;
             btnLogin.FlatAppearance.BorderColor = SystemColors.HotTrack;
             btnLogin.FlatStyle = FlatStyle.Flat;
+            btnLogin.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnLogin.ForeColor = Color.Black;
             btnLogin.Location = new Point(168, 201);
             btnLogin.Name = "btnLogin";
@@ -128,8 +133,39 @@
             txtcontraseña.TabIndex = 2;
             txtcontraseña.Text = "Contraseña:";
             txtcontraseña.Enter += txtcontraseña_Enter;
-            txtcontraseña.KeyPress += Datos_KeyPress;
+            txtcontraseña.KeyPress += txtcontraseña_KeyPress;
             txtcontraseña.Leave += txtcontraseña_Leave;
+            // 
+            // pbMostrar
+            // 
+            pbMostrar.Image = (Image)resources.GetObject("pbMostrar.Image");
+            pbMostrar.Location = new Point(582, 143);
+            pbMostrar.Name = "pbMostrar";
+            pbMostrar.Size = new Size(50, 43);
+            pbMostrar.SizeMode = PictureBoxSizeMode.Zoom;
+            pbMostrar.TabIndex = 5;
+            pbMostrar.TabStop = false;
+            pbMostrar.Click += pbMostrar_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
+            label1.Location = new Point(86, 111);
+            label1.Name = "label1";
+            label1.Size = new Size(69, 19);
+            label1.TabIndex = 6;
+            label1.Text = "Usuario:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
+            label2.Location = new Point(49, 153);
+            label2.Name = "label2";
+            label2.Size = new Size(102, 19);
+            label2.TabIndex = 7;
+            label2.Text = "Contraseña:";
             // 
             // Form1
             // 
@@ -137,6 +173,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(780, 287);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(pbMostrar);
             Controls.Add(txtcontraseña);
             Controls.Add(panel1);
             Controls.Add(btnLogin);
@@ -151,6 +190,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbMostrar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -164,5 +204,8 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
+        private PictureBox pbMostrar;
+        private Label label1;
+        private Label label2;
     }
 }
