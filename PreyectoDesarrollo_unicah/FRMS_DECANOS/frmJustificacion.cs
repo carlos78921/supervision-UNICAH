@@ -30,11 +30,15 @@ namespace PreyectoDesarrollo_unicah
         private void frmJustificación_Load(object sender, EventArgs e)
         {
             lblPersona.Text = ACCIONES_BD.Persona();
-
+            
             //Ajuste de controles
             txtJustifica.Text = Environment.NewLine; //  Mantener la primera línea vacía cuando se opera esto
             txtJustifica.SelectionStart = txtJustifica.Text.Length; // Colocar el cursor en la segunda línea cuando se opera esto
+<<<<<<< HEAD
             dtpAusencia.MaxDate = DateTime.Today;
+=======
+            dtpA.MaxDate = DateTime.Today;
+>>>>>>> 49e3ff8 (Cambio forzozo)
 
             //Ajuste en la BDD
             ACCIONES_BD.tablaJustifica(dgvJustificacion, ACCIONES_BD.empleado);
