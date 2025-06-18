@@ -71,9 +71,9 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnVoy
             // 
-            btnVoy.Location = new Point(659, 602);
+            btnVoy.Location = new Point(659, 592);
             btnVoy.Name = "btnVoy";
-            btnVoy.Size = new Size(126, 24);
+            btnVoy.Size = new Size(126, 44);
             btnVoy.TabIndex = 27;
             btnVoy.Text = "&REGRESAR";
             btnVoy.UseVisualStyleBackColor = true;

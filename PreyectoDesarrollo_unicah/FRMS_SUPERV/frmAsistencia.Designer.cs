@@ -257,7 +257,7 @@
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(86, 43);
             btnLogout.TabIndex = 6;
-            btnLogout.Text = "CERRAR &SESIÓN";
+            btnLogout.Text = "&REGRESAR";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += Cerrar;
             // 
