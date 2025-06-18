@@ -79,5 +79,14 @@ namespace PreyectoDesarrollo_unicah
                 return;
             ACCIONES_BD.tablaReponeTodo();
         }
+
+        private void dgvRepone_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvRepone.CurrentRow.Index > -1)
+            {
+                btnDay.Enabled = true;
+                dtpReposicion.Enabled = true;
+            }
+        }
     }
 }

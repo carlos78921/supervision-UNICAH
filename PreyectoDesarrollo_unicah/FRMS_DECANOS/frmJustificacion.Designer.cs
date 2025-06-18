@@ -61,6 +61,7 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnAgregar
             // 
+            btnAgregar.Enabled = false;
             btnAgregar.Location = new Point(527, 592);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(126, 44);
@@ -165,6 +166,7 @@ namespace PreyectoDesarrollo_unicah
             dgvJustificacion.RowHeadersWidth = 51;
             dgvJustificacion.Size = new Size(773, 304);
             dgvJustificacion.TabIndex = 26;
+            dgvJustificacion.CellClick += dgvJustificacion_CellClick;
             // 
             // label1
             // 
@@ -177,7 +179,12 @@ namespace PreyectoDesarrollo_unicah
             // 
             // txtJustifica
             // 
+<<<<<<< HEAD
             txtJustifica.Location = new Point(449, 119);
+=======
+            txtJustifica.Enabled = false;
+            txtJustifica.Location = new Point(447, 119);
+>>>>>>> 2ac7eb1 (En lugar de que se le valide al decano cuando no selecciona fila, se le bloquean las entradas)
             txtJustifica.Multiline = true;
             txtJustifica.Name = "txtJustifica";
             txtJustifica.Size = new Size(337, 147);
@@ -308,6 +315,7 @@ namespace PreyectoDesarrollo_unicah
         private Label lblPersona;
         private Label label3;
         private ComboBox cmbEdificio;
+        private Button btnAgregar;
         private TextBox txtBusco;
         private Label label4;
         private Label label5;

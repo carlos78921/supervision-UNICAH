@@ -79,7 +79,12 @@ namespace PreyectoDesarrollo_unicah
             // 
             // btnReporta
             // 
+<<<<<<< HEAD
             btnReporta.Location = new Point(358, 446);
+=======
+            btnReporta.Enabled = false;
+            btnReporta.Location = new Point(358, 424);
+>>>>>>> 2ac7eb1 (En lugar de que se le valide al decano cuando no selecciona fila, se le bloquean las entradas)
             btnReporta.Name = "btnReporta";
             btnReporta.Size = new Size(153, 28);
             btnReporta.TabIndex = 45;
@@ -163,6 +168,7 @@ namespace PreyectoDesarrollo_unicah
             dgvRepone.RowHeadersWidth = 51;
             dgvRepone.Size = new Size(564, 219);
             dgvRepone.TabIndex = 24;
+            dgvRepone.CellClick += dgvRepone_CellClick;
             // 
             // txtBusco
             // 
@@ -194,7 +200,12 @@ namespace PreyectoDesarrollo_unicah
             // 
             // dtpReposicion
             // 
+<<<<<<< HEAD
             dtpReposicion.Location = new Point(12, 160);
+=======
+            dtpReposicion.Enabled = false;
+            dtpReposicion.Location = new Point(12, 122);
+>>>>>>> 2ac7eb1 (En lugar de que se le valide al decano cuando no selecciona fila, se le bloquean las entradas)
             dtpReposicion.Name = "dtpReposicion";
             dtpReposicion.Size = new Size(215, 23);
             dtpReposicion.TabIndex = 22;
@@ -275,6 +286,7 @@ namespace PreyectoDesarrollo_unicah
         private PictureBox pictureBox3;
         private Label label1;
         private DataGridView dgvRepone;
+        private Button btnDay;
         private Label lblPersona;
         private TextBox txtBusco;
         private ComboBox cmbEdificio;
