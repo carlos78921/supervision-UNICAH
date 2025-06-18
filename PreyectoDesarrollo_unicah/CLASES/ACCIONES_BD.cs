@@ -312,38 +312,13 @@ namespace PreyectoDesarrollo_unicah.CLASES
                                 }
                                 return false;
                             }
-
-                            if (contraseña.Length < 8)
-                            {
-                                if (MessageBox.Show("Saludos Administrador, su contraseña debe contener más de ocho caracteres, ¿perdió su contraseña?", "Contraseña Corta Admin.", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
-                                {
-                                    frmPierdoContraseña Lost = new frmPierdoContraseña();
-                                    Login.Hide();
-                                    Lost.Show();
-                                }
-                                return false;
-                            }
                         }
                         else
                         {
                             if (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña))
                             {
-           /**/                 if (contraseña == "Contraseña:" || string.IsNullOrWhiteSpace(contraseña))
-                                {
-                                    MessageBox.Show("Contraseña no puede quedar vacía.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    contra.Focus();
-                                    return false;
-                                }
-                            }
-
-                            if (contraseña.Length < 8)
-                            {
-/**/                            if (MessageBox.Show("La contraseña debe tener al menos 8 caracteres", "Contraseña Corta", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes) 
-                                {
-                                    frmPierdoContraseña Lost = new frmPierdoContraseña();
-                                    Login.Hide();
-                                    Lost.Show();
-                                }
+                                MessageBox.Show("Contraseña no puede quedar vacía.", "Contraseña Vacía", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                contra.Focus();
                                 return false;
                             }
                         }
