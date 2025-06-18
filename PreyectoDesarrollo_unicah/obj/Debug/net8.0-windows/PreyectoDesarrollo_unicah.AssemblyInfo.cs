@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PreyectoDesarrollo_unicah")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5877254341a7aefbed8283c514381b92edfac18d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc0f174716df93f80c2fdb1fa8f4d9926313e4cc")]
 [assembly: System.Reflection.AssemblyProductAttribute("PreyectoDesarrollo_unicah")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PreyectoDesarrollo_unicah")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
