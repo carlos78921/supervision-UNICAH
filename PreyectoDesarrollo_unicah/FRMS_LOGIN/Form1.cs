@@ -152,5 +152,24 @@ namespace PreyectoDesarrollo_unicah
                 e.Handled = true;
             Datos_KeyPress(sender, e);
         }
+
+        bool mostrar = false; //Variable obligatoria por asignar y fuera del método para evitar error de asignar solo falso cuando está dentro del método evento 
+        private void pbMostrar_Click(object sender, EventArgs e)
+        {
+            if (mostrar)
+            {
+                // Ocultar contraseña
+                txtcontraseña.UseSystemPasswordChar = true;
+                pbMostrar.Image = Properties.Resources.Ojo_Esconde;
+                mostrar = false;
+            }
+            else
+            {
+                // Mostrar contraseña
+                txtcontraseña.UseSystemPasswordChar = false;
+                pbMostrar.Image = Properties.Resources.Ojo;
+                mostrar = true;
+            }
+        }
     }
 }

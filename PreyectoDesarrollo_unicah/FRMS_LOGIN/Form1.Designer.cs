@@ -36,10 +36,12 @@
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             txtcontraseña = new TextBox();
+            pbMostrar = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbMostrar).BeginInit();
             SuspendLayout();
             // 
             // txtusuario
@@ -131,12 +133,24 @@
             txtcontraseña.KeyPress += txtcontraseña_KeyPress;
             txtcontraseña.Leave += txtcontraseña_Leave;
             // 
+            // pbMostrar
+            // 
+            pbMostrar.Image = (Image)resources.GetObject("pbMostrar.Image");
+            pbMostrar.Location = new Point(582, 143);
+            pbMostrar.Name = "pbMostrar";
+            pbMostrar.Size = new Size(50, 43);
+            pbMostrar.SizeMode = PictureBoxSizeMode.Zoom;
+            pbMostrar.TabIndex = 5;
+            pbMostrar.TabStop = false;
+            pbMostrar.Click += pbMostrar_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(780, 287);
+            Controls.Add(pbMostrar);
             Controls.Add(txtcontraseña);
             Controls.Add(panel1);
             Controls.Add(btnLogin);
@@ -151,6 +165,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbMostrar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -164,5 +179,6 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
+        private PictureBox pbMostrar;
     }
 }
