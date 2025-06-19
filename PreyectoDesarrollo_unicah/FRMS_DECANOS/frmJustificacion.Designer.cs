@@ -179,12 +179,8 @@ namespace PreyectoDesarrollo_unicah
             // 
             // txtJustifica
             // 
-<<<<<<< HEAD
             txtJustifica.Location = new Point(449, 119);
-=======
-            txtJustifica.Enabled = false;
             txtJustifica.Location = new Point(447, 119);
->>>>>>> 2ac7eb1 (En lugar de que se le valide al decano cuando no selecciona fila, se le bloquean las entradas)
             txtJustifica.Multiline = true;
             txtJustifica.Name = "txtJustifica";
             txtJustifica.Size = new Size(337, 147);
