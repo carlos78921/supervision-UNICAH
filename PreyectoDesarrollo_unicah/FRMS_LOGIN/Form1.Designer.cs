@@ -39,6 +39,7 @@
             pbMostrar = new PictureBox();
             label1 = new Label();
             label2 = new Label();
+            llReestablecer = new LinkLabel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -68,7 +69,7 @@
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnLogin.ForeColor = Color.Black;
-            btnLogin.Location = new Point(168, 201);
+            btnLogin.Location = new Point(168, 231);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(408, 40);
             btnLogin.TabIndex = 3;
@@ -167,12 +168,24 @@
             label2.TabIndex = 7;
             label2.Text = "Contraseña:";
             // 
+            // llReestablecer
+            // 
+            llReestablecer.AutoSize = true;
+            llReestablecer.Font = new Font("Segoe UI", 12F);
+            llReestablecer.Location = new Point(243, 192);
+            llReestablecer.Name = "llReestablecer";
+            llReestablecer.Size = new Size(257, 21);
+            llReestablecer.TabIndex = 8;
+            llReestablecer.TabStop = true;
+            llReestablecer.Text = "Perdí mi contraseña, necesito ayuda";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(780, 287);
+            Controls.Add(llReestablecer);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(pbMostrar);
@@ -207,5 +220,6 @@
         private PictureBox pbMostrar;
         private Label label1;
         private Label label2;
+        private LinkLabel llReestablecer;
     }
 }

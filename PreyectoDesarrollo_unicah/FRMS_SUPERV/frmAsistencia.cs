@@ -85,7 +85,6 @@ namespace PreyectoDesarrollo_unicah
         {
             if (!CONEXION_BD.ConexionPerdida(this))
                 return;
-            ACCIONES_BD.FiltrarDatosSuperv(txtDoc.Text, txtClase.Text, cmbAula.Text, cmbEdificio.Text, cmbSeccion.Text, dgvAsiste);
         }
 
         private void dgvAsiste_CellValueChanged(object sender, DataGridViewCellEventArgs e)
